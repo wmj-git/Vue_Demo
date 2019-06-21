@@ -130,6 +130,9 @@ $r:32;
   box-shadow: none;
   background: transparent;
 }
+.window .window-header{
+  padding:6/$r+rem;//IE 设置panel-header无效
+}
 .panel.window.#{em-table-window}.panel-htop{
   background: $background-table-base;
   border: 18px solid transparent;
@@ -144,7 +147,6 @@ $r:32;
   overflow: visible;//table-dialog遮罩
 
 }
-
 /*slider*/
 .panel.window.#{em-slider-window}.panel-htop{
   border: none;

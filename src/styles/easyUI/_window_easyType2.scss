@@ -121,6 +121,9 @@ $r:32;
   box-shadow: none;
   background: transparent;
 }
+.window .window-header{
+  padding:6/$r+rem;//IE 设置panel-header无效
+}
 .panel.window.#{em-table-window}.panel-htop{
   background:transparent;
   border: none;

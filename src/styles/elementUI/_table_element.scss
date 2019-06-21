@@ -1,6 +1,6 @@
 $r:32;
 .operation.el-row{
-  line-height: 40/$r+rem;//设置高度后按钮所需宽度超过父级宽度时会被遮挡，应该换行显示
+  line-height: 30/$r+rem;//设置高度后按钮所需宽度超过父级宽度时会被遮挡，应该换行显示
 }
 .#{table-classification}{
   overflow: auto;
