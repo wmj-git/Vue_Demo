@@ -36,7 +36,7 @@
         class="my-table"
         v-loading="listLoading"
         borders
-        height="calc(100% - 92px)"
+        height="calc(100% - 68px)"
         highlight-current-row
         @current-change="handleCurrentChange"
         ref="multipleTable"

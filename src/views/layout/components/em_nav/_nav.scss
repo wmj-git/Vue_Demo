@@ -1,6 +1,7 @@
 @import "../../../../styles/index/_variable";
 @import "../../../../styles/index/_button";
-$r:32;
+
+$r: 32;
 .panel.window.#{em-nav-window}.panel-htop /deep/ {
   .el-menu.el-menu--horizontal {
     border-bottom: none;
@@ -15,13 +16,17 @@ ul.el-menu-demo.em-nav-menu.el-menu--horizontal.el-menu /deep/ {
   li.el-menu-item {
     background: url("../../../../assets/image/nav_border.png") no-repeat center;
     background-size: 100% 100%;
-    margin-right: 8/$r+rem;
-    margin-top: 20/$r+rem;
+    width: 90px;//IE
+    margin-right: 4/$r+rem; //IE
+    -moz-margin-right: 8/$r+rem;
+    -webkit-margin-right: 8/$r+rem;
+    margin-top: 15/$r+rem;
     height: 35/$r+rem;
     line-height: 30/$r+rem;
     color: #fff;
     font-size: 15/$r+rem;
     left: 1%;
+
     &.is-active {
       border-image-source: url("../../../../assets/image/nav_hover.png");
       border-bottom: 1px solid transparent;
@@ -34,9 +39,11 @@ ul.el-menu-demo.em-nav-menu.el-menu--horizontal.el-menu /deep/ {
     }
   }
 }
-@media screen and (max-width:1024px){
-  ul.el-menu-demo.em-nav-menu.el-menu--horizontal.el-menu{
+
+@media screen and (max-width: 1024px) {
+  ul.el-menu-demo.em-nav-menu.el-menu--horizontal.el-menu {
     display: flex;
+    width: 500px;//menu-width
     -webkit-perspective: 10px;
     perspective: 10px;
     -webkit-transform: perspective(300px) rotateX(20deg);
@@ -48,17 +55,154 @@ ul.el-menu-demo.em-nav-menu.el-menu--horizontal.el-menu /deep/ {
     justify-content: center;
     -webkit-transform-style: preserve-3d;
     transform-style: preserve-3d;
-    &:hover{
+
+    &:hover {
       -webkit-perspective: 1000px;
       perspective: 1000px;
       transition: all 1s ease-in;
       -webkit-transform: perspective(10000px) rotateX(0deg);
       transform: perspective(10000px) rotateX(0deg);
-      & >li.el-menu-item{
+
+      & > li.el-menu-item {
         opacity: 1;
         transition-delay: 0s;
       }
-      & li.el-menu-item:nth-child(3)::before{
+
+      & li.el-menu-item:nth-child(3)::before {
+        display: none;
+      }
+    }
+  }
+  ul.el-menu-demo.em-nav-menu.el-menu--horizontal.el-menu /deep/ {
+    li.el-menu-item {
+      padding: 3px;
+      background: none;
+      max-width: 90px;
+      height: 50px;
+      line-height: 40px;
+      font-size: 16px;
+      text-align: center;
+      -webkit-transform-style: preserve-3d;
+      transform-style: preserve-3d;
+      border-radius: 5px;
+      border: 1px solid #fff;
+      box-shadow: 0 0 20px 5px nth($menu-background, 3);
+      opacity: 0;
+      transition: all .3s ease;
+      transition-delay: 1s;
+      position: relative;
+      background-position: center center;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-color: nth($menu-background, 1);
+      cursor: pointer;
+      background-blend-mode: color-burn;
+
+      &:nth-child(3)::before {
+        content: "Hover me";
+        font-weight: 300;
+        font-size: 14px;
+        color: #fff;
+        transition: all .6s ease;
+        width: 100%;
+        height: 100%;
+        background-color: nth($menu-background, 1);
+        background-image: radial-gradient(circle at center top, nth($menu-background, 1), nth($menu-background, 2));
+        border-radius: 10px;
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      &:hover {
+        box-shadow: 0 0 10px 3px nth($menu-background, 2);
+        background-color: nth($menu-background, 1);
+      }
+
+      &.is-active {
+        border-image: none;
+        background-color: darken(nth($menu-background, 1), 10%);
+        border-color: $border-color-base;
+        border-bottom: none;
+      }
+
+      &::after {
+        content: "";
+        -webkit-transform: translateY(30px);
+        transform: translateY(30px);
+        opacity: 0;
+        transition: all .3s ease;
+        bottom: 0;
+        left: 5px;
+        position: absolute;
+        will-change: transform;
+        color: #fff;
+        text-shadow: 0 0 5px nth($menu-background, 1);
+      }
+
+      &:nth-child(1) {
+        -webkit-transform: translateX(-30px) translateZ(-50px) rotateY(-10deg);
+        transform: translateX(-30px) translateZ(-50px) rotateY(-10deg);
+      }
+
+      &:nth-child(2) {
+        -webkit-transform: translateX(-10px) translateZ(-25px) rotateY(-5deg);
+        transform: translateX(-10px) translateZ(-25px) rotateY(-5deg);
+      }
+
+      &:nth-child(3) {
+        opacity: 1;
+        overflow: hidden;
+
+        &:hover {
+          display: inherit;
+          padding-left: 12px;
+        }
+      }
+
+      &:nth-child(4) {
+        -webkit-transform: translateX(10px) translateZ(-25px) rotateY(5deg);
+        transform: translateX(10px) translateZ(-25px) rotateY(5deg);
+      }
+
+      &:nth-child(5) {
+        -webkit-transform: translateX(30px) translateZ(-50px) rotateY(10deg);
+        transform: translateX(30px) translateZ(-50px) rotateY(10deg);
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1025px) and (max-width: 1280px) {
+  ul.el-menu-demo.em-nav-menu.el-menu--horizontal.el-menu {
+    display: flex;
+    width: 500px;//menu-width
+    -webkit-perspective: 10px;
+    perspective: 10px;
+    -webkit-transform: perspective(300px) rotateX(20deg);
+    transform: perspective(300px) rotateX(20deg);
+    will-change: perspective;
+    -webkit-perspective-origin: center center;
+    perspective-origin: center center;
+    transition: all 1s ease-out;
+    justify-content: center;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+
+    &:hover {
+      -webkit-perspective: 1000px;
+      perspective: 1000px;
+      transition: all 1s ease-in;
+      -webkit-transform: perspective(10000px) rotateX(0deg);
+      transform: perspective(10000px) rotateX(0deg);
+
+      & > li.el-menu-item {
+        opacity: 1;
+        transition-delay: 0s;
+      }
+
+      & li.el-menu-item:nth-child(3)::before {
         display: none;
       }
     }
@@ -76,7 +220,7 @@ ul.el-menu-demo.em-nav-menu.el-menu--horizontal.el-menu /deep/ {
       transform-style: preserve-3d;
       border-radius: 5px;
       border: 1px solid #fff;
-      box-shadow: 0 0 20px 5px nth($menu-background,3);
+      box-shadow: 0 0 20px 5px nth($menu-background, 3);
       opacity: 0;
       transition: all .3s ease;
       transition-delay: 1s;
@@ -84,10 +228,11 @@ ul.el-menu-demo.em-nav-menu.el-menu--horizontal.el-menu /deep/ {
       background-position: center center;
       background-size: contain;
       background-repeat: no-repeat;
-      background-color: nth($menu-background,1);
+      background-color: nth($menu-background, 1);
       cursor: pointer;
       background-blend-mode: color-burn;
-      &:nth-child(3)::before{
+
+      &:nth-child(3)::before {
         content: "Hover me";
         font-weight: 300;
         font-size: 14px;
@@ -95,25 +240,28 @@ ul.el-menu-demo.em-nav-menu.el-menu--horizontal.el-menu /deep/ {
         transition: all .6s ease;
         width: 100%;
         height: 100%;
-        background-color: nth($menu-background,1);
-        background-image: radial-gradient(circle at center top, nth($menu-background,1),nth($menu-background,2));
+        background-color: nth($menu-background, 1);
+        background-image: radial-gradient(circle at center top, nth($menu-background, 1), nth($menu-background, 2));
         border-radius: 10px;
         text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
         display: flex;
         justify-content: center;
         align-items: center;
       }
-      &:hover{
-        box-shadow: 0 0 10px 3px nth($menu-background,2);
-        background-color: nth($menu-background,1);
+
+      &:hover {
+        box-shadow: 0 0 10px 3px nth($menu-background, 2);
+        background-color: nth($menu-background, 1);
       }
-      &.is-active{
+
+      &.is-active {
         border-image: none;
-        background-color: darken(nth($menu-background,1),10%);
+        background-color: darken(nth($menu-background, 1), 10%);
         border-color: $border-color-base;
         border-bottom: none;
       }
-      &::after{
+
+      &::after {
         content: "";
         -webkit-transform: translateY(30px);
         transform: translateY(30px);
@@ -124,177 +272,68 @@ ul.el-menu-demo.em-nav-menu.el-menu--horizontal.el-menu /deep/ {
         position: absolute;
         will-change: transform;
         color: #fff;
-        text-shadow: 0 0 5px nth($menu-background,1);
+        text-shadow: 0 0 5px nth($menu-background, 1);
       }
-      &:nth-child(1){
+
+      &:nth-child(1) {
         -webkit-transform: translateX(-30px) translateZ(-50px) rotateY(-10deg);
         transform: translateX(-30px) translateZ(-50px) rotateY(-10deg);
       }
-      &:nth-child(2){
+
+      &:nth-child(2) {
         -webkit-transform: translateX(-10px) translateZ(-25px) rotateY(-5deg);
         transform: translateX(-10px) translateZ(-25px) rotateY(-5deg);
       }
-      &:nth-child(3){
+
+      &:nth-child(3) {
         opacity: 1;
         overflow: hidden;
-        &:hover{
-          display:inherit;
+
+        &:hover {
+          display: inherit;
           padding-left: 12px;
         }
       }
-      &:nth-child(4){
+
+      &:nth-child(4) {
         -webkit-transform: translateX(10px) translateZ(-25px) rotateY(5deg);
         transform: translateX(10px) translateZ(-25px) rotateY(5deg);
       }
-      &:nth-child(5){
+
+      &:nth-child(5) {
         -webkit-transform: translateX(30px) translateZ(-50px) rotateY(10deg);
         transform: translateX(30px) translateZ(-50px) rotateY(10deg);
       }
     }
   }
 }
-@media screen and (min-width:1025px) and (max-width:1280px){
-  ul.el-menu-demo.em-nav-menu.el-menu--horizontal.el-menu{
-    display: flex;
-    -webkit-perspective: 10px;
-    perspective: 10px;
-    -webkit-transform: perspective(300px) rotateX(20deg);
-    transform: perspective(300px) rotateX(20deg);
-    will-change: perspective;
-    -webkit-perspective-origin: center center;
-    perspective-origin: center center;
-    transition: all 1s ease-out;
-    justify-content: center;
-    -webkit-transform-style: preserve-3d;
-    transform-style: preserve-3d;
-    &:hover{
-      -webkit-perspective: 1000px;
-      perspective: 1000px;
-      transition: all 1s ease-in;
-      -webkit-transform: perspective(10000px) rotateX(0deg);
-      transform: perspective(10000px) rotateX(0deg);
-      & >li.el-menu-item{
-        opacity: 1;
-        transition-delay: 0s;
-      }
-      & li.el-menu-item:nth-child(3)::before{
-        display: none;
-      }
-    }
-  }
-  ul.el-menu-demo.em-nav-menu.el-menu--horizontal.el-menu /deep/ {
-    li.el-menu-item {
-      padding: 3px;
-      background: none;
-      width: 90px;
-      height: 50px;
-      line-height: 40px;
-      font-size: 16px;
-      text-align: center;
-      -webkit-transform-style: preserve-3d;
-      transform-style: preserve-3d;
-      border-radius: 5px;
-      border: 1px solid #fff;
-      box-shadow: 0 0 20px 5px nth($menu-background,3);
-      opacity: 0;
-      transition: all .3s ease;
-      transition-delay: 1s;
-      position: relative;
-      background-position: center center;
-      background-size: contain;
-      background-repeat: no-repeat;
-      background-color: nth($menu-background,1);
-      cursor: pointer;
-      background-blend-mode: color-burn;
-      &:nth-child(3)::before{
-        content: "Hover me";
-        font-weight: 300;
-        font-size: 14px;
-        color: #fff;
-        transition: all .6s ease;
-        width: 100%;
-        height: 100%;
-        background-color: nth($menu-background,1);
-        background-image: radial-gradient(circle at center top, nth($menu-background,1),nth($menu-background,2));
-        border-radius: 10px;
-        text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-      &:hover{
-        box-shadow: 0 0 10px 3px nth($menu-background,2);
-        background-color: nth($menu-background,1);
-      }
-      &.is-active{
-        border-image: none;
-        background-color: darken(nth($menu-background,1),10%);
-        border-color: $border-color-base;
-        border-bottom: none;
-      }
-      &::after{
-        content: "";
-        -webkit-transform: translateY(30px);
-        transform: translateY(30px);
-        opacity: 0;
-        transition: all .3s ease;
-        bottom: 0;
-        left: 5px;
-        position: absolute;
-        will-change: transform;
-        color: #fff;
-        text-shadow: 0 0 5px nth($menu-background,1);
-      }
-      &:nth-child(1){
-        -webkit-transform: translateX(-30px) translateZ(-50px) rotateY(-10deg);
-        transform: translateX(-30px) translateZ(-50px) rotateY(-10deg);
-      }
-      &:nth-child(2){
-        -webkit-transform: translateX(-10px) translateZ(-25px) rotateY(-5deg);
-        transform: translateX(-10px) translateZ(-25px) rotateY(-5deg);
-      }
-      &:nth-child(3){
-        opacity: 1;
-        overflow: hidden;
-        &:hover{
-          display:inherit;
-          padding-left: 12px;
-        }
-      }
-      &:nth-child(4){
-        -webkit-transform: translateX(10px) translateZ(-25px) rotateY(5deg);
-        transform: translateX(10px) translateZ(-25px) rotateY(5deg);
-      }
-      &:nth-child(5){
-        -webkit-transform: translateX(30px) translateZ(-50px) rotateY(10deg);
-        transform: translateX(30px) translateZ(-50px) rotateY(10deg);
-      }
-    }
-  }
-}
-@media screen and (min-width:1281px) and (max-width:1440px){
-  li.el-menu-item.is-active{
-    border-image-outset:10 !important;
+
+@media screen and (min-width: 1281px) and (max-width: 1440px) {
+  li.el-menu-item.is-active {
+    border-image-outset: 10 !important;
     border-bottom: 2px solid transparent !important;
   }
   li.el-menu-item {
-    margin-top: 20/$r+rem !important;
+    margin-top: 28/$r+rem !important;
   }
 }
-@media screen and (min-width:1441px) and (max-width:1680px){
-  li.el-menu-item.is-active{
-    border-image-outset:14!important;
+
+@media screen and (min-width: 1441px) and (max-width: 1680px) {
+  li.el-menu-item.is-active {
+    border-image-outset: 14 !important;
     border-bottom: 2px solid transparent !important;
   }
 }
-@media screen and (min-width:1681px) and (max-width:1920px){
-  li.el-menu-item.is-active{
-    border-image-outset:10 !important;
+
+@media screen and (min-width: 1681px) and (max-width: 1920px) {
+  li.el-menu-item.is-active {
+    border-image-outset: 10 !important;
     border-bottom: 2px solid transparent !important;
   }
 }
-@media screen and (min-width:1921px){
-  li.el-menu-item.is-active{
+
+@media screen and (min-width: 1921px) {
+  li.el-menu-item.is-active {
     border-bottom: 2px solid transparent !important;
   }
   li.el-menu-item {
