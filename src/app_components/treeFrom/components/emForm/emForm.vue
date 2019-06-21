@@ -4,12 +4,12 @@
       <el-main>
         <el-form label-position="left" :model="ruleForm" status-icon :rules="rules" :ref="id" label-width="100px">
           <template v-for="item in form_items">
-            <el-col :span="24" v-if="item.inputType=='text'">
+            <el-col :span="12" v-if="item.inputType=='text'">
               <el-form-item :label="item.label" :prop="item.valueKey">
                 <el-input :disabled="item.disabled" :ref="item.id" v-model="ruleForm[item.valueKey]"></el-input>
               </el-form-item>
             </el-col>
-            <el-col :span="24" v-else-if="item.inputType=='select'">
+            <el-col :span="12" v-else-if="item.inputType=='select'">
               <el-form-item :label="item.label" :prop="item.valueKey">
                 <el-select :disabled="item.disabled" :ref="item.id" v-model="ruleForm[item.valueKey]">
                   <template v-for="option in item.options">

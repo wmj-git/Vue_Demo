@@ -25,8 +25,9 @@ $r:32;
     color: $color-base;
     padding-left: 14/$r+rem;
     font-size: 14/$r+rem;
-    height: 40/$r+rem;
-    line-height: 40/$r+rem;
+    height: 30/$r+rem;
+    line-height: 30/$r+rem;
+    margin-top: 0;
     background:rgba(6, 15, 29, 0.9);
   }
   .box-card{
