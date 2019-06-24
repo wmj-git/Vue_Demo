@@ -17,7 +17,7 @@
             </template>
           </el-row>
           <el-table
-            height="calc(100% - 82px)"
+            height="600px"
             highlight-current-row
             @current-change="handleCurrentChange"
             ref="multipleTable"

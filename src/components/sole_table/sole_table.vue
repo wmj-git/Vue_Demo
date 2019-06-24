@@ -36,7 +36,7 @@
         class="my-table"
         v-loading="listLoading"
         borders
-        height="calc(100% - 92px)"
+        height="600px"
         highlight-current-row
         @current-change="handleCurrentChange"
         ref="multipleTable"
@@ -116,7 +116,7 @@
         table_list: [],
         formLabelWidth: '120px',
         dialogVisible: false,
-        delever_obj:"",      //主要保存add,alter请求的url,table_id
+        delever_obj:"",      // 主要保存add,alter请求的url,table_id
         alter_obj:"",
         dialogFormVisible: false,
         fileList: [],

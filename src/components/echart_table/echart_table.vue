@@ -9,7 +9,7 @@
                 </template>
               </el-row>
               <el-table
-                height="calc(100% - 70px)"
+                height="600px"
                 highlight-current-row
                 @current-change="handleCurrentChange"
                 ref="multipleTable"
@@ -267,7 +267,7 @@
                 if(_val.createDate===_time){
                   _arr[_i]=_val.temValue||_val.humValue;
                 }else if(!_arr[_i]){
-                
+
                         _arr[_i]="-";
                 }
               })
