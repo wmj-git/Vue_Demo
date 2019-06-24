@@ -110,7 +110,7 @@ $r: 32;
       stroke: $border-color-base;
       stroke-width: 3;
       stroke-dasharray: 422, 0;
-      transition: all 450ms linear 0s;
+      transition: all 0.45s linear 0s;
     }
 
     &:hover {
@@ -118,7 +118,7 @@ $r: 32;
       font-weight: 900;
       letter-spacing: 1px;
       color: #bbb;
-      transition: all 150ms linear 0s;
+      transition: all 0.15ms linear 0s;
     }
 
     &:hover rect {
