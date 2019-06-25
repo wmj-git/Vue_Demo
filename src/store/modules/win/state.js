@@ -375,6 +375,7 @@ export default {
         ],
         table: {
           id: "account_manage_table",
+          reset_button:true,
           table_url: "/user/userext/queryUserExt",
           label: [
             {

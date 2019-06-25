@@ -142,7 +142,7 @@ export default {
     legend: {
       orient: 'vertical',
       icon: "roundRect",          //图例的形状
-      selectedMode: false,　　　　//选中哪个图例 false后图例不可点击
+      selectedMode: false,//选中哪个图例 false后图例不可点击
       itemWidth:10,
       itemHeight:10,
       x: '65%',
@@ -177,7 +177,7 @@ export default {
         radius: ['50%', '70%'],   //设置内半径和外半径，形成环状
         center:['40%','50%'],      // 图在容器中的位置
         avoidLabelOverlap: false,  //避免标注重叠
-        hoverAnimation: false,　　　　//移入放大
+        hoverAnimation: false,//移入放大
         label: {
           normal: {
             show: true,           //环形中央自定义文字

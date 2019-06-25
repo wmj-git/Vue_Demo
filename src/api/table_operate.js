@@ -4,22 +4,18 @@ export function add(obj) {
     case "soil_temperature_manage_table":
       obj.params.pointType = "S";
       obj.params.temperatureOrHumidity = "T";
-      // obj.params.stat=0;
       break;
     case "soil_humidity_manage_table":
       obj.params.pointType = "S";
       obj.params.temperatureOrHumidity = "H";
-      // obj.params.stat=0;
       break;
     case "air_temperature_manage_table":
       obj.params.pointType = "A";
       obj.params.temperatureOrHumidity = "T";
-      // obj.params.stat=0;
       break;
     case "air_humidity_manage_table":
       obj.params.pointType = "A";
       obj.params.temperatureOrHumidity = "H";
-    // obj.params.stat=0;
 
   }
   return request({
@@ -70,5 +66,11 @@ export function upLoad(obj) {         //表格数据查
   return request({
     url: obj.url,
     method: 'post',
+  })
+}
+export function resetPassword(id) {         //账户密码重置
+  return request({
+    url: "user/userext/resetPwd/"+id,
+    method: 'get',
   })
 }

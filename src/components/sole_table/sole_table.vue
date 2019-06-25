@@ -64,6 +64,19 @@
                          :show-overflow-tooltip="true"
         >
         </el-table-column>
+        <el-table-column
+          align="right"
+          v-if="data.table.reset_button">
+          <template slot="header" slot-scope="scope">
+          </template>
+          <template slot-scope="scope">
+            <el-button
+              size="small"
+              @click="resetPassword">重置密码
+            </el-button>
+          </template>
+        </el-table-column>
+
       </el-table>
       <div class="pages">
         <el-pagination
@@ -83,7 +96,7 @@
 </template>
 
 <script>
-  import {add, dele, modify, find, downCsvmodel,upLoad} from "@/api/table_operate"
+  import {add, dele, modify, find, downCsvmodel,upLoad,resetPassword} from "@/api/table_operate"
   import em_button from "@/components/em_button/em_button"
   import em_input from "@/components/em_input/em_input"
   import em_dialogs from "@/components/em_dialogs/em_dialogs"
@@ -130,6 +143,7 @@
     },
     props: ["data"],
     mounted() {
+      console.log(this.data.table.reset_button);
       this.table_id=this.data.table.id;
       this.label=this.data.table.label;
       this.label_input=this.data.table.label.filter(val=>{
@@ -362,6 +376,20 @@
         }
 
       },
+      resetPassword(){
+        setTimeout(()=>{
+          console.log(this.alter_obj.id);
+          resetPassword(this.alter_obj.id).then(res=>{
+                 if(res.statusCode){
+                   this.$message({
+                     message: '恭喜你，重置密码成功',
+                     type: 'success'
+                   });
+                 }
+          })
+        });
+
+      }
     }
   }
 </script>

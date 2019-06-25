@@ -17,11 +17,6 @@
       </win>
     </template>
     <!--对话框-->
-    <!--<template v-for="dialog in dialogGroup" v-if="dialog.show">-->
-    <!--<em_dialog :data="dialog"></em_dialog>-->
-    <!--</template>-->
-    <!--<em_chart_window></em_chart_window>-->
-    <!--对话框-->
     <em_dialogs></em_dialogs>
     <!--场景-->
    <router-view name="scene"/>
@@ -46,7 +41,6 @@
   import button_group from "@/components/button_group/button_group"
   import em_menu from "./components/em_menu/em_menu"
   import em_nav from "./components/em_nav/em_nav"
-  import test from "@/views/test/test"
   import em_bottom from "./components/em_bottom/em_bottom"
   import em_logo_title from "./components/em_title/em_logotitle"
   import em_warn from "./components/em_warn/em_warn"
@@ -71,7 +65,6 @@
       button_group,
       em_menu,
       em_nav,
-      test,
       em_bottom,
       em_logo_title,
       em_warn,
