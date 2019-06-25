@@ -65,10 +65,12 @@
         >
         </el-table-column>
         <el-table-column
-          align="right"
+          align="center"
+          fixed="right"
+          label="操作"
           v-if="data.table.reset_button">
-          <template slot="header" slot-scope="scope">
-          </template>
+          <!--<template slot="header" slot-scope="scope">
+          </template>-->
           <template slot-scope="scope">
             <el-button class="em-btn-reset"
               size="small"

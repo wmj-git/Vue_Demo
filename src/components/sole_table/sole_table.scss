@@ -9,7 +9,7 @@ $r: 32;
   }
 }
 .em-btn-reset{
-  border-color: $border-color-base;
+  border-color: darken($border-color-base,20%);
   background:$background-linear-base ;
   color: rgba(255,255,255,0.6)!important;
   &:hover{
