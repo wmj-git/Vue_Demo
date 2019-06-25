@@ -26,7 +26,7 @@ Vue.use(ElementUI);
 import "@/styles/index/_index.scss"
 import "@/icons/icon/iconfont.css"
 
-import echarts from 'echarts'    //引入echarts
+import echarts from 'echarts'    //引入echarts图表
 Vue.prototype.$echarts = echarts
 
 import './directive/drag'

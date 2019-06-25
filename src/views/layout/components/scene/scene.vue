@@ -57,7 +57,9 @@
 
 
         // 加载地形1
-        window._scene = cm.openScene(window.viewer, process.env.SCENE_URL + "/zhlhscene/b3dm/tileset.json");
+        // window._scene = cm.openScene(window.viewer, process.env.SCENE_URL + "/zhlhscene/b3dm/tileset.json");
+        window._scene = cm.openScene(window.viewer, "http://onelz.xicp.io/SG/b3dm/LH1-1-2.405276/tileset.json");
+
       },
       alpha(obj) {
         cm.alphaFN(obj.value, window.viewer, window._scene.scene);
