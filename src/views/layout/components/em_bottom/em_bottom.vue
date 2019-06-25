@@ -72,6 +72,9 @@
                 params:this.form
              }).then(res=>{
                  console.log(res)
+               if(res.statusCode==200){
+                      this.alterpasswordSuceess()
+               }
              })
            },
            cancel(){
@@ -79,6 +82,16 @@
            },
           loginOut(){
                this.$router.push("/login");
+          },
+          alterpasswordSuceess(){
+            this.$message({
+              message: '密码修改成功',
+              type: 'success'
+            });
+            setTimeout(()=>{
+              this.loginOut();
+            },2000)
+
           }
       }
     }

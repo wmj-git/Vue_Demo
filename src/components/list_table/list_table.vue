@@ -17,7 +17,7 @@
             </template>
           </el-row>
           <el-table
-            height="calc(100% - 82px)"
+            height="600px"
             highlight-current-row
             @current-change="handleCurrentChange"
             ref="multipleTable"
@@ -68,7 +68,6 @@
 
 <script>
   import {add, dele, edit, find} from "@/api/table_operate"
-  // import {list, table} from "@/api/list_table";
   import em_button from "@/components/em_button/em_button"
   import em_input from "@/components/em_input/em_input"
   import em_select from "@/components/em_select/em_select"

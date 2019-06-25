@@ -17,12 +17,14 @@ ul.el-menu-demo.em-nav-menu.el-menu--horizontal.el-menu /deep/ {
     background: url("../../../../assets/image/nav_border.png") no-repeat center;
     background-size: 100% 100%;
     width: 90px;//IE
+    text-align: center;
+    padding: unset;
     margin-right: 4/$r+rem; //IE
     -moz-margin-right: 8/$r+rem;
     -webkit-margin-right: 8/$r+rem;
-    margin-top: 15/$r+rem;
-    height: 35/$r+rem;
-    line-height: 30/$r+rem;
+    margin-top: 20/$r+rem;
+    height: 30/$r+rem;
+    line-height: 26/$r+rem;
     color: #fff;
     font-size: 15/$r+rem;
     left: 1%;

@@ -5,6 +5,9 @@
 </template>
 
 <script>
+  var tt;
+
+
     export default {
         props: {
         },
