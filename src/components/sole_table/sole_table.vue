@@ -35,7 +35,7 @@
       <el-table
         class="my-table"
         v-loading="listLoading"
-        borders
+        border
         height="600px"
         highlight-current-row
         @current-change="handleCurrentChange"
@@ -70,7 +70,7 @@
           <template slot="header" slot-scope="scope">
           </template>
           <template slot-scope="scope">
-            <el-button
+            <el-button class="em-btn-reset"
               size="small"
               @click="resetPassword">重置密码
             </el-button>
