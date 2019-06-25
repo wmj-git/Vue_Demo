@@ -82,7 +82,8 @@
           if (this.chart) {
              this.option.series = this.series;
           }
-          this.init()
+          this.init();
+          console.log(this.id)
 
         },
         deep: true //对象内部属性的监听，关键。

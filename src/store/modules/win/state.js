@@ -868,7 +868,7 @@ export default {
           ]
         },
         chart: {
-          type: "line",
+          type: "line1",
           id: "line1",
           chart_url: '/gardens/temperature/queryAll?dataType=S'
         }
@@ -962,8 +962,8 @@ export default {
           ]
         },
         chart: {
-          type: "line",
-          id: "line1",
+          type: "line2",
+          id: "line2",
           chart_url: '/gardens/humidity/queryAll?dataType=S'
         }
       }
@@ -1056,8 +1056,8 @@ export default {
           ]
         },
         chart: {
-          type: "line",
-          id: "line2",
+          type: "line3",
+          id: "line3",
           chart_url: '/gardens/humantrafficinfo/queryAll'
         }
       }
@@ -1150,8 +1150,8 @@ export default {
           ]
         },
         chart: {
-          type: "line",
-          id: "line3",
+          type: "line4",
+          id: "line4",
           chart_url: '/gardens/temperature/queryAll?dataType=A'
         }
       }
@@ -1244,8 +1244,8 @@ export default {
           ]
         },
         chart: {
-          type: "line",
-          id: "line4",
+          type: "line5",
+          id: "line5",
           chart_url: '/gardens/humidity/queryAll?dataType=A'
         }
       }

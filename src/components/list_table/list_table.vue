@@ -1,7 +1,7 @@
 <template>
   <div class="list_table" style="width: 100%;height: 100%">
     <el-row style="height: 100%">
-      <el-col :span="6" style="height: 100%;" class="table-classification">
+      <el-col :span="10" style="height: 100%;" class="table-classification">
           <p>{{list.title}}</p>
           <ul>
             <!--<li v-for="(item,index) in list.data" @click="get_tableData(item.id)"  :id="item.id">{{item.typeCname}}</li>-->
@@ -9,7 +9,7 @@
           </ul>
 
       </el-col>
-      <el-col :span="42" style="height: 100%" class="table-container">
+      <el-col :span="38" style="height: 100%" class="table-container">
         <div class="table digital_table" style="height: 100%">
           <el-row class="operation">
             <template v-for="item in this.data.operation">
