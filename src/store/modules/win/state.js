@@ -3449,10 +3449,9 @@ export default {
     {
       id: "permissions_management",
       title: "权限管理",
-      top: "20%",
-      left: "20%",
-      width: "50%",
-      height: "50%",
+      top: 80,
+      left: 400,
+      height: 500,
       show: false,
       class: "em-table-window",
       component: "treeForm",
