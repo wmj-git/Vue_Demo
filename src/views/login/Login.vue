@@ -11,6 +11,13 @@
       <div class="em-login-content">
         <el-row>
           <el-form ref="form" :model="form" label-width="80px" class="em-login-form" name="form">
+            <el-form-item label="" class="login-label">
+
+            </el-form-item>
+            <el-col :span="48">
+              <a class="title_bg"></a>
+              <a class="user_login">用户登录</a>
+            </el-col>
             <el-form-item label="用户：" class="login-label">
               <el-col :span="44">
                 <el-input v-model="form.name" type="text" placeholder="请输入用户名"  prefix-icon="el-icon-users"></el-input>
