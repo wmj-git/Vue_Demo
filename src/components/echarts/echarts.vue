@@ -31,11 +31,12 @@
 
     },
     mounted() {
-       setTimeout(()=>{
-         if(!this.chart){    console.log('定時器調動')
-           this.init();
-         }
-       },2000);
+       // setTimeout(()=>{
+       //   if(!this.chart){
+       //     console.log('定時器調動')
+       //     this.init();
+       //   }
+       // },2000);
       this.bus.$on("echart",()=>{
           console.log('echart調動');
           this.init();

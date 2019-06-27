@@ -68,13 +68,16 @@
           align="center"
           fixed="right"
           label="操作"
+          min-width="160"
           v-if="data.table.reset_button">
-          <!--<template slot="header" slot-scope="scope">
-          </template>-->
           <template slot-scope="scope">
             <el-button class="em-btn-reset"
               size="small"
               @click="resetPassword">重置密码
+            </el-button>
+            <el-button class="em-btn-reset"
+                       size="small"
+                       @click="roleAssignments">角色分配
             </el-button>
           </template>
         </el-table-column>
@@ -391,6 +394,11 @@
           })
         });
 
+      },
+      roleAssignments(){
+        setTimeout(()=>{
+          console.log(this.alter_obj.id);
+        });
       }
     }
   }
