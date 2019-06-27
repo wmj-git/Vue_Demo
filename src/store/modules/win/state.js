@@ -2506,7 +2506,7 @@ export default {
             {
               name: "上限报警阀值",
               prop: "upperLimit",
-              width: "100",
+              width: "180",
               type: "em_input",
               placeholder: "上限报警阀值",
               params: "upperLimit",
