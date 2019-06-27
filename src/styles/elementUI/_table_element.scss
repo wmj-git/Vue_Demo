@@ -46,13 +46,13 @@ $r:32;
 .el-table--border{
   border-color: transparent;
   &::after{
-    background-color:rgba(255,255,255,0.4);//表格之外右边的边框线
+    background-color:rgba(255,255,255,0.1);//表格之外右边的边框线
   }
 }
 .el-table{
   background: $background-linear-base;
   &::before{
-    background-color:rgba(255,255,255,0.4);//表格之外下方的边框线
+    background-color:rgba(255,255,255,0.1);//表格之外下方的边框线
   }
 }
 .el-table__fixed::before, .el-table__fixed-right::before{
@@ -116,17 +116,25 @@ background:darken(nth($background-base,3),5%);
 .el-table--border td{//表格调整列宽
   border-right: none;
 }
-/*滚动条样式*/
+/*webkit滚动条样式*/
 ::-webkit-scrollbar {
-  width: 12px;
-  height: 12px;
-  background-color: #fff;
+  width: 6px;
+  height: 6px;
+  //background-color: #ebeef5;
 }
 ::-webkit-scrollbar-thumb {
-  // border-radius:5px;
-  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
-  background-color: rgba(0, 0, 0, .1)
+  border-radius:3px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: darken($border-color-base,15%);
+  height:120px;
 }
+
+/*table-th-right*/
+.el-table__fixed-right-patch{
+  background: transparent;
+  border: none;
+}
+
 @media screen and (min-width:1921px) {
   .el-table {
     height: calc(100% - 100px) !important;
