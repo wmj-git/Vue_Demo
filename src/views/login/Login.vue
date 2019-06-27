@@ -1,9 +1,9 @@
 <template>
   <div class="em-login-container" id="login_container" ref="loginPage">
-   <!--<video autoplay="autoplay" loop="900">
-      您的浏览器不支持 video 标签。
-      <source src="../../assets/image/login_bg1.mp4" type="video/mp4">
-    </video>-->
+    <!--<video autoplay="autoplay" loop="900">
+       您的浏览器不支持 video 标签。
+       <source src="../../assets/image/login_bg1.mp4" type="video/mp4">
+     </video>-->
     <el-col>
       <div class="em-login-title">
         <p>智慧龙华园林可视化管理平台</p>
@@ -11,6 +11,13 @@
       <div class="em-login-content">
         <el-row>
           <el-form ref="form" :model="form" label-width="80px" class="em-login-form" name="form">
+            <el-form-item label="" class="login-label">
+
+            </el-form-item>
+            <el-col :span="48">
+              <a class="title_bg"></a>
+              <a class="user_login">用户登录</a>
+            </el-col>
             <el-form-item label="用户：" class="login-label">
               <el-col :span="44">
                 <el-input v-model="form.name" type="text" placeholder="请输入用户名"  prefix-icon="el-icon-users"></el-input>
@@ -55,15 +62,15 @@
         if (key == 13) {
           lett.enterSearchPwd();
         }
-       }
+      }
     },
     mounted(){
       this.getCookie();
     },
     methods: {
       reset(){
-         this.form.name="";
-         this.form.pwd="";
+        this.form.name="";
+        this.form.pwd="";
       },
       loginFn() {
         let _username= this.form.name;//获取用户名
@@ -72,7 +79,7 @@
           this.setCookie(_username, _password, 7);
         }
         else{
-           this.clearCookie();
+          this.clearCookie();
         }
         this.$store.dispatch("user/LoginByUsername", {
           username: _username,

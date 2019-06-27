@@ -1,4 +1,9 @@
 @import "../../styles/index/variable";
-.em_dialogs {
-
+.em_dialogs /deep/{
+  .el-input__inner {
+    &::-webkit-input-placeholder {
+      color: #707786; //input
+    }
+  }
 }
+

@@ -1,12 +1,12 @@
-import {WIN_OPEN, WIN_CLOSE, DIALOG_OPEN, DIALOG_CLOSE, SET_WIN} from "../../mutation-types";
+import { WIN_OPEN, WIN_CLOSE, DIALOG_OPEN, DIALOG_CLOSE, SET_WIN } from "../../mutation-types";
 
 export default {
 
 
-  [SET_WIN](state, {win}) {
+  [SET_WIN] (state, { win }) {
     state.win = win;
   },
-  [WIN_OPEN](state, {win_obj}) {
+  [WIN_OPEN] (state, { win_obj }) {
     state.win.forEach(function (el) {
       if (el.id === win_obj.id && el.show === false) {
         el.show = true;
@@ -15,7 +15,7 @@ export default {
       }
     })
   },
-  [WIN_CLOSE](state, {win_id}) {
+  [WIN_CLOSE] (state, { win_id }) {
     if (win_id === "all") {
       state.win.forEach(function (el) {
         if (el.show === true) {
@@ -30,7 +30,7 @@ export default {
       })
     }
   },
-  [DIALOG_OPEN](state, {obj}) {
+  [DIALOG_OPEN] (state, { obj }) {
     state.dialog.forEach(function (el) {
       if (el.id === obj.id && el.show === false) {
         el.show = true;
@@ -39,7 +39,7 @@ export default {
       }
     })
   },
-  [DIALOG_CLOSE](state, {id}) {
+  [DIALOG_CLOSE] (state, { id }) {
     if (id === "all") {
       state.dialog.forEach(function (el) {
         if (el.show === true) {

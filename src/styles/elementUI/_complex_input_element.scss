@@ -23,6 +23,9 @@ $r:32;
   .el-input--suffix .el-input__inner{
     height: 30/$r+rem !important;
     margin: 5px 0 5px 0;
+    &::-webkit-input-placeholder {
+      color: #707786; //complex_input
+    }
   }
 }
 .el-select-dropdown{

@@ -2514,7 +2514,7 @@ export default {
             {
               name: "上限报警阀值",
               prop: "upperLimit",
-              width: "100",
+              width: "180",
               type: "em_input",
               placeholder: "上限报警阀值",
               params: "upperLimit",
@@ -3457,10 +3457,9 @@ export default {
     {
       id: "permissions_management",
       title: "权限管理",
-      top: "20%",
-      left: "20%",
-      width: "50%",
-      height: "50%",
+      top: 80,
+      left: 400,
+      height: 500,
       show: false,
       class: "em-table-window",
       component: "treeForm",

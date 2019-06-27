@@ -14,7 +14,9 @@
 .splitter-pane.splitter-paneL.vertical{
   //background :rgba(20, 31, 55, 0.8);
 }
-
+.el-card__body{
+  padding: 10px !important; //tree
+}
 .#{em-btn-special}{
   background: $background-linear-base;
   color: rgba(255,255,255,0.7);
