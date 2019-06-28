@@ -25,7 +25,24 @@
         <el-button type="primary" @click="submitUpload" class="em-btn_shadow">确 定</el-button>
       </div>
     </el-dialog>
-
+    <el-dialog title="分配角色" width="30%" :visible.sync="dialogRolesVisible" :modal-append-to-body="false"  v-dialogDrag="true">
+      <el-form ref="form"  label-width="100px">
+          <el-form-item label="角色">
+              <el-select v-model="roles" multiple placeholder="请选择">
+                <el-option
+                  v-for="item in roleOptions"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value">
+                </el-option>
+            </el-select>
+          </el-form-item>
+          <el-form-item>
+            <el-button type="primary" @click="submitRoles">确认修改</el-button>
+            <el-button @click="dialogRolesVisible = !dialogRolesVisible">取消</el-button>
+          </el-form-item>
+      </el-form>
+    </el-dialog>
     <div class="table digital_table">
       <el-row class="operation">
         <template v-for="item in this.data.operation">
@@ -101,7 +118,7 @@
 </template>
 
 <script>
-  import {add, dele, modify, find, downCsvmodel,upLoad,resetPassword} from "@/api/table_operate"
+  import {add, dele, modify, find, downCsvmodel,upLoad,resetPassword,roleList,setRoles} from "@/api/table_operate"
   import em_button from "@/components/em_button/em_button"
   import em_input from "@/components/em_input/em_input"
   import em_dialogs from "@/components/em_dialogs/em_dialogs"
@@ -136,14 +153,16 @@
         dialogVisible: false,
         delever_obj:"",      // 主要保存add,alter请求的url,table_id
         alter_obj:"",
-        dialogFormVisible: false,
+        dialogFormVisible: false, //导入表格弹框控制显示隐藏的布尔值
+        dialogRolesVisible:false,  //角色分配弹框控制显示隐藏的布尔值
         fileList: [],
         action:"",
         operation_height:34,
-        // table_height:"calc(100% - 92px)",
         headers:{
           "Authorization":getToken()
-        }
+        },
+        roleOptions: [],// 角色管理的选项
+        roles:""       //选择的角色
       }
     },
     props: ["data"],
@@ -157,15 +176,26 @@
      console.log(this.label);
       this.init(); //初始化表格数据
 
-      this.bus.$on(this.data.table.id, obj => {
+      this.bus.$on(this.data.table.id, obj => {// 通过按钮组件（添加，删除..）的点击事件触发此组件的control方法
         this.control(obj);
-        console.log(obj)
+        console.log(obj);
       });
+      if(this.data.table.id=="account_manage_table"){
+        let roleArr=[];
+        roleList().then(res=>{           //得到角色列表
+          res.data.list.forEach((_val)=>{
+            roleArr.push({"value":_val.id,"label":_val.roleCname})
+          });
+          this.roleOptions=roleArr;
+          console.log( this.roleOptions)
+        })
+      }
+
 
     },
     methods: {
 
-      handleSelectionChange(val) {    //多选框（选中删除）
+      handleSelectionChange(val) {// 多选框（选中删除）
         this.multipleSelection = val;
         console.log(this.multipleSelection);
 
@@ -381,11 +411,11 @@
         }
 
       },
-      resetPassword(){
+      resetPassword(){                   //重置用户密码的方法
         setTimeout(()=>{
           console.log(this.alter_obj.id);
           resetPassword(this.alter_obj.id).then(res=>{
-                 if(res.statusCode){
+                 if(res.statusCode==200){
                    this.$message({
                      message: '恭喜你，重置密码成功',
                      type: 'success'
@@ -395,10 +425,24 @@
         });
 
       },
-      roleAssignments(){
-        setTimeout(()=>{
-          console.log(this.alter_obj.id);
+      roleAssignments(){           //触发角色分配的弹框
+          this.dialogRolesVisible=true;
+          setTimeout(()=>{
+            console.log(this.alter_obj.id);
+          })
+      },
+      submitRoles(){               //提交修改好的角色
+        console.log(this.roles);
+        setRoles({"roleIds":this.roles,"userId":this.alter_obj.id}).then(res=>{
+            console.log(res)
+            if(res.statusCode==200){
+              this.$message({
+                message: '角色分配成功',
+                type: 'success'
+              });
+            }
         });
+        this.dialogRolesVisible=false
       }
     }
   }

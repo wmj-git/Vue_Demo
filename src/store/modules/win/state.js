@@ -1722,12 +1722,12 @@ export default {
             select: [
               {
                 name: "类型编号",
-                params: "treeTypeNo",
+                params: "id",
 
               },
               {
                 name: "树种类型名称",
-                params: "treeTypeName"
+                params: "plantCname"
               }
             ]
 
@@ -1747,7 +1747,7 @@ export default {
             operate: "添加",
             control_id: "tree_type_manage_table",
             fn: "add",
-            url: "/gardens/treetype/add"
+            url: "/gardens/plantname/add"
           },
           {
             id: "tree_type_manage_button_modify",
@@ -1756,7 +1756,7 @@ export default {
             operate: "修改",
             control_id: "tree_type_manage_table",
             fn: "modify",
-            url: "/gardens/treetype/update"
+            url: "/gardens/plantname/update"
           },
           {
             id: "tree_type_manage_button_dele",
@@ -1765,7 +1765,7 @@ export default {
             operate: "删除",
             control_id: "tree_type_manage_table",
             fn: "dele",
-            url: "/gardens/treetype/deletes"
+            url: "/gardens/plantname/deletes"
           }
         ],
         table: {
@@ -1774,41 +1774,41 @@ export default {
           label: [
             {
               name: "类型编号",
-              prop: "treeTypeNo",
-              width: "140",
+              prop: "id",
+              width: "100",
               type: "em_input",
               placeholder: "类型编号",
-              params: "treeTypeNo",
+              params: "id",
               alter_show: true,
               add_show: true
             },
             {
               name: "树种类型名称",
-              prop: "treeTypeName",
+              prop: "plantCname",
               width: "140",
               type: "em_input",
               placeholder: "树种类型名称",
-              params: "treeTypeName",
+              params: "plantCname",
               alter_show: true,
               add_show: true
             },
             {
-              name: "是否特殊树种",
-              prop: "isSpecial",
+              name: "树种英文名",
+              prop: "plantEname",
               width: "140",
               type: "em_input",
-              placeholder: "填0或1",
-              params: "isSpecial",
+              placeholder: "树种英文名",
+              params: "plantEname",
               alter_show: true,
               add_show: true
             },
             {
               name: "注释",
-              prop: "memo",
-              width: "200",
+              prop: "describe",
+              width: "300",
               type: "em_input",
               placeholder: "注释",
-              params: "memo",
+              params: "describe",
               alter_show: true,
               add_show: true
 
