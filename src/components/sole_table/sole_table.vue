@@ -87,18 +87,34 @@
           label="操作"
           min-width="160"
           v-if="data.table.reset_button">
-          <template slot-scope="scope">
-            <el-button class="em-btn-reset"
-              size="small"
-              @click="resetPassword">重置密码
-            </el-button>
-            <el-button class="em-btn-reset"
-                       size="small"
-                       @click="roleAssignments">角色分配
-            </el-button>
-          </template>
+            <template slot-scope="scope">
+              <el-button class="em-btn-reset"
+                size="small"
+                @click="resetPassword">重置密码
+              </el-button>
+              <el-button class="em-btn-reset"
+                         size="small"
+                         @click="roleAssignments">角色分配
+              </el-button>
+            </template>
         </el-table-column>
-
+        <el-table-column
+          align="center"
+          fixed="right"
+          label="操作"
+          min-width="160"
+          v-if="data.table.roleManage_button">
+            <template slot-scope="scope">
+              <el-button class="em-btn-reset"
+                         size="small"
+                         @click="permissionAssignments">分配权限
+              </el-button>
+              <el-button class="em-btn-reset"
+                         size="small"
+                         @click="associateUsers">关联用户
+              </el-button>
+            </template>
+        </el-table-column>
       </el-table>
       <div class="pages">
         <el-pagination
@@ -296,9 +312,10 @@
           }).then(res => {
             console.log(res);
             this.ids = [];
-            this.open3();
-            this.init();
-
+            if(res.statusCode==200){
+              this.open3();
+              this.init();
+            }
 
           })
         }
@@ -443,6 +460,9 @@
             }
         });
         this.dialogRolesVisible=false
+      },
+      permissionAssignments(){         //触发权限分配的弹框
+
       }
     }
   }

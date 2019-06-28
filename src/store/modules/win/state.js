@@ -151,7 +151,7 @@ export default {
             operate: "添加",
             control_id: "role_manage_table",
             fn: "add",
-            url: "/user/userext/addPeopleInfo"
+            url: "/user/role/addRole"
           },
           {
             id:"role_manage_button_modify",
@@ -160,6 +160,7 @@ export default {
             operate: "修改",
             control_id: "role_manage_table",
             fn: "modify",
+            url:"/user/role/updateRole"
           },
           {
             id:"role_manage_button_dele",
@@ -168,34 +169,55 @@ export default {
             operate: "删除",
             control_id: "role_manage_table",
             fn: "dele",
-            url: ""
+            url: "/user/role/dele"
           }
 
         ],
         table: {
           id: "role_manage_table",
           table_url: "/user/role/queryPage",
+          roleManage_button:true,
           label: [
             {
               name: "英文名",
               prop: "roleEname",
-              width: "100"
+              width: "100",
+              type: "em_input",
+              placeholder: "英文名",
+              params: "roleEname",
+              alter_show: true,
+              add_show: true
             },
             {
               name: "中文名",
               prop: "roleCname",
-              width: "100"
+              width: "100",
+              type: "em_input",
+              placeholder: "中文名",
+              params: "roleCname",
+              alter_show: true,
+              add_show: true
             },
 
             {
               name: "角色编码",
               prop: "roleCode",
-              width: "80"
+              width: "80",
+              type: "em_input",
+              placeholder: "角色编码",
+              params: "roleCode",
+              alter_show: true,
+              add_show: true
             },
             {
               name: "备注",
               prop: "remark",
-              width: "80"
+              width: "80",
+              type: "em_input",
+              placeholder: "备注",
+              params: "remark",
+              alter_show: true,
+              add_show: true
             },
 
 
