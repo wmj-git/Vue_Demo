@@ -12,6 +12,7 @@ $r:32;
     min-width: 180px;
     max-height:400px;
     overflow:auto ;
+    scrollbar-width:thin;//滚动条宽度
   }
   .custom-tree-node {
     flex: 1;

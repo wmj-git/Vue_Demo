@@ -26,7 +26,7 @@
   background-color: nth($background-base, 1);
   color: #fff;
 
-  &.is-disabled {
+  &.is-disabled,&.is-disabled:hover,&.is-disabled:active,&.is-disabled:focus {
     border: 1px solid rgba(255, 255, 255, 0.6);
     background-color: rgba(255, 255, 255, 0.8);
     color: rgba(0, 0, 0, 0.9);
