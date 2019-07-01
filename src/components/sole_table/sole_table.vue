@@ -396,19 +396,26 @@
         }
 
       },
-      resetPassword(){                   //重置用户密码的方法
-        setTimeout(()=>{
-          console.log(this.alter_obj.id);
+      resetPasswordBox(){
+        this.$confirm('此操作将重置此用户密码, 是否继续?', '提示', {   //重置密码的方法
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
           resetPassword(this.alter_obj.id).then(res=>{
-                 if(res.statusCode==200){
-                   this.$message({
-                     message: '恭喜你，重置密码成功',
-                     type: 'success'
-                   });
-                 }
+            if(res.statusCode==200){
+              this.$message({
+                message: '恭喜你，重置密码成功',
+                type: 'success'
+              });
+            }
           })
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消重置'
+          });
         });
-
       },
       showCommonDialog(){                  //打开角色分配等的公共弹窗
         this.dialogCommonVisible=true;

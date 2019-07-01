@@ -401,7 +401,7 @@ export default {
         table: {
           id: "account_manage_table",
           after_digital_button:[
-            {name:"重置密码",fn:"resetPassword",id:"resetPassword",dialog_name:"重置密码",dialog_width:"",component_name:""},
+            {name:"重置密码",fn:"resetPasswordBox",id:"resetPassword",dialog_name:"重置密码",dialog_width:"",component_name:""},
             {name:"角色分配",fn:"roleAssignments",id:"roleAssignments",dialog_name:"分配角色",dialog_width:"400px",component_name:"role_assignments"}
           ],
           table_url: "/user/userext/queryUserExt",
