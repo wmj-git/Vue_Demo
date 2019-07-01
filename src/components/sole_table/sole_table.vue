@@ -109,6 +109,7 @@
   import { getToken} from '@/utils/auth'
   import role_assignments from "./components/role_assinments/role_assinments"
   import associate_users from "./components/associate_users/associate_users"
+  import permission_assignments from "./components/permission_assignments/permission_assignments"
   export default {
     name: "sole_table",
     components: {
@@ -118,7 +119,8 @@
       em_date,
       em_dialogs,
       role_assignments,
-      associate_users
+      associate_users,
+      permission_assignments
     },
     data() {
       return {
@@ -396,8 +398,8 @@
         }
 
       },
-      resetPasswordBox(){
-        this.$confirm('此操作将重置此用户密码, 是否继续?', '提示', {   //重置密码的方法
+      resetPasswordBox(){     //重置密码的方法
+        this.$confirm('此操作将重置此用户密码, 是否继续?', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
           type: 'warning'
@@ -410,12 +412,7 @@
               });
             }
           })
-        }).catch(() => {
-          this.$message({
-            type: 'info',
-            message: '已取消重置'
-          });
-        });
+        })
       },
       showCommonDialog(){                  //打开角色分配等的公共弹窗
         this.dialogCommonVisible=true;
