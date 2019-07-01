@@ -25,23 +25,8 @@
         <el-button type="primary" @click="submitUpload" class="em-btn_shadow">确 定</el-button>
       </div>
     </el-dialog>
-    <el-dialog title="分配角色" width="30%" :visible.sync="dialogRolesVisible" :modal-append-to-body="false"  v-dialogDrag="true">
-      <el-form ref="form"  label-width="100px">
-          <el-form-item label="角色">
-              <el-select v-model="roles" multiple placeholder="请选择">
-                <el-option
-                  v-for="item in roleOptions"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.value">
-                </el-option>
-            </el-select>
-          </el-form-item>
-          <el-form-item>
-            <el-button type="primary" @click="submitRoles">确认修改</el-button>
-            <el-button @click="dialogRolesVisible = !dialogRolesVisible">取消</el-button>
-          </el-form-item>
-      </el-form>
+    <el-dialog :title="commonDialogTitle" :width="commonDialogWidth" :visible.sync="dialogCommonVisible" :modal-append-to-body="false"  v-dialogDrag="true">
+       <component :is="commonDialogComponent"  @closeCommonDialog="closeCommonDialog" ref="dialogComponent"></component>
     </el-dialog>
     <div class="table digital_table">
       <el-row class="operation">
@@ -86,32 +71,13 @@
           fixed="right"
           label="操作"
           min-width="160"
-          v-if="data.table.reset_button">
+          v-if="typeof (data.table.after_digital_button)!='undefined'"
+          >
             <template slot-scope="scope">
-              <el-button class="em-btn-reset"
+              <el-button class="em-btn-reset" v-for="item in data.table.after_digital_button"
+                :key="item.id"
                 size="small"
-                @click="resetPassword">重置密码
-              </el-button>
-              <el-button class="em-btn-reset"
-                         size="small"
-                         @click="roleAssignments">角色分配
-              </el-button>
-            </template>
-        </el-table-column>
-        <el-table-column
-          align="center"
-          fixed="right"
-          label="操作"
-          min-width="160"
-          v-if="data.table.roleManage_button">
-            <template slot-scope="scope">
-              <el-button class="em-btn-reset"
-                         size="small"
-                         @click="permissionAssignments">分配权限
-              </el-button>
-              <el-button class="em-btn-reset"
-                         size="small"
-                         @click="associateUsers">关联用户
+                @click="control(item)">{{item.name}}
               </el-button>
             </template>
         </el-table-column>
@@ -134,13 +100,15 @@
 </template>
 
 <script>
-  import {add, dele, modify, find, downCsvmodel,upLoad,resetPassword,roleList,setRoles} from "@/api/table_operate"
+  import {add, dele, modify, find, downCsvmodel,upLoad,resetPassword} from "@/api/table_operate"
   import em_button from "@/components/em_button/em_button"
   import em_input from "@/components/em_input/em_input"
   import em_dialogs from "@/components/em_dialogs/em_dialogs"
   import complex_em_input from "@/components/complex_em_input/complex_em_input"
   import em_date from "@/components/em_date/em_date"
   import { getToken} from '@/utils/auth'
+  import role_assignments from "./components/role_assinments/role_assinments"
+  import associate_users from "./components/associate_users/associate_users"
   export default {
     name: "sole_table",
     components: {
@@ -148,7 +116,9 @@
       em_input,
       complex_em_input,
       em_date,
-      em_dialogs
+      em_dialogs,
+      role_assignments,
+      associate_users
     },
     data() {
       return {
@@ -170,20 +140,21 @@
         delever_obj:"",      // 主要保存add,alter请求的url,table_id
         alter_obj:"",
         dialogFormVisible: false, //导入表格弹框控制显示隐藏的布尔值
-        dialogRolesVisible:false,  //角色分配弹框控制显示隐藏的布尔值
+        dialogCommonVisible:false,  //角色分配，权限分配，关联用户等等弹框控制显示隐藏的布尔值
         fileList: [],
         action:"",
         operation_height:34,
         headers:{
           "Authorization":getToken()
         },
-        roleOptions: [],// 角色管理的选项
-        roles:""       //选择的角色
+        commonDialogComponent:"",  //渲染在角色分配等的动态组件名
+        commonDialogTitle:"",     //渲染在角色分配等的弹框的title名
+        commonDialogWidth:""     //渲染在角色分配等的弹框的宽度
       }
     },
     props: ["data"],
     mounted() {
-      console.log(this.data.table.reset_button);
+      console.log(typeof (this.data.table.after_digital_button));
       this.table_id=this.data.table.id;
       this.label=this.data.table.label;
       this.label_input=this.data.table.label.filter(val=>{
@@ -196,18 +167,6 @@
         this.control(obj);
         console.log(obj);
       });
-      if(this.data.table.id=="account_manage_table"){
-        let roleArr=[];
-        roleList().then(res=>{           //得到角色列表
-          res.data.list.forEach((_val)=>{
-            roleArr.push({"value":_val.id,"label":_val.roleCname})
-          });
-          this.roleOptions=roleArr;
-          console.log( this.roleOptions)
-        })
-      }
-
-
     },
     methods: {
 
@@ -292,6 +251,15 @@
       },
       control(obj) {
         this[obj.fn](obj);
+        if(obj.component_name){
+          this.commonDialogComponent=obj.component_name;
+          this.commonDialogTitle=obj.dialog_name;
+          this.commonDialogWidth=obj.dialog_width;
+          setTimeout(()=>{
+            this.$refs.dialogComponent.recieveRoles(this.alter_obj.id);
+          });
+
+        }
 
       },
       add(obj) {
@@ -428,41 +396,41 @@
         }
 
       },
-      resetPassword(){                   //重置用户密码的方法
-        setTimeout(()=>{
-          console.log(this.alter_obj.id);
+      resetPasswordBox(){
+        this.$confirm('此操作将重置此用户密码, 是否继续?', '提示', {   //重置密码的方法
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
           resetPassword(this.alter_obj.id).then(res=>{
-                 if(res.statusCode==200){
-                   this.$message({
-                     message: '恭喜你，重置密码成功',
-                     type: 'success'
-                   });
-                 }
-          })
-        });
-
-      },
-      roleAssignments(){           //触发角色分配的弹框
-          this.dialogRolesVisible=true;
-          setTimeout(()=>{
-            console.log(this.alter_obj.id);
-          })
-      },
-      submitRoles(){               //提交修改好的角色
-        console.log(this.roles);
-        setRoles({"roleIds":this.roles,"userId":this.alter_obj.id}).then(res=>{
-            console.log(res)
             if(res.statusCode==200){
               this.$message({
-                message: '角色分配成功',
+                message: '恭喜你，重置密码成功',
                 type: 'success'
               });
             }
+          })
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消重置'
+          });
         });
-        this.dialogRolesVisible=false
+      },
+      showCommonDialog(){                  //打开角色分配等的公共弹窗
+        this.dialogCommonVisible=true;
+      },
+      closeCommonDialog(){
+        this.dialogCommonVisible=false;  //关闭角色分配等的公共弹窗
+      },
+      roleAssignments(){           //触发角色分配的弹框
+          this.showCommonDialog();
       },
       permissionAssignments(){         //触发权限分配的弹框
-
+        this.showCommonDialog();
+      },
+      associateUsers(){             //触发关联用户的弹框
+        this.showCommonDialog();
       }
     }
   }
