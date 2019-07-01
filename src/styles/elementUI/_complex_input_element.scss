@@ -52,6 +52,12 @@ $r:32;
 .el-select .el-tag__close.el-icon-close{
   background: rgba(192, 196, 204, 0.5);
 }
+.el-tag.el-tag--info{
+  border-color: rgba(255,255,255,0.1);
+}
+.el-tag.el-tag--info .el-tag__close{
+  color: rgba(255,255,255,0.8) !important;
+}
 @media screen and (min-width:1281px) and (max-width:1440px){
   .el-input-group__prepend{
     padding-left: 30/$r+rem !important;
