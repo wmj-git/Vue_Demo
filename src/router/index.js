@@ -9,12 +9,13 @@ import button_group from "@/components/button_group/button_group"
 import login from '@/views/login/login'
 import admin from '@/views/admin/admin'
 import login_erro from "@/views/login_erro/login_erro"
+
 export default new Router({
   mode: "history",
   routes: [
     {
       path: '*',
-      redirect: {name:"login"}
+      redirect: {name: "login"}
     },
     {
       path: '/home',
@@ -25,32 +26,32 @@ export default new Router({
           path: 'scene',
           name: 'scene',
           components: {
-            scene:scene
+            scene: scene
           }
         },
         {
-          path: 'btn',
-          name: 'btn',
+          path: 'map',
+          name: 'map',
           components: {
-            scene:button_group
+            scene: admin
           }
         }
       ]
     },
     {
-      path:'/login',
-      name:'login',
-      component:login
+      path: '/login',
+      name: 'login',
+      component: login
     },
     {
-      path:'/login_erro',
-      name:'login_erro',
-      component:login_erro
+      path: '/login_erro',
+      name: 'login_erro',
+      component: login_erro
     },
     {
       path: '/admin',
       name: 'admin',
-      component:admin,
+      component: admin,
       children: []
     }
   ]

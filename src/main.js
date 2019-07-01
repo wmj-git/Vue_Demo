@@ -7,7 +7,7 @@ import router from './router'
 import 'babel-polyfill'
 import promise from 'es6-promise'
 promise.polyfill();
-import qs from 'qs'
+// import qs from 'qs'
 
 import "./assets/jquery-easyui-1.6.7/themes/black/easyui.css"
 import "./assets/jquery-easyui-1.6.7/themes/icon.css"
@@ -27,11 +27,11 @@ import "@/styles/index/_index.scss"
 import "@/icons/icon/iconfont.css"
 
 import echarts from 'echarts'    //引入echarts图表
-Vue.prototype.$echarts = echarts
+Vue.prototype.$echarts = echarts;
 
 import './directive/drag'
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 Vue.prototype.bus= new Vue(); //vue-bus
 /* eslint-disable no-new */
 

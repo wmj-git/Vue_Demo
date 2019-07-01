@@ -11,8 +11,8 @@ export default {
   [SET_TOKEN]: (state, token) => {
     state.token = token
   },
-  [SET_TOKEN_TIME]: (state, token) => {
-    state.token = token
+  [SET_TOKEN_TIME]: (state, tokenTime) => {
+    state.tokenTime = tokenTime
   },
   [SET_REFRESH_TOKEN]: (state, refreshToken) => {
     state.refreshToken = refreshToken
