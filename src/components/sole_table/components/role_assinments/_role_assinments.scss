@@ -1,14 +1,5 @@
-.role_assinments {
-    // Vars
-
-    // Support
-
-    // Module
-    & {
-        //
-    }
-
-    // Facets
-
-    // States
+.role_assinments /deep/{
+  .em-button{
+    float: right !important;
+  }
 }

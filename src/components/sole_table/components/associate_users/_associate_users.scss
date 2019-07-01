@@ -1,3 +1,9 @@
-.associate_users {
-
+.associate_users /deep/{
+  /*穿梭框*/
+  .el-checkbox{
+    display: block !important;
+  }
+  .#{em-button}{
+    float: right;
+  }
 }
