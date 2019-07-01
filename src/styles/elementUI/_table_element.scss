@@ -91,10 +91,11 @@ $r:32;
 .el-table__body tr.hover-row.el-table__row--striped>td,.el-table__body tr.hover-row.el-table__row--striped .current-row>td{
   background-color:$background-hover-tbody;
 }
-/*行号*/
-td.el-table_1_column_1.is-center,th.el-table_1_column_1.is-center.is-leaf{
-background:darken(nth($background-base,3),5%);
+/*行号背景加深*/
+.el-table__body td:first-child{
+  background:darken(nth($background-base,3),8%);
 }
+
 .el-table thead th{
   border-right:1px dotted #fff;
 }
