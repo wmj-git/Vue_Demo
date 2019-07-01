@@ -23,6 +23,9 @@ $r:32;
   .el-input--suffix .el-input__inner{
     height: 30/$r+rem !important;
     margin: 5px 0 5px 0;
+    &::-webkit-input-placeholder {
+      color: #707786; //complex_input
+    }
   }
 }
 .el-select-dropdown{
@@ -41,7 +44,14 @@ $r:32;
 .el-select .el-input .el-select__caret{
   line-height: inherit;//下拉框图标垂直居中显示
 }
-
+//下拉多选
+.el-select .el-tag{
+  background: rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.8);
+}
+.el-select .el-tag__close.el-icon-close{
+  background: rgba(192, 196, 204, 0.5);
+}
 @media screen and (min-width:1281px) and (max-width:1440px){
   .el-input-group__prepend{
     padding-left: 30/$r+rem !important;

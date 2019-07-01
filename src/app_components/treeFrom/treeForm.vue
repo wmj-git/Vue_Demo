@@ -1,6 +1,7 @@
 <template>
   <div class="treeForm">
-    <split-pane split="vertical" :min-percent='20' :default-percent='30'>
+
+    <split-pane split="vertical" :min-percent='20' :default-percent='34'>
       <template slot="paneL">
         <el-card class="box-card">
           <el-row>

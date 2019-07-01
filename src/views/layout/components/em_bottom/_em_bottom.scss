@@ -1,10 +1,18 @@
 @import "../../../../styles/index/variable";
-.em-bottom-container{
+
+.em-bottom-container {
   background: rgba(20, 31, 55, 0.8);
+  & /deep/ {
+    .el-input__inner {
+      &::-webkit-input-placeholder {
+        color: #707786; //input
+      }
+    }
+  }
 }
 
-@media screen and (min-width:1921px){
+@media screen and (min-width: 1921px) {
   .panel.window.#{em-bottom-window}.panel-htop.easyui-fluid {
-    top:95.5% !important;
+    top: 95.5% !important;
   }
 }

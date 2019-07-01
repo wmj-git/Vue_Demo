@@ -1,4 +1,5 @@
 $r: 32;
+@import "../../styles/index/variable";
 .digital_table /deep/ {
   width: 100%;
   height: 100%;
@@ -6,4 +7,19 @@ $r: 32;
   .operation {
     padding: 3/$r+rem;
   }
+}
+.em-btn-reset{
+  border-color: darken($border-color-base,20%);
+  background:$background-linear-base ;
+  color: rgba(255,255,255,0.6)!important;
+  margin-right: 6px;
+  &:hover{
+    color: $color-base !important;
+    background: linear-gradient(nth($background-base,4),nth($background-base,5));
+  }
+}
+
+.el-select-dropdown.is-multiple .el-select-dropdown__item.selected{
+  color: $color-base;
+  background: transparent;
 }
