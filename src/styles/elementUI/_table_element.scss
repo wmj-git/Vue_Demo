@@ -131,7 +131,7 @@ $r:32;
   height:120px;
 }
 /*moz滚动条样式*/
-.el-table--scrollable-y .el-table__body-wrapper{
+.el-table--scrollable-y .el-table__body-wrapper,.el-table--scrollable-x .el-table__body-wrapper{
   scrollbar-width:thin;
 }
 

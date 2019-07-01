@@ -12,8 +12,8 @@
           </el-select>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="submitRoles">确认修改</el-button>
-          <el-button @click="cancel">取消</el-button>
+          <el-button type="primary" class="em-button" @click="submitRoles">确认修改</el-button>
+          <el-button @click="cancel" class="em-button">取消</el-button>
         </el-form-item>
       </el-form>
 

@@ -7,8 +7,8 @@
              </el-transfer>
           </el-form-item>
           <el-form-item>
-            <el-button type="primary" @click="submitAssociate">确认修改</el-button>
-            <el-button @click="cancel">取消</el-button>
+            <el-button type="primary" @click="submitAssociate" class="em-button">确认修改</el-button>
+            <el-button @click="cancel" class="em-button">取消</el-button>
           </el-form-item>
       </el-form>
     </div>
