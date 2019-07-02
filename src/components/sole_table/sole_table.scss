@@ -8,16 +8,16 @@ $r: 32;
     padding: 3/$r+rem;
   }
 }
-.em-btn-reset{
-  border-color: darken($border-color-base,20%);
-  background:$background-linear-base ;
-  color: rgba(255,255,255,0.6)!important;
+
+.em-btn-reset {
+  border-color: darken($border-color-base, 20%);
+  background: $background-linear-base;
+  color: rgba(255, 255, 255, 0.6) !important;
   margin-right: 6px;
-  &:hover{
+
+  &:hover {
     color: $color-base !important;
-    background: linear-gradient(nth($background-base,4),nth($background-base,5));
+    background: linear-gradient(nth($background-base, 4), nth($background-base, 5));
   }
 }
-
-
 
