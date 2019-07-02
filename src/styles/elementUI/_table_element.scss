@@ -14,10 +14,14 @@ $r:32;
     font-size: 16/$r+rem;
     text-indent: 5px;
   }
+  ul{
+    list-style: none;
+  }
   li{
     padding: 4/$r+rem;
     font-size: 14/$r+rem;
     position: relative;
+    left: -30/$r+rem;
     &:after{
       content: "";
       width: 0;
