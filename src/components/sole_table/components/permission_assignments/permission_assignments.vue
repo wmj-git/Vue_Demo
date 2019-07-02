@@ -1,5 +1,5 @@
 <template>
-    <div class="permission_assignments" style="height: 500px;overflow: scroll">
+    <div class="permission_assignments">
       <el-tree
         :data="data"
         show-checkbox
@@ -78,3 +78,6 @@
         }
     };
 </script>
+<style lang="scss" scoped>
+  @import "permission_assignments";
+</style>
