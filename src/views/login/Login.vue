@@ -86,7 +86,7 @@
           password: _password
         }).then((response) => {
           console.log(response);
-          this.$router.push("/home/scene");
+          this.$router.push("/home/map");
 
         });
       },

@@ -5,7 +5,7 @@ Vue.use(Router)
 
 import layout from '@/views/layout/layout'
 import scene from '@/views/layout/components/scene/scene'
-import button_group from "@/components/button_group/button_group"
+import map from '@/views/layout/components/map/map'
 import login from '@/views/login/login'
 import admin from '@/views/admin/admin'
 import login_erro from "@/views/login_erro/login_erro"
@@ -33,7 +33,7 @@ export default new Router({
           path: 'map',
           name: 'map',
           components: {
-            scene: admin
+            scene: map
           }
         }
       ]

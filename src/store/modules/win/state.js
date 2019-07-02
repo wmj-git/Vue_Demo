@@ -3487,6 +3487,7 @@ export default {
       title: "权限管理",
       top: 80,
       left: 400,
+      width: 1000,
       height: 500,
       show: false,
       class: "em-table-window",
