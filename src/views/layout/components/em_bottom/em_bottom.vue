@@ -30,18 +30,13 @@
           </svg>
           退&emsp;&emsp;出
         </el-button>
-        <el-button class="data_button em-btn-border-animation  svg-style" @click="twoMap">
-          <svg>
-            <rect x="0" y="0" fill="none" width="100%" height="100%"></rect>
-          </svg>
-          二维场景
-        </el-button>
-        <el-button class="data_button em-btn-border-animation  svg-style" @click="threeMap">
-          <svg>
-            <rect x="0" y="0" fill="none" width="100%" height="100%"></rect>
-          </svg>
+        <el-button class="data_button em-btn-scene" @click="threeMap">
           三维场景
         </el-button>
+        <el-button class="data_button em-btn-scene" @click="twoMap">
+          二维场景
+        </el-button>
+
       </div>
     </win>
   </div>

@@ -21,8 +21,8 @@
           <div slot="tip" class="el-upload__tip">只能上传csv文件</div>
         </el-upload>
       <div slot="footer" class="dialog-footer">
-        <el-button @click="dialogFormVisible = false" class="em-btn_shadow">取 消</el-button>
-        <el-button type="primary" @click="submitUpload" class="em-btn_shadow">确 定</el-button>
+        <el-button @click="dialogFormVisible = false" class="em-button">取 消</el-button>
+        <el-button type="primary" @click="submitUpload" class="em-button">确 定</el-button>
       </div>
     </el-dialog>
     <el-dialog :title="commonDialogTitle" :width="commonDialogWidth" :visible.sync="dialogCommonVisible" :modal-append-to-body="false"  v-dialogDrag="true">
