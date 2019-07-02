@@ -12,8 +12,8 @@
             </el-form-item>
           </el-form>
           <div slot="footer" class="dialog-footer">
-            <el-button @click="cancel" class="em-btn-shadow">取 消</el-button>
-            <el-button type="primary" @click="confirm" class="em-btn-shadow">确 定</el-button>
+            <el-button @click="cancel" class="em-button">取 消</el-button>
+            <el-button type="primary" @click="confirm" class="em-button">确 定</el-button>
           </div>
         </el-dialog>
         <el-input v-model="input" placeholder="请输入内容" style="width: 150px"></el-input>

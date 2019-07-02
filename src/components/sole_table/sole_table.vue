@@ -402,7 +402,8 @@
         this.$confirm('此操作将重置此用户密码, 是否继续?', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
-          type: 'warning'
+          type: 'warning',
+          customClass:'em-message-box'
         }).then(() => {
           resetPassword(this.alter_obj.id).then(res=>{
             if(res.statusCode==200){
