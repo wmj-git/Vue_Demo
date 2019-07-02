@@ -35,14 +35,14 @@
             style: "default"
           })*/
           // 天地图影像
-           imageryProvider: new Cesium.WebMapTileServiceImageryProvider({
-               url: 'http://t0.tianditu.gov.cn/img_w/wmts?tk=dcfb31be4b1daef33e484e48348cb28b',
-               layer: 'img',
-               style: 'default',
-               tileMatrixSetID: 'w',
-               format: 'tiles',
-               maximumLevel: 18
-           })
+          imageryProvider: new Cesium.WebMapTileServiceImageryProvider({
+            url: 'http://t0.tianditu.gov.cn/img_w/wmts?tk=dcfb31be4b1daef33e484e48348cb28b',
+            layer: 'img',
+            style: 'default',
+            tileMatrixSetID: 'w',
+            format: 'tiles',
+            maximumLevel: 18
+          })
         });
         /* //加载影像注记
          var layer1 = new Cesium.WebMapTileServiceImageryProvider({
@@ -88,7 +88,7 @@
         } else {
           cm.markerClear();
           cm.modeClear();
-          cm.entitiesClear("grid_",window.viewer);
+          cm.entitiesClear("grid_", window.viewer);
         }
       }
     },

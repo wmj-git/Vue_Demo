@@ -38,7 +38,6 @@
             </el-col>
           </el-row>
         </el-card>
-
       </template>
       <template slot="paneR">
         <el-card class="box-card">
@@ -103,7 +102,8 @@
           "resourceCode": "null",
           "resourceName": "新建权限",
           "resourceType": "null",
-          "resourceUrl": "null"
+          "resourceUrl": "null",
+          "isMeum": false
         };
         newChild.parentId = data.id;
         addResource(newChild).then(function (response) {
@@ -136,7 +136,7 @@
         });
       },
       fn(...obj) {
-        console.log(obj[0]);
+        // console.log(obj[0]);
         // console.log(JSON.stringify(_item.Validate));
         let _form_data = [];
 
@@ -158,7 +158,8 @@
             _item.value = obj[0][k];
 
             let _obj = this.form_data;
-            /*console.log(k);
+           /* console.log("----------------");
+            console.log(k);
             console.log(_obj[k]);*/
 
             _item.label = _obj[k].label;

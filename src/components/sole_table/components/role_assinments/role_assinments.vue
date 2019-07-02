@@ -11,7 +11,7 @@
             </el-option>
           </el-select>
         </el-form-item>
-        <el-form-item>
+        <el-form-item class="em-role-item">
           <el-button type="primary" class="em-button" @click="submitRoles">确认修改</el-button>
           <el-button @click="cancel" class="em-button">取消</el-button>
         </el-form-item>
@@ -65,3 +65,6 @@
         }
     };
 </script>
+<style lang="scss" scoped>
+  @import "role_assinments";
+</style>

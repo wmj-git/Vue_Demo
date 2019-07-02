@@ -19,7 +19,7 @@
     <!--对话框-->
     <em_dialogs></em_dialogs>
     <!--场景-->
-   <router-view name="scene"/>
+    <router-view name="scene"/>
     <!-- 控制透明度的滑动条-->
     <em_slider></em_slider>
     <!--底部-->
@@ -30,7 +30,7 @@
 <script>
   import {refreshToken} from '@/api/login'
   import {getNowFormatDate} from '@/utils/tools'
-  import {setToken, setTokenTime, getTokenTime, TokenName, RefreshTokenName,getExpires,setExpires} from '@/utils/auth'
+  import {setToken, setTokenTime, getTokenTime, TokenName, RefreshTokenName, getExpires, setExpires} from '@/utils/auth'
 
   import win from "@/components/win/win"
   import splitpane from "@/components/splitpane/splitpane"
@@ -55,7 +55,7 @@
     data() {
       return {
         // wins: [],
-        dialogGroup: []
+        // dialogGroup: []
       }
     },
     components: {
@@ -78,26 +78,28 @@
       treeForm,
       em_dialogs
     },
-    computed:{
+    computed: {
       wins: function () {
         return this.$store.getters["win/win"];
+      },
+      dialogGroup: function () {
+        return this.$store.state.win.dialog;
       }
     },
     methods: {
       init() {
-        // this.wins = this.$store.state.win.win;
-        this.dialogGroup = this.$store.state.win.dialog;
+
       },
       refreshTokenFn() {//刷新token
         setInterval(() => {
           let _time = getNowFormatDate().timestamp - getTokenTime();
-          let _expires=getExpires();
+          let _expires = getExpires();
           console.log(_time);
-          if (_time < _expires-200000) {
+          if (_time < _expires - 200000) {
             return
           }
           // alert(_time);
-         this.refreshToken();
+          this.refreshToken();
         }, 120000);
       },
       refreshToken() {//刷新token
@@ -128,7 +130,6 @@
 
 
     }
-
   };
 </script>
 <style lang="scss" scoped>

@@ -1,5 +1,5 @@
 <template>
-  <div class="button_group">
+  <div class="buttonGroup">
     <el-row>
       <div style="width: 120px;text-align: center">
         <el-button type="primary" icon="el-icon-edit" @click="fn('/home/scene')">btn2</el-button>
@@ -14,7 +14,7 @@
 <script>
 
   export default {
-    name: "button_group",
+    name: "buttonGroup",
     data() {
       return {}
     },
@@ -38,5 +38,5 @@
 </script>
 
 <style lang="scss" scoped>
-  @import "button_group";
+  @import "buttonGroup";
 </style>
