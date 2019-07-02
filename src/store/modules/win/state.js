@@ -20,100 +20,302 @@ export default {
       title: "类型管理",
       top: "20%",
       left: "20%",
-      width: "45%",
+      width: "60%",
       height: 516,
       show: false,
       class: "em-table-window",
       component: "list_table",
       component_data: {
-        list: {
-          list_url: "/rest/type/queryType",
-          params: {relevanceId: 1},
-          title: "分类",
-          keyObj: {
-            keyName: "parentId",
-            keyValue: "0"
-          },
-        },
-        operation: [
-          {
-            type: "complex_em_input",
-            select: [
+        people_type_manage:{
+          operation: [
+            {
+              id: "persontype_manage_select",
+              type: "complex_em_input",
+              select: [
+                {
+                  name: "类型编号",
+                  params: "personTypeNo"
+                },
+                {
+                  name: "类型名称",
+                  params: "personTypeName"
+                }
+              ]
+
+            },
+            {
+              id: "persontype_manage_button_search",
+              type: "em_button",
+              icon: "el-icon-search",
+              operate: "查询",
+              control_id: "persontype_manage_table",
+              fn: "search"
+            },
+            {
+              id: "persontype_manage_button_add",
+              type: "em_button",
+              icon: "el-icon-plus",
+              operate: "添加",
+              control_id: "persontype_manage_table",
+              fn: "add",
+              url: "/gardens/persontype/add"
+            },
+            {
+              id: "persontype_manage_button_modify",
+              type: "em_button",
+              icon: "el-icon-edit",
+              operate: "修改",
+              control_id: "persontype_manage_table",
+              fn: "modify",
+              url: "/gardens/persontype/update"
+            },
+            {
+              id: "persontype_manage_button_dele",
+              type: "em_button",
+              icon: "el-icon-delete",
+              operate: "删除",
+              control_id: "persontype_manage_table",
+              fn: "dele",
+              url: "/gardens/persontype/deletes"
+            },
+            {
+              id: "persontype_manage_button_import",
+              type: "em_button",
+              icon: "el-icon-excel_in",
+              operate: "导入excel",
+              control_id: "persontype_manage_table",
+              fn: "import",
+              download_url: "/gardens/persontype/downCsvmodel",
+              import_url: "/gardens/persontype/ajaxUpload"
+            },
+            {
+              id: "persontype_manage_button_export",
+              type: "em_button",
+              control_id: "persontype_manage_table",
+              icon: "el-icon-excel_out",
+              operate: "导出excel",
+              fn: "export",
+              url: "/gardens/persontype/exportCsv"
+            }
+          ],
+          table: {
+            id: "persontype_manage_table",
+            table_url: "/gardens/persontype/queryAllByPage",
+            label: [
               {
-                name: "类型名",
-                params: "accountNumber"
+                name: "类型编号",
+                prop: "personTypeNo",
+                width: "100",
+                type: "em_input",
+                placeholder: "类型编号",
+                params: "personTypeNo",
+                alter_show: true,
+                add_show: true
               },
               {
-                name: "英文名",
-                params: "userEname"
-              }
+                name: "类型名称",
+                prop: "personTypeName",
+                width: "100",
+                type: "em_input",
+                placeholder: "类型名称",
+                params: "personTypeName",
+                alter_show: true,
+                add_show: true
+              },
+              {
+                name: "描述",
+                prop: "memo",
+                width: "100",
+                type: "em_input",
+                placeholder: "描述",
+                params: "memo",
+                alter_show: true,
+                add_show: true
+              },
             ]
-
-          },
-          {
-            type: "em_button",
-            icon: "el-icon-search",
-            operate: "查询",
-            control_id: "type_manage_table",
-            fn: "search"
-          },
-          {
-            type: "em_button",
-            icon: "el-icon-plus",
-            operate: "添加",
-            control_id: "type_manage_table",
-            fn: "add",
-            url: "/user/userext/addPeopleInfo"
-          },
-          {
-            type: "em_button",
-            icon: "el-icon-edit",
-            operate: "修改",
-            control_id: "type_manage_table",
-            fn: "modify",
-          },
-          {
-            type: "em_button",
-            icon: "el-icon-delete",
-            operate: "删除",
-            control_id: "type_manage_table",
-            fn: "dele",
-            url: ""
           }
-        ],
-        table: {
-          id: "type_manage_table",
-          table_url: "/rest/type/queryTypeByPages",
-          label: [
+        },
+        people_inform_manage:{
+          operation: [
             {
-              name: "id",
-              prop: "id",
-              width: "80"
+              id: "people_manage_select",
+              type: "complex_em_input",
+              select: [
+                {
+                  name: "姓名",
+                  params: "name"
+                },
+                {
+                  name: "职务",
+                  params: "duty"
+                }
+              ]
+
             },
             {
-              name: "类型名称",
-              prop: "typeCname",
-              width: "140"
+              id: "people_manage_button_search",
+              type: "em_button",
+              icon: "el-icon-search",
+              operate: "查询",
+              control_id: "people_manage_table",
+              fn: "search"
             },
             {
-              name: "类型编码",
-              prop: "typeCode",
-              width: "180"
+              id: "people_manage_button_add",
+              type: "em_button",
+              icon: "el-icon-plus",
+              operate: "添加",
+              control_id: "people_manage_table",
+              fn: "add",
+              url: "/gardens/person/add"
             },
             {
-              name: "英文名",
-              prop: "typeEname",
-              width: "180"
-            }, {
-              name: "备注",
-              prop: "remark",
-              width: "180"
-            }, {
-              name: "父类型",
-              prop: "parentId",
-              width: "60"
+              id: "people_manage_button_modify",
+              type: "em_button",
+              icon: "el-icon-edit",
+              operate: "修改",
+              control_id: "people_manage_table",
+              fn: "modify",
+              url: "/gardens/person/update"
             },
-          ]
+            {
+              id: "people_manage_button_dele",
+              type: "em_button",
+              icon: "el-icon-delete",
+              operate: "删除",
+              control_id: "people_manage_table",
+              fn: "dele",
+              url: "/gardens/person/deletes"
+            },
+            {
+              id: "people_manage_button_import",
+              type: "em_button",
+              icon: "el-icon-excel_in",
+              operate: "导入excel",
+              control_id: "people_manage_table",
+              fn: "import",
+              download_url: "/gardens/person/downCsvmodel",
+              import_url: "/gardens/person/ajaxUpload"
+            },
+            {
+              id: "people_manage_button_export",
+              type: "em_button",
+              control_id: "people_manage_table",
+              icon: "el-icon-excel_out",
+              operate: "导出excel",
+              fn: "export",
+              url: "/gardens/person/exportCsv"
+            }
+          ],
+          table: {
+            id: "people_manage_table",
+            table_url: "/gardens/person/queryAllByPage",
+            label: [{
+              name: "姓名",
+              prop: "name",
+              width: "100",
+              type: "em_input",
+              placeholder: "名字",
+              params: "name",
+              alter_show: true,
+              add_show: true
+            },
+              {
+                name: "性别",
+                prop: "sex",
+                width: "100",
+                type: "em_select",
+                params: "sex",
+                options: [{
+                  value: "男",
+                  label: "男"
+                },
+                  {
+                    value: "女",
+                    label: "女"
+                  }
+
+                ],
+                alter_show: true,
+                add_show: true
+              },
+              {
+                name: "职务",
+                prop: "duty",
+                width: "140",
+                type: "em_input",
+                placeholder: "职务",
+                params: "duty",
+                alter_show: true,
+                add_show: true
+              },
+              {
+                name: "人员类型",
+                prop: "personTypeName",
+                width: "140",
+                type: "em_selectUrl",
+                params: "personTypeId",
+                optionUrl: "gardens/persontype/queryAll",
+                alter_show: true,
+                add_show: true
+
+              },
+              {
+                name: "电话",
+                prop: "telephone",
+                width: "140",
+                type: "em_input",
+                placeholder: "电话",
+                params: "telephone",
+                alter_show: true,
+                add_show: true
+              },
+              {
+                name: "从事专业",
+                prop: "professional",
+                width: "140",
+                type: "em_input",
+                placeholder: "从事专业",
+                params: "professional",
+                alter_show: true,
+                add_show: true
+              },
+              {
+                name: "工作单位",
+                prop: "entName",
+                width: "100",
+                type: "em_selectUrl",
+                params: "entId",
+                optionUrl: "gardens/ent/queryAll",
+                alter_show: true,
+                add_show: true
+              },
+              {
+                name: "备注",
+                prop: "memo",
+                width: "140",
+                type: "em_input",
+                placeholder: "备注",
+                params: "memo",
+                alter_show: true,
+                add_show: true
+
+              },
+              {
+                name: "排序号",
+                prop: "orderNo",
+                width: "100",
+                type: "em_input",
+                placeholder: "排序号",
+                params: "orderNo",
+                alter_show: true,
+                add_show: true
+
+              }
+
+
+            ]
+          }
         }
       }
     },
@@ -249,7 +451,7 @@ export default {
             id:"system_record_input_loginName",
             type: "em_input",
             placeholder: "用户名",
-            params: "loginName"
+            params: "userCname"
           },
           {
             id:"system_record_input_methodName",

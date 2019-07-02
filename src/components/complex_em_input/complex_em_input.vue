@@ -18,7 +18,7 @@ export default {
   data() {
     return {
       input: '',
-      complex_em_input_select: '',
+      complex_em_input_select: '请选择',
     }
   }
 };

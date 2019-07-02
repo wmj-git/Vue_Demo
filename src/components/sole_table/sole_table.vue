@@ -100,6 +100,8 @@
 </template>
 
 <script>
+
+
   import {add, dele, modify, find, downCsvmodel,upLoad,resetPassword} from "@/api/table_operate"
   import em_button from "@/components/em_button/em_button"
   import em_input from "@/components/em_input/em_input"
@@ -131,7 +133,7 @@
         listLoading:false,
         currentRow: null,
         multipleSelection: [],
-        ids: [],
+        ids: [],         //要删除的对象的id数组
         input: '',
         currentPage: 1,
         pageSize: 10,
@@ -140,7 +142,7 @@
         formLabelWidth: '120px',
         dialogVisible: false,
         delever_obj:"",      // 主要保存add,alter请求的url,table_id
-        alter_obj:"",
+        alter_obj:"",       //单选行选中进行修改的对象
         dialogFormVisible: false, //导入表格弹框控制显示隐藏的布尔值
         dialogCommonVisible:false,  //角色分配，权限分配，关联用户等等弹框控制显示隐藏的布尔值
         fileList: [],
@@ -247,6 +249,24 @@
           params: obj
         }).then(res => {
           console.log(res);
+          let _listField = new RegExp('isSpecial');
+          res.data.list.forEach((_val)=>{
+              for(let _i in _val){
+                if (_listField.test(_i)) {
+                   if(_val[_i]===0){
+                      _val[_i]="否";
+                   }
+                   else if(_val[_i]===1){
+                     _val[_i]="是"
+                   }
+                }
+
+              }
+
+          });
+
+
+
           this.tableData = res.data.list;
           this.totalSize = res.data.total;
         })
@@ -275,19 +295,32 @@
           this.ids.push(val.id);   //提取出需要传给后台的参数ids
         });
         if (this.ids.length!= 0) {
-          dele({
-            url: obj.url,
-            params: this.ids
+          this.$confirm('此操作将删除所选项, 是否继续?', '提示', {
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+            type: 'warning'
+          }).then(() => {
 
-          }).then(res => {
-            console.log(res);
-            this.ids = [];
-            if(res.statusCode==200){
-              this.open3();
-              this.init();
-            }
 
-          })
+            dele({
+              url: obj.url,
+              params: this.ids
+
+            }).then(res => {
+              this.ids = [];
+              if (res.statusCode == 200) {
+                this.$message({
+                  message: '删除成功',
+                  type: 'success'
+                });
+                this.init();
+              }
+
+            })
+
+          }).catch(()=>{
+
+          });
         }
       },
       search() {
@@ -299,14 +332,6 @@
         this.$refs.dialog.showdialog(obj);  //调用子组件em_dialogs的方法显示弹出框;
         this.delever_obj=obj;
         console.log(this.delever_obj);
-      },
-      open3() {
-        const h = this.$createElement;
-        this.$notify({
-          title: '成功',
-          message: h('i', {style: 'color: teal'}, '删除成功啦'),
-          type: 'success'
-        });
       },
       handleClose(done) {
         this.$confirm('确认关闭？')
@@ -412,6 +437,8 @@
               });
             }
           })
+        }).catch(()=>{
+
         })
       },
       showCommonDialog(){                  //打开角色分配等的公共弹窗
