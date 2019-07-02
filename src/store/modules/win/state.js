@@ -176,7 +176,10 @@ export default {
         table: {
           id: "role_manage_table",
           table_url: "/user/role/queryPage",
-          roleManage_button:true,
+          after_digital_button:[
+            {name:"权限分配",fn:"permissionAssignments",id:"permissionAssignments",dialog_name:"分配权限",dialog_width:"400px",component_name:"permission_assignments"},
+            {name:"关联用户",fn:"associateUsers",id:"associateUsers",dialog_name:"关联用户",dialog_width:"600px",component_name:"associate_users"}
+          ],
           label: [
             {
               name: "英文名",
@@ -397,7 +400,10 @@ export default {
         ],
         table: {
           id: "account_manage_table",
-          reset_button:true,
+          after_digital_button:[
+            {name:"重置密码",fn:"resetPasswordBox",id:"resetPassword",dialog_name:"重置密码",dialog_width:"",component_name:""},
+            {name:"角色分配",fn:"roleAssignments",id:"roleAssignments",dialog_name:"分配角色",dialog_width:"400px",component_name:"role_assignments"}
+          ],
           table_url: "/user/userext/queryUserExt",
           label: [
             {
@@ -1744,12 +1750,12 @@ export default {
             select: [
               {
                 name: "类型编号",
-                params: "id",
+                params: "treeTypeNo",
 
               },
               {
                 name: "树种类型名称",
-                params: "plantCname"
+                params: "treeTypeName"
               }
             ]
 
@@ -1769,7 +1775,7 @@ export default {
             operate: "添加",
             control_id: "tree_type_manage_table",
             fn: "add",
-            url: "/gardens/plantname/add"
+            url: "/gardens/treetype/add"
           },
           {
             id: "tree_type_manage_button_modify",
@@ -1778,7 +1784,7 @@ export default {
             operate: "修改",
             control_id: "tree_type_manage_table",
             fn: "modify",
-            url: "/gardens/plantname/update"
+            url: "/gardens/treetype/update"
           },
           {
             id: "tree_type_manage_button_dele",
@@ -1787,124 +1793,11 @@ export default {
             operate: "删除",
             control_id: "tree_type_manage_table",
             fn: "dele",
-            url: "/gardens/plantname/deletes"
-          }
-        ],
-        table: {
-          id: "tree_type_manage_table",
-          table_url: "/gardens/plantname/queryAllByPage",
-          label: [
-            {
-              name: "类型编号",
-              prop: "id",
-              width: "100",
-              type: "em_input",
-              placeholder: "类型编号",
-              params: "id",
-              alter_show: true,
-              add_show: true
-            },
-            {
-              name: "树种类型名称",
-              prop: "plantCname",
-              width: "140",
-              type: "em_input",
-              placeholder: "树种类型名称",
-              params: "plantCname",
-              alter_show: true,
-              add_show: true
-            },
-            {
-              name: "树种英文名",
-              prop: "plantEname",
-              width: "140",
-              type: "em_input",
-              placeholder: "树种英文名",
-              params: "plantEname",
-              alter_show: true,
-              add_show: true
-            },
-            {
-              name: "注释",
-              prop: "describe",
-              width: "300",
-              type: "em_input",
-              placeholder: "注释",
-              params: "describe",
-              alter_show: true,
-              add_show: true
-
-            }
-
-          ]
-        }
-      }
-    },
-    {
-      id: "plant_type_manage",
-      title: "植物类型管理",
-      top: 80,
-      left: 400,
-      height: 400,
-      show: false,
-      class: "em-table-window",
-      component: "sole_table",
-      component_data: {
-        operation: [
-          {
-            id: "plant_type_manage_select",
-            type: "complex_em_input",
-            select: [
-              {
-                name: "类型编号",
-                params: "treeTypeNo",
-
-              },
-              {
-                name: "树种类型名称",
-                params: "treeTypeName"
-              }
-            ]
-
-          },
-          {
-            id: "plant_type_manage_button_search",
-            type: "em_button",
-            icon: "el-icon-search",
-            operate: "查询",
-            control_id: "plant_type_manage_table",
-            fn: "search"
-          },
-          {
-            id: "plant_type_manage_button_add",
-            type: "em_button",
-            icon: "el-icon-plus",
-            operate: "添加",
-            control_id: "plant_type_manage_table",
-            fn: "add",
-            url: "/gardens/treetype/add"
-          },
-          {
-            id: "plant_type_manage_button_modify",
-            type: "em_button",
-            icon: "el-icon-edit",
-            operate: "修改",
-            control_id: "plant_type_manage_table",
-            fn: "modify",
-            url: "/gardens/treetype/update"
-          },
-          {
-            id: "plant_type_manage_button_dele",
-            type: "em_button",
-            icon: "el-icon-delete",
-            operate: "删除",
-            control_id: "plant_type_manage_table",
-            fn: "dele",
             url: "/gardens/treetype/deletes"
           }
         ],
         table: {
-          id: "plant_type_manage_table",
+          id: "tree_type_manage_table",
           table_url: "/gardens/treetype/queryAllByPage",
           label: [
             {
@@ -1944,6 +1837,119 @@ export default {
               type: "em_input",
               placeholder: "注释",
               params: "memo",
+              alter_show: true,
+              add_show: true
+
+            }
+
+          ]
+        }
+      }
+    },
+    {
+      id: "plant_type_manage",
+      title: "植物类型管理",
+      top: 80,
+      left: 400,
+      height: 400,
+      show: false,
+      class: "em-table-window",
+      component: "sole_table",
+      component_data: {
+        operation: [
+          {
+            id: "plant_type_manage_select",
+            type: "complex_em_input",
+            select: [
+              {
+                name: "类型编号",
+                params: "id",
+
+              },
+              {
+                name: "植物类型名称",
+                params: "plantCname"
+              }
+            ]
+
+          },
+          {
+            id: "plant_type_manage_button_search",
+            type: "em_button",
+            icon: "el-icon-search",
+            operate: "查询",
+            control_id: "plant_type_manage_table",
+            fn: "search"
+          },
+          {
+            id: "plant_type_manage_button_add",
+            type: "em_button",
+            icon: "el-icon-plus",
+            operate: "添加",
+            control_id: "plant_type_manage_table",
+            fn: "add",
+            url: "/gardens/plantname/add"
+          },
+          {
+            id: "plant_type_manage_button_modify",
+            type: "em_button",
+            icon: "el-icon-edit",
+            operate: "修改",
+            control_id: "plant_type_manage_table",
+            fn: "modify",
+            url: "/gardens/plantname/update"
+          },
+          {
+            id: "plant_type_manage_button_dele",
+            type: "em_button",
+            icon: "el-icon-delete",
+            operate: "删除",
+            control_id: "plant_type_manage_table",
+            fn: "dele",
+            url: "/gardens/plantname/deletes"
+          }
+        ],
+        table: {
+          id: "plant_type_manage_table",
+          table_url: "/gardens/plantname/queryAllByPage",
+          label: [
+            {
+              name: "类型编号",
+              prop: "id",
+              width: "100",
+              type: "em_input",
+              placeholder: "类型编号",
+              params: "id",
+              alter_show: true,
+              add_show: true
+            },
+            {
+              name: "植物类型名称",
+              prop: "plantCname",
+              width: "140",
+              type: "em_input",
+              placeholder: "植物类型名称",
+              params: "plantCname",
+              alter_show: true,
+              add_show: true
+            },
+            {
+              name: "植物英文名",
+              prop: "plantEname",
+              width: "140",
+              type: "em_input",
+              placeholder: "植物英文名",
+              params: "plantEname",
+              alter_show: true,
+              add_show: true
+            },
+            {
+              name: "注释",
+              prop: "describe",
+              width: "300",
+              type: "em_input",
+              placeholder: "注释",
+              params: "describe",
               alter_show: true,
               add_show: true
 

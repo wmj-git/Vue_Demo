@@ -1,0 +1,35 @@
+@import "../../styles/index/variable";
+
+.el-transfer-panel {
+  background-color: darken(nth($background-base, 2), 2%);
+  border-color: rgba(255, 255, 255, 0.3);
+
+  & .el-transfer-panel__item {
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  & .el-transfer-panel__header {
+    background-color: darken(nth($background-base, 2), 4%) !important;
+    border-bottom-color: rgba(255,255,255,0.5);
+    & .el-checkbox .el-checkbox__label {
+      color: rgba(255, 255, 255, 0.8);
+
+      & span {
+        color: rgba(255, 255, 255, 0.8);
+      }
+    }
+  }
+}
+
+.el-transfer__button {
+  border-color: $border-color-base;
+  background-color: nth($background-base, 1);
+  color: #fff;
+
+  &.is-disabled,&.is-disabled:hover,&.is-disabled:active,&.is-disabled:focus {
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    background-color: rgba(255, 255, 255, 0.8);
+    color: rgba(0, 0, 0, 0.9);
+  }
+}
+
