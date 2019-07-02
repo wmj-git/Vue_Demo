@@ -79,16 +79,6 @@ export default {
               url: "/gardens/persontype/deletes"
             },
             {
-              id: "persontype_manage_button_import",
-              type: "em_button",
-              icon: "el-icon-excel_in",
-              operate: "导入excel",
-              control_id: "persontype_manage_table",
-              fn: "import",
-              download_url: "/gardens/persontype/downCsvmodel",
-              import_url: "/gardens/persontype/ajaxUpload"
-            },
-            {
               id: "persontype_manage_button_export",
               type: "em_button",
               control_id: "persontype_manage_table",

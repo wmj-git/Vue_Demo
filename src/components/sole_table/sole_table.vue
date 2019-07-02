@@ -354,7 +354,7 @@
       },
       recieveObj(val){              //把dialog表单里的数据拿到
          console.log(this.delever_obj.url);
-         console.log(this.delever_obj.id);
+         console.log(this.delever_obj.table_id);
          if(val.fn=="add"){
            add({
              url: this.delever_obj.url,
