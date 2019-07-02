@@ -1,10 +1,4 @@
-.el-message-box.em-message-box /deep/{
-  .el-button--primary{
-    border-color: lighten($border-color-base,10%);
-    color: $color-base;
-    background-color: nth($background-base,1);
-  }
-  .el-button{
+ .el-button{
     color: rgba(255,255,255,0.6);
     border-color: rgba(255,255,255,0.4);
     &:hover{
@@ -13,4 +7,10 @@
       transition: all 0.2s;
     }
   }
-}
+  .el-button--primary{
+    border-color: lighten($border-color-base,10%);
+    color: $color-base;
+    background-color: nth($background-base,1);
+  }
+
+
