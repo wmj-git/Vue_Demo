@@ -13,8 +13,6 @@
       position: relative;
       margin-right: 20px;
       color: rgba(255,255,255,0.8);
-      //background: -webkit-gradient(linear, left top, left bottom, from(#9f9342), to(#6c6426));
-      //background: url("../../../../assets/image/scene_btn.png") repeat-x left top;
       border-color: transparent;
       width: 80px;
       height: 30px;
@@ -26,15 +24,12 @@
       display: block;
       padding: 4px;
       border-radius: 8px;
-      /* let's use box shadows to make the button look more 3-dimensional */
       box-shadow: 0px 9px 0px darken($scene-btn-base-color,8%), 0px 9px 25px rgba(237, 237, 237, 0.7);
       text-align: center;
       -webkit-transition: all .1s ease;
       -moz-transition: all .1s ease;
       transition: all .1s ease;
-      //background-position: left top;
       &:hover{
-        //background-position: left -30px;
         box-shadow: 0px 3px 0px darken($scene-btn-base-color,8%), 0px 3px 6px rgba(237, 237, 237, 0.9);
         position: relative;
         top: 6px;
