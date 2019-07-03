@@ -1,5 +1,5 @@
 @import "../../../../styles/index/variable";
-
+$r:32;
 .em-bottom-container {
   background: rgba(20, 31, 55, 0.8);
   & /deep/ {
@@ -10,13 +10,26 @@
     }
     .em-btn-scene{
       float: right;
-      margin-right: 20px;
+      position: relative;
+      margin: 5px 10px;
+      padding: 5px 0;
       color: rgba(255,255,255,0.8);
-      background: -webkit-gradient(linear, left top, left bottom, from(#9f9342), to(#6c6426));
-      border-color: #6c6426;
-      &:active{
-        transform: translatey(2px);
-        background: -webkit-gradient(linear, left top, left bottom, from(#9f9342), to(#6c6426));
+      border-color: rgba(255,255,255,0.1);
+      width: 80px;
+      height: 26px;
+      background-color: $scene-btn-base-color;
+      font-weight: 700;
+      display: block;
+      border-radius: 8px;
+      box-shadow: 0 9px 0 darken($scene-btn-base-color,8%), 0 9px 25px rgba(237, 237, 237, 0.7);
+      text-align: center;
+      -webkit-transition: all .1s ease;
+      -moz-transition: all .1s ease;
+      transition: all .1s ease;
+      &:hover{
+        box-shadow: 0 3px 0 darken($scene-btn-base-color,8%), 0 3px 6px rgba(237, 237, 237, 0.9);
+        position: relative;
+        top: 6px;
       }
     }
   }
