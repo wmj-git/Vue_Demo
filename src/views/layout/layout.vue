@@ -49,6 +49,7 @@
   import em_tools from "./components/em_tools/em_tools"
   import em_slider from "./components/em_slider/em_slider"
   import treeForm from "@/app_components/treeFrom/treeForm"
+  import buttonGroup from "@/app_components/buttonGroup/buttonGroup"
   import em_dialogs from "@/components/em_dialogs/em_dialogs"
 
   export default {
@@ -76,6 +77,7 @@
       em_tools,
       em_slider,
       treeForm,
+      buttonGroup,
       em_dialogs
     },
     computed: {
