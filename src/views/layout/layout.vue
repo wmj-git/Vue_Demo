@@ -105,7 +105,6 @@
         }, 120000);
       },
       refreshToken() {//刷新token
-
         let _RefreshToken = this.$store.getters["user/refreshToken"];
         refreshToken({
           [RefreshTokenName]: _RefreshToken
