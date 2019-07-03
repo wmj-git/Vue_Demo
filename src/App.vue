@@ -37,7 +37,7 @@
    margin: 0;
    overflow: hidden;
  }
- #app,#cesiumContainer {
+ #app,#cesiumContainer,#mapContainer {
    font-family: "Avenir", Helvetica, Arial, sans-serif;
    width: 100%;
    height: 100%;

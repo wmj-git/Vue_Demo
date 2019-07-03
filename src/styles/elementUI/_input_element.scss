@@ -29,4 +29,8 @@ $r:32;
     color: $color-base !important;
   }
 
-
+  /*只读input框样式*/
+.el-input.is-disabled .el-input__inner{
+   background-color: rgba(255,255,255,0.4);
+   color: rgba(255,255,255,0.6);
+}
