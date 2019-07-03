@@ -50,6 +50,7 @@
           type="index"
           fixed="left"
           align="center"
+          :index="table_index"
         >
         </el-table-column>
         <el-table-column
@@ -270,6 +271,9 @@
           this.tableData = res.data.list;
           this.totalSize = res.data.total;
         })
+      },
+      table_index(index){
+        return (this.currentPage-1) * this.pageSize + index + 1
       },
       control(obj) {
         this[obj.fn](obj);
