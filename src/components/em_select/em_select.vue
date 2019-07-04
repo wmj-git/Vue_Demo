@@ -23,7 +23,7 @@
 
         },
         created(){
-          if(this.opreration){
+          if(this.operation){
             this.options=this.operation.options;
           }
           else{

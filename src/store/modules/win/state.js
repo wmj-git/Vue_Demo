@@ -20,102 +20,292 @@ export default {
       title: "类型管理",
       top: "20%",
       left: "20%",
-      width: "45%",
+      width: "60%",
       height: 516,
       show: false,
       class: "em-table-window",
       component: "list_table",
       component_data: {
-        list: {
-          list_url: "/rest/type/queryType",
-          params: {relevanceId: 1},
-          title: "分类",
-          keyObj: {
-            keyName: "parentId",
-            keyValue: "0"
-          },
-        },
-        operation: [
-          {
-            type: "complex_em_input",
-            select: [
+        people_type_manage:{
+          operation: [
+            {
+              id: "persontype_manage_select",
+              type: "complex_em_input",
+              select: [
+                {
+                  name: "类型编号",
+                  params: "personTypeNo"
+                },
+                {
+                  name: "类型名称",
+                  params: "personTypeName"
+                }
+              ]
+
+            },
+            {
+              id: "persontype_manage_button_search",
+              type: "em_button",
+              icon: "el-icon-search",
+              operate: "查询",
+              control_id: "persontype_manage_table",
+              fn: "search"
+            },
+            {
+              id: "persontype_manage_button_add",
+              type: "em_button",
+              icon: "el-icon-plus",
+              operate: "添加",
+              control_id: "persontype_manage_table",
+              fn: "add",
+              url: "/gardens/persontype/add"
+            },
+            {
+              id: "persontype_manage_button_modify",
+              type: "em_button",
+              icon: "el-icon-edit",
+              operate: "修改",
+              control_id: "persontype_manage_table",
+              fn: "modify",
+              url: "/gardens/persontype/update"
+            },
+            {
+              id: "persontype_manage_button_dele",
+              type: "em_button",
+              icon: "el-icon-delete",
+              operate: "删除",
+              control_id: "persontype_manage_table",
+              fn: "dele",
+              url: "/gardens/persontype/deletes"
+            },
+            {
+              id: "persontype_manage_button_export",
+              type: "em_button",
+              control_id: "persontype_manage_table",
+              icon: "el-icon-excel_out",
+              operate: "导出excel",
+              fn: "export",
+              url: "/gardens/persontype/exportCsv"
+            }
+          ],
+          table: {
+            id: "persontype_manage_table",
+            table_url: "/gardens/persontype/queryAllByPage",
+            label: [
               {
-                name: "类型名",
-                params: "accountNumber"
+                name: "类型编号",
+                prop: "personTypeNo",
+                width: "100",
+                type: "em_input",
+                placeholder: "类型编号",
+                params: "personTypeNo",
+                alter_show: true,
+                add_show: true
               },
               {
-                name: "英文名",
-                params: "userEname"
-              }
+                name: "类型名称",
+                prop: "personTypeName",
+                width: "100",
+                type: "em_input",
+                placeholder: "类型名称",
+                params: "personTypeName",
+                alter_show: true,
+                add_show: true
+              },
+              {
+                name: "描述",
+                prop: "memo",
+                width: "100",
+                type: "em_input",
+                placeholder: "描述",
+                params: "memo",
+                alter_show: true,
+                add_show: true
+              },
             ]
-
-          },
-          {
-            type: "em_button",
-            icon: "el-icon-search",
-            operate: "查询",
-            control_id: "type_manage_table",
-            fn: "search"
-          },
-          {
-            type: "em_button",
-            icon: "el-icon-plus",
-            operate: "添加",
-            control_id: "type_manage_table",
-            fn: "add",
-            url: "/user/userext/addPeopleInfo"
-          },
-          {
-            type: "em_button",
-            icon: "el-icon-edit",
-            operate: "修改",
-            control_id: "type_manage_table",
-            fn: "modify",
-          },
-          {
-            type: "em_button",
-            icon: "el-icon-delete",
-            operate: "删除",
-            control_id: "type_manage_table",
-            fn: "dele",
-            url: ""
           }
-        ],
-        table: {
-          id: "type_manage_table",
-          table_url: "/rest/type/queryTypeByPages",
-          label: [
+        },
+        people_inform_manage:{
+          operation: [
             {
-              name: "id",
-              prop: "id",
-              width: "80"
+              id: "people_manage_select",
+              type: "complex_em_input",
+              select: [
+                {
+                  name: "姓名",
+                  params: "name"
+                },
+                {
+                  name: "职务",
+                  params: "duty"
+                }
+              ]
+
             },
             {
-              name: "类型名称",
-              prop: "typeCname",
-              width: "140"
+              id: "people_manage_button_search",
+              type: "em_button",
+              icon: "el-icon-search",
+              operate: "查询",
+              control_id: "people_manage_table",
+              fn: "search"
             },
             {
-              name: "类型编码",
-              prop: "typeCode",
-              width: "180"
+              id: "people_manage_button_add",
+              type: "em_button",
+              icon: "el-icon-plus",
+              operate: "添加",
+              control_id: "people_manage_table",
+              fn: "add",
+              url: "/gardens/person/add"
             },
             {
-              name: "英文名",
-              prop: "typeEname",
-              width: "180"
+              id: "people_manage_button_modify",
+              type: "em_button",
+              icon: "el-icon-edit",
+              operate: "修改",
+              control_id: "people_manage_table",
+              fn: "modify",
+              url: "/gardens/person/update"
             },
             {
-              name: "备注",
-              prop: "remark",
-              width: "180"
+              id: "people_manage_button_dele",
+              type: "em_button",
+              icon: "el-icon-delete",
+              operate: "删除",
+              control_id: "people_manage_table",
+              fn: "dele",
+              url: "/gardens/person/deletes"
             },
             {
-              name: "父类型",
-              prop: "parentId",
-              width: "60"
+              id: "people_manage_button_import",
+              type: "em_button",
+              icon: "el-icon-excel_in",
+              operate: "导入excel",
+              control_id: "people_manage_table",
+              fn: "import",
+              download_url: "/gardens/person/downCsvmodel",
+              import_url: "/gardens/person/ajaxUpload"
             },
-          ]
+            {
+              id: "people_manage_button_export",
+              type: "em_button",
+              control_id: "people_manage_table",
+              icon: "el-icon-excel_out",
+              operate: "导出excel",
+              fn: "export",
+              url: "/gardens/person/exportCsv"
+            }
+          ],
+          table: {
+            id: "people_manage_table",
+            table_url: "/gardens/person/queryAllByPage",
+            label: [{
+              name: "姓名",
+              prop: "name",
+              width: "100",
+              type: "em_input",
+              placeholder: "名字",
+              params: "name",
+              alter_show: true,
+              add_show: true
+            },
+              {
+                name: "性别",
+                prop: "sex",
+                width: "100",
+                type: "em_select",
+                params: "sex",
+                options: [{
+                  value: "男",
+                  label: "男"
+                },
+                  {
+                    value: "女",
+                    label: "女"
+                  }
+
+                ],
+                alter_show: true,
+                add_show: true
+              },
+              {
+                name: "职务",
+                prop: "duty",
+                width: "140",
+                type: "em_input",
+                placeholder: "职务",
+                params: "duty",
+                alter_show: true,
+                add_show: true
+              },
+              {
+                name: "人员类型",
+                prop: "personTypeName",
+                width: "140",
+                type: "em_selectUrl",
+                params: "personTypeId",
+                optionUrl: "gardens/persontype/queryAll",
+                alter_show: true,
+                add_show: true
+
+              },
+              {
+                name: "电话",
+                prop: "telephone",
+                width: "140",
+                type: "em_input",
+                placeholder: "电话",
+                params: "telephone",
+                alter_show: true,
+                add_show: true
+              },
+              {
+                name: "从事专业",
+                prop: "professional",
+                width: "140",
+                type: "em_input",
+                placeholder: "从事专业",
+                params: "professional",
+                alter_show: true,
+                add_show: true
+              },
+              {
+                name: "工作单位",
+                prop: "entName",
+                width: "100",
+                type: "em_selectUrl",
+                params: "entId",
+                optionUrl: "gardens/ent/queryAll",
+                alter_show: true,
+                add_show: true
+              },
+              {
+                name: "备注",
+                prop: "memo",
+                width: "140",
+                type: "em_input",
+                placeholder: "备注",
+                params: "memo",
+                alter_show: true,
+                add_show: true
+
+              },
+              {
+                name: "排序号",
+                prop: "orderNo",
+                width: "100",
+                type: "em_input",
+                placeholder: "排序号",
+                params: "orderNo",
+                alter_show: true,
+                add_show: true
+
+              }
+
+
+            ]
+          }
         }
       }
     },
@@ -132,14 +322,14 @@ export default {
       component_data: {
         operation: [
           {
-            id:"role_manage_input_roleCname",
+            id: "role_manage_input_roleCname",
             type: "em_input",
             placeholder: "中文名",
             params: "roleCname"
 
           },
           {
-            id:"role_manage_button_search",
+            id: "role_manage_button_search",
             type: "em_button",
             icon: "el-icon-search",
             operate: "查询",
@@ -147,57 +337,96 @@ export default {
             fn: "search"
           },
           {
-            id:"role_manage_button_add",
+            id: "role_manage_button_add",
             type: "em_button",
             icon: "el-icon-plus",
             operate: "添加",
             control_id: "role_manage_table",
             fn: "add",
-            url: "/user/userext/addPeopleInfo"
+            url: "/user/role/addRole"
           },
           {
-            id:"role_manage_button_modify",
+            id: "role_manage_button_modify",
             type: "em_button",
             icon: "el-icon-edit",
             operate: "修改",
             control_id: "role_manage_table",
             fn: "modify",
+            url: "/user/role/updateRole"
           },
           {
-            id:"role_manage_button_dele",
+            id: "role_manage_button_dele",
             type: "em_button",
             icon: "el-icon-delete",
             operate: "删除",
             control_id: "role_manage_table",
             fn: "dele",
-            url: ""
+            url: "/user/role/dele"
           }
 
         ],
         table: {
           id: "role_manage_table",
           table_url: "/user/role/queryPage",
+          after_digital_button: [
+            {
+              name: "权限分配",
+              fn: "permissionAssignments",
+              id: "permissionAssignments",
+              dialog_name: "分配权限",
+              dialog_width: "400px",
+              component_name: "permission_assignments"
+            },
+            {
+              name: "关联用户",
+              fn: "associateUsers",
+              id: "associateUsers",
+              dialog_name: "关联用户",
+              dialog_width: "600px",
+              component_name: "associate_users"
+            }
+          ],
           label: [
             {
               name: "英文名",
               prop: "roleEname",
-              width: "100"
+              width: "100",
+              type: "em_input",
+              placeholder: "英文名",
+              params: "roleEname",
+              alter_show: true,
+              add_show: true
             },
             {
               name: "中文名",
               prop: "roleCname",
-              width: "100"
+              width: "100",
+              type: "em_input",
+              placeholder: "中文名",
+              params: "roleCname",
+              alter_show: true,
+              add_show: true
             },
 
             {
               name: "角色编码",
               prop: "roleCode",
-              width: "80"
+              width: "80",
+              type: "em_input",
+              placeholder: "角色编码",
+              params: "roleCode",
+              alter_show: true,
+              add_show: true
             },
             {
               name: "备注",
               prop: "remark",
-              width: "80"
+              width: "80",
+              type: "em_input",
+              placeholder: "备注",
+              params: "remark",
+              alter_show: true,
+              add_show: true
             },
 
 
@@ -218,18 +447,18 @@ export default {
       component_data: {
         operation: [
           {
-            id:"system_record_date",
+            id: "system_record_date",
             type: "em_date",
 
           },
           {
-            id:"system_record_input_loginName",
+            id: "system_record_input_loginName",
             type: "em_input",
             placeholder: "用户名",
-            params: "loginName"
+            params: "userCname"
           },
           {
-            id:"system_record_input_methodName",
+            id: "system_record_input_methodName",
             type: "em_input",
             placeholder: "操作",
             params: "methodName"
@@ -240,7 +469,7 @@ export default {
             params: "requestUrl"
           },
           {
-            id:"system_record_button_search",
+            id: "system_record_button_search",
             type: "em_button",
             icon: "el-icon-search",
             operate: "查询",
@@ -300,7 +529,7 @@ export default {
       component_data: {
         operation: [
           {
-            id:"account_manage_select",
+            id: "account_manage_select",
             type: "complex_em_input",
             select: [
               {
@@ -319,7 +548,7 @@ export default {
 
           },
           {
-            id:"account_manage_search",
+            id: "account_manage_search",
             type: "em_button",
             icon: "el-icon-search",
             operate: "查询",
@@ -327,7 +556,7 @@ export default {
             fn: "search"
           },
           {
-            id:"account_manage_button_add",
+            id: "account_manage_button_add",
             type: "em_button",
             icon: "el-icon-plus",
             operate: "添加",
@@ -336,7 +565,7 @@ export default {
             url: "/user/userext/addPeopleInfo"
           },
           {
-            id:"account_manage_button_modify",
+            id: "account_manage_button_modify",
             type: "em_button",
             icon: "el-icon-edit",
             operate: "修改",
@@ -347,7 +576,7 @@ export default {
 
           },
           {
-            id:"account_manage_button_dele",
+            id: "account_manage_button_dele",
             type: "em_button",
             icon: "el-icon-delete",
             operate: "删除",
@@ -356,7 +585,7 @@ export default {
             url: "/user/userext/deletePeopleInfo"
           },
           {
-            id:"account_manage_button_import",
+            id: "account_manage_button_import",
             type: "em_button",
             icon: "el-icon-excel_in",
             operate: "导入excel",
@@ -366,7 +595,7 @@ export default {
             import_url: "/user/userext/ajaxUpload"
           },
           {
-            id:"account_manage_button_export",
+            id: "account_manage_button_export",
             type: "em_button",
             icon: "el-icon-excel_out",
             operate: "导出excel",
@@ -377,6 +606,24 @@ export default {
         ],
         table: {
           id: "account_manage_table",
+          after_digital_button: [
+            {
+              name: "重置密码",
+              fn: "resetPasswordBox",
+              id: "resetPassword",
+              dialog_name: "重置密码",
+              dialog_width: "",
+              component_name: ""
+            },
+            {
+              name: "角色分配",
+              fn: "roleAssignments",
+              id: "roleAssignments",
+              dialog_name: "分配角色",
+              dialog_width: "400px",
+              component_name: "role_assignments"
+            }
+          ],
           table_url: "/user/userext/queryUserExt",
           label: [
             {
@@ -608,7 +855,7 @@ export default {
       title: "部门管理",
       top: 80,
       left: 400,
-      height:500,
+      height: 500,
       show: false,
       class: "em-table-window",
       component: "sole_table",
@@ -790,7 +1037,7 @@ export default {
       component_data: {
         operation: [
           {
-            id:"soil_temperature_analysis_date",
+            id: "soil_temperature_analysis_date",
             type: "em_date",
 
           },
@@ -830,7 +1077,7 @@ export default {
             params: "pointsId",
             placeholder: "全称",
             alter_show: true,
-            add_show:true
+            add_show: true
 
           },
             {
@@ -841,7 +1088,7 @@ export default {
               params: "temValue",
               placeholder: "温度值",
               alter_show: true,
-              add_show:true
+              add_show: true
             },
             {
               name: "创建时间",
@@ -851,7 +1098,7 @@ export default {
               params: "createDate",
               placeholder: "创建时间",
               alter_show: false,
-              add_show:false
+              add_show: false
 
             },
             {
@@ -862,14 +1109,14 @@ export default {
               params: "memo",
               placeholder: "备注",
               alter_show: true,
-              add_show:true
+              add_show: true
             }
 
 
           ]
         },
         chart: {
-          type: "line",
+          type: "line1",
           id: "line1",
           chart_url: '/gardens/temperature/queryAll?dataType=S'
         }
@@ -888,7 +1135,7 @@ export default {
       component_data: {
         operation: [
           {
-            id:"soil_temperature_analysis_date",
+            id: "soil_temperature_analysis_date",
             type: "em_date",
 
           },
@@ -963,8 +1210,8 @@ export default {
           ]
         },
         chart: {
-          type: "line",
-          id: "line1",
+          type: "line2",
+          id: "line2",
           chart_url: '/gardens/humidity/queryAll?dataType=S'
         }
       }
@@ -982,7 +1229,7 @@ export default {
       component_data: {
         operation: [
           {
-            id:"population_analysis_date",
+            id: "population_analysis_date",
             type: "em_date",
 
           },
@@ -1057,8 +1304,8 @@ export default {
           ]
         },
         chart: {
-          type: "line",
-          id: "line2",
+          type: "line3",
+          id: "line3",
           chart_url: '/gardens/humantrafficinfo/queryAll'
         }
       }
@@ -1076,7 +1323,7 @@ export default {
       component_data: {
         operation: [
           {
-            id:"soil_temperature_analysis_date",
+            id: "soil_temperature_analysis_date",
             type: "em_date",
 
           },
@@ -1151,8 +1398,8 @@ export default {
           ]
         },
         chart: {
-          type: "line",
-          id: "line3",
+          type: "line4",
+          id: "line4",
           chart_url: '/gardens/temperature/queryAll?dataType=A'
         }
       }
@@ -1170,7 +1417,7 @@ export default {
       component_data: {
         operation: [
           {
-            id:"soil_temperature_analysis_date",
+            id: "soil_temperature_analysis_date",
             type: "em_date",
 
           },
@@ -1245,8 +1492,8 @@ export default {
           ]
         },
         chart: {
-          type: "line",
-          id: "line4",
+          type: "line5",
+          id: "line5",
           chart_url: '/gardens/humidity/queryAll?dataType=A'
         }
       }
@@ -1264,7 +1511,7 @@ export default {
       component_data: {
         operation: [
           {
-            id:"fire_alert_anaysis_date",
+            id: "fire_alert_anaysis_date",
             type: "em_date",
 
           },
@@ -1836,12 +2083,12 @@ export default {
             select: [
               {
                 name: "类型编号",
-                params: "plantTypeNo",
+                params: "id",
 
               },
               {
-                name: "植物类型",
-                params: "plantTypeName"
+                name: "植物类型名称",
+                params: "plantCname"
               }
             ]
 
@@ -1861,7 +2108,7 @@ export default {
             operate: "添加",
             control_id: "plant_type_manage_table",
             fn: "add",
-            url: "/gardens/planttype/add"
+            url: "/gardens/plantname/add"
           },
           {
             id: "plant_type_manage_button_modify",
@@ -1870,7 +2117,7 @@ export default {
             operate: "修改",
             control_id: "plant_type_manage_table",
             fn: "modify",
-            url: "/gardens/planttype/update"
+            url: "/gardens/plantname/update"
           },
           {
             id: "plant_type_manage_button_dele",
@@ -1879,46 +2126,54 @@ export default {
             operate: "删除",
             control_id: "plant_type_manage_table",
             fn: "dele",
-            url: "/gardens/planttype/deletes"
+            url: "/gardens/plantname/deletes"
           }
         ],
         table: {
           id: "plant_type_manage_table",
-          table_url: "/gardens/planttype/queryAllByPage",
+          table_url: "/gardens/plantname/queryAllByPage",
           label: [
             {
-              name: "植物类型编码",
-              prop: "plantTypeNo",
-              width: "140",
-              type: "em_input",
-              placeholder: "植物类型编码",
-              params: "plantTypeNo",
-              alter_show: true,
-              add_show: true
-
-
-            },
-            {
-              name: "植物类型",
-              prop: "plantTypeName",
+              name: "类型编号",
+              prop: "id",
               width: "100",
               type: "em_input",
-              placeholder: "植物类型",
-              params: "plantTypeName",
+              placeholder: "类型编号",
+              params: "id",
+              alter_show: true,
+              add_show: true
+            },
+            {
+              name: "植物类型名称",
+              prop: "plantCname",
+              width: "140",
+              type: "em_input",
+              placeholder: "植物类型名称",
+              params: "plantCname",
+              alter_show: true,
+              add_show: true
+            },
+            {
+              name: "植物英文名",
+              prop: "plantEname",
+              width: "140",
+              type: "em_input",
+              placeholder: "植物英文名",
+              params: "plantEname",
               alter_show: true,
               add_show: true
             },
             {
               name: "注释",
-              prop: "memo",
-              width: "120",
+              prop: "describe",
+              width: "300",
               type: "em_input",
               placeholder: "注释",
-              params: "memo",
+              params: "describe",
               alter_show: true,
               add_show: true
-            }
 
+            }
 
           ]
         }
@@ -1930,32 +2185,32 @@ export default {
       top: 80,
       left: 400,
       height: 400,
-      width:900,
+      width: 900,
       show: false,
       class: "em-table-window",
       component: "sole_table",
       component_data: {
         operation: [
           {
-            id:"tree_material_manage_input_treeNo",
+            id: "tree_material_manage_input_treeNo",
             type: "em_input",
             placeholder: "植物编号",
             params: "treeNo"
           },
           {
-            id:"tree_material_manage_input_treeName",
+            id: "tree_material_manage_input_treeName",
             type: "em_input",
             placeholder: "树种类型",
             params: "treeName"
           },
           {
-            id:"tree_material_manage_input_treeName",
+            id: "tree_material_manage_input_treeName",
             type: "em_input",
             placeholder: "植物名称",
             params: "treeName"
           },
           {
-            id:"tree_material_manage_input_position",
+            id: "tree_material_manage_input_position",
             type: "em_input",
             placeholder: "行政区划",
             params: "position"
@@ -2155,24 +2410,24 @@ export default {
               alter_show: true
             },
             {
-              name:"经度",
-              prop:"longitude",
-              width:"200",
-              type:"em_input",
-              placeholder:"经度",
-              params:"longitude",
-              add_show:true,
-              alter_show:true
+              name: "经度",
+              prop: "longitude",
+              width: "200",
+              type: "em_input",
+              placeholder: "经度",
+              params: "longitude",
+              add_show: true,
+              alter_show: true
             },
             {
-              name:"纬度",
-              prop:"latitude",
-              width:"200",
-              type:"em_input",
-              placeholder:"纬度",
-              params:"latitude",
-              add_show:true,
-              alter_show:true
+              name: "纬度",
+              prop: "latitude",
+              width: "200",
+              type: "em_input",
+              placeholder: "纬度",
+              params: "latitude",
+              add_show: true,
+              alter_show: true
             },
             // {
             //   name:"责任人Id",
@@ -2278,7 +2533,7 @@ export default {
             operate: "导出excel",
             fn: "export",
             control_id: "grid_manage_table",
-            url:"/gardens/grid/exportCsv"
+            url: "/gardens/grid/exportCsv"
           }
         ],
         table: {
@@ -2437,7 +2692,7 @@ export default {
             operate: "导出excel",
             fn: "export",
             control_id: "soil_temperature_manage_table",
-            url:"/gardens/temhumpoints/exportCsv"
+            url: "/gardens/temhumpoints/exportCsv"
           }
         ],
         table: {
@@ -2475,24 +2730,24 @@ export default {
               alter_show: true
             },
             {
-              name:"经度",
-              prop:"longitude",
-              width:"200",
-              type:"em_input",
-              placeholder:"经度",
-              params:"longitude",
-              add_show:true,
-              alter_show:true
+              name: "经度",
+              prop: "longitude",
+              width: "200",
+              type: "em_input",
+              placeholder: "经度",
+              params: "longitude",
+              add_show: true,
+              alter_show: true
             },
             {
-              name:"纬度",
-              prop:"latitude",
-              width:"160",
-              type:"em_input",
-              placeholder:"纬度",
-              params:"latitude",
-              add_show:true,
-              alter_show:true
+              name: "纬度",
+              prop: "latitude",
+              width: "160",
+              type: "em_input",
+              placeholder: "纬度",
+              params: "latitude",
+              add_show: true,
+              alter_show: true
             },
             // {
             //   name:"责任单位",
@@ -2507,7 +2762,7 @@ export default {
             {
               name: "上限报警阀值",
               prop: "upperLimit",
-              width: "100",
+              width: "180",
               type: "em_input",
               placeholder: "上限报警阀值",
               params: "upperLimit",
@@ -2622,7 +2877,7 @@ export default {
             operate: "导出excel",
             fn: "export",
             control_id: "soil_humidity_manage_table",
-            url:"/gardens/temhumpoints/exportCsv"
+            url: "/gardens/temhumpoints/exportCsv"
           }
         ],
         table: {
@@ -2660,24 +2915,24 @@ export default {
               alter_show: true
             },
             {
-              name:"经度",
-              prop:"longitude",
-              width:"200",
-              type:"em_input",
-              placeholder:"经度",
-              params:"longitude",
-              add_show:true,
-              alter_show:true
+              name: "经度",
+              prop: "longitude",
+              width: "200",
+              type: "em_input",
+              placeholder: "经度",
+              params: "longitude",
+              add_show: true,
+              alter_show: true
             },
             {
-              name:"纬度",
-              prop:"latitude",
-              width:"160",
-              type:"em_input",
-              placeholder:"纬度",
-              params:"latitude",
-              add_show:true,
-              alter_show:true
+              name: "纬度",
+              prop: "latitude",
+              width: "160",
+              type: "em_input",
+              placeholder: "纬度",
+              params: "latitude",
+              add_show: true,
+              alter_show: true
             },
             // {
             //   name:"责任单位",
@@ -2808,7 +3063,7 @@ export default {
             operate: "导出excel",
             fn: "export",
             control_id: "population_manage_table",
-            url:"/gardens/humantraffic/exportCsv"
+            url: "/gardens/humantraffic/exportCsv"
           }
         ],
         table: {
@@ -2846,24 +3101,24 @@ export default {
               alter_show: true
             },
             {
-              name:"经度",
-              prop:"longitude",
-              width:"200",
-              type:"em_input",
-              placeholder:"经度",
-              params:"longitude",
-              add_show:true,
-              alter_show:true
+              name: "经度",
+              prop: "longitude",
+              width: "200",
+              type: "em_input",
+              placeholder: "经度",
+              params: "longitude",
+              add_show: true,
+              alter_show: true
             },
             {
-              name:"纬度",
-              prop:"latitude",
-              width:"160",
-              type:"em_input",
-              placeholder:"纬度",
-              params:"latitude",
-              add_show:true,
-              alter_show:true
+              name: "纬度",
+              prop: "latitude",
+              width: "160",
+              type: "em_input",
+              placeholder: "纬度",
+              params: "latitude",
+              add_show: true,
+              alter_show: true
             },
             // {
             //   name:"责任单位",
@@ -2992,7 +3247,7 @@ export default {
             operate: "导出excel",
             fn: "export",
             control_id: "air_temperature_manage_table",
-            url:"/gardens/temhumpoints/exportCsv"
+            url: "/gardens/temhumpoints/exportCsv"
           }
         ],
         table: {
@@ -3030,24 +3285,24 @@ export default {
               alter_show: true
             },
             {
-              name:"经度",
-              prop:"longitude",
-              width:"200",
-              type:"em_input",
-              placeholder:"经度",
-              params:"longitude",
-              add_show:true,
-              alter_show:true
+              name: "经度",
+              prop: "longitude",
+              width: "200",
+              type: "em_input",
+              placeholder: "经度",
+              params: "longitude",
+              add_show: true,
+              alter_show: true
             },
             {
-              name:"纬度",
-              prop:"latitude",
-              width:"160",
-              type:"em_input",
-              placeholder:"纬度",
-              params:"latitude",
-              add_show:true,
-              alter_show:true
+              name: "纬度",
+              prop: "latitude",
+              width: "160",
+              type: "em_input",
+              placeholder: "纬度",
+              params: "latitude",
+              add_show: true,
+              alter_show: true
             },
             // {
             //   name:"责任单位",
@@ -3177,7 +3432,7 @@ export default {
             operate: "导出excel",
             fn: "export",
             control_id: "air_humidity_manage_table",
-            url:"/gardens/temhumpoints/exportCsv"
+            url: "/gardens/temhumpoints/exportCsv"
           }
         ],
         table: {
@@ -3215,24 +3470,24 @@ export default {
               alter_show: true
             },
             {
-              name:"经度",
-              prop:"longitude",
-              width:"200",
-              type:"em_input",
-              placeholder:"经度",
-              params:"longitude",
-              add_show:true,
-              alter_show:true
+              name: "经度",
+              prop: "longitude",
+              width: "200",
+              type: "em_input",
+              placeholder: "经度",
+              params: "longitude",
+              add_show: true,
+              alter_show: true
             },
             {
-              name:"纬度",
-              prop:"latitude",
-              width:"160",
-              type:"em_input",
-              placeholder:"纬度",
-              params:"latitude",
-              add_show:true,
-              alter_show:true
+              name: "纬度",
+              prop: "latitude",
+              width: "160",
+              type: "em_input",
+              placeholder: "纬度",
+              params: "latitude",
+              add_show: true,
+              alter_show: true
             },
             // {
             //   name:"责任单位",
@@ -3361,7 +3616,7 @@ export default {
             control_id: "fire_alert_manage_table",
             operate: "导出excel",
             fn: "export",
-            url:"/gardens/firealarm/exportCsv"
+            url: "/gardens/firealarm/exportCsv"
           }
         ],
         table: {
@@ -3399,24 +3654,24 @@ export default {
               alter_show: true
             },
             {
-              name:"经度",
-              prop:"longitude",
-              width:"200",
-              type:"em_input",
-              placeholder:"经度",
-              params:"longitude",
-              add_show:true,
-              alter_show:true
+              name: "经度",
+              prop: "longitude",
+              width: "200",
+              type: "em_input",
+              placeholder: "经度",
+              params: "longitude",
+              add_show: true,
+              alter_show: true
             },
             {
-              name:"纬度",
-              prop:"latitude",
-              width:"160",
-              type:"em_input",
-              placeholder:"纬度",
-              params:"latitude",
-              add_show:true,
-              alter_show:true
+              name: "纬度",
+              prop: "latitude",
+              width: "160",
+              type: "em_input",
+              placeholder: "纬度",
+              params: "latitude",
+              add_show: true,
+              alter_show: true
             },
             // {
             //   name:"责任单位",
@@ -3450,14 +3705,45 @@ export default {
     {
       id: "permissions_management",
       title: "权限管理",
-      top: "20%",
-      left: "20%",
-      width: "50%",
-      height: "50%",
+      top: 80,
+      left: 400,
+      width: 1000,
+      height: 500,
       show: false,
       class: "em-table-window",
       component: "treeForm",
       component_data: {}
+    },
+    {
+      id: "scene_data",
+      title: "数据显示",
+      top: 8,
+      left: 480,
+      width: 400,
+      height: 168,
+      show: true,
+      class: "",
+      component: "buttonGroup",
+      component_data: {
+        buttonGroup: [
+          {
+            id: "bt_1",
+            type: "info",
+            icon: "el-icon-edit",
+            text: "树木数据",
+            fn: "routerFn",
+            fnData: {}
+          },
+          {
+            id: "bt_2",
+            type: "info",
+            icon: "",
+            text: "sk_街道树",
+            fn: "routerFn",
+            fnData: {}
+          }
+        ]
+      }
     }
   ],
   dialog: [

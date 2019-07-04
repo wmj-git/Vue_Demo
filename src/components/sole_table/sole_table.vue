@@ -21,11 +21,13 @@
           <div slot="tip" class="el-upload__tip">只能上传csv文件</div>
         </el-upload>
       <div slot="footer" class="dialog-footer">
-        <el-button @click="dialogFormVisible = false" class="em-btn_shadow">取 消</el-button>
-        <el-button type="primary" @click="submitUpload" class="em-btn_shadow">确 定</el-button>
+        <el-button @click="dialogFormVisible = false" class="em-button">取 消</el-button>
+        <el-button type="primary" @click="submitUpload" class="em-button">确 定</el-button>
       </div>
     </el-dialog>
-
+    <el-dialog :title="commonDialogTitle" :width="commonDialogWidth" :visible.sync="dialogCommonVisible" :modal-append-to-body="false"  v-dialogDrag="true">
+       <component :is="commonDialogComponent"  @closeCommonDialog="closeCommonDialog" ref="dialogComponent"></component>
+    </el-dialog>
     <div class="table digital_table">
       <el-row class="operation">
         <template v-for="item in this.data.operation">
@@ -35,8 +37,8 @@
       <el-table
         class="my-table"
         v-loading="listLoading"
-        borders
-        height="calc(100% - 92px)"
+        border
+        height="600px"
         highlight-current-row
         @current-change="handleCurrentChange"
         ref="multipleTable"
@@ -48,6 +50,7 @@
           type="index"
           fixed="left"
           align="center"
+          :index="table_index"
         >
         </el-table-column>
         <el-table-column
@@ -63,6 +66,21 @@
                          align="center"
                          :show-overflow-tooltip="true"
         >
+        </el-table-column>
+        <el-table-column
+          align="center"
+          fixed="right"
+          label="操作"
+          min-width="160"
+          v-if="typeof (data.table.after_digital_button)!='undefined'"
+          >
+            <template slot-scope="scope">
+              <el-button class="em-btn-reset" v-for="item in data.table.after_digital_button"
+                :key="item.id"
+                size="small"
+                @click="control(item)">{{item.name}}
+              </el-button>
+            </template>
         </el-table-column>
       </el-table>
       <div class="pages">
@@ -83,13 +101,18 @@
 </template>
 
 <script>
-  import {add, dele, modify, find, downCsvmodel,upLoad} from "@/api/table_operate"
+
+
+  import {add, dele, modify, find, downCsvmodel,upLoad,resetPassword} from "@/api/table_operate"
   import em_button from "@/components/em_button/em_button"
   import em_input from "@/components/em_input/em_input"
   import em_dialogs from "@/components/em_dialogs/em_dialogs"
   import complex_em_input from "@/components/complex_em_input/complex_em_input"
   import em_date from "@/components/em_date/em_date"
   import { getToken} from '@/utils/auth'
+  import role_assignments from "./components/role_assinments/role_assinments"
+  import associate_users from "./components/associate_users/associate_users"
+  import permission_assignments from "./components/permission_assignments/permission_assignments"
   export default {
     name: "sole_table",
     components: {
@@ -97,7 +120,10 @@
       em_input,
       complex_em_input,
       em_date,
-      em_dialogs
+      em_dialogs,
+      role_assignments,
+      associate_users,
+      permission_assignments
     },
     data() {
       return {
@@ -108,7 +134,7 @@
         listLoading:false,
         currentRow: null,
         multipleSelection: [],
-        ids: [],
+        ids: [],         //要删除的对象的id数组
         input: '',
         currentPage: 1,
         pageSize: 10,
@@ -116,20 +142,24 @@
         table_list: [],
         formLabelWidth: '120px',
         dialogVisible: false,
-        delever_obj:"",      //主要保存add,alter请求的url,table_id
-        alter_obj:"",
-        dialogFormVisible: false,
+        delever_obj:"",      // 主要保存add,alter请求的url,table_id
+        alter_obj:"",       //单选行选中进行修改的对象
+        dialogFormVisible: false, //导入表格弹框控制显示隐藏的布尔值
+        dialogCommonVisible:false,  //角色分配，权限分配，关联用户等等弹框控制显示隐藏的布尔值
         fileList: [],
         action:"",
         operation_height:34,
-        // table_height:"calc(100% - 92px)",
         headers:{
           "Authorization":getToken()
-        }
+        },
+        commonDialogComponent:"",  //渲染在角色分配等的动态组件名
+        commonDialogTitle:"",     //渲染在角色分配等的弹框的title名
+        commonDialogWidth:""     //渲染在角色分配等的弹框的宽度
       }
     },
     props: ["data"],
     mounted() {
+      console.log(typeof (this.data.table.after_digital_button));
       this.table_id=this.data.table.id;
       this.label=this.data.table.label;
       this.label_input=this.data.table.label.filter(val=>{
@@ -138,15 +168,14 @@
      console.log(this.label);
       this.init(); //初始化表格数据
 
-      this.bus.$on(this.data.table.id, obj => {
+      this.bus.$on(this.data.table.id, obj => {// 通过按钮组件（添加，删除..）的点击事件触发此组件的control方法
         this.control(obj);
-        console.log(obj)
+        console.log(obj);
       });
-
     },
     methods: {
 
-      handleSelectionChange(val) {    //多选框（选中删除）
+      handleSelectionChange(val) {// 多选框（选中删除）
         this.multipleSelection = val;
         console.log(this.multipleSelection);
 
@@ -221,12 +250,42 @@
           params: obj
         }).then(res => {
           console.log(res);
+          let _listField = new RegExp('isSpecial');
+          res.data.list.forEach((_val)=>{
+              for(let _i in _val){
+                if (_listField.test(_i)) {
+                   if(_val[_i]===0){
+                      _val[_i]="否";
+                   }
+                   else if(_val[_i]===1){
+                     _val[_i]="是"
+                   }
+                }
+
+              }
+
+          });
+
+
+
           this.tableData = res.data.list;
           this.totalSize = res.data.total;
         })
       },
+      table_index(index){
+        return (this.currentPage-1) * this.pageSize + index + 1
+      },
       control(obj) {
         this[obj.fn](obj);
+        if(obj.component_name){
+          this.commonDialogComponent=obj.component_name;
+          this.commonDialogTitle=obj.dialog_name;
+          this.commonDialogWidth=obj.dialog_width;
+          setTimeout(()=>{
+            this.$refs.dialogComponent.recieveRoles(this.alter_obj.id);
+          });
+
+        }
 
       },
       add(obj) {
@@ -240,18 +299,32 @@
           this.ids.push(val.id);   //提取出需要传给后台的参数ids
         });
         if (this.ids.length!= 0) {
-          dele({
-            url: obj.url,
-            params: this.ids
-
-          }).then(res => {
-            console.log(res);
-            this.ids = [];
-            this.open3();
-            this.init();
+          this.$confirm('此操作将删除所选项, 是否继续?', '提示', {
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+            type: 'warning'
+          }).then(() => {
 
 
-          })
+            dele({
+              url: obj.url,
+              params: this.ids
+
+            }).then(res => {
+              this.ids = [];
+              if (res.statusCode == 200) {
+                this.$message({
+                  message: '删除成功',
+                  type: 'success'
+                });
+                this.init();
+              }
+
+            })
+
+          }).catch(()=>{
+
+          });
         }
       },
       search() {
@@ -263,14 +336,6 @@
         this.$refs.dialog.showdialog(obj);  //调用子组件em_dialogs的方法显示弹出框;
         this.delever_obj=obj;
         console.log(this.delever_obj);
-      },
-      open3() {
-        const h = this.$createElement;
-        this.$notify({
-          title: '成功',
-          message: h('i', {style: 'color: teal'}, '删除成功啦'),
-          type: 'success'
-        });
       },
       handleClose(done) {
         this.$confirm('确认关闭？')
@@ -293,7 +358,7 @@
       },
       recieveObj(val){              //把dialog表单里的数据拿到
          console.log(this.delever_obj.url);
-         console.log(this.delever_obj.id);
+         console.log(this.delever_obj.table_id);
          if(val.fn=="add"){
            add({
              url: this.delever_obj.url,
@@ -362,6 +427,40 @@
         }
 
       },
+      resetPasswordBox(){     //重置密码的方法
+        this.$confirm('此操作将重置此用户密码, 是否继续?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning',
+          customClass:'em-message-box'
+        }).then(() => {
+          resetPassword(this.alter_obj.id).then(res=>{
+            if(res.statusCode==200){
+              this.$message({
+                message: '恭喜你，重置密码成功',
+                type: 'success'
+              });
+            }
+          })
+        }).catch(()=>{
+
+        })
+      },
+      showCommonDialog(){                  //打开角色分配等的公共弹窗
+        this.dialogCommonVisible=true;
+      },
+      closeCommonDialog(){
+        this.dialogCommonVisible=false;  //关闭角色分配等的公共弹窗
+      },
+      roleAssignments(){           //触发角色分配的弹框
+          this.showCommonDialog();
+      },
+      permissionAssignments(){         //触发权限分配的弹框
+        this.showCommonDialog();
+      },
+      associateUsers(){             //触发关联用户的弹框
+        this.showCommonDialog();
+      }
     }
   }
 </script>

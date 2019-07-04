@@ -8,7 +8,7 @@ export default {
   tokenTime: getTokenTime(),
   refreshToken: getRefreshToken(),
   name: '',
-  avatar: '',
+  avatar: '',//头像
   introduction: '',
   permissions:[],
   /*permissions:[

@@ -1,0 +1,11 @@
+@import "../../../../styles/index/variable";
+.permission_assignments {
+  height: 400px;
+  overflow: auto;
+  background: $el-tree-background;
+  .el-tree {
+    background: transparent;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+}

@@ -17,14 +17,9 @@
       </win>
     </template>
     <!--对话框-->
-    <!--<template v-for="dialog in dialogGroup" v-if="dialog.show">-->
-    <!--<em_dialog :data="dialog"></em_dialog>-->
-    <!--</template>-->
-    <!--<em_chart_window></em_chart_window>-->
-    <!--对话框-->
     <em_dialogs></em_dialogs>
     <!--场景-->
-   <router-view name="scene"/>
+    <router-view name="scene"/>
     <!-- 控制透明度的滑动条-->
     <em_slider></em_slider>
     <!--底部-->
@@ -35,7 +30,7 @@
 <script>
   import {refreshToken} from '@/api/login'
   import {getNowFormatDate} from '@/utils/tools'
-  import {setToken, setTokenTime, getTokenTime, TokenName, RefreshTokenName,getExpires,setExpires} from '@/utils/auth'
+  import {setToken, setTokenTime, getTokenTime, TokenName, RefreshTokenName, getExpires, setExpires} from '@/utils/auth'
 
   import win from "@/components/win/win"
   import splitpane from "@/components/splitpane/splitpane"
@@ -46,7 +41,6 @@
   import button_group from "@/components/button_group/button_group"
   import em_menu from "./components/em_menu/em_menu"
   import em_nav from "./components/em_nav/em_nav"
-  import test from "@/views/test/test"
   import em_bottom from "./components/em_bottom/em_bottom"
   import em_logo_title from "./components/em_title/em_logotitle"
   import em_warn from "./components/em_warn/em_warn"
@@ -55,13 +49,14 @@
   import em_tools from "./components/em_tools/em_tools"
   import em_slider from "./components/em_slider/em_slider"
   import treeForm from "@/app_components/treeFrom/treeForm"
+  import buttonGroup from "@/app_components/buttonGroup/buttonGroup"
   import em_dialogs from "@/components/em_dialogs/em_dialogs"
 
   export default {
     data() {
       return {
         // wins: [],
-        dialogGroup: []
+        // dialogGroup: []
       }
     },
     components: {
@@ -71,7 +66,6 @@
       button_group,
       em_menu,
       em_nav,
-      test,
       em_bottom,
       em_logo_title,
       em_warn,
@@ -83,32 +77,34 @@
       em_tools,
       em_slider,
       treeForm,
+      buttonGroup,
       em_dialogs
     },
-    computed:{
+    computed: {
       wins: function () {
         return this.$store.getters["win/win"];
+      },
+      dialogGroup: function () {
+        return this.$store.state.win.dialog;
       }
     },
     methods: {
       init() {
-        // this.wins = this.$store.state.win.win;
-        this.dialogGroup = this.$store.state.win.dialog;
+
       },
       refreshTokenFn() {//刷新token
         setInterval(() => {
           let _time = getNowFormatDate().timestamp - getTokenTime();
-          let _expires=getExpires();
+          let _expires = getExpires();
           console.log(_time);
-          if (_time < _expires-200000) {
+          if (_time < _expires - 200000) {
             return
           }
           // alert(_time);
-         this.refreshToken();
+          this.refreshToken();
         }, 120000);
       },
       refreshToken() {//刷新token
-
         let _RefreshToken = this.$store.getters["user/refreshToken"];
         refreshToken({
           [RefreshTokenName]: _RefreshToken
@@ -135,7 +131,6 @@
 
 
     }
-
   };
 </script>
 <style lang="scss" scoped>

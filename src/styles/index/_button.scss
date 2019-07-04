@@ -110,7 +110,7 @@ $r: 32;
       stroke: $border-color-base;
       stroke-width: 3;
       stroke-dasharray: 422, 0;
-      transition: all 450ms linear 0s;
+      transition: all 0.45s linear 0s;
     }
 
     &:hover {
@@ -118,7 +118,7 @@ $r: 32;
       font-weight: 900;
       letter-spacing: 1px;
       color: #bbb;
-      transition: all 150ms linear 0s;
+      transition: all 0.15ms linear 0s;
     }
 
     &:hover rect {
@@ -487,7 +487,7 @@ $r: 32;
 .#{em-btn-border} {
   background: $background-linear-base;
   color: rgba(255, 255, 255, 0.7);
-  width: 70/$r+rem;
+  //width: 70/$r+rem;
   border: none;
   position: relative;
   height: 30/$r+rem;

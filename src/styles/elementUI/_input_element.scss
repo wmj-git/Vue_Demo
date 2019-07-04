@@ -13,6 +13,9 @@ $r:32;
   .el-input__inner{
     height: 30/$r+rem;
     line-height: 30/$r+rem;
+    &::-webkit-input-placeholder{
+      color: #707786;//operation
+    }
   }
   .em_input{
     //日志查看部分
@@ -22,9 +25,12 @@ $r:32;
     }
   }
 }
-
   .el-checkbox__input.is-checked + .el-checkbox__label{
     color: $color-base !important;
   }
 
-
+  /*只读input框样式*/
+.el-input.is-disabled .el-input__inner{
+   background-color: rgba(255,255,255,0.4);
+   color: rgba(255,255,255,0.6);
+}

@@ -17,12 +17,14 @@ ul.el-menu-demo.em-nav-menu.el-menu--horizontal.el-menu /deep/ {
     background: url("../../../../assets/image/nav_border.png") no-repeat center;
     background-size: 100% 100%;
     width: 90px;//IE
+    text-align: center;
+    padding: unset;
     margin-right: 4/$r+rem; //IE
     -moz-margin-right: 8/$r+rem;
     -webkit-margin-right: 8/$r+rem;
-    margin-top: 15/$r+rem;
-    height: 35/$r+rem;
-    line-height: 30/$r+rem;
+    margin-top: 20/$r+rem;
+    height: 30/$r+rem;
+    line-height: 26/$r+rem;
     color: #fff;
     font-size: 15/$r+rem;
     left: 1%;
@@ -40,7 +42,7 @@ ul.el-menu-demo.em-nav-menu.el-menu--horizontal.el-menu /deep/ {
   }
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1440px) {
   ul.el-menu-demo.em-nav-menu.el-menu--horizontal.el-menu {
     display: flex;
     width: 500px;//menu-width
@@ -51,7 +53,7 @@ ul.el-menu-demo.em-nav-menu.el-menu--horizontal.el-menu /deep/ {
     will-change: perspective;
     -webkit-perspective-origin: center center;
     perspective-origin: center center;
-    transition: all 1s ease-out;
+    transition: all 0.2s ease-out;
     justify-content: center;
     -webkit-transform-style: preserve-3d;
     transform-style: preserve-3d;
@@ -89,7 +91,7 @@ ul.el-menu-demo.em-nav-menu.el-menu--horizontal.el-menu /deep/ {
       box-shadow: 0 0 20px 5px nth($menu-background, 3);
       opacity: 0;
       transition: all .3s ease;
-      transition-delay: 1s;
+      transition-delay: 0.5s;
       position: relative;
       background-position: center center;
       background-size: contain;
@@ -174,7 +176,7 @@ ul.el-menu-demo.em-nav-menu.el-menu--horizontal.el-menu /deep/ {
   }
 }
 
-@media screen and (min-width: 1025px) and (max-width: 1280px) {
+/*@media screen and (min-width: 1025px) and (max-width: 1280px) {
   ul.el-menu-demo.em-nav-menu.el-menu--horizontal.el-menu {
     display: flex;
     width: 500px;//menu-width
@@ -323,7 +325,7 @@ ul.el-menu-demo.em-nav-menu.el-menu--horizontal.el-menu /deep/ {
     border-image-outset: 14 !important;
     border-bottom: 2px solid transparent !important;
   }
-}
+}*/
 
 @media screen and (min-width: 1681px) and (max-width: 1920px) {
   li.el-menu-item.is-active {

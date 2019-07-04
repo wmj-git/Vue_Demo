@@ -4,18 +4,14 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 import layout from '@/views/layout/layout'
-import scene from '@/views/layout/components/scene/scene'
-import button_group from "@/components/button_group/button_group"
-import test from '@/views/test/test'
-import login from '@/views/login/login'
-import admin from '@/views/admin/admin'
-import login_erro from "@/views/login_erro/login_erro"
+
+
 export default new Router({
   mode: "history",
   routes: [
     {
       path: '*',
-      redirect: {name:"login"}
+      redirect: {name: "login"}
     },
     {
       path: '/home',
@@ -26,38 +22,32 @@ export default new Router({
           path: 'scene',
           name: 'scene',
           components: {
-            scene:scene
+            scene: () => import('@/views/layout/components/scene/scene')
           }
         },
         {
-          path: 'btn',
-          name: 'btn',
+          path: 'map',
+          name: 'map',
           components: {
-            scene:button_group
+            scene: () => import('@/views/layout/components/map/map')
           }
         }
       ]
     },
     {
-      path:'/login',
-      name:'login',
-      component:login
+      path: '/login',
+      name: 'login',
+      component: () => import('@/views/login/login')
     },
     {
-      path:'/login_erro',
-      name:'login_erro',
-      component:login_erro
-    },
-    {
-      path: '/test',
-      name: 'test',
-      component: test,
-      children: []
+      path: '/login_erro',
+      name: 'login_erro',
+      component: () => import('@/views/login_erro/login_erro')
     },
     {
       path: '/admin',
       name: 'admin',
-      component:admin,
+      component: () => import('@/views/admin/admin'),
       children: []
     }
   ]

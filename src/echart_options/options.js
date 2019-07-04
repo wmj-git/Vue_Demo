@@ -48,12 +48,7 @@ export default {
     ],
     barGap:'0',    //两个不同类型柱子之间的间距
     series : [
-      // {
-      //   name:'火险报警次数',
-      //   type:'bar',
-      //   barWidth: '25%',
-      //   data:[100, 200,300]
-      // }
+
     ],
     legend:{
       orient: 'horizontal',
@@ -66,9 +61,9 @@ export default {
     }
   },
 
-  line:{
+  line1:{
     title:{
-       text:'单位：次',
+       text:'单位：摄氏度',
        left:'12%',
        top:'13%',
        textStyle:{
@@ -133,6 +128,274 @@ export default {
 
     ]
   },
+  line2:{
+    title:{
+      text:'单位：RH',
+      left:'12%',
+      top:'13%',
+      textStyle:{
+        fontSize:12,
+        color:'#fff'
+      }
+    },
+    xAxis: {
+      type: 'category',
+      // data: ['1/3', '2/3', '3/3','4/3','5/3'],
+      axisLine: {
+        lineStyle: {
+          color: '#fff'
+        },
+      },
+      axisTick:{   //取消刻度线
+        show:false
+      },
+    },
+    yAxis: {
+      type: 'value',
+      axisLine:{
+        lineStyle :{
+          color: '#fff'
+        }
+      },
+      axisTick:{    //取消刻度线
+        show:false
+      },
+      splitLine:{    //隐藏网格线
+        show:false
+      }
+    },
+    tooltip: {
+      trigger: 'item',
+      formatter: "{a}:{c}"
+    },
+    legend:{
+      orient: 'vertical',
+      icon: "roundRect",
+      x: '85%',
+      y: '20%',
+      itemWidth:15,
+      itemHeight:10,
+      textStyle:{
+        fontSize: 12,//字体大小
+        color: '#ffffff'//字体颜色
+      },
+    },
+    grid:{            //控制折现图的大小
+      // top:40,
+      // x:25,
+      // x2:40,
+      // y2:30
+      left: '3%',
+      right: '20%',
+      bottom: '3%',
+      top:'20%',
+      containLabel: true
+    },
+    series: [
+
+    ]
+  },
+  line3:{
+    title:{
+      text:'单位：个',
+      left:'12%',
+      top:'13%',
+      textStyle:{
+        fontSize:12,
+        color:'#fff'
+      }
+    },
+    xAxis: {
+      type: 'category',
+      // data: ['1/3', '2/3', '3/3','4/3','5/3'],
+      axisLine: {
+        lineStyle: {
+          color: '#fff'
+        },
+      },
+      axisTick:{   //取消刻度线
+        show:false
+      },
+    },
+    yAxis: {
+      type: 'value',
+      axisLine:{
+        lineStyle :{
+          color: '#fff'
+        }
+      },
+      axisTick:{    //取消刻度线
+        show:false
+      },
+      splitLine:{    //隐藏网格线
+        show:false
+      }
+    },
+    tooltip: {
+      trigger: 'item',
+      formatter: "{a}:{c}"
+    },
+    legend:{
+      orient: 'vertical',
+      icon: "roundRect",
+      x: '85%',
+      y: '20%',
+      itemWidth:15,
+      itemHeight:10,
+      textStyle:{
+        fontSize: 12,//字体大小
+        color: '#ffffff'//字体颜色
+      },
+    },
+    grid:{            //控制折现图的大小
+      // top:40,
+      // x:25,
+      // x2:40,
+      // y2:30
+      left: '3%',
+      right: '20%',
+      bottom: '3%',
+      top:'20%',
+      containLabel: true
+    },
+    series: [
+
+    ]
+  },
+  line4:{
+    title:{
+      text:'单位：摄氏度',
+      left:'12%',
+      top:'13%',
+      textStyle:{
+        fontSize:12,
+        color:'#fff'
+      }
+    },
+    xAxis: {
+      type: 'category',
+      // data: ['1/3', '2/3', '3/3','4/3','5/3'],
+      axisLine: {
+        lineStyle: {
+          color: '#fff'
+        },
+      },
+      axisTick:{   //取消刻度线
+        show:false
+      },
+    },
+    yAxis: {
+      type: 'value',
+      axisLine:{
+        lineStyle :{
+          color: '#fff'
+        }
+      },
+      axisTick:{    //取消刻度线
+        show:false
+      },
+      splitLine:{    //隐藏网格线
+        show:false
+      }
+    },
+    tooltip: {
+      trigger: 'item',
+      formatter: "{a}:{c}"
+    },
+    legend:{
+      orient: 'vertical',
+      icon: "roundRect",
+      x: '85%',
+      y: '20%',
+      itemWidth:15,
+      itemHeight:10,
+      textStyle:{
+        fontSize: 12,//字体大小
+        color: '#ffffff'//字体颜色
+      },
+    },
+    grid:{            //控制折现图的大小
+      // top:40,
+      // x:25,
+      // x2:40,
+      // y2:30
+      left: '3%',
+      right: '20%',
+      bottom: '3%',
+      top:'20%',
+      containLabel: true
+    },
+    series: [
+
+    ]
+  },
+  line5:{
+    title:{
+      text:'单位：RH',
+      left:'12%',
+      top:'13%',
+      textStyle:{
+        fontSize:12,
+        color:'#fff'
+      }
+    },
+    xAxis: {
+      type: 'category',
+      // data: ['1/3', '2/3', '3/3','4/3','5/3'],
+      axisLine: {
+        lineStyle: {
+          color: '#fff'
+        },
+      },
+      axisTick:{   //取消刻度线
+        show:false
+      },
+    },
+    yAxis: {
+      type: 'value',
+      axisLine:{
+        lineStyle :{
+          color: '#fff'
+        }
+      },
+      axisTick:{    //取消刻度线
+        show:false
+      },
+      splitLine:{    //隐藏网格线
+        show:false
+      }
+    },
+    tooltip: {
+      trigger: 'item',
+      formatter: "{a}:{c}"
+    },
+    legend:{
+      orient: 'vertical',
+      icon: "roundRect",
+      x: '85%',
+      y: '20%',
+      itemWidth:15,
+      itemHeight:10,
+      textStyle:{
+        fontSize: 12,//字体大小
+        color: '#ffffff'//字体颜色
+      },
+    },
+    grid:{            //控制折现图的大小
+      // top:40,
+      // x:25,
+      // x2:40,
+      // y2:30
+      left: '3%',
+      right: '20%',
+      bottom: '3%',
+      top:'20%',
+      containLabel: true
+    },
+    series: [
+
+    ]
+  },
   circle: {
     tooltip: {
       trigger: 'item',
@@ -142,7 +405,7 @@ export default {
     legend: {
       orient: 'vertical',
       icon: "roundRect",          //图例的形状
-      selectedMode: false,　　　　//选中哪个图例 false后图例不可点击
+      selectedMode: false,//选中哪个图例 false后图例不可点击
       itemWidth:10,
       itemHeight:10,
       x: '65%',
@@ -177,7 +440,7 @@ export default {
         radius: ['50%', '70%'],   //设置内半径和外半径，形成环状
         center:['40%','50%'],      // 图在容器中的位置
         avoidLabelOverlap: false,  //避免标注重叠
-        hoverAnimation: false,　　　　//移入放大
+        hoverAnimation: false,//移入放大
         label: {
           normal: {
             show: true,           //环形中央自定义文字

@@ -32,7 +32,8 @@
     },
     mounted() {
        // setTimeout(()=>{
-       //   if(!this.chart){    console.log('定時器調動')
+       //   if(!this.chart){
+       //     console.log('定時器調動')
        //     this.init();
        //   }
        // },2000);
@@ -82,7 +83,8 @@
           if (this.chart) {
              this.option.series = this.series;
           }
-          this.init()
+          this.init();
+          console.log(this.id)
 
         },
         deep: true //对象内部属性的监听，关键。

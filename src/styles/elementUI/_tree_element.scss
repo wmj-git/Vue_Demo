@@ -14,10 +14,12 @@
 .splitter-pane.splitter-paneL.vertical{
   //background :rgba(20, 31, 55, 0.8);
 }
-
+.el-card__body{
+  padding: 10px !important; //tree
+}
 .#{em-btn-special}{
   background: $background-linear-base;
-  color: rgba(255,255,255,0.7);
+  color: rgba(255,255,255,0.7) !important;
   width:60/$r+rem;
   height: 30/$r+rem;
   border-color: darken($border-color-base,30%);
@@ -33,5 +35,10 @@
   }
 }
 .el-form-item__label{
-  color: rgba(255,255,255,0.6);
+  color: rgba(255,255,255,0.8);
+}
+/*el-tree高亮部分*/
+.el-tree--highlight-current .el-tree-node.is-current > .el-tree-node__content{
+  background: rgba(255,255,255,0.4) !important;
+  color: #fff;
 }

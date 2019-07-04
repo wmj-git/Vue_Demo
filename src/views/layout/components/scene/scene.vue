@@ -28,21 +28,21 @@
           homeButton: false,
           navigationHelpButton: false, //是否显示帮助信息控件
           infoBox: true, //是否显示点击要素之后显示的信息
-          imageryProvider: new Cesium.UrlTemplateImageryProvider({
+          /*imageryProvider: new Cesium.UrlTemplateImageryProvider({
             url: process.env.SCENE_URL + "/zhlhscene/gis/{z}/{x}/{y}.png",
             // url: "../../static/mode_3d/gis/{z}/{x}/{y}.png",
             layer: "tdtBasicLayer",
             style: "default"
-          })
+          })*/
           // 天地图影像
-          /* imageryProvider: new Cesium.WebMapTileServiceImageryProvider({
-               url: 'http://t0.tianditu.gov.cn/img_w/wmts?tk=dcfb31be4b1daef33e484e48348cb28b',
-               layer: 'img',
-               style: 'default',
-               tileMatrixSetID: 'w',
-               format: 'tiles',
-               maximumLevel: 18
-           })*/
+          imageryProvider: new Cesium.WebMapTileServiceImageryProvider({
+            url: 'http://t0.tianditu.gov.cn/img_w/wmts?tk=dcfb31be4b1daef33e484e48348cb28b',
+            layer: 'img',
+            style: 'default',
+            tileMatrixSetID: 'w',
+            format: 'tiles',
+            maximumLevel: 18
+          })
         });
         /* //加载影像注记
          var layer1 = new Cesium.WebMapTileServiceImageryProvider({
@@ -57,7 +57,9 @@
 
 
         // 加载地形1
-        window._scene = cm.openScene(window.viewer, process.env.SCENE_URL + "/zhlhscene/b3dm/tileset.json");
+        // window._scene = cm.openScene(window.viewer, process.env.SCENE_URL + "/zhlhscene/b3dm/tileset.json");
+        window._scene = cm.openScene(window.viewer, "https://onelz.oicp.vip/SG/b3dm/LH1-1-2.405276/tileset.json");
+
       },
       alpha(obj) {
         cm.alphaFN(obj.value, window.viewer, window._scene.scene);
@@ -86,7 +88,7 @@
         } else {
           cm.markerClear();
           cm.modeClear();
-          cm.entitiesClear("grid_",window.viewer);
+          cm.entitiesClear("grid_", window.viewer);
         }
       }
     },

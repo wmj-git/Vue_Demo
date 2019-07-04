@@ -68,6 +68,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
   ]
 })
 
+/*eslint no-undef:0*/
 module.exports = new Promise((resolve, reject) => {
   portfinder.basePort = process.env.PORT || config.dev.port
   portfinder.getPort((err, port) => {

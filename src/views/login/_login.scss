@@ -10,25 +10,42 @@ video{
   width: auto;
 }
 .em-login-container{
-  background: url("../../assets/image/login_bg.png") no-repeat center;
+  background: url("../../assets/image/login.png") no-repeat center;
   background-size: cover;
   background-attachment: fixed;
   height: 100%;
 }
 .em-login-content {
-  background: url("../../assets/image/login_border.png");
+  background: url("../../assets/image/login_border.png") no-repeat;
   width: 500px;
   position: fixed;
   left: 50%;
-  top: 50%;
+  height: 100%;
+  top: 80%;
   transform: translate(-50%,-50%);
   -webkit-transform: translate(-50%,-50%);
+  .user_login{
+    color: #fff;
+    font-size: 20/$r+rem;
+    left: 53%;
+    top: 24%;
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    position: absolute;
+  }
+  .title_bg{
+    background: url("../../assets/image/title_bg.png") no-repeat;
+    width: 50px;
+    height: 40px;
+    margin-left: 156px;
+    display: inline-block;
+  }
 }
 
 .em-login-form /deep/{
-  box-shadow: 1px 1px 14px rgba(255, 255, 255, 0.4), inset 14px 10px 155px 0px rgba(20, 55, 46, 0.8), 0px 0px 1px rgba(63, 135, 78, 0.8);
+  box-shadow: 1px 1px 14px rgba(255, 255, 255, 0.8), inset 14px 10px 155px 0px rgba(20, 55, 46, 1),inset 14px 10px 155px 0px rgba(20, 55, 46, 0.6), 0px 0px 1px rgba(63, 135, 78, 1);
   border-radius: 2%;
-  margin: 15px;
+  margin: 44px 10px;
   .el-form-item__label{
     color: #fff;
     font-size: 14/$r+rem;
@@ -61,7 +78,7 @@ video{
 }
 
 .el-checkbox{
-  color: rgba(255,255,255,0.7) !important;
+  color: rgba(255,255,255,0.9) !important;
   left: 50%;
   transform: translate(80%,-30%);
   &:hover{
@@ -85,9 +102,15 @@ video{
   .em-login-btn, .em-reset-btn  {
     margin-left: 60/$r+rem;
   }
+  .em-login-form{
+    margin: 50px 10px;
+  }
 }
 @media screen and (min-width:1281px) and (max-width:1440px){
   .em-login-btn, .em-reset-btn  {
     margin-left: 60/$r+rem;
+  }
+  .em-login-form{
+    margin: 50px 10px;
   }
 }

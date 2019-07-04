@@ -1,6 +1,6 @@
 @import "var";
-@import "column";
 @import "element-variables";
+@import "column";
 @import "menu_element";
 @import "button_element";
 @import "table_element";
@@ -14,3 +14,5 @@
 @import "toolTip";
 @import "upload_element";//上传文件
 @import "tree_element";//树组件
+@import "transfer";//穿梭框
+@import "messageBox";//消息对话框

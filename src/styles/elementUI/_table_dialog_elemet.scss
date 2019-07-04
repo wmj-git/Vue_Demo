@@ -14,12 +14,13 @@ $r:32;
   .el-message-box__content,.el-message-box__headerbtn .el-message-box__close{
     color: rgba(255,255,255,0.8);
   }
-  .el-button{
-    background: $background-linear-base;
+  .#{em-button}{
+    background: $btn-linear-base;
     color: rgba(255,255,255,0.8);
     border-color: darken($border-color-base,30%);
     border-radius: 5/$r+rem;
     padding: 5/$r+rem 10/$r+rem;
+    margin-left: 10/$r+rem;
     &:hover{
       color: white;
       cursor: pointer;
