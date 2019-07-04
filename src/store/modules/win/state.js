@@ -104,11 +104,13 @@ export default {
               name: "英文名",
               prop: "typeEname",
               width: "180"
-            }, {
+            },
+            {
               name: "备注",
               prop: "remark",
               width: "180"
-            }, {
+            },
+            {
               name: "父类型",
               prop: "parentId",
               width: "60"
