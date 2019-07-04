@@ -14,6 +14,7 @@ export function LoginByUsername({ commit }, userInfo) {
   return new Promise((resolve, reject) => {
     loginByUsername(username, userInfo.password).then(response => {
       let data = response.data;
+      console.log(data);
       console.log(data[TokenName]);
       commit(SET_TOKEN, data[TokenName])
       commit(SET_REFRESH_TOKEN, data[RefreshTokenName])
@@ -22,7 +23,7 @@ export function LoginByUsername({ commit }, userInfo) {
 
       let _token_time=getNowFormatDate().timestamp;
       commit(SET_TOKEN_TIME, _token_time);
-      setTokenTime(_token_time)
+
 
       setExpires(data["expires"]);
 
@@ -41,7 +42,7 @@ export function GetUserInfo({ commit, state }) {
       if (!response.data) {
         reject('Verification failed, please login again.')
       }
-      const data = response.data
+      const data = response.data;
 
       if (data.roles && data.roles.length > 0) { // 验证返回的roles是否是一个非空数组
         commit(SET_ROLES, data.roles)
