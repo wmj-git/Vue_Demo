@@ -1,7 +1,12 @@
 <template>
   <div class="buttonGroup">
     <el-row>
-      <el-button v-for="btn in group" :ref="btn.id" :type="btn.type" :icon="btn.icon" @click="fn(btn.fn,btn.fnData)">
+      <el-button v-for="(btn,index) in group"
+                 :key="index"
+                 :ref="btn.id"
+                 :type="btn.type"
+                 :icon="btn.icon"
+                 @click="fn(btn.fn,btn.fnData)">
         {{btn.text}}
       </el-button>
     </el-row>
