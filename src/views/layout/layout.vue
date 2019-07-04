@@ -55,6 +55,7 @@
   import em_tools from "./components/em_tools/em_tools"
   import em_slider from "./components/em_slider/em_slider"
   import treeForm from "@/app_components/treeFrom/treeForm"
+  import buttonGroup from "@/app_components/buttonGroup/buttonGroup"
   import em_dialogs from "@/components/em_dialogs/em_dialogs"
   import number_show from "./components/number_show/number_show"
   import echart_alone_show from "./components/echart_alone_show/echart_alone_show"
@@ -153,7 +154,8 @@
       number_show,
       echart_alone_show,
       echarts_show,
-      table_show
+      table_show,
+      buttonGroup,
     },
     computed: {
       wins: function () {
@@ -178,7 +180,6 @@
         }, 120000);
       },
       refreshToken() {//刷新token
-
         let _RefreshToken = this.$store.getters["user/refreshToken"];
         console.log(_RefreshToken);
         refreshToken({

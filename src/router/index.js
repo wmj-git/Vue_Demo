@@ -4,11 +4,7 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 import layout from '@/views/layout/layout'
-import scene from '@/views/layout/components/scene/scene'
-import map from '@/views/layout/components/map/map'
-import login from '@/views/login/login'
-import admin from '@/views/admin/admin'
-import login_erro from "@/views/login_erro/login_erro"
+
 
 export default new Router({
   mode: "history",
@@ -26,14 +22,14 @@ export default new Router({
           path: 'scene',
           name: 'scene',
           components: {
-            scene: scene
+            scene: () => import('@/views/layout/components/scene/scene')
           }
         },
         {
           path: 'map',
           name: 'map',
           components: {
-            scene: map
+            scene: () => import('@/views/layout/components/map/map')
           }
         }
 
@@ -42,17 +38,17 @@ export default new Router({
     {
       path: '/login',
       name: 'login',
-      component: login
+      component: () => import('@/views/login/login')
     },
     {
       path: '/login_erro',
       name: 'login_erro',
-      component: login_erro
+      component: () => import('@/views/login_erro/login_erro')
     },
     {
       path: '/admin',
       name: 'admin',
-      component: admin,
+      component: () => import('@/views/admin/admin'),
       children: []
     }
   ]

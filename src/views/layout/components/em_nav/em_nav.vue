@@ -93,7 +93,7 @@
               list: _list,
               width: _width
             });
-          },200)
+          }, 200)
 
         }
         console.log(_show)

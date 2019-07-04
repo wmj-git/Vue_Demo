@@ -1,11 +1,14 @@
 <template>
   <div class="buttonGroup">
     <el-row>
-      <div style="width: 120px;text-align: center">
-        <el-button type="primary" icon="el-icon-edit" @click="fn('/home/scene')">btn2</el-button>
-        <el-button type="primary" icon="el-icon-edit" @click="fn('/test')">btn3</el-button>
-        <el-button type="primary" icon="el-icon-edit" @click="fn('/home/btn')">btn4</el-button>
-      </div>
+      <el-button v-for="(btn,index) in group"
+                 :key="index"
+                 :ref="btn.id"
+                 :type="btn.type"
+                 :icon="btn.icon"
+                 @click="fn(btn.fn,btn.fnData)">
+        {{btn.text}}
+      </el-button>
     </el-row>
   </div>
 
@@ -16,16 +19,37 @@
   export default {
     name: "buttonGroup",
     data() {
-      return {}
+      return {
+        id: "",
+        group: [],
+
+      }
     },
     props: ["data"],
     components: {},
     methods: {
       init() {
+        /* this.data= [{
+            id: "",
+            type: "",
+            icon: "",
+            text: "",
+            fn: "",
+            fnData: {}
+          }]*/
         console.log(this.data);
+        for (let _k in this.data) {
+          if (_k === "buttonGroup") {
+            this.group = this.data[_k];
+          }
+        }
+
       },
-      fn(path) {
-        this.$router.push(path);
+      fn(_fn, _obj) {
+        this[_fn](_obj);
+      },
+      routerFn(_obj) {
+        this.$router.push(_obj.path);
       }
     },
     created() {

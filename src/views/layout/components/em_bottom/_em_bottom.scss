@@ -1,11 +1,35 @@
 @import "../../../../styles/index/variable";
-
+$r:32;
 .em-bottom-container {
   background: rgba(20, 31, 55, 0.8);
   & /deep/ {
     .el-input__inner {
       &::-webkit-input-placeholder {
         color: #707786; //input
+      }
+    }
+    .em-btn-scene{
+      float: right;
+      position: relative;
+      margin: 5px 10px;
+      padding: 5px 0;
+      color: rgba(255,255,255,0.8);
+      border-color: rgba(255,255,255,0.1);
+      width: 80px;
+      height: 26px;
+      background-color: $scene-btn-base-color;
+      font-weight: 700;
+      display: block;
+      border-radius: 8px;
+      box-shadow: 0 9px 0 darken($scene-btn-base-color,8%), 0 9px 25px rgba(237, 237, 237, 0.7);
+      text-align: center;
+      -webkit-transition: all .1s ease;
+      -moz-transition: all .1s ease;
+      transition: all .1s ease;
+      &:hover{
+        box-shadow: 0 3px 0 darken($scene-btn-base-color,8%), 0 3px 6px rgba(237, 237, 237, 0.9);
+        position: relative;
+        top: 6px;
       }
     }
   }
