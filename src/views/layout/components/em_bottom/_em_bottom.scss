@@ -21,7 +21,7 @@ $r:32;
       font-weight: 700;
       display: block;
       border-radius: 8px;
-      box-shadow: 0 9px 0 darken($scene-btn-base-color,8%), 0 9px 25px rgba(237, 237, 237, 0.7);
+      box-shadow: 0 6px 0 darken($scene-btn-base-color,8%), 0 9px 25px rgba(237, 237, 237, 0.7);
       text-align: center;
       -webkit-transition: all .1s ease;
       -moz-transition: all .1s ease;
@@ -29,7 +29,7 @@ $r:32;
       &:hover{
         box-shadow: 0 3px 0 darken($scene-btn-base-color,8%), 0 3px 6px rgba(237, 237, 237, 0.9);
         position: relative;
-        top: 6px;
+        top: 3px;
       }
     }
   }
