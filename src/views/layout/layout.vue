@@ -25,12 +25,11 @@
     <!--底部-->
     <em_bottom></em_bottom>
     <!-- 数据展示图窗口-->
-    <template v-for="item in data_show">
-      <win :id="item.id" :data="item">
-        <component :is="item.component_name"></component>
-      </win>
-
-    </template>
+    <!--<template v-for="item in data_show">-->
+      <!--<win :id="item.id" :data="item">-->
+        <!--<component :is="item.component_name"></component>-->
+      <!--</win>-->
+    <!--</template>-->
   </div>
 </template>
 

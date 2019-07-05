@@ -125,6 +125,12 @@
                    this.$refs.form_data.forEach((obj)=>{
                       if(obj.operation.params==val.params){
                         if(obj.operation.type==="em_selectUrl"||obj.operation.type==="em_select"){
+                          if(obj.value=="是"){
+                            obj.value=1
+                          }
+                          else if(obj.value=="否"){
+                            obj.value=0
+                          }
                           this.form[val.params]=obj.value;
                         }
                         if(obj.operation.type==="em_input"){
