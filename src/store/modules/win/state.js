@@ -2223,7 +2223,7 @@ export default {
               name: "注释",
               prop: "memo",
               width: "140",
-              type: "em_input",
+              type: "em_textarea",
               placeholder: "注释",
               params: "memo",
               alter_show: true,
@@ -2329,11 +2329,11 @@ export default {
               width: "140",
               type: "em_select",
               options: [{
-                value: "1",
+                value: 1,
                 label: "是"
               },
                 {
-                  value: "0",
+                  value: 0,
                   label: "否"
                 }],
               params: "isSpecial",
@@ -2344,7 +2344,7 @@ export default {
               name: "注释",
               prop: "memo",
               width: "200",
-              type: "em_input",
+              type: "em_textarea",
               placeholder: "注释",
               params: "memo",
               alter_show: true,
@@ -2447,9 +2447,9 @@ export default {
               name: "植物分类名称",
               prop: "plantTypeName",
               width: "140",
-              type: "em_input",
-              placeholder: "植物分类名称",
-              params: "plantTypeName",
+              type: "em_selectUrl",
+              optionUrl: "gardens/planttype/queryAll",
+              params: "plantTypeId",
               alter_show: true,
               add_show: true
             },
@@ -2457,9 +2457,9 @@ export default {
               name: "树种分类名称",
               prop: "treeTypeName",
               width: "140",
-              type: "em_input",
-              placeholder: "树种分类名称",
-              params: "treeTypeName",
+              type: "em_selectUrl",
+              optionUrl: "gardens/treetype/queryAll",
+              params: "treeTypeId",
               alter_show: true,
               add_show: true
             },
@@ -2487,11 +2487,21 @@ export default {
               name: "花卉还是树",
               prop: "flowersPlantsOrTree",
               width: "140",
-              type: "em_input",
+              type: "em_select",
+              options:[
+                {
+                  value:0,
+                  label:"树"
+                },
+                {
+                  value:1,
+                  label:"花卉"
+                }
+              ],
               placeholder: "花卉还是树",
               params: "flowersPlantsOrTree",
-              alter_show: false,
-              add_show:false
+              alter_show: true,
+              add_show:true
             },
             {
               name: "特征",
@@ -2641,7 +2651,7 @@ export default {
             },
             {
               name: "植物科名称",
-              prop: "treeTypeName",
+              prop: "familiesName",
               width: "120",
               alter_show: false,
               add_show: false

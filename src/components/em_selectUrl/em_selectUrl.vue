@@ -34,6 +34,7 @@
         selectUrl({
            url:this.operation.optionUrl
         }).then(res=>{
+           console.log(res.data);
            res.data.forEach((val)=>{
              let obj;
              if(val.id&&val.enumCvalue){
@@ -60,11 +61,15 @@
              if(val.id&&val.roadName){
                obj={value:val.id,label:val.roadName};
              }
-             if(val.rankCode&&val.rankName){
+             if(val.rankName){
                obj={value:val.rankName,label:val.rankName};
              }
-
-
+             if(val.id&&val.treeTypeName){
+               obj={value:val.id,label:val.treeTypeName};
+             }
+             if(val.id&&val.plantTypeName){
+               obj={value:val.id,label:val.plantTypeName};
+             }
              this.options.push(obj);
 
            });

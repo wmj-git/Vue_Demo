@@ -128,7 +128,7 @@
       em_dialogs,
       role_assignments,
       associate_users,
-      permission_assignments
+      permission_assignments,
     },
     data() {
       return {
