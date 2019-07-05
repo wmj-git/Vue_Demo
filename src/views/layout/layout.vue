@@ -88,6 +88,7 @@
             top:320,
             left:10,
             resizable: false,
+            class: "em-layout-window",
           },
           {
             component_name:"echart_alone_show",
@@ -96,6 +97,7 @@
             top:520,
             left:10,
             resizable: false,
+            class: "em-layout-window",
           },
           {
             component_name:"number_show",

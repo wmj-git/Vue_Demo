@@ -16,11 +16,22 @@ $r:32;
   }
   .custom-tree-node {
     flex: 1;
-    display: flex;
+    display: flex;//这里的display属性不用修改
     align-items: center;
     justify-content: space-between;
     font-size: 12px;
     padding-right: 4px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 100%;
+    & span.em-tree-text{
+      display: inline-block;
+      overflow: hidden;
+      white-space: nowrap;
+      width:100%;
+      text-overflow: ellipsis;
+    }
   }
   .head_title{
     color: $color-base;
