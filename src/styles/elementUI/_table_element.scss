@@ -150,9 +150,4 @@ $r:32;
     height: calc(100% - 100px) !important;
   }
 }
-@media screen and (min-width:1281px) and (max-width:1440px){
-  .operation.el-row{
-    height: 60/$r+rem;
-    line-height: 60/$r+rem;
-  }
-}
+
