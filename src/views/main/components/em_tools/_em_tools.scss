@@ -1,0 +1,10 @@
+@import "../../../../styles/index/variable";
+.em-nav-item {
+  .el-button {
+    border: none;
+    color: #bdc4d2;
+    &:hover,&:focus{
+      color: $color-base;
+    }
+  }
+}

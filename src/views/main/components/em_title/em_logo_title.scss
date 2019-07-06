@@ -1,0 +1,18 @@
+.#{em-home-title}{
+  height:100px;
+  img{
+    position: absolute;
+    left: 6px;
+    top: 15px;
+  }
+
+  .#{em-title-container}{
+    border-top: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    width: 255px;
+    left: 85px;
+    position: absolute;
+    top: 20px;
+  }
+}
+

@@ -55,6 +55,7 @@
   import {addResource, delResource} from "@/api/resource"
   import {treeStructure} from "@/utils/tools"
 
+
   export default {
     name: "treeForm",
     data() {
@@ -80,8 +81,8 @@
       treeDataFn(_obj) {
         let _tree = [];
         let _permissions = _obj;
-        console.log(_permissions);
-        console.log(this.props_data);
+        // console.log(_permissions);
+        // console.log(this.props_data);
         if (_permissions.length > 0) {
           _permissions.forEach(function (_obj) {
             _obj.label = _obj.resourceName;
@@ -89,7 +90,7 @@
           });
         }
         let _data = treeStructure(_tree);
-        console.log(_data);
+        // console.log(_data);
         return _data[0];
       },
       append(node, data) {
@@ -107,10 +108,10 @@
         };
         newChild.parentId = data.id;
         addResource(newChild).then(function (response) {
-          console.log(response);
+          // console.log(response);
           _this.$message(response.message);
           _this.bus.$emit("nav", {
-            fn: "init"
+            fn: "findByThisUserFn"
           });
         });
       },
@@ -122,10 +123,10 @@
           type: 'warning'
         }).then(() => {
           delResource([data.id]).then(function (response) {
-            console.log(response);
+            // console.log(response);
             _this.$message(response.message);
             _this.bus.$emit("nav", {
-              fn: "init"
+              fn: "findByThisUserFn"
             });
           });
         }).catch(() => {
@@ -180,7 +181,9 @@
     },
 
     created() {
-
+      this.bus.$emit("nav", {
+        fn: "findByThisUserFn"
+      });
     },
     mounted() {
       this.init();

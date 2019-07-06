@@ -3721,7 +3721,6 @@ export default {
                 params: "pointsNo"
               },
             ]
-
           },
           {
             id: "air_humidity_manage_button_search",
@@ -4075,7 +4074,9 @@ export default {
             icon: "el-icon-edit",
             text: "树木数据",
             fn: "routerFn",
-            fnData: {}
+            fnData: {
+              path:"/main/map"
+            }
           },
           {
             id: "bt_2",
@@ -4083,7 +4084,9 @@ export default {
             icon: "",
             text: "sk_街道树",
             fn: "routerFn",
-            fnData: {}
+            fnData: {
+              path:"/home/map"
+            }
           }
         ]
       }

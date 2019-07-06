@@ -1,5 +1,5 @@
 <template>
-  <div class="em_nav">
+  <div class="em-nav">
     <win :id="win.id" :data="win">
       <el-menu
         :default-active="activeIndex"
@@ -16,11 +16,11 @@
 </template>
 
 <script>
-  import {findByThisUser} from "@/api/resource";  //权限
-  // import Tools from "@/utils/Tools"
-  import {db_buttonGroup} from "./data/db";
-  import win from "@/components/win/win";
 
+  // import Tools from "@/utils/Tools"
+  import {db_buttonGroup} from "./data/db"
+  import win from "@/components/win/win"
+  import {findByThisUser} from "@/api/resource"  //权限
 
   export default {
     data() {
@@ -29,7 +29,7 @@
         win: {
           id: "nav_win",
           title: "",
-          top: "90.5%",
+          top: "84%",
           left: "",
           show: true,
           resizable: false,
@@ -38,7 +38,7 @@
         buttonGroup: JSON.parse(JSON.stringify(db_buttonGroup)),
         control_id: "menu",
         activeIndex: ''
-      };
+      }
     },
     components: {
       win
@@ -50,7 +50,6 @@
       findByThisUserFn() {//更新权限数据
         findByThisUser().then((response) => {
           this.$store.commit("user/set_permissions", response.data);
-          console.log(treeStructure(this.$store.getters["user/permissions"]));
         });
       },
       handleSelect(key, keyPath) {
@@ -94,10 +93,10 @@
               list: _list,
               width: _width
             });
-          }, 200);
+          }, 200)
 
         }
-        console.log(_show);
+        console.log(_show)
       }
     },
     created() {

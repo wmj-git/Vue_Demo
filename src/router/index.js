@@ -4,7 +4,7 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 import layout from '@/views/layout/layout'
-
+import main from '@/views/main/layout'
 
 export default new Router({
   mode: "history",
@@ -12,6 +12,28 @@ export default new Router({
     {
       path: '*',
       redirect: {name: "login"}
+    },
+    {
+      path: '/main',
+      name: 'main',
+      component: main,
+      children: [
+        {
+          path: 'scene',
+          name: 'scene',
+          components: {
+            scene: () => import('@/views/main/components/scene/scene')
+          }
+        },
+        {
+          path: 'map',
+          name: 'map',
+          components: {
+            scene: () => import('@/views/main/components/map/map')
+          }
+        }
+
+      ]
     },
     {
       path: '/home',
