@@ -5,14 +5,18 @@ $r:32;
 /*时间显示框*/
 .data_pick /deep/{
   .el-input--prefix .el-input__inner{
-    height: 30/$r+rem !important;
+    //height: 30/$r+rem !important;
     margin: 5px 0 5px 0;
   }
 }
+.el-input--suffix .el-input__inner,.el-input__inner{
+  height: 25/$r+rem;
+  line-height: 25/$r+rem;
+}
 .operation{
   .el-input__inner{
-    height: 30/$r+rem;
-    line-height: 30/$r+rem;
+   /* height: 30/$r+rem;
+    line-height: 30/$r+rem;*/
     &::-webkit-input-placeholder{
       color: #707786;//operation
     }
@@ -33,4 +37,16 @@ $r:32;
 .el-input.is-disabled .el-input__inner{
    background-color: rgba(255,255,255,0.4);
    color: rgba(255,255,255,0.6);
+}
+.em_textarea {
+  display: inline-block;
+  &.el-textarea,.el-textarea__inner{
+    background: nth($background-base,2);
+    border-color: rgba(255,255,255,0.4);
+    color: #fff;
+    scrollbar-width:thin;//滚动条宽度
+  }
+  textarea::-webkit-input-placeholder{
+    color: #707786;
+  }
 }

@@ -128,7 +128,7 @@
       em_dialogs,
       role_assignments,
       associate_users,
-      permission_assignments
+      permission_assignments,
     },
     data() {
       return {
@@ -255,17 +255,22 @@
           params: obj
         }).then(res => {
           console.log(res);
-          let _listField = new RegExp('isSpecial');
           res.data.list.forEach((_val) => {
             for (let _i in _val) {
-              if (_listField.test(_i)) {
+              if(_i==="isSpecial"){
                 if (_val[_i] === 0) {
                   _val[_i] = "否";
                 } else if (_val[_i] === 1) {
                   _val[_i] = "是"
                 }
               }
-
+              else if(_i==="flowersPlantsOrTree"){
+                if (_val[_i] === 0) {
+                  _val[_i] = "树";
+                } else if (_val[_i] === 1) {
+                  _val[_i] = "花卉"
+                }
+              }
             }
 
           });

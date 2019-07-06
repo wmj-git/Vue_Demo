@@ -25,12 +25,11 @@
     <!--底部-->
     <em_bottom></em_bottom>
     <!-- 数据展示图窗口-->
-    <template v-for="item in data_show">
-      <win :id="item.id" :data="item">
-        <component :is="item.component_name"></component>
-      </win>
-
-    </template>
+    <!--<template v-for="item in data_show">-->
+      <!--<win :id="item.id" :data="item">-->
+        <!--<component :is="item.component_name"></component>-->
+      <!--</win>-->
+    <!--</template>-->
   </div>
 </template>
 
@@ -88,6 +87,7 @@
             top:320,
             left:10,
             resizable: false,
+            class: "em-layout-window",
           },
           {
             component_name:"echart_alone_show",
@@ -96,6 +96,7 @@
             top:520,
             left:10,
             resizable: false,
+            class: "em-layout-window",
           },
           {
             component_name:"number_show",

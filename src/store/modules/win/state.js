@@ -2223,7 +2223,7 @@ export default {
               name: "注释",
               prop: "memo",
               width: "140",
-              type: "em_input",
+              type: "em_textarea",
               placeholder: "注释",
               params: "memo",
               alter_show: true,
@@ -2327,8 +2327,15 @@ export default {
               name: "是否特殊树种",
               prop: "isSpecial",
               width: "140",
-              type: "em_input",
-              placeholder: "填0或1",
+              type: "em_select",
+              options: [{
+                value: 1,
+                label: "是"
+              },
+                {
+                  value: 0,
+                  label: "否"
+                }],
               params: "isSpecial",
               alter_show: true,
               add_show: true
@@ -2337,7 +2344,7 @@ export default {
               name: "注释",
               prop: "memo",
               width: "200",
-              type: "em_input",
+              type: "em_textarea",
               placeholder: "注释",
               params: "memo",
               alter_show: true,
@@ -2365,12 +2372,12 @@ export default {
             type: "complex_em_input",
             select: [
               {
-                name: "类型编号",
-                params: "id",
+                name: "植物分类名称",
+                params: "plantTypeName",
 
               },
               {
-                name: "植物类型名称",
+                name: "植物名称",
                 params: "plantCname"
               }
             ]
@@ -2417,16 +2424,6 @@ export default {
           table_url: "/gardens/plantname/queryAllByPage",
           label: [
             {
-              name: "类型编号",
-              prop: "id",
-              width: "100",
-              type: "em_input",
-              placeholder: "类型编号",
-              params: "id",
-              alter_show: true,
-              add_show: true
-            },
-            {
               name: "植物名称",
               prop: "plantCname",
               width: "140",
@@ -2450,9 +2447,9 @@ export default {
               name: "植物分类名称",
               prop: "plantTypeName",
               width: "140",
-              type: "em_input",
-              placeholder: "植物分类名称",
-              params: "plantTypeName",
+              type: "em_selectUrl",
+              optionUrl: "gardens/planttype/queryAll",
+              params: "plantTypeId",
               alter_show: true,
               add_show: true
             },
@@ -2460,9 +2457,9 @@ export default {
               name: "树种分类名称",
               prop: "treeTypeName",
               width: "140",
-              type: "em_input",
-              placeholder: "树种分类名称",
-              params: "treeTypeName",
+              type: "em_selectUrl",
+              optionUrl: "gardens/treetype/queryAll",
+              params: "treeTypeId",
               alter_show: true,
               add_show: true
             },
@@ -2473,8 +2470,8 @@ export default {
               type: "em_input",
               placeholder: "植物科名称",
               params: "familiesName",
-              alter_show: true,
-              add_show: true
+              alter_show: false,
+              add_show: false
             },
             {
               name: "植物属名称",
@@ -2483,8 +2480,28 @@ export default {
               type: "em_input",
               placeholder: "植物属名称",
               params: "genusName",
+              alter_show: false,
+              add_show:false
+            },
+            {
+              name: "花卉还是树",
+              prop: "flowersPlantsOrTree",
+              width: "140",
+              type: "em_select",
+              options:[
+                {
+                  value:0,
+                  label:"树"
+                },
+                {
+                  value:1,
+                  label:"花卉"
+                }
+              ],
+              placeholder: "花卉还是树",
+              params: "flowersPlantsOrTree",
               alter_show: true,
-              add_show: true
+              add_show:true
             },
             {
               name: "特征",
@@ -2626,41 +2643,25 @@ export default {
               add_show: false
             },
             {
+              name: "植物属名称",
+              prop: "genusName",
+              width: "120",
+              alter_show: false,
+              add_show: false
+            },
+            {
+              name: "植物科名称",
+              prop: "familiesName",
+              width: "120",
+              alter_show: false,
+              add_show: false
+            },
+            {
               name: "树种类型",
               prop: "treeTypeName",
               width: "120",
               alter_show: false,
               add_show: false
-            },
-            // {
-            //   name:"创建人ID",
-            //   prop:"creatorId",
-            //   width:"120",
-            //   type:"em_input",
-            //   placeholder:"创建人ID",
-            //   params:"creatorId",
-            //   add_show:true,
-            //   alter_show:true
-            // },
-            {
-              name: "创建日期",
-              prop: "createDate",
-              width: "250",
-              type: "em_input",
-              placeholder: "创建日期",
-              params: "createDate",
-              add_show: false,
-              alter_show: true
-            },
-            {
-              name: "更新时间",
-              prop: "updateDate",
-              width: "250",
-              type: "em_input",
-              placeholder: "更新时间",
-              params: "updateDate",
-              add_show: false,
-              alter_show: true
             },
             {
               name: "等级",

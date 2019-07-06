@@ -16,7 +16,7 @@
                 ref="tree_control"
               >
                   <span class="custom-tree-node" slot-scope="{ node, data }">
-                    <span>{{ node.label }}</span>
+                    <span :title="node.label" class="em-tree-text">{{ node.label }}</span>
                     <span>
                       <el-button
                         class="em-btn-gradient em-btn-uniform-gradient"

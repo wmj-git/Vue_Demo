@@ -27,6 +27,7 @@
 
 <script>
   import em_input from "@/components/em_input/em_input"
+  import em_textarea from "@/components/em_textarea/em_textarea"
   import em_select from "@/components/em_select/em_select"
   import em_selectUrl from "@/components/em_selectUrl/em_selectUrl"
     export default {
@@ -38,7 +39,8 @@
        components:{
          em_input,
          em_select,
-         em_selectUrl
+         em_selectUrl,
+         em_textarea
        },
         data(){
            return{
@@ -103,7 +105,7 @@
                             console.log(_value[k]);
                             if(_obj.operation.type==="em_selectUrl"||_obj.operation.type==="em_select"){
                               _obj.value=_value[k];
-                            }else if(_obj.operation.type==="em_input"){
+                            }else if(_obj.operation.type==="em_input"||_obj.operation.type==="em_textarea"){
                               _obj.input=_value[k];
                             }
                           }
@@ -125,9 +127,21 @@
                    this.$refs.form_data.forEach((obj)=>{
                       if(obj.operation.params==val.params){
                         if(obj.operation.type==="em_selectUrl"||obj.operation.type==="em_select"){
+                          if(obj.value=="是"){
+                            obj.value=1
+                          }
+                          else if(obj.value=="否"){
+                            obj.value=0
+                          }
+                          if(obj.value=="树"){
+                            obj.value=0
+                          }
+                          else if(obj.value=="花卉"){
+                            obj.value=1
+                          }
                           this.form[val.params]=obj.value;
                         }
-                        if(obj.operation.type==="em_input"){
+                        if(obj.operation.type==="em_input"||obj.operation.type==="em_textarea"){
                           this.form[val.params]=obj.input;
                         }
                       }
