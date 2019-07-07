@@ -4051,7 +4051,7 @@ export default {
       top: 80,
       left: 400,
       width: 1000,
-      height: 500,
+      height: 560,
       show: false,
       class: "em-table-window",
       component: "treeForm",

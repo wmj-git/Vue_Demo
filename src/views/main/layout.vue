@@ -7,7 +7,10 @@
     <!--风险等级数据监测-->
     <!--<em_venture></em_venture>-->
     <!--主菜单-->
-    <em-nav></em-nav>
+    <template v-for="item in navData">
+      <em-nav :data="item"></em-nav>
+    </template>
+
     <!--工具栏-->
     <em_tools></em_tools>
     <!--功能窗口-->
@@ -31,7 +34,15 @@
 <script>
   import {refreshToken} from '@/api/login';
   import {getNowFormatDate} from '@/utils/tools';
-  import {setToken, setTokenTime, getTokenTime, TokenName, RefreshTokenName, getExpires, setExpires} from '@/utils/auth';
+  import {
+    setToken,
+    setTokenTime,
+    getTokenTime,
+    TokenName,
+    RefreshTokenName,
+    getExpires,
+    setExpires
+  } from '@/utils/auth';
   import win from "@/components/win/win";
   import splitpane from "@/components/splitpane/splitpane";
   import sole_table from "@/components/sole_table/sole_table";
@@ -58,7 +69,9 @@
 
   export default {
     data() {
-      return {};
+      return {
+        navData:[]
+      };
     },
     components: {
       win,
