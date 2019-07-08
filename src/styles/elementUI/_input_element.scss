@@ -1,52 +1,64 @@
-$r:32;
-.el-input--suffix .el-input__inner{
+$r: 32;
+.el-input--suffix .el-input__inner {
   font-size: 14/$r+rem !important;
 }
+
 /*时间显示框*/
-.data_pick /deep/{
-  .el-input--prefix .el-input__inner{
+.data_pick /deep/ {
+  .el-input--prefix .el-input__inner {
     //height: 30/$r+rem !important;
     margin: 5px 0 5px 0;
   }
 }
-.el-input--suffix .el-input__inner,.el-input__inner{
-  height: 25/$r+rem;
-  line-height: 25/$r+rem;
-}
-.operation{
-  .el-input__inner{
-   /* height: 30/$r+rem;
-    line-height: 30/$r+rem;*/
-    &::-webkit-input-placeholder{
-      color: #707786;//operation
-    }
-  }
-  .em_input{
-    //日志查看部分
-    .el-input__inner{
-      width: 160/$r+rem;
-      margin-left:10/$r+rem;
-    }
+
+/*form表单中的文本框*/
+.el-form /deep/ {
+  .el-input--suffix .el-input__inner, .el-input__inner {
+    height: 25/$r+rem;
+    line-height: 25/$r+rem;
   }
 }
-  .el-checkbox__input.is-checked + .el-checkbox__label{
-    color: $color-base !important;
+
+.operation {
+  .el-input--suffix .el-input__inner, .el-input__inner {
+    height: 25/$r+rem;
+    line-height: 25/$r+rem;
+
+    &::-webkit-input-placeholder {
+      color: #707786; //operation
+    }
   }
 
-  /*只读input框样式*/
-.el-input.is-disabled .el-input__inner{
-   background-color: rgba(255,255,255,0.4);
-   color: rgba(255,255,255,0.6);
+  .em_input {
+    //日志查看部分
+    .el-input__inner {
+      width: 160/$r+rem;
+      margin-left: 10/$r+rem;
+    }
+  }
 }
+
+.el-checkbox__input.is-checked + .el-checkbox__label {
+  color: $color-base !important;
+}
+
+/*只读input框样式*/
+.el-input.is-disabled .el-input__inner {
+  background-color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.6);
+}
+
 .em_textarea {
   display: inline-block;
-  &.el-textarea,.el-textarea__inner{
-    background: nth($background-base,2);
-    border-color: rgba(255,255,255,0.4);
+
+  &.el-textarea, .el-textarea__inner {
+    background: nth($background-base, 2);
+    border-color: rgba(255, 255, 255, 0.4);
     color: #fff;
-    scrollbar-width:thin;//滚动条宽度
+    scrollbar-width: thin; //滚动条宽度
   }
-  textarea::-webkit-input-placeholder{
+
+  textarea::-webkit-input-placeholder {
     color: #707786;
   }
 }
