@@ -25,7 +25,5 @@
     };
 </script>
 <style lang="scss" scoped>
-  .em_textarea{
-    display: inline-block;
-  }
+ @import "em_textarea";
 </style>

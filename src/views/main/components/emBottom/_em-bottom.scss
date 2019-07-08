@@ -4,8 +4,6 @@ $r:32;
   background: rgba(20, 31, 55, 0.8);
   & /deep/ {
     .el-input__inner {
-      height: 25/$r+rem;
-      line-height: 25/$r+rem;
       &::-webkit-input-placeholder {
         color: #707786; //input
       }

@@ -110,7 +110,7 @@
               console.log(response);
               this.$message(response.message);
               this.bus.$emit("nav",{
-                fn:"init"
+                fn:"findByThisUserFn"
               });
             });
             console.log(this.ruleForm);

@@ -54,6 +54,9 @@
     },
     created() {
       this.init();
+      this.bus.$on(this.id, obj => {
+        this[obj.fn](obj);
+      });
     },
     mounted() {
 

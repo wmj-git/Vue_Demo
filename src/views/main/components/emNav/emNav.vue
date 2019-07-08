@@ -1,13 +1,13 @@
 <template>
-  <div class="em_nav">
+  <div class="em-nav">
     <win :id="win.id" :data="win">
       <el-menu
         :default-active="activeIndex"
-        class="el-menu-demo em-nav-menu "
+        class="el-menu-demo em-nav-menu"
         mode="horizontal"
         @select="handleSelect"
       >
-        <template v-for="item in buttonGroup">
+        <template v-for="item in navItem">
           <el-menu-item :index="item.id" class="">{{item.title}}</el-menu-item>
         </template>
       </el-menu>
@@ -16,11 +16,10 @@
 </template>
 
 <script>
-  import {findByThisUser} from "@/api/resource";  //权限
-  // import Tools from "@/utils/Tools"
-  import {db_buttonGroup} from "./data/db";
-  import win from "@/components/win/win";
 
+  import {db_buttonGroup, system_type, db_data} from "./data/db";
+  import win from "@/components/win/win";
+  import {findByThisUser} from "@/api/resource";  //权限
 
   export default {
     data() {
@@ -29,7 +28,7 @@
         win: {
           id: "nav_win",
           title: "",
-          top: "90.5%",
+          top: "84%",
           left: "",
           show: true,
           resizable: false,
@@ -37,7 +36,9 @@
         },
         buttonGroup: JSON.parse(JSON.stringify(db_buttonGroup)),
         control_id: "menu",
-        activeIndex: ''
+        activeIndex: '',
+        nav: {},
+        navItem: []
       };
     },
     components: {
@@ -45,12 +46,12 @@
     },
     methods: {
       init() {
-
+        console.log("db_data");
+        console.log(db_data);
       },
       findByThisUserFn() {//更新权限数据
         findByThisUser().then((response) => {
           this.$store.commit("user/set_permissions", response.data);
-          console.log(treeStructure(this.$store.getters["user/permissions"]));
         });
       },
       handleSelect(key, keyPath) {
@@ -65,7 +66,7 @@
 
           if (obj.id === key) {
             _title = obj.title;
-            _list = obj.list;
+            _list = obj.children;
             _width = obj.width;
           }
         });
@@ -97,7 +98,7 @@
           }, 200);
 
         }
-        console.log(_show);
+        // console.log(_show);
       }
     },
     created() {
