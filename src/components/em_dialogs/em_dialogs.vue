@@ -2,10 +2,10 @@
     <div class="em_dialogs"  v-dialogDrag="true">
       <el-dialog title="设置窗口" :visible.sync="dialogFormVisible" :modal-append-to-body="false" :show-close="true">
         <el-row>
-          <el-form>
+          <el-form :rules="formRules">
               <template v-for="(item,index) in this.label">
                 <el-col :span="24"  v-if="fn=='add'">
-                  <el-form-item :label="item.name" :label-width="formLabelWidth" v-show="item.add_show" >
+                  <el-form-item :label="item.name" :label-width="formLabelWidth" v-show="item.add_show" prop="rules">
                     <component :is="item.type" :operation="item" ref="form_data" :key="index" :readonly="item.add_readonly"></component>
                   </el-form-item>
                 </el-col>
@@ -43,13 +43,28 @@
          em_textarea
        },
         data(){
+          const validate = (rule, value, callback) => {
+            let Reg=/[0-9a-zA-Z]/;
+            console.log(this.$refs);
+            if (!value) {
+              callback(new Error("输入不能为空!"));
+            } else if (Reg.test(value)) {
+              callback(new Error("XX名称不能含有特殊字符，请重新输入!"));
+            } else {
+              callback();
+            }
+          };
            return{
              dialogFormVisible:false,
              form: {
              },
              formLabelWidth: '100px',
              alter_obj:"",
-             fn:""
+             fn:"",
+             formRules:{
+               rules: [{ required: true, validator: validate, trigger: 'blur' }]
+
+             }
            }
 
         },
@@ -67,7 +82,6 @@
               if(this.fn=="add"){
                 this.dialogFormVisible = true;
                 setTimeout(() => {
-                  console.log(this.$refs.form_data);
                   if(this.$refs.form_data){
                     this.$refs.form_data.forEach((_obj)=>{
                       console.log(_obj);
