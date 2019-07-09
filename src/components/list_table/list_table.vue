@@ -144,6 +144,7 @@
         // findMenuByThisUser({"pid":7}).then(res=>{
         //     console.log(res)
         // });
+        console.log(this.data);
         this.table_id=this.data[this.digital_table_id].table.id;
         this.label=this.data[this.digital_table_id].table.label;
         this.label_input=this.data[this.digital_table_id].table.label.filter(val=>{
@@ -169,8 +170,9 @@
           this.control(obj);
           console.log(obj);
         });
+        this.$refs.child[0].complex_em_input_select="";
+        this.$refs.child[0].input="";
         this.init();
-        this.$refs.child[0].complex_em_input_select="请选择";
       },
       handleSelectionChange(val) {// 多选框（选中删除）
         this.multipleSelection = val;
@@ -201,12 +203,14 @@
           pageSize: this.pageSize
         };
         if (this.$refs.child[0].input && this.$refs.child[0].params) {                              //input框是操作中第一个组件时
+          console.log(this.$refs.child[0].input);
           let role_manage_input = this.$refs.child[0].input;
           let params = this.$refs.child[0].params;
           obj[params] = role_manage_input;
         }
         if (this.$refs.child[0].complex_em_input_select && this.$refs.child[0].input) {   //选择参数进行查询
-            let comlex_input = this.$refs.child[0].complex_em_input_select;
+          console.log(this.$refs.child[0].complex_em_input_select);
+          let comlex_input = this.$refs.child[0].complex_em_input_select;
             let commo_input = this.$refs.child[0].input;
             obj[comlex_input] = commo_input;
           }

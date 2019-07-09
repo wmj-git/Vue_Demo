@@ -698,7 +698,11 @@ export default {
       component_data: {
         list:{
           id:"protect_plan_list",
-          data:[{name:"肥料种类管理",id:"fertilizer_type_manage"},{name:"人员类型管理",id:"people_type_manage"}]
+          data:[
+            {name:"肥料种类管理",id:"fertilizer_type_manage"},
+            {name:"肥料调动记录",id:"fertilizer_mobility_record"},
+            {name:"施肥规格",id:"fertilization_specification_info"}
+            ]
         },
         fertilizer_type_manage:{
           operation: [
@@ -782,188 +786,256 @@ export default {
             ]
           }
         },
-        // people_inform_manage:{
-        //   operation: [
-        //     {
-        //       id: "people_manage_select",
-        //       type: "complex_em_input",
-        //       select: [
-        //         {
-        //           name: "姓名",
-        //           params: "name"
-        //         },
-        //         {
-        //           name: "职务",
-        //           params: "duty"
-        //         }
-        //       ]
-        //
-        //     },
-        //     {
-        //       id: "people_manage_button_search",
-        //       type: "em_button",
-        //       icon: "el-icon-search",
-        //       operate: "查询",
-        //       control_id: "people_manage_table",
-        //       fn: "search"
-        //     },
-        //     {
-        //       id: "people_manage_button_add",
-        //       type: "em_button",
-        //       icon: "el-icon-plus",
-        //       operate: "添加",
-        //       control_id: "people_manage_table",
-        //       fn: "add",
-        //       url: "/gardens/person/add"
-        //     },
-        //     {
-        //       id: "people_manage_button_modify",
-        //       type: "em_button",
-        //       icon: "el-icon-edit",
-        //       operate: "修改",
-        //       control_id: "people_manage_table",
-        //       fn: "modify",
-        //       url: "/gardens/person/update"
-        //     },
-        //     {
-        //       id: "people_manage_button_dele",
-        //       type: "em_button",
-        //       icon: "el-icon-delete",
-        //       operate: "删除",
-        //       control_id: "people_manage_table",
-        //       fn: "dele",
-        //       url: "/gardens/person/deletes"
-        //     },
-        //     {
-        //       id: "people_manage_button_import",
-        //       type: "em_button",
-        //       icon: "el-icon-excel_in",
-        //       operate: "导入excel",
-        //       control_id: "people_manage_table",
-        //       fn: "import",
-        //       download_url: "/gardens/person/downCsvmodel",
-        //       import_url: "/gardens/person/ajaxUpload"
-        //     },
-        //     {
-        //       id: "people_manage_button_export",
-        //       type: "em_button",
-        //       control_id: "people_manage_table",
-        //       icon: "el-icon-excel_out",
-        //       operate: "导出excel",
-        //       fn: "export",
-        //       url: "/gardens/person/exportCsv"
-        //     }
-        //   ],
-        //   table: {
-        //     id: "people_manage_table",
-        //     table_url: "/gardens/person/queryAllByPage",
-        //     label: [{
-        //       name: "姓名",
-        //       prop: "name",
-        //       width: "100",
-        //       type: "em_input",
-        //       placeholder: "名字",
-        //       params: "name",
-        //       alter_show: true,
-        //       add_show: true
-        //     },
-        //       {
-        //         name: "性别",
-        //         prop: "sex",
-        //         width: "100",
-        //         type: "em_select",
-        //         params: "sex",
-        //         options: [{
-        //           value: "男",
-        //           label: "男"
-        //         },
-        //           {
-        //             value: "女",
-        //             label: "女"
-        //           }
-        //
-        //         ],
-        //         alter_show: true,
-        //         add_show: true
-        //       },
-        //       {
-        //         name: "职务",
-        //         prop: "duty",
-        //         width: "140",
-        //         type: "em_input",
-        //         placeholder: "职务",
-        //         params: "duty",
-        //         alter_show: true,
-        //         add_show: true
-        //       },
-        //       {
-        //         name: "人员类型",
-        //         prop: "personTypeName",
-        //         width: "140",
-        //         type: "em_selectUrl",
-        //         params: "personTypeId",
-        //         optionUrl: "gardens/persontype/queryAll",
-        //         alter_show: true,
-        //         add_show: true
-        //
-        //       },
-        //       {
-        //         name: "电话",
-        //         prop: "telephone",
-        //         width: "140",
-        //         type: "em_input",
-        //         placeholder: "电话",
-        //         params: "telephone",
-        //         alter_show: true,
-        //         add_show: true
-        //       },
-        //       {
-        //         name: "从事专业",
-        //         prop: "professional",
-        //         width: "140",
-        //         type: "em_input",
-        //         placeholder: "从事专业",
-        //         params: "professional",
-        //         alter_show: true,
-        //         add_show: true
-        //       },
-        //       {
-        //         name: "工作单位",
-        //         prop: "entName",
-        //         width: "100",
-        //         type: "em_selectUrl",
-        //         params: "entId",
-        //         optionUrl: "gardens/ent/queryAll",
-        //         alter_show: true,
-        //         add_show: true
-        //       },
-        //       {
-        //         name: "备注",
-        //         prop: "memo",
-        //         width: "140",
-        //         type: "em_input",
-        //         placeholder: "备注",
-        //         params: "memo",
-        //         alter_show: true,
-        //         add_show: true
-        //
-        //       },
-        //       {
-        //         name: "排序号",
-        //         prop: "orderNo",
-        //         width: "100",
-        //         type: "em_input",
-        //         placeholder: "排序号",
-        //         params: "orderNo",
-        //         alter_show: true,
-        //         add_show: true
-        //
-        //       }
-        //
-        //
-        //     ]
-        //   }
-        // }
+        fertilizer_mobility_record:{
+          operation: [
+            {
+              id: "fertilizer_mobility_record_select",
+              type: "em_input",
+              placeholder:"肥料名称",
+              params:"fertilizerName"
+
+            },
+            {
+              id: "fertilizer_mobility_record_button_search",
+              type: "em_button",
+              icon: "el-icon-search",
+              operate: "查询",
+              control_id: "fertilizer_mobility_record_table",
+              fn: "search"
+            },
+            {
+              id: "fertilizer_mobility_record_button_add",
+              type: "em_button",
+              icon: "el-icon-plus",
+              operate: "添加",
+              control_id: "fertilizer_mobility_record_table",
+              fn: "add",
+              url: "/gardens/fertilizerRecord/add"
+            },
+
+            {
+              id: "fertilizer_mobility_record_button_dele",
+              type: "em_button",
+              icon: "el-icon-delete",
+              operate: "删除",
+              control_id: "fertilizer_mobility_record_table",
+              fn: "dele",
+              url: "/gardens/fertilizerRecord/deletes"
+            }
+          ],
+          table: {
+            id: "fertilizer_mobility_record_table",
+            table_url: "/gardens/fertilizerRecord/queryAllByPage",
+            label: [{
+              name: "调用者",
+              prop: "executor",
+              width: "80",
+              type: "em_input",
+              placeholder: "调用者",
+              params: "executor",
+              alter_show: true,
+              add_show: true
+            },
+              {
+                name: "肥料名称",
+                prop: "fertilizerName",
+                width: "80",
+                type: "em_input",
+                placeholder: "职务",
+                params: "fertilizerName",
+                alter_show: true,
+                add_show: true
+              },
+              {
+                name: "化学式",
+                prop: "fertilizerEname",
+                width: "100",
+                type: "em_input",
+                placeholder: "化学式",
+                params: "fertilizerEname",
+                alter_show: true,
+                add_show: true
+              },
+              {
+                name: "数量",
+                prop: "changeValue",
+                width: "80",
+                type: "em_input",
+                params: "changeValue",
+                alter_show: true,
+                add_show: true
+
+              },
+              {
+                name: "备注",
+                prop: "remark",
+                width: "140",
+                type: "em_input",
+                placeholder: "备注",
+                params: "remark",
+                alter_show: true,
+                add_show: true
+
+              }
+
+            ]
+          }
+        },
+        fertilization_specification_info:{
+          operation: [
+            {
+              id: "people_manage_select",
+              type: "complex_em_input",
+              select: [
+                {
+                  name: "姓名",
+                  params: "name"
+                },
+                {
+                  name: "职务",
+                  params: "duty"
+                }
+              ]
+
+            },
+            {
+              id: "fertilization_specification_info_button_search",
+              type: "em_button",
+              icon: "el-icon-search",
+              operate: "查询",
+              control_id: "fertilization_specification_info_table",
+              fn: "search"
+            },
+            {
+              id: "fertilization_specification_info_button_add",
+              type: "em_button",
+              icon: "el-icon-plus",
+              operate: "添加",
+              control_id: "fertilization_specification_info_table",
+              fn: "add",
+              url: "/gardens/specificationinfo/add"
+            },
+
+            {
+              id: "fertilization_specification_info_button_dele",
+              type: "em_button",
+              icon: "el-icon-delete",
+              operate: "删除",
+              control_id: "fertilization_specification_info_table",
+              fn: "dele",
+              url: "/gardens/specificationinfo/deletes"
+            }
+          ],
+          table: {
+            id: "fertilization_specification_info_table",
+            table_url: "/gardens/specificationinfo/queryAllByPage",
+            label: [{
+              name: "姓名",
+              prop: "name",
+              width: "100",
+              type: "em_input",
+              placeholder: "名字",
+              params: "name",
+              alter_show: true,
+              add_show: true
+            },
+              {
+                name: "性别",
+                prop: "sex",
+                width: "100",
+                type: "em_select",
+                params: "sex",
+                options: [{
+                  value: "男",
+                  label: "男"
+                },
+                  {
+                    value: "女",
+                    label: "女"
+                  }
+
+                ],
+                alter_show: true,
+                add_show: true
+              },
+              {
+                name: "职务",
+                prop: "duty",
+                width: "140",
+                type: "em_input",
+                placeholder: "职务",
+                params: "duty",
+                alter_show: true,
+                add_show: true
+              },
+              {
+                name: "人员类型",
+                prop: "personTypeName",
+                width: "140",
+                type: "em_selectUrl",
+                params: "personTypeId",
+                optionUrl: "gardens/persontype/queryAll",
+                alter_show: true,
+                add_show: true
+
+              },
+              {
+                name: "电话",
+                prop: "telephone",
+                width: "140",
+                type: "em_input",
+                placeholder: "电话",
+                params: "telephone",
+                alter_show: true,
+                add_show: true
+              },
+              {
+                name: "从事专业",
+                prop: "professional",
+                width: "140",
+                type: "em_input",
+                placeholder: "从事专业",
+                params: "professional",
+                alter_show: true,
+                add_show: true
+              },
+              {
+                name: "工作单位",
+                prop: "entName",
+                width: "100",
+                type: "em_selectUrl",
+                params: "entId",
+                optionUrl: "gardens/ent/queryAll",
+                alter_show: true,
+                add_show: true
+              },
+              {
+                name: "备注",
+                prop: "memo",
+                width: "140",
+                type: "em_input",
+                placeholder: "备注",
+                params: "memo",
+                alter_show: true,
+                add_show: true
+
+              },
+              {
+                name: "排序号",
+                prop: "orderNo",
+                width: "100",
+                type: "em_input",
+                placeholder: "排序号",
+                params: "orderNo",
+                alter_show: true,
+                add_show: true
+
+              }
+
+
+            ]
+          }
+        }
       }
     },
     {
