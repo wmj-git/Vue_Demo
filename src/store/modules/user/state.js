@@ -10,6 +10,7 @@ export default {
   name: '',
   avatar: '',//头像
   introduction: '',
+  systemData:[],
   permissions:[],
   roles: [],
   setting: {

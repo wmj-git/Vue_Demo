@@ -1,6 +1,6 @@
 import {
   SET_CODE, SET_TOKEN,SET_TOKEN_TIME, SET_REFRESH_TOKEN,SET_INTRODUCTION,SET_PERMISSIONS,
-  SET_SETTING, SET_STATUS, SET_NAME,
+  SET_SETTING, SET_STATUS, SET_NAME,SET_SYSTEMDATA,
   SET_AVATAR,SET_ROLES
 } from '../../mutation-types';
 
@@ -19,6 +19,9 @@ export default {
   },
   [SET_INTRODUCTION]: (state, introduction) => {
     state.introduction = introduction
+  },
+  [SET_SYSTEMDATA]: (state, systemData) => {
+    state.systemData = systemData
   },
   [SET_PERMISSIONS]: (state, permissions) => {
     state.permissions = permissions

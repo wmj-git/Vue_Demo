@@ -16,6 +16,9 @@ export function name(state){
 export function introduction(state){
   return state.introduction
 }
+export function systemData(state){
+  return state.systemData
+}
 export function permissions(state){
   return state.permissions
 }

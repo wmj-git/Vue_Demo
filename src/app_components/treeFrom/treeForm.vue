@@ -49,11 +49,11 @@
 </template>
 
 <script>
-  import {db_form_data} from './data/db'
-  import splitPane from 'vue-splitpane'
-  import emForm from './components/emForm/emForm'
-  import {addResource, delResource} from "@/api/resource"
-  import {treeStructure} from "@/utils/tools"
+  import {db_form_data} from './data/db';
+  import splitPane from 'vue-splitpane';
+  import emForm from './components/emForm/emForm';
+  import {addResource, delResource} from "@/api/resource";
+  import {treeStructure} from "@/utils/tools";
 
 
   export default {
@@ -62,7 +62,7 @@
       return {
         id: 100,
         form_data: JSON.parse(JSON.stringify(db_form_data))
-      }
+      };
     },
     props: ["props_data"],
     computed: {
@@ -80,6 +80,7 @@
       },
       treeDataFn(_obj) {
         let _tree = [];
+        let _Tree = [];
         let _permissions = _obj;
         // console.log(_permissions);
         // console.log(this.props_data);
@@ -89,9 +90,16 @@
             _tree.push(_obj);
           });
         }
+
         let _data = treeStructure(_tree);
-        // console.log(_data);
-        return _data[0];
+        for (let _k in _data) {
+          _data[_k].forEach(function (_obj) {
+            _Tree.push(_obj);
+          });
+        }
+        console.log(_Tree);
+
+        return _Tree;
       },
       append(node, data) {
         let _this = this;
@@ -159,9 +167,9 @@
             _item.value = obj[0][k];
 
             let _obj = this.form_data;
-           /* console.log("----------------");
-            console.log(k);
-            console.log(_obj[k]);*/
+            /* console.log("----------------");
+             console.log(k);
+             console.log(_obj[k]);*/
 
             _item.label = _obj[k].label;
             _item.inputType = _obj[k].type;
@@ -191,7 +199,7 @@
     updated() {
 
     }
-  }
+  };
 </script>
 
 <style lang="scss" scoped>

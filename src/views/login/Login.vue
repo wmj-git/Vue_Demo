@@ -44,8 +44,6 @@
   </div>
 </template>
 <script>
-  import {findByThisUser} from "@/api/resource";  //权限
-  import {treeStructure} from "@/utils/tools"
 
   export default {
     name: "Login",
@@ -72,13 +70,11 @@
     },
     methods: {
       init() {
-        findByThisUser().then((response) => {
-          console.log("findByThisUser");
+
+        this.$store.dispatch("user/systemUI", {}).then((response) => {
           console.log(response);
-          this.$store.commit("user/set_permissions", response.data);
-          console.log(this.$store.getters["user/permissions"]);
-          console.log(treeStructure(this.$store.getters["user/permissions"]));
         });
+
       },
       reset() {
         this.form.name = "";

@@ -16,8 +16,6 @@
 </template>
 
 <script>
-
-  import {db_buttonGroup, system_type} from "./data/db";
   import win from "@/components/win/win";
   import {findByThisUser} from "@/api/resource";  //权限
 
@@ -47,10 +45,20 @@
         this.control_id=this.data.control_id;
         this.activeIndex=this.data.activeIndex;
         this.nav = this.data;
-        this.navItem = this.data.children;
+        if(this.data.children){
+          let _navItem=[];
+          this.data.children.forEach(function (_obj) {
+            if(_obj.system_type==="navItem"){
+              _navItem.push(_obj);
+            }
+          });
+
+          this.navItem = _navItem;
+        }
 
         console.log("db_data");
         console.log(this.data);
+
       },
       findByThisUserFn() {//更新权限数据
         findByThisUser().then((response) => {

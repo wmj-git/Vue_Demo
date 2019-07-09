@@ -100,19 +100,33 @@
     },
     computed: {
       navData: function () {
+        let _data = [];
+        let _systemData = this.$store.getters["user/systemData"];
 
+        if (_systemData && _systemData.length > 0) {
+          _systemData.forEach(function (_obj) {
+            nav.systemType.forEach(function (_item) {
+              if (_obj.system_type === _item) {
+                _data.push(_obj);
+              }
+            });
+          });
+          _data = treeStructure(_data);
+        }
 
-        let _data=treeStructure(nav.uiData);
-        let ui_data=[];
+        let ui_data = [];
 
-        for( let _k in _data){
+        for (let _k in _data) {
           _data[_k].forEach(function (_obj) {
-            if(_obj.system_type===nav.systemType[0]){
+            if (_obj.system_type === "nav") {
               ui_data.push(_obj);
             }
           });
         }
-        console.log(ui_data);
+        // console.log("_systemData");
+        // console.log(_data);
+        //
+        // console.log(ui_data);
         return ui_data;
       },
       wins: function () {
@@ -154,7 +168,12 @@
 
     },
     created() {
-      this.refreshTokenFn();//刷新token
+      //刷新token
+      this.refreshTokenFn();
+      //刷新ui数据
+      this.$store.dispatch("user/systemUI", {}).then((response) => {
+        console.log(response);
+      });
 
     },
 

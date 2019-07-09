@@ -14,6 +14,7 @@ export const SET_TOKEN="set_token";
 export const SET_TOKEN_TIME="set_token_time";
 export const SET_REFRESH_TOKEN="set_refresh_token";
 export const SET_INTRODUCTION="set_introduction";
+export const SET_SYSTEMDATA="set_systemData";
 export const SET_PERMISSIONS="set_permissions";
 export const SET_SETTING="set_setting";
 export const SET_STATUS="set_status";
