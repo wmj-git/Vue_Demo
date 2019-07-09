@@ -104,7 +104,7 @@ video {
 .em-login-btn, .em-reset-btn {
   font-size: 14/$r+rem;
   width: 100px;
-  margin-left: 40/$r+rem;
+  margin-left: 40/$r+rem !important;
   margin-bottom: 20/$r+rem;
   height: 35/$r+rem;
   line-height: 0.5em;
