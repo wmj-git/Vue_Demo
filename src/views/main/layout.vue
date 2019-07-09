@@ -32,8 +32,10 @@
 </template>
 
 <script>
+
+  import {nav} from './data/db';
   import {refreshToken} from '@/api/login';
-  import {getNowFormatDate} from '@/utils/tools';
+  import {getNowFormatDate, treeStructure} from '@/utils/tools';
   import {
     setToken,
     setTokenTime,
@@ -69,9 +71,7 @@
 
   export default {
     data() {
-      return {
-        navData:[]
-      };
+      return {};
     },
     components: {
       win,
@@ -99,6 +99,22 @@
       buttonGroup,
     },
     computed: {
+      navData: function () {
+
+
+        let _data=treeStructure(nav.uiData);
+        let ui_data=[];
+
+        for( let _k in _data){
+          _data[_k].forEach(function (_obj) {
+            if(_obj.system_type===nav.systemType[0]){
+              ui_data.push(_obj);
+            }
+          });
+        }
+        console.log(ui_data);
+        return ui_data;
+      },
       wins: function () {
         return this.$store.getters["win/win"];
       },
@@ -139,6 +155,7 @@
     },
     created() {
       this.refreshTokenFn();//刷新token
+
     },
 
   };

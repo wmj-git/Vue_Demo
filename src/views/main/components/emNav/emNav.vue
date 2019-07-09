@@ -1,8 +1,8 @@
 <template>
   <div class="em-nav">
-    <win :id="win.id" :data="win">
+    <win :id="nav.id" :data="nav">
       <el-menu
-        :default-active="activeIndex"
+        :default-active="nav.activeIndex"
         class="el-menu-demo em-nav-menu"
         mode="horizontal"
         @select="handleSelect"
@@ -17,7 +17,7 @@
 
 <script>
 
-  import {db_buttonGroup, system_type, db_data} from "./data/db";
+  import {db_buttonGroup, system_type} from "./data/db";
   import win from "@/components/win/win";
   import {findByThisUser} from "@/api/resource";  //权限
 
@@ -25,29 +25,32 @@
     data() {
       return {
         id: "nav",
-        win: {
-          id: "nav_win",
-          title: "",
-          top: "84%",
-          left: "",
-          show: true,
-          resizable: false,
-          class: "em-nav-window"
-        },
-        buttonGroup: JSON.parse(JSON.stringify(db_buttonGroup)),
         control_id: "menu",
         activeIndex: '',
         nav: {},
         navItem: []
       };
     },
+    props: ["data"],
     components: {
       win
     },
     methods: {
       init() {
+
+        /* for(let _k in db_data){
+                if(db_data[_k].){
+
+                }
+         }*/
+        this.id=this.data.system_id;
+        this.control_id=this.data.control_id;
+        this.activeIndex=this.data.activeIndex;
+        this.nav = this.data;
+        this.navItem = this.data.children;
+
         console.log("db_data");
-        console.log(db_data);
+        console.log(this.data);
       },
       findByThisUserFn() {//更新权限数据
         findByThisUser().then((response) => {
@@ -62,7 +65,7 @@
         let _title = null;
         let _list = null;
         let _width = null;
-        this.buttonGroup.forEach(function (obj) {
+        this.navItem.forEach(function (obj) {
 
           if (obj.id === key) {
             _title = obj.title;

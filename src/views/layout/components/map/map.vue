@@ -5,19 +5,23 @@
 </template>
 
 <script>
-
-  import mp from "@/utils/ol/index"
+  import {clustersFn} from "@/utils/ol/fn";
+  import mp from "@/utils/ol/index";
+  import {queryVicinityPrint, findOne, queryAllcount} from "@/api/tree";
 
   export default {
     data() {
       return {
         id: "map",
-        height: ''
-      }
+        height: '',
+        treeSource: ""
+      };
     },
     props: {},
     methods: {
       init() {
+
+        this.queryVicinityPrintFn();
 
         let _resolutions = [
           5.9486525145757E-4, 2.97432625728785E-4,
@@ -90,7 +94,7 @@
             // _Source,
             mp.layers.baidu_a,
             // osmSource,
-            // vectorLayer
+            vectorLayer
           ],
           view: new ol.View({
             resolutions: _resolutions,
@@ -120,6 +124,35 @@
       },
       scene_data(obj) {
 
+      },
+      queryVicinityPrintFn() {
+
+        queryVicinityPrint({
+          params: {
+            longitude: 114.031047,
+            latitude: 22.663679,
+            distance: 500000
+          }
+        }).then(response => {
+          console.log("queryVicinityPrint");
+          console.log(response);
+
+          let _data = [];
+          if (response.statusCode === 200) {
+            response.data.forEach(function (_obj) {
+              _obj.icon = "../../static/image/marker_2.png";
+            });
+            _data= response.data;
+          }
+
+          let _layer = clustersFn(_data, {
+            type: "tree",
+            titleKey: "id",
+            iconUrlKey: "icon"
+          }, "../../static/image/cluster0.png", 10);
+          window._map.addLayer(_layer.layer);
+
+        });
       }
     },
     created() {
