@@ -200,12 +200,17 @@
           pageNum: this.currentPage,
           pageSize: this.pageSize
         };
-
+        if (this.$refs.child[0].input && this.$refs.child[0].params) {                              //input框是操作中第一个组件时
+          let role_manage_input = this.$refs.child[0].input;
+          let params = this.$refs.child[0].params;
+          obj[params] = role_manage_input;
+        }
         if (this.$refs.child[0].complex_em_input_select && this.$refs.child[0].input) {   //选择参数进行查询
             let comlex_input = this.$refs.child[0].complex_em_input_select;
             let commo_input = this.$refs.child[0].input;
             obj[comlex_input] = commo_input;
           }
+
           find({                      //页面渲染时拿表格数据
             url: this.data[this.digital_table_id].table.table_url,
             params: obj
