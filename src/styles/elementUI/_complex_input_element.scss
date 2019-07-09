@@ -21,7 +21,7 @@ $r:32;
 /*监测点下拉选择框*/
 .monitor_point /deep/{
   .el-input--suffix .el-input__inner{
-    height: 30/$r+rem !important;
+    height: 25/$r+rem !important;
     margin: 5px 0 5px 0;
     &::-webkit-input-placeholder {
       color: #707786; //complex_input
