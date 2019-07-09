@@ -385,6 +385,4 @@
     justify-content: flex-start;
   }
 
-
-
 </style>
