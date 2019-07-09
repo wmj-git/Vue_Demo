@@ -2,16 +2,16 @@
     <div class="em_dialogs"  v-dialogDrag="true">
       <el-dialog title="设置窗口" :visible.sync="dialogFormVisible" :modal-append-to-body="false" :show-close="true">
         <el-row>
-          <el-form :rules="formRules">
-              <template v-for="(item,index) in this.label">
-                <el-col :span="24"  v-if="fn=='add'">
-                  <el-form-item :label="item.name" :label-width="formLabelWidth" v-show="item.add_show" prop="rules">
-                    <component :is="item.type" :operation="item" ref="form_data" :key="index" :readonly="item.add_readonly"></component>
-                  </el-form-item>
+          <el-form>
+              <template v-for="(item,index) in this.labels" v-if="dialogFormVisible">
+                <el-col :span="24"  v-if="fn==='add'">
+                  <el-form-item :label="item.name" :label-width="formLabelWidth" v-show="item.add_show">
+                  <component :is="item.type" :operation="item" ref="form_data" :key="index" :readonly="item.add_readonly"  @click.native="refOrder(index)"></component>
+                </el-form-item>
                 </el-col>
-                <el-col :span="24"  v-if="fn=='modify'">
-                  <el-form-item :label="item.name" :label-width="formLabelWidth" >
-                    <component :is="item.type"   :operation="item" ref="form_data" :key="index" :readonly="item.alter_readonly"></component>
+                <el-col :span="24"  v-if="fn==='modify'">
+                  <el-form-item :label="item.name" :label-width="formLabelWidth">
+                    <component :is="item.type"   :operation="item" ref="form_data" :key="index" :readonly="item.alter_readonly" @click.native="refOrder(index)"></component>
                   </el-form-item>
                 </el-col>
               </template>
@@ -32,7 +32,7 @@
   import em_selectUrl from "@/components/em_selectUrl/em_selectUrl"
     export default {
         props: {
-          label:{
+          labels:{
              type:Array
           }
         },
@@ -43,37 +43,25 @@
          em_textarea
        },
         data(){
-          const validate = (rule, value, callback) => {
-            let Reg=/[0-9a-zA-Z]/;
-            console.log(this.$refs);
-            if (!value) {
-              callback(new Error("输入不能为空!"));
-            } else if (Reg.test(value)) {
-              callback(new Error("XX名称不能含有特殊字符，请重新输入!"));
-            } else {
-              callback();
-            }
-          };
            return{
+             refIndex:"", //el-form-item中component的index
              dialogFormVisible:false,
              form: {
              },
              formLabelWidth: '100px',
              alter_obj:"",
              fn:"",
-             formRules:{
-               rules: [{ required: true, validator: validate, trigger: 'blur' }]
-
-             }
            }
 
         },
       created(){
           this.bus.$on("alter",res=>{
              this.alter_obj=res;         //将要修改的对象从sole_table传到此组件的alter_obj
-
-
           });
+
+      },
+      mounted(){
+          console.log(this.labels)
       },
       methods:{
           showdialog(obj){
@@ -138,7 +126,7 @@
            console.log(this.label);
            this.label.forEach((val)=>{
                  if (this.$refs.form_data) {
-                   this.$refs.form_data.forEach((obj)=>{
+                   this.$refs.form_data.forEach((obj,i)=>{
                       if(obj.operation.params==val.params){
                         if(obj.operation.type==="em_selectUrl"||obj.operation.type==="em_select"){
                           if(obj.value=="是"){
@@ -176,6 +164,10 @@
          },
          cancel(){
            this.dialogFormVisible =false;
+         },
+         refOrder(index){
+             this.refIndex=index;
+             console.log(this.refIndex);
          }
 
       }

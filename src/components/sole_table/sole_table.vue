@@ -1,6 +1,6 @@
 <template>
   <div class="sole_table table-container" style="width: 100%;height: 100%">
-    <em_dialogs ref="dialog" :label="label_input" @eventFromDialog="recieveObj"></em_dialogs>
+    <em_dialogs ref="dialog" :labels="label_input" @eventFromDialog="recieveObj"></em_dialogs>
     <el-dialog title="导入" :visible.sync="dialogFormVisible" :modal-append-to-body="false" v-dialogDrag="true">
       <el-upload
         class="upload-demo"

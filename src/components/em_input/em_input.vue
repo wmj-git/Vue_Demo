@@ -14,9 +14,6 @@
              type: Boolean
           }
         },
-      mounted(){
-          this.bus.$emit("rule",this.rules)
-      },
       data(){
            return {
                input:"",
