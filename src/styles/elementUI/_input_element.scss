@@ -5,9 +5,8 @@ $r: 32;
 
 /*时间显示框*/
 .data_pick /deep/ {
-  .el-input--prefix .el-input__inner {
-    //height: 30/$r+rem !important;
-    margin: 5px 0 5px 0;
+  .el-input__icon{
+    line-height: 25/$r+rem;
   }
 }
 
