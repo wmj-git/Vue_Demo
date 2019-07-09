@@ -3,7 +3,7 @@
       <el-dialog title="设置窗口" :visible.sync="dialogFormVisible" :modal-append-to-body="false" :show-close="true">
         <el-row>
           <el-form>
-              <template v-for="(item,index) in this.labels" v-if="dialogFormVisible">
+              <template v-for="(item,index) in this.label" v-if="dialogFormVisible">
                 <el-col :span="24"  v-if="fn==='add'">
                   <el-form-item :label="item.name" :label-width="formLabelWidth" v-show="item.add_show">
                   <component :is="item.type" :operation="item" ref="form_data" :key="index" :readonly="item.add_readonly"  @click.native="refOrder(index)"></component>
@@ -32,7 +32,7 @@
   import em_selectUrl from "@/components/em_selectUrl/em_selectUrl"
     export default {
         props: {
-          labels:{
+          label:{
              type:Array
           }
         },
@@ -61,7 +61,7 @@
 
       },
       mounted(){
-          console.log(this.labels)
+          console.log(this.label)
       },
       methods:{
           showdialog(obj){

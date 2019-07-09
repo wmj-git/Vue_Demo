@@ -575,6 +575,398 @@ export default {
       }
     },
     {
+      id: "protect_company",
+      title: "养护单位",
+      top: 80,
+      left: 400,
+      height: 400,
+      show: false,
+      class: "em-table-window",
+      component: "sole_table",
+      component_data: {}
+    },
+    {
+      id: "road_address",
+      title: "道路地址",
+      top: 80,
+      left: 400,
+      height: 400,
+      show: false,
+      class: "em-table-window",
+      component: "sole_table",
+      component_data: {
+        operation: [
+          {
+            id: "road_address_input_shortName",
+            type: "em_input",
+            placeholder: "道路名称",
+            params: "roadName"
+
+          },
+          {
+            id: "road_address_button_search",
+            type: "em_button",
+            icon: "el-icon-search",
+            operate: "查询",
+            control_id: "road_address_table",
+            fn: "search"
+          },
+          {
+            id: "road_address_button_add",
+            type: "em_button",
+            icon: "el-icon-plus",
+            operate: "添加",
+            control_id: "road_address_table",
+            fn: "add",
+            url: "/user/dept/addDept"
+          },
+          {
+            id: "road_address_button_modify",
+            type: "em_button",
+            icon: "el-icon-edit",
+            operate: "修改",
+            control_id: "road_address_table",
+            fn: "modify",
+          },
+          {
+            id: "road_address_button_dele",
+            type: "em_button",
+            icon: "el-icon-delete",
+            operate: "删除",
+            control_id: "road_address_table",
+            fn: "dele",
+            url: "/user/dept/deleteDept"
+          },
+          {
+            id: "road_address_button_import",
+            type: "em_button",
+            icon: "el-icon-excel_in",
+            operate: "导入excel",
+            control_id: "road_address_table",
+            fn: "import"
+          },
+          {
+            id: "road_address_button_export",
+            type: "em_button",
+            icon: "el-icon-excel_out",
+            operate: "导出excel",
+            control_id: "road_address_table",
+            fn: "export"
+          }
+        ],
+        table: {
+          id: "road_address_table",
+          table_url: "/gardens/road/queryAllByPage",
+          label: [{
+            name: "道路名称",
+            prop: "roadName",
+            width: "140",
+            type: "em_input",
+            params: "roadName",
+            placeholder: "道路名称",
+            alter_show: true,
+            add_show: true
+
+          },
+            {
+              name: "道路介绍",
+              prop: "roadDescription",
+              width: "400",
+              type: "em_textarea",
+              params: "roadDescription",
+              placeholder: "道路介绍",
+              alter_show: true,
+              add_show: true
+            }
+
+
+          ]
+        }
+
+      }
+    },
+    {
+      id: "protect_plan",
+      title: "养护计划",
+      width:"55%",
+      top: 80,
+      left: 400,
+      height: 400,
+      show: false,
+      class: "em-table-window",
+      component: "list_table",
+      component_data: {
+        list:{
+          id:"protect_plan_list",
+          data:[{name:"肥料种类管理",id:"fertilizer_type_manage"},{name:"人员类型管理",id:"people_type_manage"}]
+        },
+        fertilizer_type_manage:{
+          operation: [
+            {
+              id: "fertilizer_type_manage_select",
+              type: "em_input",
+              placeholder:"肥料名称",
+              params:"fertilizerName"
+
+            },
+            {
+              id: "fertilizer_type_manage_button_search",
+              type: "em_button",
+              icon: "el-icon-search",
+              operate: "查询",
+              control_id: "fertilizer_type_manage_table",
+              fn: "search"
+            },
+            {
+              id: "fertilizer_type_manage_button_add",
+              type: "em_button",
+              icon: "el-icon-plus",
+              operate: "添加",
+              control_id: "fertilizer_type_manage_table",
+              fn: "add",
+              url: "/gardens/fertilizerinfo/add"
+            },
+            {
+              id: "fertilizer_type_manage_button_modify",
+              type: "em_button",
+              icon: "el-icon-edit",
+              operate: "修改",
+              control_id: "fertilizer_type_manage_table",
+              fn: "modify",
+              url: "/gardens/fertilizerinfo/update"
+            },
+            {
+              id: "fertilizer_type_manage_button_dele",
+              type: "em_button",
+              icon: "el-icon-delete",
+              operate: "删除",
+              control_id: "fertilizer_type_manage_table",
+              fn: "dele",
+              url: "/gardens/fertilizerinfo/deletes"
+            }
+          ],
+          table: {
+            id: "fertilizer_type_manage_table",
+            table_url: "/gardens/fertilizerinfo/queryAllByPage",
+            label: [
+              {
+                name: "肥料名称",
+                prop: "fertilizerName",
+                width: "80",
+                type: "em_input",
+                placeholder: "类型编号",
+                params: "fertilizerName",
+                alter_show: true,
+                add_show: true
+              },
+              {
+                name: "化学式",
+                prop: "fertilizerEname",
+                width: "80",
+                type: "em_input",
+                placeholder: "类型名称",
+                params: "fertilizerEname",
+                alter_show: true,
+                add_show: true
+              },
+              {
+                name: "描述",
+                prop: "remark",
+                width: "200",
+                type: "em_textarea",
+                placeholder: "描述",
+                params: "remark",
+                alter_show: true,
+                add_show: true
+              },
+            ]
+          }
+        },
+        // people_inform_manage:{
+        //   operation: [
+        //     {
+        //       id: "people_manage_select",
+        //       type: "complex_em_input",
+        //       select: [
+        //         {
+        //           name: "姓名",
+        //           params: "name"
+        //         },
+        //         {
+        //           name: "职务",
+        //           params: "duty"
+        //         }
+        //       ]
+        //
+        //     },
+        //     {
+        //       id: "people_manage_button_search",
+        //       type: "em_button",
+        //       icon: "el-icon-search",
+        //       operate: "查询",
+        //       control_id: "people_manage_table",
+        //       fn: "search"
+        //     },
+        //     {
+        //       id: "people_manage_button_add",
+        //       type: "em_button",
+        //       icon: "el-icon-plus",
+        //       operate: "添加",
+        //       control_id: "people_manage_table",
+        //       fn: "add",
+        //       url: "/gardens/person/add"
+        //     },
+        //     {
+        //       id: "people_manage_button_modify",
+        //       type: "em_button",
+        //       icon: "el-icon-edit",
+        //       operate: "修改",
+        //       control_id: "people_manage_table",
+        //       fn: "modify",
+        //       url: "/gardens/person/update"
+        //     },
+        //     {
+        //       id: "people_manage_button_dele",
+        //       type: "em_button",
+        //       icon: "el-icon-delete",
+        //       operate: "删除",
+        //       control_id: "people_manage_table",
+        //       fn: "dele",
+        //       url: "/gardens/person/deletes"
+        //     },
+        //     {
+        //       id: "people_manage_button_import",
+        //       type: "em_button",
+        //       icon: "el-icon-excel_in",
+        //       operate: "导入excel",
+        //       control_id: "people_manage_table",
+        //       fn: "import",
+        //       download_url: "/gardens/person/downCsvmodel",
+        //       import_url: "/gardens/person/ajaxUpload"
+        //     },
+        //     {
+        //       id: "people_manage_button_export",
+        //       type: "em_button",
+        //       control_id: "people_manage_table",
+        //       icon: "el-icon-excel_out",
+        //       operate: "导出excel",
+        //       fn: "export",
+        //       url: "/gardens/person/exportCsv"
+        //     }
+        //   ],
+        //   table: {
+        //     id: "people_manage_table",
+        //     table_url: "/gardens/person/queryAllByPage",
+        //     label: [{
+        //       name: "姓名",
+        //       prop: "name",
+        //       width: "100",
+        //       type: "em_input",
+        //       placeholder: "名字",
+        //       params: "name",
+        //       alter_show: true,
+        //       add_show: true
+        //     },
+        //       {
+        //         name: "性别",
+        //         prop: "sex",
+        //         width: "100",
+        //         type: "em_select",
+        //         params: "sex",
+        //         options: [{
+        //           value: "男",
+        //           label: "男"
+        //         },
+        //           {
+        //             value: "女",
+        //             label: "女"
+        //           }
+        //
+        //         ],
+        //         alter_show: true,
+        //         add_show: true
+        //       },
+        //       {
+        //         name: "职务",
+        //         prop: "duty",
+        //         width: "140",
+        //         type: "em_input",
+        //         placeholder: "职务",
+        //         params: "duty",
+        //         alter_show: true,
+        //         add_show: true
+        //       },
+        //       {
+        //         name: "人员类型",
+        //         prop: "personTypeName",
+        //         width: "140",
+        //         type: "em_selectUrl",
+        //         params: "personTypeId",
+        //         optionUrl: "gardens/persontype/queryAll",
+        //         alter_show: true,
+        //         add_show: true
+        //
+        //       },
+        //       {
+        //         name: "电话",
+        //         prop: "telephone",
+        //         width: "140",
+        //         type: "em_input",
+        //         placeholder: "电话",
+        //         params: "telephone",
+        //         alter_show: true,
+        //         add_show: true
+        //       },
+        //       {
+        //         name: "从事专业",
+        //         prop: "professional",
+        //         width: "140",
+        //         type: "em_input",
+        //         placeholder: "从事专业",
+        //         params: "professional",
+        //         alter_show: true,
+        //         add_show: true
+        //       },
+        //       {
+        //         name: "工作单位",
+        //         prop: "entName",
+        //         width: "100",
+        //         type: "em_selectUrl",
+        //         params: "entId",
+        //         optionUrl: "gardens/ent/queryAll",
+        //         alter_show: true,
+        //         add_show: true
+        //       },
+        //       {
+        //         name: "备注",
+        //         prop: "memo",
+        //         width: "140",
+        //         type: "em_input",
+        //         placeholder: "备注",
+        //         params: "memo",
+        //         alter_show: true,
+        //         add_show: true
+        //
+        //       },
+        //       {
+        //         name: "排序号",
+        //         prop: "orderNo",
+        //         width: "100",
+        //         type: "em_input",
+        //         placeholder: "排序号",
+        //         params: "orderNo",
+        //         alter_show: true,
+        //         add_show: true
+        //
+        //       }
+        //
+        //
+        //     ]
+        //   }
+        // }
+      }
+    },
+    {
       id: "department_manage",
       title: "部门管理",
       top: 80,
@@ -1336,6 +1728,10 @@ export default {
       class: "em-table-window",
       component: "list_table",
       component_data: {
+        list:{
+          id:"type_manage_list",
+          data:[{name:"人员信息管理",id:"people_inform_manage"},{name:"人员类型管理",id:"people_type_manage"}]
+        },
         people_type_manage:{
           operation: [
             {

@@ -64,7 +64,6 @@
 
 <script>
   import {add, dele, modify, find, downCsvmodel,upLoad} from "@/api/table_operate"
-  import {list, table} from "@/api/list_table";
   import ehcarts from "@/components/echarts/echarts"
   import options from '@/echart_options/options'
   import {fetchChart} from "@/api/chart"
