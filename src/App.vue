@@ -13,22 +13,6 @@
 </script>
 
 <style>
- /* html {
-    height: 100%;
-  }
-  body,#app {
-    background: #333;
-    font-size: 100%;
-    color: #eee;
-    font-family: 'sans-serif', Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    padding: 0;
-    margin: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-  }*/
  html,
  body {
    width: 100%;
@@ -36,6 +20,7 @@
    padding: 0;
    margin: 0;
    overflow: hidden;
+   position: relative;
  }
  #app,#cesiumContainer,#mapContainer {
    font-family: "Avenir", Helvetica, Arial, sans-serif;
