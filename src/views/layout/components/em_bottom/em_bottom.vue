@@ -56,7 +56,7 @@
         win: {
           id: "bottom",
           title: "",
-          top: "94%",
+          top: "",
           left: 20,
           show: true,
           resizable: false,
@@ -76,7 +76,7 @@
       var bodyheight = Number(document.body.clientHeight);
       var bodywidth = Number(document.body.clientWidth);
       console.log(bodyheight);
-       //this.win.top=bodyheight-53;
+       //this.win.top=bodyheight-60;
 
     },
     methods: {
