@@ -44,3 +44,6 @@
         }
     };
 </script>
+<style lang="scss" scoped>
+  @import "em_select";
+</style>

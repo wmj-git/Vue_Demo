@@ -7,6 +7,14 @@ export function findByThisUser() {
   })
 }
 
+export function findMenuByThisUser(obj) {
+  return request({
+    url: "/user/resource/findMenuByThisUser",
+    method: 'get',
+    params:obj
+  })
+}
+
 export function addResource(_data) {
   return request({
     url: "/user/resource/addResource",

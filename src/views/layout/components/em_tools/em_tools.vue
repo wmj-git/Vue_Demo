@@ -33,7 +33,7 @@
         win: {
           id: "em_tool",
           title: "",
-          top: "85%",
+          top: "",
           left:"calc(100% - 450px)",
           right:20,
           show: true,

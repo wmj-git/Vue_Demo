@@ -29,7 +29,7 @@
         win: {
           id: "nav_win",
           title: "",
-          top: "90.5%",
+          top: "",
           left: "",
           show: true,
           resizable: false,
@@ -50,7 +50,6 @@
       findByThisUserFn() {//更新权限数据
         findByThisUser().then((response) => {
           this.$store.commit("user/set_permissions", response.data);
-          console.log(treeStructure(this.$store.getters["user/permissions"]));
         });
       },
       handleSelect(key, keyPath) {

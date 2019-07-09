@@ -1,26 +1,30 @@
 @import "../../styles/index/variable";
-$r:32;
-.window{
+
+$r: 32;
+.window {
   background-color: transparent;
 }
+
 /*nav*/
 .panel.window.#{em-nav-window}.panel-htop {
-  background:url("../../assets/image/footer.png") no-repeat;
+  background: url("../../assets/image/footer.png") no-repeat;
   border: none;
   left: 50%;
   transform: translateX(-44.2%);
   z-index: 1606 !important;
   height: 100px;
-  background-size:100%;
+  background-size: 100%;
+  position: absolute;
   padding: 3/$r+rem 20/$r+rem 0 20/$r+rem;
+  bottom: -16px;
 }
 
 
 .panel.window.#{em-nav-window}.panel-htop /deep/ {
-  .el-menu,.panel-body {
+  .el-menu, .panel-body {
     background-color: transparent;
-    border:none;
-    display: contents;//鼠标十字箭头
+    border: none;
+    display: contents; //鼠标十字箭头
   }
 }
 
@@ -29,18 +33,21 @@ $r:32;
 .panel.window.#{em-title-window}.panel-htop {
   background: url("../../assets/image/title.gif") no-repeat center;
   background-size: 100% 100%;
-  border:none;
+  border: none;
 }
-.panel.window.#{em-title-window}.panel-htop /deep/{
+
+.panel.window.#{em-title-window}.panel-htop /deep/ {
   .panel-body {
     background: transparent;
   }
 }
-@media screen and (max-width:1440px) {
+
+@media screen and (max-width: 1440px) {
   .panel.window.em-nav-window.panel-htop {
     background: none;
   }
 }
+
 /*@media screen and (min-width:1025px) and (max-width:1280px) {
   .panel.window.em-nav-window.panel-htop {
     background: none;
@@ -48,21 +55,20 @@ $r:32;
 }*/
 
 
-
 /*warn-button*/
 .panel.window.#{em-warn-window}.panel-htop {
-  background:transparent;
-  border:none;
+  background: transparent;
+  border: none;
 }
 
 /*risk-window风险等级*/
 .panel.window.#{em-risk-window}.panel-htop {
-  background:transparent;
-  border:none;
+  background: transparent;
+  border: none;
   text-align: right;
 }
 
-.panel.window.#{em-risk-window}.panel-htop /deep/{
+.panel.window.#{em-risk-window}.panel-htop /deep/ {
   .panel-body {
     background: transparent;
     padding-top: 10px;
@@ -70,19 +76,22 @@ $r:32;
 }
 
 /*menu-window*/
-.panel.window.#{em-menu-window}.panel-htop{
+.panel.window.#{em-menu-window}.panel-htop {
   background: transparent;
-  border:none;
-  padding:0;
+  border: none;
+  padding: 0;
 }
-.panel.window.#{em-menu-window}.panel-htop /deep/{
-  .menu,.el-menu,.panel-body{
-     background: transparent;
-   }
-  .el-menu{
+
+.panel.window.#{em-menu-window}.panel-htop /deep/ {
+  .menu, .el-menu, .panel-body {
+    background: transparent;
+  }
+
+  .el-menu {
     border-right: 0;
   }
-  .panel-header{
+
+  .panel-header {
     border-bottom: none;
     margin-bottom: 5/$r+rem;
     padding: 6/$r+rem !important;
@@ -90,13 +99,14 @@ $r:32;
 
 }
 
-@media screen and (min-width:1281px) and (max-width:1440px) {
-  .panel.window.#{em-menu-window}.panel-htop{
+@media screen and (min-width: 1281px) and (max-width: 1440px) {
+  .panel.window.#{em-menu-window}.panel-htop {
     height: 430px;
   }
 }
-@media screen and (min-width:1921px) {
-  .panel.window.#{em-menu-window}.panel-htop{
+
+@media screen and (min-width: 1921px) {
+  .panel.window.#{em-menu-window}.panel-htop {
     height: 460px;
   }
 }
@@ -110,30 +120,31 @@ $r:32;
   border-top: 1px solid #d8bb37;
   border-bottom: 1px solid #d8bb37;
   border-radius: unset;
+  position: fixed;
+  bottom: 4px;
 }
 
 /*toolList*/
 .panel.window.#{em-tool-window}.panel-htop {
- background: transparent;
- border:none;
-}
-@media screen and (min-width:1025px) and (max-width:1440px) {
-  .panel.window.em-tool-window.panel-htop {
-    top: 83% !important;
-  }
+  background: transparent;
+  border: none;
+  position: fixed;
+  bottom: 60px;
 }
 
 
 /*table-window*/
-.window-shadow{
+.window-shadow {
   border: none;
   box-shadow: none;
   background: transparent;
 }
-.window .window-header{
-  padding:6/$r+rem;//IE 设置panel-header无效
+
+.window .window-header {
+  padding: 6/$r+rem; //IE 设置panel-header无效
 }
-.panel.window.#{em-table-window}.panel-htop{
+
+.panel.window.#{em-table-window}.panel-htop {
   background: $background-table-base;
   border: 18px solid transparent;
   -webkit-border-image: url("../../../src/assets/image/table_border.png") 20 26 20 26 round;
@@ -144,16 +155,17 @@ $r:32;
   -webkit-border-radius: 20px;
   -moz-border-radius: 20px;
   border-radius: 20px;
-  overflow: visible;//table-dialog遮罩
+  overflow: visible; //table-dialog遮罩
 
 }
+
 /*slider*/
-.panel.window.#{em-slider-window}.panel-htop{
+.panel.window.#{em-slider-window}.panel-htop {
   border: none;
   background: transparent;
 }
 
 /*layout-window*/
-.panel.window.#{em-layout-window}.panel-htop{
-   background: rgba(100, 98, 89, 0.8);
+.panel.window.#{em-layout-window}.panel-htop {
+  background: rgba(100, 98, 89, 0.8);
 }
