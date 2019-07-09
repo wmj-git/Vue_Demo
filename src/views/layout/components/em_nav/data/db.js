@@ -61,7 +61,7 @@ export const db_buttonGroup=[
         "icon": "el-icon-unit-manage",
         "id": "nav_protect_company",
         "control_id": "protect_company",
-        "title": "维护单位",
+        "title": "养护单位",
         "show": false
       },
       {
@@ -231,13 +231,6 @@ export const db_buttonGroup=[
     title: "系统管理",
     width: 150,
     list: [
-      // {
-      //   "icon": "el-icon-type-manage",
-      //   "id": "nav_type_manage",
-      //   "control_id": "type_manage",
-      //   "title": "类型管理",
-      //   "show": false
-      // },
       {
         "icon": "el-icon-role-manage",
         "id": "nav_role_manage",

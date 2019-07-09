@@ -113,7 +113,7 @@
       return {
         list: {
           id:"type_manage_list",
-          data:[{name:"人员类型管理",id:"people_type_manage"},{name:"人员信息管理",id:"people_inform_manage"}]
+          data:[{name:"人员信息管理",id:"people_inform_manage"},{name:"人员类型管理",id:"people_type_manage"}]
         },
         digital_table_id:"people_inform_manage",
         label: [],

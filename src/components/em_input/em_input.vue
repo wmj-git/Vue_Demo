@@ -17,7 +17,8 @@
       data(){
            return {
                input:"",
-               params:this.operation.params
+               params:this.operation.params,
+
            }
       }
     };
