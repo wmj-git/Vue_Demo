@@ -131,6 +131,7 @@
         dialogFormVisible: false, //导入表格弹框控制显示隐藏的布尔值
         action:"",
         fileList: [],
+        isAddEventClick:false,
         headers:{
           "Authorization":getToken()
         },
@@ -151,10 +152,7 @@
           return val.add_show
         });
         this.init(); //初始化表格数据
-        this.bus.$on(this.data[this.digital_table_id].table.id, obj => {// 通过按钮组件（添加，删除..）的点击事件触发此组件的control方法
-          this.control(obj);
-          console.log(obj);
-        });
+
       },
 
     methods: {
@@ -166,13 +164,10 @@
         this.label_input=this.data[this.digital_table_id].table.label.filter(val=>{
           return val.add_show
         });
-        this.bus.$on(this.data[this.digital_table_id].table.id, obj => {// 通过按钮组件（添加，删除..）的点击事件触发此组件的control方法
-          this.control(obj);
-          console.log(obj);
-        });
         this.$refs.child[0].complex_em_input_select="";
         this.$refs.child[0].input="";
         this.init();
+
       },
       handleSelectionChange(val) {// 多选框（选中删除）
         this.multipleSelection = val;
@@ -202,6 +197,7 @@
           pageNum: this.currentPage,
           pageSize: this.pageSize
         };
+
         if (this.$refs.child[0].input && this.$refs.child[0].params) {                              //input框是操作中第一个组件时
           console.log(this.$refs.child[0].input);
           let role_manage_input = this.$refs.child[0].input;
@@ -214,7 +210,7 @@
             let commo_input = this.$refs.child[0].input;
             obj[comlex_input] = commo_input;
           }
-
+          console.log(this.$refs.child[0]);
           find({                      //页面渲染时拿表格数据
             url: this.data[this.digital_table_id].table.table_url,
             params: obj
@@ -238,14 +234,14 @@
 
             this.tableData = res.data.list;
             this.totalSize = res.data.total;
-          })
+          });
 
-
+          this.control();
 
       },
-      control(obj) {
-        this[obj.fn](obj);
-
+      control() {
+        this.bus.$off(this.data[this.digital_table_id].table.id)
+        this.bus.$on(this.data[this.digital_table_id].table.id, obj => this[obj.fn](obj));
       },
       add(obj) {
         console.log(this.$refs.dialog);

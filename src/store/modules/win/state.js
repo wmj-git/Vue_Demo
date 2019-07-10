@@ -701,7 +701,8 @@ export default {
           data:[
             {name:"肥料种类管理",id:"fertilizer_type_manage"},
             {name:"肥料调动记录",id:"fertilizer_mobility_record"},
-            {name:"施肥规格",id:"fertilization_specification_info"}
+            {name:"施肥规格",id:"fertilization_specification_info"},
+            {name:"施肥计划",id:"fertilization_program"}
             ]
         },
         fertilizer_type_manage:{
@@ -888,12 +889,12 @@ export default {
               type: "complex_em_input",
               select: [
                 {
-                  name: "姓名",
-                  params: "name"
+                  name: "肥料名称",
+                  params: "fertilizerName"
                 },
                 {
-                  name: "职务",
-                  params: "duty"
+                  name: "化学式",
+                  params: "fertilizerEname"
                 }
               ]
 
@@ -930,112 +931,275 @@ export default {
             id: "fertilization_specification_info_table",
             table_url: "/gardens/specificationinfo/queryAllByPage",
             label: [{
-              name: "姓名",
-              prop: "name",
+              name: "植物名称",
+              prop: "plantCname",
               width: "100",
               type: "em_input",
-              placeholder: "名字",
-              params: "name",
+              placeholder: "植物名称",
+              params: "plantCname",
               alter_show: true,
               add_show: true
             },
-              {
-                name: "性别",
-                prop: "sex",
-                width: "100",
-                type: "em_select",
-                params: "sex",
-                options: [{
-                  value: "男",
-                  label: "男"
-                },
-                  {
-                    value: "女",
-                    label: "女"
-                  }
 
-                ],
-                alter_show: true,
-                add_show: true
-              },
               {
-                name: "职务",
-                prop: "duty",
+                name: "植物英文名",
+                prop: "plantEname",
                 width: "140",
                 type: "em_input",
-                placeholder: "职务",
-                params: "duty",
+                placeholder: "植物英文名",
+                params: "plantEname",
+                alter_show: true,
+                add_show: true
+              },
+              // {
+              //   name: "人员类型",
+              //   prop: "personTypeName",
+              //   width: "140",
+              //   type: "em_selectUrl",
+              //   params: "personTypeId",
+              //   optionUrl: "gardens/persontype/queryAll",
+              //   alter_show: true,
+              //   add_show: true
+              //
+              // },
+              {
+                name: "肥料名称",
+                prop: "fertilizerName",
+                width: "140",
+                type: "em_input",
+                placeholder: "肥料名称",
+                params: "fertilizerName",
                 alter_show: true,
                 add_show: true
               },
               {
-                name: "人员类型",
-                prop: "personTypeName",
+                name: "化学式",
+                prop: "fertilizerEname",
                 width: "140",
-                type: "em_selectUrl",
-                params: "personTypeId",
-                optionUrl: "gardens/persontype/queryAll",
+                type: "em_input",
+                placeholder: "化学式",
+                params: "fertilizerEname",
+                alter_show: true,
+                add_show: true
+              },
+              // {
+              //   name: "施肥规格",
+              //   prop: "fertilizationSpecification",
+              //   width: "100",
+              //   type: "em_selectUrl",
+              //   params: "entId",
+              //   optionUrl: "gardens/ent/queryAll",
+              //   alter_show: true,
+              //   add_show: true
+              // },
+              {
+                name: "施肥规格",
+                prop: "fertilizationSpecification",
+                width: "140",
+                type: "em_input",
+                placeholder: "施肥规格",
+                params: "fertilizationSpecification",
                 alter_show: true,
                 add_show: true
 
               },
               {
-                name: "电话",
-                prop: "telephone",
-                width: "140",
-                type: "em_input",
-                placeholder: "电话",
-                params: "telephone",
-                alter_show: true,
-                add_show: true
-              },
-              {
-                name: "从事专业",
-                prop: "professional",
-                width: "140",
-                type: "em_input",
-                placeholder: "从事专业",
-                params: "professional",
-                alter_show: true,
-                add_show: true
-              },
-              {
-                name: "工作单位",
-                prop: "entName",
+                name: "最大规格",
+                prop: "maxSpecification",
                 width: "100",
-                type: "em_selectUrl",
-                params: "entId",
-                optionUrl: "gardens/ent/queryAll",
+                type: "em_input",
+                placeholder: "最大规格",
+                params: "maxSpecification",
                 alter_show: true,
                 add_show: true
+
+              },
+              {
+                name: "最小规格",
+                prop: "minSpecification",
+                width: "100",
+                type: "em_input",
+                placeholder: "最小规格",
+                params: "minSpecification",
+                alter_show: true,
+                add_show: true
+
               },
               {
                 name: "备注",
-                prop: "memo",
-                width: "140",
+                prop: "remark",
+                width: "100",
                 type: "em_input",
                 placeholder: "备注",
-                params: "memo",
+                params: "remark",
                 alter_show: true,
                 add_show: true
 
               },
-              {
-                name: "排序号",
-                prop: "orderNo",
-                width: "100",
-                type: "em_input",
-                placeholder: "排序号",
-                params: "orderNo",
-                alter_show: true,
-                add_show: true
-
-              }
 
 
             ]
           }
-        }
+        },
+        fertilization_program:{
+          operation: [
+            {
+              id: "fertilization_program_select",
+              type: "complex_em_input",
+              select: [
+                {
+                  name: "肥料名称",
+                  params: "fertilizerName"
+                },
+                {
+                  name: "化学式",
+                  params: "fertilizerEname"
+                }
+              ]
+
+            },
+            {
+              id: "fertilization_program_button_search",
+              type: "em_button",
+              icon: "el-icon-search",
+              operate: "查询",
+              control_id: "fertilization_program_table",
+              fn: "search"
+            },
+            {
+              id: "fertilization_program_button_add",
+              type: "em_button",
+              icon: "el-icon-plus",
+              operate: "添加",
+              control_id: "fertilization_program_table",
+              fn: "add",
+              url: "/gardens/fertilizationProgram/add"
+            },
+
+            {
+              id: "fertilization_program_button_dele",
+              type: "em_button",
+              icon: "el-icon-delete",
+              operate: "删除",
+              control_id: "fertilization_program_table",
+              fn: "dele",
+              url: "/gardens/fertilizationProgram/deletes"
+            }
+          ],
+          table: {
+            id: "fertilization_specification_info_table",
+            table_url: "/gardens/fertilizationProgram/queryAllByPage",
+            label: [{
+              name: "植物名称",
+              prop: "plantCname",
+              width: "100",
+              type: "em_input",
+              placeholder: "植物名称",
+              params: "plantCname",
+              alter_show: true,
+              add_show: true
+            },
+
+              {
+                name: "植物英文名",
+                prop: "plantEname",
+                width: "140",
+                type: "em_input",
+                placeholder: "植物英文名",
+                params: "plantEname",
+                alter_show: true,
+                add_show: true
+              },
+              // {
+              //   name: "人员类型",
+              //   prop: "personTypeName",
+              //   width: "140",
+              //   type: "em_selectUrl",
+              //   params: "personTypeId",
+              //   optionUrl: "gardens/persontype/queryAll",
+              //   alter_show: true,
+              //   add_show: true
+              //
+              // },
+              {
+                name: "肥料名称",
+                prop: "fertilizerName",
+                width: "140",
+                type: "em_input",
+                placeholder: "肥料名称",
+                params: "fertilizerName",
+                alter_show: true,
+                add_show: true
+              },
+              {
+                name: "化学式",
+                prop: "fertilizerEname",
+                width: "140",
+                type: "em_input",
+                placeholder: "化学式",
+                params: "fertilizerEname",
+                alter_show: true,
+                add_show: true
+              },
+              // {
+              //   name: "施肥规格",
+              //   prop: "fertilizationSpecification",
+              //   width: "100",
+              //   type: "em_selectUrl",
+              //   params: "entId",
+              //   optionUrl: "gardens/ent/queryAll",
+              //   alter_show: true,
+              //   add_show: true
+              // },
+              {
+                name: "施肥规格",
+                prop: "fertilizationSpecification",
+                width: "140",
+                type: "em_input",
+                placeholder: "施肥规格",
+                params: "fertilizationSpecification",
+                alter_show: true,
+                add_show: true
+
+              },
+              {
+                name: "最大规格",
+                prop: "maxSpecification",
+                width: "100",
+                type: "em_input",
+                placeholder: "最大规格",
+                params: "maxSpecification",
+                alter_show: true,
+                add_show: true
+
+              },
+              {
+                name: "最小规格",
+                prop: "minSpecification",
+                width: "100",
+                type: "em_input",
+                placeholder: "最小规格",
+                params: "minSpecification",
+                alter_show: true,
+                add_show: true
+
+              },
+              {
+                name: "备注",
+                prop: "remark",
+                width: "100",
+                type: "em_input",
+                placeholder: "备注",
+                params: "remark",
+                alter_show: true,
+                add_show: true
+
+              },
+
+
+            ]
+          }
+        },
       }
     },
     {
