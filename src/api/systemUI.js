@@ -412,4 +412,22 @@ export const systemData=[ //默认数据模型
     "title": "权限管理",
     "show": false
   },
+  {
+    system_id: "menu",
+    system_type: "win",
+    id: "21",
+    parentId: "0",
+    layout: {},
+    title: "_",
+    top: "20%",
+    left: 20,
+    width: 100,
+    height: 450,
+    show: false,
+    resizable: false,
+    maximizable: false,
+    class: "em-menu-window",
+    component: "em_menu",
+    component_data: {}
+  }
 ];

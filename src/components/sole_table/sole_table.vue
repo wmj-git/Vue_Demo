@@ -67,7 +67,7 @@
                          :prop="item.prop"
                          :label="item.name"
                          :min-width="item.width"
-                         align="center"
+                          align="center"
                          :show-overflow-tooltip="true"
         >
         </el-table-column>
@@ -105,7 +105,6 @@
 </template>
 
 <script>
-
 
   import {add, dele, modify, find, downCsvmodel, upLoad, resetPassword} from "@/api/table_operate"
   import em_button from "@/components/em_button/em_button"

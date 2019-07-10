@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es5",
+    "sourceMap": true
+  },
+  "exclude": [
+    "node_modules"
+  ],
+
+  "mgs": "必填",
+  "data": {
+
+  },
+  "status": 200,
+  "token": "sdfsfsdfdsf123"
+}

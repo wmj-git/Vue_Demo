@@ -116,12 +116,12 @@ export function systemUI({commit, state}) {
 
       commit(SET_PERMISSIONS, response.data);
 
-      systemData.forEach(function (_obj) {
-        response.data.forEach(function (_item) {
-          if(_obj.system_id===_item.resourceCode){
-            _obj.id=_item.id;
-            _obj.parentId=_item.parentId;
-            _systemData.push(_obj);
+      response.data.forEach(function (_obj) {
+        systemData.forEach(function (_item) {
+          if(_obj.resourceCode===_item.system_id){
+            _item.id=_obj.id;
+            _item.parentId=_obj.parentId;
+            _systemData.push(_item);
           }
         })
       });

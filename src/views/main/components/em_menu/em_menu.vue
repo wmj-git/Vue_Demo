@@ -6,7 +6,7 @@
                  @select="handleSelect"
                  :collapse="isCollapse">
           <template v-for="item in group">
-            <el-menu-item :index="item.id">
+            <el-menu-item :index="item.system_id">
               <i :class="item.icon"></i>
               <span slot="title">{{item.title}}</span>
             </el-menu-item>
@@ -34,13 +34,13 @@
         console.log(key);
         let _key = null;
         this.group.forEach(function (_obj) {
-            if(key===_obj.id){
+            if(key===_obj.system_id){
               _key=_obj.control_id;
             }
         });
         this.$store.commit('win/win_open', {
           win_obj: {
-            id: _key
+            system_id: _key
           }
         });
       }
@@ -53,8 +53,8 @@
       this.bus.$on(this.id, function (obj) {
         console.log(obj);
         this.group = obj.list;
-        $("#" + this.id).window("setTitle", obj.title);
-        $("#" + this.id).window("resize", {
+        $("#" + obj.id).window("setTitle", obj.title);
+        $("#" + obj.id).window("resize", {
           width: obj.width
         });
 
