@@ -302,7 +302,6 @@
       },
       dele(obj) {
         this.multipleSelection.forEach(val => {
-          console.log(val);
           this.ids.push(val.id);   //提取出需要传给后台的参数ids
         });
         if (this.ids.length != 0) {
@@ -375,11 +374,13 @@
           }).then(res => {
             console.log(res);
             if (res.statusCode == 200) {
+              this.$refs.dialog.cancel();
               this.$message({
                 message: '恭喜你，添加成功',
                 type: 'success'
               });
               this.init();
+
             }
 
           });

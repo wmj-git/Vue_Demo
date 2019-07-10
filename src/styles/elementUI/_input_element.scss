@@ -3,12 +3,7 @@ $r: 32;
   font-size: 14/$r+rem !important;
 }
 
-/*时间显示框*/
-.data_pick /deep/ {
-  .el-input__icon{
-    line-height: 25/$r+rem;
-  }
-}
+
 
 /*form表单中的文本框*/
 .el-form /deep/ {
@@ -19,11 +14,17 @@ $r: 32;
 }
 
 .operation {
+  .el-input__icon{
+    line-height: 25/$r+rem;/*时间显示框*/
+  }
   .el-input--suffix .el-input__inner, .el-input__inner {
     height: 25/$r+rem;
     line-height: 25/$r+rem;
 
     &::-webkit-input-placeholder {
+      color: #707786; //operation
+    }
+    &:-ms-input-placeholder {
       color: #707786; //operation
     }
   }
@@ -58,6 +59,9 @@ $r: 32;
   }
 
   textarea::-webkit-input-placeholder {
+    color: #707786;
+  }
+  textarea:-ms-input-placeholder {
     color: #707786;
   }
 }

@@ -122,7 +122,6 @@
 
           },
          confirm(){
-           this.dialogFormVisible = false;
            console.log(this.label);
            this.label.forEach((val)=>{
                  if (this.$refs.form_data) {

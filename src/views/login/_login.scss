@@ -60,6 +60,9 @@ video {
   .el-input__inner {
     height: 40/$r+rem;
     line-height: 40/$r+rem;
+    &:-ms-input-placeholder {
+      color: #707786; //input
+    }
   }
 }
 

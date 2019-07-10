@@ -145,7 +145,6 @@
         // findMenuByThisUser({"pid":7}).then(res=>{
         //     console.log(res)
         // });
-        console.log(this.data);
         this.table_id=this.data[this.digital_table_id].table.id;
         this.label=this.data[this.digital_table_id].table.label;
         this.label_input=this.data[this.digital_table_id].table.label.filter(val=>{
@@ -164,8 +163,16 @@
         this.label_input=this.data[this.digital_table_id].table.label.filter(val=>{
           return val.add_show
         });
-        this.$refs.child[0].complex_em_input_select="";
-        this.$refs.child[0].input="";
+        this.$nextTick(_=>{
+        for(var i=0;i<this.$refs.child.length;i++){
+          console.log("我是第"+i);
+          if (this.$refs.child[i].input && this.$refs.child[i].params) {
+            console.log("清空");
+            this.$refs.child[i].input="";
+            this.$refs.child[i].params="";
+          }
+          console.log("啦啦啦");
+        }});
         this.init();
 
       },
@@ -197,41 +204,42 @@
           pageNum: this.currentPage,
           pageSize: this.pageSize
         };
+        this.$nextTick(_=>{
 
-        if (this.$refs.child[0].input && this.$refs.child[0].params) {                              //input框是操作中第一个组件时
-          console.log(this.$refs.child[0].input);
-          let role_manage_input = this.$refs.child[0].input;
-          let params = this.$refs.child[0].params;
-          obj[params] = role_manage_input;
-        }
-        if (this.$refs.child[0].complex_em_input_select && this.$refs.child[0].input) {   //选择参数进行查询
-          console.log(this.$refs.child[0].complex_em_input_select);
-          let comlex_input = this.$refs.child[0].complex_em_input_select;
-            let commo_input = this.$refs.child[0].input;
-            obj[comlex_input] = commo_input;
+          for(var i=0;i<this.$refs.child.length;i++){
+            console.log(this.$refs.child[i]);
+            if (this.$refs.child[i].input && this.$refs.child[i].params) {                              //input框是操作中第一个组件时
+              console.log(this.$refs.child[i].input);
+              let role_manage_input = this.$refs.child[i].input;
+              let params = this.$refs.child[i].params;
+              obj[params] = role_manage_input;
+            }
+            if (this.$refs.child[i].complex_em_input_select && this.$refs.child[i].input) {   //选择参数进行查询
+              console.log(this.$refs.child[i].complex_em_input_select);
+              let comlex_input = this.$refs.child[i].complex_em_input_select;
+              let commo_input = this.$refs.child[i].input;
+              obj[comlex_input] = commo_input;
+            }
           }
-          console.log(this.$refs.child[0]);
+          // if (this.$refs.child[0].input && this.$refs.child[0].params) {                              //input框是操作中第一个组件时
+          //   console.log(this.$refs.child[0].input);
+          //   let role_manage_input = this.$refs.child[0].input;
+          //   let params = this.$refs.child[0].params;
+          //   obj[params] = role_manage_input;
+          // }
+          // if (this.$refs.child[0].complex_em_input_select && this.$refs.child[0].input) {   //选择参数进行查询
+          //   console.log(this.$refs.child[0].complex_em_input_select);
+          //   let comlex_input = this.$refs.child[0].complex_em_input_select;
+          //   let commo_input = this.$refs.child[0].input;
+          //   obj[comlex_input] = commo_input;
+          // }
+
+        });
           find({                      //页面渲染时拿表格数据
             url: this.data[this.digital_table_id].table.table_url,
             params: obj
           }).then(res => {
             console.log(res);
-            let _listField = new RegExp('isSpecial');
-            res.data.list.forEach((_val)=>{
-              for(let _i in _val){
-                if (_listField.test(_i)) {
-                  if(_val[_i]===0){
-                    _val[_i]="否";
-                  }
-                  else if(_val[_i]===1){
-                    _val[_i]="是"
-                  }
-                }
-
-              }
-
-            });
-
             this.tableData = res.data.list;
             this.totalSize = res.data.total;
           });
@@ -240,7 +248,7 @@
 
       },
       control() {
-        this.bus.$off(this.data[this.digital_table_id].table.id)
+        this.bus.$off(this.data[this.digital_table_id].table.id);
         this.bus.$on(this.data[this.digital_table_id].table.id, obj => this[obj.fn](obj));
       },
       add(obj) {
