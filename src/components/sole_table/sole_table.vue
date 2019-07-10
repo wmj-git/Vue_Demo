@@ -375,11 +375,13 @@
           }).then(res => {
             console.log(res);
             if (res.statusCode == 200) {
+              this.$refs.dialog.cancel();
               this.$message({
                 message: '恭喜你，添加成功',
                 type: 'success'
               });
               this.init();
+
             }
 
           });
