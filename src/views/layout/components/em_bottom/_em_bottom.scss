@@ -12,6 +12,9 @@ $r: 32;
       &::-webkit-input-placeholder {
         color: #707786; //input
       }
+      &:-ms-input-placeholder {
+        color: #707786; //input
+      }
     }
 
     .em-btn-scene {
