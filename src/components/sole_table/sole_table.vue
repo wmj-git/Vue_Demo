@@ -303,7 +303,6 @@
       },
       dele(obj) {
         this.multipleSelection.forEach(val => {
-          console.log(val);
           this.ids.push(val.id);   //提取出需要传给后台的参数ids
         });
         if (this.ids.length != 0) {

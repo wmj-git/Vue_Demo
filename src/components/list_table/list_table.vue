@@ -240,7 +240,7 @@
 
       },
       control() {
-        this.bus.$off(this.data[this.digital_table_id].table.id)
+        this.bus.$off(this.data[this.digital_table_id].table.id);
         this.bus.$on(this.data[this.digital_table_id].table.id, obj => this[obj.fn](obj));
       },
       add(obj) {
