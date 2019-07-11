@@ -100,6 +100,7 @@
   import em_select from "@/components/em_select/em_select"
   import complex_em_input from "@/components/complex_em_input/complex_em_input"
   import em_dialogs from "@/components/em_dialogs/em_dialogs"
+  import em_date from "@/components/em_date/em_date"
   export default {
     name: "compone",
     components: {
@@ -107,7 +108,8 @@
       em_input,
       em_select,
       complex_em_input,
-      em_dialogs
+      em_dialogs,
+      em_date
     },
     props: ["data"],
     data() {
@@ -165,13 +167,14 @@
         });
         this.$nextTick(_=>{
         for(var i=0;i<this.$refs.child.length;i++){
-          console.log("我是第"+i);
-          if (this.$refs.child[i].input && this.$refs.child[i].params) {
+          if (this.$refs.child[i].complex_em_input_select){
             console.log("清空");
             this.$refs.child[i].input="";
-            this.$refs.child[i].params="";
+            this.$refs.child[i].complex_em_input_select="";
           }
-          console.log("啦啦啦");
+          if (this.$refs.child[i].input && this.$refs.child[i].params) {
+            this.$refs.child[i].input=""
+          }
         }});
         this.init();
 
@@ -219,6 +222,19 @@
               let comlex_input = this.$refs.child[i].complex_em_input_select;
               let commo_input = this.$refs.child[i].input;
               obj[comlex_input] = commo_input;
+            }
+            if (this.$refs.child[i].time1) {
+              let time1 = this.$refs.child[i].time1;    //时间范围查询参数
+              if (time1) {
+                obj.startTime = time1.getTime();
+
+              }
+            }
+            if (this.$refs.child[i].time2) {
+              let time2 = this.$refs.child[i].time2;
+              if (time2) {
+                obj.endTime = time2.getTime();
+              }
             }
           }
           // if (this.$refs.child[0].input && this.$refs.child[0].params) {                              //input框是操作中第一个组件时
