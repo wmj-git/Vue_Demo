@@ -2,15 +2,14 @@ import { WIN_OPEN, WIN_CLOSE, DIALOG_OPEN, DIALOG_CLOSE, SET_WIN } from "../../m
 
 export default {
 
-
   [SET_WIN] (state, { win }) {
     state.win = win;
   },
   [WIN_OPEN] (state, { win_obj }) {
     state.win.forEach(function (el) {
-      if (el.system_id === win_obj.system_id && el.show === false) {
+      if (el.id === win_obj.id && el.show === false) {
         el.show = true;
-      } else if (el.system_id === win_obj.system_id && el.show === true) {
+      } else if (el.id === win_obj.id && el.show === true) {
         el.show = false;
       }
     })
@@ -24,7 +23,7 @@ export default {
       })
     } else {
       state.win.forEach(function (el) {
-        if (el.system_id === win_id) {
+        if (el.id === win_id) {
           el.show = false;
         }
       })
