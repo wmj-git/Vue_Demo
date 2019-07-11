@@ -414,3 +414,7 @@ export const nav = {
   ]
 };
 
+export const winComponent = {
+  systemType: ["win"],
+  uiData: []
+};

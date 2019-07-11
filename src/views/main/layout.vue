@@ -15,8 +15,14 @@
     <em_tools></em_tools>
     <!--功能窗口-->
     <template v-for="win in wins" v-if="win.show">
-      <win :id="win.id" :data="win">
+      <win :id="win.system_id" :data="win">
+        <template v-if="win.layout_type=='1'">
+          <el-row>
+
+          </el-row>
+        </template>
         <component :is="win.component" :data="win.component_data"></component>
+        <em-table></em-table>
       </win>
     </template>
     <!--对话框-->
@@ -33,18 +39,14 @@
 
 <script>
 
-  import {nav} from './data/db';
+  import {nav,winComponent} from './data/db';
   import {refreshToken} from '@/api/login';
   import {getNowFormatDate, treeStructure} from '@/utils/tools';
   import {
-    setToken,
-    setTokenTime,
-    getTokenTime,
-    TokenName,
-    RefreshTokenName,
-    getExpires,
-    setExpires
+    setToken, setTokenTime, getTokenTime,
+    TokenName, RefreshTokenName, getExpires, setExpires
   } from '@/utils/auth';
+
   import win from "@/components/win/win";
   import splitpane from "@/components/splitpane/splitpane";
   import sole_table from "@/components/sole_table/sole_table";
@@ -53,21 +55,23 @@
   import em_dialog from "@/components/em_dialog/em_dialog";
   import button_group from "@/components/button_group/button_group";
   import em_menu from "./components/em_menu/em_menu";
-  import emNav from "./components/emNav/emNav";
-  import emBottom from "./components/emBottom/emBottom";
   import em_logo_title from "./components/em_title/em_logotitle";
   import em_warn from "./components/em_warn/em_warn";
   import em_venture from "./components/em_venture/em_venture";
   import em_chart_window from "./components/em_chart_window/em_chart_window";
   import em_tools from "./components/em_tools/em_tools";
   import em_slider from "./components/em_slider/em_slider";
-  import treeForm from "@/app_components/treeFrom/treeForm";
-  import buttonGroup from "@/app_components/buttonGroup/buttonGroup";
   import em_dialogs from "@/components/em_dialogs/em_dialogs";
   import number_show from "./components/number_show/number_show";
   import echart_alone_show from "./components/echart_alone_show/echart_alone_show";
   import echarts_show from "./components/echarts_show/echarts_show";
   import table_show from "./components/table_show/table_show";
+
+  import emNav from "./components/emNav/emNav";
+  import emBottom from "./components/emBottom/emBottom";
+  import emTable from "@/app_components/emTable/emTable";
+  import treeForm from "@/app_components/treeFrom/treeForm";
+  import buttonGroup from "@/app_components/buttonGroup/buttonGroup";
 
   export default {
     data() {
@@ -79,8 +83,6 @@
       em_dialog,
       button_group,
       em_menu,
-      emNav,
-      emBottom,
       em_logo_title,
       em_warn,
       em_venture,
@@ -90,12 +92,16 @@
       em_chart_window,
       em_tools,
       em_slider,
-      treeForm,
       em_dialogs,
       number_show,
       echart_alone_show,
       echarts_show,
       table_show,
+
+      emNav,
+      emBottom,
+      emTable,
+      treeForm,
       buttonGroup,
     },
     computed: {
@@ -126,7 +132,7 @@
         // console.log("_systemData");
         // console.log(_data);
         //
-        // console.log(ui_data);
+        console.log(ui_data);
         return ui_data;
       },
       wins: function () {
@@ -173,6 +179,32 @@
       //刷新ui数据
       this.$store.dispatch("user/systemUI", {}).then((response) => {
         console.log(response);
+
+
+        let _data = [];
+
+        if (response && response.length > 0) {
+          response.forEach(function (_obj) {
+            winComponent.systemType.forEach(function (_item) {
+              if (_obj.system_type === _item) {
+                _data.push(_obj);
+              }
+            });
+          });
+          _data = treeStructure(_data);
+        }
+
+        let ui_data = [];
+
+        for (let _k in _data) {
+          _data[_k].forEach(function (_obj) {
+            if (_obj.system_type === "win") {
+              ui_data.push(_obj);
+            }
+          });
+        }
+        this.$store.commit("win/set_win",{win:ui_data});//解析浮动窗口数据
+         console.log(this.wins);
       });
 
     },

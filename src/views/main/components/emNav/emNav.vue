@@ -8,7 +8,7 @@
         @select="handleSelect"
       >
         <template v-for="item in navItem">
-          <el-menu-item :index="item.id" class="">{{item.title}}</el-menu-item>
+          <el-menu-item :index="item.system_id" class="">{{item.title}}</el-menu-item>
         </template>
       </el-menu>
     </win>
@@ -22,8 +22,8 @@
   export default {
     data() {
       return {
-        id: "nav",
-        control_id: "menu",
+        id: "",
+        control_id: "",
         activeIndex: '',
         nav: {},
         navItem: []
@@ -35,12 +35,6 @@
     },
     methods: {
       init() {
-
-        /* for(let _k in db_data){
-                if(db_data[_k].){
-
-                }
-         }*/
         this.id=this.data.system_id;
         this.control_id=this.data.control_id;
         this.activeIndex=this.data.activeIndex;
@@ -56,8 +50,8 @@
           this.navItem = _navItem;
         }
 
-        console.log("db_data");
-        console.log(this.data);
+      /*  console.log("db_data");
+        console.log(this.data);*/
 
       },
       findByThisUserFn() {//更新权限数据
@@ -75,7 +69,7 @@
         let _width = null;
         this.navItem.forEach(function (obj) {
 
-          if (obj.id === key) {
+          if (obj.system_id === key) {
             _title = obj.title;
             _list = obj.children;
             _width = obj.width;
@@ -83,13 +77,14 @@
         });
         let _show = null;
         this.$store.state.win.win.forEach(function (el) {
-          if (el.id === _controlId) {
+          if (el.system_id === _controlId) {
             _show = el.show;
           }
         });
 
         if (_show) {
           this.bus.$emit(this.control_id, {
+            id:"menu",
             title: _title,
             list: _list,
             width: _width
@@ -97,11 +92,12 @@
         } else {
           this.$store.commit('win/win_open', {
             win_obj: {
-              id: _controlId
+              system_id: _controlId
             }
           });
           setTimeout(function () {
             _this.bus.$emit(_this.control_id, {
+              id:"menu",
               title: _title,
               list: _list,
               width: _width

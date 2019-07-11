@@ -2,7 +2,6 @@ import { WIN_OPEN, WIN_CLOSE, DIALOG_OPEN, DIALOG_CLOSE, SET_WIN } from "../../m
 
 export default {
 
-
   [SET_WIN] (state, { win }) {
     state.win = win;
   },

@@ -4,6 +4,9 @@
     &::-webkit-input-placeholder {
       color: #707786; //input
     }
+    &:-ms-input-placeholder {
+      color: #707786; //input
+    }
   }
 }
 

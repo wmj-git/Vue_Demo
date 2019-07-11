@@ -20,8 +20,6 @@
 .#{em-btn-special}{
   background: $btn-linear-base;
   color: rgba(255,255,255,0.7) !important;
-  width:60/$r+rem;
-  height: 30/$r+rem;
   border-color: darken($border-color-base,30%);
   border-radius: 5/$r+rem;
   padding: 5/$r+rem 10/$r+rem;

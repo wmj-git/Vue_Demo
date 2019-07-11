@@ -21,7 +21,7 @@ export default {
       top: 80,
       left: 400,
       width: 700,
-      height: 400,
+      height: 560,
       class: "em-table-window",
       show: false,
       component: "sole_table",
@@ -32,7 +32,6 @@ export default {
             type: "em_input",
             placeholder: "中文名",
             params: "roleCname"
-
           },
           {
             id: "role_manage_button_search",
@@ -133,9 +132,7 @@ export default {
               params: "remark",
               alter_show: true,
               add_show: true
-            },
-
-
+            }
           ]
         }
       }
@@ -4172,7 +4169,7 @@ export default {
     },
     {
       id: "scene_data",
-      title: "数据显示",
+      title: "开发测试",//开发测试
       top: 8,
       left: 480,
       width: 400,
