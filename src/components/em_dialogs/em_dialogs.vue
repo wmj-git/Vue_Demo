@@ -111,7 +111,7 @@
                             }
                             else if(_obj.operation.type==="em_selectsUrl"){
                               _obj.value=_value[k];
-                              _obj.value=_obj.value.toString();
+                              _obj.value=eval(_obj.value);
                               console.log(_obj.value)
                             }
                             else if(_obj.operation.type==="em_input"||_obj.operation.type==="em_textarea"){
