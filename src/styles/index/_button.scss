@@ -25,8 +25,8 @@ $r: 32;
 }
 
 /*按钮结合图标悬停效果*/
-.#{em-btn-icon-hover} {
-  background: $background-linear-base;
+.#{em-btn-icon-hover},.#{em-btn-icon-hover-v1}{
+  background: linear-gradient(nth($menu-background,1),nth($menu-background,2));
   border-color: $border-color-base;
   -webkit-transition: all 0.2s linear 0s;
   transition: all 0.2s linear 0s;
@@ -35,17 +35,17 @@ $r: 32;
   display: inline-block;
   position: relative;
   text-transform: capitalize;
-  padding: 12px 0px;
+  padding: -10px 0;
   width: 90px;
-  border-radius: 6px;
+  border-radius: 3px;
   overflow: hidden;
 
   &:before {
-    content: "\27A4";
     font-size: 15px;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+    font-family:element-icons!important;
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
@@ -63,7 +63,6 @@ $r: 32;
     transition: all 0.2s linear 0s;
     text-align: center;
   }
-
   &:hover {
     text-indent: -30px;
   }
@@ -73,7 +72,12 @@ $r: 32;
     text-indent: 0;
   }
 }
-
+.#{em-btn-icon-hover}:before{
+  content: "\e624";
+}
+.#{em-btn-icon-hover-v1}:before{
+  content: "\e592";
+}
 /*按钮边框滑动效果*/
 .#{em-btn-border-animation} {
   color: #fff;

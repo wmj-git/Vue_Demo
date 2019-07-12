@@ -36,12 +36,11 @@
         <div class="table digital_table" style="height: 100%">
           <el-row class="operation">
             <template v-for="item in this.data[digital_table_id].operation">
-              <component :is="item.type" :operation="item" :table_id="table_id" ref="child" @keyup.enter.native="search()"></component>
+              <component :is="item.type" :operation="item" :table_id="table_id" ref="child" @keyup.enter.native="search()" :key="item.id"></component>
             </template>
           </el-row>
           <el-table
             class="my-table"
-            v-loading="listLoading"
             border
             height="600px"
             highlight-current-row
@@ -55,6 +54,7 @@
               type="index"
               fixed="left"
               align="center"
+              :index="table_idx"
             >
             </el-table-column>
             <el-table-column
@@ -120,7 +120,6 @@
         table_id:"",
         label_input:[],
         tableData: [],
-        listLoading:false,
         currentRow: null,
         multipleSelection: [],
         totalSize: null,
@@ -165,7 +164,6 @@
         this.label_input=this.data[this.digital_table_id].table.label.filter(val=>{
           return val.add_show
         });
-        this.$nextTick(_=>{
         for(var i=0;i<this.$refs.child.length;i++){
           if (this.$refs.child[i].complex_em_input_select){
             console.log("清空");
@@ -175,7 +173,7 @@
           if (this.$refs.child[i].input && this.$refs.child[i].params) {
             this.$refs.child[i].input=""
           }
-        }});
+        }
         this.init();
 
       },
@@ -207,11 +205,11 @@
           pageNum: this.currentPage,
           pageSize: this.pageSize
         };
-        this.$nextTick(_=>{
 
           for(var i=0;i<this.$refs.child.length;i++){
             console.log(this.$refs.child[i]);
             if (this.$refs.child[i].input && this.$refs.child[i].params) {                              //input框是操作中第一个组件时
+              console.log(this.$refs.child[i].params);
               console.log(this.$refs.child[i].input);
               let role_manage_input = this.$refs.child[i].input;
               let params = this.$refs.child[i].params;
@@ -237,20 +235,6 @@
               }
             }
           }
-          // if (this.$refs.child[0].input && this.$refs.child[0].params) {                              //input框是操作中第一个组件时
-          //   console.log(this.$refs.child[0].input);
-          //   let role_manage_input = this.$refs.child[0].input;
-          //   let params = this.$refs.child[0].params;
-          //   obj[params] = role_manage_input;
-          // }
-          // if (this.$refs.child[0].complex_em_input_select && this.$refs.child[0].input) {   //选择参数进行查询
-          //   console.log(this.$refs.child[0].complex_em_input_select);
-          //   let comlex_input = this.$refs.child[0].complex_em_input_select;
-          //   let commo_input = this.$refs.child[0].input;
-          //   obj[comlex_input] = commo_input;
-          // }
-
-        });
           find({                      //页面渲染时拿表格数据
             url: this.data[this.digital_table_id].table.table_url,
             params: obj
@@ -401,6 +385,9 @@
           });
         }
 
+      },
+      table_idx(index) {                                   //控制表格数据行号
+        return (this.currentPage - 1) * this.pageSize + index + 1
       },
     }
   }

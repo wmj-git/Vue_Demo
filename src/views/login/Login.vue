@@ -6,7 +6,7 @@
      </video>-->
     <el-col>
       <div class="em-login-title">
-        <p>智慧龙华园林可视化管理平台</p>
+        <p>XXXX园林可视化管理平台</p>
       </div>
       <div class="em-login-content">
         <el-row>

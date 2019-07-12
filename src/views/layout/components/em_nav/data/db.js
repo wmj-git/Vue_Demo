@@ -202,6 +202,13 @@ export const db_buttonGroup=[
         "show": false
       },
       {
+        "icon": "el-icon-grid-manage",
+        "id": "nav_monitor_points_manage",
+        "control_id": "monitor_points_manage",
+        "title": "监控点管理",
+        "show": false
+      },
+      {
         "icon": "el-icon-soil-temp",
         "id": "nav_soil_temperature_manage",
         "control_id": "soil_temperature_manage",
