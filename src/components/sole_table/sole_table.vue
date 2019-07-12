@@ -279,7 +279,7 @@
           this.totalSize = res.data.total;
         })
       },
-      table_idx(index) {
+      table_idx(index) {                         //控制表格数据行号
         return (this.currentPage - 1) * this.pageSize + index + 1
       },
       control(obj) {

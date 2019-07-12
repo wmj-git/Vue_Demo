@@ -1117,7 +1117,7 @@ export default {
                 name: "时间",
                 prop: "reminderTime",
                 width: "180",
-                type: "em_input",
+                type: "em_time",
                 placeholder: "时间",
                 params: "timeString",
                 alter_show: true,
@@ -2976,21 +2976,21 @@ export default {
           table_url: "/gardens/grid/queryAllByPage",
           label: [
             {
-              name: "编号",
+              name: "网格编号",
               prop: "gridNo",
               width: "100",
               type: "em_input",
-              placeholder: "编号",
+              placeholder: "设备编号",
               params: "gridNo",
               add_show: true,
               alter_show: true
             },
             {
-              name: "名称",
+              name: "网格名称",
               prop: "gridName",
               width: "100",
               type: "em_input",
-              placeholder: "名称",
+              placeholder: "设备名称",
               params: "gridName",
               add_show: true,
               alter_show: true
@@ -3018,7 +3018,7 @@ export default {
               alter_show: true
             },
             {
-              name: "创建人日期",
+              name: "创建日期",
               prop: "createDate",
               width: "200",
               add_show: false,
@@ -3034,6 +3034,169 @@ export default {
             //   prop:"personId",
             //   width:"100"
             // },
+            {
+              name: "所属行政区域",
+              prop: "areaCode",
+              width: "200",
+              type: "em_input",
+              placeholder: "所属行政区域",
+              params: "areaCode",
+              add_show: true,
+              alter_show: true
+            },
+          ]
+        }
+      }
+    },
+    {
+      id: "monitor_points_manage",
+      title: "监控点管理",
+      top: 80,
+      left: 400,
+      height: 400,
+      show: false,
+      class: "em-table-window",
+      component: "sole_table",
+      component_data: {
+        operation: [
+          {
+            id: "monitor_points_manage_select",
+            type: "complex_em_input",
+            select: [
+              {
+                name: "编号",
+                params: "gridNo"
+              },
+              {
+                name: "网格名称",
+                params: "gridName"
+              }
+            ]
+
+          },
+          {
+            id: "monitor_points_manage_button_search",
+            type: "em_button",
+            icon: "el-icon-search",
+            operate: "查询",
+            control_id: "monitor_points_manage_table",
+            fn: "search"
+          },
+          {
+            id: "monitor_points_manage_button_add",
+            type: "em_button",
+            icon: "el-icon-plus",
+            operate: "添加",
+            control_id: "monitor_points_manage_table",
+            fn: "add",
+            url: "/gardens/monitoringpoints/add"
+          },
+          {
+            id: "monitor_points_manage_button_modify",
+            type: "em_button",
+            icon: "el-icon-edit",
+            operate: "修改",
+            control_id: "monitor_points_manage_table",
+            fn: "modify",
+            url: "/gardens/monitoringpoints/update"
+          },
+          {
+            id: "monitor_points_manage_button_dele",
+            type: "em_button",
+            icon: "el-icon-delete",
+            operate: "删除",
+            control_id: "monitor_points_manage_table",
+            fn: "dele",
+            url: "gardens/monitoringpoints/deletes"
+          },
+          {
+            id: "monitor_points_manage_button_import",
+            type: "em_button",
+            icon: "el-icon-excel_in",
+            operate: "导入excel",
+            fn: "import",
+            control_id: "monitor_points_manage_table",
+            download_url: "/gardens/monitoringpoints/downCsvmodel",
+            import_url: "/gardens/monitoringpoints/ajaxUpload"
+
+          },
+          {
+            id: "monitor_points_manage_button_export",
+            type: "em_button",
+            icon: "el-icon-excel_out",
+            operate: "导出excel",
+            fn: "export",
+            control_id: "monitor_points_manage_table",
+            url: "/gardens/monitoringpoints/exportCsv"
+          }
+        ],
+        table: {
+          id: "monitor_points_manage_table",
+          table_url: "/gardens/monitoringpoints/queryAllByPage",
+          label: [
+            {
+              name: "设备编号",
+              prop: "monitoringPointsNo",
+              width: "100",
+              type: "em_input",
+              placeholder: "设备编号",
+              params: "monitoringPointsNo",
+              add_show: true,
+              alter_show: true
+            },
+            {
+              name: "设备名称",
+              prop: "monitoringPointsName",
+              width: "100",
+              type: "em_input",
+              placeholder: "设备名称",
+              params: "monitoringPointsName",
+              add_show: true,
+              alter_show: true
+
+            },
+            {
+              name: "设备型号",
+              prop: "equipmentType",
+              width: "100",
+              type: "em_input",
+              placeholder: "面积",
+              params: "设备型号",
+              add_show: true,
+              alter_show: true
+
+            },
+            {
+              name: "位置描述",
+              prop: "position",
+              width: "140",
+              type: "em_input",
+              placeholder: "位置描述",
+              params: "position",
+              add_show: true,
+              alter_show: true
+            },
+            {
+              name: "经度",
+              prop: "longitude",
+              width: "140",
+              type: "em_input",
+              placeholder: "经度",
+              params: "longitude",
+              add_show: true,
+              alter_show: true
+            },
+            {
+              name: "纬度",
+              prop: "latitude",
+              width: "140",
+              type: "em_input",
+              placeholder: "纬度",
+              params: "latitude",
+              add_show: true,
+              alter_show: true
+            },
+
             {
               name: "所属行政区域",
               prop: "areaCode",

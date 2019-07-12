@@ -31,6 +31,7 @@
   import em_select from "@/components/em_select/em_select"
   import em_selectUrl from "@/components/em_selectUrl/em_selectUrl"
   import em_selectsUrl from "@/components/em_selectsUrl/em_selectsUrl"
+  import em_time from "@/components/em_time/em_time"
     export default {
         props: {
           label:{
@@ -42,11 +43,12 @@
          em_select,
          em_selectUrl,
          em_selectsUrl,
-         em_textarea
+         em_textarea,
+         em_time
        },
         data(){
            return{
-             refIndex:"", //el-form-item中component的index
+             refIndex:"",    //el-form-item中component的index
              dialogFormVisible:false,
              form: {
              },
@@ -109,10 +111,14 @@
                             if(_obj.operation.type==="em_selectUrl"||_obj.operation.type==="em_select"){
                               _obj.value=_value[k];
                             }
+                            else if(_obj.operation.type==="em_time"){
+                              console.log(_value[k]);
+                              _obj.value=new Date(parseInt(_value[k]));
+                              console.log( _obj.value)
+                            }
                             else if(_obj.operation.type==="em_selectsUrl"){
                               _obj.value=_value[k];
-                              _obj.value=_obj.value.toString();
-                              console.log(_obj.value)
+                              _obj.value=eval(_obj.value);
                             }
                             else if(_obj.operation.type==="em_input"||_obj.operation.type==="em_textarea"){
                               _obj.input=_value[k];
@@ -133,21 +139,24 @@
            this.label.forEach((val)=>{
                  if (this.$refs.form_data) {
                    this.$refs.form_data.forEach((obj,i)=>{
-                      if(obj.operation.params==val.params){
+                      if(obj.operation.params===val.params){
                         if(obj.operation.type==="em_selectUrl"||obj.operation.type==="em_select"){
-                          if(obj.value=="是"){
+                          if(obj.value==="是"){
                             obj.value=1
                           }
-                          else if(obj.value=="否"){
+                          else if(obj.value==="否"){
                             obj.value=0
                           }
-                          if(obj.value=="树"){
+                          if(obj.value==="树"){
                             obj.value=0
                           }
-                          else if(obj.value=="花卉"){
+                          else if(obj.value==="花卉"){
                             obj.value=1
                           }
                           this.form[val.params]=obj.value;
+                        }
+                        if(obj.operation.type==="em_time"){
+                          this.form[val.params]=obj.value.getTime();
                         }
                         if(obj.operation.type==="em_selectsUrl"){
                           this.form[val.params]=obj.value;
@@ -165,7 +174,7 @@
 
            });
            console.log(this.fn);
-           if(this.fn=="modify"){
+           if(this.fn==="modify"){
              console.log(this.alter_obj.id);
              this.form.id=this.alter_obj.id;
            }
