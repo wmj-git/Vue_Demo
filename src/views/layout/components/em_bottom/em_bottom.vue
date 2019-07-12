@@ -18,16 +18,10 @@
         </el-dialog>
         <el-input v-model="input" placeholder="请输入内容" style="width: 150px"></el-input>
 
-        <el-button class="data_button em-btn-border-animation  svg-style" @click="dialogFormVisible = true">
-          <svg>
-            <rect x="0" y="0" fill="none" width="100%" height="100%"></rect>
-          </svg>
+        <el-button class="data_button em-btn-icon-hover" @click="dialogFormVisible = true">
           密码修改
         </el-button>
-        <el-button class="data_button em-btn-border-animation  svg-style" @click="loginOut">
-          <svg>
-            <rect x="0" y="0" fill="none" width="100%" height="100%"></rect>
-          </svg>
+        <el-button class="data_button em-btn-icon-hover" @click="loginOut">
           退&emsp;&emsp;出
         </el-button>
         <el-button class="data_button em-btn-scene" @click="threeMap">

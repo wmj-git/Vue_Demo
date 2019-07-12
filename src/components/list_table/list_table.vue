@@ -36,7 +36,7 @@
         <div class="table digital_table" style="height: 100%">
           <el-row class="operation">
             <template v-for="item in this.data[digital_table_id].operation">
-              <component :is="item.type" :operation="item" :table_id="table_id" ref="child"></component>
+              <component :is="item.type" :operation="item" :table_id="table_id" ref="child" @keyup.enter.native="search()"></component>
             </template>
           </el-row>
           <el-table
@@ -160,7 +160,7 @@
       change(id){
 
         this.digital_table_id=id;
-        console.log(this.digital_table_id);
+        this.table_id=this.data[this.digital_table_id].table.id;
         this.label=this.data[this.digital_table_id].table.label;
         this.label_input=this.data[this.digital_table_id].table.label.filter(val=>{
           return val.add_show
@@ -329,6 +329,7 @@
           }).then(res=>{
             console.log(res);
             if(res.statusCode==200){
+              this.$refs.dialog.cancel();
               this.$message({
                 message: '恭喜你，添加成功',
                 type: 'success'
@@ -345,6 +346,7 @@
           }).then(res=>{
             console.log(res);
             if(res.statusCode==200){
+              this.$refs.dialog.cancel();
               this.$message({
                 message: '恭喜你，修改成功',
                 type: 'success'

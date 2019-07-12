@@ -34,7 +34,7 @@
     <div class="table digital_table">
       <el-row class="operation">
         <template v-for="item in this.data.operation">
-          <component :is="item.type" :operation="item" :table_id="table_id" ref="child"></component>
+          <component :is="item.type" :operation="item" :table_id="table_id" ref="child" @keyup.enter.native="search()"></component>
         </template>
       </el-row>
       <el-table
@@ -392,6 +392,7 @@
           }).then(res => {
             console.log(res);
             if (res.statusCode == 200) {
+              this.$refs.dialog.cancel();
               this.$message({
                 message: '恭喜你，修改成功',
                 type: 'success'

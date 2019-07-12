@@ -580,7 +580,10 @@ export default {
       show: false,
       class: "em-table-window",
       component: "sole_table",
-      component_data: {}
+      component_data: {
+
+
+      }
     },
     {
       id: "road_address",
@@ -595,9 +598,17 @@ export default {
         operation: [
           {
             id: "road_address_input_shortName",
-            type: "em_input",
-            placeholder: "道路名称",
-            params: "roadName"
+            type: "complex_em_input",
+            select: [
+              {
+                name: "道路名称",
+                params: "roadName"
+              },
+              {
+                name: "道路介绍",
+                params: "roadDescription"
+              }
+            ]
 
           },
           {
@@ -615,15 +626,7 @@ export default {
             operate: "添加",
             control_id: "road_address_table",
             fn: "add",
-            url: "/user/dept/addDept"
-          },
-          {
-            id: "road_address_button_modify",
-            type: "em_button",
-            icon: "el-icon-edit",
-            operate: "修改",
-            control_id: "road_address_table",
-            fn: "modify",
+            url: "/gardens/road/add"
           },
           {
             id: "road_address_button_dele",
@@ -632,23 +635,7 @@ export default {
             operate: "删除",
             control_id: "road_address_table",
             fn: "dele",
-            url: "/user/dept/deleteDept"
-          },
-          {
-            id: "road_address_button_import",
-            type: "em_button",
-            icon: "el-icon-excel_in",
-            operate: "导入excel",
-            control_id: "road_address_table",
-            fn: "import"
-          },
-          {
-            id: "road_address_button_export",
-            type: "em_button",
-            icon: "el-icon-excel_out",
-            operate: "导出excel",
-            control_id: "road_address_table",
-            fn: "export"
+            url: "/gardens/road/deletes"
           }
         ],
         table: {
@@ -833,19 +820,16 @@ export default {
               name: "调用者",
               prop: "executor",
               width: "80",
-              type: "em_input",
-              placeholder: "调用者",
-              params: "executor",
-              alter_show: true,
-              add_show: true
+              alter_show:false,
+              add_show: false
             },
               {
                 name: "肥料名称",
                 prop: "fertilizerName",
                 width: "80",
-                type: "em_input",
-                placeholder: "职务",
-                params: "fertilizerName",
+                type: "em_selectUrl",
+                optionUrl: "gardens/fertilizerinfo/queryAll",
+                params: "fertilizerId",
                 alter_show: true,
                 add_show: true
               },
@@ -856,14 +840,15 @@ export default {
                 type: "em_input",
                 placeholder: "化学式",
                 params: "fertilizerEname",
-                alter_show: true,
-                add_show: true
+                alter_show: false,
+                add_show: false
               },
               {
                 name: "数量",
                 prop: "changeValue",
                 width: "80",
                 type: "em_input",
+                placeholder: "数量",
                 params: "changeValue",
                 alter_show: true,
                 add_show: true
@@ -874,16 +859,25 @@ export default {
                 prop: "createDate",
                 width: "180",
                 type: "em_input",
+                placeholder: "时间",
                 params: "createDate",
-                alter_show: true,
-                add_show: true
+                alter_show: false,
+                add_show: false
+
+              },
+              {
+                name: "调后库存",
+                prop: "afterValue",
+                width: "80",
+                alter_show: false,
+                add_show: false
 
               },
               {
                 name: "备注",
                 prop: "remark",
                 width: "140",
-                type: "em_input",
+                type: "em_textarea",
                 placeholder: "备注",
                 params: "remark",
                 alter_show: true,
@@ -928,7 +922,15 @@ export default {
               fn: "add",
               url: "/gardens/specificationinfo/add"
             },
-
+            {
+              id: "fertilization_specification_info_button_modify",
+              type: "em_button",
+              icon: "el-icon-edit",
+              operate: "修改",
+              control_id: "fertilization_specification_info_table",
+              fn: "modify",
+              url: "/gardens/specificationinfo/update"
+            },
             {
               id: "fertilization_specification_info_button_dele",
               type: "em_button",
@@ -946,9 +948,9 @@ export default {
               name: "植物名称",
               prop: "plantCname",
               width: "100",
-              type: "em_input",
-              placeholder: "植物名称",
-              params: "plantCname",
+              type: "em_selectUrl",
+              optionUrl: "gardens/plantname/queryAll",
+              params: "plantNameId",
               alter_show: true,
               add_show: true
             },
@@ -957,30 +959,17 @@ export default {
                 name: "植物英文名",
                 prop: "plantEname",
                 width: "140",
-                type: "em_input",
-                placeholder: "植物英文名",
-                params: "plantEname",
-                alter_show: true,
-                add_show: true
+                alter_show: false,
+                add_show:false
               },
-              // {
-              //   name: "人员类型",
-              //   prop: "personTypeName",
-              //   width: "140",
-              //   type: "em_selectUrl",
-              //   params: "personTypeId",
-              //   optionUrl: "gardens/persontype/queryAll",
-              //   alter_show: true,
-              //   add_show: true
-              //
-              // },
               {
                 name: "肥料名称",
                 prop: "fertilizerName",
                 width: "140",
-                type: "em_input",
+                type: "em_selectUrl",
                 placeholder: "肥料名称",
-                params: "fertilizerName",
+                params: "fertilizerId",
+                optionUrl: "gardens/fertilizerinfo/queryAll",
                 alter_show: true,
                 add_show: true
               },
@@ -988,22 +977,9 @@ export default {
                 name: "化学式",
                 prop: "fertilizerEname",
                 width: "140",
-                type: "em_input",
-                placeholder: "化学式",
-                params: "fertilizerEname",
-                alter_show: true,
-                add_show: true
+                alter_show: false,
+                add_show:false
               },
-              // {
-              //   name: "施肥规格",
-              //   prop: "fertilizationSpecification",
-              //   width: "100",
-              //   type: "em_selectUrl",
-              //   params: "entId",
-              //   optionUrl: "gardens/ent/queryAll",
-              //   alter_show: true,
-              //   add_show: true
-              // },
               {
                 name: "施肥规格",
                 prop: "fertilizationSpecification",
@@ -1056,18 +1032,15 @@ export default {
         fertilization_program:{
           operation: [
             {
-              id: "fertilization_program_select",
-              type: "complex_em_input",
-              select: [
-                {
-                  name: "肥料名称",
-                  params: "fertilizerName"
-                },
-                {
-                  name: "化学式",
-                  params: "fertilizerEname"
-                }
-              ]
+              id: "fertilization_program_input",
+              type: "em_input",
+              placeholder:"植物名称",
+              params:"plantCname",
+
+            },
+            {
+              id: "fertilization_program_date",
+              type: "em_date",
 
             },
             {
@@ -1087,7 +1060,15 @@ export default {
               fn: "add",
               url: "/gardens/fertilizationProgram/add"
             },
-
+            {
+              id: "fertilization_program_button_modify",
+              type: "em_button",
+              icon: "el-icon-edit",
+              operate: "修改",
+              control_id: "fertilization_program_table",
+              fn: "modify",
+              url: "/gardens/fertilizationProgram/update"
+            },
             {
               id: "fertilization_program_button_dele",
               type: "em_button",
@@ -1099,19 +1080,19 @@ export default {
             }
           ],
           table: {
-            id: "fertilization_specification_info_table",
+            id: "fertilization_program_table",
             table_url: "/gardens/fertilizationProgram/queryAllByPage",
-            label: [{
+            label: [
+              {
               name: "植物名称",
               prop: "plantCname",
               width: "100",
-              type: "em_input",
-              placeholder: "植物名称",
-              params: "plantCname",
+              type: "em_selectUrl",
+              optionUrl: "gardens/plantname/queryAll",
+              params: "plantNameId",
               alter_show: true,
               add_show: true
-            },
-
+              },
               {
                 name: "植物英文名",
                 prop: "plantEname",
@@ -1119,6 +1100,16 @@ export default {
                 type: "em_input",
                 placeholder: "植物英文名",
                 params: "plantEname",
+                alter_show: false,
+                add_show: false
+              },
+              {
+                name: "所用肥料",
+                prop: "fertilizerNames",
+                width: "100",
+                type: "em_selectsUrl",
+                optionUrl: "gardens/fertilizerinfo/queryAll",
+                params: "fertilizerTypes",
                 alter_show: true,
                 add_show: true
               },
@@ -1128,7 +1119,7 @@ export default {
                 width: "180",
                 type: "em_input",
                 placeholder: "时间",
-                params: "reminderTime",
+                params: "timeString",
                 alter_show: true,
                 add_show: true
               },
@@ -2191,7 +2182,7 @@ export default {
     },
     {
       id: "protect_company_manage",
-      title: "维护单位管理",
+      title: "养护单位管理",
       top: 80,
       left: 400,
       height: 500,
@@ -2316,16 +2307,6 @@ export default {
               type: "em_selectUrl",
               params: "areaCode",
               optionUrl: "gardens/district/queryAll",
-              alter_show: true,
-              add_show: true
-            },
-            {
-              name: "排序号",
-              prop: "orderNo",
-              width: "140",
-              type: "em_input",
-              placeholder: "排序号",
-              params: "orderNo",
               alter_show: true,
               add_show: true
             },

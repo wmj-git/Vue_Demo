@@ -1,6 +1,6 @@
 <template>
   <div class="em_selectUrl">
-    <el-select v-model="value" placeholder="请选择">
+    <el-select v-model="value" placeholder="请选择" clearable filterable >
       <el-option
         v-for="item in options"
         :key="item.value"
@@ -70,6 +70,10 @@
              if(val.id&&val.plantTypeName){
                obj={value:val.id,label:val.plantTypeName};
              }
+             if(val.id&&val.fertilizerName){
+               obj={value:val.id,label:val.fertilizerName};
+             }
+
              this.options.push(obj);
 
            });
