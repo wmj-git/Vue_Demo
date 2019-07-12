@@ -30,6 +30,7 @@
   import em_textarea from "@/components/em_textarea/em_textarea"
   import em_select from "@/components/em_select/em_select"
   import em_selectUrl from "@/components/em_selectUrl/em_selectUrl"
+  import em_selectsUrl from "@/components/em_selectsUrl/em_selectsUrl"
     export default {
         props: {
           label:{
@@ -40,6 +41,7 @@
          em_input,
          em_select,
          em_selectUrl,
+         em_selectsUrl,
          em_textarea
        },
         data(){
@@ -104,10 +106,15 @@
                         let _value=_this.alter_obj;
                         for(let k in _value){
                           if(_obj.operation.params===k){
-                            console.log(_value[k]);
                             if(_obj.operation.type==="em_selectUrl"||_obj.operation.type==="em_select"){
                               _obj.value=_value[k];
-                            }else if(_obj.operation.type==="em_input"||_obj.operation.type==="em_textarea"){
+                            }
+                            else if(_obj.operation.type==="em_selectsUrl"){
+                              _obj.value=_value[k];
+                              _obj.value=_obj.value.toString();
+                              console.log(_obj.value)
+                            }
+                            else if(_obj.operation.type==="em_input"||_obj.operation.type==="em_textarea"){
                               _obj.input=_value[k];
                             }
                           }
@@ -141,6 +148,10 @@
                             obj.value=1
                           }
                           this.form[val.params]=obj.value;
+                        }
+                        if(obj.operation.type==="em_selectsUrl"){
+                          this.form[val.params]=obj.value;
+                          this.form[val.params]= "["+this.form[val.params].toString()+"]";
                         }
                         if(obj.operation.type==="em_input"||obj.operation.type==="em_textarea"){
                           this.form[val.params]=obj.input;

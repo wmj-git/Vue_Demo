@@ -170,7 +170,7 @@ export const db_buttonGroup=[
         "icon": "el-icon-unit-manage",
         "id": "nav_protect_company_manage",
         "control_id": "protect_company_manage",
-        "title": "维护单位管理",
+        "title": "养护单位管理",
         "show": false
       },
       {

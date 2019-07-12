@@ -5,7 +5,7 @@
             <div class="table digital_table" style="height:50%">
               <el-row class="operation">
                 <template v-for="item in this.data.operation">
-                  <component :is="item.type" :operation="item" :table_id="table_id" ref="child"></component>
+                  <component :is="item.type" :operation="item" :table_id="table_id" ref="child" @keyup.enter.native="search()"></component>
                 </template>
               </el-row>
               <el-table
