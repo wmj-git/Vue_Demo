@@ -3064,12 +3064,12 @@ export default {
             type: "complex_em_input",
             select: [
               {
-                name: "编号",
-                params: "gridNo"
+                name: "设备编号",
+                params: "monitoringPointsNo"
               },
               {
-                name: "网格名称",
-                params: "gridName"
+                name: "设备名称",
+                params: "monitoringPointsName"
               }
             ]
 
@@ -3198,12 +3198,12 @@ export default {
             },
 
             {
-              name: "所属行政区域",
-              prop: "areaCode",
+              name: "备注",
+              prop: "memo",
               width: "200",
-              type: "em_input",
-              placeholder: "所属行政区域",
-              params: "areaCode",
+              type: "em_textarea",
+              placeholder: "备注",
+              params: "memo",
               add_show: true,
               alter_show: true
             },
