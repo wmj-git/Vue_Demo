@@ -756,7 +756,7 @@ export default {
                 prop: "fertilizerName",
                 width: "80",
                 type: "em_input",
-                placeholder: "类型编号",
+                placeholder: "肥料名称",
                 params: "fertilizerName",
                 alter_show: true,
                 add_show: true
@@ -766,7 +766,7 @@ export default {
                 prop: "fertilizerEname",
                 width: "80",
                 type: "em_input",
-                placeholder: "类型名称",
+                placeholder: "化学式",
                 params: "fertilizerEname",
                 alter_show: true,
                 add_show: true
@@ -791,6 +791,11 @@ export default {
               type: "em_input",
               placeholder:"肥料名称",
               params:"fertilizerName"
+
+            },
+            {
+              id: "fertilizer_mobility_record_date",
+              type: "em_date",
 
             },
             {
@@ -860,6 +865,16 @@ export default {
                 width: "80",
                 type: "em_input",
                 params: "changeValue",
+                alter_show: true,
+                add_show: true
+
+              },
+              {
+                name: "时间",
+                prop: "createDate",
+                width: "180",
+                type: "em_input",
+                params: "createDate",
                 alter_show: true,
                 add_show: true
 
@@ -1107,79 +1122,15 @@ export default {
                 alter_show: true,
                 add_show: true
               },
-              // {
-              //   name: "人员类型",
-              //   prop: "personTypeName",
-              //   width: "140",
-              //   type: "em_selectUrl",
-              //   params: "personTypeId",
-              //   optionUrl: "gardens/persontype/queryAll",
-              //   alter_show: true,
-              //   add_show: true
-              //
-              // },
               {
-                name: "肥料名称",
-                prop: "fertilizerName",
-                width: "140",
+                name: "时间",
+                prop: "reminderTime",
+                width: "180",
                 type: "em_input",
-                placeholder: "肥料名称",
-                params: "fertilizerName",
+                placeholder: "时间",
+                params: "reminderTime",
                 alter_show: true,
                 add_show: true
-              },
-              {
-                name: "化学式",
-                prop: "fertilizerEname",
-                width: "140",
-                type: "em_input",
-                placeholder: "化学式",
-                params: "fertilizerEname",
-                alter_show: true,
-                add_show: true
-              },
-              // {
-              //   name: "施肥规格",
-              //   prop: "fertilizationSpecification",
-              //   width: "100",
-              //   type: "em_selectUrl",
-              //   params: "entId",
-              //   optionUrl: "gardens/ent/queryAll",
-              //   alter_show: true,
-              //   add_show: true
-              // },
-              {
-                name: "施肥规格",
-                prop: "fertilizationSpecification",
-                width: "140",
-                type: "em_input",
-                placeholder: "施肥规格",
-                params: "fertilizationSpecification",
-                alter_show: true,
-                add_show: true
-
-              },
-              {
-                name: "最大规格",
-                prop: "maxSpecification",
-                width: "100",
-                type: "em_input",
-                placeholder: "最大规格",
-                params: "maxSpecification",
-                alter_show: true,
-                add_show: true
-
-              },
-              {
-                name: "最小规格",
-                prop: "minSpecification",
-                width: "100",
-                type: "em_input",
-                placeholder: "最小规格",
-                params: "minSpecification",
-                alter_show: true,
-                add_show: true
-
               },
               {
                 name: "备注",
@@ -2229,17 +2180,6 @@ export default {
                 alter_show: true,
                 add_show: true
 
-              },
-              {
-                name: "排序号",
-                prop: "orderNo",
-                width: "100",
-                type: "em_input",
-                placeholder: "排序号",
-                params: "orderNo",
-                alter_show: true,
-                add_show: true
-
               }
 
 
@@ -2854,9 +2794,9 @@ export default {
               alter_show: true
             },
             {
-              name: "海拔高度",
+              name: "海拔高度(m)",
               prop: "aboveSeaLevel",
-              width: "80",
+              width: "100",
               type: "em_input",
               placeholder: "海拔高度",
               params: "aboveSeaLevel",
@@ -2864,7 +2804,7 @@ export default {
               alter_show: true
             },
             {
-              name: "直径",
+              name: "直径(cm)",
               prop: "diameter",
               width: "80",
               type: "em_input",
@@ -2874,7 +2814,7 @@ export default {
               alter_show: true
             },
             {
-              name: "周长",
+              name: "周长(cm)",
               prop: "perimeter",
               width: "80",
               type: "em_input",
@@ -3076,7 +3016,7 @@ export default {
 
             },
             {
-              name: "面积",
+              name: "面积(m²）",
               prop: "gridArea",
               width: "100",
               type: "em_input",

@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,cAAiB;EACf,MAAM,EAAC,KAAK;EACZ,kBAAG;IACD,QAAQ,EAAE,QAAQ;IAClB,IAAI,EAAE,GAAG;IACT,GAAG,EAAE,IAAI;EAGX,kCAAsB;IACpB,UAAU,EAAE,cAAc;IAC1B,aAAa,EAAE,cAAc;IAC7B,KAAK,EAAE,KAAK;IACZ,IAAI,EAAE,IAAI;IACV,QAAQ,EAAE,QAAQ;IAClB,GAAG,EAAE,IAAI",
+"sources": ["em_logo_title.scss"],
+"names": [],
+"file": "em_logo_title.css"
+}

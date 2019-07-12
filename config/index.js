@@ -16,7 +16,8 @@ module.exports = {
         pathRewrite: {
           '^/scene': '' // 重写路径
         }
-      }
+      },
+
     },
 
     // Various Dev Server settings

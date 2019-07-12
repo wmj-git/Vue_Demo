@@ -253,10 +253,24 @@ export const db_buttonGroup=[
     width: 150,
     list: [
       {
+        "icon": "el-icon-account-manage",
+        "id": "nav_account_manage",
+        "control_id": "account_manage",
+        "title": "账户管理",
+        "show": false
+      },
+      {
         "icon": "el-icon-role-manage",
         "id": "nav_role_manage",
         "control_id": "role_manage",
         "title": "角色管理",
+        "show": false
+      },
+      {
+        "icon": "el-icon-permissions-manage",
+        "id": "nav_permissions_management",
+        "control_id": "permissions_management",
+        "title": "权限管理",
         "show": false
       },
       {
@@ -273,20 +287,8 @@ export const db_buttonGroup=[
         "title": "系统日志",
         "show": false
       },
-      {
-        "icon": "el-icon-account-manage",
-        "id": "nav_account_manage",
-        "control_id": "account_manage",
-        "title": "账户管理",
-        "show": false
-      },
-      {
-        "icon": "el-icon-permissions-manage",
-        "id": "nav_permissions_management",
-        "control_id": "permissions_management",
-        "title": "权限管理",
-        "show": false
-      }
+
+
     ]
   }
 ];
