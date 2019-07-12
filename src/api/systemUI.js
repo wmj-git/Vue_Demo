@@ -427,7 +427,24 @@ export const systemData=[ //默认数据模型
     resizable: false,
     maximizable: false,
     class: "em-menu-window",
-    component: "em_menu",
+    component: "emMenu",
     component_data: {}
+  },
+  {
+    system_id: "role_manage",
+    system_type: "win",
+    id: "",
+    parentId: "0",
+    layout: {},
+    title: "角色管理",
+    top: 80,
+    left: 400,
+    width: 700,
+    height: 560,
+    class: "em-table-window",
+    show: false,
+    component: "",
+    component_data: {
+    }
   }
 ];

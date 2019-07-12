@@ -1,5 +1,5 @@
 <template>
-  <div class="em-menu">
+  <div class="emMenu">
     <el-row>
       <el-col :span="48">
         <el-menu :default-active="activeIndex"
@@ -19,7 +19,7 @@
 
 <script>
   export default {
-    name: "em_menu",
+    name: "emMenu",
     data() {
       return {
         id: "menu",
@@ -38,7 +38,7 @@
               _key=_obj.control_id;
             }
         });
-        this.$store.commit('win/win_open', {
+        this.$store.commit('user/win_open', {
           win_obj: {
             system_id: _key
           }
@@ -63,7 +63,7 @@
   };
 </script>
 <style lang="scss" scoped>
-  @import "_menu.scss";
+  @import "emMenu";
 </style>
 
 

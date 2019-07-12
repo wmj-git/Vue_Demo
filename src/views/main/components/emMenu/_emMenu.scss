@@ -1,6 +1,7 @@
 @import "../../../../styles/index/variable";
-$r:32;
+
 .em-menu{
+
   width: 100%;
   border-image-source: linear-gradient(nth($background-base,2),nth($background-base,1), nth($background-base,2));
   padding: 6/$r+rem 8/$r+rem;

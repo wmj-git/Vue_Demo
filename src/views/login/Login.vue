@@ -33,8 +33,8 @@
               <el-checkbox v-model="checked" style="color:#a0a0a0;">记住密码</el-checkbox>
               <!--<el-row class="forgetPwd"><a>忘记密码？</a></el-row>-->
               <el-row>
-                <el-button class="em-reset-btn em-btn-bubbles" @click="reset">重置</el-button>
-                <el-button class="em-login-btn em-btn-bubbles" @click="loginFn">登录</el-button>
+                <el-button class="em-login-btn em-login-button " @click="reset">重置</el-button>
+                <el-button class="em-login-btn em-login-button " @click="loginFn">登录</el-button>
               </el-row>
             </el-form-item>
           </el-form>
