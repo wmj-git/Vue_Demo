@@ -415,6 +415,6 @@ export const nav = {
 };
 
 export const winComponent = {
-  systemType: ["win"],
+  systemType: ["win","win_menu_body","win_table","win_form"],
   uiData: []
 };

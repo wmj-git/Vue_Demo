@@ -16,14 +16,15 @@
     <!--功能窗口-->
     <template v-for="win in wins" v-if="win.show">
       <win :id="win.system_id" :data="win">
-        <template v-if="win.layout_type=='1'">
-          <el-row>
-            <el-col :span="48">
-              <component :is="win.component" :data="win.component_data"></component>
-            </el-col>
+        <template v-if="win.winLayout=='1'">
+          <el-row :gutter="8" v-if="win.children">
+            <template v-for="component in win.children">
+              <el-col :span="component.winSpan">
+                <component :is="component.component" :data="component"></component>
+              </el-col>
+            </template>
           </el-row>
         </template>
-
       </win>
     </template>
     <!--对话框-->
@@ -74,6 +75,7 @@
   import emBottom from "./components/emBottom/emBottom";
   import win from "@/app_components/win/win";
   import emTable from "@/app_components/emTable/emTable";
+  import emForm from "@/app_components/emForm/emForm";
   import treeForm from "@/app_components/treeFrom/treeForm";
   import buttonGroup from "@/app_components/buttonGroup/buttonGroup";
 
@@ -106,6 +108,7 @@
       emMenu,
       emBottom,
       emTable,
+      emForm,
       treeForm,
       buttonGroup,
     },
@@ -140,6 +143,8 @@
         return ui_data;
       },
       wins: function () {
+        console.log(this.$store.getters["user/win"]);
+
         return this.$store.getters["user/win"];
       },
       dialogGroup: function () {
@@ -204,7 +209,9 @@
             }
           });
         }
-        this.$store.commit("user/set_win", {win: ui_data});//解析浮动窗口数据
+        this.$store.commit("user/set_win", {
+          win: ui_data
+        });//解析浮动窗口数据
         console.log(this.wins);
       });
 

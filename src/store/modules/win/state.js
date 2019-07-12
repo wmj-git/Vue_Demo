@@ -68,7 +68,6 @@ export default {
             fn: "dele",
             url: "/user/role/dele"
           }
-
         ],
         table: {
           id: "role_manage_table",
@@ -1132,10 +1131,7 @@ export default {
                 params: "remark",
                 alter_show: true,
                 add_show: true
-
-              },
-
-
+              }
             ]
           }
         },
@@ -1157,7 +1153,6 @@ export default {
             type: "em_input",
             placeholder: "简称",
             params: "shortName"
-
           },
           {
             id: "department_manage_button_search",
