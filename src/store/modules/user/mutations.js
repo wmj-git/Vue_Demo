@@ -1,7 +1,7 @@
 import {
-  SET_CODE, SET_TOKEN,SET_TOKEN_TIME, SET_REFRESH_TOKEN,SET_INTRODUCTION,SET_PERMISSIONS,
-  SET_SETTING, SET_STATUS, SET_NAME,SET_SYSTEMDATA,
-  SET_AVATAR,SET_ROLES
+  SET_CODE, SET_TOKEN, SET_TOKEN_TIME, SET_REFRESH_TOKEN, SET_INTRODUCTION, SET_PERMISSIONS,
+  SET_SETTING, SET_STATUS, SET_NAME, SET_SYSTEMDATA,
+  SET_AVATAR, SET_ROLES, SET_WIN, WIN_OPEN, WIN_CLOSE
 } from '../../mutation-types';
 
 export default {
@@ -22,6 +22,33 @@ export default {
   },
   [SET_SYSTEMDATA]: (state, systemData) => {
     state.systemData = systemData
+  },
+  [SET_WIN] (state, { win }) {
+    state.win = win;
+  },
+  [WIN_OPEN] (state, { win_obj }) {
+    state.win.forEach(function (el) {
+      if (el.system_id === win_obj.system_id && el.show === false) {
+        el.show = true;
+      } else if (el.system_id === win_obj.system_id && el.show === true) {
+        el.show = false;
+      }
+    })
+  },
+  [WIN_CLOSE] (state, { win_id }) {
+    if (win_id === "all") {
+      state.win.forEach(function (el) {
+        if (el.show === true) {
+          el.show = false;
+        }
+      })
+    } else {
+      state.win.forEach(function (el) {
+        if (el.system_id === win_id) {
+          el.show = false;
+        }
+      })
+    }
   },
   [SET_PERMISSIONS]: (state, permissions) => {
     state.permissions = permissions

@@ -76,7 +76,7 @@
           }
         });
         let _show = null;
-        this.$store.state.win.win.forEach(function (el) {
+        this.$store.state.user.win.forEach(function (el) {
           if (el.system_id === _controlId) {
             _show = el.show;
           }
@@ -90,7 +90,7 @@
             width: _width
           });
         } else {
-          this.$store.commit('win/win_open', {
+          this.$store.commit('user/win_open', {
             win_obj: {
               system_id: _controlId
             }

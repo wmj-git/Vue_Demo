@@ -11,6 +11,7 @@ export default {
   avatar: '',//头像
   introduction: '',
   systemData:[],
+  win:[],
   permissions:[],
   roles: [],
   setting: {

@@ -18,11 +18,12 @@
       <win :id="win.system_id" :data="win">
         <template v-if="win.layout_type=='1'">
           <el-row>
-
+            <el-col :span="48">
+              <component :is="win.component" :data="win.component_data"></component>
+            </el-col>
           </el-row>
         </template>
-        <component :is="win.component" :data="win.component_data"></component>
-        <em-table></em-table>
+
       </win>
     </template>
     <!--对话框-->
@@ -39,7 +40,7 @@
 
 <script>
 
-  import {nav,winComponent} from './data/db';
+  import {nav, winComponent} from './data/db';
   import {refreshToken} from '@/api/login';
   import {getNowFormatDate, treeStructure} from '@/utils/tools';
   import {
@@ -47,14 +48,14 @@
     TokenName, RefreshTokenName, getExpires, setExpires
   } from '@/utils/auth';
 
-  import win from "@/components/win/win";
+
   import splitpane from "@/components/splitpane/splitpane";
   import sole_table from "@/components/sole_table/sole_table";
   import list_table from "@/components/list_table/list_table";
   import echart_table from "@/components/echart_table/echart_table";
   import em_dialog from "@/components/em_dialog/em_dialog";
   import button_group from "@/components/button_group/button_group";
-  import em_menu from "./components/em_menu/em_menu";
+
   import em_logo_title from "./components/em_title/em_logotitle";
   import em_warn from "./components/em_warn/em_warn";
   import em_venture from "./components/em_venture/em_venture";
@@ -67,8 +68,11 @@
   import echarts_show from "./components/echarts_show/echarts_show";
   import table_show from "./components/table_show/table_show";
 
+
   import emNav from "./components/emNav/emNav";
+  import emMenu from "./components/emMenu/emMenu";
   import emBottom from "./components/emBottom/emBottom";
+  import win from "@/app_components/win/win";
   import emTable from "@/app_components/emTable/emTable";
   import treeForm from "@/app_components/treeFrom/treeForm";
   import buttonGroup from "@/app_components/buttonGroup/buttonGroup";
@@ -78,11 +82,10 @@
       return {};
     },
     components: {
-      win,
+
       splitpane,
       em_dialog,
       button_group,
-      em_menu,
       em_logo_title,
       em_warn,
       em_venture,
@@ -98,7 +101,9 @@
       echarts_show,
       table_show,
 
+      win,
       emNav,
+      emMenu,
       emBottom,
       emTable,
       treeForm,
@@ -131,12 +136,11 @@
         }
         // console.log("_systemData");
         // console.log(_data);
-        //
-        console.log(ui_data);
+        //console.log(ui_data);
         return ui_data;
       },
       wins: function () {
-        return this.$store.getters["win/win"];
+        return this.$store.getters["user/win"];
       },
       dialogGroup: function () {
         return this.$store.state.win.dialog;
@@ -179,10 +183,7 @@
       //刷新ui数据
       this.$store.dispatch("user/systemUI", {}).then((response) => {
         console.log(response);
-
-
         let _data = [];
-
         if (response && response.length > 0) {
           response.forEach(function (_obj) {
             winComponent.systemType.forEach(function (_item) {
@@ -203,8 +204,8 @@
             }
           });
         }
-        this.$store.commit("win/set_win",{win:ui_data});//解析浮动窗口数据
-         console.log(this.wins);
+        this.$store.commit("user/set_win", {win: ui_data});//解析浮动窗口数据
+        console.log(this.wins);
       });
 
     },
