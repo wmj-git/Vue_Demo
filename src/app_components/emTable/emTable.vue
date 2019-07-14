@@ -4,22 +4,47 @@
       <el-row>
         <el-col :span="48">
           <el-table
+            border
+            highlight-current-row
+            v-loading="listLoading"
+            tooltip-effect="dark"
             :data="tableData"
-            style="width: 100%">
+            :max-height="tableSet.maxHeight"
+            @current-change="handleCurrentChange"
+            @selection-change="handleSelectionChange"
+          >
             <el-table-column
-              prop="date"
-              label="日期"
-              width="180">
+              type="index"
+              fixed="left"
+              align="center"
+              :index="tableIndex"
+            >
             </el-table-column>
             <el-table-column
-              prop="name"
-              label="姓名"
-              width="180">
+              align="center"
+              type="selection"
+              width="54">
             </el-table-column>
-            <el-table-column
-              prop="address"
-              label="地址">
-            </el-table-column>
+            <template v-for="(column,index) in tableSet.tableColumn">
+              <el-table-column
+                :key="index"
+                :prop="column.prop"
+                :label="column.label"
+                :width="column.width"
+                :show-overflow-tooltip="true"
+              ></el-table-column>
+            </template>
+            <template v-for="btn in columnBtn" v-if="columnBtn.length>0">
+              <el-table-column fixed="right" :label="btn.label">
+                <template slot-scope="scope">
+                  <el-button
+                    :ref="btn.system_id"
+                    size="mini"
+                    @click="fn(btn.fn,{'index':scope.$index,'row':scope.row,'btn':btn})">{{btn.value}}
+                  </el-button>
+                </template>
+              </el-table-column>
+            </template>
           </el-table>
         </el-col>
       </el-row>
@@ -27,12 +52,12 @@
         <el-col :span="48">
           <el-pagination
             @size-change="handleSizeChange"
-            @current-change="handleCurrentChange"
-            :current-page="currentPage4"
-            :page-sizes="[100, 200, 300, 400]"
-            :page-size="100"
+            @current-change="handleCurrentChangePage"
+            :current-page="pagination.currentPage"
+            :page-sizes="[1, 2, 5,10,50]"
+            :page-size="pagination.pageSize"
             layout="total, sizes, prev, pager, next, jumper"
-            :total="400">
+            :total="pagination.totalSize">
           </el-pagination>
         </el-col>
       </el-row>
@@ -42,39 +67,114 @@
 
 <script>
 
+  import {add, dele, modify, find, downCsvmodel, upLoad, resetPassword} from "@/app_api/table";
+
   export default {
     name: "emTable",
     data() {
       return {
         id: "",
-        tableData: [{
-          date: '2016-05-02',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-04',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1517 弄'
-        }, {
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1519 弄'
-        }, {
-          date: '2016-05-03',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1516 弄'
-        }]
+        tableSet: {
+          resourceUrl: "",//数据地址
+          maxHeight: "100",
+          tableColumn: []
+        },
+        listLoading: false,//加载状态
+        tableData: [],//表数据
+        currentRow: null,//单选对象
+        multipleSelection: [],//多选框对象组
+        columnBtn: [],//配置表行内按钮
+
+
+        pagination: {
+          currentPage: 1,//当前页
+          pageSize: 1,//当前信息条数
+          totalSize: 100//总条数
+        }
       };
     },
     props: ["data"],
-    components: {
-    },
+    components: {},
     methods: {
-      init() {
-
-      },
       fn(_fn, _obj) {
         this[_fn](_obj);
+      },
+      init() {
+        console.log(this.data);
+        this.id = this.data.system_id;
+        this.tableSet.resourceUrl = this.data.resourceUrl;
+        this.tableSet.maxHeight = this.data.maxHeight;
+        this.tableSet.tableColumn = JSON.parse(this.data.tableColumn);
+
+        if (this.data.children) {
+          let _columnBtn = [];
+          this.data.children.forEach(function (_obj) {
+            if (_obj.system_type === "win_table_btn") {
+              _columnBtn.push(_obj);
+            }
+          });
+          this.columnBtn = _columnBtn;
+        }
+
+        this.tableDataFn();
+      },
+      tableDataFn() {
+        this.listLoading = true;
+
+        let _params = {
+          pageNum: this.pagination.currentPage,
+          pageSize: this.pagination.pageSize
+        };
+
+
+        find({                      //页面渲染时拿表格数据
+          url: this.tableSet.resourceUrl,
+          params: _params
+        }).then(res => {
+          console.log(res);
+          res.data.list.forEach((_val) => {
+            for (let _i in _val) {
+              if (_i === "isSpecial") {
+                if (_val[_i] === 0) {
+                  _val[_i] = "否";
+                } else if (_val[_i] === 1) {
+                  _val[_i] = "是";
+                }
+              } else if (_i === "flowersPlantsOrTree") {
+                if (_val[_i] === 0) {
+                  _val[_i] = "树";
+                } else if (_val[_i] === 1) {
+                  _val[_i] = "花卉";
+                }
+              }
+            }
+          });
+          this.tableData = res.data.list;
+          this.pagination.totalSize = res.data.total;
+          this.listLoading = false;
+        });
+      },
+      tableIndex(index) {                         //控制表格数据行号
+        return (this.pagination.currentPage - 1) * this.pagination.pageSize + index + 1;
+      },
+      handleSelectionChange(val) {// 多选框（选中删除）
+
+        this.multipleSelection =val;
+      },
+      handleCurrentChange(val) {     //单选行 （选中修改）
+
+        this.currentRow = val;
+      },
+      handleSizeChange(val) {//页条数
+        this.pagination.pageSize = val;
+        this.tableDataFn();
+      },
+      handleCurrentChangePage(val) {//当前页
+        this.pagination.currentPage = val;
+        this.tableDataFn();
+      },
+      handleEdit(_obj) {
+        console.log(_obj);
       }
     },
     created() {

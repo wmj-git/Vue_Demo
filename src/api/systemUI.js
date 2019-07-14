@@ -429,7 +429,6 @@ export const systemData = [ //默认数据模型
     top: 80,
     left: 400,
     width: 700,
-    height: 560,
     class: "em-table-window",
     show: true
   },
@@ -444,10 +443,52 @@ export const systemData = [ //默认数据模型
   {
     system_id: "role_manage_table",
     system_type: "win_table",
-    id: "b2",
+    id: "b3",
     parentId: "a2",
     winSpan: 48,
-    component: "emTable"
+    component: "emTable",
+    maxHeight:"380",
+    resourceUrl:"",
+    tableColumn: " [\n" +
+      "    {\n" +
+      "      \"label\": \"英文名\",\n" +
+      "      \"prop\": \"roleEname\",\n" +
+      "      \"width\": \"100\"\n" +
+      "    },\n" +
+      "    {\n" +
+      "      \"label\": \"中文名\",\n" +
+      "      \"prop\": \"roleCname\",\n" +
+      "      \"width\": \"100\"\n" +
+      "    },\n" +
+      "    {\n" +
+      "      \"label\": \"角色编码\",\n" +
+      "      \"prop\": \"roleCode\",\n" +
+      "      \"width\": \"80\"\n" +
+      "    },\n" +
+      "    {\n" +
+      "      \"label\": \"备注\",\n" +
+      "      \"prop\": \"remark\",\n" +
+      "      \"width\": \"\"\n" +
+      "    }\n" +
+      "  ]"
+  },
+  {
+    system_id: "role_manage_table_btn_1",
+    system_type: "win_table_btn",
+    id: "b2",
+    parentId: "a2",
+    label:"操作",
+    value:"权限分配",
+    fn:"handleEdit"
+  },
+  {
+    system_id: "role_manage_table_btn_2",
+    system_type: "win_table_btn",
+    id: "b2",
+    parentId: "a2",
+    label:"操作",
+    value:"关联用户",
+    fn:"handleEdit"
   },
   {
     system_id: "department_manage",

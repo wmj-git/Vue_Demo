@@ -92,10 +92,10 @@ export default {
           ],
           label: [
             {
-              name: "英文名",
-              prop: "roleEname",
-              width: "100",
-              type: "em_input",
+              "name": "英文名",
+              "prop": "roleEname",
+              "width": "100",
+              "type": "em_input",
               placeholder: "英文名",
               params: "roleEname",
               alter_show: true,
@@ -333,8 +333,8 @@ export default {
               prop: "accountNumber",
               width: "100",
               type: "em_input",
-              reg:/[0-9a-zA-Z]/,
-              erroMessage:"",
+              reg: /[0-9a-zA-Z]/,
+              erroMessage: "",
               placeholder: "账户",
               params: "accountNumber",
               alter_show: true,
@@ -347,8 +347,8 @@ export default {
               prop: "userCname",
               width: "100",
               type: "em_input",
-              reg:"",
-              erroMessage:"",
+              reg: "",
+              erroMessage: "",
               placeholder: "中文名",
               params: "userCname",
               alter_show: true,
@@ -359,8 +359,8 @@ export default {
               prop: "userEname",
               width: "100",
               type: "em_input",
-              reg:"",
-              erroMessage:"",
+              reg: "",
+              erroMessage: "",
               placeholder: "英文名",
               params: "userEname",
               alter_show: true,
@@ -371,8 +371,8 @@ export default {
               prop: "userStateCvalue",
               width: "80",
               type: "em_selectUrl",
-              reg:"",
-              erroMessage:"",
+              reg: "",
+              erroMessage: "",
               params: "userState",
               optionUrl: "/user/userext/queryUserStateinfo",
               alter_show: true,
@@ -383,8 +383,8 @@ export default {
               prop: "userSexCvalue",
               width: "80",
               type: "em_selectUrl",
-              reg:"",
-              erroMessage:"",
+              reg: "",
+              erroMessage: "",
               placeholder: "性别",
               params: "userSex",
               optionUrl: "/user/enuminfo/queryEnumInfoByType?enumType=user_sex",
@@ -397,8 +397,8 @@ export default {
               prop: "phoneNumber",
               width: "140",
               type: "em_input",
-              reg:"/[0-9a-zA-Z]/",
-              erroMessage:"",
+              reg: "/[0-9a-zA-Z]/",
+              erroMessage: "",
               placeholder: "电话",
               params: "phoneNumber",
               alter_show: true,
@@ -409,8 +409,8 @@ export default {
               prop: "userAge",
               width: "80",
               type: "em_input",
-              reg:"",
-              erroMessage:"",
+              reg: "",
+              erroMessage: "",
               placeholder: "年龄",
               params: "userAge",
               alter_show: true,
@@ -421,8 +421,8 @@ export default {
               prop: "deptFullName",
               width: "80",
               type: "em_selectUrl",
-              reg:"",
-              erroMessage:"",
+              reg: "",
+              erroMessage: "",
               placeholder: "部门",
               params: "deptId",
               optionUrl: "/user/dept/queryAllDept",
@@ -434,8 +434,8 @@ export default {
               prop: "userTypeCvalue",
               width: "180",
               type: "em_selectUrl",
-              reg:"",
-              erroMessage:"",
+              reg: "",
+              erroMessage: "",
               placeholder: "人员类型",
               params: "userType",
               optionUrl: "/user/userext/queryUserTypeinfo",
@@ -579,10 +579,7 @@ export default {
       show: false,
       class: "em-table-window",
       component: "sole_table",
-      component_data: {
-
-
-      }
+      component_data: {}
     },
     {
       id: "road_address",
@@ -671,7 +668,7 @@ export default {
     {
       id: "protect_plan",
       title: "养护计划",
-      width:"55%",
+      width: "55%",
       top: 80,
       left: 400,
       height: 400,
@@ -679,22 +676,22 @@ export default {
       class: "em-table-window",
       component: "list_table",
       component_data: {
-        list:{
-          id:"protect_plan_list",
-          data:[
-            {name:"肥料种类管理",id:"fertilizer_type_manage"},
-            {name:"肥料调动记录",id:"fertilizer_mobility_record"},
-            {name:"施肥规格",id:"fertilization_specification_info"},
-            {name:"施肥计划",id:"fertilization_program"}
-            ]
+        list: {
+          id: "protect_plan_list",
+          data: [
+            {name: "肥料种类管理", id: "fertilizer_type_manage"},
+            {name: "肥料调动记录", id: "fertilizer_mobility_record"},
+            {name: "施肥规格", id: "fertilization_specification_info"},
+            {name: "施肥计划", id: "fertilization_program"}
+          ]
         },
-        fertilizer_type_manage:{
+        fertilizer_type_manage: {
           operation: [
             {
               id: "fertilizer_type_manage_select",
               type: "em_input",
-              placeholder:"肥料名称",
-              params:"fertilizerName"
+              placeholder: "肥料名称",
+              params: "fertilizerName"
 
             },
             {
@@ -770,13 +767,13 @@ export default {
             ]
           }
         },
-        fertilizer_mobility_record:{
+        fertilizer_mobility_record: {
           operation: [
             {
               id: "fertilizer_mobility_record_select",
               type: "em_input",
-              placeholder:"肥料名称",
-              params:"fertilizerName"
+              placeholder: "肥料名称",
+              params: "fertilizerName"
 
             },
             {
@@ -819,7 +816,7 @@ export default {
               name: "调用者",
               prop: "executor",
               width: "80",
-              alter_show:false,
+              alter_show: false,
               add_show: false
             },
               {
@@ -887,7 +884,7 @@ export default {
             ]
           }
         },
-        fertilization_specification_info:{
+        fertilization_specification_info: {
           operation: [
             {
               id: "people_manage_select",
@@ -959,7 +956,7 @@ export default {
                 prop: "plantEname",
                 width: "140",
                 alter_show: false,
-                add_show:false
+                add_show: false
               },
               {
                 name: "肥料名称",
@@ -977,7 +974,7 @@ export default {
                 prop: "fertilizerEname",
                 width: "140",
                 alter_show: false,
-                add_show:false
+                add_show: false
               },
               {
                 name: "施肥规格",
@@ -1028,13 +1025,13 @@ export default {
             ]
           }
         },
-        fertilization_program:{
+        fertilization_program: {
           operation: [
             {
               id: "fertilization_program_input",
               type: "em_input",
-              placeholder:"植物名称",
-              params:"plantCname",
+              placeholder: "植物名称",
+              params: "plantCname",
 
             },
             {
@@ -1083,14 +1080,14 @@ export default {
             table_url: "/gardens/fertilizationProgram/queryAllByPage",
             label: [
               {
-              name: "植物名称",
-              prop: "plantCname",
-              width: "100",
-              type: "em_selectUrl",
-              optionUrl: "gardens/plantname/queryAll",
-              params: "plantNameId",
-              alter_show: true,
-              add_show: true
+                name: "植物名称",
+                prop: "plantCname",
+                width: "100",
+                type: "em_selectUrl",
+                optionUrl: "gardens/plantname/queryAll",
+                params: "plantNameId",
+                alter_show: true,
+                add_show: true
               },
               {
                 name: "植物英文名",
@@ -1898,11 +1895,11 @@ export default {
       class: "em-table-window",
       component: "list_table",
       component_data: {
-        list:{
-          id:"type_manage_list",
-          data:[{name:"人员信息管理",id:"people_inform_manage"},{name:"人员类型管理",id:"people_type_manage"}]
+        list: {
+          id: "type_manage_list",
+          data: [{name: "人员信息管理", id: "people_inform_manage"}, {name: "人员类型管理", id: "people_type_manage"}]
         },
-        people_type_manage:{
+        people_type_manage: {
           operation: [
             {
               id: "persontype_manage_select",
@@ -2001,7 +1998,7 @@ export default {
             ]
           }
         },
-        people_inform_manage:{
+        people_inform_manage: {
           operation: [
             {
               id: "people_manage_select",
@@ -2567,27 +2564,27 @@ export default {
               placeholder: "植物属名称",
               params: "genusName",
               alter_show: false,
-              add_show:false
+              add_show: false
             },
             {
               name: "花卉还是树",
               prop: "flowersPlantsOrTree",
               width: "140",
               type: "em_select",
-              options:[
+              options: [
                 {
-                  value:0,
-                  label:"树"
+                  value: 0,
+                  label: "树"
                 },
                 {
-                  value:1,
-                  label:"花卉"
+                  value: 1,
+                  label: "花卉"
                 }
               ],
               placeholder: "花卉还是树",
               params: "flowersPlantsOrTree",
               alter_show: true,
-              add_show:true
+              add_show: true
             },
             {
               name: "特征",
@@ -4325,7 +4322,7 @@ export default {
             text: "树木数据",
             fn: "routerFn",
             fnData: {
-              path:"/main/map"
+              path: "/main/map"
             }
           },
           {
@@ -4335,7 +4332,7 @@ export default {
             text: "sk_街道树",
             fn: "routerFn",
             fnData: {
-              path:"/home/map"
+              path: "/home/map"
             }
           }
         ]
@@ -4426,13 +4423,14 @@ export default {
       title: "添加",
       show: false,
       type: "dome",
-      data: [{
-        type: "em_input",
-        placeholder: "账户",
-        name: "账户",
-        params: ""
+      data: [
+        {
+          type: "em_input",
+          placeholder: "账户",
+          name: "账户",
+          params: ""
 
-      },
+        },
         {
           type: "em_input",
           placeholder: "中文名",
@@ -4445,10 +4443,9 @@ export default {
           placeholder: "英文名",
           name: "英文名",
           params: ""
-
         },
       ]
 
     },
   ]
-}
+};
