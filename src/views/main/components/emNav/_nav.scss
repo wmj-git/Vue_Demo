@@ -125,7 +125,7 @@ ul.el-menu-demo.em-nav-menu.el-menu--horizontal.el-menu /deep/ {
       &.is-active {
         border-image: none;
         background-color: darken(nth($menu-background, 1), 10%);
-        border-color: $border-color-base;
+        border-color: $em-highlight-border-color-base;
         border-bottom: none;
       }
 

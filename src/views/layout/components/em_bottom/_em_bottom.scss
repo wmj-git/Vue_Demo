@@ -1,19 +1,18 @@
 @import "../../../../styles/index/variable";
-
-$r: 32;
 .em-bottom-container {
-  background: rgba(20, 31, 55, 0.8);
+  background: lighten($em-highlight-bg2-color-base, 2%);
 
   & /deep/ {
     .el-input__inner {
       height: 30/$r+rem;
       line-height: 30/$r+rem;
-
+      border-color: darken($em-border-color-base,20%);
       &::-webkit-input-placeholder {
-        color: #707786; //input
+        color: darken($em-text-color-base,50%); //input
       }
+
       &:-ms-input-placeholder {
-        color: #707786; //input
+        color: darken($em-text-color-base,50%); //input
       }
     }
 
@@ -22,11 +21,11 @@ $r: 32;
       position: relative;
       margin: 5px 10px;
       padding: 5px 0;
-      color: rgba(255, 255, 255, 0.8);
-      border-color: rgba(255, 255, 255, 0.1);
+      color: darken($em-text-color-base,12%);
+      border-color: darken($em-border-color-base,32%);
       width: 80px;
       height: 26px;
-      text-shadow: 0 1px 0 #e1e2ed;
+      text-shadow: 0 1px 0 darken($em-text-color-base,18%);
       background-color: $scene-btn-base-color;
       font-weight: 700;
       display: block;

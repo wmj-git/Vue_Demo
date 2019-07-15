@@ -2,5 +2,5 @@
   background: nth($background-base,5);
 }
 .el-slider__button{
-  border-color: darken($border-color-base,15%);
+  border-color: darken($em-highlight-border-color-base,15%);
 }

@@ -37,7 +37,7 @@ $r:32;
   color: rgba(255,255,255,0.8);
   &.hover, &:hover{
     background-color: lighten(nth($background-base,2),5%);
-    color: $color-base;
+    color: $em-text-highlight-base;
   }
 }
 
@@ -59,7 +59,7 @@ $r:32;
   color: rgba(255,255,255,0.8) !important;
 }
 .el-select-dropdown.is-multiple .el-select-dropdown__item.selected{
-  color: $color-base !important;
+  color: $em-text-highlight-base !important;
   background: transparent !important;
 }
 

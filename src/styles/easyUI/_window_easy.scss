@@ -114,11 +114,11 @@ $r: 32;
 
 /*bottom-window*/
 .panel.window.#{em-bottom-window}.panel-htop.easyui-fluid {
-  background: rgba(20, 31, 55, 0.8);
-  border-left: 6px solid $border-color-base;
-  border-right: 6px solid $border-color-base;
-  border-top: 1px solid #d8bb37;
-  border-bottom: 1px solid #d8bb37;
+  background: lighten($em-highlight-bg2-color-base,2%);
+  border-left: 6px solid $em-highlight-border-color-base;
+  border-right: 6px solid $em-highlight-border-color-base;
+  border-top: 1px solid $em-highlight-border-color-base;
+  border-bottom: 1px solid $em-highlight-border-color-base;
   border-radius: unset;
   position: fixed;
   bottom: 4px;
@@ -145,7 +145,7 @@ $r: 32;
 }
 
 .panel.window.#{em-table-window}.panel-htop {
-  background: $background-table-base;
+  background: $em-background-table-base;
   border: 18px solid transparent;
   -webkit-border-image: url("../../../src/assets/image/table_border.png") 20 26 20 26 round;
   -moz-border-image: url("../../../src/assets/image/table_border.png") 20 26 20 26 round;

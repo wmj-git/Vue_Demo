@@ -11,13 +11,13 @@
     color: #e1e0e0;
     padding-left: 10px !important;
     &:hover{
-      color:$color-base;
+      color: $em-text-highlight-base;
       opacity: 0.8;
       transition: all .2s;
     }
   }
   .panel-title{
-    color: $color-base;
+    color: $em-text-highlight-base;
   }
 }
 .window .window-body{

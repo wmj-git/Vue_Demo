@@ -9,7 +9,7 @@
 }
 .scene /deep/{
   .cesium-infoBox{
-    background: $background-table-base;
+    background: $em-background-table-base;
     border: 15px solid transparent;
     -webkit-border-image: url("../../../src/assets/image/table_border.png") 27 27 24 24 round;
     -moz-border-image: url("../../../src/assets/image/table_border.png") 27 27 24 24 round;
@@ -18,7 +18,7 @@
     resize: both;
   }
   .cesium-infoBox-title{
-    background: darken($background-table-base,10%);
+    background: darken($em-background-table-base,10%);
   }
   .cesium-button:disabled{
     background:  transparent;

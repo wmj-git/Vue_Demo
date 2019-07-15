@@ -1,3 +1,4 @@
+$r:32;
 /*按钮类名定义*/
 $em-btn-bubbles:em-btn-bubbles;//气泡按钮类名
 
@@ -90,32 +91,33 @@ $em-tool-window:em-tool-window;//toolList小工具
 
 /*layout-window*/
 $em-layout-window:em-layout-window;//界面上按钮
-/*fontFamily fontSize*/
-$font-family-sans-serif: "Helvetica Neue", Helvetica, Arial, sans-serif !default;
-$font-family-serif: Georgia, "Times New Roman", Times, serif !default;
-
-$font-family-monospace: Menlo, Monaco, Consolas, "Courier New", monospace !default;
-$font-family-base: $font-family-sans-serif !default;
 
 /*font-color*/
-$font-color-main:#303133; //主要文本颜色
-$font-color-conventional: #606266; //常规文本颜色
-$font-color-secondary: #909399;//次要文本颜色
+$em-text-color-base: #ffffff; //常规表格文本颜色
+$em-text-highlight-base: #d8bb37;//高亮文本颜色
+
+/*border-color*/
+$em-border-color-base: rgba(255, 255, 255, 0.5);//基本边框颜色
+$em-highlight-border-color-base:#d8bb37;//高亮边框颜色
+
+/*background-color*/
+$em-bg-color-base:#fff;//基本背景颜色
+$em-highlight-bg-color-base:#d8bb37;//高亮背景颜色
+$em-highlight-bg2-color-base: rgba(20, 31, 55, 1);//深色背景
+
+/*scrollbar-background-color*/
+$em-scrollbar-background-color: #979ca9;
 
 /*base define*/
 $background-base:rgba(216, 187, 55, 0.6), rgba(20, 31, 55, 0.5),rgba(20, 31, 55, 0.9),rgba(216, 187, 55, 0.9),rgba(20, 31, 55, 0.6);
 $background-linear-base:linear-gradient(to bottom right,nth($background-base,1),nth($background-base,2));
-$color-base:#d8bb37;
-$border-color-base:#d8bb37;
 
 $menu-background:rgba(216, 187, 55, 0.4), rgba(20, 31, 55, 0.5),rgba(216, 187, 55, 0.6);//menu样式背景2
 /*table*/
-$background-table-base:rgba(20,31,55,0.5); /*table-window-background*/
-$background-table-classification:rgba(20,31,55,0.4);//分类列表左边背景
-$background-table-container:rgba(20,31,55,0.6);//分类列表右边背景
-$background-table-thead:linear-gradient(rgba(216, 187, 55, 0.4), rgba(20, 31, 55, 0.6));//表头背景
-$background-table-tbody:rgba(20,31,55,0.8);//tbody背景
-$background-hover-tbody:rgba(216,187,55,0.2);//tbody-hover背景
+$em-background-table-base:rgba(20,31,55,0.5); /*table-window-background*/
+$em-background-table-thead:linear-gradient(rgba(216, 187, 55, 0.4), rgba(20, 31, 55, 0.6));//表头背景
+$em-background-table-tbody:rgba(20,31,55,0.8);//tbody背景
+$em-background-hover-tbody:rgba(216,187,55,0.2);//tbody-hover背景
 
 /*dialog*/
 $background-dialog-base:rgba(20,31,55,0.8); /*table-dialog-background*/
@@ -146,7 +148,6 @@ $el-tree-background:linear-gradient(to bottom right,rgba(216, 187, 55, 0.3), rgb
 
 /*scene-btn*/
 $scene-btn-base-color:#a09337;
-
 
 /*login-button*/
 $em-login-btn:rgba(216, 187, 55, 0.6);

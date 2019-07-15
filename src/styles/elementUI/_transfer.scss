@@ -2,34 +2,34 @@
 
 .el-transfer-panel {
   background-color: darken(nth($background-base, 2), 2%);
-  border-color: rgba(255, 255, 255, 0.3);
+  border-color: darken($em-border-color-base,30%);
 
   & .el-transfer-panel__item {
-    color: rgba(255, 255, 255, 0.8);
+    color: darken($em-text-color-base,20%);
   }
 
   & .el-transfer-panel__header {
-    background-color: darken(nth($background-base, 2), 4%) !important;
-    border-bottom-color: rgba(255,255,255,0.5);
+    background-color: darken($em-highlight-bg2-color-base,4%) !important;
+    border-bottom-color: darken($em-border-color-base,50%);
     & .el-checkbox .el-checkbox__label {
-      color: rgba(255, 255, 255, 0.8);
+      color: darken($em-text-color-base,20%);
 
       & span {
-        color: rgba(255, 255, 255, 0.8);
+        color: darken($em-text-color-base,20%);
       }
     }
   }
 }
 
 .el-transfer__button {
-  border-color: $border-color-base;
+  border-color: $em-highlight-border-color-base;
   background-color: nth($background-base, 1);
   color: #fff;
 
   &.is-disabled,&.is-disabled:hover,&.is-disabled:active,&.is-disabled:focus {
-    border: 1px solid rgba(255, 255, 255, 0.6);
-    background-color: rgba(255, 255, 255, 0.8);
-    color: rgba(0, 0, 0, 0.9);
+    border: 1px solid darken($em-border-color-base,40%);
+    background-color: darken($em-bg-color-base,20%);
+    color: darken($em-text-color-base,100%);
   }
 }
 

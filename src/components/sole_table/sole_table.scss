@@ -10,7 +10,7 @@ $r: 32;
 }
 
 .em-btn-reset {
-  border-color: darken($border-color-base, 20%);
+  border-color: darken($em-highlight-border-color-base, 20%);
   background: $btn-linear-base;
   color: rgba(255, 255, 255, 0.6) !important;
   margin-right: 6px;
