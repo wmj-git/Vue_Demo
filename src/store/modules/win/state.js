@@ -2250,6 +2250,25 @@ export default {
         table: {
           id: "protect_company_manage_table",
           table_url: "/gardens/ent/queryAllByPage",
+          after_digital_button: [
+            {
+              name: "关联路段",
+              fn: "associateRoads",
+              url:"/gardens/ent/addEntRoad",
+              id: "associateRoads",
+              dialog_name: "关联路段",
+              dialog_width: "400px",
+              component_name: "associate_roads"
+            },
+            {
+              name: "取消关联",
+              fn: "cancelAssociation",
+              id: "cancelAssociation",
+              dialog_name: "关联路段",
+              dialog_width: "600px",
+              component_name: "cancel_association"
+            }
+          ],
           label: [
             {
               name: "名称",

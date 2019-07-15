@@ -70,21 +70,34 @@ export function upLoad(obj) {         //上传表格
 }
 export function resetPassword(id) {         //账户密码重置
   return request({
-    url: "user/userext/resetPwd/"+id,
+    url: "/user/userext/resetPwd/"+id,
     method: 'get'
   })
 }
-export function roleList() {       //账户管理下拉选择角色时调此方法
+export function roleList() {       //下拉选择角色时调此方法
   return request({
-    url: "user/role/queryPage",
+    url: "/user/role/queryPage",
     method: 'get'
   })
 }
 export function setRoles(obj) {       //为用户设置角色的方法
   return request({
-    url: "user/userext/addUserRole",
+    url: "/user/userext/addUserRole",
     method: 'post',
     data:obj
+  })
+}
+export function usersList() {       //下拉选择用户时调此方法
+  return request({
+    url: "/user/role/queryPage",
+    method: 'get'
+  })
+}
+export function roleInformation(obj) {       //下拉选择用户时调此方法
+  return request({
+    url: "/user/role/queryRoleByUserId",
+    method: 'get',
+    params: obj
   })
 }
 
