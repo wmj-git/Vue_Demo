@@ -1,8 +1,8 @@
 $r:32;
 .emForm /deep/{
   .el-input__inner{
-    height: 30/$r+rem !important;//tree-from-input
-    line-height: 30/$r+rem !important;
+    height: 30px !important;//tree-from-input
+    line-height: 30px !important;
     display: inline-block;
     overflow: hidden;
     white-space: nowrap;

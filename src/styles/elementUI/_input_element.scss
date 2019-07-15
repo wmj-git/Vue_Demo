@@ -7,19 +7,19 @@
 /*form表单中的文本框*/
 .el-form /deep/ {
   .el-input--suffix .el-input__inner, .el-input__inner {
-    height: 25/$r+rem;
-    line-height: 25/$r+rem;
+    height: 24px;
+    line-height: 24px;
     border-color: darken($em-border-color-base,20%);
   }
 }
 
 .operation {
   .el-input__icon{
-    line-height: 25/$r+rem;/*时间显示框*/
+    line-height: 24px;/*时间显示框*/
   }
   .el-input--suffix .el-input__inner, .el-input__inner {
-    height: 25/$r+rem;
-    line-height: 25/$r+rem;
+    height: 24px;
+    line-height: 24px;
     border-color: darken($em-border-color-base,20%);
     &::-webkit-input-placeholder {
       color: darken($em-text-color-base,40%); //operation

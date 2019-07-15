@@ -4,8 +4,8 @@
 
   & /deep/ {
     .el-input__inner {
-      height: 30/$r+rem;
-      line-height: 30/$r+rem;
+      height: 30px;
+      line-height: 30px;
       border-color: darken($em-border-color-base,20%);
       &::-webkit-input-placeholder {
         color: darken($em-text-color-base,50%); //input

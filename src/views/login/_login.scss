@@ -58,11 +58,11 @@ video {
   }
 
   .el-input__inner {
-    height: 40/$r+rem;
-    line-height: 40/$r+rem;
+    height: 36px;
+    line-height: 36px;
 
     &:-ms-input-placeholder {
-      color: #707786; //input
+      color: darken($em-text-color-base,40%); //input
     }
   }
 }

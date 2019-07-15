@@ -1,8 +1,8 @@
 @import "../../styles/index/variable";
 .em_dialogs /deep/{
   .el-input__inner {
-    height: 25/$r+rem;
-    line-height: 25/$r+rem;
+    height: 24px;
+    line-height: 24px;
     border-color: darken($em-border-color-base,20%);
     &::-webkit-input-placeholder {
       color: darken($em-text-color-base,40%); //input
