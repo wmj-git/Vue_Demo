@@ -20,7 +20,6 @@ $r: 32;
   .el-input--suffix .el-input__inner, .el-input__inner {
     height: 25/$r+rem;
     line-height: 25/$r+rem;
-
     &::-webkit-input-placeholder {
       color: #707786; //operation
     }

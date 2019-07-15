@@ -18,7 +18,7 @@ ul.el-menu-demo.em-nav-menu.el-menu--horizontal.el-menu /deep/ {
     background-size: 100% 100%;
     width: 90px;//IE
     text-align: center;
-    padding: unset;
+    padding: 0;
     margin-right: 4/$r+rem; //IE
     -moz-margin-right: 8/$r+rem;
     -webkit-margin-right: 8/$r+rem;
