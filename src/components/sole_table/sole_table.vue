@@ -29,7 +29,7 @@
     </el-dialog>
     <el-dialog :title="commonDialogTitle" :width="commonDialogWidth" :visible.sync="dialogCommonVisible"
                :modal-append-to-body="false" v-dialogDrag="true">
-      <component :is="commonDialogComponent" @closeCommonDialog="closeCommonDialog" ref="dialogComponent"></component>
+      <component :is="commonDialogComponent" @closeCommonDialog="closeCommonDialog" ref="dialogComponent" v-if="dialogCommonVisible"></component>
     </el-dialog>
     <div class="table digital_table">
       <el-row class="operation">
@@ -467,6 +467,9 @@
         this.showCommonDialog();
       },
       associateUsers() {             //触发关联用户的弹框
+        this.showCommonDialog();
+      },
+      associateRoads(){
         this.showCommonDialog();
       }
     }

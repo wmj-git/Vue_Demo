@@ -21,13 +21,14 @@
 </template>
 
 <script>
-  import {roleList,setRoles} from "@/api/table_operate"
+  import {roleList,setRoles,roleInformation} from "@/api/table_operate"
     export default {
         data(){
             return{
-              roles:"" ,    //选择的角色
-              userId:"",     //要修改的用户的id
+              roles:[],    //选择的角色
+              userIds:[],     //要修改的用户的id
               roleOptions: [],// 角色管理的选项
+              id:"",        //也是修改用户的id，此id作为查询参数
             }
         },
       beforeCreate(){
@@ -38,16 +39,38 @@
             });
             this.roleOptions=roleArr;
             console.log( this.roleOptions)
+          });
+        this.bus.$off("alter");
+        this.bus.$on("alter", res=>{
+            this.id=res.id;
+          console.log(this.id);
+          // roleInformation({"id":this.id}).then(val=>{
+          //   console.log(val);
+          //   val.data.forEach(item=>{
+          //     this.roles.push(item.id)
+          //   })
+          // });
+          // console.log(this.roles)
+        });
+      },
+      mounted(){
+        console.log(this.id);
+        roleInformation({"id":this.id}).then(val=>{
+          console.log(val);
+          val.data.forEach(item=>{
+            this.roles.push(item.id)
           })
-
+        });
+        console.log(this.roles)
       },
         methods:{
           recieveRoles(userId){
-            this.userId=userId;
+            this.userIds.push(userId);
+            console.log(this.userIds)
           },
           submitRoles(){               //提交修改好的角色
             console.log(this.roles);
-            setRoles({"roleIds":this.roles,"userId":this.userId}).then(res=>{
+            setRoles({"roleIds":this.roles,"userIds":this.userIds}).then(res=>{
               console.log(res);
               if(res.statusCode==200){
                 this.$message({
