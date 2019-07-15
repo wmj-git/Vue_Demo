@@ -2,15 +2,15 @@
   background: lighten(nth($background-base,3),5%);
   border-image: linear-gradient(nth($background-base,3),nth($background-base,4));
   border-image-slice: 20;
-  color: rgba(255, 255, 255, 0.9);
+  color: darken($em-text-color-base,10%);
   .el-date-table {
     & th{
-      color:rgba(255, 255, 255, 0.9);
+      color:darken($em-text-color-base,10%);
       border-color: lighten($em-highlight-border-color-base,10%);
     }
     & td.current:not(.disabled) span{
       background: nth($background-base,4);
-      color: #000;
+      color: darken($em-text-color-base,100%);
     }
     & td.available:hover, & td.today span{
       color: $em-text-highlight-base;
@@ -21,12 +21,12 @@
     & td.disabled div {
       background-color: lighten(nth($background-base,3),15%);
       cursor: not-allowed;
-      color: rgba(255,255,255,0.4);
+      color: darken($em-text-color-base,60%);
     }
   }
   .el-date-picker__header{
     .el-picker-panel__icon-btn,.el-date-picker__header-label{
-      color: #fff;
+      color: $em-text-color-base;
     }
   }
 }

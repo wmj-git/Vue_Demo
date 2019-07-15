@@ -44,8 +44,8 @@
 
 /*只读input框样式*/
 .el-input.is-disabled .el-input__inner {
-  background-color: darken($em-bg-color-base,40%);
-  color: darken($em-border-color-base,50%);
+  background-color: darken($em-bg-color-base,30%);
+  color: darken($em-border-color-base,40%);
 }
 
 .em_textarea {

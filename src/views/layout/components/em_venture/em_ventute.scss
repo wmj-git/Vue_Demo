@@ -1,9 +1,9 @@
-$r:32;
+@import "../../../../styles/index/variable";
 .el-button{
   width: 100px;
   height: 85px;
   border: none;
-  color: rgba(255,255,255,1);
+  color: $em-text-color-base;
   font-weight: 900;
   span {
     margin-left: 17px;
@@ -17,7 +17,7 @@ em{
   line-height: 10px;
   font-size: 14/$r+rem;
   font-weight: 900;
-  color: rgba(255, 255, 255,0.8);
+  color: darken($em-text-color-base,20%);
   &.level_one{
     left: 80px;
   }

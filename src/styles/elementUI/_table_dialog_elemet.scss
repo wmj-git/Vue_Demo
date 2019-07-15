@@ -11,11 +11,11 @@
    color: white;
   }
   .el-message-box__content,.el-message-box__headerbtn .el-message-box__close{
-    color: rgba(255,255,255,0.8);
+    color: darken($em-text-color-base,20%);
   }
   .#{em-button}{
     background: $btn-linear-base;
-    color: rgba(255,255,255,0.8);
+    color: darken($em-text-color-base,20%);
     border-color: darken($em-highlight-border-color-base,30%);
     border-radius: 5/$r+rem;
     padding: 5/$r+rem 10/$r+rem;
@@ -39,13 +39,13 @@
     color: $em-text-highlight-base;
   }
   .el-form-item__label{
-    color: rgba(255,255,255,0.7);
+    color: darken($em-text-color-base,30%);
   }
   .el-dialog__headerbtn .el-dialog__close{
-    color: rgba(255,255,255,0.7);
+    color: darken($em-text-color-base,30%);
     font-size: 12/$r+rem;
     &:hover{
-      color: white;
+      color: $em-text-color-base;
     }
   }
 

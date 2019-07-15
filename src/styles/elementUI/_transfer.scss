@@ -24,7 +24,7 @@
 .el-transfer__button {
   border-color: $em-highlight-border-color-base;
   background-color: nth($background-base, 1);
-  color: #fff;
+  color: $em-text-color-base;
 
   &.is-disabled,&.is-disabled:hover,&.is-disabled:active,&.is-disabled:focus {
     border: 1px solid darken($em-border-color-base,40%);

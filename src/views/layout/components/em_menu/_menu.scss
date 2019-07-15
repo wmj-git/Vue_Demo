@@ -1,7 +1,7 @@
 @import "../../../../styles/index/variable";
 .em-menu{
   width: 100%;
-  border-image-source: linear-gradient($em-highlight-bg-color-base,$em-highlight-bg2-color-base,$em-highlight-bg2-color-base);
+  border-image-source: linear-gradient($em-highlight-bg-color-base,$em-highlight-bg2-color-base,$em-highlight-bg-color-base);
   padding: 6/$r+rem 8/$r+rem;
   border-style: solid;
   border-width: 0 5px 0 5px;
@@ -17,7 +17,7 @@
   height: 30px;
   background-size: 100% 100%;
   line-height: 25px;
-  color: #e1e0e0;
+  color: $em-text-color-base;
   padding-left: 10px !important;
   padding-right: 10px;
   font-size: 14/$r+rem;

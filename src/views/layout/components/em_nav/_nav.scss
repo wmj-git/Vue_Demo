@@ -24,7 +24,7 @@ ul.el-menu-demo.em-nav-menu.el-menu--horizontal.el-menu /deep/ {
     margin-top: 20/$r+rem;
     height: 30/$r+rem;
     line-height: 26/$r+rem;
-    color: #fff;
+    color: $em-text-color-base;
     font-size: 15/$r+rem;
     left: 1%;
 
@@ -86,7 +86,7 @@ ul.el-menu-demo.em-nav-menu.el-menu--horizontal.el-menu /deep/ {
       -webkit-transform-style: preserve-3d;
       transform-style: preserve-3d;
       border-radius: 5px;
-      border: 1px solid #fff;
+      border: 1px solid $em-border-color-base;
       box-shadow: 0 0 20px 5px nth($menu-background, 3);
       opacity: 0;
       transition: all .3s ease;
@@ -103,7 +103,7 @@ ul.el-menu-demo.em-nav-menu.el-menu--horizontal.el-menu /deep/ {
         content: "Hover me";
         font-weight: 300;
         font-size: 14px;
-        color: #fff;
+        color: $em-text-color-base;
         transition: all .6s ease;
         width: 100%;
         height: 100%;
@@ -138,7 +138,7 @@ ul.el-menu-demo.em-nav-menu.el-menu--horizontal.el-menu /deep/ {
         left: 5px;
         position: absolute;
         will-change: transform;
-        color: #fff;
+        color: $em-text-color-base;
         text-shadow: 0 0 5px nth($menu-background, 1);
       }
 

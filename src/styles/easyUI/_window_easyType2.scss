@@ -1,5 +1,4 @@
 @import "../../styles/index/variable";
-$r:32;
 .window{
   background-color: transparent;
 }
@@ -95,8 +94,8 @@ $r:32;
 /*bottom-window*/
 .panel.window.#{em-bottom-window}.panel-htop.easyui-fluid {
   background: rgba(20, 31, 55, 0.8);
-  border-left: 6px solid $border-color-base;
-  border-right: 6px solid $border-color-base;
+  border-left: 6px solid $em-highlight-border-color-base;
+  border-right: 6px solid $em-highlight-border-color-base;
   border-top: 1px solid #d8bb37;
   border-bottom: 1px solid #d8bb37;
   border-radius: unset;
