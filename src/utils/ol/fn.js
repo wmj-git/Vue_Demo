@@ -1,6 +1,5 @@
 
 
-
 export function createQeomStyle(_feature, _style) {
 
   let Style = new ol.style.Style({
@@ -149,7 +148,7 @@ export function clustersFn(_features, _Key, _clusterImgUrl, _distance) {//_featu
 
   let features = [];
   for (let i = 0; i < _features.length; ++i) {
-    let coordinates = [_features[i].longitude, _features[i].latitude];
+    let coordinates = [_features[i].gpsLongitude, _features[i].gpsLatitude];
 
     features[i] = new ol.Feature({
       geometry: new ol.geom.Point(coordinates),

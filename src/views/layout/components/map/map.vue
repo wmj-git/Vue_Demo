@@ -21,6 +21,7 @@
     methods: {
       init() {
 
+
         this.queryVicinityPrintFn();
 
         let _resolutions = [
@@ -31,6 +32,7 @@
           2.37946100583028E-6, 1.18973050291514E-6,
           5.9486525145757E-7, 2.97432625728785E-7];
         let _origin = [-400, 400];
+
         let _Source = new ol.layer.Tile({//正视投影
           source: new ol.source.ESRICache({
             origin: _origin,
@@ -91,10 +93,11 @@
           ]),
           target: 'mapContainer',
           layers: [
+            // mp.layers.tianSource,
             // _Source,
             mp.layers.baidu_a,
             // osmSource,
-            vectorLayer
+            // vectorLayer
           ],
           view: new ol.View({
             resolutions: _resolutions,
