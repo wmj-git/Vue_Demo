@@ -113,7 +113,7 @@ export function systemUI({commit, state}) {
     let _systemData = [];
 
     findByThisUser().then((response) => {
-
+      console.log(response);
       commit(SET_PERMISSIONS, response.data);
 
       response.data.forEach(function (_obj) {
@@ -121,6 +121,7 @@ export function systemUI({commit, state}) {
           if(_obj.resourceCode===_item.system_id){
             _item.id=_obj.id;
             _item.parentId=_obj.parentId;
+            _item.resourceUrl=_obj.resourceUrl;
             _systemData.push(_item);
           }
         })

@@ -75,10 +75,10 @@ export function treeStructure(_nodes) {
     var nowId = nodes[i].id;
     // 建立当前节点的父节点的children 数组
     if(midObj[nowPid]) {
-      midObj[nowPid].push(nodes[i]);
+      midObj[nowPid].unshift(nodes[i]);
     } else {
       midObj[nowPid] = [];
-      midObj[nowPid].push(nodes[i]);
+      midObj[nowPid].unshift(nodes[i]);
     }
     // 将children 放入合适的位置
     if(midObj[nowId]) {

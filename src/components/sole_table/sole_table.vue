@@ -274,7 +274,6 @@
 
           });
 
-
           this.tableData = res.data.list;
           this.totalSize = res.data.total;
         })
@@ -291,9 +290,7 @@
           setTimeout(() => {
             this.$refs.dialogComponent.recieveRoles(this.alter_obj.id);
           });
-
         }
-
       },
       add(obj) {
         this.$refs.dialog.showdialog(obj);  //调用子组件em_dialogs的方法显示弹出框;
