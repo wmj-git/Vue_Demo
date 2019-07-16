@@ -80,6 +80,18 @@ export function roleList() {       //下拉选择角色时调此方法
     method: 'get'
   })
 }
+export function userList() {       //查询全部用户时调此方法
+  return request({
+    url: "/user/userext/queryAllUser",
+    method: 'get'
+  })
+}
+export function roadList() {       //查询全部路段时调此方法
+  return request({
+    url: "/gardens/road/queryAll",
+    method: 'get'
+  })
+}
 export function setRoles(obj) {       //为用户设置角色的方法
   return request({
     url: "/user/userext/addUserRole",
@@ -87,18 +99,41 @@ export function setRoles(obj) {       //为用户设置角色的方法
     data:obj
   })
 }
-export function usersList() {       //下拉选择用户时调此方法
+export function setRoads(obj) {               //为单位设置道路的方法
   return request({
-    url: "/user/role/queryPage",
-    method: 'get'
+    url: "/gardens/ent/addEntRoad",
+    method: 'post',
+    data:obj
   })
 }
-export function roleInformation(obj) {       //下拉选择用户时调此方法
+export function roleInformation(obj) {        //根据用户id查询角色
   return request({
     url: "/user/role/queryRoleByUserId",
     method: 'get',
     params: obj
   })
 }
+export function userInformation(obj) {       //根据角色id查询用户
+  return request({
+    url: "/user/userext/queryUserExtByRoleId",
+    method: 'get',
+    params: obj
+  })
+}
+export function roadInformation(obj) {       //根据养护单位id查询道路
+  return request({
+    url: "/gardens/road/queryByEndId",
+    method: 'get',
+    params: obj
+  })
+}
+export function delEntRoad(obj) {       //删除养护单位的养护路段
+  return request({
+    url: "/gardens/ent/delEntRoad",
+    method: 'post',
+    params: obj
+  })
+}
+
 
 
