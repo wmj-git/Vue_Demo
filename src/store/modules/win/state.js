@@ -2253,19 +2253,15 @@ export default {
             {
               name: "关联路段",
               fn: "associateRoads",
-              url:"/gardens/ent/addEntRoad",
               id: "associateRoads",
               dialog_name: "关联路段",
-              dialog_width: "400px",
+              dialog_width: "600px",
               component_name: "associate_roads"
             },
             {
               name: "取消关联",
               fn: "cancelAssociation",
               id: "cancelAssociation",
-              dialog_name: "关联路段",
-              dialog_width: "600px",
-              component_name: "cancel_association"
             }
           ],
           label: [

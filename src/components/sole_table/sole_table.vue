@@ -50,6 +50,33 @@
         style="width: 100%"
         @selection-change="handleSelectionChange"
       >
+        <el-table-column type="expand">
+          <template slot-scope="props">
+            <el-form label-position="left" inline class="demo-table-expand">
+              <el-form-item label="商品名称">
+                <span>{{ props.row.name }}</span>
+              </el-form-item>
+              <el-form-item label="所属店铺">
+                <span>{{ props.row.shop }}</span>
+              </el-form-item>
+              <el-form-item label="商品 ID">
+                <span>{{ props.row.id }}</span>
+              </el-form-item>
+              <el-form-item label="店铺 ID">
+                <span>{{ props.row.shopId }}</span>
+              </el-form-item>
+              <el-form-item label="商品分类">
+                <span>{{ props.row.category }}</span>
+              </el-form-item>
+              <el-form-item label="店铺地址">
+                <span>{{ props.row.address }}</span>
+              </el-form-item>
+              <el-form-item label="商品描述">
+                <span>{{ props.row.desc }}</span>
+              </el-form-item>
+            </el-form>
+          </template>
+        </el-table-column>
         <el-table-column
           type="index"
           fixed="left"
@@ -106,7 +133,7 @@
 
 <script>
 
-  import {add, dele, modify, find, downCsvmodel, upLoad, resetPassword} from "@/api/table_operate"
+  import {add, dele, modify, find, downCsvmodel, upLoad, resetPassword,delEntRoad} from "@/api/table_operate"
   import em_button from "@/components/em_button/em_button"
   import em_input from "@/components/em_input/em_input"
   import em_dialogs from "@/components/em_dialogs/em_dialogs"
@@ -115,6 +142,7 @@
   import {getToken} from '@/utils/auth'
   import role_assignments from "./components/role_assinments/role_assinments"
   import associate_users from "./components/associate_users/associate_users"
+  import associate_roads from "./components/associate_roads/associate_roads"
   import permission_assignments from "./components/permission_assignments/permission_assignments"
 
   export default {
@@ -127,6 +155,7 @@
       em_dialogs,
       role_assignments,
       associate_users,
+      associate_roads,
       permission_assignments,
     },
     data() {
@@ -188,7 +217,7 @@
         this.currentRow = val;
         this.alter_obj = this.currentRow;
         console.log(this.alter_obj);
-        this.bus.$emit("alter", this.alter_obj)
+        this.bus.$emit("alter", this.alter_obj)          //是修改弹框需要接受的数据
 
       },
       handleCurrentChangepage(val) {        //当前页
@@ -288,7 +317,7 @@
           this.commonDialogTitle = obj.dialog_name;
           this.commonDialogWidth = obj.dialog_width;
           setTimeout(() => {
-            this.$refs.dialogComponent.recieveRoles(this.alter_obj.id);
+            this.bus.$emit("alter_id", this.alter_obj.id);   //是分配角色等接受的数据
           });
         }
       },
@@ -468,7 +497,17 @@
       },
       associateRoads(){
         this.showCommonDialog();
-      }
+      },
+      cancelAssociation(){                //养护单位取消与路段的关联
+        delEntRoad({entId:this.alter_obj.id}).then(res=>{
+          if(res.statusCode===200){
+            this.$message({
+              message: '取消关联成功',
+              type: 'success'
+            });
+          }
+        })
+      },
     }
   }
 </script>
