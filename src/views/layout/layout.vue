@@ -60,6 +60,8 @@
   import echart_alone_show from "./components/echart_alone_show/echart_alone_show"
   import echarts_show from "./components/echarts_show/echarts_show"
   import table_show from "./components/table_show/table_show"
+
+  import emChart from "@/app_components/emChart/emChart"
   export default {
     data() {
       const screenWidth = _ => {
@@ -157,6 +159,7 @@
       echarts_show,
       table_show,
       buttonGroup,
+      emChart
     },
     computed: {
       wins: function () {

@@ -49,12 +49,11 @@
                   :total="totalSize">
                 </el-pagination>
               </div>
-
             </div>
             <div style="height: 50%;">
                <em_select :select="select"></em_select>
                <div style="height:90%;">
-             <ehcarts :id="echart_id" :option="option" :data="data1" :series="series" :xAxis_data="xAxis_data"></ehcarts>
+               <ehcarts :id="echart_id" :option="option" :data="data1" :series="series" :xAxis_data="xAxis_data"></ehcarts>
                </div>
             </div>
     </el-row>
