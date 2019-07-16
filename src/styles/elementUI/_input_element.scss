@@ -1,4 +1,3 @@
-$r: 32;
 .el-input--suffix .el-input__inner {
   font-size: 14/$r+rem !important;
 }
@@ -8,23 +7,25 @@ $r: 32;
 /*form表单中的文本框*/
 .el-form /deep/ {
   .el-input--suffix .el-input__inner, .el-input__inner {
-    height: 25/$r+rem;
-    line-height: 25/$r+rem;
+    height: 24px;
+    line-height: 24px;
+    border-color: darken($em-border-color-base,20%);
   }
 }
 
 .operation {
   .el-input__icon{
-    line-height: 25/$r+rem;/*时间显示框*/
+    line-height: 24px;/*时间显示框*/
   }
   .el-input--suffix .el-input__inner, .el-input__inner {
-    height: 25/$r+rem;
-    line-height: 25/$r+rem;
+    height: 24px;
+    line-height: 24px;
+    border-color: darken($em-border-color-base,20%);
     &::-webkit-input-placeholder {
-      color: #707786; //operation
+      color: darken($em-text-color-base,40%); //operation
     }
     &:-ms-input-placeholder {
-      color: #707786; //operation
+      color: darken($em-text-color-base,40%); //operation
     }
   }
 
@@ -38,13 +39,13 @@ $r: 32;
 }
 
 .el-checkbox__input.is-checked + .el-checkbox__label {
-  color: $color-base !important;
+  color: $em-text-highlight-base !important;
 }
 
 /*只读input框样式*/
 .el-input.is-disabled .el-input__inner {
-  background-color: rgba(255, 255, 255, 0.4);
-  color: rgba(255, 255, 255, 0.6);
+  background-color: darken($em-bg-color-base,30%);
+  color: darken($em-border-color-base,40%);
 }
 
 .em_textarea {
@@ -52,15 +53,15 @@ $r: 32;
 
   &.el-textarea, .el-textarea__inner {
     background: nth($background-base, 2);
-    border-color: rgba(255, 255, 255, 0.4);
-    color: #fff;
+    border-color: darken($em-border-color-base,10%);
+    color: $em-text-color-base;
     scrollbar-width: thin; //滚动条宽度
   }
 
   textarea::-webkit-input-placeholder {
-    color: #707786;
+    color: darken($em-text-color-base,40%);
   }
   textarea:-ms-input-placeholder {
-    color: #707786;
+    color: darken($em-text-color-base,40%);
   }
 }

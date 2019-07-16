@@ -2,9 +2,9 @@
   padding:5px;
   background: transparent;
   &:hover,&:focus{
-    color: $color-base;
+    color: $em-text-highlight-base;
     background: transparent;
-    border-color: $border-color-base;//tree
+    border-color: $em-highlight-border-color-base;//tree
   }
 }
 

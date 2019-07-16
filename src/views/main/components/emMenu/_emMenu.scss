@@ -1,9 +1,7 @@
 @import "../../../../styles/index/variable";
-$r:32;
 .em-menu{
-
   width: 100%;
-  border-image-source: linear-gradient(nth($background-base,2),nth($background-base,1), nth($background-base,2));
+  border-image-source: linear-gradient($em-highlight-bg-color-base,$em-highlight-bg2-color-base,$em-highlight-bg2-color-base);
   padding: 6/$r+rem 8/$r+rem;
   border-style: solid;
   border-width: 0 5px 0 5px;
@@ -19,24 +17,23 @@ $r:32;
   height: 30px;
   background-size: 100% 100%;
   line-height: 25px;
-  margin-top: 3/$r+rem;
   color: #e1e0e0;
   padding-left: 10px !important;
   padding-right: 10px;
   font-size: 14/$r+rem;
   text-align: left;
   &:hover {
-    color: $color-base;
+    color: $em-text-highlight-base;
     opacity: 0.8;
     transition: all .1s;
   }
   &:hover.el-menu-item i{
-    color: $color-base;
+    color: $em-text-highlight-base;
   }
   &:focus,&:hover {
     background-color: transparent;
   }
   &.is-active {
-    color: $color-base;
+    color: $em-text-highlight-base;
   }
 }

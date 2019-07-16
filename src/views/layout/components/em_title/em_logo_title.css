@@ -1,0 +1,15 @@
+.em-home-title {
+  height: 100px; }
+  .em-home-title img {
+    position: absolute;
+    left: 6px;
+    top: 15px; }
+  .em-home-title .em-title-container {
+    border-top: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    width: 255px;
+    left: 85px;
+    position: absolute;
+    top: 20px; }
+
+/*# sourceMappingURL=em_logo_title.css.map */

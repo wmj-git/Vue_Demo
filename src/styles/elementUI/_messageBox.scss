@@ -1,16 +1,16 @@
 .el-message-box.em-message-box {
   .el-button {
-    color: rgba(255, 255, 255, 0.6);
-    border-color: rgba(255, 255, 255, 0.4);
+    color: darken($em-text-color-base,20%);
+    border-color: darken($em-border-color-base,20%);
 
     &:hover {
-      color: $color-base;
-      border-color: $border-color-base;
+      color: $em-text-highlight-base;
+      border-color: $em-highlight-border-color-base;
       transition: all 0.2s;
     }
   }
   .el-button--primary{
-    border-color: lighten($border-color-base,10%);
-    color: $color-base;
+    border-color: lighten($em-highlight-border-color-base,10%);
+    color: $em-text-highlight-base;
   }
 }

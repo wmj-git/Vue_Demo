@@ -1,5 +1,4 @@
 @import "../../styles/index/variable";
-$r:32;
 .treeForm {
   position: relative;
   height: 100%;
@@ -8,7 +7,7 @@ $r:32;
     position: relative;
     cursor: default;
     background: unset;
-    color: #fff;
+    color: $em-text-color-base;
     min-width: 180px;
     max-height:400px;
     overflow:auto ;
@@ -34,7 +33,7 @@ $r:32;
     }
   }
   .head_title{
-    color: $color-base;
+    color: $em-text-highlight-base;
     padding-left: 14/$r+rem;
     font-size: 14/$r+rem;
     height: 30/$r+rem;
@@ -45,8 +44,8 @@ $r:32;
   .box-card{
     height: 96%;
     margin-top: 2%;
-    border-color: rgba(255, 255, 255, 0.3);
-    background: rgba(20, 31, 55, 0.8);
+    border-color: darken($em-border-color-base,60%);
+    background: nth($background-base,3);
   }
   .el-card.is-always-shadow{
     box-shadow: 0 2px 12px 0 rgba(255,255,255,.3);

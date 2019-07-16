@@ -1,42 +1,49 @@
-.el-tree-node__content{
+.el-tree-node__content {
   &:hover {
-    background-color:transparent;
+    background-color: transparent;
   }
-  &:focus{
-    border-color: rgba(255,255,255,0.1);
+
+  &:focus {
+    border-color: darken($em-border-color-base, 10%);
   }
 }
-
+/*背景色需要透明*/
 .el-tree-node:focus > .el-tree-node__content {
-  background-color:rgba(255,255,255,0.2) !important;
+  background-color: rgba(255,255,255,0.2) !important;
 }
 
-.splitter-pane.splitter-paneL.vertical{
+.splitter-pane.splitter-paneL.vertical {
   //background :rgba(20, 31, 55, 0.8);
 }
-.el-card__body{
+
+.el-card__body {
   padding: 10px !important; //tree
 }
-.#{em-btn-special}{
-  background: $btn-linear-base;
-  color: rgba(255,255,255,0.7) !important;
-  border-color: darken($border-color-base,30%);
+
+.#{em-btn-special} {
+  background: linear-gradient($em-highlight-bg-color-base, $em-highlight-bg2-color-base);
+  color: darken($em-text-color-base, 10%);
+  border-color: darken($em-highlight-border-color-base, 30%);
   border-radius: 5/$r+rem;
   padding: 5/$r+rem 10/$r+rem;
   float: right;
   margin-left: 15/$r+rem;
-  &:hover{
-    color: rgba(255,255,255,0.9);
-    background: linear-gradient(rgba(216, 187, 55, 0.6), rgba(20, 31, 55, 0.5));
-    border-color: #635413;
+
+  &:hover {
+    color: $em-text-color-base ;
+    background: linear-gradient(darken($em-highlight-bg-color-base, 10%), darken($em-highlight-bg2-color-base, 10%));
+    border-color: darken($em-highlight-bg-color-base, 40%);
     cursor: pointer;
   }
 }
-.el-form-item__label{
-  color: rgba(255,255,255,0.8);
+
+.el-form-item__label {
+  color: darken($em-text-color-base, 20%);
 }
-/*el-tree高亮部分*/
-.el-tree--highlight-current .el-tree-node.is-current > .el-tree-node__content{
+
+/*el-tree高亮部分,背景色必须透明*/
+.el-tree--highlight-current .el-tree-node.is-current > .el-tree-node__content {
   background: rgba(255,255,255,0.4) !important;
-  color: #fff;
+  color: $em-text-color-base;
 }
+
