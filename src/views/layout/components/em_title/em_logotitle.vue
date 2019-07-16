@@ -3,9 +3,19 @@
      <win :id="win.id" :data="win">
        <div class="em-home-title" id="title">
          <img src="../../../../assets/image/logo.png" bindload="imageLoad"/>
-         <div class="em-title-container">
-            <canvas id="canvas" ></canvas>
-         </div>
+         <figure>
+           <h2 class="modal-title">XXXX园林可视化管理平台</h2>
+           <h2 class="modal-title">XXXX园林可视化管理平台</h2>
+           <h2 class="modal-title">XXXX园林可视化管理平台</h2>
+           <h2 class="modal-title">XXXX园林可视化管理平台</h2>
+           <h2 class="modal-title">XXXX园林可视化管理平台</h2>
+           <h2 class="modal-title">XXXX园林可视化管理平台</h2>
+           <h2 class="modal-title">XXXX园林可视化管理平台</h2>
+           <h2 class="modal-title">XXXX园林可视化管理平台</h2>
+           <h2 class="modal-title">XXXX园林可视化管理平台</h2>
+           <h2 class="modal-title">XXXX园林可视化管理平台</h2>
+         </figure>
+       <div class="em-title"></div>
        </div>
      </win>
   </div>
@@ -14,7 +24,7 @@
 
 <script>
     import win from "@/components/win/win"
-    import {title} from './em_logo_title'
+   /* import {title} from './em_logo_title'*/
     export default {
         name: "em_atitle",
         components: {
@@ -30,7 +40,7 @@
                title: "",
                top: 0,
                left: 4,
-               width:"365px",
+               width:"320px",
                show: true,
                resizable:false,
                class:"em-title-window"
@@ -60,5 +70,5 @@
 </script>
 
 <style scoped lang="scss">
-@import "em_logo_title.scss";
+@import "em_logo_title";
 </style>

@@ -1,0 +1,118 @@
+@import "../../../../styles/index/variable";
+
+.#{em-home-title} {
+  height: 100px;
+
+  img {
+    position: absolute;
+    left: 6px;
+    top: 15px;
+  }
+
+  /*.#{em-title-container}{
+    border-top: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    width: 255px;
+    left: 85px;
+    position: absolute;
+    top: 20px;
+  }*/
+  .em-title {
+    width: 220px;
+    border-width: 3px 0 3px 0;
+    border-style: solid;
+    position: absolute;
+    left: 70px;
+    top: 30px;
+    height: 69px;
+    border-color: rgba(184, 174, 172, 0.8);
+  }
+
+  figure {
+    animation: wobble 5s ease-in-out infinite;
+    transform-origin: center center;
+    transform-style: preserve-3d;
+  }
+
+  @keyframes wobble {
+    0%, 100% {
+      transform: rotate3d(1, 1, 0, 7deg);
+    }
+    25% {
+      transform: rotate3d(-1, 1, 0, 7deg);
+    }
+    50% {
+      transform: rotate3d(-1, -1, 0, 7deg);
+    }
+    75% {
+      transform: rotate3d(1, -1, 0, 7deg);
+    }
+  }
+
+  h2 {
+    display: block;
+    width: 180px;
+    text-align: center;
+    text-align-last: center;
+    top: -5px;
+    left: 53px;
+    font: 900 23px 'Concert One', sans-serif;
+    text-transform: uppercase;
+    position: absolute;
+    color: $em-text-highlight-base;
+    animation: glow 10s ease-in-out infinite;
+  }
+
+  @keyframes glow {
+    0%, 100% {
+      text-shadow: 0 0 5px #647787;
+    }
+    25% {
+      text-shadow: 0 0 5px #1a272f;
+    }
+    50% {
+      text-shadow: 0 0 5px #95a2ad;
+    }
+    75% {
+      text-shadow: 0 0 5px #304242;
+    }
+  }
+
+  h2:nth-child(2) {
+    transform: translateZ(5px);
+  }
+
+  h2:nth-child(3) {
+    transform: translateZ(10px);
+  }
+
+  h2:nth-child(4) {
+    transform: translateZ(15px);
+  }
+
+  h2:nth-child(5) {
+    transform: translateZ(20px);
+  }
+
+  h2:nth-child(6) {
+    transform: translateZ(25px);
+  }
+
+  h2:nth-child(7) {
+    transform: translateZ(30px);
+  }
+
+  h2:nth-child(8) {
+    transform: translateZ(35px);
+  }
+
+  h2:nth-child(9) {
+    transform: translateZ(40px);
+  }
+
+  h2:nth-child(10) {
+    transform: translateZ(45px);
+  }
+
+}
+
