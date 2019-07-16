@@ -18,12 +18,12 @@ ul.el-menu-demo.em-nav-menu.el-menu--horizontal.el-menu /deep/ {
     width: 90px;//IE
     text-align: center;
     padding: 0;
-    margin-right: 4/$r+rem; //IE
-    -moz-margin-right: 8/$r+rem;
-    -webkit-margin-right: 8/$r+rem;
-    margin-top: 20/$r+rem;
-    height: 30/$r+rem;
-    line-height: 26/$r+rem;
+    margin-right: 4px; //IE
+    -moz-margin-right: 8px;
+    -webkit-margin-right: 8px;
+    top: 20px;
+    height: 30px;
+    line-height: 26px;
     color: $em-text-color-base;
     font-size: 15/$r+rem;
     left: 1%;
@@ -41,7 +41,7 @@ ul.el-menu-demo.em-nav-menu.el-menu--horizontal.el-menu /deep/ {
   }
 }
 
-@media screen and (max-width: 1440px) {
+@media only screen and (max-width: 1440px) {
   ul.el-menu-demo.em-nav-menu.el-menu--horizontal.el-menu {
     display: flex;
     width: 500px;//menu-width
@@ -326,14 +326,14 @@ ul.el-menu-demo.em-nav-menu.el-menu--horizontal.el-menu /deep/ {
   }
 }*/
 
-@media screen and (min-width: 1681px) and (max-width: 1920px) {
+@media only screen and (min-width: 1681px) and (max-width: 1920px) {
   li.el-menu-item.is-active {
     border-image-outset: 10 !important;
     border-bottom: 2px solid transparent !important;
   }
 }
 
-@media screen and (min-width: 1921px) {
+@media only screen and (min-width: 1921px) {
   li.el-menu-item.is-active {
     border-bottom: 2px solid transparent !important;
   }

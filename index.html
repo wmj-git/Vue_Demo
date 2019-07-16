@@ -10,7 +10,14 @@
     <script type="text/javascript" src="../../static/ol/ol.js"></script>
     <script type="text/javascript" src="../../static/ol/ldMap.min.js"></script>
     <script>
-      document.documentElement.style.fontSize=document.documentElement.clientWidth/60+"px"
+      //document.documentElement.style.fontSize=document.documentElement.offsetWidth/60+"px"
+      function placeholderPic(){
+        document.documentElement.style.fontSize=document.documentElement.offsetWidth/60+"px"
+      }
+      placeholderPic();
+      window.onresize=function(){
+        placeholderPic();
+      }
     </script>
   </head>
   <body>
