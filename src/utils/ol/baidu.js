@@ -404,15 +404,7 @@ var baidu1 = new ol.layer.Tile({
   })
 });
 
-// 本地地图
-var osmSource = new ol.layer.Tile({
-  opacity: 1.0,
-  source: new ol.source.XYZ({
-    url: 'http://192.168.20.18:800/zhlhscene/gis/{z}/{x}/{y}.png',
-    wrapX: false
-  }),
-  projection: 'EPSG:4326'
-});
+
 
 //创建天地图图层(WMTS方式)
 function crtLayerWMTS(type, proj, opacity, tk) {
@@ -430,7 +422,7 @@ function crtLayerWMTS(type, proj, opacity, tk) {
   var layer = new ol.layer.Tile({
     opacity: opacity,
     source: new ol.source.WMTS({
-      attributions: 'Tiles © <a href="http://www.tianditu.com/service/info.html?sid=5292&type=info">天地图</a>',
+      attributions: '<a href="http://www.tianditu.com/service/info.html?sid=5292&type=info">天地图</a>',
       url: 'http://t0.tianditu.gov.cn/' + type + '/wmts?tk=' + tk,
       layer: type.substr(0, 3),
       matrixSet: type.substring(4),
@@ -448,11 +440,23 @@ function crtLayerWMTS(type, proj, opacity, tk) {
   layer.id = type;
   return layer;
 }
+
 // 天地图
-var tianSource = crtLayerWMTS("img_c", "EPSG:4326", 1.0, "dcfb31be4b1daef33e484e48348cb28b");
+var tianSource = crtLayerWMTS("vec_c", "EPSG:4326", 1.0, "dcfb31be4b1daef33e484e48348cb28b");
 
 
-export  default {
-  baidu_a,baidu,baidu1,osmSource,tianSource
+// 本地地图
+var osmSource = new ol.layer.Tile({
+  opacity: 1.0,
+  source: new ol.source.XYZ({
+    url: 'http://192.168.20.18:800/zhlhscene/gis/{z}/{x}/{y}.png',
+    wrapX: false
+  }),
+  projection: 'EPSG:4326'
+});
+
+
+export default {
+  baidu_a, baidu, baidu1, osmSource, tianSource
 }
 

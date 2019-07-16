@@ -1,36 +1,35 @@
-$r:32;
 .el-pagination__total,.el-input__inner,.el-pagination__jump,.el-pagination button:disabled,.el-pager li,.el-pagination .btn-prev, .el-pagination .btn-next{
-  color: #fff;
+  color: $em-text-color-base;
   font-size: 14/$r+rem !important;
 }
 
 .el-input__inner{
   background: $background-pagination--inner;
-  border-color: rgba(255,255,255,0.5);
+  border-color: darken($em-border-color-base,50%);
   &:focus{
-    border-color: $border-color-base;
+    border-color: $em-highlight-border-color-base;
   }
 }
 .el-input__suffix{
-  color: rgba(255,255,255,0.5);
+  color: darken($em-text-color-base,50%);
 }
 .el-pagination button:disabled,.el-pager li,.el-pagination .btn-prev, .el-pagination .btn-next{
   background: $background-pagination--inner;
 }
 li.number.active{
-  color: rgba(255,255,255,0.3);
+  color:  darken($em-text-color-base,40%);
 }
 .el-pager li{
   min-width: 20.5px;
 }
 .el-icon-more:before {
-  color: rgba(255,255,255,0.6);
+  color:  darken($em-text-color-base,30%);
 }
 .el-pager li:hover,.el-select-dropdown__item.selected,.el-pagination button:hover{
-  color: $color-base;
+  color: $em-text-highlight-base;
 }
 .el-pagination__sizes .el-input .el-input__inner:hover,.el-select .el-input.is-focus .el-input__inner,.el-select .el-input__inner:focus{
-  border-color: $border-color-base;
+  border-color: $em-highlight-border-color-base;
 }
 
 @media screen and (min-width:1921px) {

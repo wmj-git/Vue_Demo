@@ -4,11 +4,11 @@ $r:32;
   overflow: hidden;
 }
 .panel-title{
-  color: $color-base;
+  color: $em-text-highlight-base;
   font-size: 16/$r+rem;
 }
 .panel-header{
-  border-bottom: 2px solid $border-color-base;
+  border-bottom: 2px solid $em-highlight-border-color-base;
   background: nth($background-type2-base,3) !important;
   box-shadow: 0 0 2px rgba(255, 255, 255,0.2);
 }

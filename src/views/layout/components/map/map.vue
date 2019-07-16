@@ -5,7 +5,7 @@
 </template>
 
 <script>
-  import {clustersFn} from "@/utils/ol/fn";
+  import {clustersFn, clustersLayerFn} from "@/utils/ol/fn";
   import mp from "@/utils/ol/index";
   import {queryVicinityPrint, findOne, queryAllcount} from "@/api/tree";
 
@@ -21,6 +21,7 @@
     methods: {
       init() {
 
+
         this.queryVicinityPrintFn();
 
         let _resolutions = [
@@ -31,6 +32,7 @@
           2.37946100583028E-6, 1.18973050291514E-6,
           5.9486525145757E-7, 2.97432625728785E-7];
         let _origin = [-400, 400];
+
         let _Source = new ol.layer.Tile({//正视投影
           source: new ol.source.ESRICache({
             origin: _origin,
@@ -40,44 +42,13 @@
           })
         });
 
-        let _url = 'http://onelz.oicp.vip/proxy/server/A13041017DC845579548DA3528DF9B47/999C1448C6DD4842A35412B42226F0A3';
-        let esrijsonFormat = new ol.format.EsriJSON();
-        let vectorSource = new ol.source.Vector({
-          loader: function (extent, resolution, projection) {
-            console.log(extent);
-            var url = _url + '/query/?f=json&' +
-              'returnGeometry=true&spatialRel=esriSpatialRelIntersects&geometry=' +
-              encodeURIComponent('{"xmin":' + extent[0] + ',"ymin":' +
-                extent[1] + ',"xmax":' + extent[2] + ',"ymax":' + extent[3] +
-                ',"spatialReference":{"wkid":4490}}') +
-              '&geometryType=esriGeometryEnvelope&inSR=4490&outFields=*' +
-              '&outSR=4490';
-            $.ajax({
-              url: url, dataType: 'jsonp', success: function (response) {
-                if (response.error) {
-                  alert(response.error.message + '\n' +
-                    response.error.details.join('\n'));
-                } else {
-                  // dataProjection will be read from document
-                  var features = esrijsonFormat.readFeatures(response, {
-                    featureProjection: projection
-                  });
-                  if (features.length > 0) {
-                    vectorSource.addFeatures(features);
-                  }
-                }
-              }
-            });
-          },
-          strategy: ol.loadingstrategy.tile(ol.tilegrid.createXYZ({
-            tileSize: 512
-          })),
-          wrapX: false
-        });
-        var vectorLayer = new ol.layer.Vector({
-          source: vectorSource
-        });
-
+        var ly = clustersLayerFn(
+          'http://onelz.oicp.vip/proxy/server/A13041017DC845579548DA3528DF9B47/999C1448C6DD4842A35412B42226F0A3',
+          {
+            type: "tree",
+            titleKey: "OBJECTID",
+            iconUrl: "../../static/image/marker_2.png"
+          }, "../../static/image/cluster0.png", 48);
         window._map = new ol.Map({
           controls: ol.control.defaults({attribution: false, zoom: false, rotate: true}).extend([
             //new ol.control.LayerSwitcher({ trash: false, extent: true }),
@@ -91,10 +62,11 @@
           ]),
           target: 'mapContainer',
           layers: [
+            // mp.layers.tianSource,
             // _Source,
             mp.layers.baidu_a,
             // osmSource,
-            vectorLayer
+            ly.layer
           ],
           view: new ol.View({
             resolutions: _resolutions,
@@ -102,6 +74,24 @@
             zoom: 6,
             projection: 'EPSG:4326',
           })
+        });
+
+        window._map.on('moveend', function (e) {
+          let _map = e.map;
+          let _extent = _map.getView().calculateExtent(_map.getSize());
+          let _point = ol.extent.getCenter(_extent);
+          console.log(_point);
+
+          let _zoom = e.map.getView().getZoom();
+          console.log(_zoom);
+
+          if (ly.clusterSource) {
+            if (_zoom > 6) {
+              ly.clusterSource.setDistance(0);
+            } else {
+              ly.clusterSource.setDistance(50);
+            }
+          }
         });
       },
       alpha(obj) {
@@ -142,7 +132,7 @@
             response.data.forEach(function (_obj) {
               _obj.icon = "../../static/image/marker_2.png";
             });
-            _data= response.data;
+            _data = response.data;
           }
 
           let _layer = clustersFn(_data, {
