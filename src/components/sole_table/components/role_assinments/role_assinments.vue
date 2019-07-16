@@ -40,34 +40,20 @@
             this.roleOptions=roleArr;
             console.log( this.roleOptions)
           });
-        this.bus.$off("alter");
-        this.bus.$on("alter", res=>{
-            this.id=res.id;
-          console.log(this.id);
-          // roleInformation({"id":this.id}).then(val=>{
-          //   console.log(val);
-          //   val.data.forEach(item=>{
-          //     this.roles.push(item.id)
-          //   })
-          // });
-          // console.log(this.roles)
+        this.bus.$off("alter_id");
+        this.bus.$on("alter_id", res=>{
+          this.userIds=[];
+          this.userIds.push(res);
+          roleInformation({"id":res}).then(val=>{
+            this.roles=[];
+            val.data.forEach(item=>{
+              this.roles.push(item.id)
+            })
+          });
+          console.log(this.roles)
         });
-      },
-      mounted(){
-        console.log(this.id);
-        roleInformation({"id":this.id}).then(val=>{
-          console.log(val);
-          val.data.forEach(item=>{
-            this.roles.push(item.id)
-          })
-        });
-        console.log(this.roles)
       },
         methods:{
-          recieveRoles(userId){
-            this.userIds.push(userId);
-            console.log(this.userIds)
-          },
           submitRoles(){               //提交修改好的角色
             console.log(this.roles);
             setRoles({"roleIds":this.roles,"userIds":this.userIds}).then(res=>{

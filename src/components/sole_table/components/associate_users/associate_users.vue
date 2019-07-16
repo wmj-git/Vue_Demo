@@ -2,8 +2,8 @@
     <div class="associate_users">
       <el-form>
           <el-form-item>
-             <el-transfer v-model="value" :data="data"
-              :titles="['全部角色', '选中角色']">
+             <el-transfer v-model="value" :data="data" filterable
+              :titles="['全部用户', '选中的用户']">
              </el-transfer>
           </el-form-item>
           <el-form-item>
@@ -15,32 +15,43 @@
 </template>
 
 <script>
-  import {roleList,setRoles} from "@/api/table_operate"
+  import {userList,setRoles,userInformation} from "@/api/table_operate"
   export default {
     data() {
       const generateData = _ => {
         const data = [];
-        roleList().then(res=>{           //得到角色列表
-          res.data.list.forEach((_val)=>{
-            data.push({key:_val.id,label:_val.roleCname})
+        userList().then(res=>{           //得到用户列表
+          console.log(res.data);
+          res.data.forEach((_val)=>{
+            data.push({key:_val.id,label:_val.accountNumber})
           });
 
         });
         return data
       };
       return {
-        data: generateData(),      //供选择的角色列表赋值给data
+        data: generateData(),      //供选择的用户列表赋值给data
         value: [],
-        userId:"" ,    //要修改的用户的id
+        roleIds:[] ,    //要修改的用户的id
       };
     },
+     mounted(){
+       this.bus.$off("alter_id");
+       this.bus.$on("alter_id", res=>{
+          this.roleIds.push(res);
+         userInformation({"roleId":res}).then(val=>{
+             this.value=[];
+             val.data.forEach(_val=>{
+                this.value.push(_val.id);
+             })
+         })
+       });
+     },
     methods:{
-      recieveRoles(userId){
-        this.userId=userId;
-      },
       submitAssociate(){
+        console.log(this.roleIds);
         console.log(this.value);
-        setRoles({"roleIds":this.value,"userId":this.userId}).then(res=>{
+        setRoles({"roleIds":this.roleIds,"userIds":this.value,"type":1}).then(res=>{
           console.log(res);
           if(res.statusCode==200){
             this.$message({

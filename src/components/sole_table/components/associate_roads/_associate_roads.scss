@@ -1,14 +1,10 @@
-.associate_roads {
-    // Vars
-
-    // Support
-
-    // Module
-    & {
-        //
-    }
-
-    // Facets
-
-    // States
+.associate_roads /deep/{
+  /*穿梭框*/
+  .el-checkbox{
+    display: block !important;
+  }
+  .#{em-button}{
+    float: right;
+  }
 }
+
