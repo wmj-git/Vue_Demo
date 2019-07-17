@@ -18,7 +18,7 @@
               id: "em_warn",
               title: "",
               top: 36,
-              left: 330,
+              left: 358,
               show: true,
               resizable:false,
               class:"em-warn-window"
