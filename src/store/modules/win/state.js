@@ -1078,6 +1078,21 @@ export default {
           table: {
             id: "fertilization_program_table",
             table_url: "/gardens/fertilizationProgram/queryAllByPage",
+            after_digital_button: [
+              {
+                name: "查看执行规格",
+                fn: "querySpecificationInfo",
+                id: "querySpecificationInfo",
+                dialog_name: "查看执行规格",
+                dialog_width: "400px",
+                component_name: "query_specification_info"
+              },
+              {
+                name: "执行计划",
+                fn: "cancelAssociation",
+                id: "cancelAssociation",
+              }
+            ],
             label: [
               {
                 name: "植物名称",

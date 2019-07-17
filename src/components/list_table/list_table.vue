@@ -25,6 +25,10 @@
         <el-button type="primary" @click="submitUpload" class="em-btn_shadow">确 定</el-button>
       </div>
     </el-dialog>
+    <el-dialog :title="commonDialogTitle" :width="commonDialogWidth" :visible.sync="dialogCommonVisible"
+               :modal-append-to-body="false" v-dialogDrag="true">
+      <component :is="commonDialogComponent" @closeCommonDialog="closeCommonDialog" ref="dialogComponent" v-if="dialogCommonVisible" :row_title="label"></component>
+    </el-dialog>
     <el-row style="height: 100%">
       <el-col :span="10" style="height: 100%;" class="table-classification">
           <ul>
@@ -71,6 +75,21 @@
                              :show-overflow-tooltip="true"
             >
             </el-table-column>
+            <el-table-column
+              align="center"
+              fixed="right"
+              label="操作"
+              min-width="180"
+              v-if="typeof (data[digital_table_id].table.after_digital_button)!='undefined'"
+            >
+              <template slot-scope="scope">
+                <el-button class="em-btn-reset" v-for="item in data[digital_table_id].table.after_digital_button"
+                           :key="item.id"
+                           size="small"
+                           @click="rightButton(item)">{{item.name}}
+                </el-button>
+              </template>
+            </el-table-column>
           </el-table>
           <div class="pages">
             <el-pagination
@@ -101,6 +120,7 @@
   import complex_em_input from "@/components/complex_em_input/complex_em_input"
   import em_dialogs from "@/components/em_dialogs/em_dialogs"
   import em_date from "@/components/em_date/em_date"
+  import query_specification_info from "./components/query_specification_info/query_specification_info"
   export default {
     name: "compone",
     components: {
@@ -109,7 +129,8 @@
       em_select,
       complex_em_input,
       em_dialogs,
-      em_date
+      em_date,
+      query_specification_info
     },
     props: ["data"],
     data() {
@@ -130,12 +151,16 @@
         alter_obj:"",        //单选行选中进行修改的对象
         ids: [],         //要删除的对象的id数组
         dialogFormVisible: false, //导入表格弹框控制显示隐藏的布尔值
+        dialogCommonVisible: false,  //等弹框控制显示隐藏的布尔值
         action:"",
         fileList: [],
         isAddEventClick:false,
         headers:{
           "Authorization":getToken()
         },
+        commonDialogComponent: "",  //渲染在查看执行规则等的动态组件名
+        commonDialogTitle: "",     //渲染在查看执行规则等的弹框的title名
+        commonDialogWidth: ""     //渲染在查看执行规则等的弹框的宽度
       }
     },
       created(){
@@ -152,7 +177,7 @@
           return val.add_show
         });
         this.init(); //初始化表格数据
-
+        console.log(this.label)
       },
 
     methods: {
@@ -247,6 +272,17 @@
           this.control();
 
       },
+      rightButton(obj){
+        console.log(obj.fn);
+        this[obj.fn](obj);
+
+        this.commonDialogComponent = obj.component_name;
+        this.commonDialogTitle = obj.dialog_name;
+        this.commonDialogWidth = obj.dialog_width;
+        setTimeout(() => {
+          this.bus.$emit("alter_all", this.alter_obj);   //是查找执行规格等接受的数据
+        });
+      },
       control() {
         this.bus.$off(this.data[this.digital_table_id].table.id);
         this.bus.$on(this.data[this.digital_table_id].table.id, obj => this[obj.fn](obj));
@@ -262,7 +298,7 @@
           console.log(val);
           this.ids.push(val.id);   //提取出需要传给后台的参数ids
         });
-        if (this.ids.length!= 0) {
+        if (this.ids.length!== 0) {
           this.$confirm('此操作将删除所选项, 是否继续?', '提示', {
             confirmButtonText: '确定',
             cancelButtonText: '取消',
@@ -276,7 +312,7 @@
 
             }).then(res => {
               this.ids = [];
-              if (res.statusCode == 200) {
+              if (res.statusCode ===200) {
                 this.$message({
                   message: '删除成功',
                   type: 'success'
@@ -305,14 +341,14 @@
       recieveObj(val){              //把dialog表单里的数据拿到
         console.log(this.delever_obj.url);
         console.log(this.delever_obj.table_id);
-        if(val.fn=="add"){
+        if(val.fn==="add"){
           add({
             url: this.delever_obj.url,
             params:val.form,
             id:this.delever_obj.table_id
           }).then(res=>{
             console.log(res);
-            if(res.statusCode==200){
+            if(res.statusCode===200){
               this.$refs.dialog.cancel();
               this.$message({
                 message: '恭喜你，添加成功',
@@ -323,13 +359,13 @@
 
           });
         }
-        if(val.fn=="modify"){
+        if(val.fn==="modify"){
           modify({
             url: this.delever_obj.url,
             params:val.form
           }).then(res=>{
             console.log(res);
-            if(res.statusCode==200){
+            if(res.statusCode===200){
               this.$refs.dialog.cancel();
               this.$message({
                 message: '恭喜你，修改成功',
@@ -371,7 +407,7 @@
       },
       uploadFileSuccess(response, file, fileList){
         console.log(response.data.jsonmsg.ERRORMSG);
-        if(response.data.jsonmsg.ERRORMSG==""){
+        if(response.data.jsonmsg.ERRORMSG===""){
           this.$message({
             message: '恭喜你，导入成功',
             type: 'success'
@@ -388,6 +424,12 @@
       },
       table_idx(index) {                                   //控制表格数据行号
         return (this.currentPage - 1) * this.pageSize + index + 1
+      },
+      querySpecificationInfo(){
+        this.dialogCommonVisible = true;
+      },
+      closeCommonDialog() {
+        this.dialogCommonVisible = false;  //关闭查看等的公共弹窗
       },
     }
   }
