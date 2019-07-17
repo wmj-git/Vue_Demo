@@ -4358,7 +4358,7 @@ export default {
       top: 200,
       left: 480,
       width: 400,
-      show: true,
+      show: false,
       class: "",
       component: "emChart",
       component_data: {
