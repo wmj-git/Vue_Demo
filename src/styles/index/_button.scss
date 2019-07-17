@@ -37,7 +37,7 @@
   text-transform: capitalize;
   padding: -10px 0;
   width: 90px;
-  border-radius: 3px;
+  border-radius: 5px;
   overflow: hidden;
 
   &:before {
@@ -55,7 +55,7 @@
     position: absolute;
     top: 0;
     right: -30px;
-    width: 30px;
+    width: 25px;
     height: 100%;
     background-color: rgba(255, 255, 255, 0.3);
     border-radius: 0 6px 6px 0;
@@ -64,12 +64,12 @@
     text-align: center;
   }
   &:hover {
-    text-indent: -30px;
+    text-indent: -20px;
   }
 
   &:hover:before {
     right: 0;
-    text-indent: 0;
+    text-indent: 4px;
   }
 }
 .#{em-btn-icon-hover}:before{
