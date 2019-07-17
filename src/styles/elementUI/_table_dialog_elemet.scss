@@ -14,14 +14,16 @@
     color: darken($em-text-color-base,20%);
   }
   .#{em-button}{
-    background: $btn-linear-base;
-    color: darken($em-text-color-base,20%);
+    background: linear-gradient($em-highlight-bg-color-base, $em-highlight-bg2-color-base);
+    color: darken($em-text-color-base,10%);
     border-color: darken($em-highlight-border-color-base,30%);
     border-radius: 5/$r+rem;
     padding: 5/$r+rem 10/$r+rem;
     margin-left: 10/$r+rem;
     &:hover{
-      color: white;
+      color: $em-text-color-base ;
+      background: linear-gradient(darken($em-highlight-bg-color-base, 10%), darken($em-highlight-bg2-color-base, 10%));
+      border-color: darken($em-highlight-bg-color-base, 40%);
       cursor: pointer;
     }
   }
