@@ -142,7 +142,9 @@
   background: transparent;
   border: none;
 }
-
+.el-table__expand-icon > .el-icon{
+  color: darken($em-text-color-base,20%);
+}
 @media screen and (min-width:1921px) {
   .el-table {
     height: calc(100% - 100px) !important;

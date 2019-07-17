@@ -527,35 +527,4 @@
 
 <style scoped lang="scss">
   @import "sole_table";
-
-  .table {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    .demo-table-expand  {
-        margin-right: 0;
-        margin-bottom: 0;
-        width: 100%;
-      }
-    .el-form-item /deep/{
-      width: 100%;
-      padding-left: 10px;
-      .el-form-item__label{
-        width: 14%;
-        color: #99a9bf;
-        text-align: justify;
-      }
-      .el-form-item__content{
-        width: 86%;
-        text-align: left;
-      }
-    }
-    .picture{
-       width: 100%;
-    }
-    }
-
-
 </style>
