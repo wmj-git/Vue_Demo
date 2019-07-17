@@ -20,12 +20,11 @@
       float: right;
       font-size: 15/$r+rem;
       position: relative;
-      margin: 5px 10px;
-      padding: 5px 0;
+      padding: 2px 0;
       color: darken($em-text-color-base,12%);
       border-color: darken($em-border-color-base,32%);
       width: 80px;
-      height: 26px;
+      height: 24px;
       text-shadow: 0 1px 0 darken($em-text-color-base,18%);
       background-color: $scene-btn-base-color;
       font-weight: 700;

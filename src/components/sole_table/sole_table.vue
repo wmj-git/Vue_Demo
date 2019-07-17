@@ -106,7 +106,7 @@
           v-if="typeof (data.table.after_digital_button)!='undefined'"
         >
           <template slot-scope="scope">
-            <el-button class="em-btn-reset" v-for="item in data.table.after_digital_button"
+            <el-button class="em-btn-operation" v-for="item in data.table.after_digital_button"
                        :key="item.id"
                        size="small"
                        @click="control(item)">{{item.name}}
@@ -133,7 +133,7 @@
 
 <script>
 
-  import {add, dele, modify, find, downCsvmodel, upLoad, resetPassword,delEntRoad} from "@/api/table_operate"
+  import {add, dele, modify, find, downCsvmodel, upLoad, resetPassword,delEntRoad,roadInformation} from "@/api/table_operate"
   import em_button from "@/components/em_button/em_button"
   import em_input from "@/components/em_input/em_input"
   import em_dialogs from "@/components/em_dialogs/em_dialogs"
@@ -203,7 +203,6 @@
 
       this.bus.$on(this.data.table.id, obj => {// 通过按钮组件（添加，删除..）的点击事件触发此组件的control方法
         this.control(obj);
-        console.log(obj);
       });
     },
     methods: {
@@ -498,15 +497,26 @@
       associateRoads(){
         this.showCommonDialog();
       },
-      cancelAssociation(){                //养护单位取消与路段的关联
-        delEntRoad({entId:this.alter_obj.id}).then(res=>{
-          if(res.statusCode===200){
-            this.$message({
-              message: '取消关联成功',
-              type: 'success'
+      cancelAssociation(){   //养护单位取消与路段的关联
+        setTimeout(() => {
+          roadInformation({"entId":this.alter_obj.id}).then(val=>{
+            this.roadIds=[];
+            val.data.forEach(_val=>{
+              this.roadIds.push(_val.id);
             });
-          }
-        })
+            console.log(this.roadIds);
+            delEntRoad({entId:this.alter_obj.id,roadIds:this.roadIds}).then(res=>{
+              if(res.statusCode===200){
+                this.$message({
+                  message: '取消关联成功',
+                  type: 'success'
+                });
+              }
+            })
+          });
+        });
+
+
       },
     }
   }
