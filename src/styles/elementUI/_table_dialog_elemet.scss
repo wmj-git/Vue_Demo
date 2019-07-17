@@ -39,10 +39,10 @@
     color: $em-text-highlight-base;
   }
   .el-form-item__label{
-    color: darken($em-text-color-base,30%);
+    color: darken($em-text-color-base,10%);
   }
   .el-dialog__headerbtn .el-dialog__close{
-    color: darken($em-text-color-base,30%);
+    color: darken($em-text-color-base,10%);
     font-size: 12/$r+rem;
     &:hover{
       color: $em-text-color-base;
