@@ -2,7 +2,7 @@
 .em-menu{
   width: 100%;
   border-image-source: linear-gradient($em-highlight-bg-color-base,$em-highlight-bg2-color-base,$em-highlight-bg-color-base);
-  padding: 6/$r+rem 8/$r+rem;
+  padding: 6/$r+rem 4/$r+rem;
   border-style: solid;
   border-width: 0 5px 0 5px;
   border-image-slice: 20;
@@ -18,9 +18,9 @@
   background-size: 100% 100%;
   line-height: 25px;
   color: $em-text-color-base;
-  padding-left: 10px !important;
-  padding-right: 10px;
-  font-size: 14/$r+rem;
+  padding-left: 8px !important;
+  padding-right: 8px;
+  font-size: 13/$r+rem;
   text-align: left;
   &:hover {
     color: $em-text-highlight-base;
