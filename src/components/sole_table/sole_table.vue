@@ -97,7 +97,7 @@
           v-if="typeof (data.table.after_digital_button)!='undefined'"
         >
           <template slot-scope="scope">
-            <el-button class="em-btn-reset" v-for="item in data.table.after_digital_button"
+            <el-button class="em-btn-operation" v-for="item in data.table.after_digital_button"
                        :key="item.id"
                        size="small"
                        @click="control(item)">{{item.name}}
