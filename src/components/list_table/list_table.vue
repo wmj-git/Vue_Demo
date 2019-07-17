@@ -425,12 +425,18 @@
       table_idx(index) {                                   //控制表格数据行号
         return (this.currentPage - 1) * this.pageSize + index + 1
       },
-      querySpecificationInfo(){
+      querySpecificationInfo(){               //打开查看肥料规则等的公共弹窗
         this.dialogCommonVisible = true;
       },
       closeCommonDialog() {
-        this.dialogCommonVisible = false;  //关闭查看等的公共弹窗
+        this.dialogCommonVisible = false;  //关闭查看肥料规则等的公共弹窗
       },
+      executeProgram(){               //执行计划的方法
+        setTimeout(_=>{
+          console.log(this.alter_obj)
+        });
+
+      }
     }
   }
 </script>

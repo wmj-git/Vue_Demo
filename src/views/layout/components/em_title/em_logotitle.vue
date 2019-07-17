@@ -30,9 +30,6 @@
         components: {
           win
         },
-        mounted(){
-          title();
-        },
       data(){
            return{
              win: {

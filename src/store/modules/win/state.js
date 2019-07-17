@@ -1089,8 +1089,8 @@ export default {
               },
               {
                 name: "执行计划",
-                fn: "cancelAssociation",
-                id: "cancelAssociation",
+                fn: "executeProgram",
+                id: "executeProgram",
               }
             ],
             label: [
