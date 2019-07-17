@@ -43,7 +43,6 @@
             this.group = this.data[_k];
           }
         }
-
       },
       fn(_fn, _obj) {
         this[_fn](_obj);

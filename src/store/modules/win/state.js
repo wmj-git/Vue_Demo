@@ -1337,7 +1337,6 @@ export default {
           {
             id: "soil_temperature_analysis_date",
             type: "em_date",
-
           },
           {
             id: "soil_temperature_analysis_button_search",
@@ -4339,7 +4338,7 @@ export default {
       top: 8,
       left: 480,
       width: 400,
-      height: 168,
+      height: 128,
       show: true,
       class: "",
       component: "buttonGroup",
@@ -4350,7 +4349,7 @@ export default {
             type: "info",
             icon: "el-icon-edit",
             text: "树木数据",
-            fn: "routerFn",
+            fn: "",
             fnData: {
               path: "/main/map"
             }
@@ -4360,12 +4359,25 @@ export default {
             type: "info",
             icon: "",
             text: "sk_街道树",
-            fn: "routerFn",
+            fn: "",
             fnData: {
               path: "/home/map"
             }
           }
         ]
+      }
+    },
+    {
+      id: "chart_test",
+      title: "分析",//开发测试
+      top: 200,
+      left: 480,
+      width: 400,
+      show: true,
+      class: "",
+      component: "emChart",
+      component_data: {
+
       }
     }
   ],

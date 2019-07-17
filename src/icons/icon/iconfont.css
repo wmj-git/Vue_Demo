@@ -37,7 +37,6 @@
 
 .el-icon-label:before {
   content: "\e602";
-  font-size: 20px;
 }
 
 .el-icon-air-point:before {
@@ -50,7 +49,6 @@
 
 .el-icon-clean:before {
   content: "\e618";
-  font-size: 20px;
 }
 
 .el-icon-permissions-manage:before {
@@ -75,7 +73,6 @@
 
 .el-icon-transparent:before {
   content: "\e6ac";
-  font-size: 20px;
 }
 
 .el-icon-air-analysis:before {
@@ -104,7 +101,6 @@
 
 .el-icon-map:before {
   content: "\e60c";
-  font-size: 20px;
 }
 
 .el-icon-exit:before {
@@ -117,7 +113,6 @@
 
 .el-icon-data:before {
   content: "\e635";
-  font-size: 20px;
 }
 
 .el-icon-tree-analysis:before {
@@ -126,7 +121,6 @@
 
 .el-icon-remove2:before {
   content: "\e679";
-  font-size: 20px;
 }
 
 .el-icon-excel_in:before {
@@ -147,7 +141,6 @@
 
 .el-icon-monitoring:before {
   content: "\e661";
-  font-size: 20px;
 }
 
 .el-icon-grid-manage:before {
@@ -160,12 +153,10 @@
 
 .el-icon-coordinates:before {
   content: "\e673";
-  font-size: 20px;
 }
 
 .el-icon-highly:before {
   content: "\e64d";
-  font-size: 20px;
 }
 
 .el-icon-road:before {
@@ -222,7 +213,6 @@
 
 .el-icon-scene:before {
   content: "\e6a5";
-  font-size: 20px;
 }
 
 .el-icon-air-temp-point:before {
@@ -239,12 +229,10 @@
 
 .el-icon-distance:before {
   content: "\e666";
-  font-size: 20px;
 }
 
 .el-icon-area:before {
   content: "\e601";
-  font-size: 20px;
 }
 
 .el-icon-fire-alarm-analysis:before {

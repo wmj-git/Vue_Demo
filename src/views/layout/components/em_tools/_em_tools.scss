@@ -7,4 +7,10 @@
       color: $em-text-highlight-base;
     }
   }
+
+  .el-button /deep/{
+    [class^="el-icon-"], [class*=" el-icon-"]{
+      font-size: 22/$r+rem;
+    }
+  }
 }

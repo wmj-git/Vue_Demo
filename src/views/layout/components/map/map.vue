@@ -20,9 +20,7 @@
     props: {},
     methods: {
       init() {
-
-
-        this.queryVicinityPrintFn();
+        let _this = this;
 
         let _resolutions = [
           5.9486525145757E-4, 2.97432625728785E-4,
@@ -48,7 +46,7 @@
             type: "tree",
             titleKey: "OBJECTID",
             iconUrl: "../../static/image/marker_2.png"
-          }, "../../static/image/cluster0.png", 48);
+          }, "#1d6633", 48);
         window._map = new ol.Map({
           controls: ol.control.defaults({attribution: false, zoom: false, rotate: true}).extend([
             //new ol.control.LayerSwitcher({ trash: false, extent: true }),
@@ -66,12 +64,12 @@
             // _Source,
             mp.layers.baidu_a,
             // osmSource,
-            ly.layer
+            // ly.layer
           ],
           view: new ol.View({
             resolutions: _resolutions,
             center: [114.031047, 22.663679],
-            zoom: 6,
+            zoom: 0,
             projection: 'EPSG:4326',
           })
         });
@@ -81,7 +79,6 @@
           let _extent = _map.getView().calculateExtent(_map.getSize());
           let _point = ol.extent.getCenter(_extent);
           console.log(_point);
-
           let _zoom = e.map.getView().getZoom();
           console.log(_zoom);
 
@@ -115,22 +112,22 @@
       scene_data(obj) {
 
       },
-      queryVicinityPrintFn() {
+      queryVicinityPrintFn(lng, lat) {
 
         queryVicinityPrint({
           params: {
-            longitude: 114.031047,
-            latitude: 22.663679,
-            distance: 500000
+            longitude: lng,
+            latitude: lat,
+            distance: 5000
           }
         }).then(response => {
-          console.log("queryVicinityPrint");
-          console.log(response);
+         /* console.log("queryVicinityPrint");
+          console.log(response);*/
 
           let _data = [];
           if (response.statusCode === 200) {
             response.data.forEach(function (_obj) {
-              _obj.icon = "../../static/image/marker_2.png";
+              _obj.icon = "../../static/image/marker_3.png";
             });
             _data = response.data;
           }
@@ -139,9 +136,8 @@
             type: "tree",
             titleKey: "id",
             iconUrlKey: "icon"
-          }, "../../static/image/cluster0.png", 10);
+          }, "#312332", 30);
           window._map.addLayer(_layer.layer);
-
         });
       }
     },

@@ -124,8 +124,7 @@ export function ClearLayerFN(_map, _layers) {
 
 
 export function clustersLayerFn(dataUrl, _Key, _clusterImgUrl, _distance) {
-
-
+  let _extent = [113.97796915, 22.608145238000002, 114.04398656100001, 22.704755608];
   let _featureKey = {
     type: "typeName",//类型
     titleKey: "id",//标题
@@ -136,12 +135,10 @@ export function clustersLayerFn(dataUrl, _Key, _clusterImgUrl, _distance) {
       _featureKey[k] = _Key[k];
     }
   }
-
   let _url = dataUrl ? dataUrl : "";
   let esrijsonFormat = new ol.format.EsriJSON();
   let vectorSource = new ol.source.Vector({
     loader: function (extent, resolution, projection) {
-
       var url = _url + '/query/?f=json&' +
         'returnGeometry=true&spatialRel=esriSpatialRelIntersects&geometry=' +
         encodeURIComponent('{"xmin":' + extent[0] + ',"ymin":' +
@@ -149,10 +146,17 @@ export function clustersLayerFn(dataUrl, _Key, _clusterImgUrl, _distance) {
           ',"spatialReference":{"wkid":4490}}') +
         '&geometryType=esriGeometryEnvelope&inSR=4490&outFields=*' +
         '&outSR=4490';
+
+      if(vectorSource.getFeatures().length>0){
+        // vectorSource.clear();
+        console.log(vectorSource.getFeatures());
+        return
+      }
+
       $.ajax({
-        url: url, dataType: 'jsonp', success: function (response) {
+        url: url, async: false, dataType: 'jsonp', success: function (response) {
           if (response.error) {
-            alert(response.error.message + '\n' +
+            console.log(response.error.message + '\n' +
               response.error.details.join('\n'));
           } else {
             // dataProjection will be read from document
@@ -160,9 +164,11 @@ export function clustersLayerFn(dataUrl, _Key, _clusterImgUrl, _distance) {
               featureProjection: projection
             });
             if (features.length > 0) {
+             /* console.log("features2");
+              console.log(features);*/
               vectorSource.addFeatures(features);
             }
-            // console.log(features);
+
           }
         }
       });
@@ -191,7 +197,7 @@ export function clustersLayerFn(dataUrl, _Key, _clusterImgUrl, _distance) {
         anchor: [0, 0],
         anchorXUnits: 'fraction',
         anchorYUnits: 'pixels',
-        scale: 0.36,
+        scale: 0.4,
         src: _featureKey.iconUrl + ""
       })),
       text: new ol.style.Text({
@@ -215,10 +221,11 @@ export function clustersLayerFn(dataUrl, _Key, _clusterImgUrl, _distance) {
 
   let styleCache = {};
   let layer = new ol.layer.Vector({
+    name:_featureKey.type+"_layer",
     source: clusterSource,
     style: function (feature) {
       var size = feature.get('features').length;
-      console.log(feature.get('features'));
+      // console.log(feature.get('features'));
       var style = styleCache[size];
       if (size > 1) {
         if (!style) {
@@ -228,8 +235,9 @@ export function clustersLayerFn(dataUrl, _Key, _clusterImgUrl, _distance) {
               anchorXUnits: 'fraction',
               anchorYUnits: 'pixels',
               opacity: 0.8,
-              scale: 1.0,
-              src: _clusterImgUrl
+              scale: 1.28,
+              color:_clusterImgUrl,
+              src: "../../static/image/cluster.png"
             })),
             text: new ol.style.Text({
               text: size.toString(),
@@ -249,7 +257,7 @@ export function clustersLayerFn(dataUrl, _Key, _clusterImgUrl, _distance) {
   });
 
   return {
-    layer,vectorSource,clusterSource
+    layer, vectorSource, clusterSource
   }
 }
 
@@ -303,7 +311,7 @@ export function clustersFn(_features, _Key, _clusterImgUrl, _distance) {//_featu
         anchor: [0, 0],
         anchorXUnits: 'fraction',
         anchorYUnits: 'pixels',
-        scale: 0.28,
+        scale: 0.4,
         src: _data[_featureKey.iconUrlKey] + ""
       })),
       text: new ol.style.Text({
@@ -325,6 +333,7 @@ export function clustersFn(_features, _Key, _clusterImgUrl, _distance) {//_featu
 
   let styleCache = {};
   let clusterLayer = new ol.layer.Vector({
+    name:_featureKey.type+"_layer",
     source: clusterSource,
     style: function (feature) {
       var size = feature.get('features').length;
@@ -337,8 +346,9 @@ export function clustersFn(_features, _Key, _clusterImgUrl, _distance) {//_featu
               anchorXUnits: 'fraction',
               anchorYUnits: 'pixels',
               opacity: 0.8,
-              scale: 1.0,
-              src: _clusterImgUrl
+              scale: 1.28,
+              color:_clusterImgUrl,
+              src: "../../static/image/cluster.png"
             })),
             text: new ol.style.Text({
               text: size.toString(),
