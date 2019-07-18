@@ -1887,15 +1887,35 @@ export default {
               placeholder: "备注",
               alter_show: true
             }
-
-
           ]
         },
         chart: {
           type: "bar",
           id: "bar1",
           chart_url: '/gardens/firealarminfo/queryAllByPage'
-        }
+        },
+        charts: [
+          {
+            id:"chart_demo1",
+            type: "bar",
+            optionType:"option_bar_line",
+            winSpan:24,
+            height:50,
+            chartTitle:"模板",
+            unit_y:"次",
+            dataUrl: '/gardens/temperature/queryAll?dataType=A'
+          },
+          {
+            id:"chart_demo2",
+            type: "bar",
+            optionType:"option_pie",
+            winSpan:24,
+            height:50,
+            chartTitle:"模板",
+            unit_y:"次",
+            dataUrl: '/gardens/temperature/queryAll?dataType=A'
+          }
+        ]
       }
     },
     {

@@ -54,7 +54,13 @@
       <div style="height: 50%;">
         <em_select :select="select"></em_select>
         <div style="height:90%;">
-
+          <el-row>
+            <template v-for="chart in charts">
+              <el-col :span="chart.winSpan">
+                <em-chart :data="chart"></em-chart>
+              </el-col>
+            </template>
+          </el-row>
           <ehcarts :id="echart_id" :option="option" :data="data1" :series="series" :xAxis_data="xAxis_data"></ehcarts>
         </div>
       </div>
@@ -66,6 +72,7 @@
 <script>
   import {add, dele, modify, find, downCsvmodel, upLoad} from "@/api/table_operate"
   import ehcarts from "@/components/echarts/echarts"
+  import emChart from "@/components/emChart/emChart"
   import options from '@/echart_options/options'
   import {fetchChart} from "@/api/chart"
   import {fetchPie} from "@/api/chart";
@@ -90,35 +97,52 @@
         currentPage: 1,
         totalSize: null,
         value: '',
-        option: {},
+
+
         echart_id: "pie1",
+        option: {},
         data1: [],
         series: [],
+        xAxis_data: [],
+
         pageSize: 10,
         label_input: [],
-        xAxis_data: [],
-        select: [{
-          value: "年",
-          label: "年"
-        },
-          {
-            value: "季",
-            label: "季"
-          },
-          {
-            value: "月",
-            label: "月"
-          },
-          {
-            value: "日",
-            label: "日"
-          }
-        ],
 
+        select: [
+            {
+              value: "年",
+              label: "年"
+            },
+            {
+              value: "季",
+              label: "季"
+            },
+            {
+              value: "月",
+              label: "月"
+            },
+            {
+              value: "日",
+              label: "日"
+            }
+          ],
+        charts:[
+          {
+            id:"chart_demo",
+            type: "bar",
+            optionType:"option_bar_line",
+            winSpan:48,
+            height:20,
+            chartTitle:"模板",
+            unit_y:"次",
+            dataUrl: '/gardens/temperature/queryAll?dataType=A'
+          }
+        ]
       }
     },
     components: {
       ehcarts,
+      emChart,
       em_button,
       em_input,
       em_dialogs,
@@ -135,8 +159,12 @@
       });
       console.log(this.data);
       this.label = this.data.table.label;
+
       this.option = options[this.data.chart.type];
       this.echart_id = this.data.chart.id;
+
+      this.charts=this.data.charts;
+
       this.init();
       this.bus.$on("deliver_val", (val) => {
         console.log(val);
@@ -209,6 +237,7 @@
 
         });
         this.drawChart();
+        this.chartFn();
       },
       drawChart(_val) {              //绘制echarts图的方法
         console.log(_val);
@@ -343,6 +372,9 @@
           }
 
         });
+      },
+      chartFn(){
+
       },
       recieveObj(val) {              //把dialog表单里的数据拿到
         console.log(this.delever_obj.url);
