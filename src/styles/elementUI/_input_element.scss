@@ -5,11 +5,20 @@
 
 
 /*form表单中的文本框*/
-.el-form /deep/ {
+.el-form {
   .el-input--suffix .el-input__inner, .el-input__inner {
     height: 24px;
     line-height: 24px;
     border-color: darken($em-border-color-base,20%);
+  }
+  .el-form-item__error{
+    line-height: 0;
+  }
+}
+.em_select{
+  .el-input--suffix .el-input__inner{
+    height: 24px;
+    line-height: 24px;
   }
 }
 
