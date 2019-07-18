@@ -269,16 +269,21 @@
           let params = this.$refs.child[0].params;
           obj[params] = role_manage_input;
         }
-        if (this.$refs.child[2].input && this.$refs.child[2].params) {                              //input框是操作中第三个组件时
-          let operate_input = this.$refs.child[2].input;
-          let params = this.$refs.child[2].params;
-          obj[params] = operate_input;
+        if(this.$refs.child[2]){
+          if (this.$refs.child[2].input && this.$refs.child[2].params) {                              //input框是操作中第三个组件时
+            let operate_input = this.$refs.child[2].input;
+            let params = this.$refs.child[2].params;
+            obj[params] = operate_input;
+          }
         }
-        if (this.$refs.child[3].input && this.$refs.child[3].params) {                              //input框是操作中第四个组件时
-          let url_input = this.$refs.child[3].input;
-          let params = this.$refs.child[3].params;
-          obj[params] = url_input;
+        if(this.$refs.child[3]){
+          if (this.$refs.child[3].input && this.$refs.child[3].params) {                              //input框是操作中第四个组件时
+            let url_input = this.$refs.child[3].input;
+            let params = this.$refs.child[3].params;
+            obj[params] = url_input;
+          }
         }
+
 
         find({                      //页面渲染时拿表格数据
           url: this.data.table.table_url,
@@ -501,22 +506,29 @@
         this.showCommonDialog();
       },
       cancelAssociation(){   //养护单位取消与路段的关联
-        setTimeout(() => {
-          roadInformation({"entId":this.alter_obj.id}).then(val=>{
-            this.roadIds=[];
-            val.data.forEach(_val=>{
-              this.roadIds.push(_val.id);
+        this.$confirm('此操作将永久取消关联, 是否继续?', '取消关联', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          setTimeout(() => {
+            roadInformation({"entId":this.alter_obj.id}).then(val=>{
+              this.roadIds=[];
+              val.data.forEach(_val=>{
+                this.roadIds.push(_val.id);
+              });
+              console.log(this.roadIds);
+              delEntRoad({entId:this.alter_obj.id,roadIds:this.roadIds}).then(res=>{
+                if(res.statusCode===200){
+                  this.$message({
+                    message: '取消关联成功',
+                    type: 'success'
+                  });
+                }
+              })
             });
-            console.log(this.roadIds);
-            delEntRoad({entId:this.alter_obj.id,roadIds:this.roadIds}).then(res=>{
-              if(res.statusCode===200){
-                this.$message({
-                  message: '取消关联成功',
-                  type: 'success'
-                });
-              }
-            })
           });
+        }).catch(() => {
         });
 
 

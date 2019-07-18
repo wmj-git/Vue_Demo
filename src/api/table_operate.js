@@ -142,13 +142,23 @@ export function delEntRoad(obj) {       //删除养护单位的养护路段
   })
 }
 
-export function executeProgram(obj) {       //统计计划所需材料
+export function executeProgram(obj) {       //执行计划生成记录
   return request({
-    url: "/gardens/ent/delEntRoad",
+    url: "",
     method: 'post',
     data: obj
   })
 }
+
+export function completeProgram(obj) {       //统计计划所需材料
+  return request({
+    url: "/gardens/fertilizationProgram/skipProgram",
+    method: 'post',
+    data: obj
+  })
+}
+
+
 
 
 
