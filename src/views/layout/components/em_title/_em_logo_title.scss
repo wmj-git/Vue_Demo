@@ -1,12 +1,12 @@
 @import "../../../../styles/index/variable";
 
 .#{em-home-title} {
-  height: 100px;
+  height: 80px;
 
   img {
     position: absolute;
-    left: 6px;
-    top: 15px;
+    left: 8px;
+    top: 12px;
   }
 
   /*.#{em-title-container}{
@@ -22,8 +22,8 @@
     border-width: 3px 0 3px 0;
     border-style: solid;
     position: absolute;
-    left: 70px;
-    top: 30px;
+    left: 92px;
+    top: 18px;
     height: 69px;
     border-color: rgba(184, 174, 172, 0.8);
   }
@@ -54,8 +54,8 @@
     width: 180px;
     text-align: center;
     text-align-last: center;
-    top: -5px;
-    left: 53px;
+    top: -17px;
+    left: 67px;
     font: 900 23px 'Concert One', sans-serif;
     text-transform: uppercase;
     position: absolute;

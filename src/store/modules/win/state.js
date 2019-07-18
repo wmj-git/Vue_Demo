@@ -1089,8 +1089,8 @@ export default {
               },
               {
                 name: "执行计划",
-                fn: "cancelAssociation",
-                id: "cancelAssociation",
+                fn: "executeProgram",
+                id: "executeProgram",
               }
             ],
             label: [
@@ -2554,6 +2554,7 @@ export default {
         table: {
           id: "plant_type_manage_table",
           table_url: "/gardens/plantname/queryAllByPage",
+          picture_url:"/gardens/plantname/findImage/",
           label: [
             {
               name: "植物名称",

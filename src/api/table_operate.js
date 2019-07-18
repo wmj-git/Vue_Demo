@@ -74,6 +74,13 @@ export function resetPassword(id) {         //账户密码重置
     method: 'get'
   })
 }
+
+export function getPictureImg(obj) {       //获取图片
+  return request({
+    url: obj.url+obj.id,
+    method: 'get',
+  })
+}
 export function roleList() {       //下拉选择角色时调此方法
   return request({
     url: "/user/role/queryPage",
@@ -134,6 +141,7 @@ export function delEntRoad(obj) {       //删除养护单位的养护路段
     data: obj
   })
 }
+
 export function executeProgram(obj) {       //统计计划所需材料
   return request({
     url: "/gardens/ent/delEntRoad",

@@ -30,9 +30,6 @@
         components: {
           win
         },
-        mounted(){
-          title();
-        },
       data(){
            return{
              win: {
@@ -40,7 +37,7 @@
                title: "",
                top: 0,
                left: 4,
-               width:"320px",
+               width:346,
                show: true,
                resizable:false,
                class:"em-title-window"

@@ -44,45 +44,36 @@
         height="600px"
         highlight-current-row
         @current-change="handleCurrentChange"
+        @expand-change="openCurrentChangeRow"
         ref="multipleTable"
         tooltip-effect="dark"
         :data="tableData"
         style="width: 100%"
         @selection-change="handleSelectionChange"
       >
-        <el-table-column type="expand">
-          <template slot-scope="props">
-            <el-form label-position="left" inline class="demo-table-expand">
-              <el-form-item label="商品名称">
-                <span>{{ props.row.name }}</span>
-              </el-form-item>
-              <el-form-item label="所属店铺">
-                <span>{{ props.row.shop }}</span>
-              </el-form-item>
-              <el-form-item label="商品 ID">
-                <span>{{ props.row.id }}</span>
-              </el-form-item>
-              <el-form-item label="店铺 ID">
-                <span>{{ props.row.shopId }}</span>
-              </el-form-item>
-              <el-form-item label="商品分类">
-                <span>{{ props.row.category }}</span>
-              </el-form-item>
-              <el-form-item label="店铺地址">
-                <span>{{ props.row.address }}</span>
-              </el-form-item>
-              <el-form-item label="商品描述">
-                <span>{{ props.row.desc }}</span>
-              </el-form-item>
-            </el-form>
-          </template>
-        </el-table-column>
         <el-table-column
           type="index"
           fixed="left"
           align="center"
           :index="table_idx"
         >
+        </el-table-column>
+        <el-table-column type="expand">
+          <template slot-scope="props">
+            <el-form label-position="left" inline class="demo-table-expand" >
+                  <el-form-item :label="item.name" v-for="(item,i) in label" :key="i">
+                    <span>{{ props.row[item.prop]}}</span>
+                  </el-form-item>
+
+              <el-form-item class="picture" v-if="imgUrl!==''">
+                <el-image
+                  :src="baseUrl+imgUrl"
+                  fit="fill">
+                </el-image>
+              </el-form-item>
+
+            </el-form>
+          </template>
         </el-table-column>
         <el-table-column
           align="center"
@@ -133,7 +124,7 @@
 
 <script>
 
-  import {add, dele, modify, find, downCsvmodel, upLoad, resetPassword,delEntRoad,roadInformation} from "@/api/table_operate"
+  import {add, dele, modify, find, downCsvmodel, upLoad, resetPassword,delEntRoad,roadInformation,getPictureImg} from "@/api/table_operate"
   import em_button from "@/components/em_button/em_button"
   import em_input from "@/components/em_input/em_input"
   import em_dialogs from "@/components/em_dialogs/em_dialogs"
@@ -173,6 +164,8 @@
         pageSize: 10,
         totalSize: null,
         table_list: [],
+        baseUrl:"",          //表格展开详情里图片的固定url
+        imgUrl:"",          //表格展开详情里图片的变化url
         formLabelWidth: '120px',
         dialogVisible: false,
         delever_obj: "",      // 主要保存add,alter请求的url,table_id
@@ -229,6 +222,16 @@
         console.log(`每页 ${val} 条`);
         this.pageSize = val;
         this.init();  //重新请求表格数据
+      },
+      openCurrentChangeRow(row,expandRows){     //展开行时
+         if(expandRows[0]&&this.data.table.picture_url){
+           getPictureImg({url:this.data.table.picture_url,id:expandRows[0].id}).then(res=>{
+                 this.imgUrl=res.data[0].fileName;
+
+                 this.baseUrl=process.env.IMG_API
+           })
+         }
+         console.log(this.imgUrl);
       },
       init() {                               //表格加载数据
 
@@ -517,21 +520,11 @@
         });
 
 
-      },
+      }
     }
   }
 </script>
 
 <style scoped lang="scss">
   @import "sole_table";
-
-  .table {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-  }
-
-
 </style>

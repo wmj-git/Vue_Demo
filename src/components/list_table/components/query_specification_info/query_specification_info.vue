@@ -1,8 +1,8 @@
 <template>
     <div class="query_specification_info">
       <el-form label-position="left" inline class="demo-table-expand">
-        <el-form-item :label="item.title" v-for="item in arr">
-          <span>{{item.value}}</span>
+        <el-form-item :label="item.title" v-for="(item,i) in arr" :key="i">
+           <span>{{item.value}}</span>
         </el-form-item>
 
       </el-form>
