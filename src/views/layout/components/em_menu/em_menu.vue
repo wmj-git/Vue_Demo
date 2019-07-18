@@ -43,6 +43,7 @@
             id: _key
           }
         });
+        this.bus.$emit(_key, 22222222222222);
       }
     },
     created() {
@@ -57,7 +58,6 @@
         $("#" + this.id).window("resize", {
           width: obj.width
         });
-
       }.bind(this));
     }
   };

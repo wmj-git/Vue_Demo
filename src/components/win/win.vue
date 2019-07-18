@@ -1,8 +1,10 @@
 <template>
   <div class="win">
-    <div ref="win" :id="id">
+    <div :id="id">
       <slot></slot>
+
     </div>
+
   </div>
 </template>
 
@@ -29,7 +31,7 @@
           top: _this.data.top,
           left: _this.data.left,
           cls: _this.class,
-          bodyCls:"body",
+          bodyCls: "body",
           collapsible: false,
           minimizable: false,
           maximizable: _this.data.maximizable,
@@ -53,11 +55,15 @@
     },
     mounted() {
       this.init();
+      this.bus.$on(this.id, obj=> {
+        console.log(obj);
+      });
     },
     beforeDestroy() {
-      if ($("#" + this.id)) {
-        $("#" + this.id).window('destroy');
-      }
+      this.bus.$off(this.id);
+       if ($("#" + this.id)) {
+         $("#" + this.id).window('destroy');
+       }
     }
   }
 </script>
@@ -66,8 +72,8 @@
 <style lang="scss" scoped>
   @import "win";
 
-  .body{
-    overflow-y:auto;
+  .body {
+    overflow-y: auto;
 
   }
 </style>

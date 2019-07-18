@@ -73,6 +73,8 @@
             projection: 'EPSG:4326',
           })
         });
+        this.queryVicinityPrintFn(114.03188276054428, 22.619840297782094);
+
 
         window._map.on('moveend', function (e) {
           let _map = e.map;
@@ -118,7 +120,7 @@
           params: {
             longitude: lng,
             latitude: lat,
-            distance: 5000
+            distance: 50000
           }
         }).then(response => {
          /* console.log("queryVicinityPrint");

@@ -32,7 +32,7 @@ export function createOption(_obj) {
         textStyle: {
           color: "#fff"
         },
-        data: ['销量', '销量1']
+        data: []
       },
       xAxis: {
         axisLine: {
@@ -41,7 +41,7 @@ export function createOption(_obj) {
           }
         },
         type: 'category',
-        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+        data: []
       },
       yAxis: {
         name: "单位/"+_set.unit_y,
@@ -55,7 +55,7 @@ export function createOption(_obj) {
         }
       },
       series: [
-        {
+       /* {
           name: '销量',
           type: 'bar',
           data: [5, 20, "-", 10, 10, 20, 80]
@@ -64,7 +64,7 @@ export function createOption(_obj) {
           name: '销量1',
           type: 'line',
           data: [5, 20, "-", 10, 10, 20, 80]
-        }
+        }*/
       ]
     },
     option_pie: {
@@ -87,11 +87,11 @@ export function createOption(_obj) {
         textStyle: {
           color: "#fff"
         },
-        data: ['直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎']
+        data: []
       },
       series: [
         {
-          name: '访问来源',
+          name: '',
           type: 'pie',
           radius: ['50%', '70%'],
           center: ['42%', '60%'],
@@ -115,11 +115,11 @@ export function createOption(_obj) {
             }
           },
           data: [
-            {value: 335, name: '直接访问'},
+           /* {value: 335, name: '直接访问'},
             {value: 310, name: '邮件营销'},
             {value: 234, name: '联盟广告'},
             {value: 135, name: '视频广告'},
-            {value: 1548, name: '搜索引擎'}
+            {value: 1548, name: '搜索引擎'}*/
           ],
           itemStyle: {
             emphasis: {

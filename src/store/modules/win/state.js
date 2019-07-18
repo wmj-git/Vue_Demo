@@ -1792,7 +1792,19 @@ export default {
           type: "line5",
           id: "line5",
           chart_url: '/gardens/humidity/queryAll?dataType=A'
-        }
+        },
+        charts: [
+          {
+            id:"chart_demo3",
+            type: "bar",
+            optionType:"option_bar_line",
+            winSpan:48,
+            height:30,
+            chartTitle:"模板",
+            unit_y:"次",
+            dataUrl: '/gardens/temperature/queryAll?dataType=A'
+          }
+        ]
       }
     },
     {
@@ -1907,12 +1919,22 @@ export default {
           },
           {
             id:"chart_demo2",
-            type: "bar",
+            type: "line",
+            optionType:"option_bar_line",
+            winSpan:24,
+            height:50,
+            chartTitle:"模板",
+            unit_y:"m",
+            dataUrl: '/gardens/temperature/queryAll?dataType=A'
+          },
+          {
+            id:"chart_demo3",
+            type: "pie",
             optionType:"option_pie",
             winSpan:24,
             height:50,
             chartTitle:"模板",
-            unit_y:"次",
+            unit_y:"m",
             dataUrl: '/gardens/temperature/queryAll?dataType=A'
           }
         ]
