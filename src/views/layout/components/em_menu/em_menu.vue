@@ -57,12 +57,6 @@
         $("#" + this.id).window("resize", {
           width: obj.width
         });
-        $("#" + this.id).window({
-          onBeforeClose:function(){
-            var className = document.getElementsByClassName('el-menu-item');
-            $(className).removeClass('is-active');
-          }
-        });
       }.bind(this));
     }
   };
