@@ -1080,17 +1080,25 @@ export default {
             table_url: "/gardens/fertilizationProgram/queryAllByPage",
             after_digital_button: [
               {
-                name: "查看执行规格",
+                name: "查看规格",
                 fn: "querySpecificationInfo",
                 id: "querySpecificationInfo",
-                dialog_name: "查看执行规格",
+                dialog_name: "查看规格",
                 dialog_width: "400px",
                 component_name: "query_specification_info"
               },
               {
-                name: "执行计划",
+                name: "生成记录",
                 fn: "executeProgram",
                 id: "executeProgram",
+                dialog_name: "生成记录",
+                dialog_width: "400px",
+                component_name: "execute_program"
+              },
+              {
+                name: "完成",
+                fn: "complete",
+                id: "complete"
               }
             ],
             label: [
@@ -1147,6 +1155,115 @@ export default {
             ]
           }
         },
+      }
+    },
+    {
+      id: "protect_record",
+      title: "养护记录",
+      top: 80,
+      left: 400,
+      height: 500,
+      show: false,
+      class: "em-table-window",
+      component: "sole_table",
+      component_data: {
+        operation: [
+          {
+            id: "protect_record_input_shortName",
+            type: "em_input",
+            placeholder: "简称",
+            params: "shortName"
+          },
+          {
+            id: "protect_record_button_search",
+            type: "em_button",
+            icon: "el-icon-search",
+            operate: "查询",
+            control_id: "protect_record_table",
+            fn: "search"
+          },
+          {
+            id: "protect_record_button_dele",
+            type: "em_button",
+            icon: "el-icon-delete",
+            operate: "删除",
+            control_id: "protect_record_table",
+            fn: "dele",
+            url: "/gardens/applyFertilizerRecord/deletes"
+          }
+        ],
+        table: {
+          id: "protect_record_table",
+          table_url: "/gardens/applyFertilizerRecord/queryAllByPage",
+          label: [{
+            name: "全称",
+            prop: "fullName",
+            width: "140",
+            type: "em_input",
+            params: "fullName",
+            placeholder: "全称",
+            alter_show: true,
+            add_show: true
+
+          },
+            {
+              name: "简称",
+              prop: "shortName",
+              width: "100",
+              type: "em_input",
+              params: "shortName",
+              placeholder: "简称",
+              alter_show: true,
+              add_show: true
+            },
+            {
+              name: "单位编码",
+              prop: "deptCode",
+              width: "80",
+              type: "em_input",
+              params: "deptCode",
+              placeholder: "单位编码",
+              alter_show: true,
+              add_show: true
+
+
+            },
+            {
+              name: "电话",
+              prop: "phoneNumber",
+              width: "140",
+              type: "em_input",
+              params: "phoneNumber",
+              placeholder: "电话",
+              alter_show: true,
+              add_show: true
+            },
+            {
+              name: "组织id",
+              prop: "organizationId",
+              width: "140",
+              type: "em_input",
+              params: "organizationId",
+              placeholder: "组织id",
+              alter_show: true,
+              add_show: true
+            },
+            {
+              name: "备注",
+              prop: "remark",
+              width: "100",
+              type: "em_input",
+              params: "remark",
+              placeholder: "备注",
+              alter_show: true,
+              add_show: true
+
+            }
+
+
+          ]
+        }
+
       }
     },
     {

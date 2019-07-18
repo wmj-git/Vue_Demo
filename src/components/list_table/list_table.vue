@@ -79,7 +79,7 @@
               align="center"
               fixed="right"
               label="操作"
-              min-width="180"
+              min-width="220"
               v-if="typeof (data[digital_table_id].table.after_digital_button)!='undefined'"
             >
               <template slot-scope="scope">
@@ -111,7 +111,7 @@
 </template>
 
 <script>
-  import {add, dele, modify, find, downCsvmodel,upLoad} from "@/api/table_operate"
+  import {add, dele, modify, find, downCsvmodel,upLoad,completeProgram} from "@/api/table_operate"
   import {findMenuByThisUser} from "@/api/resource"
   import { getToken} from '@/utils/auth'
   import em_button from "@/components/em_button/em_button"
@@ -121,6 +121,7 @@
   import em_dialogs from "@/components/em_dialogs/em_dialogs"
   import em_date from "@/components/em_date/em_date"
   import query_specification_info from "./components/query_specification_info/query_specification_info"
+  import execute_program from "./components/execute_program/execute_program"
   export default {
     name: "compone",
     components: {
@@ -130,7 +131,8 @@
       complex_em_input,
       em_dialogs,
       em_date,
-      query_specification_info
+      query_specification_info,
+      execute_program
     },
     props: ["data"],
     data() {
@@ -425,16 +427,24 @@
       table_idx(index) {                                   //控制表格数据行号
         return (this.currentPage - 1) * this.pageSize + index + 1
       },
-      querySpecificationInfo(){               //打开查看肥料规则等的公共弹窗
+      querySpecificationInfo(){               //打开查看肥料规则等的公共弹窗（查看肥料规格）
         this.dialogCommonVisible = true;
       },
       closeCommonDialog() {
         this.dialogCommonVisible = false;  //关闭查看肥料规则等的公共弹窗
       },
-      executeProgram(){               //执行计划的方法
+      executeProgram(){               //生成记录
+        this.dialogCommonVisible = true;
+
+      },
+      complete(){
+        let arr=[];
         setTimeout(_=>{
-          console.log(this.alter_obj)
-        });
+          arr.push(this.alter_obj.id)
+          completeProgram({ids:arr}).then(res=>{
+              console.log(res)
+          })
+        })
 
       }
     }
