@@ -43,7 +43,6 @@
             id: _key
           }
         });
-        this.bus.$emit(_key, 22222222222222);
       }
     },
     created() {
@@ -59,6 +58,9 @@
           width: obj.width
         });
       }.bind(this));
+    },
+    beforeDestroy() {
+      this.bus.$off(this.id);
     }
   };
 </script>

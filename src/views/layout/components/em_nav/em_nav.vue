@@ -110,6 +110,9 @@
     },
     mounted() {
 
+    },
+    beforeDestroy() {
+      this.bus.$off(this.id);
     }
 
   };

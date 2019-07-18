@@ -184,20 +184,6 @@
       }
     },
     props: ["data"],
-    mounted() {
-      console.log(typeof (this.data.table.after_digital_button));
-      this.table_id = this.data.table.id;
-      this.label = this.data.table.label;
-      this.label_input = this.data.table.label.filter(val => {
-        return val.add_show
-      });
-      console.log(this.label);
-      this.init(); //初始化表格数据
-
-      this.bus.$on(this.data.table.id, obj => {// 通过按钮组件（添加，删除..）的点击事件触发此组件的control方法
-        this.control(obj);
-      });
-    },
     methods: {
 
       handleSelectionChange(val) {// 多选框（选中删除）
@@ -344,12 +330,12 @@
             type: 'warning'
           }).then(() => {
 
-
             dele({
               url: obj.url,
               params: this.ids
 
-            }).then(res => {
+            }).then(res =>
+            {
               this.ids = [];
               if (res.statusCode == 200) {
                 this.$message({
@@ -533,6 +519,23 @@
 
 
       }
+    },
+    mounted() {
+      console.log(typeof (this.data.table.after_digital_button));
+      this.table_id = this.data.table.id;
+      this.label = this.data.table.label;
+      this.label_input = this.data.table.label.filter(val => {
+        return val.add_show
+      });
+      console.log(this.label);
+      this.init(); //初始化表格数据
+
+      this.bus.$on(this.data.table.id, obj => {// 通过按钮组件（添加，删除..）的点击事件触发此组件的control方法
+        this.control(obj);
+      });
+    },
+    beforeDestroy() {
+      this.bus.$off(this.data.table.id);
     }
   }
 </script>

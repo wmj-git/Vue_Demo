@@ -1,3 +1,26 @@
+//统计一个数组中有多少个不重复的单词：
+// 不用reduce时：
+// var arr = ["apple","orange","apple","orange","pear","orange"];
+export function getWordCounted(arr){
+  var obj = {};
+  for(var i= 0, l = arr.length; i< l; i++){
+    var item = arr[i];
+    obj[item] = (obj[item] +1 ) || 1;
+  }
+  return obj;
+}
+// console.log(getWordCnt());//{apple: 2, orange: 3, pear: 1}
+// 用reduce时：
+// var arr = ["apple","orange","apple","orange","pear","orange"];
+export function getArrCounted(arr){
+  return arr.reduce(function(prev,next){
+    prev[next] = (prev[next] + 1) || 1;
+    return prev;
+  },{});
+}
+// console.log(getWordCnt());//{apple: 2, orange: 3, pear: 1}
+
+
 //算周数
 export function getYearWeek(date) {
   date.getTime();

@@ -2,9 +2,7 @@
   <div class="win">
     <div :id="id">
       <slot></slot>
-
     </div>
-
   </div>
 </template>
 
@@ -47,7 +45,7 @@
             _this.$store.commit("win/win_close", {win_id: _this.id});
           },
           onResize: function () {            //窗口大小改变时触发
-            _this.bus.$emit("echart");  //通过echarts调用echarts里的方法
+            // _this.bus.$emit("echart");  //通过echarts调用echarts里的方法
           }
         });
 
@@ -55,12 +53,8 @@
     },
     mounted() {
       this.init();
-      this.bus.$on(this.id, obj=> {
-        console.log(obj);
-      });
     },
     beforeDestroy() {
-      this.bus.$off(this.id);
        if ($("#" + this.id)) {
          $("#" + this.id).window('destroy');
        }
