@@ -29,6 +29,7 @@
           top: _this.data.top,
           left: _this.data.left,
           cls: _this.class,
+          bodyCls:"body",
           collapsible: false,
           minimizable: false,
           maximizable: _this.data.maximizable,
@@ -64,4 +65,9 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
   @import "win";
+
+  .body{
+    overflow-y:auto;
+
+  }
 </style>

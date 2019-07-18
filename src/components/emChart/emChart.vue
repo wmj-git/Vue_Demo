@@ -12,13 +12,21 @@
 </template>
 
 <script>
-  import {option} from "./data/db"
+  import {createOption} from "./data/db"
+
   export default {
     name: "emChart",
     data() {
       return {
-        id: "cc",
+        id: "",
         chart: null,
+        chartSet: {
+          type: "",//图表类型
+          optionType: "",//设置模板
+          chartTitle: "标题",
+          unit_y: "mm"//单位
+        },
+        dataUrl: '/gardens/temperature/queryAll?dataType=A',
         height: 60
       }
     },
@@ -32,20 +40,37 @@
         deep: true //对象内部属性的监听，关键。
       }
     },
+    computed: {
+      val: function () {
+        return this.$store.getters["win/win"];
+      }
+    },
     methods: {
       init() {
-
+        this.id = this.data.id;
+        this.height = this.data.height;
+        this.dataUrl = this.data.dataUrl;
+        this.chartSet = {
+          type: this.data.type,//图表类型
+          optionType: this.data.optionType,//设置模板
+          chartTitle: this.data.chartTitle,
+          unit_y: this.data.unit_y//单位
+        }
       },
       chartInit() {
-
         // 基于准备好的dom，初始化echarts实例
         this.chart = this.$echarts.init(document.getElementById(this.id));
-
         // 使用刚指定的配置项和数据显示图表。
-        this.chart.setOption(option.option_bar_line, true);
+        this.chart.setOption(createOption(this.chartSet), true);
+
+      },
+      setData(_obj){
+        this.chart.setOption({
+
+        });
       },
       chartResize() {
-        if(this.chart){
+        if (this.chart) {
           let _width = $("#" + this.id).width();
           let _height = _width * (this.height / 100);
           this.chart.resize({
@@ -69,7 +94,7 @@
       })
     },
     mounted() {
-      this.chartInit();
+      this.chartInit();//初始图表设置
     }
   }
 </script>
