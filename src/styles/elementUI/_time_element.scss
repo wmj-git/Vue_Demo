@@ -1,0 +1,26 @@
+.el-time-panel {
+  background-color: lighten(nth($background-base, 3), 5%);
+  border-color: lighten($em-highlight-border-color-base, 10%);
+
+  .el-time-spinner__item {
+    color: darken($em-text-color-base,10%);
+
+    &:hover:not(.disabled):not(.active) {
+      background-color: transparent;
+      color: $em-text-highlight-base;
+    }
+
+    &.active:not(.disabled) {
+      color: $em-text-highlight-base;
+    }
+  }
+  .el-time-panel__btn{
+      color: darken($em-text-color-base,20%);
+    &.confirm{
+      color: $em-text-highlight-base;
+    }
+  }
+  .el-time-panel__footer{
+    border-top-color: darken($em-text-highlight-base,20%);
+  }
+}

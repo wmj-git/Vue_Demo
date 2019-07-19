@@ -77,11 +77,10 @@
   color: darken($em-text-color-base,22%);
 }
 
-.el-table__body tr:hover>td{
+.el-table__body tr:hover>td,.el-table--enable-row-hover .el-table__body tr:hover > td{
   background-color:$em-background-hover-tbody;
   color: $em-text-color-base;
 }
-
 .el-table__body tr.current-row>td,.el-table__row--striped.current-row td{
   background-color: darken($em-background-hover-tbody,20%);
 }

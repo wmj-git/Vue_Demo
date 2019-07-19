@@ -1078,7 +1078,7 @@ export default {
             {
               id: "fertilization_program_button_count",
               type: "em_button",
-              icon: "el-icon-delete",
+              icon: "el-icon-operation-tj",
               operate: "统计材料",
               control_id: "fertilization_program_table",
               fn: "coutProgram",

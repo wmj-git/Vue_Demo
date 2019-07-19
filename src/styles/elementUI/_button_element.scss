@@ -6,6 +6,15 @@
     background: transparent;
     border-color: $em-highlight-border-color-base;//tree
   }
+  &.is-plain{
+    border-color: $em-highlight-border-color-base ;
+    color: darken($em-text-highlight-base,10%) ;
+    &:hover,&:focus{
+      background-color:transparent ;
+      color: $em-text-highlight-base;
+      border-color: $em-highlight-border-color-base;
+    }
+  }
 }
 
 

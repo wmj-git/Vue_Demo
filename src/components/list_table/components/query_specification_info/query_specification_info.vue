@@ -1,12 +1,15 @@
 <template>
     <div class="query_specification_info">
       <el-table
+        class="em-dialog-table"
         :data="digital"
         style="width: 100%">
         <el-table-column v-for="item in label"
           :prop="item.prop"
           :label="item.name"
-          width="180">
+          width="180"
+          :key='index'
+          :show-overflow-tooltip="true">
         </el-table-column>
       </el-table>
     </div>
