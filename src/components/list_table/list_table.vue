@@ -117,7 +117,7 @@
 </template>
 
 <script>
-  import {add, dele, modify, find, downCsvmodel,upLoad,completeProgram} from "@/api/table_operate"
+  import {add, dele, modify, find, downCsvmodel,upLoad,completeProgram,querySpecifications} from "@/api/table_operate"
   import {findMenuByThisUser} from "@/api/resource"
   import {getToken} from '@/utils/auth'
   import em_button from "@/components/em_button/em_button"
@@ -431,6 +431,9 @@
         }
 
       },
+      coutProgram(obj){
+        console.log(obj)
+      },
       table_idx(index) {                                   //控制表格数据行号
         return (this.currentPage - 1) * this.pageSize + index + 1
       },
@@ -443,16 +446,29 @@
       },
       executeProgram(){               //生成记录
         this.dialogCommonVisible = true;
-
       },
       complete(){
         let arr=[];
-        setTimeout(_=>{
-          arr.push(this.alter_obj.id)
-          completeProgram({ids:arr}).then(res=>{
-              console.log(res)
+        this.$confirm('此操作不可逆, 是否完成?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          setTimeout(_=>{
+            arr.push(this.alter_obj.id);
+            completeProgram({ids:arr}).then(res=>{
+              this.$message({
+                type: 'success',
+                message: '已完成!'
+              });
+              this.init();
+            })
           })
-        })
+
+        }).catch(() => {
+
+        });
+
 
       }
     }

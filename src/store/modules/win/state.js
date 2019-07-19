@@ -1073,6 +1073,15 @@ export default {
               control_id: "fertilization_program_table",
               fn: "dele",
               url: "/gardens/fertilizationProgram/deletes"
+            },
+            {
+              id: "fertilization_program_button_count",
+              type: "em_button",
+              icon: "el-icon-delete",
+              operate: "统计材料",
+              control_id: "fertilization_program_table",
+              fn: "coutProgram",
+              url: "/gardens/fertilizationProgram/deletes"
             }
           ],
           table: {
@@ -1092,7 +1101,7 @@ export default {
                 fn: "executeProgram",
                 id: "executeProgram",
                 dialog_name: "生成记录",
-                dialog_width: "400px",
+                dialog_width: "560px",
                 component_name: "execute_program"
               },
               {
@@ -1169,10 +1178,23 @@ export default {
       component_data: {
         operation: [
           {
-            id: "protect_record_input_shortName",
-            type: "em_input",
-            placeholder: "简称",
-            params: "shortName"
+            id: "protect_record_select",
+            type: "complex_em_input",
+            select: [
+              {
+                name: "部门名称",
+                params: "entName"
+              },
+              {
+                name: "道路名称",
+                params: "roadName"
+              }
+            ]
+
+          },
+          {
+            id:"protect_record_date",
+            type:"em_date"
           },
           {
             id: "protect_record_button_search",
@@ -1196,30 +1218,30 @@ export default {
           id: "protect_record_table",
           table_url: "/gardens/applyFertilizerRecord/queryAllByPage",
           label: [{
-            name: "全称",
-            prop: "fullName",
+            name: "植物名称",
+            prop: "treeName",
             width: "140",
             type: "em_input",
-            params: "fullName",
-            placeholder: "全称",
+            params: "treeName",
+            placeholder: "植物名称",
             alter_show: true,
             add_show: true
 
           },
             {
-              name: "简称",
-              prop: "shortName",
+              name: "部门名称",
+              prop: "entName",
               width: "100",
               type: "em_input",
-              params: "shortName",
-              placeholder: "简称",
+              params: "entName",
+              placeholder: "部门名称",
               alter_show: true,
               add_show: true
             },
             {
-              name: "单位编码",
-              prop: "deptCode",
-              width: "80",
+              name: "道路名称",
+              prop: "roadName",
+              width: "100",
               type: "em_input",
               params: "deptCode",
               placeholder: "单位编码",
@@ -1229,22 +1251,22 @@ export default {
 
             },
             {
-              name: "电话",
-              prop: "phoneNumber",
-              width: "140",
+              name: "时间",
+              prop: "createDate",
+              width: "200",
               type: "em_input",
-              params: "phoneNumber",
-              placeholder: "电话",
+              params: "createDate",
+              placeholder: "时间",
               alter_show: true,
               add_show: true
             },
             {
-              name: "组织id",
-              prop: "organizationId",
-              width: "140",
+              name: "描述",
+              prop: "programmeDiscribe",
+              width: "160",
               type: "em_input",
-              params: "organizationId",
-              placeholder: "组织id",
+              params: "programmeDiscribe",
+              placeholder: "描述",
               alter_show: true,
               add_show: true
             },

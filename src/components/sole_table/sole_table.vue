@@ -231,7 +231,6 @@
                  this.baseUrl=process.env.IMG_API
            })
          }
-         console.log(this.imgUrl);
       },
       init() {                               //表格加载数据
 
@@ -239,7 +238,9 @@
           pageNum: this.currentPage,
           pageSize: this.pageSize
         };
+        console.log(this.$refs.child[0]);
         if (this.$refs.child[0].time1) {
+          console.log(this.$refs.child[0].time1);
           let time1 = this.$refs.child[0].time1;    //时间范围查询参数
           if (time1) {
             obj.startTime = time1.getTime();
@@ -248,6 +249,19 @@
         }
         if (this.$refs.child[0].time2) {
           let time2 = this.$refs.child[0].time2;
+          if (time2) {
+            obj.endTime = time2.getTime();
+          }
+        }
+        if (this.$refs.child[1].time1) {
+          let time1 = this.$refs.child[1].time1;    //时间范围查询参数
+          if (time1) {
+            obj.startTime = time1.getTime();
+
+          }
+        }
+        if (this.$refs.child[1].time2) {
+          let time2 = this.$refs.child[1].time2;
           if (time2) {
             obj.endTime = time2.getTime();
           }
