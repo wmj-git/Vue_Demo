@@ -1,32 +1,57 @@
-.el-picker-panel{
-  background: lighten(nth($background-base,3),5%);
-  border-image: linear-gradient(nth($background-base,3),nth($background-base,4));
+.el-picker-panel {
+  background: lighten(nth($background-base, 3), 5%);
+  border-image: linear-gradient(nth($background-base, 3), nth($background-base, 4));
   border-image-slice: 20;
-  color: darken($em-text-color-base,10%);
+  color: darken($em-text-color-base, 10%);
+
   .el-date-table {
-    & th{
-      color:darken($em-text-color-base,10%);
-      border-color: lighten($em-highlight-border-color-base,10%);
+    & th {
+      color: darken($em-text-color-base, 10%);
+      border-color: lighten($em-highlight-border-color-base, 20%);
     }
-    & td.current:not(.disabled) span{
-      background: nth($background-base,4);
-      color: darken($em-text-color-base,100%);
+
+    & td.current:not(.disabled) span {
+      background: nth($background-base, 4);
+      color: darken($em-text-color-base, 100%);
     }
-    & td.available:hover, & td.today span{
+
+    & td.available:hover, & td.today span {
       color: $em-text-highlight-base;
     }
-    & td.today span{
+
+    & td.today span {
       font-weight: 900;
     }
+
     & td.disabled div {
-      background-color: lighten(nth($background-base,3),15%);
+      background-color: lighten(nth($background-base, 3), 15%);
       cursor: not-allowed;
-      color: darken($em-text-color-base,60%);
+      color: darken($em-text-color-base, 60%);
+    }
+
+    & td.available {
+      color: $em-text-color-base;
     }
   }
-  .el-date-picker__header{
-    .el-picker-panel__icon-btn,.el-date-picker__header-label{
+
+  .el-date-picker__header {
+    .el-picker-panel__icon-btn, .el-date-picker__header-label {
       color: $em-text-color-base;
+    }
+  }
+
+  .el-picker-panel__footer {
+    background-color: lighten(nth($background-base, 3), 5%);
+    border-top-color: lighten($em-highlight-border-color-base, 20%);
+
+    .el-button--text {
+      color: $em-text-highlight-base;
+    }
+  }
+
+  .el-time-panel__content {
+    &::after, &::before {
+      border-color: darken($em-highlight-border-color-base, 20%);
     }
   }
 }

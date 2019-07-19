@@ -40,6 +40,13 @@
             if(val.id&&val.fertilizerName){
               obj={value:val.id,label:val.fertilizerName};
             }
+            if(val.id&&val.entName){
+              obj={value:val.id,label:val.entName};
+            }
+            if(val.id&&val.roadName){
+              obj={value:val.id,label:val.roadName};
+            }
+
 
             this.options.push(obj);
 

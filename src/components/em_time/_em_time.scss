@@ -1,14 +1,5 @@
-.em_time {
-    // Vars
-
-    // Support
-
-    // Module
-    & {
-        //
-    }
-
-    // Facets
-
-    // States
+.em_time{
+  .el-date-editor.el-input, .el-date-editor.el-input__inner{
+    width: 100%;
+  }
 }

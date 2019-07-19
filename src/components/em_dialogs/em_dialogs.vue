@@ -15,6 +15,16 @@
                   </el-form-item>
                 </el-col>
               </template>
+              <template v-if="fn==='coutProgram'">
+                  <el-col :span="24"   v-for="item in this.labels" :key="index">
+                    <el-form-item  :label="item.name">
+                         <em_selectsUrl :operation="item" ref="selectUrl"></em_selectsUrl>
+                    </el-form-item>
+                  </el-col>
+                   <el-col>
+                      <p>111</p>
+                   </el-col>
+              </template>
           </el-form>
         </el-row>
         <div slot="footer" class="dialog-footer">
@@ -32,6 +42,7 @@
   import em_selectUrl from "@/components/em_selectUrl/em_selectUrl"
   import em_selectsUrl from "@/components/em_selectsUrl/em_selectsUrl"
   import em_time from "@/components/em_time/em_time"
+  import {selectUrl,executeProgram,countProgram} from "@/api/table_operate"
     export default {
         props: {
           label:{
@@ -53,15 +64,25 @@
              form: {
              },
              formLabelWidth: '100px',
-             alter_obj:"",
+             alter_obj:"",           //表格单选行穿过来的对象
+             count_program:[],       //表格多选行穿过来的数组
              fn:"",
+             labels:[{name:"单位:",optionUrl:"/gardens/ent/queryAll"}, {name:"道路:",optionUrl:"/gardens/road/queryAll"}],
+             value1: [],
+             value2: [],
            }
 
         },
       created(){
+          this.bus.$off("alter");
           this.bus.$on("alter",res=>{
              this.alter_obj=res;         //将要修改的对象从sole_table传到此组件的alter_obj
+
           });
+          this.bus.$off("count");
+          this.bus.$on("count",res=>{
+            this.count_program=res;
+        });
 
       },
       mounted(){
@@ -93,7 +114,7 @@
                 });
 
               }
-              else{
+              else if(this.fn=="modify"){
                 if(this.alter_obj!=""){
                   this.dialogFormVisible = true;
                   this.label.forEach((val)=>{
@@ -131,7 +152,21 @@
                   }, 0)
                 }
               }
-              console.log(this.form);
+              else {
+                if(this.count_program.length!==0){
+                  this.dialogFormVisible = true;
+                  let ids=[];
+                  this.count_program.forEach(val=>{
+                      ids.push(val.id);
+
+                  });
+                  console.log(this.ref.selectUrl)
+                  // countProgram({ids:ids}).then(res=>{
+                  //     console.log(res)
+                  // })
+                }
+
+              }
 
           },
          confirm(){

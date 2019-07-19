@@ -1,11 +1,17 @@
 <template>
     <div class="query_specification_info">
-      <el-form label-position="left" inline class="demo-table-expand">
-        <el-form-item :label="item.title" v-for="(item,i) in arr" :key="i">
-           <span>{{item.value}}</span>
-        </el-form-item>
-
-      </el-form>
+      <el-table
+        class="em-dialog-table"
+        :data="digital"
+        style="width: 100%">
+        <el-table-column v-for="item in label"
+          :prop="item.prop"
+          :label="item.name"
+          width="180"
+          :key='index'
+          :show-overflow-tooltip="true">
+        </el-table-column>
+      </el-table>
     </div>
 </template>
 
@@ -20,37 +26,21 @@
         },
       data(){
            return {
-               digital:"",
-               arr:[]
+               digital:[],
+               label:[]
            }
       },
       mounted(){
-           // let obj={};
-           // this.arr=[];
-           // this.bus.$off("alter_all");
-           // this.bus.$on("alter_all",res=>{
-           //      this.digital=res;
-           //      console.log(this.row_title);
-           //      console.log(this.digital);
-           //      this.row_title.forEach((val,i)=>{
-           //         for(let item in this.digital){
-           //             if(item===val.prop){
-           //                obj={"title":val.name,"value":this.digital[item]};
-           //               console.log(obj);
-           //               this.arr.push(obj);
-           //
-           //             }
-           //         }
-           //      });
-           //   console.log(this.arr);
-           // });
           let ids=[];
           this.bus.$off("alter_all");
-          this.bus.$on("alter_all",res=>{
-              ids.push(res.id);
+          this.bus.$on("alter_all",(obj1,obj2)=>{
+            console.log(obj2.label);
+             this.label=obj2.label;
+              ids.push(obj1.id);
               console.log(ids);
               querySpecifications({ids:ids}).then(val=>{
-                  console.log(val)
+                  this.digital=val.data;
+                  console.log(this.digital);
               })
           })
 

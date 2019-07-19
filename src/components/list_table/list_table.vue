@@ -215,6 +215,7 @@
       handleSelectionChange(val) {// 多选框（选中删除）
         this.multipleSelection = val;
         console.log(this.multipleSelection);
+        this.bus.$emit("count",this.multipleSelection)
 
       },
       handleCurrentChange(val) {     //单选行 （选中修改）
@@ -290,7 +291,9 @@
         this.commonDialogTitle = obj.dialog_name;
         this.commonDialogWidth = obj.dialog_width;
         setTimeout(() => {
-          this.bus.$emit("alter_all", this.alter_obj);   //是查找执行规格等接受的数据
+          console.log(obj);
+            this.bus.$emit("alter_all", this.alter_obj,obj);   //是查找执行规格等接受的数据
+
         });
       },
       control() {
@@ -432,14 +435,16 @@
 
       },
       coutProgram(obj){
-        console.log(obj)
+        console.log(obj);
+        this.$refs.dialog.showdialog(obj);  //调用子组件em_dialogs的方法显示弹出框;
       },
       table_idx(index) {                                   //控制表格数据行号
         return (this.currentPage - 1) * this.pageSize + index + 1
       },
 
-      querySpecificationInfo() {               //打开查看肥料规则等的公共弹窗
+      querySpecificationInfo(obj) {               //打开查看肥料规则等的公共弹窗
         this.dialogCommonVisible = true;
+
       },
       closeCommonDialog() {
         this.dialogCommonVisible = false;  //关闭查看肥料规则等的公共弹窗

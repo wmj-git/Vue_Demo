@@ -156,7 +156,13 @@ export function executeProgram(obj) {       //执行计划生成记录
     data: obj
   })
 }
-
+export function countProgram(obj) {       //统计材料
+  return request({
+    url: "/gardens/fertilizationProgram/countProgram",
+    method: 'post',
+    data: obj
+  })
+}
 export function completeProgram(obj) {     //完成
   return request({
     url: "/gardens/fertilizationProgram/skipProgram",
