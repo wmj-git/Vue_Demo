@@ -16,7 +16,7 @@
                 </el-col>
               </template>
               <template v-if="fn==='coutProgram'">
-                  <el-col :span="24"   v-for="item in this.labels">
+                  <el-col :span="24"   v-for="item in this.labels" :key="index">
                     <el-form-item  :label="item.name">
                          <em_selectsUrl :operation="item" ref="selectUrl"></em_selectsUrl>
                     </el-form-item>
