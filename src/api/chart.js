@@ -31,7 +31,5 @@ export function fetchChart(obj) {
     url:obj.chart_url,
     method: 'get',
     params: obj.params
-
-
   })
 }
