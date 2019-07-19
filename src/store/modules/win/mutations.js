@@ -6,27 +6,29 @@ export default {
     state.win = win;
   },
   [WIN_OPEN] (state, { win_obj }) {
-    state.win.forEach(function (el) {
-      if (el.id === win_obj.id && el.show === false) {
-        el.show = true;
-      } else if (el.id === win_obj.id && el.show === true) {
-        el.show = false;
+    for(let i=0;i<state.win.length;i++){
+      if (state.win[i].id === win_obj.id && state.win[i].show === false) {
+        state.win[i].show = true;
+      } else if (state.win[i].id === win_obj.id && state.win[i].show === true) {
+        state.win[i].show = false;
       }
-    })
+    }
+
   },
   [WIN_CLOSE] (state, { win_id }) {
     if (win_id === "all") {
-      state.win.forEach(function (el) {
-        if (el.show === true) {
-          el.show = false;
+      for(let i=0;i<state.win.length;i++){
+        if (state.win[i].show === true) {
+          state.win[i].show = false;
         }
-      })
+      }
     } else {
-      state.win.forEach(function (el) {
-        if (el.id === win_id) {
-          el.show = false;
+      for(let i=0;i<state.win.length;i++){
+        if (state.win[i].id === win_id) {
+          state.win[i].show = false;
         }
-      })
+      }
+
     }
   },
   [DIALOG_OPEN] (state, { obj }) {

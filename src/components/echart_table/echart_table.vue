@@ -4,7 +4,7 @@
     <el-row style="height: 100%">
       <div class="table digital_table" style="height:50%">
         <el-row class="operation">
-          <template v-for="item in this.data.operation">
+          <template v-for="item in data.operation">
             <component :is="item.type" :operation="item" :table_id="table_id" ref="child"
                        @keyup.enter.native="search()"></component>
           </template>
@@ -52,7 +52,14 @@
         </div>
       </div>
       <div style="height: 50%;">
-        <em_select :select="select"></em_select>
+        <el-select v-model="selectValue" placeholder="请选择" @change="chartFn" clearable>
+          <el-option
+            v-for="item in selectOptions"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+          </el-option>
+        </el-select>
         <div style="height:90%;">
           <el-row>
             <template v-for="chart in charts">
@@ -61,7 +68,6 @@
               </el-col>
             </template>
           </el-row>
-          <ehcarts :id="echart_id" :option="option" :data="data1" :series="series" :xAxis_data="xAxis_data"></ehcarts>
         </div>
       </div>
     </el-row>
@@ -70,18 +76,15 @@
 </template>
 
 <script>
-  import {add, dele, modify, find, downCsvmodel, upLoad} from "@/api/table_operate"
-  import ehcarts from "@/components/echarts/echarts"
-  import emChart from "@/components/emChart/emChart"
-  import options from '@/echart_options/options'
-  import {fetchChart} from "@/api/chart"
+  import {add, dele, modify, find, downCsvmodel, upLoad} from "@/api/table_operate";
+  import emChart from "@/components/emChart/emChart";
+  import {fetchChart} from "@/api/chart";
   import {fetchPie} from "@/api/chart";
-  import em_button from "@/components/em_button/em_button"
-  import em_input from "@/components/em_input/em_input"
-  import em_dialogs from "@/components/em_dialogs/em_dialogs"
-  import complex_em_input from "@/components/complex_em_input/complex_em_input"
-  import em_date from "@/components/em_date/em_date"
-  import em_select from "@/components/em_select/em_select"
+  import em_button from "@/components/em_button/em_button";
+  import em_input from "@/components/em_input/em_input";
+  import em_dialogs from "@/components/em_dialogs/em_dialogs";
+  import complex_em_input from "@/components/complex_em_input/complex_em_input";
+  import em_date from "@/components/em_date/em_date";
 
   export default {
     name: "echart_table",
@@ -98,97 +101,70 @@
         totalSize: null,
         value: '',
 
-
-        echart_id: "pie1",
-        option: {},
-        data1: [],
-        series: [],
-        xAxis_data: [],
-
         pageSize: 10,
         label_input: [],
 
-        select: [
-            {
-              value: "年",
-              label: "年"
-            },
-            {
-              value: "季",
-              label: "季"
-            },
-            {
-              value: "月",
-              label: "月"
-            },
-            {
-              value: "日",
-              label: "日"
-            }
-          ],
-        charts:[
+        selectOptions: [
           {
-            id:"chart_demo",
-            type: "bar",
-            optionType:"option_bar_line",
-            winSpan:48,
-            height:20,
-            chartTitle:"模板",
-            unit_y:"次",
-            dataUrl: '/gardens/temperature/queryAll?dataType=A'
+            value: "day",
+            label: "日"
+          },
+          {
+            value: "month",
+            label: "月"
+          },
+          {
+            value: "quarter",
+            label: "季"
+          },
+          {
+            value: "year",
+            label: "年"
           }
+        ],
+        selectValue: "day",
+
+        charts: [
+          /*{
+             id:"",
+             type: "bar",
+             optionType:"option_bar_line",
+             winSpan:48,
+             height:20,
+             chartTitle:"模板",
+             unit_y:"次",
+             dataUrl: '/gardens/temperature/queryAll?dataType=A'
+           }*/
         ]
-      }
+      };
     },
     components: {
-      ehcarts,
       emChart,
       em_button,
       em_input,
       em_dialogs,
       complex_em_input,
-      em_date,
-      em_select
+      em_date
     },
     props: ["data"],
-    mounted() {
-      let _this = this;
-      this.bus.$on(this.data.table.id, obj => {
-        this.control(obj);
-        console.log(obj);
-      });
-      console.log(this.data);
-      this.label = this.data.table.label;
-
-      this.option = options[this.data.chart.type];
-      this.echart_id = this.data.chart.id;
-
-      this.charts=this.data.charts;
-
-      this.init();
-      this.bus.$on("deliver_val", (val) => {
-        console.log(val);
-        this.drawChart(val)
-      })
-    },
     methods: {
       resize() {
-        console.log('resize')
+        console.log('resize');
       },
       handleSelectionChange(val) {
         console.log(val);
         this.multipleSelection = val;
-        console.log(this.multipleSelection)
+        console.log(this.multipleSelection);
       },
       handleCurrentChange(val) {
         this.currentRow = val;
-        console.log(this.currentRow)
+        console.log(this.currentRow);
       },
       handleCurrentChangepage(val) {
 
         console.log(`当前页: ${val}`);
         this.currentPage = val;
-        console.log(this.currentPage)
+        console.log(this.currentPage);
         this.init();
       },
       handleSizeChange(val) {
@@ -197,24 +173,24 @@
         this.init();
       },
       init() {                               //表格加载数据
-
+        let _this = this;
         let obj = {
           pageNum: this.currentPage,
           pageSize: this.pageSize
         };
         this.$nextTick(() => {
-          if (this.$refs.child[0].time1) {
-            let time1 = this.$refs.child[0].time1;    //时间范围查询参数
+          if (_this.$refs.child[0].time1) {
+            let time1 = _this.$refs.child[0].time1;    //时间范围查询参数
             if (time1) {
               obj.startTime = time1.getTime();
-              console.log(obj.startTime)
+              console.log(obj.startTime);
             }
           }
-          if (this.$refs.child[0].time2) {
-            let time2 = this.$refs.child[0].time2;
+          if (_this.$refs.child[0].time2) {
+            let time2 = _this.$refs.child[0].time2;
             if (time2) {
               obj.endTime = time2.getTime();
-              console.log(obj.endTime)
+              console.log(obj.endTime);
             }
           }
         });
@@ -234,9 +210,9 @@
           } else {
             this.tableData = res.data.pageData.list;
           }
-
         });
-        this.drawChart();
+
+
         this.chartFn();
       },
       drawChart(_val) {              //绘制echarts图的方法
@@ -258,10 +234,11 @@
           option: this.data.chart.type,
           chart_url: this.data.chart.chart_url,
           params: obj1
-        }).then(res => {
+        }).then(res =>
+        {
           let data = [];
           console.log(res);
-          console.log(this.data.chart.type)
+          console.log(this.data.chart.type);
           console.log(this.data.chart.type.indexOf("line"));
           if (this.data.chart.type == "pie") {
             // this.data1=res.data[this.data.chart.type];
@@ -295,7 +272,7 @@
 
                         _arr[_i] = "-";
                       }
-                    })
+                    });
                   });
                   temObj[n] = _arr;
                 }
@@ -309,7 +286,7 @@
                     } else if (!_arr[_i]) {
                       _arr[_i] = "-";
                     }
-                  })
+                  });
                 });
                 temObj[k] = _arr;
 
@@ -331,10 +308,10 @@
                     }
                   }
                 },
-              })
+              });
             }
             this.series = seriesArr;
-            console.log(this.series)
+            console.log(this.series);
 
 
           } else {
@@ -366,15 +343,34 @@
               type: 'bar',
               barWidth: '40',
               data: num
-
-            }]
+            }];
 
           }
 
         });
       },
-      chartFn(){
+      chartFn() {
+        let _this = this;
+        let obj = {};
+        if (this.$refs.child[0].time1) {
+          let time1 = this.$refs.child[0].time1;    //时间范围查询参数
+          if (time1) {
+            obj.startTime = time1.getTime();
+          }
+        }
+        if (this.$refs.child[0].time2) {
+          let time2 = this.$refs.child[0].time2;
+          if (time2) {
+            obj.endTime = time2.getTime();
+          }
+        }
+        obj.timeType = this.selectValue;//获取时间显示类型(日,月,季度,年)
 
+        this.charts.forEach(function (_chart) {
+          _chart.params = obj;
+          _chart.fn = "setData";
+          _this.bus.$emit(_chart.id, _chart);
+        });
       },
       recieveObj(val) {              //把dialog表单里的数据拿到
         console.log(this.delever_obj.url);
@@ -416,19 +412,34 @@
       },
       control(obj) {
         this[obj.fn](obj);
-
       },
       add(obj) {
         this.$refs.dialog.showdialog(obj);  //调用子组件em_dialogs的方法显示弹出框;
         this.delever_obj = obj;
-        console.log(this.delever_obj)
+        console.log(this.delever_obj);
       },
       search() {
         this.currentPage = 1;
         this.init();
       }
+    },
+    created() {
+      let _this = this;
+      this.bus.$on(this.data.table.id, obj => {
+        this.control(obj);
+      });
+      console.log(this.data);
+      this.label = this.data.table.label;
+      this.charts = this.data.charts;
+
+    },
+    mounted() {
+      this.init();
+    },
+    beforeDestroy() {
+      this.bus.$off(this.data.table.id);
     }
-  }
+  };
 </script>
 
 <style scoped lang="scss">

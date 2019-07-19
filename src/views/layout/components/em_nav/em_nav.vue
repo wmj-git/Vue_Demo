@@ -60,20 +60,22 @@
         let _title = null;
         let _list = null;
         let _width = null;
-        this.buttonGroup.forEach(function (obj) {
 
-          if (obj.id === key) {
-            _title = obj.title;
-            _list = obj.list;
-            _width = obj.width;
+        for(let i=0;i<this.buttonGroup.length;i++){
+          if (this.buttonGroup[i].id === key) {
+            _title = this.buttonGroup[i].title;
+            _list = this.buttonGroup[i].list;
+            _width = this.buttonGroup[i].width;
           }
-        });
+        }
         let _show = null;
-        this.$store.state.win.win.forEach(function (el) {
-          if (el.id === _controlId) {
-            _show = el.show;
+        let _win=this.$store.state.win.win;
+        for(let i=0;i<_win.length;i++){
+          if (_win[i].id === _controlId) {
+            _show = _win[i].show;
           }
-        });
+        }
+
 
         if (_show) {
           this.bus.$emit(this.control_id, {
@@ -87,6 +89,7 @@
               id: _controlId
             }
           });
+
           setTimeout(function () {
             _this.bus.$emit(_this.control_id, {
               title: _title,
@@ -101,12 +104,15 @@
     },
     created() {
       this.init();
-      this.bus.$on(this.id, obj => {
+      this.bus.$on(this.id,  function (obj)  {
         this[obj.fn](obj);
-      });
+      }.bind(this));
     },
     mounted() {
 
+    },
+    beforeDestroy() {
+      this.bus.$off(this.id);
     }
 
   };

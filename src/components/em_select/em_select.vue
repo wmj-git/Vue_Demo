@@ -34,7 +34,7 @@
         data(){
            return{
                options:"",
-               value: ''
+               value: 'day'
            }
         },
         methods:{
