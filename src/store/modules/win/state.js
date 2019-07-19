@@ -940,7 +940,8 @@ export default {
           table: {
             id: "fertilization_specification_info_table",
             table_url: "/gardens/specificationinfo/queryAllByPage",
-            label: [{
+            label: [
+              {
               name: "植物名称",
               prop: "plantCname",
               width: "100",
@@ -1093,8 +1094,58 @@ export default {
                 fn: "querySpecificationInfo",
                 id: "querySpecificationInfo",
                 dialog_name: "查看规格",
-                dialog_width: "400px",
-                component_name: "query_specification_info"
+                dialog_width: "600px",
+                component_name: "query_specification_info",
+                label: [
+                  {
+                    name: "植物名称",
+                    prop: "plantCname",
+                    width: "100"
+                  },
+
+                  {
+                    name: "植物英文名",
+                    prop: "plantEname",
+                    width: "140"
+                  },
+                  {
+                    name: "肥料名称",
+                    prop: "fertilizerName",
+                    width: "140"
+                  },
+                  {
+                    name: "化学式",
+                    prop: "fertilizerEname",
+                    width: "140"
+                  },
+                  {
+                    name: "施肥规格",
+                    prop: "fertilizationSpecification",
+                    width: "140"
+
+                  },
+                  {
+                    name: "最大规格",
+                    prop: "maxSpecification",
+                    width: "100"
+
+                  },
+                  {
+                    name: "最小规格",
+                    prop: "minSpecification",
+                    width: "100"
+
+                  },
+                  {
+                    name: "备注",
+                    prop: "remark",
+                    width: "100"
+
+                  },
+
+
+                ]
+
               },
               {
                 name: "生成记录",
@@ -2072,6 +2123,16 @@ export default {
             optionType:"option_bar_line",
             winSpan:48,
             height:50,
+            chartTitle:"火险统计",
+            unit_y:"m",
+            dataUrl: '/gardens/firealarminfo/queryAllByPage'
+          },
+          {
+            id:"chart_demo4",
+            type: "bar",
+            optionType:"option_bar_line",
+            winSpan:12,
+            height:20,
             chartTitle:"火险统计",
             unit_y:"m",
             dataUrl: '/gardens/firealarminfo/queryAllByPage'

@@ -290,7 +290,9 @@
         this.commonDialogTitle = obj.dialog_name;
         this.commonDialogWidth = obj.dialog_width;
         setTimeout(() => {
-          this.bus.$emit("alter_all", this.alter_obj);   //是查找执行规格等接受的数据
+          console.log(obj);
+            this.bus.$emit("alter_all", this.alter_obj,obj);   //是查找执行规格等接受的数据
+
         });
       },
       control() {
@@ -438,8 +440,9 @@
         return (this.currentPage - 1) * this.pageSize + index + 1
       },
 
-      querySpecificationInfo() {               //打开查看肥料规则等的公共弹窗
+      querySpecificationInfo(obj) {               //打开查看肥料规则等的公共弹窗
         this.dialogCommonVisible = true;
+
       },
       closeCommonDialog() {
         this.dialogCommonVisible = false;  //关闭查看肥料规则等的公共弹窗
