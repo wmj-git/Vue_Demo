@@ -1094,7 +1094,7 @@ export default {
                 fn: "querySpecificationInfo",
                 id: "querySpecificationInfo",
                 dialog_name: "查看规格",
-                dialog_width: "600px",
+                dialog_width: "700px",
                 component_name: "query_specification_info",
                 label: [
                   {
