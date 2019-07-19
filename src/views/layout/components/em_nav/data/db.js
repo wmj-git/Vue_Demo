@@ -58,7 +58,7 @@ export const db_buttonGroup=[
         "show": false
       },
       {
-        "icon": "el-icon-grid-scope",
+        "icon": "el-icon-road",
         "id": "nav_road_address",
         "control_id": "road_address",
         "title": "道路地址",
@@ -72,14 +72,14 @@ export const db_buttonGroup=[
         "show": false
       },
       {
-        "icon": "el-icon-unit-manage",
+        "icon": "el-icon-yh-plan",
         "id": "nav_protect_plan",
         "control_id": "protect_plan",
         "title": "养护计划",
         "show": false
       },
       {
-        "icon": "el-icon-unit-manage",
+        "icon": "el-icon-yh-record",
         "id": "nav_protect_record",
         "control_id": "protect_record",
         "title": "养护记录",
@@ -202,7 +202,7 @@ export const db_buttonGroup=[
         "show": false
       },
       {
-        "icon": "el-icon-grid-manage",
+        "icon": "el-icon-jkd-management",
         "id": "nav_monitor_points_manage",
         "control_id": "monitor_points_manage",
         "title": "监控点管理",
