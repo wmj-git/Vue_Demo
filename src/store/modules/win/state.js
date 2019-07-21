@@ -2101,7 +2101,9 @@ export default {
             unit_y:"次",
             dataUrl: '/gardens/firealarminfo/queryAllByPage',
             seriesType: "lineBar_handle_a",
-            seriesFields: "createDate"
+            legendField: "createDate",
+            xAxisField: "createDate",
+            yAxisField: "createDate"
           },
           {
             id:"fire_alert_anaysis_chart_2",
@@ -2124,8 +2126,10 @@ export default {
             chartTitle:"监测点报警统计",
             unit_y:"次",
             dataUrl: '/gardens/firealarminfo/queryAllByPage',
-            seriesType: "lineBar_handle_a",
-            seriesFields: "createDate"
+            seriesType: "lineBar_handle_b",
+            legendField: "createDate",
+            xAxisField: "createDate",
+            yAxisField: "createDate"
           }
         ]
       }

@@ -14,7 +14,7 @@
 <script>
   import {createOption} from "./data/db";
   import {fetchChart} from "@/api/chart";
-  import {getWordCounted, getArrCounted,timestampToTime,computTimeHorizon} from "@/utils/tools";
+  import {getWordCounted, getArrCounted, timestampToTime, computTimeHorizon} from "@/utils/tools";
 
   export default {
     name: "emChart",
@@ -28,7 +28,8 @@
           chartTitle: "标题",
           unit_y: "mm",//单位
           seriesType: "pie_handle_a",//
-          seriesFields: "{fireAlarmId:{}}"
+          seriesFields: "fireAlarmId",
+
         },
         dataUrl: "",
         params: {},
@@ -62,7 +63,10 @@
           chartTitle: this.data.chartTitle,
           unit_y: this.data.unit_y,//单位
           seriesType: this.data.seriesType,//
-          seriesFields: this.data.seriesFields
+          seriesFields: this.data.seriesFields ? this.data.seriesFields : "",
+          legendField: this.data.legendField ? this.data.legendField : "",
+          xAxisField: this.data.xAxisField ? this.data.xAxisField : "",
+          yAxisField: this.data.yAxisField ? this.data.yAxisField : ""
         };
       },
       chartInit() {
@@ -73,7 +77,6 @@
       },
       setData(params_data) {
         let _this = this;
-        console.log(params_data);
         if (params_data) {
           this.params = params_data.params;
         }
@@ -88,69 +91,75 @@
 
             let _legend = [];
             let _xAxis = [];
+            let _yAxis = [];
             let _series = [];
             let series_data = [];
 
 
-            //计算时间总数
-            if (this.chartSet.seriesType === "lineBar_handle_a") {
+            if (this.chartSet.seriesType === "lineBar_handle_a") { //计算时间总数
               let _data = [];
+              let _time_data = [];
               let time_data = [];
 
               res.data.list.forEach(function (_obj) {
-                let date = new Date(_obj[_this.chartSet.seriesFields]);
-                let _time=date.getTime();
-                series_data.push(_time);
+                let date = new Date(_obj[_this.chartSet.xAxisField]);
+                let _time = date.getTime();
+                _time_data.push(_time);
               });
-              series_data.sort( function (a, b) {
+              _time_data.sort(function (a, b) {
                 return a - b;
               });
 
-
               console.log("series_data.sort(sequence)");
-              series_data.forEach(function (_obj) {
+              _time_data.forEach(function (_obj) {
                 let date = new Date(_obj);
-                let _time=null;
-                let T="/";
+                let _time = null;
+                let T = "/";
                 let Y = date.getFullYear();
-                let M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) ;
+                let M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1);
                 let D = date.getDate();
 
                 switch (_this.params.timeType) {
                   case "day":
-                    _time=Y+T+M+T+D;
+                    _time = Y + T + M + T + D;
                     break;
                   case "month":
-                    _time=Y+T+M;
+                    _time = Y + T + M;
                     break;
                   case "quarter":
-                    let _t=computTimeHorizon(date.getTime(),3);
-                    _time=_t.year+T+_t.quarter+"季";
+                    let _t = computTimeHorizon(date.getTime(), 3);
+                    _time = _t.year + T + _t.quarter + "季";
                     break;
                   case "year":
-                    _time=Y;
+                    _time = Y;
                     break;
                 }
 
 
                 time_data.push(_time);
               });
+              _time_data = getArrCounted(time_data);
+              console.log(_time_data);
 
-              series_data = getArrCounted(time_data);
+              // 计算_legend值
+              if(this.chartSet.xAxisField===this.chartSet.legendField){
+                _legend.push("总数");
+              }else{
 
-              for (let k in  series_data) {
+              }
+
+              for (let k in  _time_data) {
+
                 _xAxis.push(k);
-                _data.push(series_data[k]);
+                _data.push(_time_data[k]);
               }
               console.log(_xAxis);
               _series = [{
                 name: '',
                 type: this.chartSet.type,
                 data: _data
-              }]
+              }];
             }
-
-
             this.chart.setOption({
               legend: {
                 data: _legend
@@ -173,6 +182,9 @@
               }
               ]*/
             });
+          } else if (this.chartSet.type === "lineBar_handle_b") {
+
+
           } else if (this.chartSet.type === "pie") {
 
             let _series = [];
@@ -196,8 +208,6 @@
               }
 
             }
-
-
             this.chart.setOption({
               legend: {
                 data: _legend
