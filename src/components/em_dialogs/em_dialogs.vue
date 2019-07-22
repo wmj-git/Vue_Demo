@@ -15,14 +15,21 @@
                   </el-form-item>
                 </el-col>
               </template>
-              <template v-if="fn==='coutProgram'">
+              <template v-if="fn==='coutProgram'&&dialogFormVisible===true">
                   <el-col :span="24"   v-for="(item,index) in this.labels" :key="index">
                     <el-form-item  :label="item.name">
                          <em_selectsUrl :operation="item" ref="selectUrl"></em_selectsUrl>
                     </el-form-item>
                   </el-col>
-                   <el-col>
-                      <p>111</p>
+                   <el-col :span="48">
+                       <p>
+                         {{all.title}}:
+                        <span v-for="(item,index) in all.arr" :key="index">{{item.name}}:{{item.value}}</span>
+                       </p>
+                     <p v-for="item in groups" :key="item.id">
+                       {{item.name}}
+                       <span v-for="(val,index) in item.arr" :key="index">{{val.name}}:{{val.value}}</span>
+                     </p>
                    </el-col>
               </template>
           </el-form>
@@ -70,6 +77,9 @@
              labels:[{name:"单位:",optionUrl:"/gardens/ent/queryAll"}, {name:"道路:",optionUrl:"/gardens/road/queryAll"}],
              value1: [],
              value2: [],
+             ids:[],  //多选行选中对象的id数组,
+             all:{title:'',arr:[]},
+             groups:[]
            }
 
         },
@@ -86,7 +96,10 @@
 
       },
       mounted(){
-          console.log(this.label)
+          console.log(1);
+      },
+      computed:{
+
       },
       methods:{
           showdialog(obj){
@@ -153,71 +166,96 @@
                 }
               }
               else {
+                this.all={title:'',arr:[]};
+                this.groups=[];
                 if(this.count_program.length!==0){
                   this.dialogFormVisible = true;
-                  let ids=[];
+                  this.ids=[];
                   this.count_program.forEach(val=>{
-                      ids.push(val.id);
+                      this.ids.push(val.id);
 
                   });
-                  this.$nextTick(()=>{
-                    console.log(this.$refs.selectUrl)
-                  });
 
-                  // countProgram({ids:ids}).then(res=>{
-                  //     console.log(res)
-                  // })
+
                 }
 
               }
 
           },
          confirm(){
-           console.log(this.label);
-           this.label.forEach((val)=>{
-                 if (this.$refs.form_data) {
-                   this.$refs.form_data.forEach((obj,i)=>{
-                      if(obj.operation.params===val.params){
-                        if(obj.operation.type==="em_selectUrl"||obj.operation.type==="em_select"){
-                          if(obj.value==="是"){
-                            obj.value=1
-                          }
-                          else if(obj.value==="否"){
-                            obj.value=0
-                          }
-                          if(obj.value==="树"){
-                            obj.value=0
-                          }
-                          else if(obj.value==="花卉"){
-                            obj.value=1
-                          }
-                          this.form[val.params]=obj.value;
-                        }
-                        if(obj.operation.type==="em_time"){
-                          this.form[val.params]=obj.value.getTime();
-                        }
-                        if(obj.operation.type==="em_selectsUrl"){
-                          this.form[val.params]=obj.value;
-                          this.form[val.params]= "["+this.form[val.params].toString()+"]";
-                        }
-                        if(obj.operation.type==="em_input"||obj.operation.type==="em_textarea"){
-                          this.form[val.params]=obj.input;
-                        }
-                      }
-                   });
+           if(this.fn==="coutProgram"){
+             this.$nextTick(()=>{
+               console.log(this.$refs.selectUrl);
+               countProgram({ids:this.ids,entIds:this.$refs.selectUrl[0].value,roadIds:this.$refs.selectUrl[1].value}).then(res=>{
+                 console.log(res);
+                 this.all.title=res.data.all.name;
+                 this.all.arr=[];
+                 for( var i in res.data.all.info){
+                    this.all.arr.push({name:i,value:res.data.all.info[i]});
+                 };
+                 this.groups=res.data.groups;
+                 this.groups.forEach(res=>{
+                     console.log(res);
+                     res.arr=[];
+                   for( var i in res.info){
+                     res.arr.push({name:i,value:res.info[i]})
 
-                 }
+                   }
 
 
+                 });
+                 console.log(this.groups)
+               })
+             });
 
-           });
-           console.log(this.fn);
-           if(this.fn==="modify"){
-             console.log(this.alter_obj.id);
-             this.form.id=this.alter_obj.id;
            }
-           console.log(this.form);
-           this.$emit("eventFromDialog",{form:this.form,fn:this.fn});
+           else{
+             this.label.forEach((val)=>{
+               if (this.$refs.form_data) {
+                 this.$refs.form_data.forEach((obj,i)=>{
+                   if(obj.operation.params===val.params){
+                     if(obj.operation.type==="em_selectUrl"||obj.operation.type==="em_select"){
+                       if(obj.value==="是"){
+                         obj.value=1
+                       }
+                       else if(obj.value==="否"){
+                         obj.value=0
+                       }
+                       if(obj.value==="树"){
+                         obj.value=0
+                       }
+                       else if(obj.value==="花卉"){
+                         obj.value=1
+                       }
+                       this.form[val.params]=obj.value;
+                     }
+                     if(obj.operation.type==="em_time"){
+                       this.form[val.params]=obj.value.getTime();
+                     }
+                     if(obj.operation.type==="em_selectsUrl"){
+                       this.form[val.params]=obj.value;
+                       this.form[val.params]= "["+this.form[val.params].toString()+"]";
+                     }
+                     if(obj.operation.type==="em_input"||obj.operation.type==="em_textarea"){
+                       this.form[val.params]=obj.input;
+                     }
+                   }
+                 });
+
+               }
+
+
+
+             });
+
+             if(this.fn==="modify"){
+               console.log(this.alter_obj.id);
+               this.form.id=this.alter_obj.id;
+             }
+             console.log(this.form);
+             this.$emit("eventFromDialog",{form:this.form,fn:this.fn});
+           }
+
          },
          cancel(){
            this.dialogFormVisible =false;
