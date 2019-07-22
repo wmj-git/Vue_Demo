@@ -160,7 +160,10 @@
                       ids.push(val.id);
 
                   });
-                  console.log(this.$refs)
+                  this.$nextTick(()=>{
+                    console.log(this.$refs.selectUrl)
+                  });
+
                   // countProgram({ids:ids}).then(res=>{
                   //     console.log(res)
                   // })
