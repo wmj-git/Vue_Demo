@@ -189,6 +189,7 @@
       // findMenuByThisUser({"pid":7}).then(res=>{
       //     console.log(res)
       // });
+      $("ul li:first-child").addClass('active');
       this.table_id = this.data[this.digital_table_id].table.id;
       this.label = this.data[this.digital_table_id].table.label;
       this.label_input = this.data[this.digital_table_id].table.label.filter(val => {
@@ -201,6 +202,7 @@
     methods: {
       change(id) {
         this.classID = id;
+        $("ul li:first-child").removeClass('active');
         console.log(id);
         this.digital_table_id = id;
         this.table_id = this.data[this.digital_table_id].table.id;
