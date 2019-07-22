@@ -2092,6 +2092,20 @@ export default {
         },
         charts: [
           {
+            id:"fire_alert_anaysis_chart_0",
+            type: "line",
+            optionType:"option_bar_line",
+            winSpan:24,
+            height:50,
+            chartTitle:"火险总数统计",
+            unit_y:"次",
+            dataUrl: '/gardens/firealarminfo/queryAllByPage',
+            seriesType: "lineBar_handle_a",
+            legendField: "createDate",
+            xAxisField: "createDate",
+            yAxisField: "createDate"
+          },
+          {
             id:"fire_alert_anaysis_chart_1",
             type: "bar",
             optionType:"option_bar_line",
@@ -2121,8 +2135,8 @@ export default {
             id:"fire_alert_anaysis_chart_3",
             type: "line",
             optionType:"option_bar_line",
-            winSpan:48,
-            height:20,
+            winSpan:24,
+            height:50,
             chartTitle:"监测点报警统计",
             unit_y:"次",
             dataUrl: '/gardens/firealarminfo/queryAllByPage',
