@@ -124,20 +124,7 @@
         ],
         selectValue: "day",
 
-        charts: [
-          /*{
-             id:"",
-             type: "bar",
-             optionType:"option_bar_line",
-             winSpan:48,
-             height:20,
-             chartTitle:"模板",
-             unit_y:"次",
-             dataUrl: '/gardens/temperature/queryAll?dataType=A',
-
-
-           }*/
-        ]
+        charts: []
       };
     },
     components: {

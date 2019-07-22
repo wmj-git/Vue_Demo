@@ -2126,8 +2126,8 @@ export default {
             chartTitle:"监测点报警统计",
             unit_y:"次",
             dataUrl: '/gardens/firealarminfo/queryAllByPage',
-            seriesType: "lineBar_handle_b",
-            legendField: "createDate",
+            seriesType: "lineBar_handle_a",
+            legendField: "fireAlarmId",
             xAxisField: "createDate",
             yAxisField: "createDate"
           }
