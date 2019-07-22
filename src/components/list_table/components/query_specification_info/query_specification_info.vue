@@ -3,9 +3,10 @@
       <el-table
         :data="digital"
         style="width: 100%">
-        <el-table-column v-for="item in label"
+        <el-table-column v-for="(item,i) in label"
           :prop="item.prop"
           :label="item.name"
+           :key="i"
           width="180">
         </el-table-column>
       </el-table>
