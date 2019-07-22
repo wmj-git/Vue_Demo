@@ -16,9 +16,11 @@
   ul{
     list-style: none;
   }
-  li.active{
-    border-bottom: 2px solid darken($em-bg-color-base,6%);
-    color: $em-text-highlight-base;
+  li{
+   &.active{
+      border-bottom: 2px solid darken($em-bg-color-base,6%);
+      color: $em-text-highlight-base;
+    }
   }
   li{
     padding: 4/$r+rem;

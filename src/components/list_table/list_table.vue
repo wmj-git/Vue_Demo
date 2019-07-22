@@ -117,7 +117,16 @@
 </template>
 
 <script>
-  import {add, dele, modify, find, downCsvmodel,upLoad,completeProgram,querySpecifications} from "@/api/table_operate"
+  import {
+    add,
+    dele,
+    modify,
+    find,
+    downCsvmodel,
+    upLoad,
+    completeProgram,
+    querySpecifications
+  } from "@/api/table_operate"
   import {findMenuByThisUser} from "@/api/resource"
   import {getToken} from '@/utils/auth'
   import em_button from "@/components/em_button/em_button"
@@ -128,6 +137,7 @@
   import em_date from "@/components/em_date/em_date"
   import query_specification_info from "./components/query_specification_info/query_specification_info"
   import execute_program from "./components/execute_program/execute_program"
+
   export default {
     name: "compone",
     components: {
@@ -143,7 +153,7 @@
     props: ["data"],
     data() {
       return {
-        classID: "0",
+        classID: 0,
         list: {},
         digital_table_id: "",
         label: [],
@@ -179,6 +189,7 @@
       // findMenuByThisUser({"pid":7}).then(res=>{
       //     console.log(res)
       // });
+      $("ul li:first-child").addClass('active');
       this.table_id = this.data[this.digital_table_id].table.id;
       this.label = this.data[this.digital_table_id].table.label;
       this.label_input = this.data[this.digital_table_id].table.label.filter(val => {
@@ -191,6 +202,7 @@
     methods: {
       change(id) {
         this.classID = id;
+        $("ul li:first-child").removeClass('active');
         console.log(id);
         this.digital_table_id = id;
         this.table_id = this.data[this.digital_table_id].table.id;
@@ -215,7 +227,7 @@
       handleSelectionChange(val) {// 多选框（选中删除）
         this.multipleSelection = val;
         console.log(this.multipleSelection);
-        this.bus.$emit("count",this.multipleSelection)
+        this.bus.$emit("count", this.multipleSelection)
 
       },
       handleCurrentChange(val) {     //单选行 （选中修改）
@@ -292,7 +304,7 @@
         this.commonDialogWidth = obj.dialog_width;
         setTimeout(() => {
           console.log(obj);
-            this.bus.$emit("alter_all", this.alter_obj,obj);   //是查找执行规格等接受的数据
+          this.bus.$emit("alter_all", this.alter_obj, obj);   //是查找执行规格等接受的数据
 
         });
       },
@@ -434,7 +446,7 @@
         }
 
       },
-      coutProgram(obj){
+      coutProgram(obj) {
         console.log(obj);
         this.$refs.dialog.showdialog(obj);  //调用子组件em_dialogs的方法显示弹出框;
       },
@@ -449,19 +461,19 @@
       closeCommonDialog() {
         this.dialogCommonVisible = false;  //关闭查看肥料规则等的公共弹窗
       },
-      executeProgram(){               //生成记录
+      executeProgram() {               //生成记录
         this.dialogCommonVisible = true;
       },
-      complete(){
-        let arr=[];
+      complete() {
+        let arr = [];
         this.$confirm('此操作不可逆, 是否完成?', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
-          setTimeout(_=>{
+          setTimeout(_ => {
             arr.push(this.alter_obj.id);
-            completeProgram({ids:arr}).then(res=>{
+            completeProgram({ids: arr}).then(res => {
               this.$message({
                 type: 'success',
                 message: '已完成!'
