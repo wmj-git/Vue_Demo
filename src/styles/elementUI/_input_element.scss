@@ -59,18 +59,4 @@
 
 .em_textarea {
   display: inline-block;
-
-  &.el-textarea, .el-textarea__inner {
-    background: nth($background-base, 2);
-    border-color: darken($em-border-color-base,10%);
-    color: $em-text-color-base;
-    scrollbar-width: thin; //滚动条宽度
-  }
-
-  textarea::-webkit-input-placeholder {
-    color: darken($em-text-color-base,40%);
-  }
-  textarea:-ms-input-placeholder {
-    color: darken($em-text-color-base,40%);
-  }
 }

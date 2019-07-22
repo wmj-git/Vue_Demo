@@ -34,7 +34,7 @@ import './directive/drag'
 Vue.config.productionTip = false;
 Vue.prototype.bus= new Vue(); //vue-bus
 /* eslint-disable no-new */
-window.bus= new Vue(); //vue-bus
+
 
 new Vue({
   el: '#app',

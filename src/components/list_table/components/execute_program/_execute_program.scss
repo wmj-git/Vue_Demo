@@ -1,14 +1,17 @@
+@import "../../../../styles/index/variable";
 .execute_program {
-    // Vars
-
-    // Support
-
-    // Module
-    & {
-        //
+  .el-button {
+    float: right;
+    margin-left: 12px;
+    color: darken($em-text-color-base,30%);
+    border-color: darken($em-border-color-base,26%);
+    &.em-btn--confirm{
+      color:$em-text-highlight-base;
+      border-color: $em-highlight-border-color-base;
     }
-
-    // Facets
-
-    // States
+    &:hover{
+      color:$em-text-highlight-base;
+      border-color: $em-highlight-border-color-base;
+    }
+  }
 }

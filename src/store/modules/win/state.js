@@ -1078,7 +1078,7 @@ export default {
             {
               id: "fertilization_program_button_count",
               type: "em_button",
-              icon: "el-icon-delete",
+              icon: "el-icon-operation-tj",
               operate: "统计材料",
               control_id: "fertilization_program_table",
               fn: "coutProgram",
@@ -2011,8 +2011,7 @@ export default {
         operation: [
           {
             id: "fire_alert_anaysis_date",
-            type: "em_date",
-
+            type: "em_date"
           },
           {
             id: "fire_alert_anaysis_button_search",
@@ -2091,51 +2090,46 @@ export default {
             }
           ]
         },
-        chart: {
-          type: "bar",
-          id: "bar1",
-          chart_url: '/gardens/firealarminfo/queryAllByPage'
-        },
         charts: [
           {
-            id:"chart_demo1",
+            id:"fire_alert_anaysis_chart_1",
             type: "bar",
             optionType:"option_bar_line",
             winSpan:24,
             height:50,
-            chartTitle:"火险统计",
+            chartTitle:"火险总数统计",
             unit_y:"次",
-            dataUrl: '/gardens/firealarminfo/queryAllByPage'
+            dataUrl: '/gardens/firealarminfo/queryAllByPage',
+            seriesType: "lineBar_handle_a",
+            legendField: "createDate",
+            xAxisField: "createDate",
+            yAxisField: "createDate"
           },
           {
-            id:"chart_demo2",
+            id:"fire_alert_anaysis_chart_2",
             type: "pie",
             optionType:"option_pie",
             winSpan:24,
             height:50,
-            chartTitle:"火险统计",
-            unit_y:"m",
-            dataUrl: '/gardens/firealarminfo/queryAllByPage'
+            chartTitle:"监测点报警统计",
+            unit_y:"%",
+            dataUrl: '/gardens/firealarminfo/queryAllByPage',
+            seriesType: "pie_handle_a",
+            seriesFields: "fireAlarmId"
           },
           {
-            id:"chart_demo3",
+            id:"fire_alert_anaysis_chart_3",
             type: "line",
             optionType:"option_bar_line",
             winSpan:48,
-            height:50,
-            chartTitle:"火险统计",
-            unit_y:"m",
-            dataUrl: '/gardens/firealarminfo/queryAllByPage'
-          },
-          {
-            id:"chart_demo4",
-            type: "bar",
-            optionType:"option_bar_line",
-            winSpan:12,
             height:20,
-            chartTitle:"火险统计",
-            unit_y:"m",
-            dataUrl: '/gardens/firealarminfo/queryAllByPage'
+            chartTitle:"监测点报警统计",
+            unit_y:"次",
+            dataUrl: '/gardens/firealarminfo/queryAllByPage',
+            seriesType: "lineBar_handle_b",
+            legendField: "createDate",
+            xAxisField: "createDate",
+            yAxisField: "createDate"
           }
         ]
       }

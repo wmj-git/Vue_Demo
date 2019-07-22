@@ -1,15 +1,23 @@
-$r:32;
-.emForm /deep/{
-  .el-input__inner{
-    height: 30px !important;//tree-from-input
+@import "../../../../styles/index/variable";
+
+.emForm /deep/ {
+  .el-input__inner {
+    height: 30px !important; //tree-from-input
     line-height: 30px !important;
     display: inline-block;
     overflow: hidden;
     white-space: nowrap;
-    text-overflow: ellipsis;//超出输入框宽度就自动显示三个小点，但不能设置指定宽度！
+    text-overflow: ellipsis; //超出输入框宽度就自动显示三个小点，但不能设置指定宽度！
     padding-right: 25px;
   }
-  .el-form--label-left .el-form-item__label{
+
+  .el-form--label-left .el-form-item__label {
     text-align: right;
+  }
+
+  .el-input.is-disabled .el-input__inner {
+    color: darken($em-text-color-base, 15%);
+    background-color: darken($em-text-color-base, 50%);
+    border-color: darken($em-border-color-base,45%);
   }
 }
