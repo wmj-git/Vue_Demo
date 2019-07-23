@@ -54,11 +54,6 @@
       this.bus.$on(this.id, function (obj) {
         console.log(obj);
         this.group = obj.list;
-        $("#" + this.id).window({
-          onBeforeClose: function () {
-              $('.el-menu-item').removeClass('is-active');
-          }
-        });
         $("#" + this.id).window("setTitle", obj.title);
         $("#" + this.id).window("resize", {
           width: obj.width
