@@ -113,7 +113,7 @@ export function systemUI({commit, state}) {
     let _systemData = [];
 
     findByThisUser().then((response) => {
-      console.log(response);
+      // console.log(response);
       commit(SET_PERMISSIONS, response.data);
 
       response.data.forEach(function (_obj) {
