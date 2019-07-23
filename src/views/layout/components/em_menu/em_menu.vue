@@ -34,9 +34,9 @@
         console.log(key);
         let _key = null;
         this.group.forEach(function (_obj) {
-            if(key===_obj.id){
-              _key=_obj.control_id;
-            }
+          if (key === _obj.id) {
+            _key = _obj.control_id;
+          }
         });
         this.$store.commit('win/win_open', {
           win_obj: {
@@ -49,6 +49,7 @@
 
     },
     mounted() {
+
       // 非父子信息通信
       this.bus.$on(this.id, function (obj) {
         console.log(obj);
@@ -59,10 +60,10 @@
         });
       }.bind(this));
     }
-   /* ,
-    beforeDestroy() {
-      this.bus.$off(this.id);
-    }*/
+    /* ,
+     beforeDestroy() {
+       this.bus.$off(this.id);
+     }*/
   };
 </script>
 <style lang="scss" scoped>
