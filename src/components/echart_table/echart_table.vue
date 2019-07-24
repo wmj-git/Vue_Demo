@@ -143,21 +143,15 @@
       handleSelectionChange(val) {
         console.log(val);
         this.multipleSelection = val;
-        console.log(this.multipleSelection);
       },
       handleCurrentChange(val) {
         this.currentRow = val;
-        console.log(this.currentRow);
       },
       handleCurrentChangepage(val) {
-
-        console.log(`当前页: ${val}`);
         this.currentPage = val;
-        console.log(this.currentPage);
         this.init();
       },
       handleSizeChange(val) {
-        console.log(`每页 ${val} 条`);
         this.pageSize = val;
         this.init();
       },
@@ -172,14 +166,12 @@
             let time1 = _this.$refs.child[0].time1;    //时间范围查询参数
             if (time1) {
               obj.startTime = time1.getTime();
-              console.log(obj.startTime);
             }
           }
           if (_this.$refs.child[0].time2) {
             let time2 = _this.$refs.child[0].time2;
             if (time2) {
               obj.endTime = time2.getTime();
-              console.log(obj.endTime);
             }
           }
         });
