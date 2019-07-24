@@ -1502,13 +1502,239 @@ export default {
             height: 600,
             show: false,
             class: "em-table-window",
-            component: "",
+            component: "echart_table",
             component_data: {
-                chart: {
-                    type: "pie",
-                    id: "pie1",
-                    chart_url: 'http://localhost:3000/chartdata'
-                }
+                table: {
+                    id: "tree_statistic_table",
+                    table_url: "/gardens/tree/queryAllByPage",
+                    label: [
+                        {
+                            name: "植物编号",
+                            prop: "treeNo",
+                            width: "140",
+                            type: "em_input",
+                            placeholder: "植物编号",
+                            params: "treeNo",
+                            alter_show: true,
+                            add_show: true
+                        },
+                        {
+                            name: "植物名称",
+                            prop: "treeName",
+                            width: "100",
+                            type: "em_selectUrl",
+                            params: "treeNameId",
+                            optionUrl: "gardens/tree/findplantname",
+                            alter_show: true,
+                            add_show: true
+                        },
+                        {
+                            name: "植物种类型",
+                            prop: "plantTypeName",
+                            width: "120",
+                            alter_show: false,
+                            add_show: false
+                        },
+                        {
+                            name: "植物属名称",
+                            prop: "genusName",
+                            width: "120",
+                            alter_show: false,
+                            add_show: false
+                        },
+                        {
+                            name: "植物科名称",
+                            prop: "familiesName",
+                            width: "120",
+                            alter_show: false,
+                            add_show: false
+                        },
+                        {
+                            name: "树种类型",
+                            prop: "treeTypeName",
+                            width: "120",
+                            alter_show: false,
+                            add_show: false
+                        },
+                        {
+                            name: "等级",
+                            prop: "rankValue",
+                            width: "80",
+                            type: "em_selectUrl",
+                            params: "rankValue",
+                            optionUrl: "gardens/tree/findrank",
+                            add_show: true,
+                            alter_show: true
+                        },
+                        {
+                            name: "高度",
+                            prop: "height",
+                            width: "80",
+                            type: "em_input",
+                            placeholder: "高度",
+                            params: "height",
+                            add_show: true,
+                            alter_show: true
+                        },
+                        {
+                            name: "海拔高度(m)",
+                            prop: "aboveSeaLevel",
+                            width: "100",
+                            type: "em_input",
+                            placeholder: "海拔高度",
+                            params: "aboveSeaLevel",
+                            add_show: true,
+                            alter_show: true
+                        },
+                        {
+                            name: "直径(cm)",
+                            prop: "diameter",
+                            width: "80",
+                            type: "em_input",
+                            placeholder: "直径",
+                            params: "diameter",
+                            add_show: true,
+                            alter_show: true
+                        },
+                        {
+                            name: "周长(cm)",
+                            prop: "perimeter",
+                            width: "80",
+                            type: "em_input",
+                            placeholder: "周长",
+                            params: "perimeter",
+                            add_show: true,
+                            alter_show: true
+                        },
+                        {
+                            name: "所在道路",
+                            prop: "roadName",
+                            width: "160",
+                            type: "em_selectUrl",
+                            params: "roadId",
+                            optionUrl: "gardens/road/queryAll",
+                            add_show: true,
+                            alter_show: true
+                        },
+                        // {
+                        //   name:"所属网格",
+                        //   prop:"gridName",
+                        //   type:"em_selectUrl",
+                        //   params:"gridId",
+                        //   optionUrl: "gardens/grid/queryAll",
+                        //   width:"120",
+                        //   add_show:true,
+                        //   alter_show:true
+                        // },
+                        {
+                            name: "行政区划",
+                            prop: "districtName",
+                            width: "120",
+                            type: "em_selectUrl",
+                            params: "districtId",
+                            optionUrl: "gardens/district/queryAll",
+                            add_show: true,
+                            alter_show: true
+                        },
+                        {
+                            name: "种植位置",
+                            prop: "position",
+                            width: "220",
+                            type: "em_input",
+                            placeholder: "直径",
+                            params: "position",
+                            add_show: true,
+                            alter_show: true
+                        },
+                        {
+                            name: "经度",
+                            prop: "longitude",
+                            width: "200",
+                            type: "em_input",
+                            placeholder: "经度",
+                            params: "longitude",
+                            add_show: true,
+                            alter_show: true
+                        },
+                        {
+                            name: "纬度",
+                            prop: "latitude",
+                            width: "200",
+                            type: "em_input",
+                            placeholder: "纬度",
+                            params: "latitude",
+                            add_show: true,
+                            alter_show: true
+                        },
+                        // {
+                        //   name:"责任人Id",
+                        //   prop:"personId",
+                        //   width:"140",
+                        //   type:"em_selectUrl",
+                        //   params:"personId",
+                        //   optionUrl: "gardens/person/queryAll",
+                        //   add_show:true,
+                        //   alter_show:true
+                        // },
+                        {
+                            name: "特征描述",
+                            prop: "memo",
+                            width: "100",
+                            type: "em_input",
+                            placeholder: "特征描述",
+                            params: "memo",
+                            add_show: true,
+                            alter_show: true
+                        }
+
+                    ]
+                },
+                charts: [
+                    {
+                        id: "tree_statistic_chart_1",
+                        type: "pie",
+                        optionType: "option_pie",
+                        winSpan: 24,
+                        height: 50,
+                        chartTitle: "道路",
+                        unit_y: "棵",
+                        dataUrl: '/gardens/tree/queryAllcount?groupBy=roadName',
+                        seriesType: "pie_handle_b"
+                    },
+                    {
+                        id: "tree_statistic_chart_2",
+                        type: "pie",
+                        optionType: "option_pie",
+                        winSpan: 24,
+                        height: 50,
+                        chartTitle: "行政区划",
+                        unit_y: "棵",
+                        dataUrl: '/gardens/tree/queryAllcount?groupBy=districtName',
+                        seriesType: "pie_handle_b"
+                    },
+                    {
+                        id: "tree_statistic_chart_3",
+                        type: "pie",
+                        optionType: "option_pie",
+                        winSpan: 24,
+                        height: 50,
+                        chartTitle: "植物名称",
+                        unit_y: "棵",
+                        dataUrl: '/gardens/tree/queryAllcount?groupBy=treeName',
+                        seriesType: "pie_handle_b"
+                    },
+                    {
+                        id: "tree_statistic_chart_4",
+                        type: "pie",
+                        optionType: "option_pie",
+                        winSpan: 24,
+                        height: 50,
+                        chartTitle: "等级",
+                        unit_y: "棵",
+                        dataUrl: '/gardens/tree/queryAllcount?groupBy=rankValue',
+                        seriesType: "pie_handle_b"
+                    }
+                ]
             }
         },
         {
@@ -3008,8 +3234,8 @@ export default {
             title: "特殊树木资料管理",
             top: 80,
             left: 400,
-            height: 400,
-            width: 900,
+            height: 580,
+            width: 920,
             show: false,
             class: "em-table-window",
             component: "sole_table",

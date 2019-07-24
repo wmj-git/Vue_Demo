@@ -83,7 +83,9 @@
                     let _res = null;
                     if (res.data.listData) {
                         _res = res.data.listData;
-                    } else {
+                    } else if(res.data.list) {
+                        _res = res.data.list;
+                    }else {
                         _res = res.data;
                     }
 
@@ -243,6 +245,7 @@
                                 series_data.push(_obj[_this.chartSet.seriesFields]);
                             });
                             series_data = getArrCounted(series_data);
+                            console.log("series_data");
                             console.log(series_data);
 
                             for (let k in  series_data) {
@@ -253,7 +256,20 @@
                                 });
                             }
 
+                        }else if (this.chartSet.seriesType === "pie_handle_b"){
+                            series_data = _res.info;
+                            console.log("series_data");
+                            console.log(series_data);
+
+                            for (let k in  series_data) {
+                                _legend.push(k);
+                                _series.push({
+                                    value: series_data[k],
+                                    name: k
+                                });
+                            }
                         }
+
                         this.chart.setOption({
                             legend: {
                                 data: _legend
