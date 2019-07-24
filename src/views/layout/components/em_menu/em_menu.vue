@@ -32,6 +32,7 @@
     methods: {
       handleSelect(key, keyPath) {
         console.log(key);
+        console.log(keyPath);
         let _key = null;
         this.group.forEach(function (_obj) {
           if (key === _obj.id) {
@@ -56,6 +57,7 @@
         this.group = obj.list;
         $("#" + this.id).window({
           onBeforeClose: function () {
+             console.log($('.el-menu-item'));
               $('.el-menu-item').removeClass('is-active');
           }
         });
