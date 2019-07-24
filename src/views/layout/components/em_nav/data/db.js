@@ -51,13 +51,6 @@ export const db_buttonGroup=[
     width: 168,
     list: [
       {
-        "icon": "el-icon-grid-scope",
-        "id": "nav_grid_scope",
-        "control_id": "grid_scope",
-        "title": "网格范围",
-        "show": false
-      },
-      {
         "icon": "el-icon-road",
         "id": "nav_road_address",
         "control_id": "road_address",

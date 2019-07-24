@@ -44,7 +44,7 @@ export default new Router({
           path: 'scene',
           name: 'scene',
           components: {
-            scene: () => import('@/views/layout/components/scene/scene')
+            scene: () => import('@/views/scene/scene')
           }
         },
         {
