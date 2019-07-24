@@ -1502,9 +1502,8 @@ export default {
             height: 600,
             show: false,
             class: "em-table-window",
-            component: "echart_table",
+            component: "",
             component_data: {
-                table: {},
                 chart: {
                     type: "pie",
                     id: "pie1",
@@ -1602,11 +1601,53 @@ export default {
 
                     ]
                 },
-                chart: {
-                    type: "line1",
-                    id: "line1",
-                    chart_url: '/gardens/temperature/queryAll?dataType=S'
-                }
+                charts: [
+                    {
+                        id: "soil_temperature_analysis_chart_1",
+                        type: "line",
+                        optionType: "option_bar_line",
+                        winSpan: 24,
+                        height: 50,
+                        chartTitle: "空气湿度(最高值)",
+                        unit_y: "%",
+                        dataUrl: '/gardens/temperature/queryAll?dataType=S',
+                        seriesType: "lineBar_handle_a",
+                        valueType:"max",
+                        legendField: "pointsId",
+                        xAxisField: "createDate",
+                        yAxisField: "temValue"
+                    },
+                    {
+                        id: "soil_temperature_analysis_chart_2",
+                        type: "line",
+                        optionType: "option_bar_line",
+                        winSpan: 24,
+                        height: 50,
+                        chartTitle: "空气湿度(最低值)",
+                        unit_y: "%",
+                        dataUrl: '/gardens/temperature/queryAll?dataType=S',
+                        seriesType: "lineBar_handle_a",
+                        valueType:"min",
+                        legendField: "pointsId",
+                        xAxisField: "createDate",
+                        yAxisField: "temValue"
+                    },
+                    {
+                        id: "soil_temperature_analysis_chart_3",
+                        type: "line",
+                        optionType: "option_bar_line",
+                        winSpan: 48,
+                        height: 30,
+                        chartTitle: "空气湿度(平均值)",
+                        unit_y: "%",
+                        dataUrl: '/gardens/temperature/queryAll?dataType=S',
+                        seriesType: "lineBar_handle_a",
+                        valueType:"mean",
+                        legendField: "pointsId",
+                        xAxisField: "createDate",
+                        yAxisField: "temValue"
+                    }
+                ]
             }
         },
         {
@@ -1696,11 +1737,53 @@ export default {
 
                     ]
                 },
-                chart: {
-                    type: "line2",
-                    id: "line2",
-                    chart_url: '/gardens/humidity/queryAll?dataType=S'
-                }
+                charts: [
+                    {
+                        id: "soil_humidity_analysis_chart_1",
+                        type: "line",
+                        optionType: "option_bar_line",
+                        winSpan: 24,
+                        height: 50,
+                        chartTitle: "空气湿度(最高值)",
+                        unit_y: "%",
+                        dataUrl: '/gardens/humidity/queryAll?dataType=S',
+                        seriesType: "lineBar_handle_a",
+                        valueType:"max",
+                        legendField: "pointsId",
+                        xAxisField: "createDate",
+                        yAxisField: "humValue"
+                    },
+                    {
+                        id: "soil_humidity_analysis_chart_2",
+                        type: "line",
+                        optionType: "option_bar_line",
+                        winSpan: 24,
+                        height: 50,
+                        chartTitle: "空气湿度(最低值)",
+                        unit_y: "%",
+                        dataUrl: '/gardens/humidity/queryAll?dataType=S',
+                        seriesType: "lineBar_handle_a",
+                        valueType:"min",
+                        legendField: "pointsId",
+                        xAxisField: "createDate",
+                        yAxisField: "humValue"
+                    },
+                    {
+                        id: "soil_humidity_analysis_chart_3",
+                        type: "line",
+                        optionType: "option_bar_line",
+                        winSpan: 48,
+                        height: 30,
+                        chartTitle: "空气湿度(平均值)",
+                        unit_y: "%",
+                        dataUrl: '/gardens/humidity/queryAll?dataType=S',
+                        seriesType: "lineBar_handle_a",
+                        valueType:"mean",
+                        legendField: "pointsId",
+                        xAxisField: "createDate",
+                        yAxisField: "humValue"
+                    }
+                ]
             }
         },
         {
@@ -1790,11 +1873,68 @@ export default {
 
                     ]
                 },
-                chart: {
-                    type: "line3",
-                    id: "line3",
-                    chart_url: '/gardens/humantrafficinfo/queryAll'
-                }
+                charts: [
+                    {
+                        id: "population_analysis_chart_1",
+                        type: "line",
+                        optionType: "option_bar_line",
+                        winSpan: 24,
+                        height: 50,
+                        chartTitle: "人流量(最高值)",
+                        unit_y: "人次",
+                        dataUrl: '/gardens/humantrafficinfo/queryAll',
+                        seriesType: "lineBar_handle_a",
+                        valueType:"max",
+                        legendField: "humanTrafficId",
+                        xAxisField: "createDate",
+                        yAxisField: "humanTrafficValue"
+                    },
+                    {
+                        id: "population_analysis_chart_2",
+                        type: "line",
+                        optionType: "option_bar_line",
+                        winSpan: 24,
+                        height: 50,
+                        chartTitle: "人流量(最低值)",
+                        unit_y: "人次",
+                        dataUrl: '/gardens/humantrafficinfo/queryAll',
+                        seriesType: "lineBar_handle_a",
+                        valueType:"min",
+                        legendField: "humanTrafficId",
+                        xAxisField: "createDate",
+                        yAxisField: "humanTrafficValue"
+                    },
+                    {
+                        id: "population_analysis_chart_3",
+                        type: "line",
+                        optionType: "option_bar_line",
+                        winSpan: 24,
+                        height: 50,
+                        chartTitle: "人流量(平均数)",
+                        unit_y: "人次",
+                        dataUrl: '/gardens/humantrafficinfo/queryAll',
+                        seriesType: "lineBar_handle_a",
+                        valueType:"mean",
+                        legendField: "humanTrafficId",
+                        xAxisField: "createDate",
+                        yAxisField: "humanTrafficValue"
+                    },
+                    {
+                        id: "population_analysis_chart_4",
+                        type: "bar",
+                        optionType: "option_bar_line",
+                        winSpan: 24,
+                        height: 50,
+                        chartTitle: "人流量(求和)",
+                        unit_y: "人次",
+                        dataUrl: '/gardens/humantrafficinfo/queryAll',
+                        seriesType: "lineBar_handle_a",
+                        valueType:"sum",
+                        legendField: "humanTrafficId",
+                        xAxisField: "createDate",
+                        yAxisField: "humanTrafficValue"
+                    }
+                ]
             }
         },
         {
@@ -1891,7 +2031,7 @@ export default {
                         optionType: "option_bar_line",
                         winSpan: 24,
                         height: 50,
-                        chartTitle: "空气湿度(最高值)",
+                        chartTitle: "空气温度(最高值)",
                         unit_y: "℃",
                         dataUrl: '/gardens/temperature/queryAll?dataType=A',
                         seriesType: "lineBar_handle_a",
@@ -1906,11 +2046,26 @@ export default {
                         optionType: "option_bar_line",
                         winSpan: 24,
                         height: 50,
-                        chartTitle: "空气湿度(最低值)",
+                        chartTitle: "空气温度(最低值)",
                         unit_y: "℃",
                         dataUrl: '/gardens/temperature/queryAll?dataType=A',
                         seriesType: "lineBar_handle_a",
                         valueType:"min",
+                        legendField: "pointsId",
+                        xAxisField: "createDate",
+                        yAxisField: "temValue"
+                    },
+                    {
+                        id: "air_temperature_analysis_chart_3",
+                        type: "line",
+                        optionType: "option_bar_line",
+                        winSpan: 48,
+                        height: 30,
+                        chartTitle: "空气温度(平均数)",
+                        unit_y: "℃",
+                        dataUrl: '/gardens/temperature/queryAll?dataType=A',
+                        seriesType: "lineBar_handle_a",
+                        valueType:"mean",
                         legendField: "pointsId",
                         xAxisField: "createDate",
                         yAxisField: "temValue"
@@ -2013,7 +2168,7 @@ export default {
                         winSpan: 24,
                         height: 50,
                         chartTitle: "空气湿度(最高值)",
-                        unit_y: "℃",
+                        unit_y: "%",
                         dataUrl: '/gardens/humidity/queryAll?dataType=A',
                         seriesType: "lineBar_handle_a",
                         valueType:"max",
@@ -2028,7 +2183,7 @@ export default {
                         winSpan: 24,
                         height: 50,
                         chartTitle: "空气湿度(最低值)",
-                        unit_y: "℃",
+                        unit_y: "%",
                         dataUrl: '/gardens/humidity/queryAll?dataType=A',
                         seriesType: "lineBar_handle_a",
                         valueType:"min",
