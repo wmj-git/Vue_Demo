@@ -51,7 +51,7 @@ export default new Router({
           path: 'map',
           name: 'map',
           components: {
-            scene: () => import('@/views/layout/components/map/map')
+            scene: () => import('@/views/map/map')
           }
         }
 
