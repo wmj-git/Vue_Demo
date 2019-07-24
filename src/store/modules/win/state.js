@@ -3889,7 +3889,7 @@ export default {
                         operate: "导出excel",
                         fn: "export",
                         control_id: "soil_temperature_manage_table",
-                        url: "/gardens/temhumpoints/exportCsv"
+                        url: "/gardens/temhumpoints/exportCsv?pointType=S&temperatureOrHumidity=T"
                     }
                 ],
                 table: {
@@ -4074,7 +4074,7 @@ export default {
                         operate: "导出excel",
                         fn: "export",
                         control_id: "soil_humidity_manage_table",
-                        url: "/gardens/temhumpoints/exportCsv"
+                        url: "/gardens/temhumpoints/exportCsv?pointType=S&temperatureOrHumidity=H"
                     }
                 ],
                 table: {
@@ -4444,7 +4444,7 @@ export default {
                         operate: "导出excel",
                         fn: "export",
                         control_id: "air_temperature_manage_table",
-                        url: "/gardens/temhumpoints/exportCsv"
+                        url: "/gardens/temhumpoints/exportCsv?pointType=A&temperatureOrHumidity=T"
                     }
                 ],
                 table: {
@@ -4628,7 +4628,7 @@ export default {
                         operate: "导出excel",
                         fn: "export",
                         control_id: "air_humidity_manage_table",
-                        url: "/gardens/temhumpoints/exportCsv"
+                        url: "/gardens/temhumpoints/exportCsv?pointType=A&temperatureOrHumidity=H"
                     }
                 ],
                 table: {

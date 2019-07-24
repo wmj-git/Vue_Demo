@@ -7,14 +7,9 @@
         <el-table-column v-for="(item,i) in label"
           :prop="item.prop"
           :label="item.name"
-<<<<<<< HEAD
-           :key="i"
-          width="180">
-=======
           width="180"
-          :key='index'
+          :key='i'
           :show-overflow-tooltip="true">
->>>>>>> 2142e0608472b0fd952e21d78a38c60ae4b46f64
         </el-table-column>
       </el-table>
     </div>
