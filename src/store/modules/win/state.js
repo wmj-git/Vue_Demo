@@ -1760,22 +1760,6 @@ export default {
                         operate: "查询",
                         control_id: "soil_temperature_analysis_table",
                         fn: "search"
-                    },
-                    {
-                        id: "soil_temperature_analysis_button_import",
-                        type: "em_button",
-                        icon: "el-icon-excel_in",
-                        operate: "导入excel",
-                        control_id: "soil_temperature_analysis_table",
-                        fn: "import"
-                    },
-                    {
-                        id: "soil_temperature_analysis_button_export",
-                        type: "em_button",
-                        icon: "el-icon-excel_out",
-                        operate: "导出excel",
-                        control_id: "soil_temperature_analysis_table",
-                        fn: "export"
                     }
                 ],
                 table: {
@@ -1900,22 +1884,6 @@ export default {
                         operate: "查询",
                         control_id: "soil_humidity_analysis_table",
                         fn: "search"
-                    },
-                    {
-                        id: "soil_humidity_analysis_button_import",
-                        type: "em_button",
-                        icon: "el-icon-excel_in",
-                        operate: "导入excel",
-                        control_id: "soil_humidity_analysis_table",
-                        fn: "import"
-                    },
-                    {
-                        id: "soil_humidity_analysis_button_export",
-                        type: "em_button",
-                        icon: "el-icon-excel_out",
-                        operate: "导出excel",
-                        control_id: "soil_humidity_analysis_table",
-                        fn: "export"
                     }
                 ],
                 table: {
@@ -2036,22 +2004,6 @@ export default {
                         operate: "查询",
                         control_id: "population_analysis_table",
                         fn: "search"
-                    },
-                    {
-                        id: "population_analysis_button_import",
-                        type: "em_button",
-                        icon: "el-icon-excel_in",
-                        operate: "导入excel",
-                        control_id: "population_analysis_table",
-                        fn: "import"
-                    },
-                    {
-                        id: "population_analysis_button_export",
-                        type: "em_button",
-                        icon: "el-icon-excel_out",
-                        operate: "导出excel",
-                        control_id: "population_analysis_table",
-                        fn: "export"
                     }
                 ],
                 table: {
@@ -2187,22 +2139,6 @@ export default {
                         operate: "查询",
                         control_id: "air_temperature_analysis_table",
                         fn: "search"
-                    },
-                    {
-                        id: "air_temperature_analysis_button_import",
-                        type: "em_button",
-                        icon: "el-icon-excel_in",
-                        operate: "导入excel",
-                        control_id: "air_temperature_analysis_table",
-                        fn: "import"
-                    },
-                    {
-                        id: "air_temperature_analysis_button_export",
-                        type: "em_button",
-                        icon: "el-icon-excel_out",
-                        operate: "导出excel",
-                        control_id: "air_temperature_analysis_table",
-                        fn: "export"
                     }
                 ],
                 table: {
@@ -2323,22 +2259,6 @@ export default {
                         operate: "查询",
                         control_id: "air_humidity_analysis_table",
                         fn: "search"
-                    },
-                    {
-                        id: "air_humidity_analysis_button_import",
-                        type: "em_button",
-                        icon: "el-icon-excel_in",
-                        operate: "导入excel",
-                        control_id: "air_humidity_analysis_table",
-                        fn: "import"
-                    },
-                    {
-                        id: "air_humidity_analysis_button_export",
-                        type: "em_button",
-                        icon: "el-icon-excel_out",
-                        operate: "导出excel",
-                        control_id: "air_humidity_analysis_table",
-                        fn: "export"
                     }
                 ],
                 table: {
@@ -2443,22 +2363,6 @@ export default {
                         operate: "查询",
                         control_id: "fire_alert_anaysis_table",
                         fn: "search"
-                    },
-                    {
-                        id: "fire_alert_anaysis_button_import",
-                        type: "em_button",
-                        icon: "el-icon-excel_in",
-                        operate: "导入excel",
-                        control_id: "fire_alert_anaysis_table",
-                        fn: "import"
-                    },
-                    {
-                        id: "fire_alert_anaysis_button_export",
-                        type: "em_button",
-                        icon: "el-icon-excel_out",
-                        operate: "导出excel",
-                        control_id: "fire_alert_anaysis_table",
-                        fn: "export"
                     }
                 ],
                 table: {
@@ -3985,7 +3889,7 @@ export default {
                         operate: "导出excel",
                         fn: "export",
                         control_id: "soil_temperature_manage_table",
-                        url: "/gardens/temhumpoints/exportCsv"
+                        url: "/gardens/temhumpoints/exportCsv?pointType=S&temperatureOrHumidity=T"
                     }
                 ],
                 table: {
@@ -4170,7 +4074,7 @@ export default {
                         operate: "导出excel",
                         fn: "export",
                         control_id: "soil_humidity_manage_table",
-                        url: "/gardens/temhumpoints/exportCsv"
+                        url: "/gardens/temhumpoints/exportCsv?pointType=S&temperatureOrHumidity=H"
                     }
                 ],
                 table: {
@@ -4540,7 +4444,7 @@ export default {
                         operate: "导出excel",
                         fn: "export",
                         control_id: "air_temperature_manage_table",
-                        url: "/gardens/temhumpoints/exportCsv"
+                        url: "/gardens/temhumpoints/exportCsv?pointType=A&temperatureOrHumidity=T"
                     }
                 ],
                 table: {
@@ -4724,7 +4628,7 @@ export default {
                         operate: "导出excel",
                         fn: "export",
                         control_id: "air_humidity_manage_table",
-                        url: "/gardens/temhumpoints/exportCsv"
+                        url: "/gardens/temhumpoints/exportCsv?pointType=A&temperatureOrHumidity=H"
                     }
                 ],
                 table: {

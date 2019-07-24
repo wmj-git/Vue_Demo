@@ -85,24 +85,24 @@
     import em_dialogs from "@/components/em_dialogs/em_dialogs";
     import complex_em_input from "@/components/complex_em_input/complex_em_input";
     import em_date from "@/components/em_date/em_date";
-
-    export default {
-        name: "echart_table",
-        data() {
-            return {
-                id: "",
-                table_id: "",
-                label: [],
-                tableData: [],
-                currentRow: null,
-                multipleSelection: [],
-                input: '',
-                currentPage: 1,
-                totalSize: null,
-                value: '',
-
-                pageSize: 10,
-                label_input: [],
+  export default {
+    name: "echart_table",
+    data() {
+      return {
+        id: "",
+        table_id: "",
+        label: [],
+        tableData: [],
+        currentRow: null,
+        multipleSelection: [],
+        input: '',
+        currentPage: 1,
+        totalSize: null,
+        value: '',
+        dialogFormVisible: false, //导入表格弹框控制显示隐藏的布尔值
+        action: "",
+        pageSize: 10,
+        label_input: [],
 
                 selectOptions: [
                     {
