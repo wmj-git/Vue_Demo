@@ -100,7 +100,8 @@
         currentPage: 1,
         totalSize: null,
         value: '',
-
+        dialogFormVisible: false, //导入表格弹框控制显示隐藏的布尔值
+        action: "",
         pageSize: 10,
         label_input: [],
 
