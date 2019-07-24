@@ -32,6 +32,7 @@
     methods: {
       handleSelect(key, keyPath) {
         console.log(key);
+        console.log(keyPath);
         let _key = null;
         this.group.forEach(function (_obj) {
           if (key === _obj.id) {

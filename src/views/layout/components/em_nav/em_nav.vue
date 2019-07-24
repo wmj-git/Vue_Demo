@@ -53,7 +53,6 @@
         });
       },
       handleSelect(key, keyPath) {
-        console.log(key);
         let _this = this;
         // console.log(keyPath);
         let _controlId = this.control_id;
