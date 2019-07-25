@@ -1,6 +1,5 @@
 export const db={
   "posts": [
-
     {
       "position": [
         106.29271472115926,
