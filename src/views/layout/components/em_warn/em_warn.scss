@@ -1,10 +1,15 @@
-.em-btn-warn{
+.em-btn-warn {
+  background: url("../../../../assets/image/alarm.gif") no-repeat center;
+  width: 65px;
+  height: 65px;
+  border: none;
+  color: #fff;
+  font-weight: 900;
+  font-size: 16px;
+
+  &:hover {
     background: url("../../../../assets/image/alarm.gif") no-repeat center;
-    width: 65px;
-    height: 65px;
-    border: none;
     color: #fff;
-    font-weight: 900;
-    font-size: 16px;
   }
+}
 

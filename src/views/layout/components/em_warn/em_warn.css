@@ -6,5 +6,8 @@
   color: #fff;
   font-weight: 900;
   font-size: 16px; }
+  .em-btn-warn:hover {
+    background: url("../../../../assets/image/alarm.gif") no-repeat center;
+    color: #fff; }
 
 /*# sourceMappingURL=em_warn.css.map */
