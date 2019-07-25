@@ -46,7 +46,8 @@
           <el-row class="operation">
             <template v-for="item in this.data[digital_table_id].operation">
               <component :is="item.type" :operation="item" :table_id="table_id" ref="child"
-                         @keyup.enter.native="search()" :key="item.id"></component>
+                         @keyup.enter.native="search()" :key="item.id">
+              </component>
             </template>
           </el-row>
           <el-table
@@ -257,16 +258,14 @@
         for (var i = 0; i < this.$refs.child.length; i++) {
           console.log(this.$refs.child[i]);
           if (this.$refs.child[i].input && this.$refs.child[i].params) {                              //input框是操作中第一个组件时
-            console.log(this.$refs.child[i].params);
-            console.log(this.$refs.child[i].input);
-            let role_manage_input = this.$refs.child[i].input;
+            let role_manage_input = this.$refs.child[i].input.trim();
             let params = this.$refs.child[i].params;
             obj[params] = role_manage_input;
           }
           if (this.$refs.child[i].complex_em_input_select && this.$refs.child[i].input) {   //选择参数进行查询
             console.log(this.$refs.child[i].complex_em_input_select);
             let comlex_input = this.$refs.child[i].complex_em_input_select;
-            let commo_input = this.$refs.child[i].input;
+            let commo_input = this.$refs.child[i].input.trim();
             obj[comlex_input] = commo_input;
           }
           if (this.$refs.child[i].time1) {

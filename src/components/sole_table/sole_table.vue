@@ -253,7 +253,7 @@
           }
         }
         if (this.$refs.child[1].input && this.$refs.child[1].params) {
-          let input = this.$refs.child[1].input;        //input框是操作中第二个组件时
+          let input = this.$refs.child[1].input.trim();        //input框是操作中第二个组件时
           let params = this.$refs.child[1].params;
           if (input && params) {
             obj[params] = input;
@@ -261,24 +261,24 @@
         }
         if (this.$refs.child[0].complex_em_input_select && this.$refs.child[0].input) {   //选择参数进行查询
           let comlex_input = this.$refs.child[0].complex_em_input_select;
-          let commo_input = this.$refs.child[0].input;
+          let commo_input = this.$refs.child[0].input.trim();
           obj[comlex_input] = commo_input;
         }
         if (this.$refs.child[0].input && this.$refs.child[0].params) {                              //input框是操作中第一个组件时
-          let role_manage_input = this.$refs.child[0].input;
+          let role_manage_input = this.$refs.child[0].input.trim();
           let params = this.$refs.child[0].params;
           obj[params] = role_manage_input;
         }
         if(this.$refs.child[2]){
           if (this.$refs.child[2].input && this.$refs.child[2].params) {                              //input框是操作中第三个组件时
-            let operate_input = this.$refs.child[2].input;
+            let operate_input = this.$refs.child[2].input.trim();
             let params = this.$refs.child[2].params;
             obj[params] = operate_input;
           }
         }
         if(this.$refs.child[3]){
           if (this.$refs.child[3].input && this.$refs.child[3].params) {                              //input框是操作中第四个组件时
-            let url_input = this.$refs.child[3].input;
+            let url_input = this.$refs.child[3].input.trim();
             let params = this.$refs.child[3].params;
             obj[params] = url_input;
           }

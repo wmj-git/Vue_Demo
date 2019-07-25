@@ -92,10 +92,10 @@ export default {
                     ],
                     label: [
                         {
-                            "name": "英文名",
-                            "prop": "roleEname",
-                            "width": "100",
-                            "type": "em_input",
+                            name: "英文名",
+                            prop: "roleEname",
+                            width: "100",
+                            type: "em_input",
                             placeholder: "英文名",
                             params: "roleEname",
                             alter_show: true,
@@ -728,7 +728,8 @@ export default {
                             control_id: "fertilizer_type_manage_table",
                             fn: "dele",
                             url: "/gardens/fertilizerinfo/deletes"
-                        }
+                        },
+
                     ],
                     table: {
                         id: "fertilizer_type_manage_table",
@@ -754,6 +755,16 @@ export default {
                                 alter_show: true,
                                 add_show: true
                             },
+                           {
+                            name: "库存",
+                            prop: "stock",
+                            width: "80",
+                            type: "em_input",
+                            placeholder: "库存",
+                            params: "stock",
+                            alter_show: true,
+                            add_show: true
+                           },
                             {
                                 name: "描述",
                                 prop: "remark",
@@ -4868,6 +4879,16 @@ export default {
                             params: "latitude",
                             add_show: true,
                             alter_show: true
+                        },
+                        {
+                          name: "状态",
+                          prop: "stat",
+                          width: "160",
+                          type: "em_input",
+                          placeholder: "状态",
+                          params: "stat",
+                          add_show: true,
+                          alter_show: true
                         },
                         // {
                         //   name:"责任单位",
