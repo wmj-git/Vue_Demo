@@ -18,6 +18,74 @@
     props: {},
     methods: {
       init() {
+
+          this.$store.commit("scene/set_type", this.id);
+          this.$store.commit("scene/set_toolbar", [
+              {
+                  id: "tool_flyToScene",
+                  value: "场景",
+                  icon: "el-icon-scene",
+                  control_id: "scene",
+                  fn: "toScene",
+                  trigger: "none"
+              },
+              {
+                  id: "tool_transparent",
+                  value: "透明",
+                  icon: "el-icon-transparent",
+                  control_id: "em_slider",
+                  fn: "showFn",
+                  trigger: true
+              },
+              {
+                  id: "tool_coordinates",
+                  value: "坐标",
+                  icon: "el-icon-coordinates",
+                  control_id: "scene",
+                  fn: "xyz",
+                  trigger: true
+              },
+              {
+                  id: "tool_data",
+                  value: "数据",
+                  icon: "el-icon-data",
+                  control_id: "scene",
+                  fn: "scene_data",
+                  trigger: true
+              },
+              {
+                  id: "tool_distance",
+                  value: "距离",
+                  icon: "el-icon-distance",
+                  control_id: "scene",
+                  fn: "measure_drawLine",
+                  trigger: "none"
+              },
+              {
+                  id: "tool_area",
+                  value: "面积",
+                  icon: "el-icon-area",
+                  control_id: "scene",
+                  fn: "measure_drawPloy",
+                  trigger: "none"
+              },
+              {
+                  id: "tool_hightly",
+                  value: "高度",
+                  icon: "el-icon-highly",
+                  control_id: "scene",
+                  fn: "",
+                  trigger: "none"
+              },
+              {
+                  id: "tool_label",
+                  value: "清除",
+                  icon: "el-icon-remove2",
+                  control_id: "scene",
+                  fn: "measure_clear",
+                  trigger: "none"
+              }
+          ]);//设置场景工具面板
         window.viewer = new Cesium.Viewer('cesiumContainer', {
           scene3DOnly: true,
           animation: false, //是否显示动画控件

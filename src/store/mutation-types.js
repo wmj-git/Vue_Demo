@@ -1,3 +1,7 @@
+//scene
+export const SET_TYPE="set_type";
+export const SET_TOOLBAR="set_toolbar";
+
 
 
 // win
