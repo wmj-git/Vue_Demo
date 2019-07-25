@@ -18,7 +18,8 @@ export function createOption(_obj) {
         text: _set.chartTitle,
         x: 'left',
         textStyle: {
-          color: "#fff"
+          color: "#fff",
+          fontSize:14
         }
       },
       tooltip: {
