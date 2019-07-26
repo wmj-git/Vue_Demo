@@ -1,3 +1,14 @@
+import store from '@/store'
+//经纬度换算
+function formatDegree(pValue) {
+    var value = Math.abs(pValue);
+    var v1 = Math.floor(value);
+    var v2 = Math.floor((value - v1) * 60);
+    var v3 = Math.round((value - v1) * 3600 % 60);
+    return v1 + '°' + v2 + '\'' + v3 + '"';
+}
+
+
 export function createQeomStyle(_feature, _style) {
 
     let Style = new ol.style.Style({
@@ -25,6 +36,146 @@ export function createQeomStyle(_feature, _style) {
     return Style;
 }
 
+//获取时空云数据
+export function clustersLayerFn(dataUrl, _Key, _clusterImgUrl, _distance) {//时空云数据
+    // let _extent = [113.97796915, 22.608145238000002, 114.04398656100001, 22.704755608];
+    let _featureKey = {
+        type: "typeName",//类型
+        titleKey: "id",//标题
+        iconUrl: ""//图标地址
+    };
+    for (let k in _featureKey) {
+        if (_Key[k]) {
+            _featureKey[k] = _Key[k];
+        }
+    }
+    let _url = dataUrl ? dataUrl : "";
+    let esrijsonFormat = new ol.format.EsriJSON();
+    let vectorSource = new ol.source.Vector({
+        loader: function (extent, resolution, projection) {
+            var url = _url + '/query/?f=json&' +
+                'returnGeometry=true&spatialRel=esriSpatialRelIntersects&geometry=' +
+                encodeURIComponent('{"xmin":' + extent[0] + ',"ymin":' +
+                    extent[1] + ',"xmax":' + extent[2] + ',"ymax":' + extent[3] +
+                    ',"spatialReference":{"wkid":4490}}') +
+                '&geometryType=esriGeometryEnvelope&inSR=4490&outFields=*' +
+                '&outSR=4490';
+
+            if (vectorSource.getFeatures().length > 0) {
+                // vectorSource.clear();
+                console.log(vectorSource.getFeatures());
+                return
+            }
+
+            $.ajax({
+                url: url, async: false, dataType: 'jsonp', success: function (response) {
+                    if (response.error) {
+                        console.log(response.error.message + '\n' +
+                            response.error.details.join('\n'));
+                    } else {
+                        // dataProjection will be read from document
+                        var features = esrijsonFormat.readFeatures(response, {
+                            featureProjection: projection
+                        });
+                        if (features.length > 0) {
+                            /* console.log("features2");
+                             console.log(features);*/
+                            vectorSource.addFeatures(features);
+                        }
+
+                    }
+                }
+            });
+        },
+        strategy: ol.loadingstrategy.tile(ol.tilegrid.createXYZ({
+            tileSize: 512
+        })),
+        wrapX: false
+    });
+
+
+    let clusterSource = new ol.source.Cluster({
+        distance: _distance,
+        source: vectorSource
+    });
+
+    function createEarthquakeStyle(iconFeature) {
+
+        // console.log(iconFeature.getKeys());
+
+
+        let _data = iconFeature.get(_featureKey.titleKey);
+
+        let iconStyle = new ol.style.Style({
+            image: new ol.style.Icon(({
+                anchor: [0, 0],
+                anchorXUnits: 'fraction',
+                anchorYUnits: 'pixels',
+                scale: 0.4,
+                src: _featureKey.iconUrl + ""
+            })),
+            text: new ol.style.Text({
+                text: _data + "",
+                // text:  "123",
+                offsetX: 12,
+                offsetY: -8,
+                fill: new ol.style.Fill({
+                    color: '#fff'
+                }),
+                stroke: new ol.style.Stroke({
+                    color: 'rgba(0, 0, 0, 0.6)',
+                    width: 4
+                }),
+            })
+        });
+
+        return iconStyle;
+    }
+
+    let styleCache = {};
+    let layer = new ol.layer.Vector({
+        name: _featureKey.type + "_layer",
+        source: clusterSource,
+        style: function (feature) {
+            var size = feature.get('features').length;
+            // console.log(feature.get('features'));
+            var style = styleCache[size];
+            if (size > 1) {
+                if (!style) {
+                    style = new ol.style.Style({
+                        image: new ol.style.Icon(({
+                            anchor: [0.5, 28],
+                            anchorXUnits: 'fraction',
+                            anchorYUnits: 'pixels',
+                            opacity: 0.8,
+                            scale: 1.28,
+                            color: _clusterImgUrl,
+                            src: "../../static/image/cluster.png"
+                        })),
+                        text: new ol.style.Text({
+                            text: size.toString(),
+                            fill: new ol.style.Fill({
+                                color: '#fff'
+                            })
+                        })
+                    });
+                    styleCache[size] = style;
+                }
+            } else {
+                var originalFeature = feature.get('features')[0];
+                style = createEarthquakeStyle(originalFeature);
+            }
+            return style;
+        }
+    });
+
+    return {
+        layer, vectorSource, clusterSource
+    }
+}
+
+
+//几何类型没有聚合的数据图层
 export function layerFN(_features, _Key, _geomStyle) {
 
     /* _features=[{
@@ -122,145 +273,7 @@ export function ClearLayerFN(_map, _layers) {
     }
 }
 
-
-export function clustersLayerFn(dataUrl, _Key, _clusterImgUrl, _distance) {//时空云数据
-    let _extent = [113.97796915, 22.608145238000002, 114.04398656100001, 22.704755608];
-    let _featureKey = {
-        type: "typeName",//类型
-        titleKey: "id",//标题
-        iconUrl: ""//图标地址
-    };
-    for (let k in _featureKey) {
-        if (_Key[k]) {
-            _featureKey[k] = _Key[k];
-        }
-    }
-    let _url = dataUrl ? dataUrl : "";
-    let esrijsonFormat = new ol.format.EsriJSON();
-    let vectorSource = new ol.source.Vector({
-        loader: function (extent, resolution, projection) {
-            var url = _url + '/query/?f=json&' +
-                'returnGeometry=true&spatialRel=esriSpatialRelIntersects&geometry=' +
-                encodeURIComponent('{"xmin":' + extent[0] + ',"ymin":' +
-                    extent[1] + ',"xmax":' + extent[2] + ',"ymax":' + extent[3] +
-                    ',"spatialReference":{"wkid":4490}}') +
-                '&geometryType=esriGeometryEnvelope&inSR=4490&outFields=*' +
-                '&outSR=4490';
-
-            if (vectorSource.getFeatures().length > 0) {
-                // vectorSource.clear();
-                console.log(vectorSource.getFeatures());
-                return
-            }
-
-            $.ajax({
-                url: url, async: false, dataType: 'jsonp', success: function (response) {
-                    if (response.error) {
-                        console.log(response.error.message + '\n' +
-                            response.error.details.join('\n'));
-                    } else {
-                        // dataProjection will be read from document
-                        var features = esrijsonFormat.readFeatures(response, {
-                            featureProjection: projection
-                        });
-                        if (features.length > 0) {
-                            /* console.log("features2");
-                             console.log(features);*/
-                            vectorSource.addFeatures(features);
-                        }
-
-                    }
-                }
-            });
-        },
-        strategy: ol.loadingstrategy.tile(ol.tilegrid.createXYZ({
-            tileSize: 512
-        })),
-        wrapX: false
-    });
-
-
-    let clusterSource = new ol.source.Cluster({
-        distance: _distance,
-        source: vectorSource
-    });
-
-    function createEarthquakeStyle(iconFeature) {
-
-        // console.log(iconFeature.getKeys());
-
-
-        let _data = iconFeature.get(_featureKey.titleKey);
-
-        let iconStyle = new ol.style.Style({
-            image: new ol.style.Icon(({
-                anchor: [0, 0],
-                anchorXUnits: 'fraction',
-                anchorYUnits: 'pixels',
-                scale: 0.4,
-                src: _featureKey.iconUrl + ""
-            })),
-            text: new ol.style.Text({
-                text: _data + "",
-                // text:  "123",
-                offsetX: 12,
-                offsetY: -8,
-                fill: new ol.style.Fill({
-                    color: '#fff'
-                }),
-                stroke: new ol.style.Stroke({
-                    color: 'rgba(0, 0, 0, 0.6)',
-                    width: 4
-                }),
-            })
-        });
-
-        return iconStyle;
-    }
-
-
-    let styleCache = {};
-    let layer = new ol.layer.Vector({
-        name: _featureKey.type + "_layer",
-        source: clusterSource,
-        style: function (feature) {
-            var size = feature.get('features').length;
-            // console.log(feature.get('features'));
-            var style = styleCache[size];
-            if (size > 1) {
-                if (!style) {
-                    style = new ol.style.Style({
-                        image: new ol.style.Icon(({
-                            anchor: [0.5, 28],
-                            anchorXUnits: 'fraction',
-                            anchorYUnits: 'pixels',
-                            opacity: 0.8,
-                            scale: 1.28,
-                            color: _clusterImgUrl,
-                            src: "../../static/image/cluster.png"
-                        })),
-                        text: new ol.style.Text({
-                            text: size.toString(),
-                            fill: new ol.style.Fill({
-                                color: '#fff'
-                            })
-                        })
-                    });
-                    styleCache[size] = style;
-                }
-            } else {
-                var originalFeature = feature.get('features')[0];
-                style = createEarthquakeStyle(originalFeature);
-            }
-            return style;
-        }
-    });
-
-    return {
-        layer, vectorSource, clusterSource
-    }
-}
-
+//有聚合的数据图层
 export function clustersFn(_features, _Key, _clusterImgUrl, _distance) {//_features:数据, _Key:属性配置, _clusterImgUrl:聚合图标
 
     /* _features=[{
@@ -604,11 +617,18 @@ emMap.prototype.init = function (_el, _LngLat, _layers) {
 
 };
 emMap.prototype.viewFn = function (_num, _center) {
-    this.view.animate({
-        center: _center,
-        zoom: _num,
-        duration: 1000
-    });
+    if(_center==="none"){
+        this.view.animate({
+            zoom: _num,
+        });
+    }else{
+        this.view.animate({
+            center: _center,
+            zoom: _num,
+            duration: 1000
+        });
+    }
+
 };
 
 emMap.prototype.xfsMarkerFn = function (data) {
@@ -808,14 +828,9 @@ emMap.prototype.MarkerClearFn = function (_layer) {
 };
 // display popup on click
 emMap.prototype.InfoClickFn = function (evt) {
-    let _this = null;
-    let _Info = null;
-    if (appData.map) {
-        _Info = appData.map.Info;
-        _this = appData.map;
-    } else {
-        return
-    }
+    console.log(evt);
+    let _this = this;
+    let _Info = this.Info;
 
     let feature = evt.map.forEachFeatureAtPixel(evt.pixel,
         function (feature) {
@@ -888,18 +903,23 @@ emMap.prototype.infoFn = function (OBJ) {
     this.InfoOverlay.setPosition([OBJ.lng, OBJ.lat]);
 };
 
+
+//坐标查询
 emMap.prototype.coordinateLisen = function (evt) {
+
     let _coordinateContent = null;
     let _coordinateOverlay = null;
-    if (appData.map) {
-        _coordinateContent = appData.map.coordinate_content;
-        _coordinateOverlay = appData.map.coordinate_overlay;
+    let _mapNmame=store.getters["scene/type"];
+    console.log(window[_mapNmame]);
+    if (window[_mapNmame]) {
+        _coordinateContent = window[_mapNmame].coordinate_content;
+        _coordinateOverlay = window[_mapNmame].coordinate_overlay;
     } else {
         return
     }
-
     let coordinate = evt.coordinate;
     let hdms = ol.coordinate.toStringHDMS(ol.proj.toLonLat(coordinate));
+
     _coordinateContent.innerHTML = '经：<code>' + formatDegree(coordinate[0]) + '</code>,<br>纬：<code>' + formatDegree(coordinate[1]) + '</code>';
     console.log(coordinate);
     _coordinateOverlay.setPosition(coordinate);

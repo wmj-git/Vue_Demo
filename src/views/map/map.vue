@@ -12,8 +12,7 @@
     export default {
         data() {
             return {
-                id: "map",
-                mapName:""
+                id: "map"
             };
         },
         props: {},
@@ -27,7 +26,7 @@
                         id: "tool_flyToScene",
                         value: "场景",
                         icon: "el-icon-scene",
-                        control_id: "scene",
+                        control_id: "",
                         fn: "toScene",
                         trigger: "none"
                     },
@@ -35,7 +34,7 @@
                         id: "tool_coordinates",
                         value: "坐标",
                         icon: "el-icon-coordinates",
-                        control_id: "scene",
+                        control_id: "",
                         fn: "xyz",
                         trigger: true
                     },
@@ -43,7 +42,7 @@
                         id: "tool_data",
                         value: "数据",
                         icon: "el-icon-data",
-                        control_id: "scene",
+                        control_id: "",
                         fn: "scene_data",
                         trigger: true
                     },
@@ -51,7 +50,7 @@
                         id: "tool_distance",
                         value: "距离",
                         icon: "el-icon-distance",
-                        control_id: "scene",
+                        control_id: "",
                         fn: "measure_drawLine",
                         trigger: "none"
                     },
@@ -59,7 +58,7 @@
                         id: "tool_area",
                         value: "面积",
                         icon: "el-icon-area",
-                        control_id: "scene",
+                        control_id: "",
                         fn: "measure_drawPloy",
                         trigger: "none"
                     },
@@ -67,16 +66,30 @@
                         id: "tool_label",
                         value: "清除",
                         icon: "el-icon-remove2",
-                        control_id: "scene",
+                        control_id: "",
                         fn: "measure_clear",
                         trigger: "none"
                     }
                 ]);//设置场景工具面板
-                this.mapName=mp.openScene("_map").mapName;
-                window[this.mapName].init("mapContainer", [114.031047, 22.663679], [
+
+                //初始化二维场景
+                mp.openScene(this.id);
+                window[this.id].init("mapContainer", [114.031047, 22.663679], [
                     mp.layers.baidu_vec
                 ]);
+                this.queryVicinityPrintFn(114.03188276054428, 22.619840297782094, 50000);
 
+                this.spaceTimeData();
+            },
+            baseMapFn(obj) {
+                let _layer = new ol.layer.Tile({//正视投影
+                    source: new ol.source.ESRICache({
+                        origin: _origin,
+                        resolutions: _resolutions,
+                        projection: 'EPSG:4326',
+                        url: 'http://onelz.oicp.vip/proxy/layer/E36DF1E5DD7D4081A1E722ED2C8D7455/999C1448C6DD4842A35412B42226F0A3/tile/{z}/{y}/{x}'
+                    })
+                });
             },
             spaceTimeBaseMap(_resolutions, _origin) {
                 let _layer = new ol.layer.Tile({//正视投影
@@ -88,20 +101,27 @@
                     })
                 });
             },
-            spaceTimeMaker(_resolutions, _origin) {
-                let ly = mp.clustersLayerFn(
+            spaceTimeData(obj) {
+                window[this.id].viewFn(0, "none");
+                let _layer = mp.clustersLayerFn(
                     'http://onelz.oicp.vip/proxy/server/A13041017DC845579548DA3528DF9B47/999C1448C6DD4842A35412B42226F0A3',
                     {
                         type: "tree",
                         titleKey: "OBJECTID",
                         iconUrl: "../../static/image/marker_2.png"
                     }, "#1d6633", 48);
+
+                this.addLayer({
+                    layer: _layer.layer
+                });
             },
-            alpha(obj) {
-                mp.alphaFN();
-            },
-            xyz(obj) {
-                mp.xyzFN();
+            xyz(obj) {//坐标
+                console.log(obj);
+                if (obj.trigger) {
+                    window[this.id].coordinateOnFn();
+                } else {
+                    window[this.id].coordinateOffFn();
+                }
             },
             measure_drawPloy(obj) {
                 mp.SetMeasure();
@@ -112,13 +132,17 @@
             measure_clear(obj) {
                 mp.clearDrawingBoard(window.viewer);
             },
-            toScene() {
-                mp.toScene();
+            toScene(obj) {
+                window[this.id].viewFn(0, [114.031047, 22.663679]);
             },
             scene_data(obj) {
 
             },
-            queryVicinityPrintFn(lng, lat,distance) { //树木范围查询显示
+            addLayer(obj) {
+                let _layer = obj.layer;
+                window[this.id].map.addLayer(_layer);
+            },
+            queryVicinityPrintFn(lng, lat, distance) { //树木范围查询显示
                 // this.queryVicinityPrintFn(114.03188276054428, 22.619840297782094,50000);
                 queryVicinityPrint({
                     params: {
@@ -143,7 +167,9 @@
                         titleKey: "id",
                         iconUrlKey: "icon"
                     }, "#312332", 30);
-                    window._map.addLayer(_layer.layer);
+                    this.addLayer({
+                        layer: _layer.layer
+                    });
                 });
             }
         },

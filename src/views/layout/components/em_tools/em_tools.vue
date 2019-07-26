@@ -65,6 +65,9 @@
             fn(item, key) {
                 console.log(item);
                 console.log(key);
+                if(!(item.control_id)){
+                    item.control_id=this.$store.getters["scene/type"];
+                }
                 this.bus.$emit(item.control_id, item);
                 if (item.trigger !== "none") {
                     let _item = this.tool[key];

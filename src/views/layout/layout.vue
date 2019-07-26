@@ -70,6 +70,7 @@
         return width;
       };
       return {
+          id:"sysLayer",
         // wins: [],
         // dialogGroup: []
         sreenWidth:"",
@@ -197,7 +198,6 @@
 
         })
       },
-
     },
     created() {
       this.refreshTokenFn();//刷新token
