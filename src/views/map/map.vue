@@ -124,13 +124,14 @@
                 }
             },
             measure_drawPloy(obj) {
-                mp.SetMeasure();
+              window[this.id].measureOn("area");
             },
             measure_drawLine(obj) {
-                mp.SetMeasure("drawLine", window.viewer, window._scene.scene);
+              window[this.id].measureOn("distance");
             },
             measure_clear(obj) {
-                mp.clearDrawingBoard(window.viewer);
+              window[this.id].measureClear();
+              window[this.id].measureOff();
             },
             toScene(obj) {
                 window[this.id].viewFn(0, [114.031047, 22.663679]);
