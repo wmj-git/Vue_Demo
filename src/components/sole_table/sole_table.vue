@@ -50,6 +50,7 @@
         :data="tableData"
         style="width: 100%"
         @selection-change="handleSelectionChange"
+        @row-dblclick="showDetail"
       >
         <el-table-column
           type="index"
@@ -181,7 +182,8 @@
         },
         commonDialogComponent: "",  //渲染在角色分配等的动态组件名
         commonDialogTitle: "",     //渲染在角色分配等的弹框的title名
-        commonDialogWidth: ""     //渲染在角色分配等的弹框的宽度
+        commonDialogWidth: "" ,    //渲染在角色分配等的弹框的宽度
+        dialogDetailVisible:false
       }
     },
     props: ["data"],
@@ -534,6 +536,25 @@
         }).catch(() => {
         });
 
+
+      },
+      showDetail(row){
+        var sideBar = $(".em_detail");
+        console.log(sideBar);
+        if (!sideBar.hasClass("addWidth")) {
+          console.log(sideBar);
+          $(".em_detail").addClass("addWidth");
+        }
+        if(row&&this.data.table.picture_url){
+          getPictureImg({url:this.data.table.picture_url,id:row.id}).then(res=>{
+            this.imgUrl=res.data[0].fileName;
+            this.baseUrl=process.env.IMG_API;
+            this.bus.$emit("detail",{row:row,label:this.label,imgUrl:this.imgUrl,baseUrl:this.baseUrl})
+          })
+        }
+        else{
+          this.bus.$emit("detail",{row:row,label:this.label})
+        }
 
       }
     },
