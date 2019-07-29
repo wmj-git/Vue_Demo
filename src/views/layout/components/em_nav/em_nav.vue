@@ -1,5 +1,5 @@
 <template>
-  <div class="em_nav">
+  <div class="em_nav">     <!--一级菜单-->
     <win :id="win.id" :data="win">
       <el-menu
         :default-active="activeIndex"
@@ -53,8 +53,9 @@
         });
       },
       handleSelect(key, keyPath) {
+        console.log(key);
+        console.log(this);
         let _this = this;
-        // console.log(keyPath);
         let _controlId = this.control_id;
         let _title = null;
         let _list = null;
@@ -106,9 +107,7 @@
       this.bus.$on(this.id,  function (obj)  {
         this[obj.fn](obj);
       }.bind(this));
-    },
-    mounted() {
-
+      console.log(JSON.parse(JSON.stringify(db_buttonGroup)))
     },
     beforeDestroy() {
       this.bus.$off(this.id);

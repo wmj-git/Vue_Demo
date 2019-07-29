@@ -56,6 +56,7 @@
             height="600px"
             highlight-current-row
             @current-change="handleCurrentChange"
+            @row-dblclick="showDetail"
             ref="multipleTable"
             tooltip-effect="dark"
             :data="tableData"
@@ -80,6 +81,7 @@
                              :min-width="item.width"
                              align="center"
                              :show-overflow-tooltip="true"
+                             sortable
             >
             </el-table-column>
             <el-table-column
@@ -486,6 +488,9 @@
         });
 
 
+      },
+      showDetail(){
+        console.log(1);
       }
     }
   }

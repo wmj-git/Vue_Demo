@@ -45,6 +45,7 @@
           console.log(val);
           val.data.forEach(_val=>{
             this.value.push(_val.id);
+            console.log(this.value);
           })
         })
       });

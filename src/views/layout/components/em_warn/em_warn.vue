@@ -1,8 +1,5 @@
 <template>
     <div class="em_warn">
-      <el-dialog title="火警详情信息" :visible.sync="dialogTableVisible" :append-to-body="true"  :close-on-click-modal="false" v-dialog-drag>
-
-      </el-dialog>
         <win :id="win.id" :data="win">
             <el-button  class="em-btn-warn" @click="showDialog">
               <span>69</span>
@@ -13,6 +10,7 @@
 
 <script>
     import win from "@/components/win/win"
+    import sole_table from "@/components/sole_table/sole_table"
     export default {
         name: "em_warn",
         data(){
@@ -25,20 +23,22 @@
               show: true,
               resizable:false,
               class:"em-warn-window",
-              component: "sole_table"
+              control_id:"win_dialog"
             },
-            dialogTableVisible: false,
+            winDialog:{}
           }
         },
       components:{
-          win
-      },
-      mounted(){
-
+          win,
+          sole_table
       },
       methods:{
            showDialog(){
-             this.dialogTableVisible=true
+             this.$store.commit('win/win_open', {
+               win_obj: {
+                 id: this.win.control_id
+               }
+             });
            }
       }
     }

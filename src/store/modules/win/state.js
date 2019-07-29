@@ -72,6 +72,7 @@ export default {
                 table: {
                     id: "role_manage_table",
                     table_url: "/user/role/queryPage",
+                    after_digital_button_width:"160px",
                     after_digital_button: [
                         {
                             name: "权限分配",
@@ -308,6 +309,7 @@ export default {
                 ],
                 table: {
                     id: "account_manage_table",
+                  after_digital_button_width:"160px",
                     after_digital_button: [
                         {
                             name: "重置密码",
@@ -755,16 +757,16 @@ export default {
                                 alter_show: true,
                                 add_show: true
                             },
-                           {
-                            name: "库存",
-                            prop: "stock",
-                            width: "80",
-                            type: "em_input",
-                            placeholder: "库存",
-                            params: "stock",
-                            alter_show: true,
-                            add_show: true
-                           },
+                             {
+                              name: "库存(kg)",
+                              prop: "stock",
+                              width: "80",
+                              type: "em_input",
+                              placeholder: "库存",
+                              params: "stock",
+                              alter_show: true,
+                              add_show: true
+                             },
                             {
                                 name: "描述",
                                 prop: "remark",
@@ -989,33 +991,33 @@ export default {
                                 add_show: false
                             },
                             {
-                                name: "施肥规格",
+                                name: "施肥量(kg)",
                                 prop: "fertilizationSpecification",
                                 width: "140",
                                 type: "em_input",
-                                placeholder: "施肥规格",
+                                placeholder: "施肥量(kg)",
                                 params: "fertilizationSpecification",
                                 alter_show: true,
                                 add_show: true
 
                             },
                             {
-                                name: "最大规格",
+                                name: "最大树径(cm)",
                                 prop: "maxSpecification",
                                 width: "100",
                                 type: "em_input",
-                                placeholder: "最大规格",
+                                placeholder: "最大树径(cm)",
                                 params: "maxSpecification",
                                 alter_show: true,
                                 add_show: true
 
                             },
                             {
-                                name: "最小规格",
+                                name: "最小树径(cm)",
                                 prop: "minSpecification",
                                 width: "100",
                                 type: "em_input",
-                                placeholder: "最小规格",
+                                placeholder: "最小树径(cm)",
                                 params: "minSpecification",
                                 alter_show: true,
                                 add_show: true
@@ -2512,7 +2514,7 @@ export default {
                                     params: "personTypeNo"
                                 },
                                 {
-                                    name: "类型名称",
+                                    name: "人员类型",
                                     params: "personTypeName"
                                 }
                             ]
@@ -2578,11 +2580,11 @@ export default {
                                 add_show: true
                             },
                             {
-                                name: "类型名称",
+                                name: "人员类型",
                                 prop: "personTypeName",
                                 width: "100",
                                 type: "em_input",
-                                placeholder: "类型名称",
+                                placeholder: "人员类型",
                                 params: "personTypeName",
                                 alter_show: true,
                                 add_show: true
@@ -2852,6 +2854,7 @@ export default {
                 table: {
                     id: "protect_company_manage_table",
                     table_url: "/gardens/ent/queryAllByPage",
+                    after_digital_button_width:"80px",
                     after_digital_button: [
                         {
                             name: "关联路段",
@@ -2861,11 +2864,11 @@ export default {
                             dialog_width: "600px",
                             component_name: "associate_roads"
                         },
-                        {
-                            name: "取消关联",
-                            fn: "cancelAssociation",
-                            id: "cancelAssociation",
-                        }
+                        // {
+                        //     name: "取消关联",
+                        //     fn: "cancelAssociation",
+                        //     id: "cancelAssociation",
+                        // }
                     ],
                     label: [
                         {
@@ -3310,6 +3313,15 @@ export default {
                         control_id: "tree_material_manage_table",
                         fn: "dele",
                         url: "/gardens/tree/deletes"
+                    },
+                    {
+                      id: "tree_material_manage_button_export",
+                      type: "em_button",
+                      icon: "el-icon-excel_out",
+                      operate: "导出excel",
+                      fn: "export",
+                      control_id: "tree_material_manage_table",
+                      url: "/gardens/tree/exportCsv"
                     }
                 ],
                 table: {
@@ -4976,7 +4988,91 @@ export default {
             class: "",
             component: "emChart",
             component_data: {}
-        }
+        },
+        {
+          id: "win_dialog",
+          title: "火警详情信息",
+          top: 60,
+          left: 500,
+          height: 400,
+          show: false,
+          resizable:true,
+          class: "em-table-window",
+          component: "sole_table",
+          component_data: {
+          operation: [
+            {
+              id: "fire_info_date",
+              type: "em_date",
+
+            },
+            {
+              id: "fire_info_button_search",
+              type: "em_button",
+              icon: "el-icon-search",
+              operate: "查询",
+              control_id: "fire_info_table",
+              fn: "search"
+            }
+          ],
+            table: {
+            id: "fire_info_table",
+              table_url: "/gardens/firealarminfo/queryAllByPage?isClose=1",
+              label: [
+              {
+                name: "检测设备号",
+                prop: "fireAlarmId",
+                width: "100",
+                type: "em_input",
+                placeholder: "检测设备号",
+                params: "fireAlarmId",
+                add_show: true,
+                alter_show: true
+              },
+              {
+                name: "报警等级",
+                prop: "fireAlarmLevel",
+                width: "100",
+                type: "em_input",
+                placeholder: "报警等级",
+                params: "fireAlarmLevel",
+                add_show: true,
+                alter_show: true
+              },
+              {
+                name: "报警信息",
+                prop: "fireAlarmValue",
+                width: "140",
+                type: "em_input",
+                placeholder: "报警信息",
+                params: "fireAlarmValue",
+                add_show: true,
+                alter_show: true
+              },
+                {
+                  name: "发生时间",
+                  prop: "createDate",
+                  width: "140",
+                  type: "em_input",
+                  placeholder: "发生时间",
+                  params: "createDate",
+                  add_show: false,
+                  alter_show: false
+                },
+                {
+                  name: "备注",
+                  prop: "memo",
+                  width: "100",
+                  type: "em_input",
+                  placeholder: "备注",
+                  params: "memo",
+                  add_show: true,
+                  alter_show: true
+                }
+      ]
+    }
+  }
+}
     ],
     dialog: [
         {

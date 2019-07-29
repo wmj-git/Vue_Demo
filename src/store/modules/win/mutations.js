@@ -16,13 +16,15 @@ export default {
 
   },
   [WIN_CLOSE] (state, { win_id }) {
+    console.log(win_id);
     if (win_id === "all") {
       for(let i=0;i<state.win.length;i++){
         if (state.win[i].show === true) {
           state.win[i].show = false;
         }
       }
-    } else {
+    }
+    else {
       for(let i=0;i<state.win.length;i++){
         if (state.win[i].id === win_id) {
           state.win[i].show = false;

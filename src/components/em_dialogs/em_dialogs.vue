@@ -96,12 +96,6 @@
         });
 
       },
-      mounted(){
-          console.log(1);
-      },
-      computed:{
-
-      },
       methods:{
           showdialog(obj){
             let _this=this;
@@ -238,7 +232,13 @@
                        this.form[val.params]= "["+this.form[val.params].toString()+"]";
                      }
                      if(obj.operation.type==="em_input"||obj.operation.type==="em_textarea"){
-                       this.form[val.params]=obj.input;
+
+                       if(val.params==="fireAlarmId"){
+                         this.form[val.params]=parseInt(obj.input);
+                       }
+                       else{
+                         this.form[val.params]=obj.input;
+                       }
                      }
                    }
                  });

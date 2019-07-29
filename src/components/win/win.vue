@@ -42,6 +42,7 @@
             if (this) {
               $(this).window('destroy');
             }
+            console.log(_this);
             _this.$store.commit("win/win_close", {win_id: _this.id});
           },
           onResize: function () {            //窗口大小改变时触发

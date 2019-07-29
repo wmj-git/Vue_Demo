@@ -87,13 +87,14 @@
                          :min-width="item.width"
                           align="center"
                          :show-overflow-tooltip="true"
+                          sortable
         >
         </el-table-column>
         <el-table-column
           align="center"
           fixed="right"
           label="操作"
-          min-width="160"
+          :min-width="data.table.after_digital_button_width"
           v-if="typeof (data.table.after_digital_button)!='undefined'"
         >
           <template slot-scope="scope">
@@ -219,7 +220,7 @@
          }
       },
       init() {                               //表格加载数据
-
+        let list=[];
         let obj = {
           pageNum: this.currentPage,
           pageSize: this.pageSize
@@ -405,16 +406,18 @@
             params: val.form,
             id: this.delever_obj.table_id
           }).then(res => {
-            console.log(res);
-            if (res.statusCode == 200) {
-              this.$refs.dialog.cancel();
-              this.$message({
-                message: '恭喜你，添加成功',
-                type: 'success'
-              });
-              this.init();
+           if(res){
+             if (res.statusCode == 200) {
+               this.$refs.dialog.cancel();
+               this.$message({
+                 message: '恭喜你，添加成功',
+                 type: 'success'
+               });
+               this.init();
 
-            }
+             }
+           }
+
 
           });
         }
@@ -535,7 +538,7 @@
       }
     },
     mounted() {
-      console.log(typeof (this.data.table.after_digital_button));
+      console.log(this.data);
       this.table_id = this.data.table.id;
       this.label = this.data.table.label;
       this.label_input = this.data.table.label.filter(val => {

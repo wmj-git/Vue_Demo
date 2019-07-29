@@ -1,5 +1,5 @@
 <template>
-  <div class="em-menu">
+  <div class="em-menu">    <!--二级菜单-->
     <el-row>
       <el-col :span="48">
         <el-menu :default-active="activeIndex"
@@ -46,15 +46,13 @@
         });
       }
     },
-    created() {
-
-    },
     mounted() {
 
       // 非父子信息通信
       this.bus.$on(this.id, function (obj) {
         console.log(obj);
         this.group = obj.list;
+        console.log(this.group);
         $("#" + this.id).window("setTitle", obj.title);
         $("#" + this.id).window("resize", {
           width: obj.width
