@@ -77,22 +77,39 @@
                 window[this.id].init("mapContainer", [114.031047, 22.663679], [
                     mp.layers.baidu_vec
                 ]);
-                this.queryVicinityPrintFn(114.03188276054428, 22.619840297782094, 50000);
 
-                this.spaceTimeData();
+                this.queryVicinityPrintFn(114.03188276054428, 22.619840297782094, 50000);//采集的树数据
+
+                // this.spaceTimeData();//时空云数据
+
             },
             baseMapFn(obj) {
-                let _layer = new ol.layer.Tile({//正视投影
-                    source: new ol.source.ESRICache({
-                        origin: _origin,
-                        resolutions: _resolutions,
-                        projection: 'EPSG:4326',
-                        url: 'http://onelz.oicp.vip/proxy/layer/E36DF1E5DD7D4081A1E722ED2C8D7455/999C1448C6DD4842A35412B42226F0A3/tile/{z}/{y}/{x}'
-                    })
+
+                console.log(obj);
+
+                let _map=window[this.id].map;
+                let _layers=_map.getLayers().getArray();
+
+                _layers.forEach(function (_layer) {
+                    if(_layer.get("name")==="baseMap"){
+                        _map.removeLayer(_layer);
+                    }
+                });
+
+
+
+                let _layer = this.spaceTimeBaseMap();
+                this.addLayer({
+                    layer: _layer,
+                    zIndex: 0
                 });
             },
-            spaceTimeBaseMap(_resolutions, _origin) {
+            spaceTimeBaseMap() {
+
+                let _resolutions = window[this.id].resolutions;
+                var _origin = [-400, 400];
                 let _layer = new ol.layer.Tile({//正视投影
+                    name:"baseMap",
                     source: new ol.source.ESRICache({
                         origin: _origin,
                         resolutions: _resolutions,
@@ -100,6 +117,7 @@
                         url: 'http://onelz.oicp.vip/proxy/layer/E36DF1E5DD7D4081A1E722ED2C8D7455/999C1448C6DD4842A35412B42226F0A3/tile/{z}/{y}/{x}'
                     })
                 });
+                return _layer;
             },
             spaceTimeData(obj) {
                 window[this.id].viewFn(0, "none");
@@ -124,14 +142,14 @@
                 }
             },
             measure_drawPloy(obj) {
-              window[this.id].measureOn("area");
+                window[this.id].measureOn("area");
             },
             measure_drawLine(obj) {
-              window[this.id].measureOn("distance");
+                window[this.id].measureOn("distance");
             },
             measure_clear(obj) {
-              window[this.id].measureClear();
-              window[this.id].measureOff();
+                window[this.id].measureClear();
+                window[this.id].measureOff();
             },
             toScene(obj) {
                 window[this.id].viewFn(0, [114.031047, 22.663679]);
@@ -141,6 +159,9 @@
             },
             addLayer(obj) {
                 let _layer = obj.layer;
+                if (obj.zIndex) {
+                    _layer.setZIndex(obj.zIndex);
+                }
                 window[this.id].map.addLayer(_layer);
             },
             queryVicinityPrintFn(lng, lat, distance) { //树木范围查询显示

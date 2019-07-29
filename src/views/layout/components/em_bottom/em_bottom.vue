@@ -35,7 +35,7 @@
                 <el-button class="data_button em-btn-scene" @click="twoMap">
                     二维场景
                 </el-button>
-              <el-select class="data_button" v-model="selectValue" placeholder="选择底图">
+              <el-select class="data_button" v-model="selectValue" placeholder="选择底图" @change="selectFn">
                 <el-option
                   v-for="item in selectOption"
                   :key="item.value"
@@ -179,7 +179,7 @@
                 });
                 setTimeout(() => {
                     this.loginOut();
-                }, 2000)
+                }, 500)
 
             },
             twoMap() {
@@ -188,6 +188,13 @@
             threeMap() {
                 this.$router.push("/home/scene");
             },
+            selectFn(){
+                let _scene=this.$store.getters["scene/type"];
+                this.bus.$emit(_scene,{
+                    fn:"baseMapFn",
+                    layerName:this.selectValue
+                });
+            }
         }
     }
 </script>

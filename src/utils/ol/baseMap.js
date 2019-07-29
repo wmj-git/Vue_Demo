@@ -344,6 +344,7 @@ for (var i = 0; i < 19; ++i) {
 }
 
 var baidu_vec = new ol.layer.Tile({
+    name:"baseMap",
     source: new ol.source.XYZ({
         projection: 'baidu',
         maxZoom: 18,
@@ -363,6 +364,7 @@ var baidu_vec = new ol.layer.Tile({
 });
 
 var baidu_img = new ol.layer.Tile({
+    name:"baseMap",
     opacity: 1.0,
     source: new ol.source.XYZ({
         projection: 'baidu',
@@ -385,6 +387,7 @@ var baidu_img = new ol.layer.Tile({
 });
 
 var baidu_cva = new ol.layer.Tile({
+    name:"baseMap",
     source: new ol.source.XYZ({
         projection: 'baidu',
         maxZoom: 18,
@@ -419,6 +422,7 @@ function crtLayerWMTS(type, proj, opacity, tk) {
     }
 
     var layer = new ol.layer.Tile({
+        name:"baseMap",
         opacity: opacity,
         source: new ol.source.WMTS({
             attributions: '<a href="http://www.tianditu.com/service/info.html?sid=5292&type=info">天地图</a>',
@@ -446,6 +450,7 @@ var tLayer = crtLayerWMTS("vec_c", "EPSG:4326", 1.0, "dcfb31be4b1daef33e484e4834
 
 // 本地地图
 var osmLayer = new ol.layer.Tile({
+    name:"baseMap",
     opacity: 1.0,
     source: new ol.source.XYZ({
         url: 'http://192.168.20.18:800/zhlhscene/gis/{z}/{x}/{y}.png',
