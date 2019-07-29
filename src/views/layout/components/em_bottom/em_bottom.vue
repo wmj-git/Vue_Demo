@@ -28,22 +28,22 @@
                 <el-button class="data_button em-btn-icon-hover-v1" @click="loginOut">
                     退&emsp;&emsp;出
                 </el-button>
-                <span>底图:</span>
-                <el-select class="data_button" v-model="selectValue" placeholder="选择底图">
-                    <el-option
-                            v-for="item in selectOption"
-                            :key="item.value"
-                            :label="item.label"
-                            :value="item.value">
-                    </el-option>
-                </el-select>
+
                 <el-button class="data_button em-btn-scene" @click="threeMap">
                     三维场景
                 </el-button>
                 <el-button class="data_button em-btn-scene" @click="twoMap">
                     二维场景
                 </el-button>
-
+              <el-select class="data_button" v-model="selectValue" placeholder="选择底图">
+                <el-option
+                  v-for="item in selectOption"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value">
+                </el-option>
+              </el-select>
+              <span class="map-title">底图:</span>
             </div>
         </win>
     </div>
@@ -115,7 +115,7 @@
                         {validator: validatePass3, trigger: 'blur'}
                     ]
                 },
-                formLabelWidth: '80px',
+                formLabelWidth: '60px',
                 selectOption: [
                     {
                         value: '1',
