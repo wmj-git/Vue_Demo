@@ -70,6 +70,7 @@
         return width;
       };
       return {
+          id:"sysLayer",
         // wins: [],
         // dialogGroup: []
         sreenWidth:"",
@@ -167,7 +168,7 @@
         return this.$store.getters["win/win"];
       },
       dialogGroup: function () {
-        return this.$store.state.win.dialog;
+        return this.$store.getters["win/dialog"];
       }
     },
     methods: {
@@ -176,7 +177,6 @@
         setInterval(() => {
           let _time = getNowFormatDate().timestamp - getTokenTime();
           let _expires = getExpires();
-          console.log(_time);
           if (_time < _expires - 200000) {
             return
           }
@@ -186,7 +186,6 @@
       },
       refreshToken() {//刷新token
         let _RefreshToken = this.$store.getters["user/refreshToken"];
-        console.log(_RefreshToken);
         refreshToken({
           [RefreshTokenName]: _RefreshToken
         }).then(response => {
@@ -197,10 +196,8 @@
           this.$store.commit("user/set_token_time", _token_time);
           setTokenTime(_token_time);
 
-          console.log(data);
         })
       },
-
     },
     created() {
       this.refreshTokenFn();//刷新token

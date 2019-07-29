@@ -1,3 +1,151 @@
 .el-card {
   background-color: #0e1a35;
 }
+#marker {
+  width: 120px;
+  height: 120px;
+  border: 1px solid #088;
+  border-radius: 10px;
+  background-color: #0FF;
+  opacity: 0.5;
+}
+
+#vienna {
+  text-decoration: none;
+  color: white;
+  font-size: 11pt;
+  font-weight: bold;
+  text-shadow: black 0.1em 0.1em 0.2em;
+}
+
+#popup {
+  width: auto;
+  height: 32px;
+  border: 1px solid #088;
+  border-radius: 10px;
+  background-color: #ff432b;
+  opacity: 0.5;
+}
+
+.ol-popup {
+  position: absolute;
+  background-color: #0b1140;
+  color: #fff;
+  font-size: 18px;
+  opacity: 0.8;
+  -webkit-filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.2));
+  filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.2));
+  padding: 15px;
+  border-radius: 10px;
+  border: 1px solid #cccccc;
+  bottom: 12px;
+  left: -50px;
+  min-width: 200px;
+}
+
+.ol-popup:after, .ol-popup:before {
+  top: 100%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+
+.ol-popup:after {
+  border-top-color: #0b1140;
+  border-width: 10px;
+  left: 48px;
+  margin-left: -10px;
+}
+
+.ol-popup:before {
+  border-top-color: #fff;
+  border-width: 11px;
+  left: 48px;
+  margin-left: -11px;
+}
+
+.ol-popup-closer {
+  color: #fff;
+  text-decoration: none;
+  position: absolute;
+  top: 2px;
+  right: 8px;
+}
+
+.ol-popup-closer:after {
+  content: "✖";
+}
+
+.ol-span {
+  margin: 8px;
+}
+
+.em-tooltip {
+  position: relative;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 4px;
+  color: white;
+  padding: 4px 8px;
+  opacity: 0.7;
+  white-space: nowrap;
+}
+.em-tooltip-measure {
+  opacity: 1;
+  font-weight: bold;
+}
+.em-tooltip-static {
+  background-color: #ffcc33;
+  color: black;
+  border: 1px solid white;
+}
+.em-tooltip-measure:before,
+.em-tooltip-static:before {
+  border-top: 6px solid rgba(0, 0, 0, 0.5);
+  border-top-color: #ffcc33;
+  border-right: 6px solid transparent;
+  border-left: 6px solid transparent;
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  margin-left: -7px;
+  left: 50%;
+}
+
+.emMeasure-tooltip {
+  max-width: 360px;
+  position: relative;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 4px;
+  color: white;
+  padding: 4px 8px;
+  opacity: 0.8;
+  /*white-space: pre-wrap;*/
+}
+.emMeasure-tooltip-measure {
+  opacity: 1;
+  font-weight: bold;
+}
+.emMeasure-tooltip-static {
+  background-color: rgba(15, 47, 48, 0.9);
+  color: #fff;
+  border: 1px solid white;
+}
+.emMeasure-tooltip-measure:before,
+.emMeasure-tooltip-static:before {
+  border-top: 6px solid rgba(0, 0, 0, 0.5);
+  border-top-color: rgba(15, 47, 48, 0.9);
+  border-right: 6px solid transparent;
+  border-left: 6px solid transparent;
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  margin-left: -7px;
+  left: 50%;
+}
+
+
+
+

@@ -42,6 +42,18 @@
         top: 3px;
       }
     }
+    span.map-title{
+      float: right;
+      line-height: 30px;
+      margin-right: 5px;
+      color: darken($em-text-color-base,20%);
+      font-size: 15/$r+rem;
+    }
+
+    .el-select{
+      width: 150px;
+      float: right;
+    }
   }
 }
 

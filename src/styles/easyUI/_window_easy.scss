@@ -143,15 +143,17 @@
 
 .panel.window.#{em-table-window}.panel-htop {
   background: $em-background-table-base;
-  border: 18px solid transparent;
-  -webkit-border-image: url("../../../src/assets/image/table_border.png") 20 26 20 26 round;
-  -moz-border-image: url("../../../src/assets/image/table_border.png") 20 26 20 26 round;
-  border-image: url("../../../src/assets/image/table_border.png") 20 26 20 26 round;
+  border: 5px solid transparent;
+  -webkit-border-image: url("../../../src/assets/image/table_border.png");
+  -moz-border-image: url("../../../src/assets/image/table_border.png");
+  border-image: url("../../../src/assets/image/table_border.png");
   width: 800px;
   resize: both;
-  -webkit-border-radius: 20px;
-  -moz-border-radius: 20px;
-  border-radius: 20px;
+  border-image-slice: 5 5 5 5 fill;
+  border-image-outset: 15px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
   overflow: visible; //table-dialog遮罩
 
 }

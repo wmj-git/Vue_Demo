@@ -1710,7 +1710,7 @@ export default {
                         winSpan: 24,
                         height: 50,
                         chartTitle: "道路",
-                        unit_y: "棵",
+                        unit_y: "%",
                         dataUrl: '/gardens/tree/queryAllcount?groupBy=roadName',
                         seriesType: "pie_handle_b"
                     },
@@ -1721,7 +1721,7 @@ export default {
                         winSpan: 24,
                         height: 50,
                         chartTitle: "行政区划",
-                        unit_y: "棵",
+                        unit_y: "%",
                         dataUrl: '/gardens/tree/queryAllcount?groupBy=districtName',
                         seriesType: "pie_handle_b"
                     },
@@ -1732,7 +1732,7 @@ export default {
                         winSpan: 24,
                         height: 50,
                         chartTitle: "植物名称",
-                        unit_y: "棵",
+                        unit_y: "%",
                         dataUrl: '/gardens/tree/queryAllcount?groupBy=treeName',
                         seriesType: "pie_handle_b"
                     },
@@ -1743,7 +1743,7 @@ export default {
                         winSpan: 24,
                         height: 50,
                         chartTitle: "等级",
-                        unit_y: "棵",
+                        unit_y: "%",
                         dataUrl: '/gardens/tree/queryAllcount?groupBy=rankValue',
                         seriesType: "pie_handle_b"
                     }
