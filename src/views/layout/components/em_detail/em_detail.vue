@@ -5,7 +5,7 @@
         <el-form-item class="picture" v-if="imgUrl!==''">
           <el-image
             :src="baseUrl+imgUrl"
-            fit="fill">
+          >
           </el-image>
         </el-form-item>
         <el-form-item :label="item.name" v-for="(item,index) in data " :key="index">
