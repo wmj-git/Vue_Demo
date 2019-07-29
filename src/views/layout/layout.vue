@@ -31,6 +31,8 @@
     <!--</template>-->
     <!--主菜单-->
     <em_nav></em_nav>
+    <!--表格里的详情-->
+    <em_detail></em_detail>
   </div>
 </template>
 
@@ -61,6 +63,7 @@
   import echart_alone_show from "./components/echart_alone_show/echart_alone_show"
   import echarts_show from "./components/echarts_show/echarts_show"
   import table_show from "./components/table_show/table_show"
+  import em_detail from "./components/em_detail/em_detail"
 
   import emChart from "@/app_components/emChart/emChart"
   export default {
@@ -161,7 +164,8 @@
       echarts_show,
       table_show,
       buttonGroup,
-      emChart
+      emChart,
+      em_detail
     },
     computed: {
       wins: function () {
