@@ -12,3 +12,4 @@ module.exports = merge(prodEnv, {
   SCENE_URL: '"http://192.168.20.18:800"'
 
 })
+
