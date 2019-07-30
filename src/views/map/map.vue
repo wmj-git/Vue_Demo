@@ -25,6 +25,7 @@
                     {
                         id: "tool_flyToScene",
                         value: "场景",
+                        control_type:"scene",
                         icon: "el-icon-scene",
                         control_id: "",
                         fn: "toScene",
@@ -33,6 +34,7 @@
                     {
                         id: "tool_coordinates",
                         value: "坐标",
+                        control_type:"scene",
                         icon: "el-icon-coordinates",
                         control_id: "",
                         fn: "xyz",
@@ -41,14 +43,16 @@
                     {
                         id: "tool_data",
                         value: "数据",
+                        control_type:"tool",
                         icon: "el-icon-data",
-                        control_id: "",
-                        fn: "scene_data",
+                        control_id: "scene_data",
+                        fn: "handleData",
                         trigger: true
                     },
                     {
                         id: "tool_distance",
                         value: "距离",
+                        control_type:"scene",
                         icon: "el-icon-distance",
                         control_id: "",
                         fn: "measure_drawLine",
@@ -57,6 +61,7 @@
                     {
                         id: "tool_area",
                         value: "面积",
+                        control_type:"scene",
                         icon: "el-icon-area",
                         control_id: "",
                         fn: "measure_drawPloy",
@@ -65,6 +70,7 @@
                     {
                         id: "tool_label",
                         value: "清除",
+                        control_type:"scene",
                         icon: "el-icon-remove2",
                         control_id: "",
                         fn: "measure_clear",
@@ -77,10 +83,6 @@
                 window[this.id].init("mapContainer", [114.031047, 22.663679], [
                     mp.layers.baidu_vec
                 ]);
-
-                this.queryVicinityPrintFn(114.03188276054428, 22.619840297782094, 50000);//采集的树数据
-
-                // this.spaceTimeData();//时空云数据
 
             },
             baseMapFn(obj) {
@@ -95,8 +97,6 @@
                         _map.removeLayer(_layer);
                     }
                 });
-
-
 
                 let _layer = this.spaceTimeBaseMap();
                 this.addLayer({
@@ -155,7 +155,20 @@
                 window[this.id].viewFn(0, [114.031047, 22.663679]);
             },
             scene_data(obj) {
+                console.log(obj);
 
+                if(obj.value){
+                    window[this.id].map.removeLayer(_layer);
+                }
+
+                switch (obj.value) {
+                    case "1":
+                        this.queryVicinityPrintFn(114.03188276054428, 22.619840297782094, 50000);//采集的树数据
+                        break;
+                    case "2":
+                        this.spaceTimeData();//时空云数据
+                        break;
+                }
             },
             addLayer(obj) {
                 let _layer = obj.layer;
