@@ -65,14 +65,38 @@
             fn(item, key) {
                 console.log(item);
                 console.log(key);
-                if(!(item.control_id)){
-                    item.control_id=this.$store.getters["scene/type"];
+                
+                switch (item.control_type) {
+                    case "tool":
+                        this[item.fn](item);
+                        break;
+                    case "scene":
+                        if(!(item.control_id)){
+                            item.control_id=this.$store.getters["scene/type"];//获取地图对象
+                        }
+                        this.bus.$emit(item.control_id, item);
+                        if (item.trigger !== "none") {
+                            let _item = this.tool[key];
+                            this.tool[key].trigger = !(_item.trigger);
+                            console.log(this.tool[key].trigger);
+                        }
+                        break;
                 }
-                this.bus.$emit(item.control_id, item);
-                if (item.trigger !== "none") {
-                    let _item = this.tool[key];
-                    this.tool[key].trigger = !(_item.trigger);
-                    console.log(this.tool[key].trigger);
+
+            },
+            handleData(_obj) {
+                let _show = _obj.trigger;
+                let _controlId= _obj.control_id;
+                if (_show) {
+                    this.$store.commit('win/win_open', {
+                        win_obj: {
+                            id: _controlId
+                        }
+                    });
+                } else {
+                    this.$store.commit('win/win_close', {
+                        win_id: _controlId
+                    });
                 }
             }
         }
