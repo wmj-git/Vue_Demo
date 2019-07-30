@@ -1,6 +1,6 @@
 <template>
     <div class="em_detail">
-      <el-button @click="hideDetail">X</el-button>
+      <el-button @click="hideDetail" icon="el-icon-close"></el-button>
       <el-form label-position="left" inline class="demo-table-expand">
         <el-form-item class="picture" v-if="imgUrl!==''">
           <el-image
@@ -43,7 +43,7 @@
                res.label.forEach(val=>{
                  console.log(val);
                  for(let i in res.row){
-                    if(i===val.params){
+                    if(i===val.prop){
                       this.data.push({name:val.name,value:res.row[i]});
                     }
 

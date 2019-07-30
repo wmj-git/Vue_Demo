@@ -88,7 +88,7 @@
                          :min-width="item.width"
                           align="center"
                          :show-overflow-tooltip="true"
-                          sortable
+
         >
         </el-table-column>
         <el-table-column
