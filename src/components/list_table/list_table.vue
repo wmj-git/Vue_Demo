@@ -56,12 +56,13 @@
             height="600px"
             highlight-current-row
             @current-change="handleCurrentChange"
-            @row-dblclick="showDetail"
             ref="multipleTable"
             tooltip-effect="dark"
             :data="tableData"
             style="width: 100%"
-            @selection-change="handleSelectionChange">
+            @selection-change="handleSelectionChange"
+            @row-dblclick="showDetail"
+          >
             <el-table-column
               type="index"
               fixed="left"
@@ -81,7 +82,6 @@
                              :min-width="item.width"
                              align="center"
                              :show-overflow-tooltip="true"
-                             sortable
             >
             </el-table-column>
             <el-table-column
@@ -128,7 +128,8 @@
     downCsvmodel,
     upLoad,
     completeProgram,
-    querySpecifications
+    querySpecifications,
+    getPictureImg
   } from "@/api/table_operate"
   import {findMenuByThisUser} from "@/api/resource"
   import {getToken} from '@/utils/auth'
@@ -489,8 +490,25 @@
 
 
       },
-      showDetail(){
-        console.log(1);
+      showDetail(row){
+        var sideBar = $(".em_detail");
+        console.log(sideBar);
+        if (!sideBar.hasClass("addWidth")) {
+          console.log(sideBar);
+          $(".em_detail").addClass("addWidth");
+        }
+        console.log(this.data[this.digital_table_id]);
+        if(row&&this.data[this.digital_table_id].table.picture_url){
+          getPictureImg({url:this.data[this.digital_table_id].table.picture_url,id:row.id}).then(res=>{
+            this.imgUrl=res.data[0].fileName;
+            this.baseUrl=process.env.IMG_API;
+            this.bus.$emit("detail",{row:row,label:this.label,imgUrl:this.imgUrl,baseUrl:this.baseUrl})
+          })
+        }
+        else{
+          this.bus.$emit("detail",{row:row,label:this.label})
+        }
+
       }
     }
   }
