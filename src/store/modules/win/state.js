@@ -4979,17 +4979,6 @@ export default {
             }
         },
         {
-            id: "chart_test",
-            title: "分析",//开发测试
-            top: 200,
-            left: 480,
-            width: 400,
-            show: false,
-            class: "",
-            component: "emChart",
-            component_data: {}
-        },
-        {
           id: "win_dialog",
           title: "火警详情信息",
           top: 60,

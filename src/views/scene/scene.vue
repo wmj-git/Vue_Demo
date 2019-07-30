@@ -128,6 +128,7 @@
                 // window._scene = cm.openScene(window.viewer, process.env.SCENE_URL + "/zhlhscene/b3dm/tileset.json");
                 window._scene = cm.openScene(window.viewer, "https://onelz.oicp.vip/SG/b3dm/LH1-1-2.405276/tileset.json");
 
+                this.scene_data();
             },
             alpha(obj) {
                 cm.alphaFN(obj.value, window.viewer, window._scene.scene);
