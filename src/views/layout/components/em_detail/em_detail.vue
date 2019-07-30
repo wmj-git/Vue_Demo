@@ -1,6 +1,6 @@
 <template>
     <div class="em_detail">
-      <el-button @click="hideDetail">X</el-button>
+      <el-button @click="hideDetail" icon="el-icon-close"></el-button>
       <el-form label-position="left" inline class="demo-table-expand">
         <el-form-item class="picture" v-if="imgUrl!==''">
           <el-image
