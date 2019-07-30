@@ -1,11 +1,12 @@
 $r:32;
+@import "../../../../styles/index/variable";
 .em_detail {
    width: 23%;
    height:100%;
    position: fixed;
    right: 0;
    top: 0;
-   background: white;
+   background: $em-bg-color-base;
    padding: 10px;
    overflow: scroll;
    right: -23%;
@@ -23,6 +24,7 @@ $r:32;
     .el-form-item__content{
       width: 60%;
       text-align:justify;
+      color: $em-text-color-base;
     }
     .el-image{
       width: 300px;
@@ -40,6 +42,10 @@ $r:32;
   .el-button{
     border: none;
     margin-bottom: 8px;
+    color: darken($em-text-color-base,20%);
+    &:hover{
+      color: $em-text-highlight-base;
+    }
     & /deep/{
       .el-icon-close{
         font-size: 18/$r+rem;
@@ -49,5 +55,6 @@ $r:32;
 }
 .addWidth {
   width: 50%;    /* 设置为侧边栏宽度的2倍，才能完全露出 */
+  background: $em-background-details;
 }
 
