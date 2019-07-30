@@ -35,6 +35,8 @@ Vue.config.productionTip = false;
 Vue.prototype.bus= new Vue(); //vue-bus
 /* eslint-disable no-new */
 
+import * as socketApi from './api/socket'
+Vue.prototype.socketApi = socketApi;
 
 new Vue({
   el: '#app',
