@@ -6,7 +6,7 @@ $r:32;
    position: fixed;
    right: 0;
    top: 0;
-   background: $em-bg-color-base;
+   background: $em-background-details;
    padding: 10px;
    overflow: scroll;
    right: -23%;
@@ -55,6 +55,6 @@ $r:32;
 }
 .addWidth {
   width: 50%;    /* 设置为侧边栏宽度的2倍，才能完全露出 */
-  background: $em-background-details;
+
 }
 

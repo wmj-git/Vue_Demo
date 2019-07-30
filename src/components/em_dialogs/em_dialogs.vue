@@ -159,6 +159,10 @@
 
                   }, 0)
                 }
+                else{
+                  alert("1")
+                }
+
               }
               else {
                 this.all={title:'',arr:[]};
