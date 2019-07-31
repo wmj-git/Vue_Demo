@@ -45,17 +45,14 @@
         input: ''
       }
     },
-    mounted() {
-      $(function () {
-        var subnav = document.getElementById('subnav'),
-          aLi = document.querySelectorAll('#subnav li'),
-          w = parseFloat(subnav.offsetWidth / aLi.length);//通过ul的宽度除以li的个数来计算每个li的宽度
-        console.log("个数：" + aLi.length);
-        for (var i = 0; i < aLi.length; i++) {
-          aLi[i].style.width = w + 'px';
-        }
-      });
-
+    updated() {
+      var subnav = document.getElementById('subnav'),
+        aLi = document.querySelectorAll('#subnav li'),
+        w = parseFloat(subnav.offsetWidth / aLi.length);//通过ul的宽度除以li的个数来计算每个li的宽度
+      console.log("个数：" + aLi.length);
+      for (var i = 0; i < aLi.length; i++) {
+        aLi[i].style.width = w + 'px';
+      }
     },
     computed: {
       tool: function () {
