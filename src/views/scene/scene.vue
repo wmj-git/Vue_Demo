@@ -24,6 +24,7 @@
                     {
                         id: "tool_flyToScene",
                         value: "场景",
+                        control_type:"scene",
                         icon: "el-icon-scene",
                         control_id: "",
                         fn: "toScene",
@@ -32,6 +33,7 @@
                     {
                         id: "tool_transparent",
                         value: "透明",
+                        control_type:"scene",
                         icon: "el-icon-transparent",
                         control_id: "em_slider",
                         fn: "showFn",
@@ -40,6 +42,7 @@
                     {
                         id: "tool_coordinates",
                         value: "坐标",
+                        control_type:"scene",
                         icon: "el-icon-coordinates",
                         control_id: "",
                         fn: "xyz",
@@ -48,14 +51,16 @@
                     {
                         id: "tool_data",
                         value: "数据",
+                        control_type:"tool",
                         icon: "el-icon-data",
-                        control_id: "",
-                        fn: "scene_data",
+                        control_id: "scene_data",
+                        fn: "handleData",
                         trigger: true
                     },
                     {
                         id: "tool_distance",
                         value: "距离",
+                        control_type:"scene",
                         icon: "el-icon-distance",
                         control_id: "",
                         fn: "measure_drawLine",
@@ -64,6 +69,7 @@
                     {
                         id: "tool_area",
                         value: "面积",
+                        control_type:"scene",
                         icon: "el-icon-area",
                         control_id: "",
                         fn: "measure_drawPloy",
@@ -72,6 +78,7 @@
                     {
                         id: "tool_hightly",
                         value: "高度",
+                        control_type:"scene",
                         icon: "el-icon-highly",
                         control_id: "",
                         fn: "",
@@ -80,6 +87,7 @@
                     {
                         id: "tool_label",
                         value: "清除",
+                        control_type:"scene",
                         icon: "el-icon-remove2",
                         control_id: "",
                         fn: "measure_clear",
@@ -128,7 +136,7 @@
                 // window._scene = cm.openScene(window.viewer, process.env.SCENE_URL + "/zhlhscene/b3dm/tileset.json");
                 window._scene = cm.openScene(window.viewer, "https://onelz.oicp.vip/SG/b3dm/LH1-1-2.405276/tileset.json");
 
-                this.scene_data();
+                // this.scene_data();
             },
             alpha(obj) {
                 cm.alphaFN(obj.value, window.viewer, window._scene.scene);

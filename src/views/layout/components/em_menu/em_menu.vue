@@ -58,11 +58,10 @@
           width: obj.width
         });
       }.bind(this));
-    }
-    /* ,
+    },
      beforeDestroy() {
        this.bus.$off(this.id);
-     }*/
+     }
   };
 </script>
 <style lang="scss" scoped>

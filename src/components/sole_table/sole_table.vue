@@ -465,6 +465,7 @@
             type: 'success'
           });
           this.init();
+          this.dialogFormVisible = false;
         } else {
           this.$message({
             message: response.data.jsonmsg.ERRORMSG.slice(response.data.jsonmsg.ERRORMSG.indexOf("=") + 1),

@@ -6,8 +6,12 @@ $r:32;
    position: fixed;
    right: 0;
    top: 0;
+<<<<<<< HEAD
    background: $em-bg-color-base;
    box-shadow: -9px 1px 17px 0px darken($em-bg-color-base,60%);
+=======
+   background: $em-background-details;
+>>>>>>> 940328d7e3701c7e4c3047cddcbcdb6319a3f02c
    padding: 10px;
    overflow: scroll;
    right: -23%;
@@ -59,6 +63,6 @@ $r:32;
 }
 .addWidth {
   width: 50%;    /* 设置为侧边栏宽度的2倍，才能完全露出 */
-  background: $em-background-details;
+
 }
 

@@ -4950,7 +4950,7 @@ export default {
             left: 480,
             width: 400,
             height: 128,
-            show: true,
+            show: false,
             class: "",
             component: "buttonGroup",
             component_data: {
@@ -4960,20 +4960,22 @@ export default {
                         type: "info",
                         icon: "el-icon-edit",
                         text: "树木数据",
-                        fn: "",
-                        fnData: {
-                            path: "/main/map"
-                        }
+                        control_type:"scene",
+                        control_id: "",
+                        fn: "scene_data",
+                        value: "1",
+                        trigger: true
                     },
                     {
                         id: "bt_2",
                         type: "info",
                         icon: "",
-                        text: "sk_街道树",
-                        fn: "",
-                        fnData: {
-                            path: "/home/map"
-                        }
+                        text: "街道树",
+                        control_type:"scene",
+                        control_id: "",
+                        fn: "scene_data",
+                        value: "2",
+                        trigger: true
                     }
                 ]
             }
