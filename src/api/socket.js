@@ -45,8 +45,11 @@ function websocketonmessage (e) {
   console.log(e.data);
   let data = e.data;
   if(data.indexOf("{") !== -1 && data.indexOf("}") !== -1){  // 是JSON字符串
-    let val = JSON.parse(data);
-    console.log(val)
+    let obj = JSON.parse(data);
+    if(obj.type === 'fire'){
+
+    }
+    // console.log(val)
   }else{
     console.log(e.data)
   }
