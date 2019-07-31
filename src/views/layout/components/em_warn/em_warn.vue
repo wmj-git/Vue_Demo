@@ -11,10 +11,11 @@
 <script>
     import win from "@/components/win/win"
     import sole_table from "@/components/sole_table/sole_table"
+
     export default {
         name: "em_warn",
         data(){
-          return{
+          return {
             win: {
               id: "em_warn",
               title: "",
@@ -34,8 +35,12 @@
       },
       created(){
         let url =process.env.SOCKETWEB_URL;
-        console.log(url)
         this.socketApi.initWebSocket(url);
+
+        this.socketApi.proxyFunction('fire',(res)=>{
+          console.log(res)
+        })
+
       },
       methods:{
            showDialog(){

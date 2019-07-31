@@ -1,6 +1,8 @@
 var websock = null;
 import { getToken } from '@/utils/auth'
 
+var saveObj={}
+
 // 初始化weosocket
 function initWebSocket (url) {
   // ws地址 -->这里是你的请求路径
@@ -42,18 +44,23 @@ function sendSock (agentData, callback) {
 
 // 数据接收
 function websocketonmessage (e) {
-  console.log(e.data);
   let data = e.data;
   if(data.indexOf("{") !== -1 && data.indexOf("}") !== -1){  // 是JSON字符串
     let obj = JSON.parse(data);
-    if(obj.type === 'fire'){
-
+    if(saveObj[obj.type]){
+      saveObj[obj.type](obj)
     }
-    // console.log(val)
   }else{
     console.log(e.data)
   }
 
+}
+
+
+function proxyFunction(type,callback){
+
+  saveObj[type] = callback
+  //callback()
 }
 
 
@@ -73,7 +80,8 @@ function websocketOpen (e) {
 }
 
 export {
-  initWebSocket
+  initWebSocket,
+  proxyFunction
 }
 
 
