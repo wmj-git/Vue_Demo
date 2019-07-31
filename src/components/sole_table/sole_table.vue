@@ -59,23 +59,6 @@
           :index="table_idx"
         >
         </el-table-column>
-        <el-table-column type="expand">
-          <template slot-scope="props">
-            <el-form label-position="left" inline class="demo-table-expand" >
-                  <el-form-item :label="item.name" v-for="(item,i) in label" :key="i">
-                    <span>{{ props.row[item.prop]}}</span>
-                  </el-form-item>
-
-              <el-form-item class="picture" v-if="imgUrl!==''">
-                <el-image
-                  :src="baseUrl+imgUrl"
-                  fit="fill">
-                </el-image>
-              </el-form-item>
-
-            </el-form>
-          </template>
-        </el-table-column>
         <el-table-column
           align="center"
           type="selection"
@@ -324,9 +307,10 @@
         this[obj.fn](obj);
         if (obj.component_name) {
           this.commonDialogComponent = obj.component_name;
-          this.commonDialogTitle = obj.dialog_name;
+          // this.commonDialogTitle = obj.dialog_name;
           this.commonDialogWidth = obj.dialog_width;
           setTimeout(() => {
+            this.commonDialogTitle=this.alter_obj.roleCname||this.alter_obj.userCname||this.alter_obj.entName;
             this.bus.$emit("alter_id", this.alter_obj.id);   //是分配角色等接受的数据
           });
         }
@@ -334,7 +318,6 @@
       add(obj) {
         this.$refs.dialog.showdialog(obj);  //调用子组件em_dialogs的方法显示弹出框;
         this.delever_obj = obj;
-        console.log(this.delever_obj)
       },
       dele(obj) {
         this.multipleSelection.forEach(val => {
@@ -368,13 +351,19 @@
 
           });
         }
+        else{
+          this.$message({
+            showClose: true,
+            message: '请先单击复选框选择你要删除的数据行',
+            type: 'warning'
+          });
+        }
       },
       search() {
         this.currentPage = 1;
         this.init();
       },
       modify(obj) {
-        console.log(this.$refs.dialog);
         this.$refs.dialog.showdialog(obj);  //调用子组件em_dialogs的方法显示弹出框;
         this.delever_obj = obj;
         console.log(this.delever_obj);
