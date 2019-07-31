@@ -2,9 +2,9 @@ var websock = null;
 import { getToken } from '@/utils/auth'
 
 // 初始化weosocket
-function initWebSocket () {
+function initWebSocket (url) {
   // ws地址 -->这里是你的请求路径
-  var ws= `ws://192.168.20.18:8096/webscoket/${getToken()}/groupKey`;
+  var ws= `${url}/webscoket/${getToken()}/groupKey`;
   websock = new WebSocket(ws);
   websock.onmessage = function (e) {
     websocketonmessage(e)
@@ -69,6 +69,9 @@ function websocketOpen (e) {
   console.log('连接成功')
 }
 
-initWebSocket();
+export {
+  initWebSocket
+}
+
 
 

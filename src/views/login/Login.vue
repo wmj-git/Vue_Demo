@@ -95,7 +95,6 @@
           console.log(response);
           this.init();
           this.$router.push("/home/map");
-
         });
       },
       enterSearchPwd() {

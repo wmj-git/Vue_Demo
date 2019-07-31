@@ -33,9 +33,9 @@
           sole_table
       },
       created(){
-        this.socketApi.sendSock("lalala",function (res) {
-           return res
-        });
+        let url =process.env.SOCKETWEB_URL;
+        console.log(url)
+        this.socketApi.initWebSocket(url);
       },
       methods:{
            showDialog(){
