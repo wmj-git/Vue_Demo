@@ -18,7 +18,7 @@
             win: {
               id: "em_warn",
               title: "",
-              top: 36,
+              top: 24,
               left: 358,
               show: true,
               resizable:false,
