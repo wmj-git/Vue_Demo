@@ -33,9 +33,7 @@
           sole_table
       },
       created(){
-        this.socketApi.sendSock("lalala",function (res) {
-           return res
-        });
+        this.socketApi.initWebSocket();
       },
       methods:{
            showDialog(){
