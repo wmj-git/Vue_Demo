@@ -4963,7 +4963,8 @@ export default {
                         control_type:"scene",
                         control_id: "",
                         fn: "scene_data",
-                        value: "1",
+                        layer_name:"",
+                        data_type: "1",
                         trigger: true
                     },
                     {
