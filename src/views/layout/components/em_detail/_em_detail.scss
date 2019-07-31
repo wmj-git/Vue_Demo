@@ -7,6 +7,7 @@ $r:32;
    right: 0;
    top: 0;
    background: $em-bg-color-base;
+   box-shadow: -9px 1px 17px 0px darken($em-bg-color-base,60%);
    padding: 10px;
    overflow: scroll;
    right: -23%;
@@ -25,11 +26,14 @@ $r:32;
       width: 60%;
       text-align:justify;
       color: $em-text-color-base;
+      //line-height: 20px;
     }
     .el-image{
-      width: 300px;
+      width: 50%;
       height: 300px;
       object-fit: cover;
+      left: -50%;
+      transform: translate(80%);
     }
   }
   .picture /deep/{
