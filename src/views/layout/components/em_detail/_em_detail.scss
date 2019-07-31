@@ -29,8 +29,8 @@ $r:32;
       //line-height: 20px;
     }
     .el-image{
-      width: 50%;
-      height: 300px;
+      width: 320/$r+rem;
+      height: 320/$r+rem;
       object-fit: cover;
       left: -50%;
       transform: translate(80%);
