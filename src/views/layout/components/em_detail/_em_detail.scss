@@ -2,20 +2,19 @@ $r:32;
 @import "../../../../styles/index/variable";
 .em_detail {
    width: 23%;
-   height:100%;
+   height: calc(100% - 42px);
    position: fixed;
    right: 0;
    top: 0;
-   box-shadow: -9px 1px 17px 0px darken($em-bg-color-base,60%);
    background: $em-background-details;
    padding: 10px;
-   overflow: scroll;
+   overflow-y: scroll;
    right: -23%;
    transition:width 0.3s;
-   z-index: 100000;
   .el-form-item /deep/{
      width: 70%;
      margin-right: 20px;
+    display: flex;
     .el-form-item__label{
       width: 15%;
       color: #99a9bf;
@@ -26,7 +25,7 @@ $r:32;
       width: 60%;
       text-align:justify;
       color: $em-text-color-base;
-      //line-height: 20px;
+      line-height: 20px;
     }
     .el-image{
       width: 320/$r+rem;
@@ -59,6 +58,6 @@ $r:32;
 }
 .addWidth {
   width: 50%;    /* 设置为侧边栏宽度的2倍，才能完全露出 */
-
+  box-shadow: -9px 1px 17px 0px darken($em-bg-color-base,60%);
 }
 
