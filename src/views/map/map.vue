@@ -82,6 +82,7 @@
                 mp.openScene(this.id);
                 window[this.id].init("mapContainer", [114.031047, 22.663679], [
                     mp.layers.baidu_vec
+                  // mp.layers.tLayer
                 ]);
 
             },
