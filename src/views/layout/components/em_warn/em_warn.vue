@@ -33,7 +33,9 @@
           sole_table
       },
       created(){
-        this.socketApi.initWebSocket();
+        let url =process.env.SOCKETWEB_URL;
+        console.log(url)
+        this.socketApi.initWebSocket(url);
       },
       methods:{
            showDialog(){
