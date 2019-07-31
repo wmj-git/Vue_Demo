@@ -1,10 +1,10 @@
 var websock = null;
-var globalCallback = null;
+import { getToken } from '@/utils/auth'
 
 // 初始化weosocket
-function initWebSocket () {
+function initWebSocket (url) {
   // ws地址 -->这里是你的请求路径
-  var ws= 'ws://192.168.20.18:8096/webscoket/{token}/groupKey';
+  var ws= `${url}/webscoket/${getToken()}/groupKey`;
   websock = new WebSocket(ws);
   websock.onmessage = function (e) {
     websocketonmessage(e)
@@ -24,7 +24,6 @@ function initWebSocket () {
 
 // 实际调用的方法
 function sendSock (agentData, callback) {
-  globalCallback = callback
   if (websock.readyState === websock.OPEN) {
     // 若是ws开启状态
     websocketsend(agentData)
@@ -43,8 +42,20 @@ function sendSock (agentData, callback) {
 
 // 数据接收
 function websocketonmessage (e) {
-  globalCallback(JSON.parse(e.data))
+  console.log(e.data);
+  let data = e.data;
+  if(data.indexOf("{") !== -1 && data.indexOf("}") !== -1){  // 是JSON字符串
+    let obj = JSON.parse(data);
+    if(obj.type === 'fire'){
+
+    }
+    // console.log(val)
+  }else{
+    console.log(e.data)
+  }
+
 }
+
 
 // 数据发送
 function websocketsend (agentData) {
@@ -61,9 +72,9 @@ function websocketOpen (e) {
   console.log('连接成功')
 }
 
-initWebSocket()
-
-// 将方法暴露出去
 export {
-  sendSock
+  initWebSocket
 }
+
+
+

@@ -18,7 +18,7 @@
             win: {
               id: "em_warn",
               title: "",
-              top: 36,
+              top: 24,
               left: 358,
               show: true,
               resizable:false,
@@ -31,6 +31,11 @@
       components:{
           win,
           sole_table
+      },
+      created(){
+        let url =process.env.SOCKETWEB_URL;
+        console.log(url)
+        this.socketApi.initWebSocket(url);
       },
       methods:{
            showDialog(){

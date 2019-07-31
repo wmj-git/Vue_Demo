@@ -160,7 +160,11 @@
                   }, 0)
                 }
                 else{
-                  alert("1")
+                  this.$message({
+                    showClose: true,
+                    message: '请先单击行选择你要修改的数据行',
+                    type: 'warning'
+                  });
                 }
 
               }
