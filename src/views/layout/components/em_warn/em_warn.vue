@@ -32,6 +32,11 @@
           win,
           sole_table
       },
+      created(){
+        this.socketApi.sendSock("lalala",function (res) {
+           return res
+        });
+      },
       methods:{
            showDialog(){
              this.$store.commit('win/win_open', {
