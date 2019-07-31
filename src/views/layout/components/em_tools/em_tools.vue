@@ -22,7 +22,8 @@
 </template>
 
 <script>
-  import win from "@/components/win/win";
+
+  import win from "@/components/win/win"
 
   export default {
     name: "em_bottom",
@@ -43,9 +44,8 @@
           class: "em-tool-window"
         },
         input: ''
-      };
-    },
-    created() {
+
+      }
     },
     computed: {
       tool: function () {
@@ -73,7 +73,6 @@
             }
             break;
         }
-
       },
       handleData(_obj) {
         let _show = _obj.trigger;
@@ -90,9 +89,9 @@
           });
         }
       }
+
     },
     mounted() {
-
     },
     updated() {
       var subnav = document.getElementById('subnav'),
@@ -103,7 +102,8 @@
         aLi[i].style.width = w + 'px';
       }
     }
-  };
+  }
+
 </script>
 
 <style lang="scss" scoped>
