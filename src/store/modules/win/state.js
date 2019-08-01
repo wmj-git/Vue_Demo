@@ -5009,7 +5009,7 @@ export default {
           ],
             table: {
             id: "fire_info_table",
-              table_url: "/gardens/firealarminfo/queryAllByPage?isClose=1",
+              table_url: "/gardens/firealarminfo/queryAllByPage?isClose=0",
               label: [
               {
                 name: "检测设备号",

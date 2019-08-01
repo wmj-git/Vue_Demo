@@ -1,7 +1,7 @@
 import request from '@/utils/request'
-export function fireWarn() {
+export function fireWarnCount() {         //火灾报警点数量
   return request({
-    url: 'http://localhost:3000/chartdata',
+    url: '/gardens/firealarminfo/getcount',
     method: 'get'
 
 

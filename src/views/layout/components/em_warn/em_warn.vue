@@ -2,7 +2,7 @@
     <div class="em_warn">
         <win :id="win.id" :data="win">
             <el-button  class="em-btn-warn" @click="showDialog">
-              <span>69</span>
+              <span>{{fire_count}}</span>
             </el-button>
         </win>
     </div>
@@ -11,7 +11,7 @@
 <script>
     import win from "@/components/win/win"
     import sole_table from "@/components/sole_table/sole_table"
-
+   import {fireWarnCount} from "@/api/warn"
     export default {
         name: "em_warn",
         data(){
@@ -26,7 +26,7 @@
               class:"em-warn-window",
               control_id:"win_dialog"
             },
-            winDialog:{}
+            fire_count:null
           }
         },
       components:{
@@ -34,12 +34,19 @@
           sole_table
       },
       created(){
-        let url =process.env.SOCKETWEB_URL;
-        this.socketApi.initWebSocket(url);
-
+        this.init();
+        let url =process.env.BASE_API;
+        this.socketApi.initWebSocket(url.replace("http:","ws:"));
         this.socketApi.proxyFunction('fire',(res)=>{
-          console.log(res)
-        })
+          console.log("fire");
+          console.log(res);
+          if(res){
+            this.init();
+            this.bus.$emit("fire_info",res)
+          }
+        });
+
+
 
       },
       methods:{
@@ -49,7 +56,13 @@
                  id: this.win.control_id
                }
              });
-           }
+           },
+        init(){
+          fireWarnCount().then(res=>{
+            console.log(res);
+            this.fire_count=res.data;
+          })
+        }
       }
     }
 </script>
