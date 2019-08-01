@@ -174,13 +174,14 @@
 
                 switch (obj.data_type) {
                     case "1":
-
                         if (obj.trigger) {
                             this.queryVicinityPrintFn(114.03188276054428, 22.619840297782094, 50000);//采集的树数据
                           alert(obj.trigger);
                         } else {
                           alert(obj.trigger);
-                            window[this.id].map.removeLayer();
+                          this.removeLayer({
+                            layer_name: obj.layer_name
+                          });
                         }
                         break;
                     case "2":
