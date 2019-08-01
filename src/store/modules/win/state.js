@@ -5130,28 +5130,91 @@ export default {
 
         },
         {
-          type: "em_input",
-          placeholder: "部门",
-          name: "部门",
-          params: ""
+          id: "win_dialog",
+          title: "火警详情信息",
+          top: 60,
+          left: 500,
+          height: 400,
+          show: false,
+          resizable: true,
+          class: "em-table-window",
+          component: "sole_table",
+          component_data: {
+            operation: [
+              {
+                id: "fire_info_date",
+                type: "em_date",
 
-        },]
-    },
-    {
-      id: "edit_operation",
-      title: "人员修改",
-      show: false,
-      type: "dome",
-      data: {
-        name: ""
-      }
-    },
-    {
-      id: "type_manage_add_operation",
-      title: "添加",
-      show: false,
-      type: "dome",
-      data: [
+              },
+              {
+                id: "fire_info_button_search",
+                type: "em_button",
+                icon: "el-icon-search",
+                operate: "查询",
+                control_id: "fire_info_table",
+                fn: "search"
+              }
+            ],
+            table: {
+              id: "fire_info_table",
+              table_url: "/gardens/firealarminfo/queryAllByPage?isClose=0",
+              label: [
+                {
+                  name: "检测设备号",
+                  prop: "fireAlarmId",
+                  width: "100",
+                  type: "em_input",
+                  placeholder: "检测设备号",
+                  params: "fireAlarmId",
+                  add_show: true,
+                  alter_show: true
+                },
+                {
+                  name: "报警等级",
+                  prop: "fireAlarmLevel",
+                  width: "100",
+                  type: "em_input",
+                  placeholder: "报警等级",
+                  params: "fireAlarmLevel",
+                  add_show: true,
+                  alter_show: true
+                },
+                {
+                  name: "报警信息",
+                  prop: "fireAlarmValue",
+                  width: "140",
+                  type: "em_input",
+                  placeholder: "报警信息",
+                  params: "fireAlarmValue",
+                  add_show: true,
+                  alter_show: true
+                },
+                {
+                  name: "发生时间",
+                  prop: "createDate",
+                  width: "140",
+                  type: "em_input",
+                  placeholder: "发生时间",
+                  params: "createDate",
+                  add_show: false,
+                  alter_show: false
+                },
+                {
+                  name: "备注",
+                  prop: "memo",
+                  width: "100",
+                  type: "em_input",
+                  placeholder: "备注",
+                  params: "memo",
+                  add_show: true,
+                  alter_show: true
+                }
+              ]
+            }
+          }
+        }
+      ],
+      dialog: [
         {
           type: "em_input",
           placeholder: "账户",

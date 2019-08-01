@@ -561,6 +561,14 @@
       this.bus.$on(this.data.table.id, obj => {// 通过按钮组件（添加，删除..）的点击事件触发此组件的control方法
         this.control(obj);
       });
+      if(this.data.table.id==="fire_info_table"){
+         this.bus.$off("fire_info");
+         this.bus.$on("fire_info",res=>{
+            if(res){
+               this.init()
+            }
+         })
+      }
     },
     beforeDestroy() {
       this.bus.$off(this.data.table.id);

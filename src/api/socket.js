@@ -1,12 +1,12 @@
 var websock = null;
 import { getToken } from '@/utils/auth'
 
-var saveObj={}
+var saveObj={};
 
 // 初始化weosocket
 function initWebSocket (url) {
   // ws地址 -->这里是你的请求路径
-  var ws= `${url}/webscoket/${getToken()}/groupKey`;
+  var ws= `${url}/ws/webscoket/${getToken()}/groupKey`;
   websock = new WebSocket(ws);
   websock.onmessage = function (e) {
     websocketonmessage(e)
@@ -56,12 +56,12 @@ function websocketonmessage (e) {
 
 }
 
-
 function proxyFunction(type,callback){
-
   saveObj[type] = callback
-  //callback()
 }
+
+
+
 
 
 // 数据发送
