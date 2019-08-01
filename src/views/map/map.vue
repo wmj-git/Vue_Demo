@@ -119,7 +119,7 @@
                 let _layer = null;
                 console.log(obj);
                 this.removeLayer({
-                    layer_name: "baseMap"
+                    layer_name: "baseMap"//删除当前低图
                 });
 
                 switch (obj.layerName) {
@@ -172,12 +172,14 @@
             scene_data(obj) {
                 console.log(obj);
 
-
-                switch (obj.value) {
+                switch (obj.data_type) {
                     case "1":
+
                         if (obj.trigger) {
                             this.queryVicinityPrintFn(114.03188276054428, 22.619840297782094, 50000);//采集的树数据
+                          alert(obj.trigger);
                         } else {
+                          alert(obj.trigger);
                             window[this.id].map.removeLayer();
                         }
                         break;
@@ -213,9 +215,6 @@
                         distance: distance
                     }
                 }).then(response => {
-                    /* console.log("queryVicinityPrint");
-                     console.log(response);*/
-
                     let _data = [];
                     if (response.statusCode === 200) {
                         response.data.forEach(function (_obj) {
