@@ -110,6 +110,7 @@
 <script>
 
   import {add, dele, modify, find, downCsvmodel, upLoad, resetPassword,delEntRoad,roadInformation,getPictureImg} from "@/api/table_operate"
+  import {closeFireWarn} from "@/api/warn";
   import em_button from "@/components/em_button/em_button"
   import em_input from "@/components/em_input/em_input"
   import em_dialogs from "@/components/em_dialogs/em_dialogs"
@@ -528,7 +529,7 @@
 
 
       },
-      showDetail(row){
+      showDetail(row){         //显示详情
         var sideBar = $(".em_detail_window");
         console.log(sideBar);
         if (!sideBar.hasClass("addWidth")) {
@@ -545,6 +546,21 @@
         else{
           this.bus.$emit("detail",{row:row,label:this.label})
         }
+
+      },
+      closeFireWarn(){          //关闭火险报警
+           console.log(1);
+           setTimeout(_=>{
+             console.log(this.alter_obj);
+             let ids=[this.alter_obj.id];
+             console.log(ids);
+             closeFireWarn({ids:ids}).then(res=>{
+                 if(res.statusCode===200){
+                   this.init();
+                   this.bus.$emit("close_fire_warn")
+                 }
+             })
+           });
 
       }
     },

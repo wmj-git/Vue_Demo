@@ -959,7 +959,7 @@ export default {
                 prop: "plantCname",
                 width: "100",
                 type: "em_selectUrl",
-                optionUrl: "gardens/plantname/queryAll",
+                optionUrl: "gardens/plantname/queryexists",
                 params: "plantNameId",
                 alter_show: true,
                 add_show: true
@@ -1167,11 +1167,6 @@ export default {
                 dialog_name: "生成记录",
                 dialog_width: "560px",
                 component_name: "execute_program"
-              },
-              {
-                name: "完成",
-                fn: "complete",
-                id: "complete"
               }
             ],
             label: [
@@ -1180,7 +1175,7 @@ export default {
                 prop: "plantCname",
                 width: "100",
                 type: "em_selectUrl",
-                optionUrl: "gardens/plantname/queryAll",
+                optionUrl: "gardens/plantname/queryexists",
                 params: "plantNameId",
                 alter_show: true,
                 add_show: true
@@ -5010,7 +5005,16 @@ export default {
         ],
         table: {
           id: "fire_info_table",
-          table_url: "/gardens/firealarminfo/queryAllByPage?isClose=1",
+          table_url: "/gardens/firealarminfo/queryAllByPage",
+          after_digital_button_width: "80px",
+          after_digital_button: [
+            {
+              name: "关闭报警",
+              fn: "closeFireWarn",
+              id: "closeFireWarn",
+              dialog_name: "分配权限"
+            }
+            ],
           label: [
             {
               name: "检测设备号",

@@ -45,7 +45,10 @@
             this.bus.$emit("fire_info",res)
           }
         });
-
+        this.bus.$off("close_fire_warn");
+        this.bus.$on("close_fire_warn",_=>{
+            this.init()
+        });
 
 
       },
