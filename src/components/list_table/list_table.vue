@@ -499,11 +499,11 @@
 
       },
       showDetail(row){
-        var sideBar = $(".em_detail");
+        var sideBar = $(".em_detail_window");
         console.log(sideBar);
         if (!sideBar.hasClass("addWidth")) {
           console.log(sideBar);
-          $(".em_detail").addClass("addWidth");
+          $(".em_detail_window").addClass("addWidth");
         }
         console.log(this.data[this.digital_table_id]);
         if(row&&this.data[this.digital_table_id].table.picture_url){

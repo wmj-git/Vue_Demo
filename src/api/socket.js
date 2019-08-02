@@ -2,10 +2,12 @@ var websock = null;
 import { getToken } from '@/utils/auth'
 
 var saveObj={};
+var websocketurl = null;
 
 // 初始化weosocket
-function initWebSocket (url) {
+function initWebSocket (url = websocketurl) {
   // ws地址 -->这里是你的请求路径
+  websocketurl=url;
   var ws= `${url}/ws/webscoket/${getToken()}/groupKey`;
   websock = new WebSocket(ws);
   websock.onmessage = function (e) {
@@ -72,6 +74,7 @@ function websocketsend (agentData) {
 // 关闭
 function websocketclose (e) {
   console.log('connection closed (' + e.code + ')')
+  initWebSocket();
 }
 
 // 创建 websocket 连接

@@ -118,7 +118,7 @@
   border-bottom: 1px solid $em-highlight-border-color-base;
   border-radius: unset;
   position: fixed;
-  bottom: 4px;
+  bottom: 0px;
 }
 
 /*toolList*/
@@ -167,4 +167,23 @@
 /*layout-window*/
 .panel.window.#{em-layout-window}.panel-htop {
   background: rgba(100, 98, 89, 0.8);
+}
+/*detail-window*/
+.panel.window.em_detail_window.panel-htop{
+  width: 23%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  background: $em-background-details;
+  padding: 10px;
+  right: -23%;
+  overflow-y: auto;
+  overflow-style: unset;
+  transition:width 0.3s;
+  border-radius: 0;
+}
+.panel.window.em_detail_window.panel-htop.addWidth{
+  width: 46% ;    /* 设置为侧边栏宽度的2倍，才能完全露出 */
+  border: 0;
+  box-shadow: -9px 1px 17px 0px darken($em-bg-color-base,60%);
 }

@@ -278,11 +278,11 @@
                 this.init();
             },
             showDetail(row){
-              var sideBar = $(".em_detail");
+              var sideBar = $(".em_detail_window");
               console.log(sideBar);
               if (!sideBar.hasClass("addWidth")) {
                 console.log(sideBar);
-                $(".em_detail").addClass("addWidth");
+                $(".em_detail_window").addClass("addWidth");
               }
               if(row&&this.data.table.picture_url){
                 getPictureImg({url:this.data.table.picture_url,id:row.id}).then(res=>{
