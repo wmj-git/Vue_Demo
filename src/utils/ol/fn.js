@@ -11,10 +11,10 @@ function formatDegree(pValue) {
 
 
 export function createQeomStyle(_feature, _style) {
-
-  switch (_style.titleKey) {
+  let Style=null;
+  switch (_style.type) {
     case "1":
-      let Style = new ol.style.Style({
+      Style = new ol.style.Style({
         stroke: new ol.style.Stroke({
           width: _style.strokeWidth,
           color: _style.strokeColor
@@ -929,7 +929,9 @@ emMap.prototype.infoFn = function (OBJ) {
   } else if (OBJ.type && OBJ.type === "person") {
     _content = personContent(OBJ);
   } else {
-    return
+    let _Content=OBJ.lng;
+    _content = '<span style="color: white;">' + _Content + '<\/span>';
+    // return
   }
 
   $(this.Info).html(_content);

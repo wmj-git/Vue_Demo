@@ -5024,9 +5024,11 @@ export default {
             fn: "scene_data",
             data_type: "3",
             layer_name: "ly2",
+            api_name:"queryVicinityPrint",
             data_url: "http://onelz.oicp.vip/proxy/server/4FACB86003FB479A851EFF7D09AE10F4/999C1448C6DD4842A35412B42226F0A3",
-            data_maker_type: "",
-            maker_titleKey: "",
+            geomType: "LineString",
+            geom_titleKey: "id",
+            strokeWidth: 8,
             trigger: true
           },
           {
@@ -5039,9 +5041,11 @@ export default {
             fn: "scene_data",
             data_type: "3",
             layer_name: "ly3",
+            api_name:"queryVicinityPrint",
             data_url: "http://onelz.oicp.vip/proxy/server/4FACB86003FB479A851EFF7D09AE10F4/999C1448C6DD4842A35412B42226F0A3",
-            data_maker_type: "",
-            maker_titleKey: "",
+            geomType: "Polygon",
+            geom_titleKey: "id",
+            strokeWidth: 8,
             trigger: true
           },
           {
