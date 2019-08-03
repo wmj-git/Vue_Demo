@@ -19,11 +19,6 @@
   import {querySpecifications} from "@/api/table_operate"
 
   export default {
-        props: {
-          row_title:{
-            type:Array
-          }
-        },
       data(){
            return {
                digital:[],

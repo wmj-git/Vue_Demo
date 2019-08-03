@@ -30,7 +30,7 @@
     <el-dialog :title="commonDialogTitle" :width="commonDialogWidth" :visible.sync="dialogCommonVisible"
                :modal-append-to-body="false" v-dialogDrag="true">
       <component :is="commonDialogComponent" @closeCommonDialog="closeCommonDialog" ref="dialogComponent"
-                 v-if="dialogCommonVisible" :row_title="label"></component>
+                 v-if="dialogCommonVisible"></component>
     </el-dialog>
     <el-row style="height: 100%">
       <el-col :span="10" style="height: 100%;" class="table-classification">
@@ -88,7 +88,7 @@
               align="center"
               fixed="right"
               label="操作"
-              min-width="220"
+              min-width="180"
               v-if="typeof (data[digital_table_id].table.after_digital_button)!='undefined'"
             >
               <template slot-scope="scope">
@@ -127,7 +127,6 @@
     find,
     downCsvmodel,
     upLoad,
-    completeProgram,
     querySpecifications,
     getPictureImg
   } from "@/api/table_operate"
@@ -474,36 +473,12 @@
       executeProgram() {               //生成记录
         this.dialogCommonVisible = true;
       },
-      complete() {
-        let arr = [];
-        this.$confirm('此操作不可逆, 是否完成?', '提示', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          type: 'warning'
-        }).then(() => {
-          setTimeout(_ => {
-            arr.push(this.alter_obj.id);
-            completeProgram({ids: arr}).then(res => {
-              this.$message({
-                type: 'success',
-                message: '已完成!'
-              });
-              this.init();
-            })
-          })
-
-        }).catch(() => {
-
-        });
-
-
-      },
       showDetail(row){
-        var sideBar = $(".em_detail");
+        var sideBar = $(".em_detail_window");
         console.log(sideBar);
         if (!sideBar.hasClass("addWidth")) {
           console.log(sideBar);
-          $(".em_detail").addClass("addWidth");
+          $(".em_detail_window").addClass("addWidth");
         }
         console.log(this.data[this.digital_table_id]);
         if(row&&this.data[this.digital_table_id].table.picture_url){

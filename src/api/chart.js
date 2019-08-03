@@ -8,6 +8,7 @@ export function fetchPie() {
   })
 
 }
+
 export function fetchCircle() {
   return request({
     url: 'http://localhost:3000/chartdata',

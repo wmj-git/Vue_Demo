@@ -1,31 +1,47 @@
 <template>
   <div class="em_detail">
-    <el-button @click="hideDetail" icon="el-icon-close"></el-button>
-    <el-form label-position="left" inline class="demo-table-expand">
-      <el-form-item class="picture" v-if="imgUrl!==''">
-        <el-image
-          :src="baseUrl+imgUrl"
-        >
-        </el-image>
-      </el-form-item>
-      <el-form-item :label="item.name" v-for="(item,index) in data " :key="index">
-        <span>{{item.value}}</span>
-      </el-form-item>
-    </el-form>
+    <win :id="win.id" :data="win">
+      <el-button @click="hideDetail" icon="el-icon-close"></el-button>
+      <el-form label-position="left" inline class="demo-table-expand">
+        <el-form-item class="picture" v-if="imgUrl!==''">
+          <el-image
+            :src="baseUrl+imgUrl"
+          >
+          </el-image>
+        </el-form-item>
+        <el-form-item :label="item.name" v-for="(item,index) in data " :key="index">
+          <span>{{item.value}}</span>
+        </el-form-item>
+
+      </el-form>
+    </win>
   </div>
 </template>
 
 <script>
+  import Win from "../../../../components/win/win";
+
   export default {
+    components: {Win},
     props: {},
     data() {
       return {
         id: "detail",
         data: [],
         imgUrl: '',
-        baseUrl: ''
+        baseUrl: '',
+        win: {
+          id: "em_detail",
+          title: "",
+          top: '',
+          left: '',
+          show: true,
+          resizable: false,
+          class: "em_detail_window"
+        },
       }
     },
+
     mounted() {
       this.bus.$on(this.id, res => {
         console.log(res);
@@ -52,6 +68,7 @@
       hideDetail() {
         $(".em_detail").removeClass("addWidth");
       }
+
     },
     beforeDestroy() {
       this.bus.$off(this.id);
