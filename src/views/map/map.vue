@@ -186,6 +186,26 @@
 
         window[this.id].viewFn(_zIndex, [_lng, _lat]);
       },
+      addLayer(obj) {
+        let _layer = obj.layer;
+        if (obj.zIndex) {
+          _layer.setZIndex(obj.zIndex);
+        }
+        window[this.id].map.addLayer(_layer);
+      },
+      removeLayer(obj) {
+
+        let _map = window[this.id].map;
+        let _layers = _map.getLayers().getArray();
+
+        _layers.forEach(function (_layer) {
+          console.log(_layer.get("name"));
+          let _name = obj.layer_name + "_layer";
+          if (_layer.get("name") === _name) {
+            _map.removeLayer(_layer);
+          }
+        });
+      },
       scene_data(obj) {
         console.log(obj);
 
@@ -210,7 +230,12 @@
             break;
           case "3"://几何数据展示
             if (obj.trigger) {
-              this.queryVicinityPrintFn(obj);
+              obj.params = {
+                longitude: 114.03188276054428,
+                latitude: 22.619840297782094,
+                distance: 10000
+              };
+              this.geomDataFn(obj);
             } else {
               this.removeLayer({
                 layer_name: obj.layer_name
@@ -218,26 +243,6 @@
             }
             break;
         }
-      },
-      addLayer(obj) {
-        let _layer = obj.layer;
-        if (obj.zIndex) {
-          _layer.setZIndex(obj.zIndex);
-        }
-        window[this.id].map.addLayer(_layer);
-      },
-      removeLayer(obj) {
-
-        let _map = window[this.id].map;
-        let _layers = _map.getLayers().getArray();
-
-        _layers.forEach(function (_layer) {
-          console.log(_layer.get("name"));
-          let _name = obj.layer_name + "_layer";
-          if (_layer.get("name") === _name) {
-            _map.removeLayer(_layer);
-          }
-        });
       },
       queryVicinityPrintFn(obj) { //树木范围查询显示
         let _val = {
@@ -281,15 +286,18 @@
           });
         });
       },
-      dataFn(obj) { //树木范围查询显示
+      geomDataFn(obj) { //矢量数据展示
         let _val = {
-          lng: null,
-          lat: null,
-          distance: null,
+          data_url: "",
+          params: {},
           layer_name: "",
-          data_maker_iconUrl: "",
-          maker_titleKey: "",
-          clusters_color: "",
+          api_name: "",
+          geomType: "",
+          geom_style: "1",
+          geom_titleKey: "",
+          strokeWidth: 2,
+          strokeColor: [0, 255, 0, 1.0],
+          fillColor: [0, 0, 255, 1.0]
         };
 
         for (let k in _val) {
@@ -298,26 +306,27 @@
           }
         }
 
-        queryVicinityPrint({
-          params: {
-            longitude: _val.lng ? _val.lng : 114.03188276054428,
-            latitude: _val.lat ? _val.lat : 22.619840297782094,
-            distance: _val.distance ? _val.distance : 10000
-          }
+        [_val.api_name]({
+          url: _val.data_url,
+          params: _val.params
         }).then(response => {
           let _data = [];
           if (response.statusCode === 200) {
             response.data.forEach(function (_obj) {
-              _obj.icon = _val.data_maker_iconUrl;
+              // _obj.icon = _val.data_maker_iconUrl;
             });
             _data = response.data;
           }
-
-          let _layer = mp.clustersFn(_data, {
+          let _layer = mp.layerFN(_data, {
             type: _val.layer_name,
-            titleKey: _val.maker_titleKey,
-            iconUrlKey: "icon"
-          }, _val.clusters_color, 30);
+            geomType: _val.geomType
+          }, {
+            type: _val.geom_style,
+            titleKey: _val.geom_titleKey,//标题
+            strokeWidth: _val.strokeWidth,
+            strokeColor: _val.strokeColor,
+            fillColor: _val.fillColor
+          });
           this.addLayer({
             layer: _layer.layer
           });

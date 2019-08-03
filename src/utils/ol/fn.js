@@ -12,27 +12,32 @@ function formatDegree(pValue) {
 
 export function createQeomStyle(_feature, _style) {
 
-  let Style = new ol.style.Style({
-    stroke: new ol.style.Stroke({
-      width: _style.strokeWidth,
-      color: _style.strokeColor
-    }),
-    fill: new ol.style.Fill({
-      color: _style.fillColor
-    }),
-    text: new ol.style.Text({
-      text: _feature[_style.titleKey] ? _feature[_style.titleKey] + "" : "",
-      offsetX: 12,
-      offsetY: -8,
-      fill: new ol.style.Fill({
-        color: '#fff'
-      }),
-      stroke: new ol.style.Stroke({
-        color: 'rgba(0, 0, 0, 0.6)',
-        width: 4
-      }),
-    })
-  });
+  switch (_style.titleKey) {
+    case "1":
+      let Style = new ol.style.Style({
+        stroke: new ol.style.Stroke({
+          width: _style.strokeWidth,
+          color: _style.strokeColor
+        }),
+        fill: new ol.style.Fill({
+          color: _style.fillColor
+        }),
+        text: new ol.style.Text({
+          text: _feature[_style.titleKey] ? _feature[_style.titleKey] + "" : "",
+          offsetX: 12,
+          offsetY: -8,
+          fill: new ol.style.Fill({
+            color: '#fff'
+          }),
+          stroke: new ol.style.Stroke({
+            color: 'rgba(0, 0, 0, 0.6)',
+            width: 4
+          }),
+        })
+      });
+      break;
+  }
+
 
   return Style;
 }
@@ -196,7 +201,7 @@ export function layerFN(_features, _Key, _geomStyle) {
   let layer = null;
 
   let _geomKey = {
-    type: "",//类型
+    type: "",//样式类型
     titleKey: "id",//标题
     strokeWidth: 2,
     strokeColor: [255, 0, 0, 1.0],
@@ -209,8 +214,8 @@ export function layerFN(_features, _Key, _geomStyle) {
   }
 
   let _featureKey = {
-    type: "typeName",//类型
-    geomType: "Point"//几何对象类型
+    type: "layerName",//类型
+    geomType: "Point",//几何对象类型
   };
   for (let k in _featureKey) {
     if (_Key[k]) {
@@ -237,7 +242,7 @@ export function layerFN(_features, _Key, _geomStyle) {
         featureData: _features[i]
       });
       features[i].setStyle(createQeomStyle(_features[i], _geomKey));
-    }else if (_featureKey.geomType === "Polygon") {//多边形
+    } else if (_featureKey.geomType === "Polygon") {//多边形
       let coordinates = _features[i].coordinates ? _features[i].coordinates : [];
       features[i] = new ol.Feature({
         geometry: new ol.geom.Polygon(coordinates),
@@ -822,29 +827,30 @@ emMap.prototype.InfoClickFn = function (evt) {
   let _Info = _this.Info;
 
 
-   let feature = evt.map.forEachFeatureAtPixel(evt.pixel,
-     function (feature) {
-       return feature;
-     });
-   if (feature) {
-     console.log(feature);
+  let feature = evt.map.forEachFeatureAtPixel(evt.pixel,
+    function (feature) {
+      return feature;
+    });
+  if (feature) {
+    console.log(feature);
 
-     if (feature.get('features') && feature.get('features').length === 1) {
-       let _feature = feature.get('features')[0];
-       let _type = _feature.getId().split("_");
-       $(".em_detail").addClass("addWidth");
+    if (feature.get('features') && feature.get('features').length === 1) {
+      let _feature = feature.get('features')[0];
+      let _type = _feature.getId().split("_");
 
-     } else if (feature.get("featureData")) {
-       let _type = feature.getId().split("_");
+      $(".em_detail_window").addClass("addWidth");
 
-     } else {
-       return
-     }
+    } else if (feature.get("featureData")) {
+      let _type = feature.getId().split("_");
+
+    } else {
+      return
+    }
 
 
-   } else {
-     $(_Info).hide();
-   }
+  } else {
+    $(_Info).hide();
+  }
 };
 // change mouse cursor when over marker
 emMap.prototype.InfoPointermoveFn = function (evt) {
@@ -874,7 +880,7 @@ emMap.prototype.InfoPointermoveFn = function (evt) {
     return feature;
   });
   if (feature) {
-    console.log(feature);
+    // console.log(feature);
 
     if (feature.get('features') && feature.get('features').length === 1) {
       let _feature = feature.get('features')[0];
@@ -894,7 +900,7 @@ emMap.prototype.InfoPointermoveFn = function (evt) {
         lat: feature.get("featureData").gpsLatitude
       });
     } else {
-      return
+      return;
     }
 
 

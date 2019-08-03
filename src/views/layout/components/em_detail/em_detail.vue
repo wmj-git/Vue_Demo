@@ -59,14 +59,13 @@
             if (i === val.prop) {
               this.data.push({name: val.name, value: res.row[i]});
             }
-
           }
         })
       })
     },
     methods: {
       hideDetail() {
-        $(".em_detail").removeClass("addWidth");
+        $(".em_detail_window").removeClass("addWidth");
       }
 
     },
