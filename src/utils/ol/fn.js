@@ -880,7 +880,9 @@ emMap.prototype.InfoPointermoveFn = function (evt) {
     return feature;
   });
   if (feature) {
-    // console.log(feature);
+    let _coordinate=evt.coordinate;
+    console.log(evt.pixel);
+    console.log(evt.coordinate);
 
     if (feature.get('features') && feature.get('features').length === 1) {
       let _feature = feature.get('features')[0];
@@ -888,16 +890,18 @@ emMap.prototype.InfoPointermoveFn = function (evt) {
       _this.infoFn({
         type: _type[0],
         content: _feature.get("featureData"),
-        lng: _feature.get("featureData").gpsLongitude,
-        lat: _feature.get("featureData").gpsLatitude
+        // lng: _feature.get("featureData").gpsLongitude,
+        // lat: _feature.get("featureData").gpsLatitude
+        lng: _coordinate[0],
+        lat: _coordinate[1]
       });
     } else if (feature.get("featureData")) {
       let _type = feature.getId().split("_");
       _this.infoFn({
         type: _type[0],
         content: feature.get("featureData"),
-        lng: feature.get("featureData").gpsLongitude,
-        lat: feature.get("featureData").gpsLatitude
+        lng: _coordinate[0],
+        lat: _coordinate[1]
       });
     } else {
       return;
@@ -1006,11 +1010,21 @@ emMap.prototype.pointerMoveHandler = function (evt) {
   let _continuePolygonMsg = null;
   let _continueLineMsg = null;
 
-  if (appData.map) {
-    _helpTooltipElement = appData.map.helpTooltipElement;
-    _helpTooltip = appData.map.helpTooltip;
-    _continuePolygonMsg = appData.map.continuePolygonMsg;
-    _continueLineMsg = appData.map.continueLineMsg;
+
+  let _map = null;
+  let _mapNmame = store.getters["scene/type"];
+  if (window[_mapNmame]) {
+    _map = window[_mapNmame];
+  } else {
+    return
+  }
+
+
+  if (_map) {
+    _helpTooltipElement = _map.helpTooltipElement;
+    _helpTooltip = _map.helpTooltip;
+    _continuePolygonMsg = _map.continuePolygonMsg;
+    _continueLineMsg = _map.continueLineMsg;
 
   } else {
     return
