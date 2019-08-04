@@ -82,7 +82,6 @@
                 mp.openScene(this.id);
                 window[this.id].init("mapContainer", [114.031047, 22.663679], [
                     mp.layers.baidu_vec
-                  // mp.layers.tLayer
                 ]);
 
             },
@@ -101,7 +100,7 @@
                 });
                 return _layer;
             },
-            spaceTimeData(obj) {
+            spaceTimeData(obj) {//读取时空云数据
                 window[this.id].viewFn(0, "none");
                 let _layer = mp.clustersLayerFn(
                     'http://onelz.oicp.vip/proxy/server/A13041017DC845579548DA3528DF9B47/999C1448C6DD4842A35412B42226F0A3',
