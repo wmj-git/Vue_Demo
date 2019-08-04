@@ -4,7 +4,7 @@
       <el-row>
         <el-col :span="24">
           <el-form-item label="单位:">
-            <el-select v-model="value1" placeholder="请选择" filterable multiple>
+            <el-select v-model="value1" placeholder="请选择" filterable >
               <el-option
                 v-for="item in options1"
                 :key="item.value"
@@ -50,23 +50,11 @@
   import {selectUrl, executeProgram} from "@/api/table_operate"
 
   export default {
-    props: {},
+
     data() {
-      let options1 = [];
-      let options2 = [];
-      selectUrl({url: "/gardens/ent/queryAll"}).then(res => {
-        res.data.forEach((val) => {
-          options1.push({label: val.entName, value: val.id})
-        })
-      });
-      selectUrl({url: "/gardens/road/queryAll"}).then(res => {
-        res.data.forEach((val) => {
-          options2.push({label: val.roadName, value: val.id})
-        })
-      });
       return {
-        options1: options1,
-        options2: options2,
+        options1: [],
+        options2: [],
         value1: [],
         value2: [],
         textarea: "",
@@ -74,10 +62,29 @@
       }
     },
     mounted() {
+      let options1 = [];
+      let options2 = [];
       this.bus.$off("alter_all");
       this.bus.$on("alter_all", res => {
         this.plantIds.push(res.id);
-      })
+        selectUrl({url: "/gardens/ent/queryEntForTree?treeNameId="+res.plantNameId}).then(res => {
+          res.data.forEach((val) => {
+            options1.push({label: val.entName, value: val.id})
+          });
+          this.options1=options1;
+        });
+        if(this.value1.length!==0){
+          console.log(value1);
+        }
+        selectUrl({url: "/gardens/road/queryByEndIdAndTreeNameId?entId="+this.value1}).then(res => {
+          res.data.forEach((val) => {
+            options2.push({label: val.roadName, value: val.id})
+          })
+          this.options2=options2;
+        });
+      });
+
+
     },
     methods: {
       cancel() {

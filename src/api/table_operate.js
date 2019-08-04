@@ -163,13 +163,6 @@ export function countProgram(obj) {       //统计材料
     data: obj
   })
 }
-export function completeProgram(obj) {     //完成
-  return request({
-    url: "/gardens/fertilizationProgram/skipProgram",
-    method: 'post',
-    data: obj
-  })
-}
 
 
 

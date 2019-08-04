@@ -1,28 +1,15 @@
 $r:32;
 @import "../../../../styles/index/variable";
-.em_detail {
-   width: 20%;
-   height: calc(100% - 130px);
-   position: fixed;
-   right: 0;
-   top: 0;
-   background: $em-background-details;
-   padding: 10px;
-   overflow-y: scroll;
-   right: -23%;
-   transition:width 0.3s;
   .el-form-item /deep/{
-     width: 60%;
-     margin-right: 20px;
-    display: flex;
+     display: flex;
     .el-form-item__label{
-      width: 18%;
+      width: 30%;
       color: #99a9bf;
       text-align: justify;
       line-height: 20px;
     }
     .el-form-item__content{
-      width: 58%;
+      width: 70%;
       text-align:justify;
       color: $em-text-color-base;
       line-height: 20px;
@@ -31,8 +18,8 @@ $r:32;
       width: 320/$r+rem;
       height: 320/$r+rem;
       object-fit: cover;
-      left: -50%;
-      transform: translate(64%);
+      left: 50%;
+      transform: translateX(-27%);
     }
   }
   .picture /deep/{
@@ -55,9 +42,5 @@ $r:32;
       }
     }
   }
-}
-.addWidth {
-  width: 46%;    /* 设置为侧边栏宽度的2倍，才能完全露出 */
-  box-shadow: -9px 1px 17px 0px darken($em-bg-color-base,60%);
-}
+
 

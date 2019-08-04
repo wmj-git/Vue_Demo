@@ -57,7 +57,7 @@
           console.log(res);
           if(res.statusCode===200){
             this.$message({
-              message: '关联用户成功',
+              message: '关联道路成功',
               type: 'success'
             });
             this.$emit("closeCommonDialog")
