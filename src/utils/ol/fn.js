@@ -36,9 +36,22 @@ export function createQeomStyle(_feature, _style) {
         })
       });
       break;
+    case "2"://text形式
+      Style = new ol.style.Style({
+        text: new ol.style.Text({
+          text: _feature[_style.titleKey] ? _feature[_style.titleKey] + "" : "",
+          fill: new ol.style.Fill({
+            color: _style.fillColor
+          }),
+          stroke: new ol.style.Stroke({
+            color: _style.strokeColor,
+            width: _style.strokeWidth
+          }),
+        })
+      });
+      break;
+
   }
-
-
   return Style;
 }
 
@@ -86,6 +99,9 @@ export function clustersLayerFn(dataUrl, _Key, _clusterImgUrl, _distance) {//时
             if (features.length > 0) {
               /* console.log("features2");
                console.log(features);*/
+
+
+
               vectorSource.addFeatures(features);
             }
 
@@ -234,8 +250,14 @@ export function layerFN(_features, _Key, _geomStyle) {
         geometry: new ol.geom.Point(coordinates),
         featureData: _features[i]
       });
+    }else if (_featureKey.geomType === "Text") {//文本
+      let coordinates = [_features[i].gpsLongitude, _features[i].gpsLatitude];
+      features[i] = new ol.Feature({
+        geometry: new ol.geom.Point(coordinates),
+        featureData: _features[i]
+      });
       features[i].setStyle(createQeomStyle(_features[i], _geomKey));
-    } else if (_featureKey.geomType === "LineString") {//线
+    }  else if (_featureKey.geomType === "LineString") {//线
       let coordinates = _features[i].coordinates ? _features[i].coordinates : [];
       features[i] = new ol.Feature({
         geometry: new ol.geom.LineString(coordinates),
@@ -249,9 +271,9 @@ export function layerFN(_features, _Key, _geomStyle) {
         featureData: _features[i]
       });
       features[i].setStyle(createQeomStyle(_features[i], _geomKey));
-    } else if (_featureKey.geomType === "Circle") {//园
-      let coordinates = [_features[i].lng, _features[i].lat];
-      let radius = _features[i].radius ? _features[i].radius : 100;
+    } else if (_featureKey.geomType === "Circle") {//圆
+      let coordinates = [_features[i].gpsLongitude, _features[i].gpsLatitude];
+      let radius = _features[i].radius ? _features[i].radius : 10;
       let circleIn3857 = new ol.geom.Circle(ol.proj.transform(coordinates, 'EPSG:4326', 'EPSG:3857'), radius, 'XY');
       let circleIn4326 = circleIn3857.transform('EPSG:3857', 'EPSG:4326');
 
@@ -259,6 +281,7 @@ export function layerFN(_features, _Key, _geomStyle) {
         geometry: circleIn4326,
         featureData: _features[i]
       });
+      console.log(123);
       features[i].setStyle(createQeomStyle(_features[i], _geomKey));
     }
 
@@ -604,8 +627,6 @@ emMap.prototype.init = function (_el, _LngLat, _layers) {
     })
   });
   this.map.addLayer(this.measureVector);
-
-
 };
 emMap.prototype.viewFn = function (_num, _center) {
   if (_center === "none") {
@@ -846,8 +867,6 @@ emMap.prototype.InfoClickFn = function (evt) {
     } else {
       return
     }
-
-
   } else {
     $(_Info).hide();
   }
@@ -881,7 +900,6 @@ emMap.prototype.InfoPointermoveFn = function (evt) {
   });
   if (feature) {
     let _coordinate=evt.coordinate;
-    console.log(evt.pixel);
     console.log(evt.coordinate);
 
     if (feature.get('features') && feature.get('features').length === 1) {
