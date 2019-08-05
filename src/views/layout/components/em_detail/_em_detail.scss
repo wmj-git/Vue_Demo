@@ -1,7 +1,7 @@
 $r:32;
 @import "../../../../styles/index/variable";
   .el-form-item /deep/{
-     display: flex;
+     display: flex !important;
     .el-form-item__label{
       width: 30%;
       color: #99a9bf;
