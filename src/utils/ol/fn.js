@@ -11,7 +11,7 @@ function formatDegree(pValue) {
 
 
 export function createQeomStyle(_feature, _style) {
-  let Style=null;
+  let Style = null;
   switch (_style.type) {
     case "1":
       Style = new ol.style.Style({
@@ -97,12 +97,21 @@ export function clustersLayerFn(dataUrl, _Key, _clusterImgUrl, _distance) {//时
               featureProjection: projection
             });
             if (features.length > 0) {
-              /* console.log("features2");
-               console.log(features);*/
 
-
-
+              features.forEach(function (feature) {
+                feature.setId(_featureKey.type + "_" + feature.get(_featureKey.titleKey));
+                let _keys = feature.getKeys();
+                let _featureData = {};
+                _keys.forEach(function (_key) {
+                  _featureData[_key] = feature.get(_key);
+                });
+                feature.set("featureData", _featureData);
+              });
               vectorSource.addFeatures(features);
+
+
+              console.log("features2");
+              console.log(features);
             }
 
           }
@@ -250,14 +259,14 @@ export function layerFN(_features, _Key, _geomStyle) {
         geometry: new ol.geom.Point(coordinates),
         featureData: _features[i]
       });
-    }else if (_featureKey.geomType === "Text") {//文本
+    } else if (_featureKey.geomType === "Text") {//文本
       let coordinates = [_features[i].gpsLongitude, _features[i].gpsLatitude];
       features[i] = new ol.Feature({
         geometry: new ol.geom.Point(coordinates),
         featureData: _features[i]
       });
       features[i].setStyle(createQeomStyle(_features[i], _geomKey));
-    }  else if (_featureKey.geomType === "LineString") {//线
+    } else if (_featureKey.geomType === "LineString") {//线
       let coordinates = _features[i].coordinates ? _features[i].coordinates : [];
       features[i] = new ol.Feature({
         geometry: new ol.geom.LineString(coordinates),
@@ -854,12 +863,11 @@ emMap.prototype.InfoClickFn = function (evt) {
     });
   if (feature) {
     console.log(feature);
-
+    $(".em_detail_window").addClass("addWidth");
     if (feature.get('features') && feature.get('features').length === 1) {
       let _feature = feature.get('features')[0];
       let _type = _feature.getId().split("_");
 
-      $(".em_detail_window").addClass("addWidth");
 
     } else if (feature.get("featureData")) {
       let _type = feature.getId().split("_");
@@ -899,7 +907,7 @@ emMap.prototype.InfoPointermoveFn = function (evt) {
     return feature;
   });
   if (feature) {
-    let _coordinate=evt.coordinate;
+    let _coordinate = evt.coordinate;
     console.log(evt.coordinate);
 
     if (feature.get('features') && feature.get('features').length === 1) {
@@ -951,7 +959,7 @@ emMap.prototype.infoFn = function (OBJ) {
   } else if (OBJ.type && OBJ.type === "person") {
     _content = personContent(OBJ);
   } else {
-    let _Content=OBJ.lng;
+    let _Content = OBJ.lng;
     _content = '<span style="color: white;">' + _Content + '<\/span>';
     // return
   }

@@ -8,6 +8,9 @@ function addMarker(Entities, viewer) {
       }
   ]*/
 
+
+
+
   for (var i = 0; i < Entities.length; i++) {
 
     var _entity = _dataSource.entities.add({

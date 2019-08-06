@@ -33,7 +33,7 @@
                     {
                         id: "tool_transparent",
                         value: "透明",
-                        control_type:"scene",
+                        control_type:"emit",
                         icon: "el-icon-transparent",
                         control_id: "em_slider",
                         fn: "showFn",
@@ -105,8 +105,8 @@
                     navigationHelpButton: false, //是否显示帮助信息控件
                     infoBox: true, //是否显示点击要素之后显示的信息
                     /*imageryProvider: new Cesium.UrlTemplateImageryProvider({
-                      url: process.env.SCENE_URL + "/zhlhscene/gis/{z}/{x}/{y}.png",
-                      // url: "../../static/mode_3d/gis/{z}/{x}/{y}.png",
+                      // url: process.env.SCENE_URL + "/scene/gis/{z}/{x}/{y}.png",
+                      url: "192.168.20.18:800/scene/gis/{z}/{x}/{y}.png",
                       layer: "tdtBasicLayer",
                       style: "default"
                     })*/
@@ -120,16 +120,16 @@
                         maximumLevel: 18
                     })
                 });
-                /* //加载影像注记
-                 var layer1 = new Cesium.WebMapTileServiceImageryProvider({
-                     url: 'http://t0.tianditu.gov.cn/cia_w/wmts?tk=dcfb31be4b1daef33e484e48348cb28b',
-                     layer: 'cia',
-                     style: 'default',
-                     tileMatrixSetID: 'w',
-                     format: 'tiles',
-                     maximumLevel: 18
-                 });
-                 viewer.imageryLayers.addImageryProvider(layer1);*/
+                 //加载影像注记
+                /*   var layer1 = new Cesium.WebMapTileServiceImageryProvider({
+                       url: 'http://t0.tianditu.gov.cn/cia_w/wmts?tk=dcfb31be4b1daef33e484e48348cb28b',
+                       layer: 'cia',
+                       style: 'default',
+                       tileMatrixSetID: 'w',
+                       format: 'tiles',
+                       maximumLevel: 18
+                   });
+                window.viewer.imageryLayers.addImageryProvider(layer1);*/
 
 
                 // 加载地形1
@@ -138,6 +138,33 @@
 
                 // this.scene_data();
             },
+            baseMapFn(obj) {
+            let _layer = null;
+            console.log(obj);
+
+
+            switch (obj.layerName) {
+              case "1"://天地图矢量图
+
+                break;
+              case "2"://天地图影像图
+
+                break;
+              case "3"://百度矢量图
+
+                break;
+              case "4"://百度影像图
+
+                break;
+              case "5"://时空云矢量图
+
+                break;
+              case "6"://时空云影像图
+
+                break;
+            }
+
+          },
             alpha(obj) {
                 cm.alphaFN(obj.value, window.viewer, window._scene.scene);
             },
@@ -157,6 +184,7 @@
                 cm.toScene(window.viewer, window._scene.tileset);
             },
             scene_data(obj) {
+
                 if (obj.trigger) {
                     cm.addModeFN(window.viewer);
                     cm.addPolygonFN(window.viewer);
@@ -170,6 +198,7 @@
             }
         },
         created() {
+
         },
         mounted() {
             this.init();

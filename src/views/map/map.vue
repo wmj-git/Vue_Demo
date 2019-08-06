@@ -206,7 +206,6 @@
       },
       scene_data(obj) {
         console.log(obj);
-
         switch (obj.data_type) {
           case "1"://采集的树数据
             if (obj.trigger) {
