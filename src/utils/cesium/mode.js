@@ -28,8 +28,8 @@ function addMode(Entities, viewer) {
       }
       /*,
       label: {
-        text: 'Philadelphia',
-        font: '12px Helvetica',
+  `    text: 'Philadelphia',
+       font: '12px Helvetica',
         pixelOffset: new Cesium.Cartesian2(0, -50),
         fillColor: Cesium.Color.SKYBLUE,
         outlineColor: Cesium.Color.BLACK,

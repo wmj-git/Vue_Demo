@@ -1,4 +1,4 @@
-var _dataSource = new Cesium.CustomDataSource('markerData');
+  var _dataSource = new Cesium.CustomDataSource('markerData');
 
 function addMarker(Entities, viewer) {
   /*Entities:[

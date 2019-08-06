@@ -18,7 +18,6 @@
         props: {},
         methods: {
             init() {
-
                 this.$store.commit("scene/set_type", this.id);
                 this.$store.commit("scene/set_toolbar", [
                     {
@@ -136,12 +135,13 @@
                 // window._scene = cm.openScene(window.viewer, process.env.SCENE_URL + "/zhlhscene/b3dm/tileset.json");
                 window._scene = cm.openScene(window.viewer, "https://onelz.oicp.vip/SG/b3dm/LH1-1-2.405276/tileset.json");
 
-                // this.scene_data();
+               /* this.scene_data({
+                  trigger:true
+                });*/
             },
             baseMapFn(obj) {
             let _layer = null;
             console.log(obj);
-
 
             switch (obj.layerName) {
               case "1"://天地图矢量图
