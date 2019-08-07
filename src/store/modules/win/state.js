@@ -3399,11 +3399,11 @@ export default {
             },
             {
               name: "海拔高度(m)",
-              prop: "aboveSeaLevel",
+              prop: "altitude",
               width: "100",
               type: "em_input",
               placeholder: "海拔高度",
-              params: "aboveSeaLevel",
+              params: "altitude",
               add_show: true,
               alter_show: true
             },
