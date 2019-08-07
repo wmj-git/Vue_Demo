@@ -1,4 +1,4 @@
-var _dataSource = new Cesium.CustomDataSource('markerData');
+  var _dataSource = new Cesium.CustomDataSource('markerData');
 
 function addMarker(Entities, viewer) {
   /*Entities:[
@@ -7,6 +7,9 @@ function addMarker(Entities, viewer) {
            position:[106.2918632114032, 30.023059320962865,106.29324606449137]
       }
   ]*/
+
+
+
 
   for (var i = 0; i < Entities.length; i++) {
 

@@ -69,6 +69,13 @@
           case "tool":
             this[item.fn](item);
             break;
+          case "emit":
+            this.bus.$emit(item.control_id, item);
+            if (item.trigger !== "none") {
+              let _item = this.tool[key];
+              this.tool[key].trigger = !(_item.trigger);
+            }
+            break;
           case "scene":
             if (!(item.control_id)) {
               item.control_id = this.$store.getters["scene/type"];//获取地图对象
@@ -77,7 +84,7 @@
             if (item.trigger !== "none") {
               let _item = this.tool[key];
               this.tool[key].trigger = !(_item.trigger);
-              console.log(this.tool[key].trigger);
+              // console.log(this.tool[key].trigger);
             }
             break;
         }

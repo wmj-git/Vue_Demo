@@ -53,7 +53,7 @@ function websocketonmessage (e) {
       saveObj[obj.type](obj)
     }
   }else{
-    console.log(e.data)
+    // console.log(e.data)
   }
 
 }
@@ -79,7 +79,7 @@ function websocketclose (e) {
 
 // 创建 websocket 连接
 function websocketOpen (e) {
-  console.log('连接成功')
+  // console.log('连接成功')
 }
 
 export {

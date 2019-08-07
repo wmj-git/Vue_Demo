@@ -6,7 +6,7 @@ export function infoInit(viewer){
 
   // HTML overlay for showing feature name on mouseover
    nameOverlay = document.createElement('div');
-// var nameOverlay = $("#box").find('span');
+  // var nameOverlay = $("#box").find('span');
   viewer.container.appendChild(nameOverlay);
   nameOverlay.className = 'backdrop';
   nameOverlay.style.display = 'none';
