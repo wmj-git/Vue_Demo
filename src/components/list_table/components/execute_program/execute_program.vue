@@ -4,7 +4,7 @@
       <el-row>
         <el-col :span="24">
           <el-form-item label="单位:">
-            <el-select v-model="value1" placeholder="请选择" filterable >
+            <el-select v-model="value1" placeholder="请选择" filterable @change="selectEnt">
               <el-option
                 v-for="item in options1"
                 :key="item.value"
@@ -63,7 +63,6 @@
     },
     mounted() {
       let options1 = [];
-      let options2 = [];
       this.bus.$off("alter_all");
       this.bus.$on("alter_all", res => {
         this.plantIds.push(res.id);
@@ -72,15 +71,6 @@
             options1.push({label: val.entName, value: val.id})
           });
           this.options1=options1;
-        });
-        if(this.value1.length!==0){
-          console.log(value1);
-        }
-        selectUrl({url: "/gardens/road/queryByEndIdAndTreeNameId?entId="+this.value1}).then(res => {
-          res.data.forEach((val) => {
-            options2.push({label: val.roadName, value: val.id})
-          })
-          this.options2=options2;
         });
       });
 
@@ -105,6 +95,16 @@
         }
 
 
+      },
+      selectEnt(){
+        let options2 = [];
+        selectUrl({url: "/gardens/road/queryByEndIdAndTreeNameId?entId="+this.value1}).then(res => {
+          res.data.forEach((val) => {
+             console.log(val);
+            options2.push({label: val.roadName, value: val.id})
+          })
+          this.options2=options2;
+        });
       }
 
     }
