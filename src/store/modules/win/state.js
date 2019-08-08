@@ -4983,6 +4983,38 @@ export default {
             trigger: true
           },
           {
+            id: "bt_2_1",
+            type: "info",
+            icon: "el-icon-edit",
+            text: "龙华区社区",
+            control_type: "scene",
+            control_id: "",
+            fn: "scene_data",
+            data_type: "2",
+            layer_name: "shequ",
+            data_url: "http://onelz.oicp.vip/proxy/server/F92A3799DFA243BC9DEB8B2BB6DDA4C9/999C1448C6DD4842A35412B42226F0A3",
+            data_maker_iconUrl: "../../static/image/marker_2.png",
+            maker_titleKey: "OBJECTID",
+            clusters_color: "#f566ff",
+            trigger: true
+          },
+          {
+            id: "bt_2_2",
+            type: "info",
+            icon: "el-icon-edit",
+            text: "龙华区街道",
+            control_type: "scene",
+            control_id: "",
+            fn: "scene_data",
+            data_type: "2",
+            layer_name: "jiedao",
+            data_url: "http://onelz.oicp.vip/proxy/server/8C20FC12319A4CB18BF0F90C4527DD54/999C1448C6DD4842A35412B42226F0A3",
+            data_maker_iconUrl: "../../static/image/marker_2.png",
+            maker_titleKey: "OBJECTID",
+            clusters_color: "#f566ff",
+            trigger: true
+          },
+          {
             id: "bt_3",
             type: "info",
             icon: "el-icon-edit",

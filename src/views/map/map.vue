@@ -86,6 +86,11 @@
       },
       spaceTimeBaseMap(obj) {
 
+        let _url="";
+
+        if (obj.url){
+          _url=obj.url;
+        }
 
         let _resolutions = window[this.id].resolutions;
         var _origin = [-400, 400];
@@ -100,8 +105,7 @@
             origin: _origin,
             resolutions: _resolutions,
             projection: 'EPSG:4326',
-            url: 'http://onelz.oicp.vip/proxy/layer/E36DF1E5DD7D4081A1E722ED2C8D7455/999C1448C6DD4842A35412B42226F0A3/tile/{z}/{y}/{x}'
-            //url: 'http://onelz.oicp.vip/proxy/layer/5D65AF2C089A4FE2985AD6090304F8BE/999C1448C6DD4842A35412B42226F0A3/tile/{z}/{y}/{x}'
+            url: _url
           })
         });
         return _layer;
@@ -147,10 +151,14 @@
             _layer = mp.layers.baidu_img;
             break;
           case "5"://时空云矢量图
-            _layer = this.spaceTimeBaseMap();
+            _layer = this.spaceTimeBaseMap({
+              url:"http://onelz.oicp.vip/proxy/layer/C8DDAE2452CE48F4ACBE0D60C455A234/01D4E45CB4A84DE7B5DF3D859529D918/tile/{z}/{y}/{x}"
+            });
             break;
           case "6"://时空云影像图
-            _layer = this.spaceTimeBaseMap();
+            _layer = this.spaceTimeBaseMap({
+              url:"http://onelz.oicp.vip/proxy/layer/E36DF1E5DD7D4081A1E722ED2C8D7455/999C1448C6DD4842A35412B42226F0A3/tile/{z}/{y}/{x}"
+            });
             break;
         }
 
@@ -232,7 +240,6 @@
                 latitude: 22.619840297782094,
                 distance: 10000
               };
-
               this.geomDataFn(obj);
             } else {
               this.removeLayer({

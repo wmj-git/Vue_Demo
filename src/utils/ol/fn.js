@@ -58,7 +58,10 @@ export function createQeomStyle(_feature, _style) {
 //获取时空云数据
 export function clustersLayerFn(dataUrl, _Key, _clusterImgUrl, _distance) {//时空云数据
   // let _extent = [113.97796915, 22.608145238000002, 114.04398656100001, 22.704755608];
-  let _featureKey = {
+
+
+
+    let _featureKey = {
     type: "typeName",//类型
     titleKey: "id",//标题
     iconUrl: ""//图标地址
@@ -87,7 +90,9 @@ export function clustersLayerFn(dataUrl, _Key, _clusterImgUrl, _distance) {//时
       }
 
       $.ajax({
-        url: url, async: false, dataType: 'jsonp', success: function (response) {
+        url: url, async: true, dataType: 'json', success: function (response) {
+          /* console.log("response");
+           console.log(response);*/
           if (response.error) {
             console.log(response.error.message + '\n' +
               response.error.details.join('\n'));
@@ -97,23 +102,29 @@ export function clustersLayerFn(dataUrl, _Key, _clusterImgUrl, _distance) {//时
               featureProjection: projection
             });
             if (features.length > 0) {
-
+              let _DATA =[];
               features.forEach(function (feature) {
                 feature.setId(_featureKey.type + "_" + feature.get(_featureKey.titleKey));
                 let _keys = feature.getKeys();
                 let _featureData = {};
                 _keys.forEach(function (_key) {
-                  _featureData[_key] = feature.get(_key);
+
+                  if (_key === "geometry") {
+
+                  }else {
+                    _featureData[_key] = feature.get(_key);
+                  }
                 });
+                _featureData["coordinates"] = feature.get("geometry").getCoordinates();
                 feature.set("featureData", _featureData);
+                _DATA.push(_featureData);
               });
+              console.log("features2");
+              // console.log(features);
+              console.log(_DATA);
               vectorSource.addFeatures(features);
 
-
-              console.log("features2");
-              console.log(features);
             }
-
           }
         }
       });
@@ -205,7 +216,6 @@ export function clustersLayerFn(dataUrl, _Key, _clusterImgUrl, _distance) {//时
     layer, vectorSource, clusterSource
   }
 }
-
 
 //几何类型没有聚合的数据图层
 export function layerFN(_features, _Key, _geomStyle) {
@@ -571,14 +581,14 @@ emMap.prototype.init = function (_el, _LngLat, _layers) {
     let _map = e.map;
     let _extent = _map.getView().calculateExtent(_map.getSize());
     let _point = ol.extent.getCenter(_extent);
-    console.log(_point);
+    // console.log(_point);
     /* $.each(appData.gis, function (i, n) {
        n.GisIcon(_point[0], _point[1]);
        n.GisView(_point[0], _point[1]);
      });*/
 
     let _zoom = _this.view.getZoom();
-    console.log(_zoom);
+    // console.log(_zoom);
 
     let _layers = _map.getLayers().getArray();
     if (_zoom > 6) {
@@ -908,7 +918,7 @@ emMap.prototype.InfoPointermoveFn = function (evt) {
   });
   if (feature) {
     let _coordinate = evt.coordinate;
-    console.log(evt.coordinate);
+    // console.log(evt.coordinate);
 
     if (feature.get('features') && feature.get('features').length === 1) {
       let _feature = feature.get('features')[0];
