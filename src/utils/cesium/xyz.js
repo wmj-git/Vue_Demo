@@ -62,7 +62,11 @@ export function xyzFN(nm,viewer,scene) {
             if (height < 0) {
                 height = 0;
             }
-
+          console.log({
+            longitude:longitude,
+            latitude:latitude,
+            height:height
+          });
 //坐标信息显示
             var xyzShow = viewer.entities.add({
                 position: position,

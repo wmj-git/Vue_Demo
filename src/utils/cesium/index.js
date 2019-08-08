@@ -1,6 +1,6 @@
 //data
 import {db} from "./data/db"
-import {api, toScene, entitiesClear} from "./utils"
+import {api, toScene,camera, entitiesClear} from "./utils"
 import {infoInit} from "./info";
 import {addModeFN, modeClear} from "./mode"
 import {addPolygonFN} from "./grid"
@@ -8,9 +8,32 @@ import {addMarkerFN, markerClear} from "./marker"
 import {alphaFN} from "./alpha"
 import {xyzFN} from "./xyz"
 import {SetMeasure, clearDrawingBoard} from "./measure"
+import {emMap} from "../ol/fn";
+
+function init(_name, tileset_url) {
+
+  let viewer = new Cesium.Viewer(_name, {
+    scene3DOnly: true,
+    animation: false, //是否显示动画控件
+    baseLayerPicker: false, //是否显示图层选择控件
+    geocoder: false, //是否显示地名查找控件
+    timeline: false, //是否显示时间线控件
+    sceneModePicker: true, //是否显示投影方式控件
+    homeButton: false,
+    navigationHelpButton: false, //是否显示帮助信息控件
+    infoBox: true, //是否显示点击要素之后显示的信息
+    // 天地图影像
+    imageryProvider: new Cesium.WebMapTileServiceImageryProvider({
+      url: 'http://t0.tianditu.gov.cn/img_w/wmts?tk=dcfb31be4b1daef33e484e48348cb28b',
+      layer: 'img',
+      style: 'default',
+      tileMatrixSetID: 'w',
+      format: 'tiles',
+      maximumLevel: 18
+    })
+  });
 
 
-export function openScene(viewer, tileset_url) {
   let scene = viewer.scene;
   scene.invertClassification = true;
   scene.invertClassificationColor = new Cesium.Color(1.0, 1.0, 1.0, 1.0);
@@ -50,16 +73,17 @@ export function openScene(viewer, tileset_url) {
   let polyline = viewer.entities.add({
     name: '线路1',
     id: 'polyline_1',
+    featureData:123132,
     polyline: {
       positions: Cesium.Cartesian3.fromDegreesArray([
-        106.2880394470837,
-        30.020255734295507,
-        106.28999155378249,
-        30.02314206001763,
-        106.29005396817485,
-        30.022175733467922,
-        106.29144371823138,
-        30.022515625860592,
+        114.0497756235571,
+        22.637316560481576,
+        114.04689837329487,
+        22.638332282431715,
+        114.04532045835998,
+        22.636634046220546,
+        114.04450058542454,
+        22.634437661214047,
         106.29083865072324,
         30.02556221957544,
         106.28666473851872,
@@ -72,23 +96,30 @@ export function openScene(viewer, tileset_url) {
         outlineColor: Cesium.Color.BLACK
       }),
       clampToGround: true,
-      classificationType: Cesium.ClassificationType.CESIUM_3D_TILE
+      classificationType: Cesium.ClassificationType.BOTH
     }
   });
+let dataSource={};
 
-  return {
+  window[_name] = {
+    viewer,
     scene,
     globe,
-    tileset
-  }
-}
+    tileset,
+    dataSource
+  };
 
+  console.log("window[_name]");
+  console.log(window[_name]);
+
+}
 
 export default {
   db: db,
   api: api,
-  openScene: openScene,
+  init: init,
   toScene: toScene,
+  camera:camera,
   alphaFN: alphaFN,
   xyzFN: xyzFN,
   addModeFN: addModeFN,

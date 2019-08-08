@@ -32,6 +32,37 @@ export function toScene(viewer,tileset) {
   viewer.camera.lookAtTransform(Cesium.Matrix4.IDENTITY);
 }
 
+//相机移动
+export function camera(val) {
+
+let _val={
+  scene:"",
+  longitude: 114.05566529913777,
+  latitude: 22.604387298808085,
+  height: 5899.935147224181,
+  heading: 6.00167603155171,
+  pitch: -0.992391732163183,
+  roll: 0.0003317087969181287
+};
+
+
+  for (let k in _val) {
+    if (val[k]) {
+      _val[k] = val[k];
+    }
+  }
+
+
+  _val.scene.camera.setView({
+    destination: Cesium.Cartesian3.fromDegrees(_val.longitude, _val.latitude, _val.height + 20),
+    orientation: {
+      heading: _val.heading,
+      pitch: _val.pitch,
+      roll: _val.roll
+    }
+  });
+}
+
 export function entitiesClear(value,viewer) {
   let removes = [], Entities = [];
   Entities = viewer.entities.values;

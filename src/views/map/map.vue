@@ -1,6 +1,6 @@
 <template>
   <div class="map">
-    <div id="mapContainer"></div>
+    <div :id="id"></div>
   </div>
 </template>
 
@@ -17,69 +17,8 @@
     props: {},
     methods: {
       init() {
-        let _this = this;
 
-        this.$store.commit("scene/set_type", this.id);//
-        this.$store.commit("scene/set_toolbar", [
-          {
-            id: "tool_flyToScene",
-            value: "场景",
-            control_type: "scene",
-            icon: "el-icon-scene",
-            control_id: "",
-            fn: "toScene",
-            trigger: "none"
-          },
-          {
-            id: "tool_coordinates",
-            value: "坐标",
-            control_type: "scene",
-            icon: "el-icon-coordinates",
-            control_id: "",
-            fn: "xyz",
-            trigger: true
-          },
-          {
-            id: "tool_data",
-            value: "数据",
-            control_type: "tool",
-            icon: "el-icon-data",
-            control_id: "scene_data",
-            fn: "handleData",
-            trigger: true
-          },
-          {
-            id: "tool_distance",
-            value: "距离",
-            control_type: "scene",
-            icon: "el-icon-distance",
-            control_id: "",
-            fn: "measure_drawLine",
-            trigger: "none"
-          },
-          {
-            id: "tool_area",
-            value: "面积",
-            control_type: "scene",
-            icon: "el-icon-area",
-            control_id: "",
-            fn: "measure_drawPloy",
-            trigger: "none"
-          },
-          {
-            id: "tool_label",
-            value: "清除",
-            control_type: "scene",
-            icon: "el-icon-remove2",
-            control_id: "",
-            fn: "measure_clear",
-            trigger: "none"
-          }
-        ]);//设置场景工具面板
-
-        //初始化二维场景
-        mp.openScene(this.id);
-        window[this.id].init("mapContainer", [114.031047, 22.663679], [
+        window[this.id].init( [114.031047, 22.663679], [
           mp.layers.baidu_vec
         ]);
 
@@ -346,6 +285,65 @@
       }
     },
     created() {
+      this.$store.commit("scene/set_type", this.id);//
+      this.$store.commit("scene/set_toolbar", [
+        {
+          id: "tool_flyToScene",
+          value: "场景",
+          control_type: "scene",
+          icon: "el-icon-scene",
+          control_id: "",
+          fn: "toScene",
+          trigger: "none"
+        },
+        {
+          id: "tool_coordinates",
+          value: "坐标",
+          control_type: "scene",
+          icon: "el-icon-coordinates",
+          control_id: "",
+          fn: "xyz",
+          trigger: true
+        },
+        {
+          id: "tool_data",
+          value: "数据",
+          control_type: "tool",
+          icon: "el-icon-data",
+          control_id: "scene_data",
+          fn: "handleData",
+          trigger: true
+        },
+        {
+          id: "tool_distance",
+          value: "距离",
+          control_type: "scene",
+          icon: "el-icon-distance",
+          control_id: "",
+          fn: "measure_drawLine",
+          trigger: "none"
+        },
+        {
+          id: "tool_area",
+          value: "面积",
+          control_type: "scene",
+          icon: "el-icon-area",
+          control_id: "",
+          fn: "measure_drawPloy",
+          trigger: "none"
+        },
+        {
+          id: "tool_label",
+          value: "清除",
+          control_type: "scene",
+          icon: "el-icon-remove2",
+          control_id: "",
+          fn: "measure_clear",
+          trigger: "none"
+        }
+      ]);//设置场景工具面板
+      //初始化二维场景
+      mp.openScene(this.id);
     },
     mounted() {
       this.init();

@@ -18,11 +18,12 @@ var polygonEntities = [];
     let polygon = viewer.entities.add({
         name: Entities[i].name + '',
         id: 'polygon_'+Entities[i].id + '',
+
         polygon: {
           hierarchy: new Cesium.PolygonHierarchy(Cesium.Cartesian3.fromDegreesArray(Entities[i].DegreesArray)),
           material: Cesium.Color.fromCssColorString(Entities[i].color).withAlpha(Entities[i].alpha),
           // material: 'img/marker_2.png',
-          classificationType: Cesium.ClassificationType.CESIUM_3D_TILE
+          classificationType: Cesium.ClassificationType.BOTH
         },
         label: {
           text: 'Philadelphia',

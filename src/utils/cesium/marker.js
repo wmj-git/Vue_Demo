@@ -1,4 +1,6 @@
-  var _dataSource = new Cesium.CustomDataSource('markerData');
+import store from '@/store'
+
+var _dataSource = new Cesium.CustomDataSource('markerData');
 
 function addMarker(Entities, viewer) {
   /*Entities:[
@@ -8,14 +10,12 @@ function addMarker(Entities, viewer) {
       }
   ]*/
 
-
-
-
   for (var i = 0; i < Entities.length; i++) {
 
     var _entity = _dataSource.entities.add({
       name: 'marker' + Entities[i].id,
       id: 'marker_' + Entities[i].id,
+      featureData:Entities[i],
       position: Cesium.Cartesian3.fromDegrees(Entities[i].position[0], Entities[i].position[1], Entities[i].position[2]),
       billboard: {
         image: Entities[i].image, // default: undefined
@@ -36,12 +36,13 @@ function addMarker(Entities, viewer) {
     });
     var _entity1 = _dataSource.entities.add({
       name: 'marker' + Entities[i].id,
+      featureData:Entities[i],
       position: Cesium.Cartesian3.fromDegrees(Entities[i].position[0], Entities[i].position[1]),
       ellipse: {
         semiMinorAxis: 0.5,
         semiMajorAxis: 0.5,
         material: Entities[i].image,
-        classificationType: Cesium.ClassificationType.CESIUM_3D_TILE
+        classificationType: Cesium.ClassificationType.BOTH
       }
     });
   }
@@ -128,30 +129,6 @@ export function addMarkerFN(Entities, img, viewer) {
         25.735578698598523
       ],
       "id": 2
-    },
-    {
-      "position": [
-        106.29314311472511,
-        30.022715132174884,
-        26.061277744162968
-      ],
-      "id": 3
-    },
-    {
-      "position": [
-        106.29311252570369,
-        30.022699557789853,
-        28.94964472667028
-      ],
-      "id": 4
-    },
-    {
-      "position": [
-        106.29307670432215,
-        30.022634192815808,
-        26.563525391393735
-      ],
-      "id": 5
     }
   ];
   let _image = "../../static/image/marker_red.png";
@@ -162,11 +139,12 @@ export function addMarkerFN(Entities, img, viewer) {
     return
   }
 
-
   for (var i = 0; i < _Entities.length; i++) {
     Entities[i].image = _image;
   }
   addMarker(_Entities, viewer);
+
+  return _dataSource;
 }
 
 export function markerClear() {

@@ -60,8 +60,7 @@ export function clustersLayerFn(dataUrl, _Key, _clusterImgUrl, _distance) {//时
   // let _extent = [113.97796915, 22.608145238000002, 114.04398656100001, 22.704755608];
 
 
-
-    let _featureKey = {
+  let _featureKey = {
     type: "typeName",//类型
     titleKey: "id",//标题
     iconUrl: ""//图标地址
@@ -102,7 +101,7 @@ export function clustersLayerFn(dataUrl, _Key, _clusterImgUrl, _distance) {//时
               featureProjection: projection
             });
             if (features.length > 0) {
-              let _DATA =[];
+              let _DATA = [];
               features.forEach(function (feature) {
                 feature.setId(_featureKey.type + "_" + feature.get(_featureKey.titleKey));
                 let _keys = feature.getKeys();
@@ -111,7 +110,7 @@ export function clustersLayerFn(dataUrl, _Key, _clusterImgUrl, _distance) {//时
 
                   if (_key === "geometry") {
 
-                  }else {
+                  } else {
                     _featureData[_key] = feature.get(_key);
                   }
                 });
@@ -499,8 +498,8 @@ function fireContent(_OBJ) {//火警信息显示模板
 }
 
 
-export function emMap() {
-
+export function emMap(_name) {
+  this.el = _name;
   this.resolutions = [
     5.9486525145757E-4, 2.97432625728785E-4,
     1.5228550437313792E-4, 7.614275218656896E-5,
@@ -550,7 +549,7 @@ export function emMap() {
 
 }
 
-emMap.prototype.init = function (_el, _LngLat, _layers) {
+emMap.prototype.init = function (_LngLat, _layers) {
 
   let _this = this;
   let _resolutions = this.resolutions;
@@ -573,9 +572,9 @@ emMap.prototype.init = function (_el, _LngLat, _layers) {
       //}),
       //new ol.control.MeasureTool({ sphereradius: 6378137 })
     ]),
-    target: _el,
+    target: _this.el,
     layers: _layers,
-    view: this.view
+    view: _this.view
   });
   this.map.on('moveend', function (e) {
     let _map = e.map;

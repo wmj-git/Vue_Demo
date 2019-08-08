@@ -71,6 +71,9 @@ export function infoInit(viewer){
        pickedFeature.id.qwe="123123";
        console.log(pickedFeature.id.qwe);*/
 
+      console.log("featureData");
+      console.log(pickedFeature.id.featureData);
+
       var name = pickedFeature.id.name;
 
       // nameOverlay.textContent = name;
@@ -110,6 +113,10 @@ export function infoInit(viewer){
 
       // Highlight newly selected feature
       silhouetteGreen.selected = [pickedFeature];
+
+
+      console.log("featureData1");
+      console.log(pickedFeature.id.featureData);
 
       // Set feature infobox description
       var featureName = pickedFeature.id.name;
