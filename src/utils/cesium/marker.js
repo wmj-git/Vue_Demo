@@ -16,7 +16,8 @@ function addMarker(Entities, viewer) {
       name: 'marker' + Entities[i].id,
       id: 'marker_' + Entities[i].id,
       featureData:Entities[i],
-      position: Cesium.Cartesian3.fromDegrees(Entities[i].position[0], Entities[i].position[1], Entities[i].position[2]),
+      // position: Cesium.Cartesian3.fromDegrees(Entities[i].position[0], Entities[i].position[1], Entities[i].position[2]),
+      position: Cesium.Cartesian3.fromDegrees(Entities[i].position[0], Entities[i].position[1]),
       billboard: {
         image: Entities[i].image, // default: undefined
         show: true, // default
@@ -42,6 +43,18 @@ function addMarker(Entities, viewer) {
         semiMinorAxis: 0.5,
         semiMajorAxis: 0.5,
         material: Entities[i].image,
+        classificationType: Cesium.ClassificationType.BOTH
+      }
+    });
+    var _entity2 = _dataSource.entities.add({
+      name: 'marker_point_' + Entities[i].id,
+      featureData:Entities[i],
+      position: Cesium.Cartesian3.fromDegrees(Entities[i].position[0], Entities[i].position[1]),
+      ellipse: {
+        semiMinorAxis: 1.8,
+        semiMajorAxis: 1.8,
+        material : Cesium.Color.RED,
+        outline : true,
         classificationType: Cesium.ClassificationType.BOTH
       }
     });
@@ -84,7 +97,7 @@ function addMarker(Entities, viewer) {
           cluster.billboard.verticalOrigin = Cesium.VerticalOrigin.BOTTOM;
 
           if (clusteredEntities.length >= 50) {
-            cluster.billboard.image = pin50;
+            cluster.billboard.image = pinBuilder.fromText(clusteredEntities.length+'', Cesium.Color.RED, 48).toDataURL();
           } else if (clusteredEntities.length >= 40) {
             cluster.billboard.image = pin40;
           } else if (clusteredEntities.length >= 30) {
@@ -121,14 +134,6 @@ export function addMarkerFN(Entities, img, viewer) {
         24.383082368235286
       ],
       "id": 1
-    },
-    {
-      "position": [
-        106.2931895268016,
-        30.02275619057545,
-        25.735578698598523
-      ],
-      "id": 2
     }
   ];
   let _image = "../../static/image/marker_red.png";

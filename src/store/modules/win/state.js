@@ -5129,6 +5129,24 @@ export default {
             strokeWidth: 2,
             strokeColor:"#c42e1e",
             trigger: true
+          },
+          {
+            id: "bt_8",
+            type: "info",
+            icon: "el-icon-edit",
+            text: "模型",
+            control_type: "scene",
+            control_id: "",
+            fn: "scene_data",
+            data_type: "4",
+            layer_name: "ly5",
+            api_name:"queryVicinityPrint",
+            data_url: "http://onelz.oicp.vip/proxy/server/4FACB86003FB479A851EFF7D09AE10F4/999C1448C6DD4842A35412B42226F0A3",
+            geomType: "mode",
+            geom_titleKey: "id",
+            strokeWidth: 2,
+            strokeColor:"#c42e1e",
+            trigger: true
           }
         ]
       }

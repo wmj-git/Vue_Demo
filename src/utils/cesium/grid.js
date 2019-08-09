@@ -1,6 +1,6 @@
 var polygonEntities = [];
 
- function addPolygon(Entities,viewer) {
+function addPolygon(Entities, viewer) {
   /*Entities:[
       {   id: "grid_1",
            name:"网格1",
@@ -16,26 +16,26 @@ var polygonEntities = [];
 
   for (let i = 0; i < Entities.length; i++) {
     let polygon = viewer.entities.add({
-        name: Entities[i].name + '',
-        id: 'polygon_'+Entities[i].id + '',
-
-        polygon: {
-          hierarchy: new Cesium.PolygonHierarchy(Cesium.Cartesian3.fromDegreesArray(Entities[i].DegreesArray)),
-          material: Cesium.Color.fromCssColorString(Entities[i].color).withAlpha(Entities[i].alpha),
-          // material: 'img/marker_2.png',
-          classificationType: Cesium.ClassificationType.BOTH
-        },
-        label: {
-          text: 'Philadelphia',
-          font: '24px Helvetica',
-          show:true,
-          pixelOffset: new Cesium.Cartesian2(0, -30),
-          fillColor: Cesium.Color.SKYBLUE,
-          outlineColor: Cesium.Color.BLACK,
-          outlineWidth: 1,
-          style: Cesium.LabelStyle.FILL_AND_OUTLINE
-        }
-      });
+      name: Entities[i].name + '',
+      id: 'polygon_' + Entities[i].id + '',
+      featureData: Entities[i],
+      polygon: {
+        hierarchy: new Cesium.PolygonHierarchy(Cesium.Cartesian3.fromDegreesArray(Entities[i].DegreesArray)),
+        material: Cesium.Color.fromCssColorString(Entities[i].color).withAlpha(Entities[i].alpha),
+        // material: 'img/marker_2.png',
+        classificationType: Cesium.ClassificationType.BOTH
+      },
+      label: {
+        text: 'Philadelphia',
+        font: '24px Helvetica',
+        show: true,
+        pixelOffset: new Cesium.Cartesian2(0, -30),
+        fillColor: Cesium.Color.SKYBLUE,
+        outlineColor: Cesium.Color.BLACK,
+        outlineWidth: 1,
+        style: Cesium.LabelStyle.FILL_AND_OUTLINE
+      }
+    });
     polygonEntities.push(polygon);
   }
 }
@@ -44,7 +44,7 @@ export function addPolygonFN(viewer) {
   let Entities = [
     {
       id: "grid_1",
-      name:"网格1",
+      name: "网格1",
       color: "#4cf02c",//颜色
       alpha: 0.5,//透明
       DegreesArray: [
@@ -61,7 +61,7 @@ export function addPolygonFN(viewer) {
     },
     {
       id: "grid_2",
-      name:"网格2",
+      name: "网格2",
       color: "#f06e59",//颜色
       alpha: 0.5,//透明
       DegreesArray: [106.29197302854351,
@@ -84,7 +84,7 @@ export function addPolygonFN(viewer) {
         30.023220805658674]
     }
   ];
-  addPolygon(Entities,viewer);
+  addPolygon(Entities, viewer);
 }
 
 

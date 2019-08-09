@@ -22,8 +22,12 @@
 
         // 初始化场景
         // cm.init(this.id, "https://onelz.oicp.vip/SG/b3dm/LH1-1-2.405276/tileset.json");
-        cm.init(this.id, process.env.SCENE_URL + "/sceneData/b3dm/tileset.json");
-
+        // cm.init(this.id, process.env.SCENE_URL + "/sceneData/b3dm/tileset.json");
+        cm.init(this.id, "http://192.168.20.125:800/sceneData/b3dm/tileset.json", {
+          longitude: 114.0497756235571,
+          latitude: 22.637316560481576,
+          height: -160
+        });
       },
       baseMapFn(obj) {
         let _layer = null;
@@ -34,9 +38,10 @@
 
         switch (obj.layerName) {
           case "1"://天地图矢量图
+            window[this.id].tileset.show = true;
             _layer = new Cesium.WebMapTileServiceImageryProvider({
-              url: 'http://t0.tianditu.gov.cn/cia_w/wmts?tk=dcfb31be4b1daef33e484e48348cb28b',
-              layer: 'cia',
+              url: 'http://t0.tianditu.gov.cn/img_w/wmts?tk=dcfb31be4b1daef33e484e48348cb28b',
+              layer: 'img',
               style: 'default',
               tileMatrixSetID: 'w',
               format: 'tiles',
@@ -45,6 +50,7 @@
             window[this.id].viewer.imageryLayers.addImageryProvider(_layer);
             break;
           case "2"://天地图影像图
+            window[this.id].tileset.show = false;
             _layer = new Cesium.WebMapTileServiceImageryProvider({
               url: 'http://t0.tianditu.gov.cn/img_w/wmts?tk=dcfb31be4b1daef33e484e48348cb28b',
               layer: 'img',
@@ -56,7 +62,15 @@
             window[this.id].viewer.imageryLayers.addImageryProvider(_layer);
             break;
           case "3"://百度矢量图
-
+            _layer = new Cesium.WebMapTileServiceImageryProvider({
+              url: 'http://t0.tianditu.gov.cn/cia_w/wmts?tk=dcfb31be4b1daef33e484e48348cb28b',
+              layer: 'cia',
+              style: 'default',
+              tileMatrixSetID: 'w',
+              format: 'tiles',
+              maximumLevel: 18
+            });
+            window[this.id].viewer.imageryLayers.addImageryProvider(_layer);
             break;
           case "4"://百度影像图
 
@@ -97,7 +111,7 @@
 
         //摄像机地位
         cm.camera({
-          scene:window[this.id].scene,
+          scene: window[this.id].scene,
           longitude: 114.05566529913777,
           latitude: 22.604387298808085
         });
@@ -109,8 +123,14 @@
 
             if (obj.trigger) {
               // alert(1);
+              this.alpha({
+                value: 0.4
+              });
               cm.addMarkerFN(cm.db.posts2, "../../static/image/marker_2.png", window[this.id].viewer);
             } else {
+              this.alpha({
+                value: 1.0
+              });
               cm.markerClear();
             }
 
@@ -136,9 +156,9 @@
             break;
           case "4"://模型
             if (obj.trigger) {
-
+              cm.addModeFN(window[this.id].viewer);
             } else {
-
+              cm.modeClear();
             }
             break;
         }

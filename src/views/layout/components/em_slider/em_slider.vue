@@ -33,7 +33,8 @@
         },
         methods: {
             fn() {
-                this.bus.$emit("scene", {
+              let _controlId = this.$store.getters["scene/type"];
+                this.bus.$emit(_controlId, {
                     fn: "alpha",
                     value: this.value / 100
                 });

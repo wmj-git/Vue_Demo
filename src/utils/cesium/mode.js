@@ -58,15 +58,15 @@ export function addModeFN(viewer) {
       id: 12,
       name:"路灯",
       mode: "../../static/mode_3d/light.gltf",
-      position: [106.29100714056409,
-        30.024022718641977,
-        34.93395027507901]
+      position: [1114.04643246147137,
+        22.635611919417318,
+        8.991219312859206]
     },
     {
       id: 112,
       name:"监测器",
       mode: "../../static/mode_3d/monitor.gltf",
-      position: [106.29079752585808 ,30.02358039824531 ,34.93395027507901]
+      position: [114.046408720502 ,22.635097596087114 ,7.2044301736030585]
     }
   ];
   addMode(Entities, viewer);

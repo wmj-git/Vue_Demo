@@ -10,7 +10,7 @@ import {xyzFN} from "./xyz"
 import {SetMeasure, clearDrawingBoard} from "./measure"
 import {emMap} from "../ol/fn";
 
-function init(_name, tileset_url) {
+function init(_name, tileset_url,_coordinates) {
 
   let viewer = new Cesium.Viewer(_name, {
     scene3DOnly: true,
@@ -52,7 +52,7 @@ function init(_name, tileset_url) {
   viewer.scene.primitives.add(tileset);
 
 //跳转到场景全貌
-  tileset.readyPromise.then(function () {
+/*  tileset.readyPromise.then(function () {
     let boundingSphere = tileset.boundingSphere;
     console.log(boundingSphere);
     viewer.camera.viewBoundingSphere(boundingSphere, new Cesium.HeadingPitchRange(0.0, -0.5, boundingSphere.radius + 500.0));
@@ -61,12 +61,46 @@ function init(_name, tileset_url) {
 
     let cartographic = Cesium.Cartographic.fromCartesian(boundingSphere.center);
     let surface = Cesium.Cartesian3.fromRadians(cartographic.longitude, cartographic.latitude, 0.0);
+    // let offset = Cesium.Cartesian3.fromRadians(cartographic.longitude, cartographic.latitude, -50);
     let offset = Cesium.Cartesian3.fromRadians(cartographic.longitude, cartographic.latitude, -50);
     let translation = Cesium.Cartesian3.subtract(offset, surface, new Cesium.Cartesian3());
     tileset.modelMatrix = Cesium.Matrix4.fromTranslation(translation);
-  });
+  });*/
 
-// viewer.zoomTo(tileset);//场景跳转
+
+// 经纬度等
+  var longitude = _coordinates.longitude;
+  var latitude = _coordinates.latitude;
+  var height = _coordinates.height;
+  // var heading = 0 // 方位角
+  // 模型加载完毕后的回调
+  tileset.readyPromise.then(function (argument) {
+    // 1、旋转
+    let hpr = new Cesium.Matrix3();
+    // new Cesium.HeadingPitchRoll(heading, pitch, roll)
+    // heading围绕负z轴的旋转。pitch是围绕负y轴的旋转。Roll是围绕正x轴的旋转
+    let hprObj = new Cesium.HeadingPitchRoll(Math.PI, Math.PI, Math.PI);
+
+    //  Cesium.Matrix3.fromHeadingPitchRoll （headingPitchRoll，result）
+    hpr = Cesium.Matrix3.fromHeadingPitchRoll(hprObj, hpr);
+
+    // 2、平移
+    // 2.3储存平移的结果
+    let modelMatrix = Cesium.Matrix4.multiplyByTranslation(
+      // 2.1从以度为单位的经度和纬度值返回Cartesian3位置
+      // 2.2计算4x4变换矩阵
+      Cesium.Transforms.eastNorthUpToFixedFrame(Cesium.Cartesian3.fromDegrees(longitude,latitude, height)),
+      new Cesium.Cartesian3(),
+      new Cesium.Matrix4()
+    );
+    /// 3、应用旋转
+    // Cesium.Matrix4.multiplyByMatrix3 （矩阵，旋转，结果）
+    Cesium.Matrix4.multiplyByMatrix3(modelMatrix, hpr, modelMatrix);
+    tileset._root.transform = modelMatrix
+  });
+  viewer.zoomTo(tileset);
+
+
 
   infoInit(viewer);//初始化信息窗
 
