@@ -42,14 +42,52 @@ function init(_name, tileset_url,_coordinates) {
   globe.depthTestAgainstTerrain = true;
 
 
-  let tileset = new Cesium.Cesium3DTileset({
-    name: "tileset_hc",
-    url: tileset_url,
-    loadSiblings: true,
-    maximumMemoryUsage: 1000
-  });
 
-  viewer.scene.primitives.add(tileset);
+ /* setTimeout(function () {
+    let _tileset = new Cesium.Cesium3DTileset({
+      name: "tileset_hc",
+      url: tileset_url,
+      loadSiblings: true,
+      maximumMemoryUsage: 1500
+    });
+
+    viewer.scene.primitives.add(_tileset);
+
+    // 经纬度等
+    var longitude = _coordinates.longitude;
+    var latitude = _coordinates.latitude;
+    var height = _coordinates.height;
+    // var heading = 0 // 方位角
+    // 模型加载完毕后的回调
+    _tileset.readyPromise.then(function (argument) {
+      // 1、旋转
+      let hpr = new Cesium.Matrix3();
+      // new Cesium.HeadingPitchRoll(heading, pitch, roll)
+      // heading围绕负z轴的旋转。pitch是围绕负y轴的旋转。Roll是围绕正x轴的旋转
+      let hprObj = new Cesium.HeadingPitchRoll(Math.PI, Math.PI, Math.PI);
+
+      //  Cesium.Matrix3.fromHeadingPitchRoll （headingPitchRoll，result）
+      hpr = Cesium.Matrix3.fromHeadingPitchRoll(hprObj, hpr);
+
+      // 2、平移
+      // 2.3储存平移的结果
+      let modelMatrix = Cesium.Matrix4.multiplyByTranslation(
+        // 2.1从以度为单位的经度和纬度值返回Cartesian3位置
+        // 2.2计算4x4变换矩阵
+        Cesium.Transforms.eastNorthUpToFixedFrame(Cesium.Cartesian3.fromDegrees(longitude,latitude, height)),
+        new Cesium.Cartesian3(),
+        new Cesium.Matrix4()
+      );
+      /// 3、应用旋转
+      // Cesium.Matrix4.multiplyByMatrix3 （矩阵，旋转，结果）
+      Cesium.Matrix4.multiplyByMatrix3(modelMatrix, hpr, modelMatrix);
+      _tileset._root.transform = modelMatrix
+    });
+    viewer.zoomTo(_tileset);
+
+  }, 200);
+
+*/
 
 //跳转到场景全貌
 /*  tileset.readyPromise.then(function () {
@@ -68,37 +106,7 @@ function init(_name, tileset_url,_coordinates) {
   });*/
 
 
-// 经纬度等
-  var longitude = _coordinates.longitude;
-  var latitude = _coordinates.latitude;
-  var height = _coordinates.height;
-  // var heading = 0 // 方位角
-  // 模型加载完毕后的回调
-  tileset.readyPromise.then(function (argument) {
-    // 1、旋转
-    let hpr = new Cesium.Matrix3();
-    // new Cesium.HeadingPitchRoll(heading, pitch, roll)
-    // heading围绕负z轴的旋转。pitch是围绕负y轴的旋转。Roll是围绕正x轴的旋转
-    let hprObj = new Cesium.HeadingPitchRoll(Math.PI, Math.PI, Math.PI);
 
-    //  Cesium.Matrix3.fromHeadingPitchRoll （headingPitchRoll，result）
-    hpr = Cesium.Matrix3.fromHeadingPitchRoll(hprObj, hpr);
-
-    // 2、平移
-    // 2.3储存平移的结果
-    let modelMatrix = Cesium.Matrix4.multiplyByTranslation(
-      // 2.1从以度为单位的经度和纬度值返回Cartesian3位置
-      // 2.2计算4x4变换矩阵
-      Cesium.Transforms.eastNorthUpToFixedFrame(Cesium.Cartesian3.fromDegrees(longitude,latitude, height)),
-      new Cesium.Cartesian3(),
-      new Cesium.Matrix4()
-    );
-    /// 3、应用旋转
-    // Cesium.Matrix4.multiplyByMatrix3 （矩阵，旋转，结果）
-    Cesium.Matrix4.multiplyByMatrix3(modelMatrix, hpr, modelMatrix);
-    tileset._root.transform = modelMatrix
-  });
-  viewer.zoomTo(tileset);
 
 
 
@@ -139,7 +147,6 @@ let dataSource={};
     viewer,
     scene,
     globe,
-    tileset,
     dataSource
   };
 

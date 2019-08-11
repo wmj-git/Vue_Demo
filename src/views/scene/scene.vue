@@ -22,12 +22,16 @@
 
         // 初始化场景
         // cm.init(this.id, "https://onelz.oicp.vip/SG/b3dm/LH1-1-2.405276/tileset.json");
-        // cm.init(this.id, process.env.SCENE_URL + "/sceneData/b3dm/tileset.json");
-        cm.init(this.id, "http://192.168.20.125:800/sceneData/b3dm/tileset.json", {
+        cm.init(this.id, process.env.SCENE_URL + "/sceneData/b3dm/tileset.json",{
           longitude: 114.0497756235571,
           latitude: 22.637316560481576,
           height: -160
         });
+       /* cm.init(this.id, "http://localhost:800/sceneData/b3dm/tileset.json", {
+          longitude: 114.0497756235571,
+          latitude: 22.637316560481576,
+          height: -160
+        });*/
       },
       baseMapFn(obj) {
         let _layer = null;
@@ -38,7 +42,7 @@
 
         switch (obj.layerName) {
           case "1"://天地图矢量图
-            window[this.id].tileset.show = true;
+            // window[this.id].tileset.show = true;
             _layer = new Cesium.WebMapTileServiceImageryProvider({
               url: 'http://t0.tianditu.gov.cn/img_w/wmts?tk=dcfb31be4b1daef33e484e48348cb28b',
               layer: 'img',
@@ -50,7 +54,7 @@
             window[this.id].viewer.imageryLayers.addImageryProvider(_layer);
             break;
           case "2"://天地图影像图
-            window[this.id].tileset.show = false;
+            // window[this.id].tileset.show = false;
             _layer = new Cesium.WebMapTileServiceImageryProvider({
               url: 'http://t0.tianditu.gov.cn/img_w/wmts?tk=dcfb31be4b1daef33e484e48348cb28b',
               layer: 'img',
@@ -120,7 +124,6 @@
 
         switch (obj.data_type) {
           case "1"://采集的树数据
-
             if (obj.trigger) {
               // alert(1);
               this.alpha({
