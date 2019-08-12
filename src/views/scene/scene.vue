@@ -7,6 +7,7 @@
 <script>
 
   import cm from "@/utils/cesium/index"
+  import {queryVicinityPrint, findOne, queryAllcount} from "@/api/tree";
 
   export default {
     data() {
@@ -25,7 +26,7 @@
         cm.init(this.id, process.env.SCENE_URL + "/sceneData/b3dm/tileset.json",{
           longitude: 114.0497756235571,
           latitude: 22.637316560481576,
-          height: -160
+          height: -260
         });
        /* cm.init(this.id, "http://localhost:800/sceneData/b3dm/tileset.json", {
           longitude: 114.0497756235571,
@@ -36,7 +37,6 @@
       baseMapFn(obj) {
         let _layer = null;
         console.log(window[this.id]);
-
 
         window[this.id].viewer.imageryLayers.removeAll();
 
@@ -112,7 +112,6 @@
       toScene(obj) {
         //跳到场景地形
         // cm.toScene(window[this.id].viewer, window[this.id].tileset);
-
         //摄像机地位
         cm.camera({
           scene: window[this.id].scene,
@@ -125,11 +124,10 @@
         switch (obj.data_type) {
           case "1"://采集的树数据
             if (obj.trigger) {
-              // alert(1);
               this.alpha({
                 value: 0.4
               });
-              cm.addMarkerFN(cm.db.posts2, "../../static/image/marker_2.png", window[this.id].viewer);
+              this.queryVicinityPrintFn(obj);
             } else {
               this.alpha({
                 value: 1.0
@@ -165,6 +163,55 @@
             }
             break;
         }
+
+      },
+      queryVicinityPrintFn(obj) { //树木范围查询显示
+        let _val = {
+          lng: null,
+          lat: null,
+          distance: null,
+          layer_name: "",
+          data_maker_iconUrl: "",
+          maker_titleKey: "",
+          clusters_color: "",
+        };
+
+        for (let k in _val) {
+          if (obj[k]) {
+            _val[k] = obj[k];
+          }
+        }
+
+        queryVicinityPrint({
+          params: {
+            longitude: _val.lng ? _val.lng : 114.03188276054428,
+            latitude: _val.lat ? _val.lat : 22.619840297782094,
+            distance: _val.distance ? _val.distance : 10000
+          }
+        }).then(response => {
+          let _data = [];
+          if (response.statusCode === 200) {
+            response.data.forEach(function (_obj) {
+              _obj.icon = _val.data_maker_iconUrl;
+            });
+            _data = response.data;
+            console.log(_data);
+          }
+          cm.addMarkerFN(cm.db.posts2, "../../static/image/marker_2.png", window[this.id].viewer);
+         /* let _layer = mp.clustersFn(_data, {
+            type: _val.layer_name,
+            titleKey: _val.maker_titleKey,
+            iconUrlKey: "icon"
+          }, _val.clusters_color, 30);
+          this.addLayer({
+            layer: _layer.layer
+          });*/
+        });
+      },
+      markerDataFn(obj) { //矢量数据展示
+
+      },
+      geomDataFn(obj) { //矢量数据展示
 
       }
     },

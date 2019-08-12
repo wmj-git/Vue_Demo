@@ -11,7 +11,7 @@ import {SetMeasure, clearDrawingBoard} from "./measure"
 import {emMap} from "../ol/fn";
 
 function init(_name, tileset_url,_coordinates) {
-
+  let dataSources={};
   let viewer = new Cesium.Viewer(_name, {
     scene3DOnly: true,
     animation: false, //是否显示动画控件
@@ -42,8 +42,7 @@ function init(_name, tileset_url,_coordinates) {
   globe.depthTestAgainstTerrain = true;
 
 
-
- /* setTimeout(function () {
+  setTimeout(function () {
     let _tileset = new Cesium.Cesium3DTileset({
       name: "tileset_hc",
       url: tileset_url,
@@ -87,7 +86,6 @@ function init(_name, tileset_url,_coordinates) {
 
   }, 200);
 
-*/
 
 //跳转到场景全貌
 /*  tileset.readyPromise.then(function () {
@@ -104,8 +102,6 @@ function init(_name, tileset_url,_coordinates) {
     let translation = Cesium.Cartesian3.subtract(offset, surface, new Cesium.Cartesian3());
     tileset.modelMatrix = Cesium.Matrix4.fromTranslation(translation);
   });*/
-
-
 
 
 
@@ -141,13 +137,12 @@ function init(_name, tileset_url,_coordinates) {
       classificationType: Cesium.ClassificationType.BOTH
     }
   });
-let dataSource={};
 
   window[_name] = {
     viewer,
     scene,
     globe,
-    dataSource
+    dataSources
   };
 
   console.log("window[_name]");

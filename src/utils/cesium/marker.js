@@ -1,8 +1,18 @@
 import store from '@/store'
 
-var _dataSource = new Cesium.CustomDataSource('markerData');
+
 
 function addMarker(Entities, viewer) {
+
+  let _this = null;
+  let _mapNmame = store.getters["scene/type"];
+  if (window[_mapNmame]) {
+    _this = window[_mapNmame];
+  } else {
+    return
+  }
+  var _dataSource = new Cesium.CustomDataSource('markerData');
+  _this.dataSources["markerData"]=_dataSource;
   /*Entities:[
       {    id:12,
            image:"img/marker_red.png",
@@ -15,7 +25,7 @@ function addMarker(Entities, viewer) {
     var _entity = _dataSource.entities.add({
       name: 'marker' + Entities[i].id,
       id: 'marker_' + Entities[i].id,
-      featureData:Entities[i],
+      featureData: Entities[i],
       // position: Cesium.Cartesian3.fromDegrees(Entities[i].position[0], Entities[i].position[1], Entities[i].position[2]),
       position: Cesium.Cartesian3.fromDegrees(Entities[i].position[0], Entities[i].position[1]),
       billboard: {
@@ -37,7 +47,7 @@ function addMarker(Entities, viewer) {
     });
     var _entity1 = _dataSource.entities.add({
       name: 'marker' + Entities[i].id,
-      featureData:Entities[i],
+      featureData: Entities[i],
       position: Cesium.Cartesian3.fromDegrees(Entities[i].position[0], Entities[i].position[1]),
       ellipse: {
         semiMinorAxis: 0.5,
@@ -48,13 +58,13 @@ function addMarker(Entities, viewer) {
     });
     var _entity2 = _dataSource.entities.add({
       name: 'marker_point_' + Entities[i].id,
-      featureData:Entities[i],
+      featureData: Entities[i],
       position: Cesium.Cartesian3.fromDegrees(Entities[i].position[0], Entities[i].position[1]),
       ellipse: {
         semiMinorAxis: 1.8,
         semiMajorAxis: 1.8,
-        material : Cesium.Color.RED,
-        outline : true,
+        material: Cesium.Color.RED,
+        outline: true,
         classificationType: Cesium.ClassificationType.BOTH
       }
     });
@@ -97,7 +107,7 @@ function addMarker(Entities, viewer) {
           cluster.billboard.verticalOrigin = Cesium.VerticalOrigin.BOTTOM;
 
           if (clusteredEntities.length >= 50) {
-            cluster.billboard.image = pinBuilder.fromText(clusteredEntities.length+'', Cesium.Color.RED, 48).toDataURL();
+            cluster.billboard.image = pinBuilder.fromText(clusteredEntities.length + '', Cesium.Color.RED, 48).toDataURL();
           } else if (clusteredEntities.length >= 40) {
             cluster.billboard.image = pin40;
           } else if (clusteredEntities.length >= 30) {
@@ -120,11 +130,14 @@ function addMarker(Entities, viewer) {
 
     // start with custom style
     customStyle();
+
+
   });
 
 }
 
 export function addMarkerFN(Entities, img, viewer) {
+let _dataSource=null;
 
   let _Entities = [
     {
@@ -137,21 +150,35 @@ export function addMarkerFN(Entities, img, viewer) {
     }
   ];
   let _image = "../../static/image/marker_red.png";
-  if ( Entities instanceof Array) {
-    _Entities=Entities;
-    _image=img;
-  }else {
+  if (Entities instanceof Array) {
+    _Entities = Entities;
+    _image = img;
+  } else {
     return
   }
 
   for (var i = 0; i < _Entities.length; i++) {
     Entities[i].image = _image;
   }
-  addMarker(_Entities, viewer);
+
+  _dataSource=addMarker(_Entities, viewer);
 
   return _dataSource;
 }
 
 export function markerClear() {
-  _dataSource.entities.removeAll();
+  let _this = null;
+  let _mapNmame = store.getters["scene/type"];
+  if (window[_mapNmame]) {
+    _this = window[_mapNmame];
+  } else {
+    return
+  }
+  let _dataSource=_this.dataSources["markerData"];
+  if(_this.viewer.dataSources.contains(_dataSource)){
+    _this.viewer.dataSources.remove(_dataSource);
+  }else {
+
+  }
+  // _this.viewer.dataSources.removeAll();
 }

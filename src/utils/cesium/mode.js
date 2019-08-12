@@ -50,15 +50,17 @@ export function addModeFN(viewer) {
       id: 123,
       name:"管道",
       mode: "../../static/mode_3d/gd.gltf",
-      position: [106.29057012618736,
-        30.023299599766734,
+      position: [
+        114.04643246147137,
+        22.635611919417318,
         10]
     },
     {
       id: 12,
       name:"路灯",
       mode: "../../static/mode_3d/light.gltf",
-      position: [1114.04643246147137,
+      position: [
+        114.04643246147137,
         22.635611919417318,
         8.991219312859206]
     },

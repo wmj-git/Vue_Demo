@@ -230,6 +230,59 @@
           });
         });
       },
+      markerDataFn(obj) { //矢量数据展示
+        let _val = {
+          data_url: "",
+          params: {},
+          layer_name: "",
+          api_name: "",
+          geomType: "",
+          geom_style: "1",//几何样式类型
+          geom_titleKey: "",
+          strokeWidth: 2,
+          strokeColor: [0, 255, 0, 1.0],
+          fillColor: [0, 0, 255, 1.0]
+        };
+
+        for (let k in _val) {
+          if (obj[k]) {
+            _val[k] = obj[k];
+          }
+        }
+
+
+        if(_val.api_name==="queryVicinityPrint"){
+
+          queryVicinityPrint({
+            url: _val.data_url,
+            params: _val.params
+          }).then(response => {
+            let _data = [];
+            if (response.statusCode === 200) {
+              response.data.forEach(function (_obj) {
+                // _obj.coordinates =[[114.00614435225583, 22.64468317909319],[114.00686770840161, 22.644074037075697], [114.00888549133455, 22.64434053670835],[114.00663928014505, 22.646929390282693]];
+                // _obj.coordinates =[[[114.00614435225583, 22.64468317909319],[114.00686770840161, 22.644074037075697], [114.00888549133455, 22.64434053670835],[114.00663928014505, 22.646929390282693]]];
+              });
+              _data = response.data;
+            }
+            let _layer = mp.layerFN(_data, {
+              type: _val.layer_name,
+              geomType: _val.geomType
+            }, {
+              type: _val.geom_style,
+              titleKey: _val.geom_titleKey,//标题
+              strokeWidth: _val.strokeWidth,
+              strokeColor: _val.strokeColor,
+              fillColor: _val.fillColor
+            });
+            this.addLayer({
+              layer: _layer.layer
+            });
+          });
+
+        }
+
+      },
       geomDataFn(obj) { //矢量数据展示
         let _val = {
           data_url: "",
