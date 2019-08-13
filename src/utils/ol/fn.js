@@ -332,7 +332,7 @@ export function ClearLayerFN(_map, _layers) {
 }
 
 //有聚合的数据图层
-export function clustersFn(_features, _Key, _clusterImgUrl, _distance) {//_features:数据, _Key:属性配置, _clusterImgUrl:聚合图标
+export function clustersFn(_features, _Key, _clusterColor, _distance) {//_features:数据, _Key:属性配置, _clusterImgUrl:聚合图标
 
   /* _features=[{
             id:"",
@@ -417,7 +417,7 @@ export function clustersFn(_features, _Key, _clusterImgUrl, _distance) {//_featu
               anchorYUnits: 'pixels',
               opacity: 0.8,
               scale: 1.28,
-              color: _clusterImgUrl,
+              color: _clusterColor,
               src: "../../static/image/cluster.png"
             })),
             text: new ol.style.Text({

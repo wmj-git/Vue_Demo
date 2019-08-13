@@ -451,11 +451,20 @@ var tLayer_img = crtLayerWMTS("img_c", "EPSG:4326", 1.0, "dcfb31be4b1daef33e484e
 
 
 // 本地地图
-var osmLayer = new ol.layer.Tile({
+var osmLayer_vec = new ol.layer.Tile({
   name: "baseMap_layer",
   opacity: 1.0,
   source: new ol.source.XYZ({
-    url: 'http://192.168.20.18:800/zhlhscene/gis/{z}/{x}/{y}.png',
+    url: 'http://192.168.20.125:800/sceneData/zhlh_vec/{z}/{x}/{y}.png',
+    wrapX: false
+  }),
+  projection: 'EPSG:4326'
+});
+var osmLayer_img = new ol.layer.Tile({
+  name: "baseMap_layer",
+  opacity: 1.0,
+  source: new ol.source.XYZ({
+    url: 'http://192.168.20.125:800/sceneData/zhlh_img/{z}/{x}/{y}.png',
     wrapX: false
   }),
   projection: 'EPSG:4326'
@@ -465,7 +474,8 @@ export default {
   baidu_vec,//百度矢量底图
   baidu_img,//百度影像底图
   baidu_cva,//百度标注底图
-  osmLayer,//离线底图
+  osmLayer_vec,//离线矢量底图
+  osmLayer_img,//离线影像底图
   tLayer_vec,//天地图矢量底图
   tLayer_img//天地图影像地图
 }

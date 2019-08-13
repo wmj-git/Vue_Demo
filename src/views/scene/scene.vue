@@ -23,16 +23,16 @@
 
         // 初始化场景
         // cm.init(this.id, "https://onelz.oicp.vip/SG/b3dm/LH1-1-2.405276/tileset.json");
-        cm.init(this.id, process.env.SCENE_URL + "/sceneData/b3dm/tileset.json",{
+        cm.init(this.id, process.env.SCENE_URL + "/sceneData/b3dm/tileset.json", {
           longitude: 114.0497756235571,
           latitude: 22.637316560481576,
           height: -260
         });
-       /* cm.init(this.id, "http://localhost:800/sceneData/b3dm/tileset.json", {
-          longitude: 114.0497756235571,
-          latitude: 22.637316560481576,
-          height: -160
-        });*/
+        /* cm.init(this.id, "http://localhost:800/sceneData/b3dm/tileset.json", {
+           longitude: 114.0497756235571,
+           latitude: 22.637316560481576,
+           height: -160
+         });*/
       },
       baseMapFn(obj) {
         let _layer = null;
@@ -79,17 +79,27 @@
           case "4"://百度影像图
 
             break;
-          case "5"://时空云矢量图
+          case "5":
+
+            break;
+          case "6":
+
+            break;
+          case "7":
             _layer = new Cesium.UrlTemplateImageryProvider({
-              url: process.env.SCENE_URL + "/sceneData/gis/{z}/{x}/{y}.png",
-              // url: "192.168.20.18:800/scene/gis/{z}/{x}/{y}.png",
+              url: process.env.SCENE_URL + "/sceneData/zhlh_vec/{z}/{x}/{y}.png",
               layer: "tdtBasicLayer",
               style: "default"
             });
             window[this.id].viewer.imageryLayers.addImageryProvider(_layer);
             break;
-          case "6"://时空云影像图
-
+          case "8":
+            _layer = new Cesium.UrlTemplateImageryProvider({
+              url: process.env.SCENE_URL + "/sceneData/zhlh_img/{z}/{x}/{y}.png",
+              layer: "tdtBasicLayer",
+              style: "default"
+            });
+            window[this.id].viewer.imageryLayers.addImageryProvider(_layer);
             break;
         }
 
@@ -119,6 +129,7 @@
           latitude: 22.604387298808085
         });
       },
+
       scene_data(obj) {
 
         switch (obj.data_type) {
@@ -132,7 +143,7 @@
               this.alpha({
                 value: 1.0
               });
-              cm.markerClear();
+              cm.markerClear(obj.layer_name);
             }
 
             /* if (obj.trigger) {
@@ -181,7 +192,6 @@
             _val[k] = obj[k];
           }
         }
-
         queryVicinityPrint({
           params: {
             longitude: _val.lng ? _val.lng : 114.03188276054428,
@@ -197,15 +207,13 @@
             _data = response.data;
             console.log(_data);
           }
-          cm.addMarkerFN(cm.db.posts2, "../../static/image/marker_2.png", window[this.id].viewer);
-         /* let _layer = mp.clustersFn(_data, {
+          cm.addMarkerFN(_data, {
             type: _val.layer_name,
             titleKey: _val.maker_titleKey,
-            iconUrlKey: "icon"
-          }, _val.clusters_color, 30);
-          this.addLayer({
-            layer: _layer.layer
-          });*/
+            iconUrlKey: "icon",
+            clusters_color:_val.clusters_color
+          }, window[this.id].viewer);
+
         });
       },
       markerDataFn(obj) { //矢量数据展示
