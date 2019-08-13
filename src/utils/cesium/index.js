@@ -11,7 +11,6 @@ import {SetMeasure, clearDrawingBoard} from "./measure"
 import {emMap} from "../ol/fn";
 
 function init(_name, tileset_url,_coordinates) {
-  let dataSources={};
   let viewer = new Cesium.Viewer(_name, {
     scene3DOnly: true,
     animation: false, //是否显示动画控件
@@ -141,8 +140,7 @@ function init(_name, tileset_url,_coordinates) {
   window[_name] = {
     viewer,
     scene,
-    globe,
-    dataSources
+    globe
   };
 
   console.log("window[_name]");

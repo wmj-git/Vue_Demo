@@ -99,6 +99,12 @@
               url:"http://onelz.oicp.vip/proxy/layer/E36DF1E5DD7D4081A1E722ED2C8D7455/999C1448C6DD4842A35412B42226F0A3/tile/{z}/{y}/{x}"
             });
             break;
+          case "7"://本地矢量图
+            _layer = mp.layers.osmLayer_vec;
+            break;
+          case "8"://本地影像图
+            _layer = mp.layers.osmLayer_img;
+            break;
         }
 
         this.addLayer({
@@ -230,7 +236,7 @@
           });
         });
       },
-      markerDataFn(obj) { //矢量数据展示
+      markerDataFn(obj) {
         let _val = {
           data_url: "",
           params: {},

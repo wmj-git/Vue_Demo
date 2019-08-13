@@ -4965,16 +4965,15 @@ export default {
             type: "info",
             icon: "el-icon-edit",
             text: "树木数据",
+            trigger: true,
             control_type: "scene",
             control_id: "",
             fn: "scene_data",
             data_type: "1",
             layer_name: "tree",
-            data_url: "http://onelz.oicp.vip/proxy/server/A13041017DC845579548DA3528DF9B47/999C1448C6DD4842A35412B42226F0A3",
-            data_maker_iconUrl: "../../static/image/marker_1.png",
+            data_maker_iconUrl: "../../static/image/marker_2.png",
             maker_titleKey: "id",
-            clusters_color: "#181966",
-            trigger: true
+            clusters_color: "#181966"
           },
           {
             id: "bt_2",

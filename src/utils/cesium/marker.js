@@ -1,35 +1,19 @@
 import store from '@/store'
 
+function addMarker(Entities, featureKey, viewer) {
 
-
-function addMarker(Entities, viewer) {
-
-  let _this = null;
-  let _mapNmame = store.getters["scene/type"];
-  if (window[_mapNmame]) {
-    _this = window[_mapNmame];
-  } else {
-    return
-  }
-  var _dataSource = new Cesium.CustomDataSource('markerData');
-  _this.dataSources["markerData"]=_dataSource;
-  /*Entities:[
-      {    id:12,
-           image:"img/marker_red.png",
-           position:[106.2918632114032, 30.023059320962865,106.29324606449137]
-      }
-  ]*/
+  var _dataSource = new Cesium.CustomDataSource(featureKey.type);
 
   for (var i = 0; i < Entities.length; i++) {
-
+    let _data = Entities[i];
     var _entity = _dataSource.entities.add({
-      name: 'marker' + Entities[i].id,
-      id: 'marker_' + Entities[i].id,
-      featureData: Entities[i],
+      name: 'marker' +_data.id,
+      id: 'marker_' + _data.id,
+      featureData: _data,
       // position: Cesium.Cartesian3.fromDegrees(Entities[i].position[0], Entities[i].position[1], Entities[i].position[2]),
-      position: Cesium.Cartesian3.fromDegrees(Entities[i].position[0], Entities[i].position[1]),
+      position: Cesium.Cartesian3.fromDegrees(_data.gpsLongitude, _data.gpsLatitude),
       billboard: {
-        image: Entities[i].image, // default: undefined
+        image: _data[featureKey.iconUrlKey], // default: undefined
         show: true, // default
         pixelOffset: new Cesium.Cartesian2(0, -10), // default: (0, 0)
         eyeOffset: new Cesium.Cartesian3(0.0, 0.0, 0.0), // default
@@ -46,23 +30,23 @@ function addMarker(Entities, viewer) {
       }
     });
     var _entity1 = _dataSource.entities.add({
-      name: 'marker' + Entities[i].id,
-      featureData: Entities[i],
-      position: Cesium.Cartesian3.fromDegrees(Entities[i].position[0], Entities[i].position[1]),
+      name: 'marker' + _data.id,
+      featureData: _data,
+      position: Cesium.Cartesian3.fromDegrees(_data.gpsLongitude, _data.gpsLatitude),
       ellipse: {
         semiMinorAxis: 0.5,
         semiMajorAxis: 0.5,
-        material: Entities[i].image,
+        material: _data[featureKey.iconUrlKey],
         classificationType: Cesium.ClassificationType.BOTH
       }
     });
     var _entity2 = _dataSource.entities.add({
-      name: 'marker_point_' + Entities[i].id,
-      featureData: Entities[i],
-      position: Cesium.Cartesian3.fromDegrees(Entities[i].position[0], Entities[i].position[1]),
+      name: 'marker_point_' + _data.id,
+      featureData: _data,
+      position: Cesium.Cartesian3.fromDegrees(_data.gpsLongitude, _data.gpsLatitude),
       ellipse: {
-        semiMinorAxis: 1.8,
-        semiMajorAxis: 1.8,
+        semiMinorAxis: 1.2,
+        semiMajorAxis: 1.2,
         material: Cesium.Color.RED,
         outline: true,
         classificationType: Cesium.ClassificationType.BOTH
@@ -84,15 +68,15 @@ function addMarker(Entities, viewer) {
     var removeListener;
 
     var pinBuilder = new Cesium.PinBuilder();
-    var pin50 = pinBuilder.fromText('50+', Cesium.Color.RED, 48).toDataURL();
-    var pin40 = pinBuilder.fromText('40+', Cesium.Color.ORANGE, 48).toDataURL();
-    var pin30 = pinBuilder.fromText('30+', Cesium.Color.YELLOW, 48).toDataURL();
-    var pin20 = pinBuilder.fromText('20+', Cesium.Color.GREEN, 48).toDataURL();
-    var pin10 = pinBuilder.fromText('10+', Cesium.Color.BLUE, 48).toDataURL();
+    var pin50 = pinBuilder.fromText('50+', Cesium.Color.fromCssColorString(featureKey.clusters_color), 48).toDataURL();
+    var pin40 = pinBuilder.fromText('40+', Cesium.Color.fromCssColorString(featureKey.clusters_color), 48).toDataURL();
+    var pin30 = pinBuilder.fromText('30+',Cesium.Color.fromCssColorString(featureKey.clusters_color), 48).toDataURL();
+    var pin20 = pinBuilder.fromText('20+', Cesium.Color.fromCssColorString(featureKey.clusters_color), 48).toDataURL();
+    var pin10 = pinBuilder.fromText('10+', Cesium.Color.fromCssColorString(featureKey.clusters_color), 48).toDataURL();
 
     var singleDigitPins = new Array(8);
     for (var i = 0; i < singleDigitPins.length; ++i) {
-      singleDigitPins[i] = pinBuilder.fromText('' + (i + 2), Cesium.Color.VIOLET, 48).toDataURL();
+      singleDigitPins[i] = pinBuilder.fromText('' + (i + 2), Cesium.Color.fromCssColorString(featureKey.clusters_color), 48).toDataURL();
     }
 
     function customStyle() {
@@ -105,9 +89,10 @@ function addMarker(Entities, viewer) {
           cluster.billboard.show = true;
           cluster.billboard.id = cluster.label.id;
           cluster.billboard.verticalOrigin = Cesium.VerticalOrigin.BOTTOM;
+          cluster.billboard.image = pinBuilder.fromText(clusteredEntities.length + '', Cesium.Color.fromCssColorString(featureKey.clusters_color), 48).toDataURL();
 
-          if (clusteredEntities.length >= 50) {
-            cluster.billboard.image = pinBuilder.fromText(clusteredEntities.length + '', Cesium.Color.RED, 48).toDataURL();
+         /* if (clusteredEntities.length >= 50) {
+            cluster.billboard.image = pinBuilder.fromText(clusteredEntities.length + '', Cesium.Color.fromCssColorString(featureKey.clusters_color), 48).toDataURL();
           } else if (clusteredEntities.length >= 40) {
             cluster.billboard.image = pin40;
           } else if (clusteredEntities.length >= 30) {
@@ -118,7 +103,7 @@ function addMarker(Entities, viewer) {
             cluster.billboard.image = pin10;
           } else {
             cluster.billboard.image = singleDigitPins[clusteredEntities.length - 2];
-          }
+          }*/
         });
       }
 
@@ -131,42 +116,26 @@ function addMarker(Entities, viewer) {
     // start with custom style
     customStyle();
 
-
   });
 
 }
 
-export function addMarkerFN(Entities, img, viewer) {
-let _dataSource=null;
-
-  let _Entities = [
-    {
-      "position": [
-        106.2932697824955,
-        30.02273793031921,
-        24.383082368235286
-      ],
-      "id": 1
+export function addMarkerFN(_Entities, _set, _viewer) {
+  let _featureKey = {
+    type: "",//类型
+    titleKey: "",//标题
+    iconUrlKey: "",//图标地址
+    clusters_color: ""//聚合颜色
+  };
+  for (let k in _featureKey) {
+    if (_set[k]) {
+      _featureKey[k] = _set[k];
     }
-  ];
-  let _image = "../../static/image/marker_red.png";
-  if (Entities instanceof Array) {
-    _Entities = Entities;
-    _image = img;
-  } else {
-    return
   }
-
-  for (var i = 0; i < _Entities.length; i++) {
-    Entities[i].image = _image;
-  }
-
-  _dataSource=addMarker(_Entities, viewer);
-
-  return _dataSource;
+  addMarker(_Entities, _featureKey, _viewer);
 }
 
-export function markerClear() {
+export function markerClear(_dataSourceName) {
   let _this = null;
   let _mapNmame = store.getters["scene/type"];
   if (window[_mapNmame]) {
@@ -174,11 +143,25 @@ export function markerClear() {
   } else {
     return
   }
-  let _dataSource=_this.dataSources["markerData"];
-  if(_this.viewer.dataSources.contains(_dataSource)){
-    _this.viewer.dataSources.remove(_dataSource);
-  }else {
 
+  if (_dataSourceName === "all") {
+    _this.viewer.dataSources.removeAll();
+    return;
   }
-  // _this.viewer.dataSources.removeAll();
+
+  let _length = _this.viewer.dataSources.length;
+  console.log(_length);
+  for (let i = 0; i <= _length; i++) {
+    let _dataSource = _this.viewer.dataSources.get(i);
+    console.log(_dataSource);
+    if (_this.viewer.dataSources.contains(_dataSource)) {
+      let _name = _dataSource.name;
+      console.log(_name);
+      if (_name === _dataSourceName) {
+        _this.viewer.dataSources.remove(_dataSource);
+      }
+    }
+  }
+
+
 }
