@@ -1,7 +1,7 @@
 import request from '@/utils/request'
 
 
-export function marker(obj) {
+export function geom(obj) {
   return request({
     url:obj.url,
     method: 'get',

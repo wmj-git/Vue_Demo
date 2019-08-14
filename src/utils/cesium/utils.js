@@ -1,3 +1,6 @@
+
+import store from '@/store'
+
 export function api(url, type, data) {
   let _data = null;
   $.ajax({
@@ -62,6 +65,37 @@ let _val={
     }
   });
 }
+// 获取相机位置
+export function getCameraPosition(scene) {
+  let position = {
+    longitude: 106.29265355440698,
+    latitude: 30.023569031855335,
+    height: 800.0,
+    heading: 5.154573786584606,
+    pitch: -1.14229615865957967,
+    roll: 3.2294167340296553e-12
+  };
+
+
+  let cartographic = Cesium.Cartographic.fromCartesian(scene.camera.position);
+  let longitude = Cesium.Math.toDegrees(cartographic.longitude);
+  let latitude = Cesium.Math.toDegrees(cartographic.latitude);
+  let height = cartographic.height;
+  // console.log("longitude:" + longitude + "--latitude:" + latitude + "--height:" + height);
+  // console.log("position:" + scene.camera.position + "--heading:" + scene.camera.heading + "--pitch:" + scene.camera.pitch + "--roll:" + scene.camera.roll);
+
+  position.longitude = longitude;
+  position.latitude = latitude;
+  position.height = height;
+  position.heading = scene.camera.heading;
+  position.pitch = scene.camera.pitch;
+  position.roll = scene.camera.roll;
+
+  // console.log(position);
+
+  return position;
+}
+
 
 export function entitiesClear(value,viewer) {
   let removes = [], Entities = [];
@@ -76,5 +110,35 @@ export function entitiesClear(value,viewer) {
   }
   for (var i = 0; i < removes.length; i++) {
     viewer.entities.removeById(removes[i]);
+  }
+}
+
+//移除数据
+export function dataSourceClear(_dataSourceName) {
+  let _this = null;
+  let _mapNmame = store.getters["scene/type"];
+  if (window[_mapNmame]) {
+    _this = window[_mapNmame];
+  } else {
+    return
+  }
+
+  if (_dataSourceName === "all") {
+    _this.viewer.dataSources.removeAll();
+    return;
+  }
+
+  let _length = _this.viewer.dataSources.length;
+  console.log(_length);
+  for (let i = 0; i <= _length; i++) {
+    let _dataSource = _this.viewer.dataSources.get(i);
+    console.log(_dataSource);
+    if (_this.viewer.dataSources.contains(_dataSource)) {
+      let _name = _dataSource.name;
+      console.log(_name);
+      if (_name === _dataSourceName) {
+        _this.viewer.dataSources.remove(_dataSource);
+      }
+    }
   }
 }

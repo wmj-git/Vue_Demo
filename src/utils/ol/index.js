@@ -13,8 +13,6 @@ function openScene(_name) {
   }
 
 }
-
-
 export default {
   db,
   openScene,
