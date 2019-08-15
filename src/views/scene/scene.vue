@@ -16,7 +16,6 @@
       return {
         id: "_scene",
         height: '',
-
       }
     },
     props: {},
@@ -270,10 +269,18 @@
       },
       geomDataFn(obj) { //数据矢量展示
         let _val = {
-          api_name: "",
           data_url: "",
           params: {},
-          layer_name: ""
+          layer_name: "",
+          api_name: "",
+          geomType: "",//几何类型
+          geom_style: "1",//几何样式
+          geom_titleKey: "",
+          strokeWidth: 2,
+          strokeColor: "[0, 255, 0, 1.0]",
+          fillColor: "[0, 0, 255, 1.0]",
+          clusters_enabled: true,//聚合显示
+          clusters_color: "#46ff71"//聚合颜色
         };
 
         //set
@@ -298,22 +305,26 @@
             let _data = [];
             if (response.statusCode === 200) {
               response.data.forEach(function (_obj) {
-                _obj.coordinates=JSON.parse(_obj.coordinates);
+                if (_obj.coordinates) {
+                  _obj.coordinates = JSON.parse(_obj.coordinates);
+                }
               });
               _data = response.data;
               console.log(_val);
               console.log(_data);
             }
-            cm.addPolygonFN(_data, _data, {
-              type: _val.layer_name,
-              geomType: _val.geomType
-            }, {
-              type: _val.geom_style,
-              titleKey: _val.geom_titleKey,//标题
-              strokeWidth: _val.strokeWidth,
-              strokeColor: _val.strokeColor,
-              fillColor: _val.fillColor
-            }, window[this.id].viewer);
+            cm.addDataSource(_data,
+              {
+                layer_name: _val.layer_name,
+                geomType: _val.geomType,
+                type: _val.geom_style,
+                titleKey: _val.geom_titleKey,
+                strokeWidth: _val.strokeWidth,
+                strokeColor: _val.strokeColor,
+                fillColor: _val.fillColor,
+                clusters_enabled: _val.clusters_enabled,//聚合显示
+                clusters_color: _val.clusters_color//聚合颜色
+              }, window[this.id].viewer);
           });
         }
       }

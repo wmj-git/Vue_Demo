@@ -17,15 +17,15 @@ export function createQeomStyle(_feature, _style) {
       Style = new ol.style.Style({
         stroke: new ol.style.Stroke({
           width: _style.strokeWidth,
-          color: _style.strokeColor
+          color:  JSON.parse(_style.strokeColor)
         }),
         fill: new ol.style.Fill({
-          color: _style.fillColor
+          color: JSON.parse(_style.fillColor)
         }),
         text: new ol.style.Text({
           text: _feature[_style.titleKey] ? _feature[_style.titleKey] + "" : "",
-          offsetX: 12,
-          offsetY: -8,
+          offsetX: 0,
+          offsetY: -28,
           fill: new ol.style.Fill({
             color: '#fff'
           }),
@@ -41,10 +41,10 @@ export function createQeomStyle(_feature, _style) {
         text: new ol.style.Text({
           text: _feature[_style.titleKey] ? _feature[_style.titleKey] + "" : "",
           fill: new ol.style.Fill({
-            color: _style.fillColor
+            color: JSON.parse(_style.fillColor)
           }),
           stroke: new ol.style.Stroke({
-            color: _style.strokeColor,
+            color: JSON.parse(_style.strokeColor),
             width: _style.strokeWidth
           }),
         })
@@ -219,33 +219,9 @@ export function clustersLayerFn(dataUrl, _Key, _clusterImgUrl, _distance) {//时
 //几何类型没有聚合的数据图层
 export function layerFN(_features, _Key, _geomStyle) {
 
-  /* _features=[{
-             id:"",
-             lng:"",
-             lat:"",
-             radius:50,
-             coordinates:[[104,22],[122,12]]
-
-             ...
-    }]*/
-
-
   let features = [];
   let source = null;
   let layer = null;
-
-  let _geomKey = {
-    type: "",//样式类型
-    titleKey: "id",//标题
-    strokeWidth: 2,
-    strokeColor: [255, 0, 0, 1.0],
-    fillColor: [0, 0, 255, 1.0]
-  };
-  for (let k in _geomKey) {
-    if (_geomStyle[k]) {
-      _geomKey[k] = _geomStyle[k];
-    }
-  }
 
   let _featureKey = {
     type: "layerName",//类型
@@ -256,6 +232,21 @@ export function layerFN(_features, _Key, _geomStyle) {
       _featureKey[k] = _Key[k];
     }
   }
+
+  let _geomKey = {
+    type: "",//样式类型
+    titleKey: "id",//标题
+    strokeWidth: 2,
+    strokeColor: "[255, 0, 0, 1.0]",
+    fillColor: "[0, 0, 255, 1.0]"
+  };
+  for (let k in _geomKey) {
+    if (_geomStyle[k]) {
+      _geomKey[k] = _geomStyle[k];
+    }
+  }
+
+
   source = new ol.source.Vector({
     wrapX: false
   });
@@ -299,7 +290,7 @@ export function layerFN(_features, _Key, _geomStyle) {
         geometry: circleIn4326,
         featureData: _features[i]
       });
-      console.log(123);
+
       features[i].setStyle(createQeomStyle(_features[i], _geomKey));
     }
 
@@ -377,16 +368,16 @@ export function clustersFn(_features, _Key, _clusterColor, _distance) {//_featur
     let _data = iconFeature.get("featureData");
     let iconStyle = new ol.style.Style({
       image: new ol.style.Icon(({
-        anchor: [0, 0],
-        anchorXUnits: 'fraction',
+        anchor: [32, 62],
+        anchorXUnits: 'pixels',
         anchorYUnits: 'pixels',
         scale: 0.4,
         src: _data[_featureKey.iconUrlKey] + ""
       })),
       text: new ol.style.Text({
         text: _data[_featureKey.titleKey] + "",
-        offsetX: 12,
-        offsetY: -8,
+        offsetX: 0,
+        offsetY: -32,
         fill: new ol.style.Fill({
           color: '#fff'
         }),

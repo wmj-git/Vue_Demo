@@ -1,5 +1,7 @@
-
 import store from '@/store'
+import {addModeFN} from "./mode"
+import {addPolygonFN} from "./grid"
+import {addPointFN} from "./point"
 
 export function api(url, type, data) {
   let _data = null;
@@ -28,7 +30,7 @@ export function api(url, type, data) {
 }
 
 //回到场景
-export function toScene(viewer,tileset) {
+export function toScene(viewer, tileset) {
   var boundingSphere = tileset.boundingSphere;
   console.log(boundingSphere);
   viewer.camera.viewBoundingSphere(boundingSphere, new Cesium.HeadingPitchRange(0.0, -0.5, boundingSphere.radius + 500.0));
@@ -38,15 +40,15 @@ export function toScene(viewer,tileset) {
 //相机移动
 export function camera(val) {
 
-let _val={
-  scene:"",
-  longitude: 114.05566529913777,
-  latitude: 22.604387298808085,
-  height: 5899.935147224181,
-  heading: 6.00167603155171,
-  pitch: -0.992391732163183,
-  roll: 0.0003317087969181287
-};
+  let _val = {
+    scene: "",
+    longitude: 114.05566529913777,
+    latitude: 22.604387298808085,
+    height: 5899.935147224181,
+    heading: 6.00167603155171,
+    pitch: -0.992391732163183,
+    roll: 0.0003317087969181287
+  };
 
 
   for (let k in _val) {
@@ -65,6 +67,7 @@ let _val={
     }
   });
 }
+
 // 获取相机位置
 export function getCameraPosition(scene) {
   let position = {
@@ -96,8 +99,7 @@ export function getCameraPosition(scene) {
   return position;
 }
 
-
-export function entitiesClear(value,viewer) {
+export function entitiesClear(value, viewer) {
   let removes = [], Entities = [];
   Entities = viewer.entities.values;
 
@@ -113,7 +115,26 @@ export function entitiesClear(value,viewer) {
   }
 }
 
-//移除数据
+//添加数据图层
+export function addDataSource(_Entities, _Set, viewer) {
+
+  if (_Set.geomType === "Point") {//点
+    addPointFN(_Entities, _Set, viewer);
+  } else if (_Set.geomType === "Text") {//文本
+
+  } else if (_Set.geomType === "LineString") {//线
+
+  } else if (_Set.geomType === "Polygon") {//多边形
+    addPolygonFN();
+  } else if (_Set.geomType === "Circle") {//圆
+
+  } else if (_Set.geomType === "Mode") {//模型
+    addModeFN();
+  }
+
+}
+
+//移除数据图层
 export function dataSourceClear(_dataSourceName) {
   let _this = null;
   let _mapNmame = store.getters["scene/type"];

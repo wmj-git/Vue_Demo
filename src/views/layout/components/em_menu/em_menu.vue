@@ -59,9 +59,9 @@
         });
       }.bind(this));
     },
-     beforeDestroy() {
-       this.bus.$off(this.id);
-     }
+    beforeDestroy() {
+      this.bus.$off(this.id);
+    }
   };
 </script>
 <style lang="scss" scoped>

@@ -8,6 +8,7 @@
   import mp from "@/utils/ol/index";
   import {queryVicinityPrint, findOne, queryAllcount} from "@/api/tree";
   import {marker} from "@/api/marker";
+  import {geom} from "@/api/geom";
 
   export default {
     data() {
@@ -181,11 +182,6 @@
             break;
           case "3"://几何数据展示
             if (obj.trigger) {
-              obj.params = {
-                longitude: 114.03188276054428,
-                latitude: 22.619840297782094,
-                distance: 10000
-              };
               this.geomDataFn(obj);
             } else {
               this.removeLayer({
@@ -309,8 +305,8 @@
           geom_style: "1",//几何样式类型
           geom_titleKey: "",
           strokeWidth: 2,
-          strokeColor: [0, 255, 0, 1.0],
-          fillColor: [0, 0, 255, 1.0]
+          strokeColor: "[0, 255, 0, 1.0]",
+          fillColor: "[0, 0, 255, 1.0]"
         };
 
         for (let k in _val) {
@@ -319,16 +315,26 @@
           }
         }
 
+        // 解析(params_xx)
+        for (let k in obj) {
+          let _params = k.split("_");
+          if (_params[0] === "params") {
+            _val.params[_params[1]] = obj[k];
+          }
+        }
 
-        if (_val.api_name === "queryVicinityPrint") {
+        if (_val.api_name === "geom") {
 
-          queryVicinityPrint({
+          geom({
             url: _val.data_url,
             params: _val.params
           }).then(response => {
             let _data = [];
             if (response.statusCode === 200) {
               response.data.forEach(function (_obj) {
+                if(_obj.coordinates){
+                  _obj.coordinates=JSON.parse(_obj.coordinates);
+                }
                 // _obj.coordinates=JSON.parse(_obj.coordinates);
                 // _obj.coordinates =[[114.00614435225583, 22.64468317909319],[114.00686770840161, 22.644074037075697], [114.00888549133455, 22.64434053670835],[114.00663928014505, 22.646929390282693]];
                 // _obj.coordinates =[[[114.00614435225583, 22.64468317909319],[114.00686770840161, 22.644074037075697], [114.00888549133455, 22.64434053670835],[114.00663928014505, 22.646929390282693]]];
@@ -349,7 +355,6 @@
               layer: _layer.layer
             });
           });
-
         }
 
       }

@@ -150,6 +150,8 @@ function addPolygon(Entities, featureKey, viewer) {
 
 }
 export function addPolygonFN(_Entities, _set, _viewer) {
+
+
   let _featureKey = {
     type: "",//类型
     titleKey: "",//标题

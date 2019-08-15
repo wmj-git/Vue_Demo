@@ -1,10 +1,11 @@
 //data
 import {db} from "./data/db"
-import {api, toScene,camera,getCameraPosition, entitiesClear,dataSourceClear} from "./utils"
+import {api, toScene,addDataSource,camera,getCameraPosition, entitiesClear,dataSourceClear} from "./utils"
 import {infoInit} from "./info";
 import {addModeFN, modeClear} from "./mode"
 import {addPolygonFN} from "./grid"
 import {addMarkerFN} from "./marker"
+import {addPointFN} from "./point"
 import {alphaFN} from "./alpha"
 import {xyzFN} from "./xyz"
 import {SetMeasure, clearDrawingBoard} from "./measure"
@@ -102,9 +103,6 @@ function init(_name, tileset_url,_coordinates) {
     tileset.modelMatrix = Cesium.Matrix4.fromTranslation(translation);
   });*/
 
-
-
-
   infoInit(viewer);//初始化信息窗
 
   let polyline = viewer.entities.add({
@@ -143,10 +141,12 @@ function init(_name, tileset_url,_coordinates) {
     globe
   };
 
-  console.log("window[_name]");
-  console.log(window[_name]);
+ /* console.log("window[_name]");
+  console.log(window[_name]);*/
 
 }
+
+
 
 
 
@@ -156,6 +156,7 @@ export default {
   api: api,
   init: init,
   toScene: toScene,
+  addDataSource:addDataSource,
   camera:camera,
   getCameraPosition:getCameraPosition,
   alphaFN: alphaFN,
@@ -164,6 +165,7 @@ export default {
   modeClear: modeClear,
   addPolygonFN: addPolygonFN,
   addMarkerFN: addMarkerFN,
+  addPointFN:addPointFN,
   dataSourceClear: dataSourceClear,
   entitiesClear: entitiesClear,
   SetMeasure: SetMeasure,
