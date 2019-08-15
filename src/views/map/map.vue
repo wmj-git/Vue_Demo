@@ -7,6 +7,8 @@
 <script>
   import mp from "@/utils/ol/index";
   import {queryVicinityPrint, findOne, queryAllcount} from "@/api/tree";
+  import {marker} from "@/api/marker";
+  import {geom} from "@/api/geom";
 
   export default {
     data() {
@@ -18,17 +20,17 @@
     methods: {
       init() {
 
-        window[this.id].init( [114.031047, 22.663679], [
+        window[this.id].init([114.031047, 22.663679], [
           mp.layers.baidu_vec
         ]);
 
       },
       spaceTimeBaseMap(obj) {
 
-        let _url="";
+        let _url = "";
 
-        if (obj.url){
-          _url=obj.url;
+        if (obj.url) {
+          _url = obj.url;
         }
 
         let _resolutions = window[this.id].resolutions;
@@ -91,12 +93,12 @@
             break;
           case "5"://时空云矢量图
             _layer = this.spaceTimeBaseMap({
-              url:"http://onelz.oicp.vip/proxy/layer/C8DDAE2452CE48F4ACBE0D60C455A234/01D4E45CB4A84DE7B5DF3D859529D918/tile/{z}/{y}/{x}"
+              url: "http://onelz.oicp.vip/proxy/layer/C8DDAE2452CE48F4ACBE0D60C455A234/01D4E45CB4A84DE7B5DF3D859529D918/tile/{z}/{y}/{x}"
             });
             break;
           case "6"://时空云影像图
             _layer = this.spaceTimeBaseMap({
-              url:"http://onelz.oicp.vip/proxy/layer/E36DF1E5DD7D4081A1E722ED2C8D7455/999C1448C6DD4842A35412B42226F0A3/tile/{z}/{y}/{x}"
+              url: "http://onelz.oicp.vip/proxy/layer/E36DF1E5DD7D4081A1E722ED2C8D7455/999C1448C6DD4842A35412B42226F0A3/tile/{z}/{y}/{x}"
             });
             break;
           case "7"://本地矢量图
@@ -180,12 +182,16 @@
             break;
           case "3"://几何数据展示
             if (obj.trigger) {
-              obj.params = {
-                longitude: 114.03188276054428,
-                latitude: 22.619840297782094,
-                distance: 10000
-              };
               this.geomDataFn(obj);
+            } else {
+              this.removeLayer({
+                layer_name: obj.layer_name
+              });
+            }
+            break;
+          case "4"://采集的树数据
+            if (obj.trigger) {
+              this.markerDataFn(obj);
             } else {
               this.removeLayer({
                 layer_name: obj.layer_name
@@ -225,7 +231,6 @@
             });
             _data = response.data;
           }
-
           let _layer = mp.clustersFn(_data, {
             type: _val.layer_name,
             titleKey: _val.maker_titleKey,
@@ -238,49 +243,50 @@
       },
       markerDataFn(obj) {
         let _val = {
+          api_name: "",
           data_url: "",
           params: {},
           layer_name: "",
-          api_name: "",
-          geomType: "",
-          geom_style: "1",//几何样式类型
-          geom_titleKey: "",
-          strokeWidth: 2,
-          strokeColor: [0, 255, 0, 1.0],
-          fillColor: [0, 0, 255, 1.0]
+          data_maker_iconUrl: "",
+          maker_titleKey: "",
+          clusters_color: "",
         };
-
         for (let k in _val) {
           if (obj[k]) {
             _val[k] = obj[k];
           }
         }
 
+        // params
+        for (let k in obj) {
+          let _params = k.split("_");
+          if (_params[0] === "params") {
+            _val.params[_params[1]] = obj[k];
+          }
+        }
 
-        if(_val.api_name==="queryVicinityPrint"){
+        if (_val.api_name === "queryVicinityPrint") {
 
-          queryVicinityPrint({
+        } else if (_val.api_name === "marker") {
+
+          marker({
             url: _val.data_url,
             params: _val.params
           }).then(response => {
             let _data = [];
             if (response.statusCode === 200) {
               response.data.forEach(function (_obj) {
-                // _obj.coordinates =[[114.00614435225583, 22.64468317909319],[114.00686770840161, 22.644074037075697], [114.00888549133455, 22.64434053670835],[114.00663928014505, 22.646929390282693]];
-                // _obj.coordinates =[[[114.00614435225583, 22.64468317909319],[114.00686770840161, 22.644074037075697], [114.00888549133455, 22.64434053670835],[114.00663928014505, 22.646929390282693]]];
+                _obj.icon = _val.data_maker_iconUrl;
               });
               _data = response.data;
+              console.log(_val);
+              console.log(_data);
             }
-            let _layer = mp.layerFN(_data, {
+            let _layer = mp.clustersFn(_data, {
               type: _val.layer_name,
-              geomType: _val.geomType
-            }, {
-              type: _val.geom_style,
-              titleKey: _val.geom_titleKey,//标题
-              strokeWidth: _val.strokeWidth,
-              strokeColor: _val.strokeColor,
-              fillColor: _val.fillColor
-            });
+              titleKey: _val.maker_titleKey,
+              iconUrlKey: "icon"
+            }, _val.clusters_color, 50);
             this.addLayer({
               layer: _layer.layer
             });
@@ -299,8 +305,8 @@
           geom_style: "1",//几何样式类型
           geom_titleKey: "",
           strokeWidth: 2,
-          strokeColor: [0, 255, 0, 1.0],
-          fillColor: [0, 0, 255, 1.0]
+          strokeColor: "[0, 255, 0, 1.0]",
+          fillColor: "[0, 0, 255, 1.0]"
         };
 
         for (let k in _val) {
@@ -309,16 +315,27 @@
           }
         }
 
+        // 解析(params_xx)
+        for (let k in obj) {
+          let _params = k.split("_");
+          if (_params[0] === "params") {
+            _val.params[_params[1]] = obj[k];
+          }
+        }
 
-        if(_val.api_name==="queryVicinityPrint"){
+        if (_val.api_name === "geom") {
 
-          queryVicinityPrint({
+          geom({
             url: _val.data_url,
             params: _val.params
           }).then(response => {
             let _data = [];
             if (response.statusCode === 200) {
               response.data.forEach(function (_obj) {
+                if(_obj.coordinates){
+                  _obj.coordinates=JSON.parse(_obj.coordinates);
+                }
+                // _obj.coordinates=JSON.parse(_obj.coordinates);
                 // _obj.coordinates =[[114.00614435225583, 22.64468317909319],[114.00686770840161, 22.644074037075697], [114.00888549133455, 22.64434053670835],[114.00663928014505, 22.646929390282693]];
                 // _obj.coordinates =[[[114.00614435225583, 22.64468317909319],[114.00686770840161, 22.644074037075697], [114.00888549133455, 22.64434053670835],[114.00663928014505, 22.646929390282693]]];
               });
@@ -338,7 +355,6 @@
               layer: _layer.layer
             });
           });
-
         }
 
       }

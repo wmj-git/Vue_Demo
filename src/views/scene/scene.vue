@@ -8,13 +8,14 @@
 
   import cm from "@/utils/cesium/index"
   import {queryVicinityPrint, findOne, queryAllcount} from "@/api/tree";
+  import {marker} from "@/api/marker";
+  import {geom} from "@/api/geom";
 
   export default {
     data() {
       return {
         id: "_scene",
         height: '',
-
       }
     },
     props: {},
@@ -125,8 +126,12 @@
         //摄像机地位
         cm.camera({
           scene: window[this.id].scene,
-          longitude: 114.05566529913777,
-          latitude: 22.604387298808085
+          heading: 0.20285622255189661,
+          height: 32940.79281690694,
+          latitude: 22.43563404218315,
+          longitude: 113.991282335704,
+          pitch: -1.0720152334460842,
+          roll: 0.0003150108934901752
         });
       },
 
@@ -135,15 +140,9 @@
         switch (obj.data_type) {
           case "1"://采集的树数据
             if (obj.trigger) {
-              this.alpha({
-                value: 0.4
-              });
               this.queryVicinityPrintFn(obj);
             } else {
-              this.alpha({
-                value: 1.0
-              });
-              cm.markerClear(obj.layer_name);
+              cm.dataSourceClear(obj.layer_name);
             }
 
             /* if (obj.trigger) {
@@ -161,16 +160,16 @@
             break;
           case "3"://几何数据展示
             if (obj.trigger) {
-              cm.addPolygonFN(window[this.id].viewer);
+              this.geomDataFn(obj);
             } else {
-              cm.entitiesClear("grid_", window[this.id].viewer);
+              cm.dataSourceClear(obj.layer_name);
             }
             break;
-          case "4"://模型
+          case "4"://marker显示
             if (obj.trigger) {
-              cm.addModeFN(window[this.id].viewer);
+              this.markerDataFn(obj);
             } else {
-              cm.modeClear();
+              cm.dataSourceClear(obj.layer_name);
             }
             break;
         }
@@ -211,16 +210,123 @@
             type: _val.layer_name,
             titleKey: _val.maker_titleKey,
             iconUrlKey: "icon",
-            clusters_color:_val.clusters_color
+            clusters_color: _val.clusters_color
           }, window[this.id].viewer);
 
         });
       },
-      markerDataFn(obj) { //矢量数据展示
+      markerDataFn(obj) { //聚合数据展示
+        let _val = {
+          api_name: "",
+          data_url: "",
+          params: {},
+          layer_name: "",
+          data_maker_iconUrl: "",
+          maker_titleKey: "",
+          clusters_color: "",
+        };
 
+        //set
+        for (let k in _val) {
+          if (obj[k]) {
+            _val[k] = obj[k];
+          }
+        }
+        // params
+        for (let k in obj) {
+          let _params = k.split("_");
+          if (_params[0] === "params") {
+            _val.params[_params[1]] = obj[k];
+          }
+        }
+
+        if (_val.api_name === "queryVicinityPrint") {
+
+        } else if (_val.api_name === "marker") {
+
+          marker({
+            url: _val.data_url,
+            params: _val.params
+          }).then(response => {
+            let _data = [];
+            if (response.statusCode === 200) {
+              response.data.forEach(function (_obj) {
+                _obj.icon = _val.data_maker_iconUrl;
+              });
+              _data = response.data;
+              console.log(_val);
+              console.log(_data);
+            }
+            cm.addMarkerFN(_data, {
+              type: _val.layer_name,
+              titleKey: _val.maker_titleKey,
+              iconUrlKey: "icon",
+              clusters_color: _val.clusters_color
+            }, window[this.id].viewer);
+          });
+
+        }
       },
-      geomDataFn(obj) { //矢量数据展示
+      geomDataFn(obj) { //数据矢量展示
+        let _val = {
+          data_url: "",
+          params: {},
+          layer_name: "",
+          api_name: "",
+          geomType: "",//几何类型
+          geom_style: "1",//几何样式
+          geom_titleKey: "",
+          strokeWidth: 2,
+          strokeColor: "[0, 255, 0, 1.0]",
+          fillColor: "[0, 0, 255, 1.0]",
+          clusters_enabled: true,//聚合显示
+          clusters_color: "#46ff71"//聚合颜色
+        };
 
+        //set
+        for (let k in _val) {
+          if (obj[k]) {
+            _val[k] = obj[k];
+          }
+        }
+        // params
+        for (let k in obj) {
+          let _params = k.split("_");
+          if (_params[0] === "params") {
+            _val.params[_params[1]] = obj[k];
+          }
+        }
+
+        if (_val.api_name === "geom") {
+          geom({
+            url: _val.data_url,
+            params: _val.params
+          }).then(response => {
+            let _data = [];
+            if (response.statusCode === 200) {
+              response.data.forEach(function (_obj) {
+                if (_obj.coordinates) {
+                  _obj.coordinates = JSON.parse(_obj.coordinates);
+                }
+              });
+              _data = response.data;
+              console.log(_val);
+              console.log(_data);
+            }
+            cm.addDataSource(_data,
+              {
+                layer_name: _val.layer_name,
+                geomType: _val.geomType,
+                type: _val.geom_style,
+                titleKey: _val.geom_titleKey,
+                strokeWidth: _val.strokeWidth,
+                strokeColor: _val.strokeColor,
+                fillColor: _val.fillColor,
+                clusters_enabled: _val.clusters_enabled,//聚合显示
+                clusters_color: _val.clusters_color//聚合颜色
+              }, window[this.id].viewer);
+          });
+        }
       }
     },
     created() {

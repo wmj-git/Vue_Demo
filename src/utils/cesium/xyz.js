@@ -1,3 +1,6 @@
+import {getCameraPosition} from "./utils"
+
+
 //创建描述位置的对话框
 function createDescription(lng, lat, h) {
     let data = {
@@ -67,6 +70,9 @@ export function xyzFN(nm,viewer,scene) {
             latitude:latitude,
             height:height
           });
+
+          console.log(getCameraPosition(scene));//获取相机位置
+
 //坐标信息显示
             var xyzShow = viewer.entities.add({
                 position: position,

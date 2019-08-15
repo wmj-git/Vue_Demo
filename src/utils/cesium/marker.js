@@ -1,4 +1,3 @@
-import store from '@/store'
 
 function addMarker(Entities, featureKey, viewer) {
 
@@ -135,33 +134,4 @@ export function addMarkerFN(_Entities, _set, _viewer) {
   addMarker(_Entities, _featureKey, _viewer);
 }
 
-export function markerClear(_dataSourceName) {
-  let _this = null;
-  let _mapNmame = store.getters["scene/type"];
-  if (window[_mapNmame]) {
-    _this = window[_mapNmame];
-  } else {
-    return
-  }
 
-  if (_dataSourceName === "all") {
-    _this.viewer.dataSources.removeAll();
-    return;
-  }
-
-  let _length = _this.viewer.dataSources.length;
-  console.log(_length);
-  for (let i = 0; i <= _length; i++) {
-    let _dataSource = _this.viewer.dataSources.get(i);
-    console.log(_dataSource);
-    if (_this.viewer.dataSources.contains(_dataSource)) {
-      let _name = _dataSource.name;
-      console.log(_name);
-      if (_name === _dataSourceName) {
-        _this.viewer.dataSources.remove(_dataSource);
-      }
-    }
-  }
-
-
-}

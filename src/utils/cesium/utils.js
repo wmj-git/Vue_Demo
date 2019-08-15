@@ -1,3 +1,8 @@
+import store from '@/store'
+import {addModeFN} from "./mode"
+import {addPolygonFN} from "./grid"
+import {addPointFN} from "./point"
+
 export function api(url, type, data) {
   let _data = null;
   $.ajax({
@@ -25,7 +30,7 @@ export function api(url, type, data) {
 }
 
 //回到场景
-export function toScene(viewer,tileset) {
+export function toScene(viewer, tileset) {
   var boundingSphere = tileset.boundingSphere;
   console.log(boundingSphere);
   viewer.camera.viewBoundingSphere(boundingSphere, new Cesium.HeadingPitchRange(0.0, -0.5, boundingSphere.radius + 500.0));
@@ -35,15 +40,15 @@ export function toScene(viewer,tileset) {
 //相机移动
 export function camera(val) {
 
-let _val={
-  scene:"",
-  longitude: 114.05566529913777,
-  latitude: 22.604387298808085,
-  height: 5899.935147224181,
-  heading: 6.00167603155171,
-  pitch: -0.992391732163183,
-  roll: 0.0003317087969181287
-};
+  let _val = {
+    scene: "",
+    longitude: 114.05566529913777,
+    latitude: 22.604387298808085,
+    height: 5899.935147224181,
+    heading: 6.00167603155171,
+    pitch: -0.992391732163183,
+    roll: 0.0003317087969181287
+  };
 
 
   for (let k in _val) {
@@ -63,7 +68,38 @@ let _val={
   });
 }
 
-export function entitiesClear(value,viewer) {
+// 获取相机位置
+export function getCameraPosition(scene) {
+  let position = {
+    longitude: 106.29265355440698,
+    latitude: 30.023569031855335,
+    height: 800.0,
+    heading: 5.154573786584606,
+    pitch: -1.14229615865957967,
+    roll: 3.2294167340296553e-12
+  };
+
+
+  let cartographic = Cesium.Cartographic.fromCartesian(scene.camera.position);
+  let longitude = Cesium.Math.toDegrees(cartographic.longitude);
+  let latitude = Cesium.Math.toDegrees(cartographic.latitude);
+  let height = cartographic.height;
+  // console.log("longitude:" + longitude + "--latitude:" + latitude + "--height:" + height);
+  // console.log("position:" + scene.camera.position + "--heading:" + scene.camera.heading + "--pitch:" + scene.camera.pitch + "--roll:" + scene.camera.roll);
+
+  position.longitude = longitude;
+  position.latitude = latitude;
+  position.height = height;
+  position.heading = scene.camera.heading;
+  position.pitch = scene.camera.pitch;
+  position.roll = scene.camera.roll;
+
+  // console.log(position);
+
+  return position;
+}
+
+export function entitiesClear(value, viewer) {
   let removes = [], Entities = [];
   Entities = viewer.entities.values;
 
@@ -76,5 +112,54 @@ export function entitiesClear(value,viewer) {
   }
   for (var i = 0; i < removes.length; i++) {
     viewer.entities.removeById(removes[i]);
+  }
+}
+
+//添加数据图层
+export function addDataSource(_Entities, _Set, viewer) {
+
+  if (_Set.geomType === "Point") {//点
+    addPointFN(_Entities, _Set, viewer);
+  } else if (_Set.geomType === "Text") {//文本
+
+  } else if (_Set.geomType === "LineString") {//线
+
+  } else if (_Set.geomType === "Polygon") {//多边形
+    addPolygonFN();
+  } else if (_Set.geomType === "Circle") {//圆
+
+  } else if (_Set.geomType === "Mode") {//模型
+    addModeFN();
+  }
+
+}
+
+//移除数据图层
+export function dataSourceClear(_dataSourceName) {
+  let _this = null;
+  let _mapNmame = store.getters["scene/type"];
+  if (window[_mapNmame]) {
+    _this = window[_mapNmame];
+  } else {
+    return
+  }
+
+  if (_dataSourceName === "all") {
+    _this.viewer.dataSources.removeAll();
+    return;
+  }
+
+  let _length = _this.viewer.dataSources.length;
+  console.log(_length);
+  for (let i = 0; i <= _length; i++) {
+    let _dataSource = _this.viewer.dataSources.get(i);
+    console.log(_dataSource);
+    if (_this.viewer.dataSources.contains(_dataSource)) {
+      let _name = _dataSource.name;
+      console.log(_name);
+      if (_name === _dataSourceName) {
+        _this.viewer.dataSources.remove(_dataSource);
+      }
+    }
   }
 }
