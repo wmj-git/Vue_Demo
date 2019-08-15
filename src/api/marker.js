@@ -3,7 +3,7 @@ import request from '@/utils/request'
 
 export function marker(obj) {
   return request({
-    url:"/gardens/tree/queryVicinityPrint",
+    url:obj.url,
     method: 'get',
     params:obj.params
   })
