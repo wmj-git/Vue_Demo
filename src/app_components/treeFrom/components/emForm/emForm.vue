@@ -132,6 +132,9 @@
     },
     mounted() {
       this.init();
+    },
+    beforeDestroy() {
+      this.bus.$off(this.id);
     }
   }
 </script>
