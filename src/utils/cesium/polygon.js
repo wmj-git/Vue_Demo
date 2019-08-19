@@ -10,7 +10,7 @@ function addPolygon(Entities, featureKey, viewer) {
 
     let _entity = _dataSource.entities.add({
       name: 'polygon' + _data.id,
-      id: 'polygon_' + _data.id,
+      id: 'polygon_' + featureKey.layer_name+"_"+ _data.id,
       featureData: _data,
       polygon: {
         hierarchy: new Cesium.PolygonHierarchy(Cesium.Cartesian3.fromDegreesArray(_data.coordinates)),

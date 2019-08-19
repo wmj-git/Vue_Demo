@@ -4,6 +4,8 @@ import {addPointFN} from "./point"
 import {addTextFN} from "./text"
 import {addLineFN} from "./line"
 import {addPolygonFN} from "./polygon"
+import {addCircleFN} from "./circle"
+
 
 export function api(url, type, data) {
   let _data = null;
@@ -129,9 +131,9 @@ export function addDataSource(_Entities, _Set, viewer) {
   } else if (_Set.geomType === "Polygon") {//多边形
     addPolygonFN(_Entities, _Set, viewer);
   } else if (_Set.geomType === "Circle") {//圆
-
+    addCircleFN(_Entities, _Set, viewer);
   } else if (_Set.geomType === "Mode") {//模型
-    addModeFN();
+    addModeFN(_Entities, _Set, viewer);
   }
 
 }

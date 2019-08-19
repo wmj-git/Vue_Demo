@@ -10,7 +10,7 @@ function addText(Entities, featureKey, viewer) {
 
     let _entity = _dataSource.entities.add({
       name: 'text' + _data.id,
-      id: 'text_' + _data.id,
+      id: 'text_' + featureKey.layer_name+"_"+ _data.id,
       featureData: _data,
       position: Cesium.Cartesian3.fromDegrees(_data.gpsLongitude, _data.gpsLatitude),
       point: new Cesium.PointGraphics({

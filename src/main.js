@@ -8,7 +8,6 @@ import 'babel-polyfill'
 import promise from 'es6-promise'
 promise.polyfill();
 // import qs from 'qs'
-
 import "./assets/jquery-easyui-1.6.7/themes/black/easyui.css"
 import "./assets/jquery-easyui-1.6.7/themes/icon.css"
 import "./assets/jquery-easyui-1.6.7/jquery.easyui.min.js"
@@ -20,7 +19,6 @@ import ElementUI from 'element-ui'
 import "@/styles/elementUI/_index.scss"
 import 'element-ui/lib/theme-chalk/display.css';
 Vue.use(ElementUI);
-
 
 
 import "@/styles/index/_index.scss"

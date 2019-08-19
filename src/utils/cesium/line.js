@@ -88,7 +88,7 @@ export function addLineFN(_Entities, _set, _viewer) {
     titleKey: "",//标题
     strokeWidth: 2,
     strokeColor: "[255, 0, 0, 1.0]",
-    fillColor: "[0, 0, 255, 1.0]",
+    fillColor: "[0, 0, 255, 255]",
     clusters_enabled: true,//聚合显示
     clusters_color: "#46ff71"//聚合颜色
   };

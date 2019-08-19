@@ -2,14 +2,11 @@
 import {db} from "./data/db"
 import {api, toScene,addDataSource,camera,getCameraPosition, entitiesClear,dataSourceClear} from "./utils"
 import {infoInit} from "./info";
-import {addModeFN, modeClear} from "./mode"
-import {addPolygonFN} from "./grid"
 import {addMarkerFN} from "./marker"
 import {addPointFN} from "./point"
 import {alphaFN} from "./alpha"
 import {xyzFN} from "./xyz"
 import {SetMeasure, clearDrawingBoard} from "./measure"
-import {emMap} from "../ol/fn";
 
 function init(_name, tileset_url,_coordinates) {
   let viewer = new Cesium.Viewer(_name, {
@@ -129,9 +126,6 @@ export default {
   getCameraPosition:getCameraPosition,
   alphaFN: alphaFN,
   xyzFN: xyzFN,
-  addModeFN: addModeFN,
-  modeClear: modeClear,
-  addPolygonFN: addPolygonFN,
   addMarkerFN: addMarkerFN,
   addPointFN:addPointFN,
   dataSourceClear: dataSourceClear,

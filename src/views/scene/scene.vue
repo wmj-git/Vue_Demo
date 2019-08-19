@@ -144,21 +144,10 @@
             } else {
               cm.dataSourceClear(obj.layer_name);
             }
-
-            /* if (obj.trigger) {
-               cm.addModeFN(window.viewer);
-               cm.addPolygonFN(window.viewer);
-               cm.addMarkerFN(cm.db.posts, "../../static/image/marker_2.png", window.viewer);
-               cm.addMarkerFN(cm.db.posts2, "../../static/image/marker_3.png", window.viewer);
-             } else {
-               cm.markerClear();
-               cm.modeClear();
-               cm.entitiesClear("grid_", window.viewer);
-             }*/
             break;
           case "2"://时空云数据
             break;
-          case "3"://几何数据展示
+          case "3"://几何和模型数据展示
             if (obj.trigger) {
               this.geomDataFn(obj);
             } else {
@@ -277,8 +266,8 @@
           geom_style: "1",//几何样式
           geom_titleKey: "",
           strokeWidth: 2,
-          strokeColor: "[0, 255, 0, 1.0]",
-          fillColor: "[0, 0, 255, 1.0]",
+          strokeColor: "[0, 255, 0, 255]",
+          fillColor: "[0, 0, 255, 255]",
           clusters_enabled: "",//聚合显示
           clusters_color: "#46ff71"//聚合颜色
         };
