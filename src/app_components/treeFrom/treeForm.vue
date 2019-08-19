@@ -14,6 +14,8 @@
                 default-expand-all
                 :expand-on-click-node="false"
                 ref="tree_control"
+                @node-drag-end="handleDragEnd"
+                draggable
               >
                   <span class="custom-tree-node" slot-scope="{ node, data }">
                     <span :title="node.label" class="em-tree-text">{{ node.label }}</span>
@@ -143,6 +145,13 @@
             message: '已取消删除'
           });
         });
+      },
+      handleDragEnd(draggingNode, dropNode, dropType, ev) {
+        console.log(draggingNode);
+        console.log(dropNode);
+        console.log(dropType);
+        console.log(ev);
+        console.log('tree drag end: ', dropNode && dropNode.label, dropType);
       },
       fn(...obj) {
         // console.log(obj[0]);

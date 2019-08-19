@@ -251,6 +251,8 @@ export function layerFN(_features, _Key, _geomStyle) {
     wrapX: false
   });
 
+
+  console.log(_features);
   for (let i = 0; i < _features.length; ++i) {
 
     if (_featureKey.geomType === "Point") {//点
@@ -267,6 +269,7 @@ export function layerFN(_features, _Key, _geomStyle) {
       });
       features[i].setStyle(createQeomStyle(_features[i], _geomKey));
     } else if (_featureKey.geomType === "LineString") {//线
+
       let coordinates = _features[i].coordinates ? _features[i].coordinates : [];
       features[i] = new ol.Feature({
         geometry: new ol.geom.LineString(coordinates),

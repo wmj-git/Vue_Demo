@@ -105,35 +105,6 @@ function init(_name, tileset_url,_coordinates) {
 
   infoInit(viewer);//初始化信息窗
 
-  let polyline = viewer.entities.add({
-    name: '线路1',
-    id: 'polyline_1',
-    featureData:123132,
-    polyline: {
-      positions: Cesium.Cartesian3.fromDegreesArray([
-        114.0497756235571,
-        22.637316560481576,
-        114.04689837329487,
-        22.638332282431715,
-        114.04532045835998,
-        22.636634046220546,
-        114.04450058542454,
-        22.634437661214047,
-        106.29083865072324,
-        30.02556221957544,
-        106.28666473851872,
-        30.02695784278787
-      ]),
-      width: 18,
-      material: new Cesium.PolylineOutlineMaterialProperty({
-        color: Cesium.Color.fromCssColorString('#4cf02c').withAlpha(0.8),
-        outlineWidth: 2,
-        outlineColor: Cesium.Color.BLACK
-      }),
-      clampToGround: true,
-      classificationType: Cesium.ClassificationType.BOTH
-    }
-  });
 
   window[_name] = {
     viewer,
@@ -145,9 +116,6 @@ function init(_name, tileset_url,_coordinates) {
   console.log(window[_name]);*/
 
 }
-
-
-
 
 
 

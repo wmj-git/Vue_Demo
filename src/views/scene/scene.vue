@@ -279,7 +279,7 @@
           strokeWidth: 2,
           strokeColor: "[0, 255, 0, 1.0]",
           fillColor: "[0, 0, 255, 1.0]",
-          clusters_enabled: true,//聚合显示
+          clusters_enabled: "",//聚合显示
           clusters_color: "#46ff71"//聚合颜色
         };
 
@@ -305,9 +305,37 @@
             let _data = [];
             if (response.statusCode === 200) {
               response.data.forEach(function (_obj) {
-                if (_obj.coordinates) {
-                  _obj.coordinates = JSON.parse(_obj.coordinates);
+
+                let _coordinates = null;
+                if (_val.geomType === "LineString") {
+                  _coordinates = "{\"data\":[[" + _obj.gpsLongitude + "," + _obj.gpsLatitude + "],[114.00686770840161,22.644074037075697],[114.00888549133455,22.64434053670835],[114.00663928014505,22.646929390282693]]}";
+                  _coordinates = JSON.parse(_coordinates);
+                  _obj.coordinates = _coordinates.data;
+                  let _data=[];
+                  _obj.coordinates.forEach(function (_val) {
+                    _val.forEach(function (val) {
+                      _data.push(val);
+                    });
+                  });
+                  _obj.coordinates=_data;
+
+                } else if (_val.geomType === "Polygon") {
+                  _coordinates = "{\"data\":[[[" + _obj.gpsLongitude + "," + _obj.gpsLatitude + "],[114.00686770840161,22.644074037075697],[114.00888549133455,22.64434053670835],[114.00663928014505,22.646929390282693]]]}";
+                  _coordinates = JSON.parse(_coordinates);
+                  _obj.coordinates = _coordinates.data[0];
+                  let _data=[];
+                  _obj.coordinates.forEach(function (_val) {
+                    _val.forEach(function (val) {
+                      _data.push(val);
+                    });
+                  });
+                  _obj.coordinates=_data;
                 }
+
+                /* if(_obj.coordinates){
+                  let _coordinates = JSON.parse(_obj.coordinates);
+                  _obj.coordinates=_coordinates.data;
+                }*/
               });
               _data = response.data;
               console.log(_val);
