@@ -18,12 +18,6 @@
         props: {
         },
         data() {
-          const generateData=_=>{
-            // const data=[];
-            // findByThisUser().then(res=>{
-            //    console.log(res)
-            // })
-          };
           return {
             data: [{
               id: 1,
@@ -72,9 +66,7 @@
           })
         },
         methods:{
-          recieveRoles(userId){
-            this.userId=userId;
-          },
+
         }
     };
 </script>

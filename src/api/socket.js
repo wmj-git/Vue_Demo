@@ -1,29 +1,45 @@
-var websock = null;
 import { getToken } from '@/utils/auth'
+import SockJS from 'sockjs-client';
+import Stomp from 'stompjs';
 
+var websock = null;
 var saveObj={};
 var websocketurl = null;
-
+var stompClient = null;
 // 初始化weosocket
 function initWebSocket (url = websocketurl) {
   // ws地址 -->这里是你的请求路径
   websocketurl=url;
-  var ws= `${url}/ws/webscoket/${getToken()}/groupKey`;
-  websock = new WebSocket(ws);
-  websock.onmessage = function (e) {
-    websocketonmessage(e)
-  };
-  websock.onclose = function (e) {
-    websocketclose(e)
-  };
-  websock.onopen = function () {
-    websocketOpen()
-  };
 
-  // 连接发生错误的回调方法
-  websock.onerror = function () {
-    console.log('WebSocket连接发生错误')
-  }
+  var socket = new SockJS("http://zhlh.cqemme.com:6733/api/v1/ws/webServer");
+  stompClient = Stomp.over(socket);
+  stompClient.connect({}, function(frame) {
+    console.log('Connected: ' + frame);
+    stompClient.subscribe('/topic/getResponse', function(response){
+      console.log(response.body)
+      // var response1 = document.getElementById('response');
+      // var p = document.createElement('p');
+      // p.style.wordWrap = 'break-word';
+      // p.appendChild(document.createTextNode(response.body));
+      // response1.appendChild(p);
+    });
+  });
+  // var ws= `${url}/ws/webscoket/${getToken()}/groupKey`;
+  // websock = new WebSocket(ws);
+  // websock.onmessage = function (e) {
+  //   websocketonmessage(e)
+  // };
+  // websock.onclose = function (e) {
+  //   websocketclose(e)
+  // };
+  // websock.onopen = function () {
+  //   websocketOpen()
+  // };
+  //
+  // // 连接发生错误的回调方法
+  // websock.onerror = function () {
+  //   console.log('WebSocket连接发生错误')
+  // }
 }
 
 // 实际调用的方法

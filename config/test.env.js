@@ -2,7 +2,9 @@
 const merge = require('webpack-merge')
 const devEnv = require('./dev.env')
 
-module.exports = merge(devEnv, {
+module.exports = merge(prodEnv, {
   NODE_ENV: '"testing"',
-  BASE_API: '"http://61.186.187.111:6733"'
+  BASE_API: '"http://zhlh.cqemme.com:6733/api/v1"',
+  IMG_API: '"http://zhlh.cqemme.com:6733"',
+  SCENE_URL: '"http://zhlh.cqemme.com:6733"'
 })
