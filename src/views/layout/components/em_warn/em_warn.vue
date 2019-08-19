@@ -36,20 +36,20 @@
     },
     created() {
       this.init();
-      // let url =process.env.BASE_API;
-      // this.socketApi.initWebSocket(url.replace("http:","ws:"));
-      // this.socketApi.proxyFunction('fire',(res)=>{
-      //   console.log("fire");
-      //   console.log(res);
-      //   if(res){
-      //     this.init();
-      //     this.bus.$emit("fire_info",res)
-      //   }
-      // });
-      // this.bus.$off("close_fire_warn");
-      // this.bus.$on("close_fire_warn",_=>{
-      //     this.init()
-      // });
+      let url =process.env.BASE_API;
+      this.socketApi.initWebSocket(url.replace("http:","ws:"));
+      this.socketApi.proxyFunction('fire',(res)=>{
+        console.log("fire");
+        console.log(res);
+        if(res){
+          this.init();
+          this.bus.$emit("fire_info",res)
+        }
+      });
+      this.bus.$off("close_fire_warn");
+      this.bus.$on("close_fire_warn",_=>{
+          this.init()
+      });
 
 
     },
