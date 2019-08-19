@@ -5033,7 +5033,10 @@ export default {
             geom_titleKey: "id",
             geom_style: "1",
             strokeWidth: 6,
-            strokeColor: "[255, 0, 0, 1.0]"
+            strokeColor: "[255, 0, 0, 255]",
+            fillColor: "[0, 255, 255, 255]",
+            clusters_enabled: "true",//聚合显示
+            clusters_color: "#ff3d23"//聚合颜色
           },
           {
             id: "bt_4_1",
@@ -5053,41 +5056,55 @@ export default {
             geom_titleKey: "id",
             geom_style: "2",
             strokeWidth: 1,
-            strokeColor: "[0, 255, 0, 1.0]"
+            strokeColor: "[0, 255, 0, 255]",
+            clusters_enabled: "false",//聚合显示
           },
           {
             id: "bt_5",
             type: "info",
             icon: "el-icon-edit",
             text: "线",
+            trigger: true,
             control_type: "scene",
             control_id: "",
             fn: "scene_data",
             data_type: "3",
             layer_name: "ly2",
-            api_name: "queryVicinityPrint",
-            data_url: "http://onelz.oicp.vip/proxy/server/4FACB86003FB479A851EFF7D09AE10F4/999C1448C6DD4842A35412B42226F0A3",
+            api_name: "geom",
+            data_url: "/gardens/tree/queryVicinityPrint",
             geomType: "LineString",
+            params_longitude: 114.03188276054428,
+            params_latitude: 22.619840297782094,
+            params_distance: 10000,
             geom_titleKey: "id",
-            strokeWidth: 8,
-            trigger: true
+            strokeWidth: 1,
+            strokeColor: "[0, 255, 0, 255]",
+            clusters_enabled: "true",//聚合显示
+            clusters_color: "#ff3d23"//聚合颜色
           },
           {
             id: "bt_6",
             type: "info",
             icon: "el-icon-edit",
             text: "多边形",
+            trigger: true,
             control_type: "scene",
             control_id: "",
             fn: "scene_data",
             data_type: "3",
             layer_name: "ly3",
-            api_name: "queryVicinityPrint",
-            data_url: "http://onelz.oicp.vip/proxy/server/4FACB86003FB479A851EFF7D09AE10F4/999C1448C6DD4842A35412B42226F0A3",
+            api_name: "geom",
+            data_url: "/gardens/tree/queryVicinityPrint",
             geomType: "Polygon",
+            params_longitude: 114.03188276054428,
+            params_latitude: 22.619840297782094,
+            params_distance: 10000,
             geom_titleKey: "id",
-            strokeWidth: 8,
-            trigger: true
+            strokeWidth: 2,
+            strokeColor: "[200, 255, 0, 255]",
+            fillColor: "[255, 0, 0, 255]",
+            clusters_enabled: "false",//聚合显示
+
           },
           {
             id: "bt_7",
@@ -5101,12 +5118,15 @@ export default {
             data_type: "3",
             layer_name: "ly4",
             api_name: "geom",
-            data_url: "/gardens/humantraffic/queryAll",
+            data_url: "/gardens/tree/queryVicinityPrint",
             geomType: "Circle",
+            params_longitude: 114.03188276054428,
+            params_latitude: 22.619840297782094,
+            params_distance: 10000,
             geom_titleKey: "id",
             strokeWidth: 2,
-            strokeColor: "[255, 0, 0, 1.0]",
-            fillColor: "[230, 0, 255, 1.0]"
+            strokeColor: "[255, 0, 0, 255]",
+            fillColor: "[230, 0, 255, 255]"
           },
           {
             id: "bt_8",

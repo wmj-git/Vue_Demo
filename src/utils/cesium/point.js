@@ -5,8 +5,8 @@ function addPoint(Entities, featureKey, viewer) {
 
   for (let i = 0; i < Entities.length; i++) {
     let _data = Entities[i];
-    let _strokeColor =JSON.parse(featureKey.strokeColor) ;
-    let _fillColor =JSON.parse(featureKey.fillColor) ;
+    let _strokeColor = JSON.parse(featureKey.strokeColor);
+    let _fillColor = JSON.parse(featureKey.fillColor);
 
     let _entity = _dataSource.entities.add({
       name: 'point' + _data.id,
@@ -14,9 +14,9 @@ function addPoint(Entities, featureKey, viewer) {
       featureData: _data,
       position: Cesium.Cartesian3.fromDegrees(_data.gpsLongitude, _data.gpsLatitude),
       point: new Cesium.PointGraphics({
-        color: new Cesium.Color(_fillColor[0], _fillColor[1], _fillColor[2], _fillColor[3]),
+        color: new Cesium.Color.fromBytes(_fillColor[0], _fillColor[1], _fillColor[2], _fillColor[3]),
         pixelSize: 10,
-        outlineColor: new Cesium.Color(_strokeColor[0], _strokeColor[1], _strokeColor[2], _strokeColor[3]),
+        outlineColor: new Cesium.Color.fromBytes(_strokeColor[0], _strokeColor[1], _strokeColor[2], _strokeColor[3]),
         minimumPixelSize: 100,
         maximumScale: 200
       })
@@ -29,7 +29,12 @@ function addPoint(Entities, featureKey, viewer) {
     var pixelRange = 15;
     var minimumClusterSize = 3;
     var enabled = featureKey.clusters_enabled;
-
+    if (enabled === "false") {
+      enabled = false;
+    } else {
+      enabled = true;
+    }
+    console.log(featureKey);
     dataSource.clustering.enabled = enabled;
     dataSource.clustering.pixelRange = pixelRange;
     dataSource.clustering.minimumClusterSize = minimumClusterSize;
@@ -77,9 +82,9 @@ export function addPointFN(_Entities, _set, _viewer) {
     type: "",//类型
     titleKey: "",//标题
     strokeWidth: 2,
-    strokeColor: "[255, 0, 0, 1.0]",
-    fillColor: "[0, 0, 255, 1.0]",
-    clusters_enabled: true,//聚合显示
+    strokeColor: "[255, 0, 0, 255]",
+    fillColor: "[0, 0, 255, 255]",
+    clusters_enabled: "",//聚合显示
     clusters_color: "#46ff71"//聚合颜色
   };
   for (let k in _featureKey) {

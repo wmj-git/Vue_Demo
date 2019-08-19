@@ -1,7 +1,9 @@
 import store from '@/store'
 import {addModeFN} from "./mode"
-import {addPolygonFN} from "./grid"
 import {addPointFN} from "./point"
+import {addTextFN} from "./text"
+import {addLineFN} from "./line"
+import {addPolygonFN} from "./polygon"
 
 export function api(url, type, data) {
   let _data = null;
@@ -121,11 +123,11 @@ export function addDataSource(_Entities, _Set, viewer) {
   if (_Set.geomType === "Point") {//点
     addPointFN(_Entities, _Set, viewer);
   } else if (_Set.geomType === "Text") {//文本
-
+    addTextFN(_Entities, _Set, viewer);
   } else if (_Set.geomType === "LineString") {//线
-
+    addLineFN(_Entities, _Set, viewer);
   } else if (_Set.geomType === "Polygon") {//多边形
-    addPolygonFN();
+    addPolygonFN(_Entities, _Set, viewer);
   } else if (_Set.geomType === "Circle") {//圆
 
   } else if (_Set.geomType === "Mode") {//模型
