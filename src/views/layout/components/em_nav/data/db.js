@@ -277,7 +277,7 @@ export const db_buttonGroup=[
         "icon": "el-icon-maintenance-unit",
         "id": "nav_department_manage",
         "control_id": "department_manage",
-        "title": "部门管理",
+        "title": "组织机构管理",
         "show": false
       },
       {

@@ -37,8 +37,8 @@
            console.log(res.data);
            res.data.forEach((val)=>{
              let obj;
-             if(val.id&&val.enumCvalue){
-               obj={value:val.id,label:val.enumCvalue};
+             if(val.enumIntValue!==""&&val.enumCvalue){
+               obj={value:val.enumIntValue,label:val.enumCvalue};
              }
              if(val.id&&val.fullName){
                 obj={value:val.id,label:val.fullName};
@@ -72,6 +72,9 @@
              }
              if(val.id&&val.fertilizerName){
                obj={value:val.id,label:val.fertilizerName};
+             }
+             if(val.id&&val.orgName){
+               obj={value:val.id,label:val.orgName};
              }
 
              this.options.push(obj);

@@ -389,7 +389,7 @@ export default {
               erroMessage: "",
               placeholder: "性别",
               params: "userSex",
-              optionUrl: "/user/enuminfo/queryEnumInfoByType?enumType=user_sex",
+              optionUrl: "/user/userext/queryUserSexinfo",
               alter_show: true,
               add_show: true
 
@@ -419,15 +419,15 @@ export default {
               add_show: true
             },
             {
-              name: "部门",
-              prop: "deptFullName",
+              name: "组织机构",
+              prop: "orgName",
               width: "80",
               type: "em_selectUrl",
               reg: "",
               erroMessage: "",
               placeholder: "部门",
-              params: "deptId",
-              optionUrl: "/user/dept/queryAllDept",
+              params: "organizationId",
+              optionUrl: "/user/organization/queryAll",
               alter_show: true,
               add_show: true
             },
@@ -1351,7 +1351,7 @@ export default {
     },
     {
       id: "department_manage",
-      title: "部门管理",
+      title: "组织机构管理",
       top: ($(window).height() - 500) * 0.5,
       left: ($(window).width() - 800) * 0.5,
       width: 800,
@@ -1362,10 +1362,10 @@ export default {
       component_data: {
         operation: [
           {
-            id: "department_manage_input_shortName",
+            id: "department_manage_input_orgName",
             type: "em_input",
-            placeholder: "简称",
-            params: "shortName"
+            placeholder: "机构名称",
+            params: "orgName"
           },
           {
             id: "department_manage_button_search",
@@ -1382,7 +1382,7 @@ export default {
             operate: "添加",
             control_id: "department_manage_table",
             fn: "add",
-            url: "/user/dept/addDept"
+            url: "/user/organization/add"
           },
           {
             id: "department_manage_button_modify",
@@ -1391,6 +1391,7 @@ export default {
             operate: "修改",
             control_id: "department_manage_table",
             fn: "modify",
+            url: "/user/organization/update"
           },
           {
             id: "department_manage_button_dele",
@@ -1399,15 +1400,7 @@ export default {
             operate: "删除",
             control_id: "department_manage_table",
             fn: "dele",
-            url: "/user/dept/deleteDept"
-          },
-          {
-            id: "department_manage_button_import",
-            type: "em_button",
-            icon: "el-icon-excel_in",
-            operate: "导入excel",
-            control_id: "department_manage_table",
-            fn: "import"
+            url: "/user/organization/deletes"
           },
           {
             id: "department_manage_button_export",
@@ -1415,72 +1408,61 @@ export default {
             icon: "el-icon-excel_out",
             operate: "导出excel",
             control_id: "department_manage_table",
-            fn: "export"
+            fn: "export",
+            url: "/user/organization/exportCsv"
           }
         ],
         table: {
           id: "department_manage_table",
-          table_url: "/user/dept/queryAllUsableDeptInfo",
+          table_url: "/user/organization/queryAllByPage",
           label: [{
-            name: "全称",
-            prop: "fullName",
+            name: "机构名称",
+            prop: "orgName",
             width: "140",
             type: "em_input",
-            params: "fullName",
-            placeholder: "全称",
+            params: "orgName",
+            placeholder: "机构名称",
             alter_show: true,
             add_show: true
 
           },
             {
-              name: "简称",
-              prop: "shortName",
+              name: "机构编码",
+              prop: "orgNumber",
               width: "100",
               type: "em_input",
-              params: "shortName",
-              placeholder: "简称",
+              params: "orgNumber",
+              placeholder: "机构编码",
               alter_show: true,
               add_show: true
             },
             {
-              name: "单位编码",
-              prop: "deptCode",
-              width: "80",
-              type: "em_input",
-              params: "deptCode",
-              placeholder: "单位编码",
-              alter_show: true,
-              add_show: true
-
-
-            },
-            {
-              name: "电话",
-              prop: "phoneNumber",
+              name: "机构流水号",
+              prop: "orgFlowno",
               width: "140",
               type: "em_input",
-              params: "phoneNumber",
-              placeholder: "电话",
+              params: "orgFlowno",
+              placeholder: "机构流水号",
               alter_show: true,
               add_show: true
             },
             {
-              name: "组织id",
-              prop: "organizationId",
+              name: "机构上级编码",
+              prop: "orgUpCode",
               width: "140",
               type: "em_input",
-              params: "organizationId",
-              placeholder: "组织id",
+              params: "orgUpCode",
+              placeholder: "机构上级编码",
               alter_show: true,
               add_show: true
             },
             {
-              name: "备注",
-              prop: "remark",
+              name: "机构描述",
+              prop: "orgDescript",
               width: "100",
               type: "em_input",
-              params: "remark",
-              placeholder: "备注",
+              params: "orgDescript",
+              placeholder: "机构描述",
               alter_show: true,
               add_show: true
 
