@@ -2,29 +2,29 @@
   <div class="bottom">
     <win :id="win.id" :data="win">
       <div style="width: 100%;" class="em-bottom-container">
-        <el-dialog title="密码修改" :visible.sync="dialogFormVisible" :append-to-body="true" v-dialogDrag="true"
-                   @close="cancel('ruleForm')">
-          <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm">
-            <el-form-item label="原密码" :label-width="formLabelWidth" prop="oldPassword">
-              <el-input type="password" v-model="ruleForm.oldPassword" autocomplete="off"></el-input>
-            </el-form-item>
-            <el-form-item label="新密码" :label-width="formLabelWidth" prop="newPassword">
-              <el-input type="password" v-model="ruleForm.newPassword" autocomplete="off"></el-input>
-            </el-form-item>
-            <el-form-item label="确认密码" :label-width="formLabelWidth" prop="checkPass">
-              <el-input type="password" v-model="ruleForm.checkPass" autocomplete="off"></el-input>
-            </el-form-item>
-          </el-form>
-          <div slot="footer" class="dialog-footer">
-            <el-button @click="cancel('ruleForm')" class="em-button">取 消</el-button>
-            <el-button type="primary" @click="confirm('ruleForm')" class="em-button">确 定</el-button>
-          </div>
-        </el-dialog>
+        <!--<el-dialog title="密码修改" :visible.sync="dialogFormVisible" :append-to-body="true" v-dialogDrag="true"-->
+                   <!--@close="cancel('ruleForm')">-->
+          <!--<el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm">-->
+            <!--<el-form-item label="原密码" :label-width="formLabelWidth" prop="oldPassword">-->
+              <!--<el-input type="password" v-model="ruleForm.oldPassword" autocomplete="off"></el-input>-->
+            <!--</el-form-item>-->
+            <!--<el-form-item label="新密码" :label-width="formLabelWidth" prop="newPassword">-->
+              <!--<el-input type="password" v-model="ruleForm.newPassword" autocomplete="off"></el-input>-->
+            <!--</el-form-item>-->
+            <!--<el-form-item label="确认密码" :label-width="formLabelWidth" prop="checkPass">-->
+              <!--<el-input type="password" v-model="ruleForm.checkPass" autocomplete="off"></el-input>-->
+            <!--</el-form-item>-->
+          <!--</el-form>-->
+          <!--<div slot="footer" class="dialog-footer">-->
+            <!--<el-button @click="cancel('ruleForm')" class="em-button">取 消</el-button>-->
+            <!--<el-button type="primary" @click="confirm('ruleForm')" class="em-button">确 定</el-button>-->
+          <!--</div>-->
+        <!--</el-dialog>-->
         <el-input v-model="input" placeholder="请输入内容" style="width: 150px"></el-input>
 
-        <el-button class="data_button em-btn-icon-hover" @click="dialogFormVisible = true">
-          密码修改
-        </el-button>
+        <!--<el-button class="data_button em-btn-icon-hover" @click="dialogFormVisible = true">-->
+          <!--密码修改-->
+        <!--</el-button>-->
         <el-button class="data_button em-btn-icon-hover-v1" @click="loginOut">
           退&emsp;&emsp;出
         </el-button>
