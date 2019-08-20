@@ -17,12 +17,8 @@ function initWebSocket (url = websocketurl) {
     console.log('Connected: ' + frame);
     stompClient.subscribe('/topic/getResponse', function(response){
       console.log(response.body)
-      // var response1 = document.getElementById('response');
-      // var p = document.createElement('p');
-      // p.style.wordWrap = 'break-word';
-      // p.appendChild(document.createTextNode(response.body));
-      // response1.appendChild(p);
     });
+
   });
   // var ws= `${url}/ws/webscoket/${getToken()}/groupKey`;
   // websock = new WebSocket(ws);
@@ -69,7 +65,6 @@ function websocketonmessage (e) {
       saveObj[obj.type](obj)
     }
   }else{
-    // console.log(e.data)
   }
 
 }
