@@ -1,6 +1,6 @@
 //data
 import {db} from "./data/db"
-import layers from "./baseMap"
+import {baseMapFN} from "./baseMap"
 import {emMap, clustersFn, clustersLayerFn, layerFN} from "./fn"
 
 function openScene(_name) {
@@ -13,10 +13,11 @@ function openScene(_name) {
   }
 
 }
+
 export default {
   db,
   openScene,
-  layers,
+  baseMapFN,
   layerFN,
   clustersFn,
   clustersLayerFn

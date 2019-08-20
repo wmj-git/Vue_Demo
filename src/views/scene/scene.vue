@@ -5,7 +5,7 @@
 </template>
 
 <script>
-
+  import {loadJs, loadCss} from "@/utils/tools";
   import cm from "@/utils/cesium/index"
   import {queryVicinityPrint, findOne, queryAllcount} from "@/api/tree";
   import {marker} from "@/api/marker";
@@ -21,19 +21,30 @@
     props: {},
     methods: {
       init() {
-
+        let _this = this;
         // 初始化场景
         // cm.init(this.id, "https://onelz.oicp.vip/SG/b3dm/LH1-1-2.405276/tileset.json");
-        cm.init(this.id, process.env.SCENE_URL + "/sceneData/b3dm/tileset.json", {
+        let _element=document.getElementById('Cesium_js');
+        if (_element) {
+          _this.sceneInit();
+        } else {
+          //动态加载依赖库
+          let _url = process.env.STATIC_URL;
+          loadCss('widgets_css',_url + "/sceneStatic/Cesium/Widgets/widgets.css", function () {
+            console.log('css');
+          });
+          loadJs('Cesium_js',_url + "/sceneStatic/Cesium/Cesium.js", function () {
+            console.log('js');
+            _this.sceneInit();
+          });
+        }
+      },
+      sceneInit() {
+        cm.init(this.id, process.env.STATIC_URL + "/sceneData/b3dm/tileset.json", {
           longitude: 114.0497756235571,
           latitude: 22.637316560481576,
           height: -260
         });
-        /* cm.init(this.id, "http://localhost:800/sceneData/b3dm/tileset.json", {
-           longitude: 114.0497756235571,
-           latitude: 22.637316560481576,
-           height: -160
-         });*/
       },
       baseMapFn(obj) {
         let _layer = null;
@@ -88,7 +99,7 @@
             break;
           case "7":
             _layer = new Cesium.UrlTemplateImageryProvider({
-              url: process.env.SCENE_URL + "/sceneData/zhlh_vec/{z}/{x}/{y}.png",
+              url: process.env.STATIC_URL + "/sceneData/zhlh_vec/{z}/{x}/{y}.png",
               layer: "tdtBasicLayer",
               style: "default"
             });
@@ -96,7 +107,7 @@
             break;
           case "8":
             _layer = new Cesium.UrlTemplateImageryProvider({
-              url: process.env.SCENE_URL + "/sceneData/zhlh_img/{z}/{x}/{y}.png",
+              url: process.env.STATIC_URL + "/sceneData/zhlh_img/{z}/{x}/{y}.png",
               layer: "tdtBasicLayer",
               style: "default"
             });
@@ -300,25 +311,25 @@
                   _coordinates = "{\"data\":[[" + _obj.gpsLongitude + "," + _obj.gpsLatitude + "],[114.00686770840161,22.644074037075697],[114.00888549133455,22.64434053670835],[114.00663928014505,22.646929390282693]]}";
                   _coordinates = JSON.parse(_coordinates);
                   _obj.coordinates = _coordinates.data;
-                  let _data=[];
+                  let _data = [];
                   _obj.coordinates.forEach(function (_val) {
                     _val.forEach(function (val) {
                       _data.push(val);
                     });
                   });
-                  _obj.coordinates=_data;
+                  _obj.coordinates = _data;
 
                 } else if (_val.geomType === "Polygon") {
                   _coordinates = "{\"data\":[[[" + _obj.gpsLongitude + "," + _obj.gpsLatitude + "],[114.00686770840161,22.644074037075697],[114.00888549133455,22.64434053670835],[114.00663928014505,22.646929390282693]]]}";
                   _coordinates = JSON.parse(_coordinates);
                   _obj.coordinates = _coordinates.data[0];
-                  let _data=[];
+                  let _data = [];
                   _obj.coordinates.forEach(function (_val) {
                     _val.forEach(function (val) {
                       _data.push(val);
                     });
                   });
-                  _obj.coordinates=_data;
+                  _obj.coordinates = _data;
                 }
 
                 /* if(_obj.coordinates){

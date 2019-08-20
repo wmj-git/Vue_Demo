@@ -6,5 +6,5 @@ module.exports = merge(prodEnv, {
   NODE_ENV: '"testing"',
   BASE_API: '"http://zhlh.cqemme.com:6733/api/v1"',
   IMG_API: '"http://zhlh.cqemme.com:6733"',
-  SCENE_URL: '"http://zhlh.cqemme.com:6733"'
+  STATIC_URL: '"http://zhlh.cqemme.com:6733"'
 })

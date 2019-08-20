@@ -5,28 +5,33 @@
 </template>
 
 <script>
+  import {loadJs,loadCss} from "@/utils/tools";
+
   export default {
     name: 'App',
-    components: {
+    components: {},
+    beforeCreate() {
+
     }
   }
 </script>
 
 <style>
- html,
- body {
-   width: 100%;
-   height: 100%;
-   padding: 0;
-   margin: 0;
-   overflow: hidden;
-   font-family: "Avenir", Helvetica, Arial, sans-serif;
- }
- #app,#cesiumContainer,#mapContainer {
-   font-family: "Avenir", Helvetica, Arial, sans-serif;
-   width: 100%;
-   height: 100%;
-   position: fixed;
-   overflow: hidden;/*场景滚动条*/
- }
+  html,
+  body {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    font-family: "Avenir", Helvetica, Arial, sans-serif;
+  }
+
+  #app, #cesiumContainer, #mapContainer {
+    font-family: "Avenir", Helvetica, Arial, sans-serif;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    overflow: hidden; /*场景滚动条*/
+  }
 </style>

@@ -95,5 +95,15 @@ export const db_form_data = {
       {label: "是", value: true},
       {label: "否", value: false}
     ]
+  },
+  "weight": {
+    type: "text",
+    label: "权重",
+    disabled: false,
+    Validate: [
+      {required: true, message: '请输字段', trigger: 'change'},
+    ],
+    options_url: "",
+    options: []
   }
 };

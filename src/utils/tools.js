@@ -248,8 +248,9 @@ function getQuarterStartMonth(month) {
 }
 
 // 动态加载js文件
-export function loadJs(url,callback){
+export function loadJs(id,url,callback){
   var script=document.createElement('script');
+  script.id=id;
   script.type="text/javascript";
   if(typeof(callback)!="undefined"){
     if(script.readyState){
@@ -266,7 +267,9 @@ export function loadJs(url,callback){
     }
   }
   script.src=url;
-  document.body.appendChild(script);
+  // document.head.appendChild(script);
+  let _element=document.getElementById('em');
+  _element.parentNode.insertBefore(script, _element.nextSibling);//将script插入到_element外部后面
 }
 /*loadJs("test.js",function(){
   alert('done');
@@ -274,8 +277,9 @@ export function loadJs(url,callback){
 
 
 // 动态加载css文件
-export function loadCss(url,callback){
+export function loadCss(id,url,callback){
   let link=document.createElement('link');
+  link.id=id;
   link.type="text/css";
   link.rel="stylesheet";
   if(typeof(callback)!="undefined"){
@@ -293,8 +297,10 @@ export function loadCss(url,callback){
     }
   }
   link.href=url;
-  document.body.appendChild(link);
+  // document.head.appendChild(link);
+  let _element=document.getElementById('em');
+  _element.parentNode.insertBefore(link, _element.nextSibling);//将link插入到_element外部后面
 }
-/*loadCss("test.js",function(){
+/*loadCss("test.css",function(){
   alert('done');
 });*/

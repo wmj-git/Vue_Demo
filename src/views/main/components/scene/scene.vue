@@ -29,7 +29,7 @@
           navigationHelpButton: false, //是否显示帮助信息控件
           infoBox: true, //是否显示点击要素之后显示的信息
           /*imageryProvider: new Cesium.UrlTemplateImageryProvider({
-            url: process.env.SCENE_URL + "/zhlhscene/gis/{z}/{x}/{y}.png",
+            url: process.env.STATIC_URL + "/zhlhscene/gis/{z}/{x}/{y}.png",
             // url: "../../static/mode_3d/gis/{z}/{x}/{y}.png",
             layer: "tdtBasicLayer",
             style: "default"
@@ -57,7 +57,7 @@
 
 
         // 加载地形1
-        // window._scene = cm.openScene(window.viewer, process.env.SCENE_URL + "/zhlhscene/b3dm/tileset.json");
+        // window._scene = cm.openScene(window.viewer, process.env.STATIC_URL + "/zhlhscene/b3dm/tileset.json");
         window._scene = cm.openScene(window.viewer, "https://onelz.oicp.vip/SG/b3dm/LH1-1-2.405276/tileset.json");
 
       },
