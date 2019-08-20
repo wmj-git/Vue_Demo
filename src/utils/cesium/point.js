@@ -10,7 +10,7 @@ function addPoint(Entities, featureKey, viewer) {
 
     let _entity = _dataSource.entities.add({
       name: 'point' + _data.id,
-      id: 'point_' + _data.id,
+      id: 'point_' + featureKey.layer_name+"_"+ _data.id,
       featureData: _data,
       position: Cesium.Cartesian3.fromDegrees(_data.gpsLongitude, _data.gpsLatitude),
       point: new Cesium.PointGraphics({

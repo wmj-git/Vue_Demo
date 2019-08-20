@@ -5061,8 +5061,7 @@ export default {
             geom_titleKey: "id",
             strokeWidth: 1,
             strokeColor: "[0, 255, 0, 255]",
-            clusters_enabled: "true",//聚合显示
-            clusters_color: "#ff3d23"//聚合颜色
+            fillColor: "[0, 100, 255, 255]"
           },
           {
             id: "bt_6",
@@ -5084,9 +5083,7 @@ export default {
             geom_titleKey: "id",
             strokeWidth: 2,
             strokeColor: "[200, 255, 0, 255]",
-            fillColor: "[255, 0, 0, 255]",
-            clusters_enabled: "false",//聚合显示
-
+            fillColor: "[255, 0, 0, 255]"
           },
           {
             id: "bt_7",
@@ -5100,14 +5097,9 @@ export default {
             data_type: "3",
             layer_name: "ly4",
             api_name: "geom",
-            data_url: "/gardens/tree/queryVicinityPrint",
+            data_url: "/gardens/humantraffic/queryAll",
             geomType: "Circle",
-            params_longitude: 114.03188276054428,
-            params_latitude: 22.619840297782094,
-            params_distance: 10000,
             geom_titleKey: "id",
-            strokeWidth: 2,
-            strokeColor: "[255, 0, 0, 255]",
             fillColor: "[230, 0, 255, 255]"
           },
           {
@@ -5115,18 +5107,19 @@ export default {
             type: "info",
             icon: "el-icon-edit",
             text: "模型",
+            trigger: true,
             control_type: "scene",
             control_id: "",
             fn: "scene_data",
-            data_type: "4",
+            data_type: "3",
             layer_name: "ly5",
-            api_name: "queryVicinityPrint",
-            data_url: "http://onelz.oicp.vip/proxy/server/4FACB86003FB479A851EFF7D09AE10F4/999C1448C6DD4842A35412B42226F0A3",
-            geomType: "mode",
+            api_name: "geom",
+            data_url: "/gardens/humantraffic/queryAll",
+            geomType: "Mode",
             geom_titleKey: "id",
-            strokeWidth: 2,
-            strokeColor: "#c42e1e",
-            trigger: true
+            strokeWidth: 1,
+            strokeColor: "[255, 255, 255, 255]",
+            fillColor: "[255, 0, 0, 255]",
           },
           {
             id: "bt_2",

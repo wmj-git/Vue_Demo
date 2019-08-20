@@ -6,8 +6,8 @@ function addMarker(Entities, featureKey, viewer) {
   for (var i = 0; i < Entities.length; i++) {
     let _data = Entities[i];
     var _entity = _dataSource.entities.add({
-      name: 'marker' +_data.id,
-      id: 'marker_' + _data.id,
+      name: '' +_data[featureKey.titleKey],
+      id: 'marker_img_' + featureKey.type+"_"+ _data.id,
       featureData: _data,
       // position: Cesium.Cartesian3.fromDegrees(Entities[i].position[0], Entities[i].position[1], Entities[i].position[2]),
       position: Cesium.Cartesian3.fromDegrees(_data.gpsLongitude, _data.gpsLatitude),
@@ -29,7 +29,8 @@ function addMarker(Entities, featureKey, viewer) {
       }
     });
     var _entity1 = _dataSource.entities.add({
-      name: 'marker' + _data.id,
+      name: '' +_data[featureKey.titleKey],
+      id: 'marker_icon_' + featureKey.type+"_"+ _data.id,
       featureData: _data,
       position: Cesium.Cartesian3.fromDegrees(_data.gpsLongitude, _data.gpsLatitude),
       ellipse: {
@@ -40,7 +41,8 @@ function addMarker(Entities, featureKey, viewer) {
       }
     });
     var _entity2 = _dataSource.entities.add({
-      name: 'marker_point_' + _data.id,
+      name: '' +_data[featureKey.titleKey],
+      id: 'marker_point_' + featureKey.type+"_"+ _data.id,
       featureData: _data,
       position: Cesium.Cartesian3.fromDegrees(_data.gpsLongitude, _data.gpsLatitude),
       ellipse: {

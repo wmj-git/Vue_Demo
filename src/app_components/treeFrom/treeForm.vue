@@ -54,7 +54,7 @@
   import {db_form_data} from './data/db';
   import splitPane from 'vue-splitpane';
   import emForm from './components/emForm/emForm';
-  import {addResource, delResource} from "@/api/resource";
+  import {addResource, delResource,updateResource} from "@/api/resource";
   import {treeStructure} from "@/utils/tools";
 
 
@@ -150,8 +150,17 @@
         console.log(draggingNode);
         console.log(dropNode);
         console.log(dropType);
-        console.log(ev);
         console.log('tree drag end: ', dropNode && dropNode.label, dropType);
+        if(dropType==="inner"){
+          draggingNode.data.parentId=dropNode.data.id;
+        }else{
+          draggingNode.data.parentId=dropNode.data.parentId;
+        }
+        updateResource(draggingNode.data).then((response) => {
+          console.log(response);
+          this.$message(response.message);
+        });
+
       },
       fn(...obj) {
         // console.log(obj[0]);
@@ -191,9 +200,7 @@
           }
 
         }
-
         this.$refs.form.rulesFn(JSON.parse(JSON.stringify(_form_data)));
-
       }
     },
 
