@@ -1,4 +1,4 @@
-import { getToken } from '@/utils/auth'
+import { getToken,TokenName } from '@/utils/auth'
 import SockJS from 'sockjs-client';
 import Stomp from 'stompjs';
 
@@ -10,32 +10,23 @@ var stompClient = null;
 function initWebSocket (url = websocketurl) {
   // ws地址 -->这里是你的请求路径
   websocketurl=url;
-
+  // 建立连接对象（还未发起连接）
   var socket = new SockJS("http://zhlh.cqemme.com:6733/api/v1/ws/webServer");
+  // 获取 STOMP 子协议的客户端对象
   stompClient = Stomp.over(socket);
-  stompClient.connect({}, function(frame) {
+  let headers={};
+  headers[TokenName]=getToken();
+  // 向服务器发起websocket连接并发送CONNECT帧
+  stompClient.connect(headers, function(frame) {
     console.log('Connected: ' + frame);
+    //订阅频道
     stompClient.subscribe('/topic/getResponse', function(response){
       console.log(response.body)
+      websocketonmessage(response);
     });
 
   });
-  // var ws= `${url}/ws/webscoket/${getToken()}/groupKey`;
-  // websock = new WebSocket(ws);
-  // websock.onmessage = function (e) {
-  //   websocketonmessage(e)
-  // };
-  // websock.onclose = function (e) {
-  //   websocketclose(e)
-  // };
-  // websock.onopen = function () {
-  //   websocketOpen()
-  // };
-  //
-  // // 连接发生错误的回调方法
-  // websock.onerror = function () {
-  //   console.log('WebSocket连接发生错误')
-  // }
+  socket.onclose =websocketclose;
 }
 
 // 实际调用的方法
@@ -58,7 +49,8 @@ function sendSock (agentData, callback) {
 
 // 数据接收
 function websocketonmessage (e) {
-  let data = e.data;
+  let data = e.body;
+  console.log(e);
   if(data.indexOf("{") !== -1 && data.indexOf("}") !== -1){  // 是JSON字符串
     let obj = JSON.parse(data);
     if(saveObj[obj.type]){
