@@ -22,7 +22,7 @@
    overflow: hidden;
    font-family: "Avenir", Helvetica, Arial, sans-serif;
  }
- #app,#cesiumContainer,#mapContainer {
+ #app,#map,#_scene {
    font-family: "Avenir", Helvetica, Arial, sans-serif;
    width: 100%;
    height: 100%;
