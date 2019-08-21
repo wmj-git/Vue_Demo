@@ -1,5 +1,5 @@
 <template>
-  <div class="em-login-container" id="login_container" ref="loginPage">
+  <div class="em-login-container" id="login_container" ref="loginPage" v-if="show">
     <!--<video autoplay="autoplay" loop="900">
        您的浏览器不支持 video 标签。
        <source src="../../assets/image/login_bg1.mp4" type="video/mp4">
@@ -53,18 +53,31 @@
           name: '',
           pwd: ''
         },
-        checked: false
+        checked: false,
+        show:false
       };
     },
     created(){
-      var name = localStorage.getItem("username");
-      var password = localStorage.getItem("password");
-      if(name){
-        this.form.name=name;
+      console.log(this.$route.query);
+      let {token,random} = this.$route.query;
+      if(token){
+        this.$store.dispatch("user/LoginByUsername", {
+          token,
+          random
+        }).then(this.changeRouter);
+      }else{
+        this.show=true;
+        var name = localStorage.getItem("username");
+        var password = localStorage.getItem("password");
+
+        if(name){
+          this.form.name=name;
+        }
+        if(password){
+          this.form.pwd=password
+        }
       }
-      if(password){
-        this.form.pwd=password
-      }
+
 
     },
     methods: {
@@ -85,17 +98,20 @@
         this.$store.dispatch("user/LoginByUsername", {
           username: _username,
           password: _password
-        }).then((response) => {
-          localStorage.setItem('username',_username);
+        }).then(this.changeRouter);
+      },
+
+      changeRouter(response){
+        if(this.show){
+          localStorage.setItem('username',this.form.name);
           if (this.checked == true) {
-            localStorage.setItem('password',_password);
+            localStorage.setItem('password',this.form.pwd);
           } else {
             localStorage.removeItem('password');
           }
-          console.log(response);
-          this.init();
-          this.$router.push("/home/map");
-        });
+        }
+        this.init();
+        this.$router.push("/home/map");
       },
       enterSearchPwd() {
         this.loginFn();

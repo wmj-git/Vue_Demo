@@ -17,6 +17,13 @@ export function loginByUsername(username, password) {
     })
   })
 }
+export  function loginByToken(data) {
+  return request({
+    url: '/login/tokenAuth',
+    method: 'post',
+    data
+  })
+}
 export function getRsa() {
   return request({
     url: '/login/getpbk',
