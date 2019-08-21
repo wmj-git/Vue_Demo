@@ -5,6 +5,7 @@
       :visible.sync="show"
       direction="rtl"
       :modal="modal"
+      :append-to-body="body"
       size="16%">
       123
 
@@ -19,8 +20,9 @@
     data() {
       return {
         id: "drawer",
-        show: false,
-        modal: false
+        show: true,
+        modal: false,
+        body:true
       }
     },
     props: ["data"],
