@@ -3,7 +3,7 @@ import {
   SET_SETTING, SET_STATUS, SET_NAME, SET_PERMISSIONS, SET_SYSTEMDATA,
   SET_AVATAR, SET_ROLES
 } from '../../mutation-types';
-import {loginByUsername, logout, getUserInfo, refreshToken} from '@/api/login';
+import {loginByUsername, logout, getUserInfo, refreshToken, loginByToken} from '@/api/login';
 import {findByThisUser} from "@/api/resource";  //后台权限
 import {systemData} from "@/api/systemUI";  //后台权限
 import {getNowFormatDate} from '@/utils/tools';
@@ -13,30 +13,41 @@ import {
 } from '@/utils/auth';
 
 
-// 用户名登录
+// 登录
 export function LoginByUsername({commit}, userInfo) {
-  const username = userInfo.username.trim();
-  return new Promise((resolve, reject) => {
-    loginByUsername(username, userInfo.password).then(response => {
-      let data = response.data;
-      // console.log(data);
-      // console.log(data[TokenName]);
-      commit(SET_TOKEN, data[TokenName]);
-      commit(SET_REFRESH_TOKEN, data[RefreshTokenName]);
-      setToken(data[TokenName]);
-      setRefreshToken(data[RefreshTokenName]);
-
-      let _token_time = getNowFormatDate().timestamp;
-      commit(SET_TOKEN_TIME, _token_time);
-
-
-      setExpires(data["expires"]);
-
-      resolve(response.data);
-    }).catch(error => {
-      reject(error);
+  if(userInfo.username){  // 用户名密码登陆，也就是页面登陆
+    const username = userInfo.username.trim();
+    return new Promise((resolve, reject) => {
+      loginByUsername(username, userInfo.password).then((response)=>{
+        handleResult(response, resolve)
+      }).catch(error => {
+        reject(error);
+      });
     });
-  });
+  }else {  // token 登陆
+    return new Promise((resolve, reject) => {
+      loginByToken(userInfo).then((response)=>{
+        handleResult(response, resolve)
+      }).catch(error => {
+        reject(error);
+      });
+    });
+  }
+
+  function handleResult(response,resolve){
+    let data = response.data;
+    // console.log(data);
+    // console.log(data[TokenName]);
+    commit(SET_TOKEN, data[TokenName]);
+    commit(SET_REFRESH_TOKEN, data[RefreshTokenName]);
+    setToken(data[TokenName]);
+    setRefreshToken(data[RefreshTokenName]);
+    let _token_time = getNowFormatDate().timestamp;
+    commit(SET_TOKEN_TIME, _token_time);
+    setExpires(data["expires"]);
+    resolve(response.data);
+  }
+
 }
 
 // 获取用户信息
