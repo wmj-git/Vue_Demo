@@ -453,13 +453,60 @@ export default {
     {
       id: "time_detective",
       title: "实时监测",
-      top: 80,
-      left: 400,
+      top: "calc(100% - 280px)",
+      left: "calc((100% - 600px)/2)",
+      width: 600,
+      height: 200,
       show: false,
       class: "em-table-window",
-      component: "test",
+      component: "emCharts",
       component_data: {
-        name: ""
+        charts: [
+          {
+            id: "tree_statistic_chart_1",
+            type: "pie",
+            optionType: "option_pie",
+            winSpan: 24,
+            height: 50,
+            chartTitle: "道路",
+            unit_y: "%",
+            dataUrl: '/gardens/tree/queryAllcount?groupBy=roadName',
+            seriesType: "pie_handle_b"
+          },
+          {
+            id: "tree_statistic_chart_2",
+            type: "pie",
+            optionType: "option_pie",
+            winSpan: 24,
+            height: 50,
+            chartTitle: "行政区划",
+            unit_y: "%",
+            dataUrl: '/gardens/tree/queryAllcount?groupBy=districtName',
+            seriesType: "pie_handle_b"
+          },
+          {
+            id: "tree_statistic_chart_3",
+            type: "pie",
+            optionType: "option_pie",
+            winSpan: 24,
+            height: 50,
+            chartTitle: "植物名称",
+            unit_y: "%",
+            dataUrl: '/gardens/tree/queryAllcount?groupBy=treeName',
+            seriesType: "pie_handle_b"
+          },
+          {
+            id: "tree_statistic_chart_4",
+            type: "pie",
+            optionType: "option_pie",
+            winSpan: 24,
+            height: 50,
+            chartTitle: "等级",
+            unit_y: "%",
+            dataUrl: '/gardens/tree/queryAllcount?groupBy=rankValue',
+            seriesType: "pie_handle_b"
+          }
+        ]
       }
     },
     {

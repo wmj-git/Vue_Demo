@@ -29,12 +29,18 @@
     </el-dialog>
     <el-dialog :title="commonDialogTitle" :width="commonDialogWidth" :visible.sync="dialogCommonVisible"
                :modal-append-to-body="false" v-dialogDrag="true">
-      <component :is="commonDialogComponent" @closeCommonDialog="closeCommonDialog" ref="dialogComponent" v-if="dialogCommonVisible"></component>
+      <component :is="commonDialogComponent" :props_data="dialogRow" @closeCommonDialog="closeCommonDialog"
+                 ref="dialogComponent" v-if="dialogCommonVisible"></component>
+      <div slot="footer" class="dialog-footer" v-if="commonDialogComponent=='permission_assignments'">
+        <el-button @click="dialogCommonVisible = false" class="em-button">取 消</el-button>
+        <el-button type="primary" @click="permissionAssignmentsFn" class="em-button">确 定</el-button>
+      </div>
     </el-dialog>
     <div class="table digital_table">
       <el-row class="operation">
         <template v-for="item in this.data.operation">
-          <component :is="item.type" :operation="item" :table_id="table_id" ref="child" @keyup.enter.native="search()"></component>
+          <component :is="item.type" :operation="item" :table_id="table_id" ref="child"
+                     @keyup.enter.native="search()"></component>
         </template>
       </el-row>
       <el-table
@@ -69,7 +75,7 @@
                          :prop="item.prop"
                          :label="item.name"
                          :min-width="item.width"
-                          align="center"
+                         align="center"
                          :show-overflow-tooltip="true"
 
         >
@@ -85,7 +91,7 @@
             <el-button class="em-btn-operation" v-for="item in data.table.after_digital_button"
                        :key="item.id"
                        size="small"
-                       @click="control(item)">{{item.name}}
+                       @click="control(item,scope.row)">{{item.name}}
             </el-button>
           </template>
         </el-table-column>
@@ -109,7 +115,18 @@
 
 <script>
 
-  import {add, dele, modify, find, downCsvmodel, upLoad, resetPassword,delEntRoad,roadInformation,getPictureImg} from "@/api/table_operate"
+  import {
+    add,
+    dele,
+    modify,
+    find,
+    downCsvmodel,
+    upLoad,
+    resetPassword,
+    delEntRoad,
+    roadInformation,
+    getPictureImg
+  } from "@/api/table_operate"
   import {closeFireWarn} from "@/api/warn";
   import em_button from "@/components/em_button/em_button"
   import em_input from "@/components/em_input/em_input"
@@ -150,14 +167,15 @@
         pageSize: 10,
         totalSize: null,
         table_list: [],
-        baseUrl:"",          //表格展开详情里图片的固定url
-        imgUrl:"",          //表格展开详情里图片的变化url
+        baseUrl: "",          //表格展开详情里图片的固定url
+        imgUrl: "",          //表格展开详情里图片的变化url
         formLabelWidth: '120px',
         dialogVisible: false,
         delever_obj: "",      // 主要保存add,alter请求的url,table_id
         alter_obj: "",       //单选行选中进行修改的对象
         dialogFormVisible: false, //导入表格弹框控制显示隐藏的布尔值
         dialogCommonVisible: false,  //角色分配，权限分配，关联用户等等弹框控制显示隐藏的布尔值
+        dialogRow: "",
         fileList: [],
         action: "",
         operation_height: 34,
@@ -166,8 +184,8 @@
         },
         commonDialogComponent: "",  //渲染在角色分配等的动态组件名
         commonDialogTitle: "",     //渲染在角色分配等的弹框的title名
-        commonDialogWidth: "" ,    //渲染在角色分配等的弹框的宽度
-        dialogDetailVisible:false
+        commonDialogWidth: "",    //渲染在角色分配等的弹框的宽度
+        dialogDetailVisible: false
       }
     },
     props: ["data"],
@@ -196,17 +214,17 @@
         this.pageSize = val;
         this.init();  //重新请求表格数据
       },
-      openCurrentChangeRow(row,expandRows){     //展开行时
-         if(expandRows[0]&&this.data.table.picture_url){
-           getPictureImg({url:this.data.table.picture_url,id:expandRows[0].id}).then(res=>{
-                 this.imgUrl=res.data[0].fileName;
+      openCurrentChangeRow(row, expandRows) {     //展开行时
+        if (expandRows[0] && this.data.table.picture_url) {
+          getPictureImg({url: this.data.table.picture_url, id: expandRows[0].id}).then(res => {
+            this.imgUrl = res.data[0].fileName;
 
-                 this.baseUrl=process.env.IMG_API
-           })
-         }
+            this.baseUrl = process.env.IMG_API
+          })
+        }
       },
       init() {                               //表格加载数据
-        let list=[];
+        let list = [];
         let obj = {
           pageNum: this.currentPage,
           pageSize: this.pageSize
@@ -256,14 +274,14 @@
           let params = this.$refs.child[0].params;
           obj[params] = role_manage_input;
         }
-        if(this.$refs.child[2]){
+        if (this.$refs.child[2]) {
           if (this.$refs.child[2].input && this.$refs.child[2].params) {                              //input框是操作中第三个组件时
             let operate_input = this.$refs.child[2].input.trim();
             let params = this.$refs.child[2].params;
             obj[params] = operate_input;
           }
         }
-        if(this.$refs.child[3]){
+        if (this.$refs.child[3]) {
           if (this.$refs.child[3].input && this.$refs.child[3].params) {                              //input框是操作中第四个组件时
             let url_input = this.$refs.child[3].input.trim();
             let params = this.$refs.child[3].params;
@@ -279,14 +297,13 @@
           console.log(res);
           res.data.list.forEach((_val) => {
             for (let _i in _val) {
-              if(_i==="isSpecial"){
+              if (_i === "isSpecial") {
                 if (_val[_i] === 0) {
                   _val[_i] = "否";
                 } else if (_val[_i] === 1) {
                   _val[_i] = "是"
                 }
-              }
-              else if(_i==="flowersPlantsOrTree"){
+              } else if (_i === "flowersPlantsOrTree") {
                 if (_val[_i] === 0) {
                   _val[_i] = "树";
                 } else if (_val[_i] === 1) {
@@ -304,14 +321,18 @@
       table_idx(index) {                         //控制表格数据行号
         return (this.currentPage - 1) * this.pageSize + index + 1
       },
-      control(obj) {
+      control(obj, row) {
+
+        console.log(row);
+        this.dialogRow =row;
+
         this[obj.fn](obj);
         if (obj.component_name) {
           this.commonDialogComponent = obj.component_name;
           // this.commonDialogTitle = obj.dialog_name;
           this.commonDialogWidth = obj.dialog_width;
           setTimeout(() => {
-            this.commonDialogTitle=this.alter_obj.roleCname||this.alter_obj.userCname||this.alter_obj.entName;
+            this.commonDialogTitle = this.alter_obj.roleCname || this.alter_obj.userCname || this.alter_obj.entName;
             this.bus.$emit("alter_id", this.alter_obj.id);   //是分配角色等接受的数据
           });
         }
@@ -335,8 +356,7 @@
               url: obj.url,
               params: this.ids
 
-            }).then(res =>
-            {
+            }).then(res => {
               this.ids = [];
               if (res.statusCode == 200) {
                 this.$message({
@@ -351,8 +371,7 @@
           }).catch(() => {
 
           });
-        }
-        else{
+        } else {
           this.$message({
             showClose: true,
             message: '请先单击复选框选择你要删除的数据行',
@@ -398,17 +417,17 @@
             params: val.form,
             id: this.delever_obj.table_id
           }).then(res => {
-           if(res){
-             if (res.statusCode == 200) {
-               this.$refs.dialog.cancel();
-               this.$message({
-                 message: '恭喜你，添加成功',
-                 type: 'success'
-               });
-               this.init();
+            if (res) {
+              if (res.statusCode == 200) {
+                this.$refs.dialog.cancel();
+                this.$message({
+                  message: '恭喜你，添加成功',
+                  type: 'success'
+                });
+                this.init();
 
-             }
-           }
+              }
+            }
 
 
           });
@@ -489,6 +508,9 @@
       closeCommonDialog() {
         this.dialogCommonVisible = false;  //关闭角色分配等的公共弹窗
       },
+      permissionAssignmentsFn() {
+        this.$refs.dialogComponent.handleCheckChange();
+      },
       roleAssignments() {           //触发角色分配的弹框
         this.showCommonDialog();
       },
@@ -498,24 +520,24 @@
       associateUsers() {             //触发关联用户的弹框
         this.showCommonDialog();
       },
-      associateRoads(){
+      associateRoads() {
         this.showCommonDialog();
       },
-      cancelAssociation(){   //养护单位取消与路段的关联
+      cancelAssociation() {   //养护单位取消与路段的关联
         this.$confirm('此操作将永久取消关联, 是否继续?', '取消关联', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
           setTimeout(() => {
-            roadInformation({"entId":this.alter_obj.id}).then(val=>{
-              this.roadIds=[];
-              val.data.forEach(_val=>{
+            roadInformation({"entId": this.alter_obj.id}).then(val => {
+              this.roadIds = [];
+              val.data.forEach(_val => {
                 this.roadIds.push(_val.id);
               });
               console.log(this.roadIds);
-              delEntRoad({entId:this.alter_obj.id,roadIds:this.roadIds}).then(res=>{
-                if(res.statusCode===200){
+              delEntRoad({entId: this.alter_obj.id, roadIds: this.roadIds}).then(res => {
+                if (res.statusCode === 200) {
                   this.$message({
                     message: '取消关联成功',
                     type: 'success'
@@ -529,38 +551,37 @@
 
 
       },
-      showDetail(row){         //显示详情
+      showDetail(row) {         //显示详情
         var sideBar = $(".em_detail_window");
         console.log(sideBar);
         if (!sideBar.hasClass("addWidth")) {
           console.log(sideBar);
           $(".em_detail_window").addClass("addWidth");
         }
-        if(row&&this.data.table.picture_url){
-          getPictureImg({url:this.data.table.picture_url,id:row.id}).then(res=>{
-            this.imgUrl=res.data[0].fileName;
-            this.baseUrl=process.env.IMG_API;
-            this.bus.$emit("detail",{row:row,label:this.label,imgUrl:this.imgUrl,baseUrl:this.baseUrl})
+        if (row && this.data.table.picture_url) {
+          getPictureImg({url: this.data.table.picture_url, id: row.id}).then(res => {
+            this.imgUrl = res.data[0].fileName;
+            this.baseUrl = process.env.IMG_API;
+            this.bus.$emit("detail", {row: row, label: this.label, imgUrl: this.imgUrl, baseUrl: this.baseUrl})
           })
-        }
-        else{
-          this.bus.$emit("detail",{row:row,label:this.label})
+        } else {
+          this.bus.$emit("detail", {row: row, label: this.label})
         }
 
       },
-      closeFireWarn(){          //关闭火险报警
-           console.log(1);
-           setTimeout(_=>{
-             console.log(this.alter_obj);
-             let ids=[this.alter_obj.id];
-             console.log(ids);
-             closeFireWarn({ids:ids}).then(res=>{
-                 if(res.statusCode===200){
-                   this.init();
-                   this.bus.$emit("close_fire_warn")
-                 }
-             })
-           });
+      closeFireWarn() {          //关闭火险报警
+        console.log(1);
+        setTimeout(_ => {
+          console.log(this.alter_obj);
+          let ids = [this.alter_obj.id];
+          console.log(ids);
+          closeFireWarn({ids: ids}).then(res => {
+            if (res.statusCode === 200) {
+              this.init();
+              this.bus.$emit("close_fire_warn")
+            }
+          })
+        });
 
       }
     },
@@ -577,13 +598,13 @@
       this.bus.$on(this.data.table.id, obj => {// 通过按钮组件（添加，删除..）的点击事件触发此组件的control方法
         this.control(obj);
       });
-      if(this.data.table.id==="fire_info_table"){
-         this.bus.$off("fire_info");
-         this.bus.$on("fire_info",res=>{
-            if(res){
-               this.init()
-            }
-         })
+      if (this.data.table.id === "fire_info_table") {
+        this.bus.$off("fire_info");
+        this.bus.$on("fire_info", res => {
+          if (res) {
+            this.init()
+          }
+        })
       }
     },
     beforeDestroy() {
