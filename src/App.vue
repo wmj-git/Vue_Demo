@@ -5,9 +5,13 @@
 </template>
 
 <script>
+  import {loadJs,loadCss} from "@/utils/tools";
+
   export default {
     name: 'App',
-    components: {
+    components: {},
+    beforeCreate() {
+
     }
   }
 </script>

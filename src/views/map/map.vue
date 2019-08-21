@@ -5,6 +5,7 @@
 </template>
 
 <script>
+  import {loadJs, loadCss} from "@/utils/tools";
   import mp from "@/utils/ol/index";
   import {queryVicinityPrint, findOne, queryAllcount} from "@/api/tree";
   import {marker} from "@/api/marker";
@@ -20,10 +21,29 @@
     methods: {
       init() {
 
-        window[this.id].init([114.031047, 22.663679], [
-          mp.layers.baidu_vec
-        ]);
 
+        let _this = this;
+        // 初始化场景
+        // cm.init(this.id, "https://onelz.oicp.vip/SG/b3dm/LH1-1-2.405276/tileset.json");
+        let _element = document.getElementById('ol_js');
+        if (_element) {
+          _this.mapInit();
+        } else {
+          //动态加载依赖库
+          let _url = process.env.STATIC_URL;
+          loadCss("ol_css", _url + "/sceneStatic/ol/ol.css", function () {
+            console.log('css');
+          });
+          loadJs("ol_js", _url + "/sceneStatic/ol/ol.js", function () {
+            console.log('js');
+            _this.mapInit();
+          });
+        }
+      },
+      mapInit() {
+        window[this.id].init([114.031047, 22.663679], [
+          mp.baseMapFN().baidu_vec
+        ]);
       },
       spaceTimeBaseMap(obj) {
 
@@ -80,16 +100,16 @@
 
         switch (obj.layerName) {
           case "1"://天地图矢量图
-            _layer = mp.layers.tLayer_vec;
+            _layer = mp.baseMapFN().tLayer_vec;
             break;
           case "2"://天地图影像图
-            _layer = mp.layers.tLayer_img;
+            _layer = mp.baseMapFN().tLayer_img;
             break;
           case "3"://百度矢量图
-            _layer = mp.layers.baidu_vec;
+            _layer = mp.baseMapFN().baidu_vec;
             break;
           case "4"://百度影像图
-            _layer = mp.layers.baidu_img;
+            _layer = mp.baseMapFN().baidu_img;
             break;
           case "5"://时空云矢量图
             _layer = this.spaceTimeBaseMap({
@@ -102,10 +122,10 @@
             });
             break;
           case "7"://本地矢量图
-            _layer = mp.layers.osmLayer_vec;
+            _layer = mp.baseMapFN().osmLayer_vec;
             break;
           case "8"://本地影像图
-            _layer = mp.layers.osmLayer_img;
+            _layer = mp.baseMapFN().osmLayer_img;
             break;
         }
 
