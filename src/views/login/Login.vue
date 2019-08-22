@@ -102,6 +102,13 @@
       },
 
       changeRouter(response){
+        localStorage.setItem('username',this.form.name);
+        if(this.checked){
+          localStorage.setItem('password',this.form.pwd);
+        }
+        else{
+          localStorage.setItem('password','');
+        }
         this.init();
         this.$router.push("/home/map");
       }

@@ -5,40 +5,40 @@ export const TokenName = 'Authorization'
 export const RefreshTokenName = 'refreshAuthorization'
 
 export function getToken() {
-  return localStorage.getItem(TokenKey);
+  return sessionStorage.getItem(TokenKey);
 }
 
 export function setToken(token) {
-  return localStorage.setItem(TokenKey, token);
+  return sessionStorage.setItem(TokenKey, token);
 
 }
 
 export function removeToken() {
-  return localStorage.removeItem(TokenKey);
+  return sessionStorage.removeItem(TokenKey);
 }
 
 export function getRefreshToken() {
-  return localStorage.getItem(RefreshTokenKey);
+  return sessionStorage.getItem(RefreshTokenKey);
 
 }
 
 export function setRefreshToken(_RefreshToken) {
-  return localStorage.setItem(RefreshTokenKey, _RefreshToken);
+  return sessionStorage.setItem(RefreshTokenKey, _RefreshToken);
 
 }
 
 export function getTokenTime() {
-  return localStorage.getItem("tokenTime");
+  return sessionStorage.getItem("tokenTime");
 }
 
 export function setTokenTime(_tokenTime) {
-  return localStorage.setItem("tokenTime", _tokenTime);
+  return sessionStorage.setItem("tokenTime", _tokenTime);
 }
 
 export function getExpires() {
-  return localStorage.getItem("tokenExpires");
+  return sessionStorage.getItem("tokenExpires");
 }
 
 export function setExpires(_tokenExpires) {
-  return localStorage.setItem("tokenExpires", _tokenExpires);
+  return sessionStorage.setItem("tokenExpires", _tokenExpires);
 }
