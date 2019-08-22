@@ -39,3 +39,20 @@ export function updateResource(_data) {
     data:_data
   })
 }
+
+export function queryResource(obj) {
+  return request({
+    url: "/user/role/queryResource",
+    method: 'get',
+    params:obj
+  })
+}
+
+
+export function setRoleResource(_data) {
+  return request({
+    url: "/user/role/setRoleResource",
+    method: 'post',
+    data:_data
+  })
+}

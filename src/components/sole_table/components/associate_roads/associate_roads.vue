@@ -51,7 +51,6 @@
       });
     },
     methods:{
-
       submitAssociate(){
         setRoads({"roadIds":this.value,"entId":this.entId}).then(res=>{
           console.log(res);
