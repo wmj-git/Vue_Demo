@@ -28,7 +28,9 @@
         <el-button class="data_button em-btn-icon-hover-v1" @click="loginOut">
           退&emsp;&emsp;出
         </el-button>
-
+        <el-button class="data_button em-btn-scene">
+          数据
+        </el-button>
         <el-button class="data_button em-btn-scene" @click="threeMap">
           三维场景
         </el-button>
