@@ -20,6 +20,21 @@
             <!--<el-button type="primary" @click="confirm('ruleForm')" class="em-button">确 定</el-button>-->
           <!--</div>-->
         <!--</el-dialog>-->
+        <el-dialog title="数据展示" :visible.sync="digitalCollapseVisible" :append-to-body="true" v-dialogDrag="true">
+          <el-collapse>
+            <el-collapse-item  v-for="item in data">
+                <template slot="title">
+                  <i class="el-icon-location"></i>
+                  <span slot="title">{{item.title}}</span>
+                </template>
+                  <div v-for="val in item.list">
+                       {{val.name}}:{{val.num}}
+                  </div>
+
+            </el-collapse-item>
+          </el-collapse>
+        </el-dialog>
+
         <el-input v-model="input" placeholder="请输入内容" style="width: 150px"></el-input>
 
         <!--<el-button class="data_button em-btn-icon-hover" @click="dialogFormVisible = true">-->
@@ -28,7 +43,7 @@
         <el-button class="data_button em-btn-icon-hover-v1" @click="loginOut">
           退&emsp;&emsp;出
         </el-button>
-        <el-button class="data_button em-btn-scene">
+        <el-button class="data_button em-btn-scene" @click="digitalCollapseVisible=true">
           数据
         </el-button>
         <el-button class="data_button em-btn-scene" @click="threeMap">
@@ -101,6 +116,7 @@
         },
         input: '',
         dialogFormVisible: false,
+        digitalCollapseVisible: false,
         ruleForm: {
           oldPassword: '',
           newPassword: '',
@@ -153,7 +169,21 @@
             label: '本地影像图'
           }
         ],
-        selectValue: ""
+        selectValue: "",
+        data:[
+          {
+            title:"各数量统计",
+            list:[{name:"公园总数",num:"18座"},
+              {name:"视频监控点",num:"18个"},
+              {name:"环境监测点",num:"5866个"}]
+         },
+          {
+            title:"公园详情",
+            list:[{name:"绿化总面积",num:"899公顷"},
+              {name:"绿化率",num:"58.9%"},
+              {name:"占地总面积",num:"1.286公顷"}]
+          }
+        ]
       }
     },
     methods: {
