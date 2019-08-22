@@ -1,5 +1,3 @@
-// import Cookies from 'js-cookie'
-
 const TokenKey = 'Admin-Token'
 const RefreshTokenKey="refreshToken"
 
@@ -16,7 +14,7 @@ export function setToken(token) {
 }
 
 export function removeToken() {
-  return localStorage.clear();
+  return localStorage.removeItem(TokenKey);
 }
 
 export function getRefreshToken() {

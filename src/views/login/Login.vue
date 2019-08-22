@@ -20,13 +20,13 @@
             </el-col>
             <el-form-item label="用户：" class="login-label">
               <el-col :span="44">
-                <el-input v-model="form.name" type="text" placeholder="请输入用户名" prefix-icon="el-icon-users"  @keyup.enter="enterSearchPwd"></el-input>
+                <el-input v-model="form.name" type="text" placeholder="请输入用户名" prefix-icon="el-icon-users"  @keyup.enter.="loginFn"></el-input>
               </el-col>
             </el-form-item>
             <el-form-item label="密码：" class="login_label">
               <el-col :span="44">
                 <el-input v-model="form.pwd" type="password" placeholder="请输入密码" prefix-icon="el-icon-pwd"
-                          @keyup.enter="enterSearchPwd"></el-input>
+                          @keyup.enter.native="loginFn"></el-input>
               </el-col>
             </el-form-item>
             <el-form-item>
@@ -102,19 +102,8 @@
       },
 
       changeRouter(response){
-        if(this.show){
-          localStorage.setItem('username',this.form.name);
-          if (this.checked == true) {
-            localStorage.setItem('password',this.form.pwd);
-          } else {
-            localStorage.removeItem('password');
-          }
-        }
         this.init();
         this.$router.push("/home/map");
-      },
-      enterSearchPwd() {
-        this.loginFn();
       }
 
     }

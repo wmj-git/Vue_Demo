@@ -33,7 +33,7 @@ export function getRsa() {
 export function logout() {
   return request({
     url: '/login/logout',
-    method: 'post'
+    method: 'get'
   })
 }
 

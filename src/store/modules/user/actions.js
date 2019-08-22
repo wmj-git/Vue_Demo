@@ -78,13 +78,13 @@ export function GetUserInfo({commit, state}) {
 
 
 // 登出
-export function LogOut({commit, state}) {
+export function LogOut({commit}) {
   return new Promise((resolve, reject) => {
-    logout(state.token).then(() => {
+    logout().then((res) => {
       commit(SET_TOKEN, '');
       commit(SET_ROLES, []);
       removeToken();
-      resolve();
+      resolve(res);
     }).catch(error => {
       reject(error);
     });

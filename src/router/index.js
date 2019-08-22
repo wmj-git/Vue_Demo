@@ -10,35 +10,36 @@ export default new Router({
   mode: "history",
   routes: [
     {
-      path: '*',
-      redirect: {name: "login"}
+      path: '/',
+      redirect: {name: "layout"}
     },
-    {
-      path: '/main',
-      name: 'main',
-      component: main,
-      children: [
-        {
-          path: 'scene',
-          name: 'scene',
-          components: {
-            scene: () => import('@/views/main/components/scene/scene')
-          }
-        },
-        {
-          path: 'map',
-          name: 'map',
-          components: {
-            scene: () => import('@/views/main/components/map/map')
-          }
-        }
-
-      ]
-    },
+    // {
+    //   path: '/main',
+    //   name: 'main',
+    //   component: main,
+    //   children: [
+    //     {
+    //       path: 'scene',
+    //       name: 'scene',
+    //       components: {
+    //         scene: () => import('@/views/main/components/scene/scene')
+    //       }
+    //     },
+    //     {
+    //       path: 'map',
+    //       name: 'map',
+    //       components: {
+    //         scene: () => import('@/views/main/components/map/map')
+    //       }
+    //     }
+    //
+    //   ]
+    // },
     {
       path: '/home',
       name: 'layout',
       component: layout,
+      redirect: {name: "map"},
       children: [
         {
           path: 'scene',

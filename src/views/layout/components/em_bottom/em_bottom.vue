@@ -52,7 +52,8 @@
 <script>
   import win from "@/components/win/win"
   import {modify} from "@/api/table_operate"
-
+  import {logout} from  "@/api/login"
+  import {removeToken} from  "@/utils/auth"
   export default {
     name: "em_bottom",
     components: {
@@ -178,7 +179,11 @@
         this.dialogFormVisible = false
       },
       loginOut() {
-        this.$router.push("/login");
+        this.$store.dispatch("user/LogOut").then(res=>{
+          console.log(res);
+          this.$router.push("/login");
+        })
+
       },
       alterpasswordSuceess() {
         this.$message({

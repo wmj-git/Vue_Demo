@@ -34,6 +34,8 @@ Vue.config.productionTip = false;
 Vue.prototype.bus= new Vue(); //vue-bus
 /* eslint-disable no-new */
 
+import './permission' // permission control
+
 import * as socketApi from './api/socket'
 Vue.prototype.socketApi = socketApi;
 

@@ -31,6 +31,7 @@
         } else {
           //动态加载依赖库
           let _url = process.env.STATIC_URL;
+          console.log('css',_url);
           loadCss("ol_css", _url + "/sceneStatic/ol/ol.css", function () {
             console.log('css');
           });
