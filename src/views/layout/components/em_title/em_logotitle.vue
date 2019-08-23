@@ -36,7 +36,7 @@
                id: "em_title",
                title: "",
                top: 0,
-               left: 4,
+               left: "calc((100% - 346px)/2)",
                width:346,
                show: true,
                resizable:false,

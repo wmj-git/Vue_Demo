@@ -1,7 +1,7 @@
 //scene
 export const SET_TYPE="set_type";
 export const SET_TOOLBAR="set_toolbar";
-
+export const SET_DRAWER="set_drawer";
 
 
 // win

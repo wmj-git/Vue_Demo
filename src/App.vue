@@ -25,6 +25,8 @@
    margin: 0;
    overflow: hidden;
    font-family: "Avenir", Helvetica, Arial, sans-serif;
+   perspective: 150;
+   -webkit-perspective: 150;
  }
  #app,#map,#_scene {
    font-family: "Avenir", Helvetica, Arial, sans-serif;

@@ -1,4 +1,5 @@
 export default {
-    type: "",
-    toolbar: []
+  type: "",
+  toolbar: [],
+  drawer: {}
 };
