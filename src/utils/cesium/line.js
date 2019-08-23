@@ -10,7 +10,7 @@ function addLine(Entities, featureKey, viewer) {
 
     let _entity = _dataSource.entities.add({
       name: 'line' + _data.id,
-      id: 'line_' + _data.id,
+      id: 'line_' +featureKey.layer_name+"_"+ _data.id,
       featureData: _data,
       polyline: {
         positions: Cesium.Cartesian3.fromDegreesArray(_data.coordinates),

@@ -70,6 +70,7 @@
   import em_detail from "./components/em_detail/em_detail"
 
   import emCharts from "@/components/emCharts/emCharts"
+  import emTabs from "@/components/emTabs/emTabs"
   import emDrawer from "@/app_components/emDrawer/emDrawer"
   export default {
     data() {
@@ -147,6 +148,7 @@
     },
     components: {
       emDrawer,
+      emTabs,
       win,
       splitpane,
       em_dialog,

@@ -256,20 +256,20 @@ export function layerFN(_features, _Key, _geomStyle) {
   console.log(_features);
   for (let i = 0; i < _features.length; ++i) {
 
-    if (_featureKey.geomType === "Point") {//点
+    if (_featureKey.geomType === "point") {//点
       let coordinates = [_features[i].gpsLongitude, _features[i].gpsLatitude];
       features[i] = new ol.Feature({
         geometry: new ol.geom.Point(coordinates),
         featureData: _features[i]
       });
-    } else if (_featureKey.geomType === "Text") {//文本
+    } else if (_featureKey.geomType === "text") {//文本
       let coordinates = [_features[i].gpsLongitude, _features[i].gpsLatitude];
       features[i] = new ol.Feature({
         geometry: new ol.geom.Point(coordinates),
         featureData: _features[i]
       });
       features[i].setStyle(createQeomStyle(_features[i], _geomKey));
-    } else if (_featureKey.geomType === "LineString") {//线
+    } else if (_featureKey.geomType === "line") {//线
 
       let coordinates = _features[i].coordinates ? _features[i].coordinates : [];
       features[i] = new ol.Feature({
@@ -277,14 +277,14 @@ export function layerFN(_features, _Key, _geomStyle) {
         featureData: _features[i]
       });
       features[i].setStyle(createQeomStyle(_features[i], _geomKey));
-    } else if (_featureKey.geomType === "Polygon") {//多边形
+    } else if (_featureKey.geomType === "polygon") {//多边形
       let coordinates = _features[i].coordinates ? _features[i].coordinates : [];
       features[i] = new ol.Feature({
         geometry: new ol.geom.Polygon(coordinates),
         featureData: _features[i]
       });
       features[i].setStyle(createQeomStyle(_features[i], _geomKey));
-    } else if (_featureKey.geomType === "Circle") {//圆
+    } else if (_featureKey.geomType === "circle") {//圆
       let coordinates = [_features[i].gpsLongitude, _features[i].gpsLatitude];
       let radius = _features[i].radius ? _features[i].radius : 10;
       let circleIn3857 = new ol.geom.Circle(ol.proj.transform(coordinates, 'EPSG:4326', 'EPSG:3857'), radius, 'XY');
@@ -298,7 +298,7 @@ export function layerFN(_features, _Key, _geomStyle) {
       features[i].setStyle(createQeomStyle(_features[i], _geomKey));
     }
 
-    features[i].setId(_featureKey.type + "_" + _features[i].id);
+    features[i].setId(_featureKey.geomType+"_"+_featureKey.type + "_" + _features[i].id);
   }
 
 
@@ -356,7 +356,7 @@ export function clustersFn(_features, _Key, _clusterColor, _distance) {//_featur
       geometry: new ol.geom.Point(coordinates),
       featureData: _features[i]
     });
-    features[i].setId(_featureKey.type + "_" + _features[i].id);
+    features[i].setId("marker_"+_featureKey.type + "_" + _features[i].id);
   }
 
   let clusterSource = new ol.source.Cluster({
@@ -876,11 +876,6 @@ emMap.prototype.InfoClickFn = function (evt) {
         content: _feature.get("featureData")
       });
 
-     /* store.commit("scene/set_drawer", {
-        fn:"showFN",
-        type: _type[0],
-        content: _feature.get("featureData")
-      });*/
 
     } else if (feature.get("featureData")) {
 

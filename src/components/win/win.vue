@@ -1,6 +1,12 @@
 <template>
   <div class="win">
-    <div :id="id">
+    <div :id="id" @contextmenu.prevent="fn(popoverVal=!popoverVal)">
+      <el-popover
+        placement="top"
+        v-model="popoverVal"
+      >
+        工具
+      </el-popover>
       <slot></slot>
     </div>
   </div>
@@ -12,12 +18,14 @@
     name: 'win',
     data() {
       return {
-        class: ""
+        class: "",
+        popoverVal: false
       }
     },
     props: ["id", "data"],
     methods: {
       init() {
+
         if ((typeof this.data.class) !== "undefined") {
           this.class = this.data.class;
         }
@@ -26,6 +34,7 @@
           title: _this.data.title,
           width: _this.data.width ? _this.data.width : "auto",
           height: _this.data.height ? _this.data.height : "auto",
+          zIndex: _this.data.zIndex,
           top: _this.data.top,
           left: _this.data.left,
           cls: _this.class,
@@ -50,15 +59,18 @@
           }
         });
 
+      },
+      fn(val) {
+        this.popoverVal = val;
       }
     },
     mounted() {
       this.init();
     },
     beforeDestroy() {
-       if ($("#" + this.id)) {
-         $("#" + this.id).window('destroy');
-       }
+      if ($("#" + this.id)) {
+        $("#" + this.id).window('destroy');
+      }
     }
   }
 </script>

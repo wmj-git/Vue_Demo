@@ -8,7 +8,6 @@
       :append-to-body="body"
       size="16%">
       123
-
     </el-drawer>
   </div>
 </template>
@@ -30,7 +29,7 @@
     props: ["data"],
     watch: {
       Data: function (val) {
-        this[val.fn](val);
+        // this[val.fn](val);
       }
     },
     computed: {

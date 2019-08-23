@@ -35,7 +35,7 @@
           </el-collapse>
         </el-dialog>
 
-        <el-input v-model="input" placeholder="请输入内容" style="width: 150px"></el-input>
+        <!--<el-input v-model="input" placeholder="请输入内容" style="width: 150px"></el-input>-->
 
         <!--<el-button class="data_button em-btn-icon-hover" @click="dialogFormVisible = true">-->
           <!--密码修改-->
@@ -123,10 +123,9 @@
           oldPassword: '',
           newPassword: '',
           checkPass: '',
-
         },
         rules: {
-          oldPassword: [
+         /* oldPassword: [
             {validator: validatePass1, trigger: 'blur'}
           ],
           newPassword: [
@@ -134,7 +133,7 @@
           ],
           checkPass: [
             {validator: validatePass3, trigger: 'blur'}
-          ]
+          ]*/
         },
         formLabelWidth: '60px',
         selectOption: [

@@ -184,10 +184,11 @@
 }
 .panel.window.em_detail_window.panel-htop.addWidth{
   width: 46% ;    /* 设置为侧边栏宽度的2倍，才能完全露出 */
+  z-index: 1800 !important;
   border: 0;
   box-shadow: -9px 1px 17px 0px darken($em-bg-color-base,60%);
-  transform: rotateY(-161deg);
-  -webkit-transform: rotateY(-161deg);
+  transform: rotateY(-166deg);
+  -webkit-transform: rotateY(-166deg);
 }
 .panel.window.em_detail_window.panel-htop.addWidth:hover{
   transform: rotateY(0deg);

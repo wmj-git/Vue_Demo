@@ -122,17 +122,17 @@ export function entitiesClear(value, viewer) {
 //添加数据图层
 export function addDataSource(_Entities, _Set, viewer) {
 
-  if (_Set.geomType === "Point") {//点
+  if (_Set.geomType === "point") {//点
     addPointFN(_Entities, _Set, viewer);
-  } else if (_Set.geomType === "Text") {//文本
+  } else if (_Set.geomType === "text") {//文本
     addTextFN(_Entities, _Set, viewer);
-  } else if (_Set.geomType === "LineString") {//线
+  } else if (_Set.geomType === "line") {//线
     addLineFN(_Entities, _Set, viewer);
-  } else if (_Set.geomType === "Polygon") {//多边形
+  } else if (_Set.geomType === "polygon") {//多边形
     addPolygonFN(_Entities, _Set, viewer);
-  } else if (_Set.geomType === "Circle") {//圆
+  } else if (_Set.geomType === "circle") {//圆
     addCircleFN(_Entities, _Set, viewer);
-  } else if (_Set.geomType === "Mode") {//模型
+  } else if (_Set.geomType === "mode") {//模型
     addModeFN(_Entities, _Set, viewer);
   }
 

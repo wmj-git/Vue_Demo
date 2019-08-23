@@ -1,6 +1,6 @@
 <template>
-  <div class="em_warn">
-    <win :id="win.id" :data="win">
+  <div class="em_warn" >
+    <win :id="win.id" :data="win" >
       <el-button class="em-btn-warn" @click="showDialog">
         <span>{{fire_count}}</span>
       </el-button>
@@ -65,6 +65,9 @@
           console.log(res);
           this.fire_count = res.data;
         })
+      },
+      fn() {
+       alert(123);
       }
     }
   }
