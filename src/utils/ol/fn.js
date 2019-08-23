@@ -1,4 +1,5 @@
 import store from '@/store'
+import vueBus from '@/utils/vueBus'
 
 //经纬度换算
 function formatDegree(pValue) {
@@ -442,8 +443,8 @@ export function clustersFn(_features, _Key, _clusterColor, _distance) {//_featur
 }
 
 function treeContent(_OBJ) {//消防栓信息显示模板
-  console.log("OBJ");
-  console.log(_OBJ);
+ /* console.log("OBJ");
+  console.log(_OBJ);*/
   let obj = _OBJ.content;
   let _content = '<ul type="none" style="margin: 0px;padding:0px;font-size:22px;" >' +
     '<li>编号：' + (obj.id || "无") + '<\/li>' +
@@ -857,8 +858,6 @@ emMap.prototype.InfoClickFn = function (evt) {
   }
 
 
-  let _Info = _this.Info;
-
 
   let feature = evt.map.forEachFeatureAtPixel(evt.pixel,
     function (feature) {
@@ -866,20 +865,36 @@ emMap.prototype.InfoClickFn = function (evt) {
     });
   if (feature) {
     console.log(feature);
-    $(".em_detail_window").addClass("addWidth");
+
     if (feature.get('features') && feature.get('features').length === 1) {
       let _feature = feature.get('features')[0];
       let _type = _feature.getId().split("_");
 
+      vueBus.$emit("set_drawer", {
+        fn:"showFN",
+        type: _type[0],
+        content: _feature.get("featureData")
+      });
+
+     /* store.commit("scene/set_drawer", {
+        fn:"showFN",
+        type: _type[0],
+        content: _feature.get("featureData")
+      });*/
 
     } else if (feature.get("featureData")) {
+
       let _type = feature.getId().split("_");
+
+      vueBus.$emit("set_drawer", {
+        fn:"showFN",
+        type: _type[0],
+        content: feature.get("featureData"),
+      });
 
     } else {
       return
     }
-  } else {
-    $(_Info).hide();
   }
 };
 // change mouse cursor when over marker
@@ -903,7 +918,7 @@ emMap.prototype.InfoPointermoveFn = function (evt) {
 
   let pixel = evt.map.getEventPixel(evt.originalEvent);
   let hit = evt.map.hasFeatureAtPixel(pixel);
-  $("#mapContainer").css("cursor", hit ? 'pointer' : '');
+  $("#"+_mapNmame).css("cursor", hit ? 'pointer' : '');
 
 
   let feature = evt.map.forEachFeatureAtPixel(evt.pixel, function (feature) {
@@ -938,7 +953,7 @@ emMap.prototype.InfoPointermoveFn = function (evt) {
 
 
   } else {
-    $(_Info).hide();
+    // $(_Info).hide();
   }
 
 

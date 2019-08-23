@@ -1,7 +1,7 @@
 <template>
-  <div class="emDrawer">
+  <div class="emDrawer" :drawer="Data=drawerData">
     <el-drawer
-      title="数据"
+      title=""
       :visible.sync="show"
       direction="rtl"
       :modal="modal"
@@ -14,29 +14,49 @@
 </template>
 
 <script>
+  import vueBus from '@/utils/vueBus'
 
   export default {
     name: "emDrawer",
     data() {
       return {
         id: "drawer",
-        show: true,
+        show: false,
         modal: false,
-        body:true
+        body: true,
+        Data: ""
       }
     },
     props: ["data"],
+    watch: {
+      Data: function (val) {
+        this[val.fn](val);
+      }
+    },
+    computed: {
+      drawerData: function () {
+        let _drawerData = this.$store.getters["scene/drawer"];
+        return _drawerData;
+      }
+    },
     components: {},
     methods: {
       init() {
 
       },
+      showFN(_obj) {
+        console.log(_obj);
+        this.show = true;
+      },
       fn(_obj) {
-        this.show = _obj.show;
+
       }
     },
     created() {
       this.init();
+      vueBus.$on("set_drawer", obj => {
+        this[obj.fn](obj);
+      });
       this.bus.$on(this.id, obj => {
         this[obj.fn](obj);
       });
@@ -44,7 +64,11 @@
     mounted() {
 
     },
+    updated() {
+
+    },
     beforeDestroy() {
+      vueBus.$off("set_drawer");
       this.bus.$off(this.id);
     }
   }

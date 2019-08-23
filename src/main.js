@@ -28,6 +28,7 @@ import "@/icons/icon/iconfont.css"
 import echarts from 'echarts'    //引入echarts图表
 Vue.prototype.$echarts = echarts;
 
+
 import './directive/drag'
 
 Vue.config.productionTip = false;

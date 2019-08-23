@@ -43,13 +43,13 @@
         <el-button class="data_button em-btn-icon-hover-v1" @click="loginOut">
           退&emsp;&emsp;出
         </el-button>
-        <el-button class="data_button em-btn-scene" @click="digitalCollapseVisible=true">
+        <el-button class="data_button em-btn-icon-hover-v1" @click="digitalCollapseVisible=true">
           数据
         </el-button>
-        <el-button class="data_button em-btn-scene" @click="threeMap">
+        <el-button class="data_button em-btn-icon-hover-v1" @click="threeMap">
           三维场景
         </el-button>
-        <el-button class="data_button em-btn-scene" @click="twoMap">
+        <el-button class="data_button em-btn-icon-hover-v1" @click="twoMap">
           二维场景
         </el-button>
         <el-select class="data_button" v-model="selectValue" placeholder="选择底图" @change="selectFn">
@@ -107,12 +107,14 @@
         win: {
           id: "bottom",
           title: "",
-          top: "",
-          left: 20,
+          top: "calc(100% - 70px)",
+          left: "calc((100% - 78%)/2)",
           show: true,
           resizable: false,
-          width: "98%",
-          class: "em-bottom-window"
+          width: "78%",
+          height:"58px",
+          // class: "em-bottom-window"
+          class: "em-table-window"
         },
         input: '',
         dialogFormVisible: false,

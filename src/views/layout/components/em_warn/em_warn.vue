@@ -20,8 +20,8 @@
         win: {
           id: "em_warn",
           title: "",
-          top: 24,
-          left: 358,
+          top: "calc(100% - 148px)",
+          left: "calc(100% - 400px)",
           show: true,
           resizable: false,
           class: "em-warn-window",

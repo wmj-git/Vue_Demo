@@ -1,5 +1,7 @@
 <template>
   <div class="em_layout">
+    <!--工具栏-->
+    <em_tools></em_tools>
     <!--顶部标题-->
     <em_logo_title></em_logo_title>
     <!--报警器-->
@@ -7,8 +9,7 @@
     <!--风险等级数据监测-->
     <!--<em_venture></em_venture>-->
 
-    <!--工具栏-->
-    <em_tools></em_tools>
+
     <!--功能窗口-->
     <template v-for="win in wins" v-if="win.show">
       <win :id="win.id" :data="win">

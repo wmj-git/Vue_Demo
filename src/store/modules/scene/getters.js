@@ -6,3 +6,7 @@ export function type(state) {
 export function toolbar(state) {
   return state.toolbar;
 }
+
+export function drawer(state) {
+  return state.drawer;
+}

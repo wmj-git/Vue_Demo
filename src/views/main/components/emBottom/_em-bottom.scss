@@ -1,7 +1,6 @@
 @import "../../../../styles/index/variable";
 $r:32;
 .em-bottom-container {
-  background: rgba(20, 31, 55, 0.8);
   & /deep/ {
     .el-input__inner {
       &::-webkit-input-placeholder {

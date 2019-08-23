@@ -4,14 +4,15 @@ export default {
     {
       id: "menu",
       title: "_",
-      top: "20%",
-      left: 20,
+      top: 0,
+      left: 8,
       width: 100,
-      height: 450,
+      height: "100%",
       show: false,
       resizable: false,
       maximizable: false,
-      class: "em-menu-window",
+      // class: "em-menu-window",
+      class: "em-table-window",
       component: "em_menu",
       component_data: {}
     },
@@ -4991,12 +4992,12 @@ export default {
     {
       id: "scene_data",
       title: "场景数据",
-      top: "calc(100% - 222px)",
-      left: "calc((100% - 600px)/2)",
-      width: 600,
-      height: 132,
+      top: "128px",
+      left: "236px",
+      width: 180,
+      height: 400,
       show: true,
-      class: "",
+      class: "em-table-window",
       component: "buttonGroup",
       component_data: {
         buttonGroup: [
@@ -5248,13 +5249,13 @@ export default {
     },
     {
       id: "test_data",
-      title: "场景数据",
+      title: "test",
       top: "calc(100% - 222px)",
       left: "calc((100% - 600px)/2)",
       width: 600,
       height: 132,
       show: true,
-      class: "",
+      class: "em-table-window",
       component: "buttonGroup",
       component_data: {
         buttonGroup: [

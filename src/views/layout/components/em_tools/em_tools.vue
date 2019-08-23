@@ -35,11 +35,11 @@
         win: {
           id: "em_tool",
           title: "",
-          top: "",
-          left: "calc(100% - 450px)",
-          right: 20,
+          top: "calc(100% - 148px)",
+          left: "calc(100% - 880px)",
           show: true,
           width: 450,
+          height:"88px",
           resizable: false,
           class: "em-tool-window"
         },
