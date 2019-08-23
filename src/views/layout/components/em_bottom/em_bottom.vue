@@ -22,13 +22,13 @@
         <!--</el-dialog>-->
         <el-dialog title="数据展示" :visible.sync="digitalCollapseVisible" :append-to-body="true" v-dialogDrag="true">
           <el-collapse>
-            <el-collapse-item  v-for="item in data">
+            <el-collapse-item  v-for="(item,index) in data" :key="index">
                 <template slot="title">
                   <i class="el-icon-location"></i>
-                  <span slot="title">{{item.title}}</span>
+                  <span slot="title" >{{item.title}}</span>
                 </template>
-                  <div v-for="val in item.list">
-                       {{val.name}}:{{val.num}}
+                  <div v-for="(val,i) in item.list"  :key="i">
+                       {{val.name}}:{{val.num}}{{val.init}}
                   </div>
 
             </el-collapse-item>
@@ -77,32 +77,32 @@
       win
     },
     data() {
-      var validatePass1 = (rule, value, callback) => {
-        if (value === '') {
-          callback(new Error('请输入原密码'));
-        } else {
-          callback();
-        }
-      };
-      var validatePass2 = (rule, value, callback) => {
-        if (value === '') {
-          callback(new Error('请输入新密码'));
-        } else {
-          if (this.ruleForm.checkPass !== '') {
-            this.$refs.ruleForm.validateField('checkPass');
-          }
-          callback();
-        }
-      };
-      var validatePass3 = (rule, value, callback) => {
-        if (value === '') {
-          callback(new Error('请再次输入新密码'));
-        } else if (value !== this.ruleForm.newPassword) {
-          callback(new Error('两次输入密码不一致!'));
-        } else {
-          callback();
-        }
-      };
+      // var validatePass1 = (rule, value, callback) => {
+      //   if (value === '') {
+      //     callback(new Error('请输入原密码'));
+      //   } else {
+      //     callback();
+      //   }
+      // };
+      // var validatePass2 = (rule, value, callback) => {
+      //   if (value === '') {
+      //     callback(new Error('请输入新密码'));
+      //   } else {
+      //     if (this.ruleForm.checkPass !== '') {
+      //       this.$refs.ruleForm.validateField('checkPass');
+      //     }
+      //     callback();
+      //   }
+      // };
+      // var validatePass3 = (rule, value, callback) => {
+      //   if (value === '') {
+      //     callback(new Error('请再次输入新密码'));
+      //   } else if (value !== this.ruleForm.newPassword) {
+      //     callback(new Error('两次输入密码不一致!'));
+      //   } else {
+      //     callback();
+      //   }
+      // };
       return {
         win: {
           id: "bottom",
@@ -173,17 +173,34 @@
         data:[
           {
             title:"各数量统计",
-            list:[{name:"公园总数",num:"18座"},
-              {name:"视频监控点",num:"18个"},
-              {name:"环境监测点",num:"5866个"}]
+            list:[
+              {name:"公园总数",num:"18",init:"座"},
+              {name:"视频监控点",num:"18",init:"个"},
+              {name:"环境监测点",num:"5866",init:"个"},
+              {name:"防火监测点",num:"2368",init:"个"},
+              {name:"绿道",num:"102",init:"条"},
+              ]
          },
           {
             title:"公园详情",
-            list:[{name:"绿化总面积",num:"899公顷"},
-              {name:"绿化率",num:"58.9%"},
-              {name:"占地总面积",num:"1.286公顷"}]
+            list:[{name:"绿化总面积",num:"899",init:"公顷"},
+              {name:"绿化率",num:"58.9%",init:""},
+              {name:"占地总面积",num:"1.286",init:"公顷"},
+              {name:"年均人流量",num:"85689",init:"人次"},
+
+              ]
+          },
+          {
+            title:"客流量统计",
+            list:[{name:"当前客流量",num:"25638",init:"人次"},
+              {name:"饱和度",num:"52%",init:""},
+              {name:"客流量最多",num:"羊台山森林公园",init:"公顷"}
+            ]
           }
-        ]
+        ],
+        post:{
+            momitor:'14'
+        }
       }
     },
     methods: {
