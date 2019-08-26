@@ -47,7 +47,7 @@
         class="my-table"
         v-loading="listLoading"
         border
-        height="600px"
+        height="580px"
         highlight-current-row
         @current-change="handleCurrentChange"
         @expand-change="openCurrentChangeRow"

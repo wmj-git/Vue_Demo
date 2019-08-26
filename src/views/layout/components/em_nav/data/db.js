@@ -110,6 +110,13 @@ export const db_buttonGroup=[
       },
       {
         "icon": "el-icon-soil-analysis",
+        "id": "nav_soil_temperature_analysis2",
+        "control_id": "soil_temperature_analysis2",
+        "title": "土壤温度统计分析",
+        "show": false
+      },
+      {
+        "icon": "el-icon-soil-analysis",
         "id": "nav_soil_humidity_analysis",
         "control_id": "soil_humidity_analysis",
         "title": "土壤湿度统计分析",

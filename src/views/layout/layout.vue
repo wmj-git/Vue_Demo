@@ -49,6 +49,7 @@
   import sole_table from "@/components/sole_table/sole_table"
   import list_table from "@/components/list_table/list_table"
   import echart_table from "@/components/echart_table/echart_table"
+  import tabs_table from "@/components/tabs_table/tabs_table"
   import em_dialog from "@/components/em_dialog/em_dialog"
   import button_group from "@/components/button_group/button_group"
   import em_menu from "./components/em_menu/em_menu"
@@ -68,7 +69,6 @@
   import echarts_show from "./components/echarts_show/echarts_show"
   import table_show from "./components/table_show/table_show"
   import em_detail from "./components/em_detail/em_detail"
-
   import emCharts from "@/components/emCharts/emCharts"
   import emTabs from "@/components/emTabs/emTabs"
   import emDrawer from "@/app_components/emDrawer/emDrawer"
@@ -162,6 +162,7 @@
       sole_table,
       list_table,
       echart_table,
+      tabs_table,
       em_chart_window,
       em_tools,
       em_slider,

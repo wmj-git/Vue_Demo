@@ -297,6 +297,8 @@
         if (this.chart) {
           let _width = $("#" + this.id).width();
           let _height = _width * (this.height / 100);
+          console.log("_width："+this.id);
+          console.log(_width);
           this.chart.resize({
             width: _width,
             height: _height
@@ -453,6 +455,7 @@
     },
     mounted() {
       this.chartInit();//初始图表设置
+      this.chartResize();
     },
     beforeDestroy() {
       this.bus.$off(this.id);
