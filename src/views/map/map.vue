@@ -181,6 +181,7 @@
         });
       },
       scene_data(obj) {
+
         console.log(obj);
         switch (obj.data_type) {
           case "1"://采集的树数据
@@ -310,6 +311,12 @@
             }, _val.clusters_color, 50);
             this.addLayer({
               layer: _layer.layer
+            });
+
+            this.bus.$emit("scene_data_emTabs", {
+              fn:"addTab",
+              name:_val.layer_name,
+              title:_val.layer_name
             });
           });
 
