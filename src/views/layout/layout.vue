@@ -69,6 +69,9 @@
   import echarts_show from "./components/echarts_show/echarts_show"
   import table_show from "./components/table_show/table_show"
   import em_detail from "./components/em_detail/em_detail"
+
+
+  import emLayers from "./components/emLayers/emLayers"
   import emCharts from "@/components/emCharts/emCharts"
   import emTabs from "@/components/emTabs/emTabs"
   import emDrawer from "@/app_components/emDrawer/emDrawer"
@@ -90,8 +93,7 @@
             title: "",
             top: 120,
             left: 10,
-            resizable: false,
-
+            resizable: false
           },
           {
             component_name: "number_show",
@@ -174,7 +176,8 @@
       table_show,
       buttonGroup,
       emCharts,
-      em_detail
+      em_detail,
+      emLayers
     },
     computed: {
       wins: function () {

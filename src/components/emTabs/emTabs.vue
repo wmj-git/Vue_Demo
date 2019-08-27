@@ -9,22 +9,15 @@
         :name="item.name"
       >
         <span slot="label">{{item.title}}</span>
-        {{item.content}}--{{index}}
         <component :is="item.component" :data="item.component_data"></component>
       </el-tab-pane>
     </el-tabs>
-    <div style="margin-bottom: 20px;">
-      <el-button
-        size="small"
-        @click="addTab(editableTabsValue)"
-      >
-        add tab
-      </el-button>
-    </div>
   </div>
 </template>
 
 <script>
+  import buttonGroup from "@/app_components/buttonGroup/buttonGroup"
+  import emTree from "@/components/emTree/emTree"
 
   export default {
     name: "emTabs",
@@ -33,33 +26,84 @@
         id: "",
         tabPosition: "left",
         editableTabsValue: '2',
-        editableTabs: [{
-          title: 'Tab 1',
-          name: '1',
-          content: 'Tab 1 content'
-        }, {
-          title: 'Tab 2',
-          name: '2',
-          content: 'Tab 2 content'
-        }],
+        editableTabs: [
+          {
+            title: 'Tab 1',
+            name: '1',
+            component: "buttonGroup",
+            component_data: {
+              buttonGroup: [
+                {
+                  id: "bt_4_1",
+                  type: "info",
+                  icon: "",
+                  text: "文本",
+                  trigger: true,
+                  control_type: "scene",
+                  control_id: "",
+                  fn: "scene_data",
+                  data_type: "3",
+                  layer_name: "ly11",
+                  api_name: "geom",
+                  data_url: "/gardens/humantraffic/queryAll",
+                  geomType: "text",
+                  // params_pointsNo: 3,
+                  geom_titleKey: "id",
+                  geom_style: "2",
+                  strokeWidth: 1,
+                  strokeColor: "[0, 255, 0, 255]",
+                  clusters_enabled: "false",//聚合显示
+                },
+                {
+                  id: "bt_5",
+                  type: "info",
+                  icon: "el-icon-edit",
+                  text: "线",
+                  trigger: true,
+                  control_type: "scene",
+                  control_id: "",
+                  fn: "scene_data",
+                  data_type: "3",
+                  layer_name: "ly2",
+                  api_name: "geom",
+                  data_url: "/gardens/tree/queryVicinityPrint",
+                  geomType: "line",
+                  params_longitude: 114.03188276054428,
+                  params_latitude: 22.619840297782094,
+                  params_distance: 10000,
+                  geom_titleKey: "id",
+                  strokeWidth: 1,
+                  strokeColor: "[0, 255, 0, 255]",
+                  fillColor: "[0, 100, 255, 255]"
+                }
+              ]
+            }
+          }, {
+            title: 'Tab 2',
+            name: '2',
+            component: "emTree",
+            component_data: {}
+          }],
         tabIndex: 2
       };
     },
     components: {
-
+      buttonGroup,
+      emTree
     },
-    props: ["props_data"],
+    props: ["data"],
     methods: {
       init() {                               //表格加载数据
-
+        this.id =this.data.emTabs_id;
       },
-      addTab(targetName) {
-
-        let newTabName = ++this.tabIndex + '';
+      addTab(_obj) {
+        console.log(_obj.targetName);
+        let newTabName = ++this.tabIndex + '' + _obj.targetName;
         this.editableTabs.push({
-          title: 'New Tab',
+          title: newTabName,
           name: newTabName,
-          content: 'New Tab content'
+          component: "emTree",
+          component_data: {}
         });
         this.editableTabsValue = newTabName;
       },
@@ -82,12 +126,13 @@
       }
     },
     created() {
-      this.bus.$on(this.id, obj => {
-        this[obj.fn](obj);
-      });
+
     },
     mounted() {
       this.init();
+      this.bus.$on(this.id, obj => {
+        this[obj.fn](obj);
+      });
     },
     beforeDestroy() {
       this.bus.$off(this.id);

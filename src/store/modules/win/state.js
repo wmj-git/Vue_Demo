@@ -5039,13 +5039,14 @@ export default {
       id: "scene_data",
       title: "场景数据",
       top: "128px",
-      left: "236px",
+      left: "calc(100% - 288px)",
       width: 280,
       height: 680,
       show: true,
       class: "",
-      component: "emTabs",
+      component: "emLayers",
       component_data: {
+        emTabs_id:"scene_data_emTabs",
         emTabs: []
       }
     },
