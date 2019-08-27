@@ -1895,7 +1895,7 @@ export default {
           ],
           table: {
             id: "soil_temperature_alarm_analysis_table",
-            table_url: "/gardens/warningrecord/queryAllByPage?warningType='SH'",
+            table_url: "/gardens/warningrecord/queryAllByPage?warningType=TS",
             label: [{
               name: "关联设备号",
               prop: "relevanceId",
@@ -1965,9 +1965,10 @@ export default {
       height: 700,
       show: false,
       class: "em-table-window",
-      component: "echart_table",
+      component: "tabs_table",
       component_data: {
          echart_table:{
+           title: "土壤湿度统计分析",
            operation: [
              {
                id: "soil_temperature_analysis_date",
@@ -2094,7 +2095,7 @@ export default {
           ],
           table: {
             id: "soil_humidity_alarm_analysis_table",
-            table_url: "/gardens/warningrecord/queryAllByPage?warningType='SH'",
+            table_url: "/gardens/warningrecord/queryAllByPage?warningType=HS",
             label: [{
               name: "关联设备号",
               prop: "relevanceId",
@@ -2164,130 +2165,211 @@ export default {
       height: 700,
       show: false,
       class: "em-table-window",
-      component: "echart_table",
+      component: "tabs_table",
       component_data: {
-        operation: [
-          {
-            id: "population_analysis_date",
-            type: "em_date",
-
-          },
-          {
-            id: "population_analysis_button_search",
-            type: "em_button",
-            icon: "el-icon-search",
-            operate: "查询",
-            control_id: "population_analysis_table",
-            fn: "search"
-          }
-        ],
-        table: {
-          id: "population_analysis_table",
-          table_url: "/gardens/humantrafficinfo/queryAllByPage",
-          label: [{
-            name: "监测点",
-            prop: "humanTrafficId",
-            width: "140",
-            type: "em_input",
-            params: "humanTrafficId",
-            placeholder: "监测点",
-            alter_show: true
-
-          },
+        echart_table:{
+          title: "人流量统计分析",
+          operation: [
             {
-              name: "人流量信息",
-              prop: "humanTrafficValue",
-              width: "100",
-              type: "em_input",
-              params: "humanTrafficValue",
-              placeholder: "humanTrafficValue",
-              alter_show: true
-            },
-            {
-              name: "创建时间",
-              prop: "createDate",
-              width: "180",
-              type: "em_input",
-              params: "createDate",
-              placeholder: "创建时间",
-              alter_show: true
+              id: "population_analysis_date",
+              type: "em_date",
 
             },
             {
-              name: "备注",
-              prop: "memo",
+              id: "population_analysis_button_search",
+              type: "em_button",
+              icon: "el-icon-search",
+              operate: "查询",
+              control_id: "population_analysis_table",
+              fn: "search"
+            }
+          ],
+          table: {
+            id: "population_analysis_table",
+            table_url: "/gardens/humantrafficinfo/queryAllByPage",
+            label: [{
+              name: "监测点",
+              prop: "humanTrafficId",
               width: "140",
               type: "em_input",
-              params: "memo",
-              placeholder: "备注",
+              params: "humanTrafficId",
+              placeholder: "监测点",
               alter_show: true
+
+            },
+              {
+                name: "人流量信息",
+                prop: "humanTrafficValue",
+                width: "100",
+                type: "em_input",
+                params: "humanTrafficValue",
+                placeholder: "humanTrafficValue",
+                alter_show: true
+              },
+              {
+                name: "创建时间",
+                prop: "createDate",
+                width: "180",
+                type: "em_input",
+                params: "createDate",
+                placeholder: "创建时间",
+                alter_show: true
+
+              },
+              {
+                name: "备注",
+                prop: "memo",
+                width: "140",
+                type: "em_input",
+                params: "memo",
+                placeholder: "备注",
+                alter_show: true
+              }
+
+
+            ]
+          },
+          charts: [
+            {
+              id: "population_analysis_chart_1",
+              type: "line",
+              optionType: "option_bar_line",
+              winSpan: 24,
+              height: 50,
+              chartTitle: "人流量(最高值)",
+              unit_y: "人次",
+              dataUrl: '/gardens/humantrafficinfo/queryAll',
+              seriesType: "lineBar_handle_a",
+              valueType: "max",
+              legendField: "humanTrafficId",
+              xAxisField: "createDate",
+              yAxisField: "humanTrafficValue"
+            },
+            {
+              id: "population_analysis_chart_2",
+              type: "line",
+              optionType: "option_bar_line",
+              winSpan: 24,
+              height: 50,
+              chartTitle: "人流量(最低值)",
+              unit_y: "人次",
+              dataUrl: '/gardens/humantrafficinfo/queryAll',
+              seriesType: "lineBar_handle_a",
+              valueType: "min",
+              legendField: "humanTrafficId",
+              xAxisField: "createDate",
+              yAxisField: "humanTrafficValue"
+            },
+            {
+              id: "population_analysis_chart_3",
+              type: "line",
+              optionType: "option_bar_line",
+              winSpan: 24,
+              height: 50,
+              chartTitle: "人流量(平均数)",
+              unit_y: "人次",
+              dataUrl: '/gardens/humantrafficinfo/queryAll',
+              seriesType: "lineBar_handle_a",
+              valueType: "mean",
+              legendField: "humanTrafficId",
+              xAxisField: "createDate",
+              yAxisField: "humanTrafficValue"
+            },
+            {
+              id: "population_analysis_chart_4",
+              type: "bar",
+              optionType: "option_bar_line",
+              winSpan: 24,
+              height: 50,
+              chartTitle: "人流量(求和)",
+              unit_y: "人次",
+              dataUrl: '/gardens/humantrafficinfo/queryAll',
+              seriesType: "lineBar_handle_a",
+              valueType: "sum",
+              legendField: "humanTrafficId",
+              xAxisField: "createDate",
+              yAxisField: "humanTrafficValue"
             }
-
-
           ]
         },
-        charts: [
-          {
-            id: "population_analysis_chart_1",
-            type: "line",
-            optionType: "option_bar_line",
-            winSpan: 24,
-            height: 50,
-            chartTitle: "人流量(最高值)",
-            unit_y: "人次",
-            dataUrl: '/gardens/humantrafficinfo/queryAll',
-            seriesType: "lineBar_handle_a",
-            valueType: "max",
-            legendField: "humanTrafficId",
-            xAxisField: "createDate",
-            yAxisField: "humanTrafficValue"
-          },
-          {
-            id: "population_analysis_chart_2",
-            type: "line",
-            optionType: "option_bar_line",
-            winSpan: 24,
-            height: 50,
-            chartTitle: "人流量(最低值)",
-            unit_y: "人次",
-            dataUrl: '/gardens/humantrafficinfo/queryAll',
-            seriesType: "lineBar_handle_a",
-            valueType: "min",
-            legendField: "humanTrafficId",
-            xAxisField: "createDate",
-            yAxisField: "humanTrafficValue"
-          },
-          {
-            id: "population_analysis_chart_3",
-            type: "line",
-            optionType: "option_bar_line",
-            winSpan: 24,
-            height: 50,
-            chartTitle: "人流量(平均数)",
-            unit_y: "人次",
-            dataUrl: '/gardens/humantrafficinfo/queryAll',
-            seriesType: "lineBar_handle_a",
-            valueType: "mean",
-            legendField: "humanTrafficId",
-            xAxisField: "createDate",
-            yAxisField: "humanTrafficValue"
-          },
-          {
-            id: "population_analysis_chart_4",
-            type: "bar",
-            optionType: "option_bar_line",
-            winSpan: 24,
-            height: 50,
-            chartTitle: "人流量(求和)",
-            unit_y: "人次",
-            dataUrl: '/gardens/humantrafficinfo/queryAll',
-            seriesType: "lineBar_handle_a",
-            valueType: "sum",
-            legendField: "humanTrafficId",
-            xAxisField: "createDate",
-            yAxisField: "humanTrafficValue"
+        sole_table:{
+          title:'人流量报警统计',
+          operation: [
+            {
+              id: "population_alarm_analysis_date",
+              type: "em_date",
+            },
+            {
+              id: "population_alarm_analysis_button_search",
+              type: "em_button",
+              icon: "el-icon-search",
+              operate: "查询",
+              control_id: "population_alarm_analysis_table",
+              fn: "search"
+            }
+          ],
+          table: {
+            id: "population_alarm_analysis_table",
+            table_url: "/gardens/warningrecord/queryAllByPage?warningType=HT",
+            label: [{
+              name: "关联设备号",
+              prop: "relevanceId",
+              width: "100",
+              type: "em_input",
+              params: "relevanceId",
+              placeholder: "关联设备号",
+              alter_show: true,
+              add_show: true
+
+            },
+              {
+                name: "报警值",
+                prop: "warningValue",
+                width: "100",
+                type: "em_input",
+                params: "warningValue",
+                placeholder: "报警值",
+                alter_show: true,
+                add_show: true
+              },
+              {
+                name: "描述地址",
+                prop: "describeAdress",
+                width: "140",
+                type: "em_input",
+                params: "describeAdress",
+                placeholder: "描述地址",
+                alter_show: true,
+                add_show: true
+              },
+              {
+                name: "发生时间",
+                prop: "createDate",
+                width: "140",
+                type: "em_input",
+                params: "createDate",
+                placeholder: "发生时间",
+                alter_show: true,
+                add_show: true
+
+              },
+              {
+                name: "备注",
+                prop: "remark",
+                width: "120",
+                type: "em_input",
+                params: "remark",
+                placeholder: "备注",
+                alter_show: true,
+                add_show: true
+              }
+
+
+
+            ]
           }
-        ]
+        }
+
       }
     },
     {
@@ -2301,113 +2383,115 @@ export default {
       class: "em-table-window",
       component: "echart_table",
       component_data: {
-        operation: [
-          {
-            id: "soil_temperature_analysis_date",
-            type: "em_date",
+         echart_table:{
+           operation: [
+             {
+               id: "soil_temperature_analysis_date",
+               type: "em_date",
 
-          },
-          {
-            id: "air_temperature_analysis_button_search",
-            type: "em_button",
-            icon: "el-icon-search",
-            operate: "查询",
-            control_id: "air_temperature_analysis_table",
-            fn: "search"
-          }
-        ],
-        table: {
-          id: "air_temperature_analysis_table",
-          table_url: "/gardens/temperature/queryAllByPage?dataType=A",
-          label: [{
-            name: "监测点",
-            prop: "pointsId",
-            width: "140",
-            type: "em_input",
-            params: "pointsId",
-            placeholder: "全称",
-            alter_show: true
+             },
+             {
+               id: "air_temperature_analysis_button_search",
+               type: "em_button",
+               icon: "el-icon-search",
+               operate: "查询",
+               control_id: "air_temperature_analysis_table",
+               fn: "search"
+             }
+           ],
+           table: {
+             id: "air_temperature_analysis_table",
+             table_url: "/gardens/temperature/queryAllByPage?dataType=A",
+             label: [{
+               name: "监测点",
+               prop: "pointsId",
+               width: "140",
+               type: "em_input",
+               params: "pointsId",
+               placeholder: "全称",
+               alter_show: true
 
-          },
-            {
-              name: "温度值",
-              prop: "temValue",
-              width: "100",
-              type: "em_input",
-              params: "temValue",
-              placeholder: "温度值",
-              alter_show: true
-            },
-            {
-              name: "创建时间",
-              prop: "createDate",
-              width: "180",
-              type: "em_input",
-              params: "createDate",
-              placeholder: "创建时间",
-              alter_show: true
+             },
+               {
+                 name: "温度值",
+                 prop: "temValue",
+                 width: "100",
+                 type: "em_input",
+                 params: "temValue",
+                 placeholder: "温度值",
+                 alter_show: true
+               },
+               {
+                 name: "创建时间",
+                 prop: "createDate",
+                 width: "180",
+                 type: "em_input",
+                 params: "createDate",
+                 placeholder: "创建时间",
+                 alter_show: true
 
-            },
-            {
-              name: "备注",
-              prop: "memo",
-              width: "140",
-              type: "em_input",
-              params: "memo",
-              placeholder: "备注",
-              alter_show: true
-            }
+               },
+               {
+                 name: "备注",
+                 prop: "memo",
+                 width: "140",
+                 type: "em_input",
+                 params: "memo",
+                 placeholder: "备注",
+                 alter_show: true
+               }
 
 
-          ]
-        },
-        charts: [
-          {
-            id: "air_temperature_analysis_chart_1",
-            type: "line",
-            optionType: "option_bar_line",
-            winSpan: 24,
-            height: 50,
-            chartTitle: "空气温度(最高值)",
-            unit_y: "℃",
-            dataUrl: '/gardens/temperature/queryAll?dataType=A',
-            seriesType: "lineBar_handle_a",
-            valueType: "max",
-            legendField: "pointsId",
-            xAxisField: "createDate",
-            yAxisField: "temValue"
-          },
-          {
-            id: "air_temperature_analysis_chart_2",
-            type: "line",
-            optionType: "option_bar_line",
-            winSpan: 24,
-            height: 50,
-            chartTitle: "空气温度(最低值)",
-            unit_y: "℃",
-            dataUrl: '/gardens/temperature/queryAll?dataType=A',
-            seriesType: "lineBar_handle_a",
-            valueType: "min",
-            legendField: "pointsId",
-            xAxisField: "createDate",
-            yAxisField: "temValue"
-          },
-          {
-            id: "air_temperature_analysis_chart_3",
-            type: "line",
-            optionType: "option_bar_line",
-            winSpan: 48,
-            height: 30,
-            chartTitle: "空气温度(平均数)",
-            unit_y: "℃",
-            dataUrl: '/gardens/temperature/queryAll?dataType=A',
-            seriesType: "lineBar_handle_a",
-            valueType: "mean",
-            legendField: "pointsId",
-            xAxisField: "createDate",
-            yAxisField: "temValue"
-          }
-        ]
+             ]
+           },
+           charts: [
+             {
+               id: "air_temperature_analysis_chart_1",
+               type: "line",
+               optionType: "option_bar_line",
+               winSpan: 24,
+               height: 50,
+               chartTitle: "空气温度(最高值)",
+               unit_y: "℃",
+               dataUrl: '/gardens/temperature/queryAll?dataType=A',
+               seriesType: "lineBar_handle_a",
+               valueType: "max",
+               legendField: "pointsId",
+               xAxisField: "createDate",
+               yAxisField: "temValue"
+             },
+             {
+               id: "air_temperature_analysis_chart_2",
+               type: "line",
+               optionType: "option_bar_line",
+               winSpan: 24,
+               height: 50,
+               chartTitle: "空气温度(最低值)",
+               unit_y: "℃",
+               dataUrl: '/gardens/temperature/queryAll?dataType=A',
+               seriesType: "lineBar_handle_a",
+               valueType: "min",
+               legendField: "pointsId",
+               xAxisField: "createDate",
+               yAxisField: "temValue"
+             },
+             {
+               id: "air_temperature_analysis_chart_3",
+               type: "line",
+               optionType: "option_bar_line",
+               winSpan: 48,
+               height: 30,
+               chartTitle: "空气温度(平均数)",
+               unit_y: "℃",
+               dataUrl: '/gardens/temperature/queryAll?dataType=A',
+               seriesType: "lineBar_handle_a",
+               valueType: "mean",
+               legendField: "pointsId",
+               xAxisField: "createDate",
+               yAxisField: "temValue"
+             }
+           ]
+         }
       }
     },
     {

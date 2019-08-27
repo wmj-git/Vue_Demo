@@ -10,7 +10,9 @@
     "unit": "jest --config test/unit/jest.conf.js --coverage",
     "e2e": "node test/e2e/runner.js",
     "test": "npm run unit && npm run e2e",
-    "build": "node build/build.js"
+    "build": "node build/build.js",
+    "build:test": "node build/build.js testing",
+    "build:prod": "node build/build.js production"
   },
   "dependencies": {
     "echarts": "^4.2.1",
