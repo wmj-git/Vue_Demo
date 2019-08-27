@@ -2384,6 +2384,7 @@ export default {
       component: "tabs_table",
       component_data: {
          echart_table:{
+           title: "空气温度统计分析",
            operation: [
              {
                id: "soil_temperature_analysis_date",
@@ -2581,100 +2582,181 @@ export default {
       height: 700,
       show: false,
       class: "em-table-window",
-      component: "echart_table",
+      component: "tabs_table",
       component_data: {
-        operation: [
-          {
-            id: "soil_temperature_analysis_date",
-            type: "em_date",
-
-          },
-          {
-            id: "air_humidity_analysis_button_search",
-            type: "em_button",
-            icon: "el-icon-search",
-            operate: "查询",
-            control_id: "air_humidity_analysis_table",
-            fn: "search"
-          }
-        ],
-        table: {
-          id: "air_humidity_analysis_table",
-          table_url: "/gardens/humidity/queryAllByPage?dataType=A",
-          label: [{
-            name: "监测点",
-            prop: "pointsId",
-            width: "140",
-            type: "em_input",
-            params: "pointsId",
-            placeholder: "全称",
-            alter_show: true
-
-          },
+        echart_table:{
+          title: "空气湿度统计分析",
+          operation: [
             {
-              name: "湿度值",
-              prop: "humValue",
-              width: "100",
-              type: "em_input",
-              params: "humValue",
-              placeholder: "温度值",
-              alter_show: true
-            },
-            {
-              name: "创建时间",
-              prop: "createDate",
-              width: "180",
-              type: "em_input",
-              params: "createDate",
-              placeholder: "创建时间",
-              alter_show: true
+              id: "soil_temperature_analysis_date",
+              type: "em_date",
 
             },
             {
-              name: "备注",
-              prop: "memo",
+              id: "air_humidity_analysis_button_search",
+              type: "em_button",
+              icon: "el-icon-search",
+              operate: "查询",
+              control_id: "air_humidity_analysis_table",
+              fn: "search"
+            }
+          ],
+          table: {
+            id: "air_humidity_analysis_table",
+            table_url: "/gardens/humidity/queryAllByPage?dataType=A",
+            label: [{
+              name: "监测点",
+              prop: "pointsId",
               width: "140",
               type: "em_input",
-              params: "memo",
-              placeholder: "备注",
+              params: "pointsId",
+              placeholder: "全称",
               alter_show: true
+
+            },
+              {
+                name: "湿度值",
+                prop: "humValue",
+                width: "100",
+                type: "em_input",
+                params: "humValue",
+                placeholder: "温度值",
+                alter_show: true
+              },
+              {
+                name: "创建时间",
+                prop: "createDate",
+                width: "180",
+                type: "em_input",
+                params: "createDate",
+                placeholder: "创建时间",
+                alter_show: true
+
+              },
+              {
+                name: "备注",
+                prop: "memo",
+                width: "140",
+                type: "em_input",
+                params: "memo",
+                placeholder: "备注",
+                alter_show: true
+              }
+
+
+            ]
+          },
+          charts: [
+            {
+              id: "air_humidity_analysis_chart_1",
+              type: "line",
+              optionType: "option_bar_line",
+              winSpan: 24,
+              height: 50,
+              chartTitle: "空气湿度(最高值)",
+              unit_y: "%",
+              dataUrl: '/gardens/humidity/queryAll?dataType=A',
+              seriesType: "lineBar_handle_a",
+              valueType: "max",
+              legendField: "pointsId",
+              xAxisField: "createDate",
+              yAxisField: "humValue"
+            },
+            {
+              id: "air_humidity_analysis_chart_2",
+              type: "bar",
+              optionType: "option_bar_line",
+              winSpan: 24,
+              height: 50,
+              chartTitle: "空气湿度(最低值)",
+              unit_y: "%",
+              dataUrl: '/gardens/humidity/queryAll?dataType=A',
+              seriesType: "lineBar_handle_a",
+              valueType: "min",
+              legendField: "pointsId",
+              xAxisField: "createDate",
+              yAxisField: "humValue"
             }
-
-
           ]
         },
-        charts: [
-          {
-            id: "air_humidity_analysis_chart_1",
-            type: "line",
-            optionType: "option_bar_line",
-            winSpan: 24,
-            height: 50,
-            chartTitle: "空气湿度(最高值)",
-            unit_y: "%",
-            dataUrl: '/gardens/humidity/queryAll?dataType=A',
-            seriesType: "lineBar_handle_a",
-            valueType: "max",
-            legendField: "pointsId",
-            xAxisField: "createDate",
-            yAxisField: "humValue"
-          },
-          {
-            id: "air_humidity_analysis_chart_2",
-            type: "bar",
-            optionType: "option_bar_line",
-            winSpan: 24,
-            height: 50,
-            chartTitle: "空气湿度(最低值)",
-            unit_y: "%",
-            dataUrl: '/gardens/humidity/queryAll?dataType=A',
-            seriesType: "lineBar_handle_a",
-            valueType: "min",
-            legendField: "pointsId",
-            xAxisField: "createDate",
-            yAxisField: "humValue"
+        sole_table:{
+          title:'空气湿度报警统计',
+          operation: [
+            {
+              id: "air_humidity_alarm_analysis_date",
+              type: "em_date",
+            },
+            {
+              id: "air_humidity_alarm_analysis_button_search",
+              type: "em_button",
+              icon: "el-icon-search",
+              operate: "查询",
+              control_id: "air_humidity_alarm_analysis_table",
+              fn: "search"
+            }
+          ],
+          table: {
+            id: "air_humidity_alarm_analysis_table",
+            table_url: "/gardens/warningrecord/queryAllByPage?warningType=HA",
+            label: [{
+              name: "关联设备号",
+              prop: "relevanceId",
+              width: "100",
+              type: "em_input",
+              params: "relevanceId",
+              placeholder: "关联设备号",
+              alter_show: true,
+              add_show: true
+
+            },
+              {
+                name: "报警值",
+                prop: "warningValue",
+                width: "100",
+                type: "em_input",
+                params: "warningValue",
+                placeholder: "报警值",
+                alter_show: true,
+                add_show: true
+              },
+              {
+                name: "描述地址",
+                prop: "describeAdress",
+                width: "140",
+                type: "em_input",
+                params: "describeAdress",
+                placeholder: "描述地址",
+                alter_show: true,
+                add_show: true
+              },
+              {
+                name: "发生时间",
+                prop: "createDate",
+                width: "140",
+                type: "em_input",
+                params: "createDate",
+                placeholder: "发生时间",
+                alter_show: true,
+                add_show: true
+
+              },
+              {
+                name: "备注",
+                prop: "remark",
+                width: "120",
+                type: "em_input",
+                params: "remark",
+                placeholder: "备注",
+                alter_show: true,
+                add_show: true
+              }
+
+
+
+            ]
           }
-        ]
+        }
+
       }
     },
     {
