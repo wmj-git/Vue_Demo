@@ -2075,7 +2075,84 @@ export default {
                yAxisField: "humValue"
              }
            ]
-         }
+         },
+         sole_table:{
+          title:'土壤湿度报警统计',
+          operation: [
+            {
+              id: "soil_humidity_alarm_analysis_date",
+              type: "em_date",
+            },
+            {
+              id: "soil_humidity_alarm_analysis_button_search",
+              type: "em_button",
+              icon: "el-icon-search",
+              operate: "查询",
+              control_id: "soil_humidity_alarm_analysis_table",
+              fn: "search"
+            }
+          ],
+          table: {
+            id: "soil_temperature_alarm_analysis_table",
+            table_url: "/gardens/warningrecord/queryAllByPage?warningType='SH'",
+            label: [{
+              name: "关联设备号",
+              prop: "relevanceId",
+              width: "100",
+              type: "em_input",
+              params: "relevanceId",
+              placeholder: "关联设备号",
+              alter_show: true,
+              add_show: true
+
+            },
+              {
+                name: "报警值",
+                prop: "warningValue",
+                width: "100",
+                type: "em_input",
+                params: "warningValue",
+                placeholder: "报警值",
+                alter_show: true,
+                add_show: true
+              },
+              {
+                name: "描述地址",
+                prop: "describeAdress",
+                width: "140",
+                type: "em_input",
+                params: "describeAdress",
+                placeholder: "描述地址",
+                alter_show: true,
+                add_show: true
+              },
+              {
+                name: "发生时间",
+                prop: "createDate",
+                width: "140",
+                type: "em_input",
+                params: "createDate",
+                placeholder: "发生时间",
+                alter_show: true,
+                add_show: true
+
+              },
+              {
+                name: "备注",
+                prop: "remark",
+                width: "120",
+                type: "em_input",
+                params: "remark",
+                placeholder: "备注",
+                alter_show: true,
+                add_show: true
+              }
+
+
+
+            ]
+          }
+        }
       }
     },
     {
