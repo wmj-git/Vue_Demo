@@ -2093,7 +2093,7 @@ export default {
             }
           ],
           table: {
-            id: "soil_temperature_alarm_analysis_table",
+            id: "soil_humidity_alarm_analysis_table",
             table_url: "/gardens/warningrecord/queryAllByPage?warningType='SH'",
             label: [{
               name: "关联设备号",
