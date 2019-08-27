@@ -1410,7 +1410,7 @@ export default {
     },
     {
       id: "department_manage",
-      title: "组织机构管理",
+      title: "机构管理",
       top: "calc((100% - 500px)/2)",
       left:"calc((100% - 800px)/2)",
       width: 800,
@@ -1891,6 +1891,15 @@ export default {
               operate: "查询",
               control_id: "soil_temperature_alarm_analysis_table",
               fn: "search"
+            },
+            {
+              id: "soil_temperature_alarm_analysis_export",
+              type: "em_button",
+              icon: "el-icon-excel_out",
+              operate: "导出excel",
+              control_id: "soil_temperature_alarm_analysis_table",
+              fn: "export",
+              url: "/gardens/warningrecord/exportCsv?warningType=TS"
             }
           ],
           table: {
@@ -2091,6 +2100,15 @@ export default {
               operate: "查询",
               control_id: "soil_humidity_alarm_analysis_table",
               fn: "search"
+            },
+            {
+              id: "soil_humidity_alarm_analysis_export",
+              type: "em_button",
+              icon: "el-icon-excel_out",
+              operate: "导出excel",
+              control_id: "soil_humidity_alarm_analysis_table",
+              fn: "export",
+              url: "/gardens/warningrecord/exportCsv?warningType=HS"
             }
           ],
           table: {
@@ -2306,6 +2324,15 @@ export default {
               operate: "查询",
               control_id: "population_alarm_analysis_table",
               fn: "search"
+            },
+            {
+              id: "population_alarm_analysis_export",
+              type: "em_button",
+              icon: "el-icon-excel_out",
+              operate: "导出excel",
+              control_id: "population_alarm_analysis_table",
+              fn: "export",
+              url: "/gardens/warningrecord/exportCsv?warningType=HT"
             }
           ],
           table: {
@@ -2507,6 +2534,15 @@ export default {
               operate: "查询",
               control_id: "air_temperature_alarm_analysis_table",
               fn: "search"
+            },
+            {
+              id: "air_temperature_alarm_analysis_export",
+              type: "em_button",
+              icon: "el-icon-excel_out",
+              operate: "导出excel",
+              control_id: "air_temperature_alarm_analysis_table",
+              fn: "export",
+              url: "/gardens/warningrecord/exportCsv?warningType=TA"
             }
           ],
           table: {
@@ -2687,13 +2723,23 @@ export default {
               type: "em_date",
             },
             {
-              id: "air_humidity_alarm_analysis_button_search",
+              id: "air_humidity_alarm_analysis_search",
               type: "em_button",
               icon: "el-icon-search",
               operate: "查询",
               control_id: "air_humidity_alarm_analysis_table",
               fn: "search"
+            },
+            {
+              id: "air_humidity_alarm_analysis_export",
+              type: "em_button",
+              icon: "el-icon-excel_out",
+              operate: "导出excel",
+              control_id: "air_humidity_alarm_analysis_table",
+              fn: "export",
+              url: "/gardens/warningrecord/exportCsv?warningType=HA"
             }
+
           ],
           table: {
             id: "air_humidity_alarm_analysis_table",
