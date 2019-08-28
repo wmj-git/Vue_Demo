@@ -3240,7 +3240,6 @@ export default {
       component: "sole_table",
       component_data: {
         operation: [
-
           {
             id: "protect_company_manage_input_entName",
             type: "em_input",

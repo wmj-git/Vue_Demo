@@ -13,6 +13,7 @@ function formatDegree(pValue) {
 
 export function createQeomStyle(_feature, _style) {
   let Style = null;
+  let _color=JSON.parse(_style.fillColor);
   switch (_style.type) {
     case "1":
       Style = new ol.style.Style({
@@ -21,7 +22,8 @@ export function createQeomStyle(_feature, _style) {
           color:  JSON.parse(_style.strokeColor)
         }),
         fill: new ol.style.Fill({
-          color: JSON.parse(_style.fillColor)
+          color: JSON.parse(_style.fillColor),
+          // color: 'rgba('+_color[0]+', '+_color[1]+', '+_color[2]+', '+_color[3]+')'
         }),
         text: new ol.style.Text({
           text: _feature[_style.titleKey] ? _feature[_style.titleKey] + "" : "",
