@@ -21,8 +21,7 @@
     data() {
       return {
         id: "",
-        group: [],
-
+        group: []
       }
     },
     props: ["data"],

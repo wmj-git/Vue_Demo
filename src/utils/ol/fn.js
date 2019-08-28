@@ -585,7 +585,7 @@ emMap.prototype.init = function (_LngLat, _layers) {
     // console.log(_zoom);
 
     let _layers = _map.getLayers().getArray();
-    if (_zoom > 6) {
+    if (_zoom > 5) {
       _layers.forEach(function (_layer) {
         let _source = _layer.getSource();
         if (_layer.get("layer_type") === "Cluster") {

@@ -15,7 +15,6 @@
 </template>
 
 <script>
-  import buttonGroup from "@/app_components/buttonGroup/buttonGroup"
   import emTree from "@/components/emTree/emTree"
 
   export default {
@@ -25,7 +24,7 @@
         id: "",
         tabPosition: "left",
         editableTabsValue: '',
-        Tabs:[]
+        Tabs: []
       };
     },
     components: {
@@ -43,25 +42,33 @@
       },
       addTab(_obj) {
         console.log(_obj);
-        let _Tabs=this.$store.getters["scene/layerData"];
-        let newTabName =_obj.name;
-        let newTabTitle =_obj.title;
+        let _Tabs = this.$store.getters["scene/layerData"];
+        let newTabName = _obj.name;
+        let newTabTitle = _obj.title;
+        let _treeData = _obj.treeData;
+        let _treeChildren = _obj.treeChildren;
+        let _treeLabel = _obj.treeLabel;
         _Tabs.push({
           title: newTabTitle,
           name: newTabName,
           component: "emTree",
-          component_data: {}
+          component_data: {
+            id: newTabName + "_tree",
+            treeData: _treeData,
+            treeChildren: _treeChildren,
+            treeLabel: _treeLabel
+          }
         });
         this.$store.commit("scene/set_layerData", _Tabs);
         this.editableTabsValue = newTabName;
 
       },
-      removeTab(_obj) {
-        let tabs = this.Tabs;
+      removeTab(targetName) {
+        let tabs = this.$store.getters["scene/layerData"];
         let activeName = this.editableTabsValue;
-        if (activeName === _obj.name) {
+        if (activeName === targetName) {
           tabs.forEach((tab, index) => {
-            if (tab.name === _obj.name) {
+            if (tab.name === targetName) {
               let nextTab = tabs[index + 1] || tabs[index - 1];
               if (nextTab) {
                 activeName = nextTab.name;
@@ -71,7 +78,18 @@
         }
 
         this.editableTabsValue = activeName;
-        this.Tabs = tabs.filter(tab => tab.name !== targetName);
+        let _editableTabs = tabs.filter(tab => tab.name !== targetName);
+        this.$store.commit("scene/set_layerData", _editableTabs);
+
+        // 移除场景图层
+        let control_id = this.$store.getters["scene/type"];
+        this.bus.$emit(control_id, {
+          fn: "removeLayer",
+          layer_name: targetName
+        });
+      },
+      removeTabFn(_obj) {
+        this.removeTab(_obj.name);
       }
     },
     created() {
