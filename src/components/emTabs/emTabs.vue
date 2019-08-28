@@ -1,6 +1,5 @@
 <template>
   <div class="emTabs">
-
     <el-tabs v-model="editableTabsValue" closable @tab-remove="removeTab" :tab-position="tabPosition">
       <el-tab-pane
         v-for="(item, index) in editableTabs"
@@ -16,7 +15,7 @@
 </template>
 
 <script>
-  import buttonGroup from "@/app_components/buttonGroup/buttonGroup"
+
   import emTree from "@/components/emTree/emTree"
 
   export default {
@@ -26,69 +25,11 @@
         id: "",
         tabPosition: "left",
         editableTabsValue: '2',
-        editableTabs: [
-          {
-            title: 'Tab 1',
-            name: '1',
-            component: "buttonGroup",
-            component_data: {
-              buttonGroup: [
-                {
-                  id: "bt_4_1",
-                  type: "info",
-                  icon: "",
-                  text: "文本",
-                  trigger: true,
-                  control_type: "scene",
-                  control_id: "",
-                  fn: "scene_data",
-                  data_type: "3",
-                  layer_name: "ly11",
-                  api_name: "geom",
-                  data_url: "/gardens/humantraffic/queryAll",
-                  geomType: "text",
-                  // params_pointsNo: 3,
-                  geom_titleKey: "id",
-                  geom_style: "2",
-                  strokeWidth: 1,
-                  strokeColor: "[0, 255, 0, 255]",
-                  clusters_enabled: "false",//聚合显示
-                },
-                {
-                  id: "bt_5",
-                  type: "info",
-                  icon: "el-icon-edit",
-                  text: "线",
-                  trigger: true,
-                  control_type: "scene",
-                  control_id: "",
-                  fn: "scene_data",
-                  data_type: "3",
-                  layer_name: "ly2",
-                  api_name: "geom",
-                  data_url: "/gardens/tree/queryVicinityPrint",
-                  geomType: "line",
-                  params_longitude: 114.03188276054428,
-                  params_latitude: 22.619840297782094,
-                  params_distance: 10000,
-                  geom_titleKey: "id",
-                  strokeWidth: 1,
-                  strokeColor: "[0, 255, 0, 255]",
-                  fillColor: "[0, 100, 255, 255]"
-                }
-              ]
-            }
-          }, {
-            title: 'Tab 2',
-            name: '2',
-            component: "emTree",
-            component_data: {}
-          }],
+        editableTabs: [],
         tabIndex: 2
       };
     },
     components: {
-      buttonGroup,
       emTree
     },
     props: ["data"],

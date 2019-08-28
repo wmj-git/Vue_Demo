@@ -24,16 +24,16 @@
         let _this = this;
         // 初始化场景
         // cm.init(this.id, "https://onelz.oicp.vip/SG/b3dm/LH1-1-2.405276/tileset.json");
-        let _element=document.getElementById('Cesium_js');
+        let _element = document.getElementById('Cesium_js');
         if (_element) {
           _this.sceneInit();
         } else {
           //动态加载依赖库
           let _url = process.env.STATIC_URL;
-          loadCss('widgets_css',_url + "/sceneStatic/Cesium/Widgets/widgets.css", function () {
+          loadCss('widgets_css', _url + "/sceneStatic/Cesium/Widgets/widgets.css", function () {
             console.log('css');
           });
-          loadJs('Cesium_js',_url + "/sceneStatic/Cesium/Cesium.js", function () {
+          loadJs('Cesium_js', _url + "/sceneStatic/Cesium/Cesium.js", function () {
             console.log('js');
             _this.sceneInit();
           });
@@ -132,15 +132,19 @@
         cm.clearDrawingBoard(window[this.id].viewer);
       },
       toScene(obj) {
+        let _height = obj.zIndex ? 300 : 32940.79281690694;
+        let _lng = obj.lng ? obj.lng : 113.991282335704;
+        let _lat = obj.lat ? obj.lat : 22.43563404218315;
+
         //跳到场景地形
         // cm.toScene(window[this.id].viewer, window[this.id].tileset);
         //摄像机地位
         cm.camera({
           scene: window[this.id].scene,
           heading: 0.20285622255189661,
-          height: 32940.79281690694,
-          latitude: 22.43563404218315,
-          longitude: 113.991282335704,
+          height: _height,
+          latitude: _lat,
+          longitude: _lng,
           pitch: -1.0720152334460842,
           roll: 0.0003150108934901752
         });

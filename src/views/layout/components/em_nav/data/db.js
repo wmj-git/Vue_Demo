@@ -1,6 +1,6 @@
-export const db_buttonGroup=[
+export const db_buttonGroup = [
   {
-    id:"nav_detectdata",
+    id: "nav_detectdata",
     control_id: "",
     icon: "icon-real-time-monitoring",
     show: false,
@@ -15,54 +15,133 @@ export const db_buttonGroup=[
         "show": false
       },
       {
-        "icon": "el-icon-soil-monitoring",
         "id": "nav_oil_detetive",
-        "control_id": "oil_detetive",
+        "type": "info",
         "title": "土壤监测",
         "show": false,
+        icon: "el-icon-soil-monitoring",
+        trigger: true,
+        control_type: "scene",
+        control_id: "",
+        fn: "scene_data",
+        data_type: "4",
+        layer_name: "oil_detetive",
+        layer_title: "土壤",
+        api_name: "marker",
+        data_url: "/gardens/temhumpoints/queryAll",
+        data_maker_iconUrl: "../../static/image/marker_2.png",
+        params_pointType: "S",
+        maker_titleKey: "pointsName",
+        clusters_color: "#ffc62e"
       },
       {
-        "icon": "el-icon-people-monitoring",
         "id": "nav_population_detective",
-        "control_id": "population_detective",
         "title": "人流量监测",
-        "show": false
+        "show": false,
+        "type": "info",
+        icon: "el-icon-people-monitoring",
+        trigger: true,
+        control_type: "scene",
+        control_id: "",
+        fn: "scene_data",
+        data_type: "4",
+        layer_name: "population_detective",
+        layer_title: "人流量",
+        api_name: "marker",
+        data_url: "/gardens/humantraffic/queryAll",
+        data_maker_iconUrl: "../../static/image/marker_2.png",
+        maker_titleKey: "monitorName",
+        clusters_color: "#666111"
       },
       {
-        "icon": "el-icon-air-monitoring",
         "id": "nav_air_detective",
-        "control_id": "air_detective",
         "title": "空气监测",
-        "show": false
+        "show": false,
+        "type": "info",
+        icon: "el-icon-air-monitoring",
+        trigger: true,
+        control_type: "scene",
+        control_id: "",
+        fn: "scene_data",
+        data_type: "4",
+        layer_name: "air_detective",
+        layer_title: "空气",
+        api_name: "marker",
+        data_url: "/gardens/temhumpoints/queryAll",
+        data_maker_iconUrl: "../../static/image/marker_2.png",
+        params_pointType: "A",
+        maker_titleKey: "pointsName",
+        clusters_color: "#181966"
       },
       {
-        "icon": "el-icon-fire-alarm-monitoring",
         "id": "nav_fire_alert",
-        "control_id": "fire_alert",
         "title": "火灾报警",
-        "show": false
+        "show": false,
+        "type": "info",
+        icon: "el-icon-fire-alarm-monitoring",
+        trigger: true,
+        control_type: "scene",
+        control_id: "",
+        fn: "scene_data",
+        data_type: "4",
+        layer_name: "fire_alert",
+        layer_title: "火灾",
+        api_name: "marker",
+        data_url: "/gardens/firealarm/queryAll",
+        data_maker_iconUrl: "../../static/image/marker_2.png",
+        maker_titleKey: "fireAlarmName",
+        clusters_color: "#66100d"
       }
     ]
   },
-  { id:"nav_greenprotect",
+  {
+    id: "nav_greenprotect",
     control_id: "",
     show: false,
     title: "绿化养护",
     width: 168,
     list: [
       {
-        "icon": "el-icon-road",
         "id": "nav_road_address",
-        "control_id": "road_address",
         "title": "道路地址",
-        "show": false
+        "show": false,
+        type: "info",
+        icon: "el-icon-road",
+        trigger: true,
+        control_type: "scene",
+        control_id: "",
+        fn: "scene_data",
+        data_type: "3",
+        layer_name: "road_address",
+        layer_title: "道路",
+        api_name: "geom",
+        data_url: "/gardens/road/queryAll",
+        geomType: "line",
+        geom_titleKey: "roadName",
+        strokeWidth: 2,
+        strokeColor: "[0, 255, 0, 255]",
+        fillColor: "[0, 100, 255, 255]"
       },
       {
-        "icon": "el-icon-unit-manage",
         "id": "nav_protect_company",
-        "control_id": "protect_company",
         "title": "养护单位",
-        "show": false
+        "show": false,
+        type: "info",
+        icon: "el-icon-unit-manage",
+        trigger: true,
+        control_type: "scene",
+        control_id: "",
+        fn: "scene_data",
+        data_type: "3",
+        layer_name: "protect_company",
+        layer_title: "养护单位",
+        api_name: "geom",
+        data_url: "/gardens/ent/queryAll",
+        geomType: "line",
+        geom_titleKey: "entName",
+        strokeWidth: 2,
+        strokeColor: "[0, 255, 0, 255]",
+        fillColor: "[0, 100, 255, 255]"
       },
       {
         "icon": "el-icon-yh-plan",
@@ -88,9 +167,9 @@ export const db_buttonGroup=[
     ]
   },
   {
-    id:"nav_querystatics",
+    id: "nav_querystatics",
     show: false,
-    control_id:"",
+    control_id: "",
     title: "查询统计",
     width: 220,
     list: [
@@ -146,7 +225,7 @@ export const db_buttonGroup=[
     ]
   },
   {
-    id:"nav_database",
+    id: "nav_database",
     control_id: "",
     show: false,
     title: "基础数据",
@@ -195,6 +274,15 @@ export const db_buttonGroup=[
         "show": false
       },
       {
+        "id": "nav_road_manage",
+        "title": "道路管理",
+        "show": false,
+        type: "info",
+        icon: "el-icon-road",
+        control_type: "",
+        control_id: "road_address",
+      },
+      {
         "icon": "el-icon-jkd-management",
         "id": "nav_monitor_points_manage",
         "control_id": "monitor_points_manage",
@@ -211,7 +299,7 @@ export const db_buttonGroup=[
       {
         "icon": "el-icon-soil-hum",
         "id": "nav_soil_humidity_manage",
-        "control_id":"soil_humidity_manage",
+        "control_id": "soil_humidity_manage",
         "title": "土壤湿度监测点管理",
         "show": false
       },
@@ -246,7 +334,7 @@ export const db_buttonGroup=[
     ]
   },
   {
-    id:"nav_systemmanage",
+    id: "nav_systemmanage",
     control_id: "",
     show: false,
     title: "系统管理",
@@ -293,3 +381,14 @@ export const db_buttonGroup=[
   }
 ];
 
+let _cc = [
+  {"data": [[114.01988811902551, 22.63467040718065], [114.02122061718877, 22.638667901670445], [114.02262925810423, 22.642741538912425], [114.0239617562675, 22.64651060514566]]},
+  {"data":
+      [
+        [114.02594146782434, 22.63086326957132],
+        [114.0295582485532, 22.630672912690855],
+        [114.03085267534037, 22.628959700766657],
+        [114.02715975185933, 22.62781755948386]
+      ]
+  }
+];
