@@ -189,13 +189,6 @@ export const db_buttonGroup = [
       },
       {
         "icon": "el-icon-soil-analysis",
-        "id": "nav_soil_temperature_analysis2",
-        "control_id": "soil_temperature_analysis2",
-        "title": "土壤温度统计分析",
-        "show": false
-      },
-      {
-        "icon": "el-icon-soil-analysis",
         "id": "nav_soil_humidity_analysis",
         "control_id": "soil_humidity_analysis",
         "title": "土壤湿度统计分析",
@@ -372,7 +365,7 @@ export const db_buttonGroup = [
         "icon": "el-icon-maintenance-unit",
         "id": "nav_department_manage",
         "control_id": "department_manage",
-        "title": "组织机构管理",
+        "title": "机构管理",
         "show": false
       },
       {

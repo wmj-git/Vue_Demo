@@ -77,8 +77,17 @@ service.interceptors.response.use(
       }
     },
     error => {
+      let message= "服务器繁忙，连接失败，请稍后重试";
+      if( error.response){
+        let statusCode = error.response.status;
+        message=error.message;
+        if( statusCode=== 400) {
+          message="参数填写错误，请检查后重新提交！"
+        }
+      }
+
       Message({
-        message: error.message,
+        message,
         type: 'error',
         duration: 5 * 1000
       })
