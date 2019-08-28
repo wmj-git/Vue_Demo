@@ -25,30 +25,30 @@
               time1:'',               //对应时间选择器
               time2:'',
               pickerOptions0: {
-                // disabledDate: (time) => {
-                //   if (this.time2 != "") {
-                //     let currentTime = this.time2;
-                //     let threeMonths = currentTime.setMonth(currentTime.getMonth()-1);
-                //     currentTime.setMonth(currentTime.getMonth()+1);
-                //     return time.getTime() > this.time2 || time.getTime() < threeMonths ;
-                //   } else {
-                //     return time.getTime() > Date.now();
-                //   }
-                //
-                // }
+                disabledDate: (time) => {
+                  if (this.time2 != "") {
+                    let currentTime = this.time2;
+                    let threeMonths = currentTime.setMonth(currentTime.getMonth()-1);
+                    currentTime.setMonth(currentTime.getMonth()+1);
+                    return time.getTime() > this.time2 || time.getTime() < threeMonths ;
+                  } else {
+                    return time.getTime() > Date.now();
+                  }
+
+                }
               },
               pickerOptions1: {
-                // disabledDate:(time) => {
-                //   if( this.time1 != ""){
-                //     let currentTime = this.time1;
-                //     let threeMonths = currentTime.setMonth(currentTime.getMonth()+1);
-                //     currentTime.setMonth(currentTime.getMonth()-1)
-                //     return time.getTime() < this.time1 || time.getTime() > threeMonths ;
-                //   }else {
-                //     return time.getTime() > Date.now();
-                //   }
-                //
-                // }
+                disabledDate:(time) => {
+                  if( this.time1 != ""){
+                    let currentTime = this.time1;
+                    let threeMonths = currentTime.setMonth(currentTime.getMonth()+1);
+                    currentTime.setMonth(currentTime.getMonth()-1)
+                    return time.getTime() < this.time1 || time.getTime() > threeMonths ;
+                  }else {
+                    return time.getTime() > Date.now();
+                  }
+
+                }
               }
             }
             }
