@@ -1,6 +1,6 @@
 @import "../../../../styles/index/variable";
 .em-bottom-container {
-  background: lighten($em-highlight-bg2-color-base, 2%);
+  background: nth($background-base,5);
   line-height: 46px;
 
   & /deep/ {

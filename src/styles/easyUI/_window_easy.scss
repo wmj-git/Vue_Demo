@@ -112,7 +112,7 @@
 
 /*bottom-window*/
 .panel.window.#{em-bottom-window}.panel-htop.easyui-fluid {
-  background: lighten($em-highlight-bg2-color-base,2%);
+  background: nth($background-base,5);
   border-left: 6px solid $em-highlight-border-color-base;
   border-right: 6px solid $em-highlight-border-color-base;
   border-top: 1px solid $em-highlight-border-color-base;
