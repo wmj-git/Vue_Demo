@@ -1,6 +1,7 @@
 @import "../../../../styles/index/variable";
 .em-bottom-container {
   background: lighten($em-highlight-bg2-color-base, 2%);
+  line-height: 46px;
 
   & /deep/ {
     .el-input__inner {
@@ -44,7 +45,6 @@
     }
     span.map-title{
       float: right;
-      line-height: 30px;
       margin-right: 5px;
       color: darken($em-text-color-base,20%);
       font-size: 15/$r+rem;
@@ -57,3 +57,13 @@
   }
 }
 
+@media(max-width:1400px){
+  .em-bottom-container {
+    line-height: 0;
+    & /deep/ {
+      span.map-title{
+        line-height: 30px;
+      }
+    }
+  }
+}

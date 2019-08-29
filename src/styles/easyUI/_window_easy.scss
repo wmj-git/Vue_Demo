@@ -28,7 +28,7 @@
 
 /*title*/
 .panel.window.#{em-title-window}.panel-htop {
-  background: url("../../assets/image/title_new.gif") no-repeat center;
+  background: url("../../assets/image/title_new.png") no-repeat center;
   background-size: 100% 100%;
   border: none;
 }
@@ -36,6 +36,7 @@
 .panel.window.#{em-title-window}.panel-htop /deep/ {
   .panel-body {
     background: transparent;
+    overflow: hidden;
   }
 }
 
@@ -118,7 +119,13 @@
   border-bottom: 1px solid $em-highlight-border-color-base;
   border-radius: unset;
   position: fixed;
-  bottom: 0px;
+  bottom: 5px;
+}
+
+@media (max-width:1400px){
+  .panel.window.#{em-bottom-window}.panel-htop.easyui-fluid {
+    height: 40px;
+  }
 }
 
 /*toolList*/

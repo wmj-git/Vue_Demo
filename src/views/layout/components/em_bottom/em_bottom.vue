@@ -107,14 +107,14 @@
         win: {
           id: "bottom",
           title: "",
-          top: "calc(100% - 70px)",
+          top: "",
           left: "calc((100% - 78%)/2)",
           show: true,
           resizable: false,
           width: "78%",
           height:"58px",
-          // class: "em-bottom-window"
-          class: "em-table-window"
+          class: "em-bottom-window"
+          //class: "em-table-window"
         },
         input: '',
         dialogFormVisible: false,
