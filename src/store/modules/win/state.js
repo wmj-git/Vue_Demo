@@ -11,8 +11,8 @@ export default {
       show: false,
       resizable: false,
       maximizable: false,
-      // class: "em-menu-window",
-      class: "em-table-window",
+      class: "em-menu-window",
+      //class: "em-table-window",
       component: "em_menu",
       component_data: {}
     },

@@ -35,7 +35,7 @@
 }
 
 /*按钮结合图标悬停效果*/
-.#{em-btn-icon-hover},.#{em-btn-icon-hover-v1}{
+.#{em-btn-icon-hover},.#{em-btn-icon-hover-v1},.#{em-btn-icon-hover-v2},.#{em-btn-icon-hover-v3}{
   background: linear-gradient(nth($menu-background,1),nth($menu-background,2));
   border-color: $em-highlight-border-color-base;
   -webkit-transition: all 0.2s linear 0s;
@@ -84,10 +84,16 @@
   }
 }
 .#{em-btn-icon-hover}:before{
-  content: "\e624";
+  content: "\e60e";
 }
 .#{em-btn-icon-hover-v1}:before{
   content: "\e654";
+}
+.#{em-btn-icon-hover-v2}:before{
+  content: "\e633";
+}
+.#{em-btn-icon-hover-v3}:before{
+  content: "\e605";
 }
 /*按钮边框滑动效果*/
 .#{em-btn-border-animation} {
