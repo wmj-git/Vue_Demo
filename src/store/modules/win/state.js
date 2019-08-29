@@ -343,7 +343,8 @@ export default {
               alter_show: true,
               add_show: true,
               alter_readonly: true,
-              add_readonly: false
+              add_readonly: false,
+              ratio:24
             },
             {
               name: "中文名",
@@ -355,7 +356,8 @@ export default {
               placeholder: "中文名",
               params: "userCname",
               alter_show: true,
-              add_show: true
+              add_show: true,
+              ratio:24
             },
             {
               name: "英文名",
@@ -367,7 +369,8 @@ export default {
               placeholder: "英文名",
               params: "userEname",
               alter_show: true,
-              add_show: true
+              add_show: true,
+              ratio:24
             },
             {
               name: "状态",
@@ -379,7 +382,8 @@ export default {
               params: "userState",
               optionUrl: "/user/userext/queryUserStateinfo",
               alter_show: true,
-              add_show: true
+              add_show: true,
+              ratio:24
             },
             {
               name: "性别",
@@ -392,7 +396,8 @@ export default {
               params: "userSex",
               optionUrl: "/user/userext/queryUserSexinfo",
               alter_show: true,
-              add_show: true
+              add_show: true,
+              ratio:24
 
             },
             {
@@ -405,7 +410,8 @@ export default {
               placeholder: "电话",
               params: "phoneNumber",
               alter_show: true,
-              add_show: true
+              add_show: true,
+              ratio:24
             },
             {
               name: "年龄",
@@ -417,7 +423,8 @@ export default {
               placeholder: "年龄",
               params: "userAge",
               alter_show: true,
-              add_show: true
+              add_show: true,
+              ratio:24
             },
             {
               name: "组织机构",
@@ -430,7 +437,8 @@ export default {
               params: "organizationId",
               optionUrl: "/user/organization/queryAll",
               alter_show: true,
-              add_show: true
+              add_show: true,
+              ratio:24
             },
             {
               name: "人员类型",
@@ -443,7 +451,8 @@ export default {
               params: "userType",
               optionUrl: "/user/userext/queryUserTypeinfo",
               alter_show: false,
-              add_show: true
+              add_show: true,
+              ratio:24
             }
           ]
         }

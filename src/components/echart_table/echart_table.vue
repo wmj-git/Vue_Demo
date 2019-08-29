@@ -165,17 +165,24 @@
                 this.$nextTick(() => {
 
                     if(_this.$refs.child){
-                        if (_this.$refs.child[0].time1) {
-                            let time1 = _this.$refs.child[0].time1 ? _this.$refs.child[0].time1 : "";    //时间范围查询参数
-                            if (time1) {
-                                obj.startTime = time1.getTime();
-                            }
-                        }
-                        if (_this.$refs.child[0].time2) {
-                            let time2 = _this.$refs.child[0].time2;
-                            if (time2) {
-                                obj.endTime = time2.getTime();
-                            }
+                        // if (_this.$refs.child[0].time1) {
+                        //     let time1 = _this.$refs.child[0].time1 ? _this.$refs.child[0].time1 : "";    //时间范围查询参数
+                        //     if (time1) {
+                        //         obj.startTime = time1.getTime();
+                        //     }
+                        // }
+                        // if (_this.$refs.child[0].time2) {
+                        //     let time2 = _this.$refs.child[0].time2;
+                        //     if (time2) {
+                        //         obj.endTime = time2.getTime();
+                        //     }
+                        // }
+                        if (this.$refs.child[0].value) {
+                          {
+                            let time=this.$refs.child[0].value
+                            obj.startTime = time[0].getTime();
+                            obj.endTime = time[1].getTime();
+                          }
                         }
                     }
                 });
@@ -205,17 +212,24 @@
                 let obj = {};
 
                 if (this.$refs.child) {
-                    if (this.$refs.child[0].time1) {
-                        let time1 = _this.$refs.child[0].time1 ? _this.$refs.child[0].time1 : "";    //时间范围查询参数
-                        if (time1) {
-                            obj.startTime = time1.getTime();
-                        }
-                    }
-                    if (this.$refs.child[0].time2) {
-                        let time2 = _this.$refs.child[0].time2 ? _this.$refs.child[0].time2 : "";
-                        if (time2) {
-                            obj.endTime = time2.getTime();
-                        }
+                    // if (this.$refs.child[0].time1) {
+                    //     let time1 = _this.$refs.child[0].time1 ? _this.$refs.child[0].time1 : "";    //时间范围查询参数
+                    //     if (time1) {
+                    //         obj.startTime = time1.getTime();
+                    //     }
+                    // }
+                    // if (this.$refs.child[0].time2) {
+                    //     let time2 = _this.$refs.child[0].time2 ? _this.$refs.child[0].time2 : "";
+                    //     if (time2) {
+                    //         obj.endTime = time2.getTime();
+                    //     }
+                    // }
+                    if (this.$refs.child[0].value) {
+                      {
+                        let time=this.$refs.child[0].value
+                        obj.startTime = time[0].getTime();
+                        obj.endTime = time[1].getTime();
+                      }
                     }
                 }
 
