@@ -1,15 +1,25 @@
 @import "../../styles/index/variable";
 .em_dialogs /deep/{
-  .el-input__inner {
-    height: 24px;
-    line-height: 24px;
-    border-color: darken($em-border-color-base,20%);
-    &::-webkit-input-placeholder {
-      color: darken($em-text-color-base,40%); //input
-    }
-    &:-ms-input-placeholder {
-      color: darken($em-text-color-base,40%); //input
+  .em_input{
+    width: 100%;
+    .el-input__inner {
+      height: 24px;
+      line-height: 24px;
+      border-color: darken($em-border-color-base,20%);
+      &::-webkit-input-placeholder {
+        color: darken($em-text-color-base,40%); //input
+      }
+      &:-ms-input-placeholder {
+        color: darken($em-text-color-base,40%); //input
+      }
     }
   }
+  .el-select{
+    width: 100%;
+  }
+  .em_textarea{
+    width: 100%;
+  }
+
 }
 
