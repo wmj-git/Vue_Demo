@@ -270,17 +270,24 @@
             let commo_input = this.$refs.child[i].input.trim();
             obj[comlex_input] = commo_input;
           }
-          if (this.$refs.child[i].time1) {
-            let time1 = this.$refs.child[i].time1;    //时间范围查询参数
-            if (time1) {
-              obj.startTime = time1.getTime();
-
-            }
-          }
-          if (this.$refs.child[i].time2) {
-            let time2 = this.$refs.child[i].time2;
-            if (time2) {
-              obj.endTime = time2.getTime();
+          // if (this.$refs.child[i].time1) {
+          //   let time1 = this.$refs.child[i].time1;    //时间范围查询参数
+          //   if (time1) {
+          //     obj.startTime = time1.getTime();
+          //
+          //   }
+          // }
+          // if (this.$refs.child[i].time2) {
+          //   let time2 = this.$refs.child[i].time2;
+          //   if (time2) {
+          //     obj.endTime = time2.getTime();
+          //   }
+          // }
+          if (this.$refs.child[i].value) {
+            {
+              let time=this.$refs.child[i].value
+              obj.startTime = time[0].getTime();
+              obj.endTime = time[1].getTime();
             }
           }
         }
