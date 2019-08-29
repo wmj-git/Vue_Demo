@@ -45,7 +45,7 @@
     line-height: 1.5;
     font: 900 2em 'Concert One', sans-serif;
     text-transform: uppercase;
-    color: darken($em-text-highlight-base, 20%);
+    color: darken($em-text-color-base, 50%);
     animation: glow 10s ease-in-out infinite;
 
     &.modal-title {
@@ -53,7 +53,7 @@
       top: -78px;
       letter-spacing: 8px;/*字符间距*/
       text-align: center;
-      color: $em-text-highlight-base;
+      color: $em-text-color-base;
       font-size: 28px;
     }
   }
