@@ -11,9 +11,9 @@
   .cesium-infoBox{
     background: $em-background-table-base;
     border: 15px solid transparent;
-    -webkit-border-image: url("../../../src/assets/image/table_border.png") 27 27 24 24 round;
+   /* -webkit-border-image: url("../../../src/assets/image/table_border.png") 27 27 24 24 round;
     -moz-border-image: url("../../../src/assets/image/table_border.png") 27 27 24 24 round;
-    border-image: url("../../../src/assets/image/table_border.png") 27 27 24 24 round;
+    border-image: url("../../../src/assets/image/table_border.png") 27 27 24 24 round;*/
     width: 800px;
     resize: both;
   }
