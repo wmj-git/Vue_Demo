@@ -38,6 +38,18 @@
             _this.sceneInit();
           });
         }
+        this.layerInit();
+      },
+      layerInit() {
+        let _this=this;
+        let _Tabs = this.$store.getters["scene/layerData"];
+        console.log("_Tabs");
+        console.log(_Tabs);
+        _Tabs.forEach(function (_tab) {
+          _tab.data.addTab="false";
+          _this[_tab.data.fn](_tab.data);
+        });
+
       },
       sceneInit() {
         cm.init(this.id, process.env.STATIC_URL + "/sceneData/b3dm/tileset.json", {
@@ -287,6 +299,7 @@
                 fn: "addTab",
                 name: _val.layer_name,
                 title: _val.layer_title,
+                data: obj,
                 treeData: _data,
                 treeChildren: "children",
                 treeLabel: _val.maker_titleKey
@@ -390,6 +403,7 @@
                 fn: "addTab",
                 name: _val.layer_name,
                 title: _val.layer_title,
+                data: obj,
                 treeData: _data,
                 treeChildren: "children",
                 treeLabel: _val.geom_titleKey

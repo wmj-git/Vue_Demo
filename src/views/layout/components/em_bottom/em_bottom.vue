@@ -30,7 +30,6 @@
                   <div v-for="(val,i) in item.list"  :key="i">
                        {{val.name}}:{{val.num}}{{val.init}}
                   </div>
-
             </el-collapse-item>
           </el-collapse>
         </el-dialog>
@@ -243,7 +242,6 @@
         setTimeout(() => {
           this.loginOut();
         }, 500)
-
       },
       twoMap() {
         this.$router.push("/home/map");
