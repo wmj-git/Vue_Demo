@@ -36,7 +36,7 @@
         let _this = this;
         let _key = null;
         let _obj = null;
-        let _tg = true;
+
         this.group.forEach(function (obj) {
           if (key === obj.id) {
             _key = obj.control_id;
@@ -48,6 +48,7 @@
           return
         }
 
+        let _tg = true;
         if (_obj.control_type === "scene") {//场景交互
           let tabs = this.$store.getters["scene/layerData"];
           tabs.forEach((tab) => {
@@ -55,7 +56,6 @@
               _tg = false;
             }
           });
-          console.log(_obj);
 
           if (_tg) {
             _obj.control_id = _this.$store.getters["scene/type"];

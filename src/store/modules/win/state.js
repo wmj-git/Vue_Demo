@@ -8,7 +8,7 @@ export default {
       left: 8,
       width: 100,
       height: "80%",
-      show: false,
+      show: true,
       resizable: false,
       maximizable: false,
       class: "em-menu-window",
@@ -5543,7 +5543,7 @@ export default {
       left: "calc((100% - 600px)/2)",
       width: 600,
       height: 132,
-      show: true,
+      show: false,
       class: "em-table-window",
       component: "buttonGroup",
       component_data: {

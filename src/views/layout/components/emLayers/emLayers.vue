@@ -54,6 +54,7 @@
           component: "emTree",
           component_data: {
             id: newTabName + "_tree",
+            layerName:newTabName,
             treeData: _treeData,
             treeChildren: _treeChildren,
             treeLabel: _treeLabel
