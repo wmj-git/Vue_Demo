@@ -59,7 +59,7 @@
                obj={value:val.id,label:val.gridName};
              }
              if(val.id&&val.roadName){
-               obj={value:val.id,gitlabel:val.roadName};
+               obj={value:val.id,label:val.roadName};
              }
              if(val.rankName){
                obj={value:val.rankName,label:val.rankName};
