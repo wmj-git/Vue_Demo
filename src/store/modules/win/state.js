@@ -7,7 +7,7 @@ export default {
       left:"-5px",
       top: "113px",
       width: 150,
-      height: 660,
+      height: 720,
       show: true,
       resizable: false,
       maximizable: false,

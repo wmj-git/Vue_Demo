@@ -2,6 +2,10 @@
 
 .window {
   background-color: transparent;
+  border-color: transparent;
+  & .window-body {
+    border-color: transparent;
+  }
 }
 
 /*nav*/
@@ -78,14 +82,14 @@
 /*menu-window*/
 .panel.window.#{em-menu-window}.panel-htop {
   background: $em-background-table-base;
-  transition: animate 0.3s;
   border: 0;
   box-shadow: 6px 1px 17px 0px darken($em-bg-color-base, 60%);
   transform: rotateY(-204deg);
   -webkit-transform: rotateY(-204deg);
   border: none;
   padding: 0;
-  &:hover{
+
+  &:hover {
     transform: rotateY(0deg);
     -webkit-transform: rotateY(0deg);
   }
@@ -161,7 +165,7 @@
 
 .panel.window.#{em-table-window}.panel-htop {
   background: $em-background-table-base;
-  border: 5px solid transparent;
+  padding:8px;
   /*  -webkit-border-image: url("../../../src/assets/image/table_border.png");
     -moz-border-image: url("../../../src/assets/image/table_border.png");
     border-image: url("../../../src/assets/image/table_border.png");*/
@@ -171,7 +175,7 @@
   border-image-outset: 15px;*/
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
-  border-radius: 10px;
+  border-radius: 0;
   overflow: visible; //table-dialog遮罩
 
 }
@@ -204,7 +208,6 @@
 
 .panel.window.em-scene-window.panel-htop {
   background: $em-background-table-base;
-  transition: animate 0.3s;
   border: 0;
   box-shadow: -6px 1px 17px 0px darken($em-bg-color-base, 60%);
   transform: rotateY(-161deg);
