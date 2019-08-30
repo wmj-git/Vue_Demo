@@ -3988,11 +3988,11 @@ export default {
             },
             {
               name: "纬度",
-              prop: "gpsLatitude",
+              prop: "latitude",
               width: "200",
               type: "em_input",
               placeholder: "纬度",
-              params: "gpsLatitude",
+              params: "latitude",
               add_show: true,
               alter_show: true,
               ratio:24
