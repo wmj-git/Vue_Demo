@@ -149,7 +149,9 @@
           roll: 0.0003150108934901752
         });
       },
-
+      removeLayer(obj){
+        cm.dataSourceClear(obj.layer_name);
+      },
       scene_data(obj) {
 
         switch (obj.data_type) {
@@ -167,6 +169,11 @@
               this.geomDataFn(obj);
             } else {
               cm.dataSourceClear(obj.layer_name);
+              this.bus.$emit("scene_data_emTabs", {
+                fn: "removeTabFn",
+                name: obj.layer_name,
+                title: obj.layer_title
+              });
             }
             break;
           case "4"://marker显示
@@ -174,6 +181,11 @@
               this.markerDataFn(obj);
             } else {
               cm.dataSourceClear(obj.layer_name);
+              this.bus.$emit("scene_data_emTabs", {
+                fn: "removeTabFn",
+                name: obj.layer_name,
+                title: obj.layer_title
+              });
             }
             break;
         }
@@ -221,10 +233,12 @@
       },
       markerDataFn(obj) { //聚合数据展示
         let _val = {
+          addTab: "true",
           api_name: "",
           data_url: "",
           params: {},
           layer_name: "",
+          layer_title: "",
           data_maker_iconUrl: "",
           maker_titleKey: "",
           clusters_color: "",
@@ -267,15 +281,28 @@
               iconUrlKey: "icon",
               clusters_color: _val.clusters_color
             }, window[this.id].viewer);
+
+            if (_val.addTab === "true") {
+              this.bus.$emit("scene_data_emTabs", {
+                fn: "addTab",
+                name: _val.layer_name,
+                title: _val.layer_title,
+                treeData: _data,
+                treeChildren: "children",
+                treeLabel: _val.maker_titleKey
+              });
+            }
           });
 
         }
       },
       geomDataFn(obj) { //数据矢量展示
         let _val = {
+          addTab: "true",
           data_url: "",
           params: {},
           layer_name: "",
+          layer_title: "",
           api_name: "",
           geomType: "",//几何类型
           geom_style: "1",//几何样式
@@ -309,11 +336,15 @@
             let _data = [];
             if (response.statusCode === 200) {
               response.data.forEach(function (_obj) {
+                let _coordinates = [];
 
-                let _coordinates = null;
-                if (_val.geomType === "line") {
-                  _coordinates = "{\"data\":[[" + _obj.gpsLongitude + "," + _obj.gpsLatitude + "],[114.00686770840161,22.644074037075697],[114.00888549133455,22.64434053670835],[114.00663928014505,22.646929390282693]]}";
-                  _coordinates = JSON.parse(_coordinates);
+                if(_obj.coordinates){
+                  _coordinates = JSON.parse(_obj.coordinates);
+                  console.log(_coordinates);
+                }
+
+                if (_coordinates && _coordinates.data && _val.geomType === "line") {
+
                   _obj.coordinates = _coordinates.data;
                   let _data = [];
                   _obj.coordinates.forEach(function (_val) {
@@ -322,10 +353,8 @@
                     });
                   });
                   _obj.coordinates = _data;
-
-                } else if (_val.geomType === "polygon") {
-                  _coordinates = "{\"data\":[[[" + _obj.gpsLongitude + "," + _obj.gpsLatitude + "],[114.00686770840161,22.644074037075697],[114.00888549133455,22.64434053670835],[114.00663928014505,22.646929390282693]]]}";
-                  _coordinates = JSON.parse(_coordinates);
+                  console.log(_obj);
+                } else if (_coordinates && _coordinates.data && _val.geomType === "polygon") {
                   _obj.coordinates = _coordinates.data[0];
                   let _data = [];
                   _obj.coordinates.forEach(function (_val) {
@@ -334,12 +363,10 @@
                     });
                   });
                   _obj.coordinates = _data;
+                }else{
+                  _obj.coordinates = [];
                 }
 
-                /* if(_obj.coordinates){
-                  let _coordinates = JSON.parse(_obj.coordinates);
-                  _obj.coordinates=_coordinates.data;
-                }*/
               });
               _data = response.data;
               console.log(_val);
@@ -357,6 +384,17 @@
                 clusters_enabled: _val.clusters_enabled,//聚合显示
                 clusters_color: _val.clusters_color//聚合颜色
               }, window[this.id].viewer);
+
+            if (_val.addTab === "true") {
+              this.bus.$emit("scene_data_emTabs", {
+                fn: "addTab",
+                name: _val.layer_name,
+                title: _val.layer_title,
+                treeData: _data,
+                treeChildren: "children",
+                treeLabel: _val.geom_titleKey
+              });
+            }
           });
         }
       }

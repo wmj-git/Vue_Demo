@@ -13,16 +13,19 @@ function formatDegree(pValue) {
 
 export function createQeomStyle(_feature, _style) {
   let Style = null;
-  let _color=JSON.parse(_style.fillColor);
+  let _fillColor = JSON.parse(_style.fillColor);
+  let _strokeColor = JSON.parse(_style.strokeColor);
+  _fillColor[3] = _fillColor[3] / 255;
+  _strokeColor[3] = _strokeColor[3] / 255;
   switch (_style.type) {
     case "1":
       Style = new ol.style.Style({
         stroke: new ol.style.Stroke({
           width: _style.strokeWidth,
-          color:  JSON.parse(_style.strokeColor)
+          color: _strokeColor
         }),
         fill: new ol.style.Fill({
-          color: JSON.parse(_style.fillColor),
+          color: _fillColor,
           // color: 'rgba('+_color[0]+', '+_color[1]+', '+_color[2]+', '+_color[3]+')'
         }),
         text: new ol.style.Text({
@@ -300,7 +303,7 @@ export function layerFN(_features, _Key, _geomStyle) {
       features[i].setStyle(createQeomStyle(_features[i], _geomKey));
     }
 
-    features[i].setId(_featureKey.geomType+"_"+_featureKey.type + "_" + _features[i].id);
+    features[i].setId(_featureKey.geomType + "_" + _featureKey.type + "_" + _features[i].id);
   }
 
 
@@ -358,7 +361,7 @@ export function clustersFn(_features, _Key, _clusterColor, _distance) {//_featur
       geometry: new ol.geom.Point(coordinates),
       featureData: _features[i]
     });
-    features[i].setId("marker_"+_featureKey.type + "_" + _features[i].id);
+    features[i].setId("marker_" + _featureKey.type + "_" + _features[i].id);
   }
 
   let clusterSource = new ol.source.Cluster({
@@ -445,8 +448,8 @@ export function clustersFn(_features, _Key, _clusterColor, _distance) {//_featur
 }
 
 function treeContent(_OBJ) {//消防栓信息显示模板
- /* console.log("OBJ");
-  console.log(_OBJ);*/
+  /* console.log("OBJ");
+   console.log(_OBJ);*/
   let obj = _OBJ.content;
   let _content = '<ul type="none" style="margin: 0px;padding:0px;font-size:22px;" >' +
     '<li>编号：' + (obj.id || "无") + '<\/li>' +
@@ -860,7 +863,6 @@ emMap.prototype.InfoClickFn = function (evt) {
   }
 
 
-
   let feature = evt.map.forEachFeatureAtPixel(evt.pixel,
     function (feature) {
       return feature;
@@ -873,7 +875,7 @@ emMap.prototype.InfoClickFn = function (evt) {
       let _type = _feature.getId().split("_");
 
       vueBus.$emit("set_drawer", {
-        fn:"showFN",
+        fn: "showFN",
         type: _type[0],
         content: _feature.get("featureData")
       });
@@ -884,7 +886,7 @@ emMap.prototype.InfoClickFn = function (evt) {
       let _type = feature.getId().split("_");
 
       vueBus.$emit("set_drawer", {
-        fn:"showFN",
+        fn: "showFN",
         type: _type[0],
         content: feature.get("featureData"),
       });
@@ -915,7 +917,7 @@ emMap.prototype.InfoPointermoveFn = function (evt) {
 
   let pixel = evt.map.getEventPixel(evt.originalEvent);
   let hit = evt.map.hasFeatureAtPixel(pixel);
-  $("#"+_mapNmame).css("cursor", hit ? 'pointer' : '');
+  $("#" + _mapNmame).css("cursor", hit ? 'pointer' : '');
 
 
   let feature = evt.map.forEachFeatureAtPixel(evt.pixel, function (feature) {

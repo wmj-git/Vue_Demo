@@ -121,7 +121,7 @@ export const db_buttonGroup = [
         geomType: "line",
         geom_titleKey: "roadName",
         strokeWidth: 2,
-        strokeColor: "[0, 255, 0, 255]",
+        strokeColor: "[0, 100, 255, 255]",
         fillColor: "[0, 100, 255, 255]"
       },
       {
@@ -143,8 +143,8 @@ export const db_buttonGroup = [
         geomType: "polygon",
         geom_titleKey: "districtName",
         strokeWidth: 4,
-        strokeColor: "[125, 255, 0, 0.2]",
-        fillColor: "[60, 100, 12, 0.5]"
+        strokeColor: "[125, 255, 0, 180]",
+        fillColor: "[60, 100, 12, 150]"
       },
       {
         "id": "nav_protect_company",
@@ -182,11 +182,26 @@ export const db_buttonGroup = [
         "show": false
       },
       {
-        "icon": "el-icon-tree-distribution",
         "id": "nav_tree_distribution",
-        "control_id": "tree_distribution",
         "title": "特殊树木分布",
-        "show": false
+        "show": false,
+        "type": "info",
+        icon: "el-icon-tree-distribution",
+        trigger: true,
+        control_type: "scene",
+        control_id: "",
+        fn: "scene_data",
+        data_type: "4",
+        layer_name: "tree_distribution",
+        layer_title: "树木分布",
+        api_name: "marker",
+        data_url: "/gardens/tree/queryVicinityTree",
+        data_maker_iconUrl: "../../static/image/marker_1.png",
+        params_lo: 114.03188276054428,
+        params_la: 22.619840297782094,
+        params_distance: 10000,
+        maker_titleKey: "treeName",
+        clusters_color: "#46ff71"
       }
     ]
   },

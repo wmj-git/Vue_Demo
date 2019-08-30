@@ -216,7 +216,7 @@
               });
             }
             break;
-          case "4"://采集的树数据
+          case "4"://marker显示
             if (obj.trigger) {
               this.markerDataFn(obj);
             } else {
@@ -275,6 +275,7 @@
       },
       markerDataFn(obj) {
         let _val = {
+          addTab: "true",
           api_name: "",
           data_url: "",
           params: {},
@@ -325,14 +326,16 @@
             });
 
 
-            this.bus.$emit("scene_data_emTabs", {
-              fn: "addTab",
-              name: _val.layer_name,
-              title: _val.layer_title,
-              treeData: _data,
-              treeChildren: "children",
-              treeLabel: _val.maker_titleKey
-            });
+            if (_val.addTab==="true") {
+              this.bus.$emit("scene_data_emTabs", {
+                fn: "addTab",
+                name: _val.layer_name,
+                title: _val.layer_title,
+                treeData: _data,
+                treeChildren: "children",
+                treeLabel: _val.maker_titleKey
+              });
+            }
           });
 
         }
@@ -340,6 +343,7 @@
       },
       geomDataFn(obj) { //矢量数据展示
         let _val = {
+          addTab: "true",
           data_url: "",
           params: {},
           layer_name: "",
@@ -376,18 +380,6 @@
             let _data = [];
             if (response.statusCode === 200) {
               response.data.forEach(function (_obj) {
-                /*   let _coordinates = null;
-                   if (_val.geomType === "line") {
-                     _coordinates = "{\"data\":[[" + _obj.gpsLongitude + "," + _obj.gpsLatitude + "],[114.00686770840161,22.644074037075697],[114.00888549133455,22.64434053670835],[114.00663928014505,22.646929390282693]]}";
-                     _coordinates = JSON.parse(_coordinates);
-                     _obj.coordinates = _coordinates.data;
-                   } else if (_val.geomType === "polygon") {
-                     _coordinates = "{\"data\":[[[" + _obj.gpsLongitude + "," + _obj.gpsLatitude + "],[114.00686770840161,22.644074037075697],[114.00888549133455,22.64434053670835],[114.00663928014505,22.646929390282693]]]}";
-                     _coordinates = JSON.parse(_coordinates);
-                     _obj.coordinates = _coordinates.data;
-                   }*/
-
-
                 if (_obj.coordinates && (_val.geomType === "line" || _val.geomType === "polygon")) {
                   let _coordinates = JSON.parse(_obj.coordinates);
                   _obj.coordinates = _coordinates.data;
@@ -408,14 +400,16 @@
             this.addLayer({
               layer: _layer.layer
             });
-            this.bus.$emit("scene_data_emTabs", {
-              fn: "addTab",
-              name: _val.layer_name,
-              title: _val.layer_title,
-              treeData: _data,
-              treeChildren: "children",
-              treeLabel: _val.geom_titleKey
-            });
+            if (_val.addTab==="true") {
+              this.bus.$emit("scene_data_emTabs", {
+                fn: "addTab",
+                name: _val.layer_name,
+                title: _val.layer_title,
+                treeData: _data,
+                treeChildren: "children",
+                treeLabel: _val.geom_titleKey
+              });
+            }
           });
         }
 

@@ -89,27 +89,50 @@
       },
       handleNodeClick(data) {
         console.log(data);
+        let _this = this;
+        let control_id = this.$store.getters["scene/type"];
 
         let _lng = null;
         let _lat = null;
         if (data.geometry === "Point") {
           _lng = data.gpsLongitude;
           _lat = data.gpsLatitude;
+        } else if ((data.geometry === "LineString" || data.geometry === "Polygon") && !(data.coordinates[0] instanceof Array)) {
+          let _coordinates = data.coordinates;
+          _lng = _coordinates[0];
+          _lat = _coordinates[1];
         } else if (data.geometry === "LineString") {
           let _coordinates = data.coordinates;
-          let _coordinate=_coordinates[0];
+          let _coordinate = _coordinates[0];
           _lng = _coordinate[0];
           _lat = _coordinate[1];
         } else if (data.geometry === "Polygon") {
           let _coordinates = data.coordinates;
-          let _coordinate=_coordinates[0][0];
+          let _coordinate = _coordinates[0][0];
           _lng = _coordinate[0];
           _lat = _coordinate[1];
         } else {
+
+          // 场景加数据图层
+          this.bus.$emit(control_id, {
+            trigger: true,
+            fn: "scene_data",
+            data_type: "3",
+            layer_name: _this.data.layerName + "_" + data.id,
+            layer_title: data.entName,
+            api_name: "geom",
+            data_url: "/gardens/road/queryByEndId",
+            params_entId: data.id,
+            geomType: "line",
+            geom_titleKey: "roadName",
+            strokeWidth: 4,
+            strokeColor: "[125, 0, 0, 255]",
+            fillColor: "[160, 0, 12, 255]"
+          });
+
           return
         }
-        // 移除场景图层
-        let control_id = this.$store.getters["scene/type"];
+        // 场景定位
         this.bus.$emit(control_id, {
           fn: "toScene",
           lng: _lng,
