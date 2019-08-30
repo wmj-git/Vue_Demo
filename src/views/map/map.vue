@@ -40,6 +40,17 @@
             _this.mapInit();
           });
         }
+        this.layerInit();
+      },
+      layerInit() {
+        let _this=this;
+        let _Tabs = this.$store.getters["scene/layerData"];
+        console.log("_Tabs");
+        console.log(_Tabs);
+        _Tabs.forEach(function (_tab) {
+          _tab.data.addTab="false";
+          _this[_tab.data.fn](_tab.data);
+        });
       },
       mapInit() {
         window[this.id].init([114.031047, 22.663679], [
@@ -313,8 +324,6 @@
                 _obj.icon = _val.data_maker_iconUrl;
               });
               _data = response.data;
-              console.log(_val);
-              console.log(_data);
             }
             let _layer = mp.clustersFn(_data, {
               type: _val.layer_name,
@@ -326,11 +335,12 @@
             });
 
 
-            if (_val.addTab==="true") {
+            if (_val.addTab === "true") {
               this.bus.$emit("scene_data_emTabs", {
                 fn: "addTab",
                 name: _val.layer_name,
                 title: _val.layer_title,
+                data: obj,
                 treeData: _data,
                 treeChildren: "children",
                 treeLabel: _val.maker_titleKey
@@ -400,11 +410,12 @@
             this.addLayer({
               layer: _layer.layer
             });
-            if (_val.addTab==="true") {
+            if (_val.addTab === "true") {
               this.bus.$emit("scene_data_emTabs", {
                 fn: "addTab",
                 name: _val.layer_name,
                 title: _val.layer_title,
+                data: obj,
                 treeData: _data,
                 treeChildren: "children",
                 treeLabel: _val.geom_titleKey
@@ -475,6 +486,7 @@
       ]);//设置场景工具面板
       //初始化二维场景
       mp.openScene(this.id);
+
     },
     mounted() {
       this.init();
