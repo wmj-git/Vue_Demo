@@ -77,9 +77,18 @@
 
 /*menu-window*/
 .panel.window.#{em-menu-window}.panel-htop {
-  background: transparent;
+  background: $em-background-table-base;
+  transition: animate 0.3s;
+  border: 0;
+  box-shadow: 6px 1px 17px 0px darken($em-bg-color-base, 60%);
+  transform: rotateY(-204deg);
+  -webkit-transform: rotateY(-204deg);
   border: none;
   padding: 0;
+  &:hover{
+    transform: rotateY(0deg);
+    -webkit-transform: rotateY(0deg);
+  }
 }
 
 .panel.window.#{em-menu-window}.panel-htop /deep/ {
@@ -197,7 +206,7 @@
   background: $em-background-table-base;
   transition: animate 0.3s;
   border: 0;
-  box-shadow: -9px 1px 17px 0px darken($em-bg-color-base, 60%);
+  box-shadow: -6px 1px 17px 0px darken($em-bg-color-base, 60%);
   transform: rotateY(-161deg);
   -webkit-transform: rotateY(-161deg);
 
@@ -216,10 +225,10 @@
 
 @media(max-width: 1400px) {
   .panel.window.em-scene-window.panel-htop {
-    width: 190px !important;
+    width: 150px !important;
     height: 400px;
-    left: calc(100% - 198px) !important;
-    top: 127px;
+    left: calc(100% - 158px) !important;
+    top: 127px !important;
     transform: rotateY(-154deg);
     -webkit-transform: rotateY(-154deg);
 
