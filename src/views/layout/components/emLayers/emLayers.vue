@@ -51,10 +51,11 @@
         _Tabs.push({
           title: newTabTitle,
           name: newTabName,
+          data: _obj.data,
           component: "emTree",
           component_data: {
             id: newTabName + "_tree",
-            layerName:newTabName,
+            layerName: newTabName,
             treeData: _treeData,
             treeChildren: _treeChildren,
             treeLabel: _treeLabel

@@ -5529,7 +5529,7 @@ export default {
       width: 280,
       height: 680,
       show: true,
-      class: "",
+      class: "em-table-window",
       component: "emLayers",
       component_data: {
         emTabs_id:"scene_data_emTabs",

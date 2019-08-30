@@ -195,11 +195,9 @@ export const db_buttonGroup = [
         layer_name: "tree_distribution",
         layer_title: "树木分布",
         api_name: "marker",
-        data_url: "/gardens/tree/queryVicinityTree",
+        data_url: "/gardens/tree/queryAllByPage",
         data_maker_iconUrl: "../../static/image/marker_1.png",
-        params_lo: 114.03188276054428,
-        params_la: 22.619840297782094,
-        params_distance: 10000,
+        params_pageNum: -1,
         maker_titleKey: "treeName",
         clusters_color: "#46ff71"
       }
