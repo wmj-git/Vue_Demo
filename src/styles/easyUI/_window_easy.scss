@@ -13,7 +13,7 @@
   background-size: 100%;
   position: absolute;
   padding: 3/$r+rem 20/$r+rem 0 20/$r+rem;
-  bottom: -16px;
+  bottom: 32px;
 }
 
 
@@ -133,9 +133,9 @@
   background: transparent;
   border: none;
   position: fixed;
-  bottom: 60px;
+  top: 44px;
+  right: 20px;
 }
-
 
 /*table-window*/
 .window-shadow {
@@ -151,13 +151,13 @@
 .panel.window.#{em-table-window}.panel-htop {
   background: $em-background-table-base;
   border: 5px solid transparent;
-  -webkit-border-image: url("../../../src/assets/image/table_border.png");
+/*  -webkit-border-image: url("../../../src/assets/image/table_border.png");
   -moz-border-image: url("../../../src/assets/image/table_border.png");
-  border-image: url("../../../src/assets/image/table_border.png");
+  border-image: url("../../../src/assets/image/table_border.png");*/
   width: 800px;
   resize: both;
-  border-image-slice: 5 5 5 5 fill;
-  border-image-outset: 15px;
+  /*border-image-slice: 5 5 5 5 fill;
+  border-image-outset: 15px;*/
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   border-radius: 10px;
@@ -195,6 +195,13 @@
   z-index: 1800 !important;
   border: 0;
   box-shadow: -9px 1px 17px 0px darken($em-bg-color-base,60%);
+  transform: rotateY(-166deg);
+  -webkit-transform: rotateY(-166deg);
+  &:hover{
+    transform: rotateY(0deg);
+    -webkit-transform: rotateY(0deg);
+  }
+
 }
 /*.panel.window.em_detail_window.panel-htop.addWidth{
   width: 46% ;    !* 设置为侧边栏宽度的2倍，才能完全露出 *!

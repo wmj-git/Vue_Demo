@@ -2,15 +2,14 @@ function addLine(Entities, featureKey, viewer) {
 
   let _dataSource = new Cesium.CustomDataSource(featureKey.layer_name);
 
-
   for (let i = 0; i < Entities.length; i++) {
     let _data = Entities[i];
-    let _strokeColor =JSON.parse(featureKey.strokeColor) ;
-    let _fillColor =JSON.parse(featureKey.fillColor) ;
+    let _strokeColor = JSON.parse(featureKey.strokeColor);
+    let _fillColor = JSON.parse(featureKey.fillColor);
 
     let _entity = _dataSource.entities.add({
       name: 'line' + _data.id,
-      id: 'line_' +featureKey.layer_name+"_"+ _data.id,
+      id: 'line_' + featureKey.layer_name + "_" + _data.id,
       featureData: _data,
       polyline: {
         positions: Cesium.Cartesian3.fromDegreesArray(_data.coordinates),

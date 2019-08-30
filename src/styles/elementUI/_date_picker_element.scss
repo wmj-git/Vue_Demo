@@ -59,7 +59,6 @@
 .el-picker-panel {
   & .el-picker-panel__sidebar {
     background-color: nth($background-base, 2);
-    border-color: darken($em-border-color-base, 80%);
 
     & .el-picker-panel__shortcut {
       color: darken($em-text-color-base,20%);
