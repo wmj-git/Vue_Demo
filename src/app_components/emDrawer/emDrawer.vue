@@ -7,7 +7,7 @@
       :modal="modal"
       :append-to-body="body"
       size="20%">
-        123
+      123456
     </el-drawer>
   </div>
 </template>
@@ -46,6 +46,52 @@
       showFN(_obj) {
         console.log(_obj);
         this.show = true;
+
+        let _content = _obj.content;
+
+
+        let _roadId = "";
+        let _districtId = "";
+        let _layerTitle = "";
+        if (_obj.type === "road") {
+          _roadId = _content.id;
+          _layerTitle = _content.roadName;
+        } else if (_obj.type === "district") {
+          _districtId = _content.id;
+          _layerTitle = _content.districtName;
+        } else {
+          return;
+        }
+
+
+        let _tg = true;
+        let tabs = this.$store.getters["scene/layerData"];
+        tabs.forEach((tab) => {
+          if (tab.name === _obj.type+"Tree_"+_content.id) {
+            _tg = false;
+          }
+        });
+
+        if (_tg) {
+          let control_id = this.$store.getters["scene/type"];
+          // 场景加数据图层
+          this.bus.$emit(control_id, {
+            trigger: true,
+            fn: "scene_data",
+            data_type: "4",
+            layer_name: _obj.type+"Tree_"+_content.id,
+            layer_title: _layerTitle+"(树)",
+            api_name: "marker",
+            data_url: "/gardens/tree/queryAllByPage",
+            data_maker_iconUrl: "../../static/image/marker_1.png",
+            params_pageNum: -1,
+            params_roadId: _roadId,
+            params_districtId: _districtId,
+            maker_titleKey: "treeName",
+            clusters_color: "#46ff71"
+          });
+        }
+
       },
       fn(_obj) {
 

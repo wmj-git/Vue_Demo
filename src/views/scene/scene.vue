@@ -27,6 +27,7 @@
         let _element = document.getElementById('Cesium_js');
         if (_element) {
           _this.sceneInit();
+          _this.layerInit();
         } else {
           //动态加载依赖库
           let _url = process.env.STATIC_URL;
@@ -36,9 +37,10 @@
           loadJs('Cesium_js', _url + "/sceneStatic/Cesium/Cesium.js", function () {
             console.log('js');
             _this.sceneInit();
+            _this.layerInit();
           });
         }
-        this.layerInit();
+
       },
       layerInit() {
         let _this=this;

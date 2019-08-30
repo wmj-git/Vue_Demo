@@ -31,8 +31,6 @@
     props: ["data"],
     methods: {
       handleSelect(key, keyPath) {
-        console.log(key);
-        console.log(keyPath);
         let _this = this;
         let _key = null;
         let _obj = null;
@@ -59,6 +57,7 @@
 
           if (_tg) {
             _obj.control_id = _this.$store.getters["scene/type"];
+            _obj.addTab="true";
             _this.bus.$emit(_obj.control_id, _obj);
           }
 

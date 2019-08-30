@@ -111,7 +111,7 @@
           let _coordinate = _coordinates[0][0];
           _lng = _coordinate[0];
           _lat = _coordinate[1];
-        } else {
+        } else if(!(data.geometry)) {//单位关联道路
 
           // 场景加数据图层
           this.bus.$emit(control_id, {
@@ -129,7 +129,8 @@
             strokeColor: "[125, 0, 0, 255]",
             fillColor: "[160, 0, 12, 255]"
           });
-
+          return
+        }else {
           return
         }
         // 场景定位

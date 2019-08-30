@@ -321,6 +321,15 @@ export function layerFN(_features, _Key, _geomStyle) {
   }
 }
 
+//移除图层
+export function ClearLayerFN(_map, _layers) {
+  console.log(Array.isArray(_layers));
+  if (Array.isArray(_layers)) {
+    _layers.forEach(function (_layer) {
+      _map.removeLayer(_layer);
+    });
+  }
+}
 
 //有聚合的数据图层
 export function clustersFn(_features, _Key, _clusterColor, _distance) {//_features:数据, _Key:属性配置, _clusterImgUrl:聚合图标
@@ -504,6 +513,20 @@ export function emMap(_name) {
   this.Info = null;
   this.InfoOverlay = null;
 
+  // 消防栓
+  this.xfsMarker = null;
+  this.xfsExptionObj = null;
+  this.xfsExptionOverlays = [];
+
+  // 火警
+  this.fireObj = null;
+  this.fireOverlays = [];
+
+  // 人员
+  this.personMarker = null;
+  //人员轨迹
+  this.personLine = null;
+
   // 坐标
   this.coordinate_container = null;
   this.coordinate_content = null;
@@ -638,6 +661,194 @@ emMap.prototype.viewFn = function (_num, _center) {
 
 };
 
+emMap.prototype.xfsMarkerFn = function (data) {
+  let _this = this;
+  let _data = data;
+  //创建图片对象
+  var icon = "images/hybrant_mark_ok.png";
+  var icon1 = "images/hybrant_mark_success1.png";
+  var icon2 = "images/hybrant_mark_success2.gif";
+  var icon3 = "images/hybrant_mark_success3.png";
+  var icon4 = "images/hybrant_mark_success2.png";
+
+
+  if (this.xfsMarker) {
+    this.map.removeLayer(this.xfsMarker.layer);
+    this.clearXfsExptionOverlayFn();
+  }
+
+  for (var i = 0; i < _data.length; i++) {
+
+    _data[i].lng = _data[i].googleLang;
+    _data[i].lat = _data[i].googleLat;
+
+    if (_data[i].hydrantAvailableState === 28) {
+      _data[i].iconUrl = icon;
+
+    } else if (_data[i].hydrantAvailableState === 29) {
+      _data[i].iconUrl = icon1;
+
+    } else if (_data[i].hydrantAvailableState === 31) {
+      _data[i].iconUrl = icon3;
+
+    } else {
+      if (_data[i].id <= 465) {
+        _data[i].iconUrl = icon2;
+
+        $("body").append(`<img id="xfs${data[i].id}" src="images/hybrant_mark_success2.gif" style="width:28px;height:34px;"/>`);
+        let _popup = new ol.Overlay({
+          id: "xfs_" + _data[i].id,
+          position: [_data[i].lng, _data[i].lat],
+          element: document.getElementById('xfs' + data[i].id),
+          className: "xfs-overlay"
+        });
+        _popup.set("overlayData", _data[i]);
+        this.xfsExptionOverlays.push(_popup);
+        this.map.addOverlay(_popup);
+        $(_popup.getElement()).on('click', function () {
+          let _data = _popup.get("overlayData");
+          // _this.xfsExptionObj = _data;
+          _this.infoFn({
+            type: "xfs",
+            content: _data,
+            lng: _data.googleLang,
+            lat: _data.googleLat
+          });
+        }).on("mouseover", function () {
+          $(this).css("cursor", 'pointer');
+        });
+
+      } else {
+        _data[i].iconUrl = icon4;
+      }
+    }
+  }
+
+  this.xfsMarker = clustersFn(_data, {
+    type: "xfs",
+    titleKey: "id",
+    iconUrlKey: "iconUrl"
+  }, "images/cluster0.png", 50);
+  this.map.addLayer(this.xfsMarker.layer);
+};
+// 添加人员标注
+emMap.prototype.personMarkerFn = function (data) {//添加覆盖物
+  let _data = data;
+  console.log(_data);
+
+  //创建图片对象
+  let _icon = "images/men.png";
+
+  for (let i = 0; i < _data.length; i++) {
+    let _coordinate = _data[i].axis;
+    _data[i].id = _data[i].modelName;
+    _data[i].lng = _coordinate[0];
+    _data[i].lat = _coordinate[1];
+    _data[i].iconUrl = _icon;
+
+  }
+  if (this.personMarker) {
+    this.map.removeLayer(this.personMarker.layer);
+  }
+  this.personMarker = clustersFn(_data, {
+    type: "person",
+    titleKey: "name",
+    iconUrlKey: "iconUrl"
+  }, "images/men.png", 0);
+  this.map.addLayer(this.personMarker.layer);
+
+};
+//添加人员轨迹
+emMap.prototype.personLineFn = function (data) {//添加覆盖物
+  let _data = data;
+  console.log(_data);
+  if (data.length <= 0) {
+    return
+  }
+  let _feature = {
+    id: "",
+    coordinates: []
+  };
+  let _coordinates = [];
+  for (let i = 0; i < _data.length; i++) {
+    _coordinates.push([_data[i].googleLang, _data[i].googleLat]);
+  }
+  _feature.id = _data[0].time;
+  _feature.accountNo = _data[0].accountNo;
+  _feature.coordinates = _coordinates;
+
+  if (this.personLine) {
+    this.map.removeLayer(this.personLine.layer);
+  }
+  this.personLine = layerFN([_feature], {
+    type: "line",
+    geomType: "LineString"
+  }, {
+    titleKey: "accountNo",//标题
+    strokeWidth: 2,
+    strokeColor: [0, 255, 0, 1.0],
+    fillColor: [0, 0, 255, 1.0]
+  });
+  this.map.addLayer(this.personLine.layer);
+};
+//范围查询功能
+emMap.prototype.scopeFn = function (data) {//添加覆盖物
+
+  let _data = data;
+  console.log(_data);
+  if (data.length <= 0) {
+    return
+  }
+  let _features = [];
+  let _feature = {
+    id: "1",
+    lng: 0,
+    lat: 0,
+    radius: 0
+  };
+
+  _data.forEach(function (_obj) {
+    for (let _k in _feature) {
+      _feature[_k] = _obj[_k];
+    }
+    _features.push(_feature);
+  });
+
+  if (this.scope) {
+    this.map.removeLayer(this.scope.layer);
+
+  }
+  this.scope = layerFN(_features, {
+    type: "scope",
+    geomType: "Circle"
+  }, {
+    titleKey: "name",//标题
+    strokeWidth: 2,
+    strokeColor: [0, 255, 0, 1.0],
+    fillColor: [0, 0, 255, 0.4]
+  });
+  this.map.addLayer(this.scope.layer);
+};
+
+function scopeClick(evt) {
+  let coordinate = evt.coordinate;
+  console.log(coordinate);
+  appData.map.scopeFn([{
+    id: "1",
+    lng: coordinate[0],
+    lat: coordinate[1],
+    radius: 100
+  }]);
+  appData.map.map.un('click', scopeClick);
+}
+
+emMap.prototype.scopeToolFn = function () {//添加覆盖物
+  let _this = this;
+  if (_this.scope) {
+    _this.map.removeLayer(_this.scope.layer);
+  }
+  _this.map.on('click', scopeClick);
+};
 
 // display popup on click
 emMap.prototype.InfoClickFn = function (evt) {
@@ -658,25 +869,31 @@ emMap.prototype.InfoClickFn = function (evt) {
     });
   if (feature) {
     console.log(feature);
-    let _type = null;
-    let _featureData=null;
+
     if (feature.get('features') && feature.get('features').length === 1) {
       let _feature = feature.get('features')[0];
-       _type = _feature.getId().split("_");
-      _featureData=_feature.get("featureData");
+      let _type = _feature.getId().split("_");
+
+      vueBus.$emit("set_drawer", {
+        fn: "showFN",
+        type: _type[0],
+        content: _feature.get("featureData")
+      });
+
 
     } else if (feature.get("featureData")) {
-       _type = feature.getId().split("_");
-      _featureData=feature.get("featureData");
+
+      let _type = feature.getId().split("_");
+
+      vueBus.$emit("set_drawer", {
+        fn: "showFN",
+        type: _type[0],
+        content: feature.get("featureData"),
+      });
+
     } else {
       return
     }
-
-    vueBus.$emit("set_drawer", {
-      fn: "showFN",
-      type: _type[1],
-      content: _featureData
-    });
   }
 };
 // change mouse cursor when over marker
@@ -1019,4 +1236,63 @@ emMap.prototype.measureClear = function () {
   });
   this.measureTooltip_Overlays = [];
   this.measureSource.clear();
+};
+
+// 添加火警标注
+emMap.prototype.addFireFn = function (_icon, _data) {//添加覆盖物
+  /* [{
+        id:"",
+        lng:"",
+        lat""
+   }]*/
+  let _this = this;
+  for (let i = 0; i < _data.length; i++) {
+    $("body").append(`<img id="fire_${_data[i].id}" src="images/fire2d.gif" style="width:48px;height:58px;"/>`);
+    let _el = document.getElementById("fire_" + _data[i].id);
+    let _popup = new ol.Overlay({
+      id: "fire_" + _data[i].id,
+      position: [_data[i].lng, _data[i].lat],
+      offset: [-10, -32],
+      element: _el,
+      className: "fire-overlay"
+    });
+    _popup.set("overlayData", _data[i]);
+    /* _popup.on("change:overlayData", function (e) {
+         console.log(123);
+         console.log(e.target);
+         console.log(e.type);
+     });*/
+    this.fireOverlays.push(_popup);
+    this.map.addOverlay(_popup);
+    $(_popup.getElement()).on('click', function () {
+      let _data = _popup.get("overlayData");
+      _this.fireObj = _data;
+      // console.log(_data);
+      _this.infoFn({
+        type: "fire",
+        content: _data,
+        lng: _data.googleLang,
+        lat: _data.googleLat
+      });
+    }).on("mouseover", function () {
+      $(this).css("cursor", 'pointer');
+    });
+  }
+};
+emMap.prototype.clearOverlayFn = function (_overlay) {//删除覆盖物
+  if (_overlay && _overlay.length > 0) {
+    for (let i = 0; i < _overlay.length; i++) {
+      this.map.removeOverlay(_overlay[i]);
+    }
+    this.fireOverlays = [];
+  }
+};
+emMap.prototype.clearXfsExptionOverlayFn = function () {//删除覆盖物
+  let _overlays = this.xfsExptionOverlays;
+  if (_overlays && _overlays.length > 0) {
+    for (let i = 0; i < _overlays.length; i++) {
+      this.map.removeOverlay(_overlays[i]);
+    }
+    this.xfsExptionOverlays = [];
+  }
 };

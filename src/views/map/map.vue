@@ -28,6 +28,7 @@
         let _element = document.getElementById('ol_js');
         if (_element) {
           _this.mapInit();
+          _this.layerInit();
         } else {
           //动态加载依赖库
           let _url = process.env.STATIC_URL;
@@ -38,9 +39,9 @@
           loadJs("ol_js", _url + "/sceneStatic/ol/ol.js", function () {
             console.log('js');
             _this.mapInit();
+            _this.layerInit();
           });
         }
-        this.layerInit();
       },
       layerInit() {
         let _this=this;
