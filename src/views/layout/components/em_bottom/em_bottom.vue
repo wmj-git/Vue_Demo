@@ -70,6 +70,7 @@
   import win from "@/components/win/win"
   import {modify} from "@/api/table_operate"
   import {logout} from  "@/api/login"
+  import {digital} from  "@/api/digital"
   import {removeToken} from  "@/utils/auth"
   export default {
     name: "em_bottom",
@@ -103,6 +104,7 @@
       //     callback();
       //   }
       // };
+
       return {
         win: {
           id: "bottom",
@@ -112,10 +114,53 @@
           show: true,
           resizable: false,
           width: "78%",
-          height:"58px",
+          height: "58px",
           class: "em-bottom-window"
           //class: "em-table-window"
         },
+        data: [
+          {
+            title: "各数量统计",
+            list: [
+              {name: "公园总数", num: 15, init: "座",id:"civicBuilding"},
+              {name: "视频监控点", num: 15, init: "个",id:"monitoringPoints"},
+              {name: "环境监测点", num: 5866, init: "个",id:"temhumPoints"},
+              {name: "防火监测点", num: 2368, init: "个",id:"fireAlarm"},
+              {name: "绿道", num: 102, init: "条",id:"flowerGreenSpace"},
+            ]
+          },
+          {
+            title: "公园详情",
+            list: [{name: "绿化总面积", num: 899, init: "公顷",id:""},
+              {name: "绿化率", num: "58.9%", init: ""},
+              {name: "占地总面积", num: 1286, init: "公顷"},
+              {name: "年均人流量", num: 85689, init: "人次"},
+
+            ]
+          },
+          {
+            title: "客流量统计",
+            list: [{name: "当前客流量", num: 25638, init: "人次"},
+              {name: "饱和度", num: "52%", init: ""},
+              {name: "客流量最多", num: "羊台山森林公园", init: "公顷"}
+            ]
+          },
+          {
+            title: "绿道详情",
+            list: [{name: "绿化总面积", num: 899, init: "公顷"},
+              {name: "绿化率", num: "58.9%", init: ""},
+              {name: "总占地面积", num: 1286, init: "公顷"},
+              {name: "年均人流量", num: 85689, init: "人次"},
+            ]
+          },
+          {
+            title: "绿地养护监控",
+            list: [{name: "自动浇灌设备故障率", num: "6.31%", init: ""},
+              {name: "出水量统计", num: 5.02, init: "升"},
+              {name: "浇灌速率统计", num: 2.20, init: "小时/次"}
+            ]
+          }
+        ],
         input: '',
         dialogFormVisible: false,
         digitalCollapseVisible: false,
@@ -125,15 +170,15 @@
           checkPass: '',
         },
         rules: {
-         /* oldPassword: [
-            {validator: validatePass1, trigger: 'blur'}
-          ],
-          newPassword: [
-            {validator: validatePass2, trigger: 'blur'}
-          ],
-          checkPass: [
-            {validator: validatePass3, trigger: 'blur'}
-          ]*/
+          /* oldPassword: [
+             {validator: validatePass1, trigger: 'blur'}
+           ],
+           newPassword: [
+             {validator: validatePass2, trigger: 'blur'}
+           ],
+           checkPass: [
+             {validator: validatePass3, trigger: 'blur'}
+           ]*/
         },
         formLabelWidth: '60px',
         selectOption: [
@@ -171,36 +216,8 @@
           }
         ],
         selectValue: "",
-        data:[
-          {
-            title:"各数量统计",
-            list:[
-              {name:"公园总数",num:"18",init:"座"},
-              {name:"视频监控点",num:"18",init:"个"},
-              {name:"环境监测点",num:"5866",init:"个"},
-              {name:"防火监测点",num:"2368",init:"个"},
-              {name:"绿道",num:"102",init:"条"},
-              ]
-         },
-          {
-            title:"公园详情",
-            list:[{name:"绿化总面积",num:"899",init:"公顷"},
-              {name:"绿化率",num:"58.9%",init:""},
-              {name:"占地总面积",num:"1.286",init:"公顷"},
-              {name:"年均人流量",num:"85689",init:"人次"},
-
-              ]
-          },
-          {
-            title:"客流量统计",
-            list:[{name:"当前客流量",num:"25638",init:"人次"},
-              {name:"饱和度",num:"52%",init:""},
-              {name:"客流量最多",num:"羊台山森林公园",init:"公顷"}
-            ]
-          }
-        ],
-        post:{
-            momitor:'14'
+        post: {
+          momitor: '14'
         }
       }
     },
