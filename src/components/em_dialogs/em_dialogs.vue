@@ -4,12 +4,12 @@
         <el-row>
           <el-form>
               <template v-for="(item,index) in this.label" v-if="dialogFormVisible">
-                <el-col :span="24"  v-if="fn==='add'">
+                <el-col :span="item.ratio"  v-if="fn==='add'">
                   <el-form-item :label="item.name" :label-width="formLabelWidth" v-show="item.add_show">
                   <component :is="item.type" :operation="item" ref="form_data" :key="index" :readonly="item.add_readonly"  @click.native="refOrder(index)"></component>
                 </el-form-item>
                 </el-col>
-                <el-col :span="24"  v-if="fn==='modify'">
+                <el-col :span="item.ratio"  v-if="fn==='modify'">
                   <el-form-item :label="item.name" :label-width="formLabelWidth">
                     <component :is="item.type"   :operation="item" ref="form_data" :key="index" :readonly="item.alter_readonly" @click.native="refOrder(index)"></component>
                   </el-form-item>

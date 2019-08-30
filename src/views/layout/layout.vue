@@ -33,7 +33,7 @@
     <!--主菜单-->
     <em_nav></em_nav>
     <!--表格里的详情-->
-    <em_detail></em_detail>
+    <em_detailDrawer></em_detailDrawer>
     <!--场景数据显示列表-->
     <em-drawer></em-drawer>
 
@@ -68,7 +68,7 @@
   import echart_alone_show from "./components/echart_alone_show/echart_alone_show"
   import echarts_show from "./components/echarts_show/echarts_show"
   import table_show from "./components/table_show/table_show"
-  import em_detail from "./components/em_detail/em_detail"
+  import em_detailDrawer from "./components/em_detailDrawer/em_detailDrawer"
 
 
   import emLayers from "./components/emLayers/emLayers"
@@ -176,7 +176,7 @@
       table_show,
       buttonGroup,
       emCharts,
-      em_detail,
+      em_detailDrawer,
       emLayers
     },
     computed: {

@@ -2,7 +2,7 @@
   <div class="">
      <win :id="win.id" :data="win">
        <div class="em-home-title" id="title">
-         <img src="../../../../assets/image/logo.png" bindload="imageLoad"/>
+         <!--<img src="../../../../assets/image/logo.png" bindload="imageLoad"/>-->
          <figure>
            <h2 class="modal-title">XXXX园林可视化管理平台</h2>
            <h2 class="modal-title">XXXX园林可视化管理平台</h2>
@@ -36,8 +36,9 @@
                id: "em_title",
                title: "",
                top: 0,
-               left: "calc((100% - 346px)/2)",
-               width:346,
+               left: "",
+               width:"100%",
+               height:64,
                show: true,
                resizable:false,
                class:"em-title-window"

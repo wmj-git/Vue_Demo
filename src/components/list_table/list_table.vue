@@ -270,17 +270,24 @@
             let commo_input = this.$refs.child[i].input.trim();
             obj[comlex_input] = commo_input;
           }
-          if (this.$refs.child[i].time1) {
-            let time1 = this.$refs.child[i].time1;    //时间范围查询参数
-            if (time1) {
-              obj.startTime = time1.getTime();
-
-            }
-          }
-          if (this.$refs.child[i].time2) {
-            let time2 = this.$refs.child[i].time2;
-            if (time2) {
-              obj.endTime = time2.getTime();
+          // if (this.$refs.child[i].time1) {
+          //   let time1 = this.$refs.child[i].time1;    //时间范围查询参数
+          //   if (time1) {
+          //     obj.startTime = time1.getTime();
+          //
+          //   }
+          // }
+          // if (this.$refs.child[i].time2) {
+          //   let time2 = this.$refs.child[i].time2;
+          //   if (time2) {
+          //     obj.endTime = time2.getTime();
+          //   }
+          // }
+          if (this.$refs.child[i].value) {
+            {
+              let time=this.$refs.child[i].value
+              obj.startTime = time[0].getTime();
+              obj.endTime = time[1].getTime();
             }
           }
         }
@@ -474,12 +481,12 @@
         this.dialogCommonVisible = true;
       },
       showDetail(row){
-        var sideBar = $(".em_detail_window");
-        console.log(sideBar);
-        if (!sideBar.hasClass("addWidth")) {
-          console.log(sideBar);
-          $(".em_detail_window").addClass("addWidth");
-        }
+        // var sideBar = $(".em_detail_window");
+        // console.log(sideBar);
+        // if (!sideBar.hasClass("addWidth")) {
+        //   console.log(sideBar);
+        //   $(".em_detail_window").addClass("addWidth");
+        // }
         console.log(this.data[this.digital_table_id]);
         if(row&&this.data[this.digital_table_id].table.picture_url){
           getPictureImg({url:this.data[this.digital_table_id].table.picture_url,id:row.id}).then(res=>{

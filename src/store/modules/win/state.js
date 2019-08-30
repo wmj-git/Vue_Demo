@@ -11,8 +11,8 @@ export default {
       show: true,
       resizable: false,
       maximizable: false,
-      // class: "em-menu-window",
-      class: "em-table-window",
+      class: "em-menu-window",
+      //class: "em-table-window",
       component: "em_menu",
       component_data: {}
     },
@@ -343,7 +343,8 @@ export default {
               alter_show: true,
               add_show: true,
               alter_readonly: true,
-              add_readonly: false
+              add_readonly: false,
+              ratio:24
             },
             {
               name: "中文名",
@@ -355,7 +356,8 @@ export default {
               placeholder: "中文名",
               params: "userCname",
               alter_show: true,
-              add_show: true
+              add_show: true,
+              ratio:24
             },
             {
               name: "英文名",
@@ -367,7 +369,8 @@ export default {
               placeholder: "英文名",
               params: "userEname",
               alter_show: true,
-              add_show: true
+              add_show: true,
+              ratio:24
             },
             {
               name: "状态",
@@ -379,7 +382,8 @@ export default {
               params: "userState",
               optionUrl: "/user/userext/queryUserStateinfo",
               alter_show: true,
-              add_show: true
+              add_show: true,
+              ratio:24
             },
             {
               name: "性别",
@@ -392,7 +396,8 @@ export default {
               params: "userSex",
               optionUrl: "/user/userext/queryUserSexinfo",
               alter_show: true,
-              add_show: true
+              add_show: true,
+              ratio:24
 
             },
             {
@@ -405,7 +410,8 @@ export default {
               placeholder: "电话",
               params: "phoneNumber",
               alter_show: true,
-              add_show: true
+              add_show: true,
+              ratio:24
             },
             {
               name: "年龄",
@@ -417,7 +423,8 @@ export default {
               placeholder: "年龄",
               params: "userAge",
               alter_show: true,
-              add_show: true
+              add_show: true,
+              ratio:24
             },
             {
               name: "组织机构",
@@ -430,7 +437,8 @@ export default {
               params: "organizationId",
               optionUrl: "/user/organization/queryAll",
               alter_show: true,
-              add_show: true
+              add_show: true,
+              ratio:24
             },
             {
               name: "人员类型",
@@ -443,7 +451,8 @@ export default {
               params: "userType",
               optionUrl: "/user/userext/queryUserTypeinfo",
               alter_show: false,
-              add_show: true
+              add_show: true,
+              ratio:24
             }
           ]
         }
@@ -644,7 +653,7 @@ export default {
     },
     {
       id: "road_address",
-      title: "道路地址",
+      title: "道路管理",
       top: "calc((100% - 500px)/2)",
       left:"calc((100% - 800px)/2)",
       width: 800,
@@ -707,7 +716,8 @@ export default {
             params: "roadName",
             placeholder: "道路名称",
             alter_show: true,
-            add_show: true
+            add_show: true,
+            ratio:48
 
           },
             {
@@ -718,7 +728,8 @@ export default {
               params: "roadDescription",
               placeholder: "道路介绍",
               alter_show: true,
-              add_show: true
+              add_show: true,
+              ratio:48
             }
 
 
@@ -3029,7 +3040,8 @@ export default {
                 placeholder: "类型编号",
                 params: "personTypeNo",
                 alter_show: true,
-                add_show: true
+                add_show: true,
+                ratio:24
               },
               {
                 name: "人员类型",
@@ -3039,7 +3051,8 @@ export default {
                 placeholder: "人员类型",
                 params: "personTypeName",
                 alter_show: true,
-                add_show: true
+                add_show: true,
+                ratio:24
               },
               {
                 name: "描述",
@@ -3049,7 +3062,8 @@ export default {
                 placeholder: "描述",
                 params: "memo",
                 alter_show: true,
-                add_show: true
+                add_show: true,
+                ratio:24
               },
             ]
           }
@@ -3137,7 +3151,8 @@ export default {
               placeholder: "名字",
               params: "name",
               alter_show: true,
-              add_show: true
+              add_show: true,
+              ratio:24
             },
               {
                 name: "性别",
@@ -3156,7 +3171,8 @@ export default {
 
                 ],
                 alter_show: true,
-                add_show: true
+                add_show: true,
+                ratio:24
               },
               {
                 name: "职务",
@@ -3166,7 +3182,8 @@ export default {
                 placeholder: "职务",
                 params: "duty",
                 alter_show: true,
-                add_show: true
+                add_show: true,
+                ratio:24
               },
               {
                 name: "人员类型",
@@ -3176,7 +3193,8 @@ export default {
                 params: "personTypeId",
                 optionUrl: "gardens/persontype/queryAll",
                 alter_show: true,
-                add_show: true
+                add_show: true,
+                ratio:24
 
               },
               {
@@ -3187,7 +3205,8 @@ export default {
                 placeholder: "电话",
                 params: "telephone",
                 alter_show: true,
-                add_show: true
+                add_show: true,
+                ratio:24
               },
               {
                 name: "从事专业",
@@ -3197,7 +3216,8 @@ export default {
                 placeholder: "从事专业",
                 params: "professional",
                 alter_show: true,
-                add_show: true
+                add_show: true,
+                ratio:24
               },
               {
                 name: "工作单位",
@@ -3207,7 +3227,8 @@ export default {
                 params: "entId",
                 optionUrl: "gardens/ent/queryAll",
                 alter_show: true,
-                add_show: true
+                add_show: true,
+                ratio:24
               },
               {
                 name: "备注",
@@ -3217,7 +3238,8 @@ export default {
                 placeholder: "备注",
                 params: "memo",
                 alter_show: true,
-                add_show: true
+                add_show: true,
+                ratio:24
 
               }
 
@@ -3331,7 +3353,8 @@ export default {
               placeholder: "名称",
               params: "entName",
               alter_show: true,
-              add_show: true
+              add_show: true,
+              ratio:24
 
             },
             {
@@ -3342,7 +3365,8 @@ export default {
               placeholder: "单位地址",
               params: "orgAddr",
               alter_show: true,
-              add_show: true
+              add_show: true,
+              ratio:24
             },
             {
               name: "联系人",
@@ -3352,7 +3376,8 @@ export default {
               placeholder: "联系人",
               params: "contactMan",
               alter_show: true,
-              add_show: true
+              add_show: true,
+              ratio:24
             },
             {
               name: "联系电话",
@@ -3362,7 +3387,8 @@ export default {
               placeholder: "联系电话",
               params: "tel",
               alter_show: true,
-              add_show: true
+              add_show: true,
+              ratio:24
             },
             {
               name: "行政区域",
@@ -3372,17 +3398,19 @@ export default {
               params: "areaCode",
               optionUrl: "gardens/district/queryAll",
               alter_show: true,
-              add_show: true
+              add_show: true,
+              ratio:24
             },
             {
               name: "注释",
               prop: "memo",
               width: "140",
-              type: "em_textarea",
+              type: "em_input",
               placeholder: "注释",
               params: "memo",
               alter_show: true,
-              add_show: true
+              add_show: true,
+              ratio:24
             },
 
 
@@ -3413,7 +3441,7 @@ export default {
 
               },
               {
-                name: "树种类型名称",
+                name: "类型名称",
                 params: "treeTypeName"
               }
             ]
@@ -3467,17 +3495,8 @@ export default {
               placeholder: "类型编号",
               params: "treeTypeNo",
               alter_show: true,
-              add_show: true
-            },
-            {
-              name: "树种类型名称",
-              prop: "treeTypeName",
-              width: "140",
-              type: "em_input",
-              placeholder: "树种类型名称",
-              params: "treeTypeName",
-              alter_show: true,
-              add_show: true
+              add_show: true,
+              ratio:24
             },
             {
               name: "是否特殊树种",
@@ -3494,7 +3513,19 @@ export default {
                 }],
               params: "isSpecial",
               alter_show: true,
-              add_show: true
+              add_show: true,
+              ratio:24
+            },
+            {
+              name: "类型名称",
+              prop: "treeTypeName",
+              width: "140",
+              type: "em_input",
+              placeholder: "类型名称",
+              params: "treeTypeName",
+              alter_show: true,
+              add_show: true,
+              ratio:48
             },
             {
               name: "注释",
@@ -3504,7 +3535,8 @@ export default {
               placeholder: "注释",
               params: "memo",
               alter_show: true,
-              add_show: true
+              add_show: true,
+              ratio:48
 
             }
 
@@ -3589,27 +3621,8 @@ export default {
               placeholder: "植物名称",
               params: "plantCname",
               alter_show: true,
-              add_show: true
-            },
-            {
-              name: "植物英文名",
-              prop: "plantEname",
-              width: "140",
-              type: "em_input",
-              placeholder: "植物英文名",
-              params: "plantEname",
-              alter_show: true,
-              add_show: true
-            },
-            {
-              name: "植物分类名称",
-              prop: "plantTypeName",
-              width: "140",
-              type: "em_selectUrl",
-              optionUrl: "gardens/planttype/queryAll",
-              params: "plantTypeId",
-              alter_show: true,
-              add_show: true
+              add_show: true,
+              ratio:24
             },
             {
               name: "树种分类名称",
@@ -3619,7 +3632,19 @@ export default {
               optionUrl: "gardens/treetype/queryAll",
               params: "treeTypeId",
               alter_show: true,
-              add_show: true
+              add_show: true,
+              ratio:24
+            },
+            {
+              name: "植物分类名称",
+              prop: "plantTypeName",
+              width: "140",
+              type: "em_selectUrl",
+              optionUrl: "gardens/planttype/queryAll",
+              params: "plantTypeId",
+              alter_show: true,
+              add_show: true,
+              ratio:24
             },
             {
               name: "植物科名称",
@@ -3629,7 +3654,8 @@ export default {
               placeholder: "植物科名称",
               params: "familiesName",
               alter_show: false,
-              add_show: false
+              add_show: false,
+              ratio:24
             },
             {
               name: "植物属名称",
@@ -3639,7 +3665,8 @@ export default {
               placeholder: "植物属名称",
               params: "genusName",
               alter_show: false,
-              add_show: false
+              add_show: false,
+              ratio:24
             },
             {
               name: "花卉还是树",
@@ -3662,36 +3689,50 @@ export default {
               add_show: true
             },
             {
+              name: "植物英文名",
+              prop: "plantEname",
+              width: "140",
+              type: "em_input",
+              placeholder: "植物英文名",
+              params: "plantEname",
+              alter_show: true,
+              add_show: true,
+              ratio:48
+            },
+            {
               name: "特征",
               prop: "features",
               width: "140",
-              type: "em_input",
+              type: "em_textarea",
               placeholder: "特征",
               params: "features",
               alter_show: true,
-              add_show: true
+              add_show: true,
+              ratio:48
             },
             {
               name: "生长习性",
               prop: "growthHabit",
               width: "140",
-              type: "em_input",
+              type: "em_textarea",
               placeholder: "生长习性",
               params: "growthHabit",
               alter_show: true,
-              add_show: true
+              add_show: true,
+              ratio:48
             },
             {
               name: "注释",
               prop: "describeString",
               width: "300",
-              type: "em_input",
+              type: "em_textarea",
               placeholder: "注释",
               params: "describeString",
               alter_show: true,
-              add_show: true
+              add_show: true,
+              ratio:48
 
-            }
+            },
 
           ]
         }
@@ -3790,7 +3831,8 @@ export default {
               placeholder: "植物编号",
               params: "treeNo",
               alter_show: true,
-              add_show: true
+              add_show: true,
+              ratio:24
             },
             {
               name: "植物名称",
@@ -3800,35 +3842,40 @@ export default {
               params: "treeNameId",
               optionUrl: "gardens/tree/findplantname",
               alter_show: true,
-              add_show: true
+              add_show: true,
+              ratio:24
             },
             {
               name: "植物种类型",
               prop: "plantTypeName",
               width: "120",
               alter_show: false,
-              add_show: false
+              add_show: false,
+              ratio:24
             },
             {
               name: "植物属名称",
               prop: "genusName",
               width: "120",
               alter_show: false,
-              add_show: false
+              add_show: false,
+              ratio:24
             },
             {
               name: "植物科名称",
               prop: "familiesName",
               width: "120",
               alter_show: false,
-              add_show: false
+              add_show: false,
+              ratio:24
             },
             {
               name: "树种类型",
               prop: "treeTypeName",
               width: "120",
               alter_show: false,
-              add_show: false
+              add_show: false,
+              ratio:24
             },
             {
               name: "等级",
@@ -3838,7 +3885,8 @@ export default {
               params: "rankValue",
               optionUrl: "gardens/tree/findrank",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio:24
             },
             {
               name: "高度",
@@ -3848,7 +3896,8 @@ export default {
               placeholder: "高度",
               params: "height",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio:24
             },
             {
               name: "海拔高度(m)",
@@ -3858,7 +3907,8 @@ export default {
               placeholder: "海拔高度",
               params: "altitude",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio:24
             },
             {
               name: "直径(cm)",
@@ -3868,7 +3918,8 @@ export default {
               placeholder: "直径",
               params: "diameter",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio:24
             },
             {
               name: "周长(cm)",
@@ -3878,7 +3929,8 @@ export default {
               placeholder: "周长",
               params: "perimeter",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio:24
             },
             {
               name: "所在道路",
@@ -3888,7 +3940,8 @@ export default {
               params: "roadId",
               optionUrl: "gardens/road/queryAll",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio:24
             },
             // {
             //   name:"所属网格",
@@ -3908,7 +3961,8 @@ export default {
               params: "districtId",
               optionUrl: "gardens/district/queryAll",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio:24
             },
             {
               name: "种植位置",
@@ -3918,7 +3972,8 @@ export default {
               placeholder: "直径",
               params: "position",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio:24
             },
             {
               name: "经度",
@@ -3928,7 +3983,8 @@ export default {
               placeholder: "经度",
               params: "longitude",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio:24
             },
             {
               name: "纬度",
@@ -3938,7 +3994,8 @@ export default {
               placeholder: "纬度",
               params: "gpsLatitude",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio:24
             },
             // {
             //   name:"责任人Id",
@@ -3954,11 +4011,12 @@ export default {
               name: "特征描述",
               prop: "memo",
               width: "100",
-              type: "em_input",
+              type: "em_textarea",
               placeholder: "特征描述",
               params: "memo",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio:48
             }
 
           ]
@@ -4060,7 +4118,8 @@ export default {
               placeholder: "设备编号",
               params: "gridNo",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio:24
             },
             {
               name: "网格名称",
@@ -4070,7 +4129,8 @@ export default {
               placeholder: "设备名称",
               params: "gridName",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio:24
 
             },
             {
@@ -4081,7 +4141,8 @@ export default {
               placeholder: "面积",
               params: "gridArea",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio:24
 
             },
             {
@@ -4092,14 +4153,16 @@ export default {
               placeholder: "创建人姓名",
               params: "creatorName",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio:24
             },
             {
               name: "创建日期",
               prop: "createDate",
               width: "200",
               add_show: false,
-              alter_show: false
+              alter_show: false,
+              ratio:24
             },
             // {
             //   name:"责任单位",
@@ -4119,7 +4182,9 @@ export default {
               placeholder: "所属行政区域",
               params: "areaCode",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio:24
+
             },
           ]
         }
@@ -4220,7 +4285,8 @@ export default {
               placeholder: "设备编号",
               params: "monitoringPointsNo",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio:24
             },
             {
               name: "设备名称",
@@ -4230,7 +4296,8 @@ export default {
               placeholder: "设备名称",
               params: "monitoringPointsName",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio:24
 
             },
             {
@@ -4241,7 +4308,8 @@ export default {
               placeholder: "面积",
               params: "设备型号",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio:24
 
             },
             {
@@ -4252,7 +4320,8 @@ export default {
               placeholder: "位置描述",
               params: "position",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio:24
             },
             {
               name: "经度",
@@ -4262,7 +4331,8 @@ export default {
               placeholder: "经度",
               params: "longitude",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio:24
             },
             {
               name: "纬度",
@@ -4272,7 +4342,8 @@ export default {
               placeholder: "纬度",
               params: "gpsLatitude",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio:24
             },
 
             {
@@ -4283,7 +4354,8 @@ export default {
               placeholder: "备注",
               params: "memo",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio:48
             },
           ]
         }
@@ -4383,7 +4455,8 @@ export default {
               placeholder: "编号",
               params: "pointsNo",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio:24
             },
             {
               name: "名称",
@@ -4393,7 +4466,8 @@ export default {
               placeholder: "名称",
               params: "pointsName",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio:24
             },
             {
               name: "安装位置",
@@ -4403,7 +4477,8 @@ export default {
               placeholder: "安装位置",
               params: "position",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio:24
             },
             {
               name: "经度",
@@ -4413,7 +4488,8 @@ export default {
               placeholder: "经度",
               params: "longitude",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio:24
             },
             {
               name: "纬度",
@@ -4423,7 +4499,8 @@ export default {
               placeholder: "纬度",
               params: "gpsLatitude",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio:24
             },
             // {
             //   name:"责任单位",
@@ -4443,7 +4520,9 @@ export default {
               placeholder: "上限报警阀值",
               params: "upperLimit",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio:24
+
             },
             {
               name: "下限报警阀值",
@@ -4453,7 +4532,8 @@ export default {
               placeholder: "下限报警阀值",
               params: "lowerLimit",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio:24
             },
             // {
             //   name:"所在网格",
@@ -4468,7 +4548,8 @@ export default {
               placeholder: "备注",
               params: "memo",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio:24
             }
           ]
         }
@@ -4568,7 +4649,8 @@ export default {
               placeholder: "编号",
               params: "pointsNo",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio:24
             },
             {
               name: "名称",
@@ -4578,7 +4660,8 @@ export default {
               placeholder: "名称",
               params: "pointsName",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio:24
             },
             {
               name: "安装位置",
@@ -4588,7 +4671,8 @@ export default {
               placeholder: "安装位置",
               params: "position",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio:24
             },
             {
               name: "经度",
@@ -4598,7 +4682,8 @@ export default {
               placeholder: "经度",
               params: "longitude",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio:24
             },
             {
               name: "纬度",
@@ -4608,7 +4693,8 @@ export default {
               placeholder: "纬度",
               params: "gpsLatitude",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio:24
             },
             // {
             //   name:"责任单位",
@@ -4628,7 +4714,8 @@ export default {
               placeholder: "上限报警阀值",
               params: "upperLimit",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio:24
             },
             {
               name: "下限报警阀值",
@@ -4638,7 +4725,8 @@ export default {
               placeholder: "下限报警阀值",
               params: "lowerLimit",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio:24
             },
             // {
             //   name:"所在网格",
@@ -4653,7 +4741,8 @@ export default {
               placeholder: "备注",
               params: "memo",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio:24
             }
           ]
         }
@@ -4754,7 +4843,8 @@ export default {
               placeholder: "编号",
               params: "pointsNo",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio:24
             },
             {
               name: "名称",
@@ -4764,7 +4854,8 @@ export default {
               placeholder: "名称",
               params: "monitorName",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio:24
             },
             {
               name: "安装位置",
@@ -4774,7 +4865,8 @@ export default {
               placeholder: "安装位置",
               params: "position",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio:24
             },
             {
               name: "经度",
@@ -4784,7 +4876,8 @@ export default {
               placeholder: "经度",
               params: "gpsLongitude",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio:24
             },
             {
               name: "纬度",
@@ -4794,7 +4887,8 @@ export default {
               placeholder: "纬度",
               params: "gpsLatitude",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio:24
             },
             // {
             //   name:"责任单位",
@@ -4814,7 +4908,8 @@ export default {
               placeholder: "橙色预警阀值",
               params: "orangeWarning",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio:24
             },
             {
               name: "红色预警阀值",
@@ -4824,7 +4919,8 @@ export default {
               placeholder: "红色预警阀值",
               params: "redWarning",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio:24
             },
             // {
             //   name:"所在网格",
@@ -4839,7 +4935,8 @@ export default {
               placeholder: "备注",
               params: "memo",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio:24
             }
           ]
         }
@@ -4939,7 +5036,8 @@ export default {
               placeholder: "编号",
               params: "pointsNo",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio:24
             },
             {
               name: "名称",
@@ -4949,7 +5047,8 @@ export default {
               placeholder: "名称",
               params: "pointsName",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio:24
             },
             {
               name: "安装位置",
@@ -4959,7 +5058,8 @@ export default {
               placeholder: "安装位置",
               params: "position",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio:24
             },
             {
               name: "经度",
@@ -4969,7 +5069,8 @@ export default {
               placeholder: "经度",
               params: "gpsLongitude",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio:24
             },
             {
               name: "纬度",
@@ -4979,7 +5080,8 @@ export default {
               placeholder: "纬度",
               params: "gpsLatitude",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio:24
             },
             // {
             //   name:"责任单位",
@@ -4999,7 +5101,8 @@ export default {
               placeholder: "上限报警阀值",
               params: "upperLimit",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio:24
             },
             {
               name: "下限报警阀值",
@@ -5009,7 +5112,8 @@ export default {
               placeholder: "下限报警阀值",
               params: "lowerLimit",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio:24
             },
             // {
             //   name:"所在网格",
@@ -5024,7 +5128,8 @@ export default {
               placeholder: "备注",
               params: "memo",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio:24
             }
           ]
         }
@@ -5123,7 +5228,8 @@ export default {
               placeholder: "编号",
               params: "pointsNo",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio:24
             },
             {
               name: "名称",
@@ -5133,7 +5239,8 @@ export default {
               placeholder: "名称",
               params: "pointsName",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio:24
             },
             {
               name: "安装位置",
@@ -5143,7 +5250,8 @@ export default {
               placeholder: "安装位置",
               params: "position",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio:24
             },
             {
               name: "经度",
@@ -5153,7 +5261,8 @@ export default {
               placeholder: "经度",
               params: "gpsLongitude",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio:24
             },
             {
               name: "纬度",
@@ -5163,7 +5272,8 @@ export default {
               placeholder: "纬度",
               params: "gpsLatitude",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio:24
             },
             // {
             //   name:"责任单位",
@@ -5183,7 +5293,8 @@ export default {
               placeholder: "上限报警阀值",
               params: "upperLimit",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio:24
             },
             {
               name: "下限报警阀值",
@@ -5193,7 +5304,8 @@ export default {
               placeholder: "下限报警阀值",
               params: "lowerLimit",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio:24
             },
             // {
             //   name:"所在网格",
@@ -5208,7 +5320,8 @@ export default {
               placeholder: "备注",
               params: "memo",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio:24
             }
           ]
         }
@@ -5308,7 +5421,8 @@ export default {
               placeholder: "编号",
               params: "pointsNo",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio:24
             },
             {
               name: "名称",
@@ -5318,7 +5432,8 @@ export default {
               placeholder: "名称",
               params: "fireAlarmName",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio:24
             },
             {
               name: "安装位置",
@@ -5328,7 +5443,8 @@ export default {
               placeholder: "安装位置",
               params: "position",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio:24
             },
             {
               name: "经度",
@@ -5338,7 +5454,8 @@ export default {
               placeholder: "经度",
               params: "gpsLongitude",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio:24
             },
             {
               name: "纬度",
@@ -5348,7 +5465,8 @@ export default {
               placeholder: "纬度",
               params: "gpsLatitude",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio:24
             },
             {
               name: "状态",
@@ -5358,7 +5476,8 @@ export default {
               placeholder: "状态",
               params: "stat",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio:24
             },
             // {
             //   name:"责任单位",
@@ -5383,7 +5502,8 @@ export default {
               placeholder: "备注",
               params: "memo",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio:24
             }
           ]
         }

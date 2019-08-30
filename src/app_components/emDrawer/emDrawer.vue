@@ -6,8 +6,8 @@
       direction="rtl"
       :modal="modal"
       :append-to-body="body"
-      size="16%">
-      123
+      size="20%">
+        123
     </el-drawer>
   </div>
 </template>
@@ -21,9 +21,9 @@
       return {
         id: "drawer",
         show: false,
-        modal: false,
+        modal: true,
         body: true,
-        Data: ""
+        Data: "",
       }
     },
     props: ["data"],

@@ -13,7 +13,7 @@
   background-size: 100%;
   position: absolute;
   padding: 3/$r+rem 20/$r+rem 0 20/$r+rem;
-  bottom: -16px;
+  bottom: 32px;
 }
 
 
@@ -28,7 +28,7 @@
 
 /*title*/
 .panel.window.#{em-title-window}.panel-htop {
-  background: url("../../assets/image/title_new.gif") no-repeat center;
+  background: url("../../assets/image/title_new.png") no-repeat center;
   background-size: 100% 100%;
   border: none;
 }
@@ -36,6 +36,7 @@
 .panel.window.#{em-title-window}.panel-htop /deep/ {
   .panel-body {
     background: transparent;
+    overflow: hidden;
   }
 }
 
@@ -111,14 +112,20 @@
 
 /*bottom-window*/
 .panel.window.#{em-bottom-window}.panel-htop.easyui-fluid {
-  background: lighten($em-highlight-bg2-color-base,2%);
+  background: nth($background-base,5);
   border-left: 6px solid $em-highlight-border-color-base;
   border-right: 6px solid $em-highlight-border-color-base;
   border-top: 1px solid $em-highlight-border-color-base;
   border-bottom: 1px solid $em-highlight-border-color-base;
   border-radius: unset;
   position: fixed;
-  bottom: 0px;
+  bottom: 5px;
+}
+
+@media (max-width:1400px){
+  .panel.window.#{em-bottom-window}.panel-htop.easyui-fluid {
+    height: 40px;
+  }
 }
 
 /*toolList*/
@@ -144,13 +151,13 @@
 .panel.window.#{em-table-window}.panel-htop {
   background: $em-background-table-base;
   border: 5px solid transparent;
-  -webkit-border-image: url("../../../src/assets/image/table_border.png");
+/*  -webkit-border-image: url("../../../src/assets/image/table_border.png");
   -moz-border-image: url("../../../src/assets/image/table_border.png");
-  border-image: url("../../../src/assets/image/table_border.png");
+  border-image: url("../../../src/assets/image/table_border.png");*/
   width: 800px;
   resize: both;
-  border-image-slice: 5 5 5 5 fill;
-  border-image-outset: 15px;
+  /*border-image-slice: 5 5 5 5 fill;
+  border-image-outset: 15px;*/
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   border-radius: 10px;
@@ -188,6 +195,13 @@
   z-index: 1800 !important;
   border: 0;
   box-shadow: -9px 1px 17px 0px darken($em-bg-color-base,60%);
+  transform: rotateY(-166deg);
+  -webkit-transform: rotateY(-166deg);
+  &:hover{
+    transform: rotateY(0deg);
+    -webkit-transform: rotateY(0deg);
+  }
+
 }
 /*.panel.window.em_detail_window.panel-htop.addWidth{
   width: 46% ;    !* 设置为侧边栏宽度的2倍，才能完全露出 *!
