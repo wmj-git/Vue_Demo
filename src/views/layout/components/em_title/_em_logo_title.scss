@@ -17,16 +17,6 @@
     position: absolute;
     top: 20px;
   }*/
-  .em-title {
-    width: 220px;
-    border-width: 3px 0 3px 0;
-    border-style: solid;
-    position: absolute;
-    left: 92px;
-    top: 18px;
-    height: 69px;
-    border-color: rgba(184, 174, 172, 0.8);
-  }
 
   figure {
     animation: wobble 5s ease-in-out infinite;
@@ -48,19 +38,24 @@
       transform: rotate3d(1, -1, 0, 7deg);
     }
   }
-
   h2 {
     display: block;
-    width: 180px;
-    text-align: center;
-    text-align-last: center;
-    top: -18px;
-    left: 67px;
-    font: 900 23px 'Concert One', sans-serif;
+    width: 100%;
+    padding: 40px;
+    line-height: 1.5;
+    font: 900 2em 'Concert One', sans-serif;
     text-transform: uppercase;
-    position: absolute;
-    color: $em-text-highlight-base;
+    color: darken($em-text-color-base, 50%);
     animation: glow 10s ease-in-out infinite;
+
+    &.modal-title {
+      position: fixed;
+      top: -78px;
+      letter-spacing: 8px;/*字符间距*/
+      text-align: center;
+      color: $em-text-color-base;
+      font-size: 28px;
+    }
   }
 
   @keyframes glow {
@@ -116,3 +111,10 @@
 
 }
 
+@media (max-width:1400px){
+  .#{em-home-title} {
+    & h2.modal-title{
+      letter-spacing: 4px;/*字符间距*/
+    }
+  }
+}

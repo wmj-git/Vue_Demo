@@ -4,15 +4,15 @@ export default {
     {
       id: "menu",
       title: "_",
-      top: 0,
-      left: 8,
-      width: 100,
-      height: "80%",
-      show: false,
+      left:"-5px",
+      top: "113px",
+      width: 150,
+      height: 720,
+      show: true,
       resizable: false,
       maximizable: false,
-      // class: "em-menu-window",
-      class: "em-table-window",
+      class: "em-menu-window",
+      //class: "em-table-window",
       component: "em_menu",
       component_data: {}
     },
@@ -224,7 +224,7 @@ export default {
       id: "account_manage",
       title: "账户管理",
       top: "calc((100% - 500px)/2)",
-      left:"calc((100% - 800px)/2)",
+      left: "calc((100% - 800px)/2)",
       width: 800,
       height: 500,
       show: false,
@@ -343,7 +343,8 @@ export default {
               alter_show: true,
               add_show: true,
               alter_readonly: true,
-              add_readonly: false
+              add_readonly: false,
+              ratio: 24
             },
             {
               name: "中文名",
@@ -355,7 +356,8 @@ export default {
               placeholder: "中文名",
               params: "userCname",
               alter_show: true,
-              add_show: true
+              add_show: true,
+              ratio: 24
             },
             {
               name: "英文名",
@@ -367,7 +369,8 @@ export default {
               placeholder: "英文名",
               params: "userEname",
               alter_show: true,
-              add_show: true
+              add_show: true,
+              ratio: 24
             },
             {
               name: "状态",
@@ -379,7 +382,8 @@ export default {
               params: "userState",
               optionUrl: "/user/userext/queryUserStateinfo",
               alter_show: true,
-              add_show: true
+              add_show: true,
+              ratio: 24
             },
             {
               name: "性别",
@@ -392,7 +396,8 @@ export default {
               params: "userSex",
               optionUrl: "/user/userext/queryUserSexinfo",
               alter_show: true,
-              add_show: true
+              add_show: true,
+              ratio: 24
 
             },
             {
@@ -405,7 +410,8 @@ export default {
               placeholder: "电话",
               params: "phoneNumber",
               alter_show: true,
-              add_show: true
+              add_show: true,
+              ratio: 24
             },
             {
               name: "年龄",
@@ -417,7 +423,8 @@ export default {
               placeholder: "年龄",
               params: "userAge",
               alter_show: true,
-              add_show: true
+              add_show: true,
+              ratio: 24
             },
             {
               name: "组织机构",
@@ -430,7 +437,8 @@ export default {
               params: "organizationId",
               optionUrl: "/user/organization/queryAll",
               alter_show: true,
-              add_show: true
+              add_show: true,
+              ratio: 24
             },
             {
               name: "人员类型",
@@ -443,7 +451,8 @@ export default {
               params: "userType",
               optionUrl: "/user/userext/queryUserTypeinfo",
               alter_show: false,
-              add_show: true
+              add_show: true,
+              ratio: 24
             }
           ]
         }
@@ -644,9 +653,9 @@ export default {
     },
     {
       id: "road_address",
-      title: "道路地址",
+      title: "道路管理",
       top: "calc((100% - 500px)/2)",
-      left:"calc((100% - 800px)/2)",
+      left: "calc((100% - 800px)/2)",
       width: 800,
       height: 500,
       show: false,
@@ -707,7 +716,8 @@ export default {
             params: "roadName",
             placeholder: "道路名称",
             alter_show: true,
-            add_show: true
+            add_show: true,
+            ratio: 48
 
           },
             {
@@ -718,7 +728,8 @@ export default {
               params: "roadDescription",
               placeholder: "道路介绍",
               alter_show: true,
-              add_show: true
+              add_show: true,
+              ratio: 48
             }
 
 
@@ -731,7 +742,7 @@ export default {
       id: "protect_plan",
       title: "养护计划",
       top: "calc((100% - 500px)/2)",
-      left:"calc((100% - 1000px)/2)",
+      left: "calc((100% - 1000px)/2)",
       width: 1000,
       height: 500,
       show: false,
@@ -1289,7 +1300,7 @@ export default {
       id: "protect_record",
       title: "养护记录",
       top: "calc((100% - 500px)/2)",
-      left:"calc((100% - 800px)/2)",
+      left: "calc((100% - 800px)/2)",
       width: 800,
       height: 500,
       show: false,
@@ -1410,9 +1421,9 @@ export default {
     },
     {
       id: "department_manage",
-      title: "组织机构管理",
+      title: "机构管理",
       top: "calc((100% - 500px)/2)",
-      left:"calc((100% - 800px)/2)",
+      left: "calc((100% - 800px)/2)",
       width: 800,
       height: 500,
       show: false,
@@ -1433,42 +1444,6 @@ export default {
             operate: "查询",
             control_id: "department_manage_table",
             fn: "search"
-          },
-          {
-            id: "department_manage_button_add",
-            type: "em_button",
-            icon: "el-icon-plus",
-            operate: "添加",
-            control_id: "department_manage_table",
-            fn: "add",
-            url: "/user/organization/add"
-          },
-          {
-            id: "department_manage_button_modify",
-            type: "em_button",
-            icon: "el-icon-edit",
-            operate: "修改",
-            control_id: "department_manage_table",
-            fn: "modify",
-            url: "/user/organization/update"
-          },
-          {
-            id: "department_manage_button_dele",
-            type: "em_button",
-            icon: "el-icon-delete",
-            operate: "删除",
-            control_id: "department_manage_table",
-            fn: "dele",
-            url: "/user/organization/deletes"
-          },
-          {
-            id: "department_manage_button_export",
-            type: "em_button",
-            icon: "el-icon-excel_out",
-            operate: "导出excel",
-            control_id: "department_manage_table",
-            fn: "export",
-            url: "/user/organization/exportCsv"
           }
         ],
         table: {
@@ -1549,7 +1524,7 @@ export default {
       id: "tree_statistic",
       title: "特殊树木统计分析",
       top: "calc((100% - 700px)/2)",
-      left:"calc((100% - 1000px)/2)",
+      left: "calc((100% - 1000px)/2)",
       width: 1000,
       height: 700,
       show: false,
@@ -1793,610 +1768,1054 @@ export default {
       id: "soil_temperature_analysis",
       title: "土壤温度统计分析",
       top: "calc((100% - 700px)/2)",
-      left:"calc((100% - 1000px)/2)",
+      left: "calc((100% - 1000px)/2)",
       width: 1000,
       height: 700,
       show: false,
       class: "em-table-window",
-      component: "echart_table",
+      component: "tabs_table",
       component_data: {
-        operation: [
-          {
-            id: "soil_temperature_analysis_date",
-            type: "em_date",
-          },
-          {
-            id: "soil_temperature_analysis_button_search",
-            type: "em_button",
-            icon: "el-icon-search",
-            operate: "查询",
-            control_id: "soil_temperature_analysis_table",
-            fn: "search"
-          }
-        ],
-        table: {
-          id: "soil_temperature_analysis_table",
-          table_url: "/gardens/temperature/queryAllByPage?dataType=S",
-          label: [{
-            name: "监测点",
-            prop: "pointsId",
-            width: "140",
-            type: "em_input",
-            params: "pointsId",
-            placeholder: "全称",
-            alter_show: true,
-            add_show: true
-
-          },
+        echart_table: {
+          title: '土壤温度统计分析',
+          operation: [
             {
-              name: "温度值",
-              prop: "temValue",
-              width: "100",
-              type: "em_input",
-              params: "temValue",
-              placeholder: "温度值",
-              alter_show: true,
-              add_show: true
+              id: "soil_temperature_analysis_date",
+              type: "em_date",
             },
             {
-              name: "创建时间",
-              prop: "createDate",
-              width: "180",
-              type: "em_input",
-              params: "createDate",
-              placeholder: "创建时间",
-              alter_show: false,
-              add_show: false
-
-            },
-            {
-              name: "备注",
-              prop: "memo",
+              id: "soil_temperature_analysis_button_search",
+              type: "em_button",
+              icon: "el-icon-search",
+              operate: "查询",
+              control_id: "soil_temperature_analysis_table",
+              fn: "search"
+            }
+          ],
+          table: {
+            id: "soil_temperature_analysis_table",
+            table_url: "/gardens/temperature/queryAllByPage?dataType=S",
+            label: [{
+              name: "监测点",
+              prop: "pointsId",
               width: "140",
               type: "em_input",
-              params: "memo",
-              placeholder: "备注",
+              params: "pointsId",
+              placeholder: "全称",
               alter_show: true,
               add_show: true
+
+            },
+              {
+                name: "温度值",
+                prop: "temValue",
+                width: "100",
+                type: "em_input",
+                params: "temValue",
+                placeholder: "温度值",
+                alter_show: true,
+                add_show: true
+              },
+              {
+                name: "创建时间",
+                prop: "createDate",
+                width: "180",
+                type: "em_input",
+                params: "createDate",
+                placeholder: "创建时间",
+                alter_show: false,
+                add_show: false
+
+              },
+              {
+                name: "备注",
+                prop: "memo",
+                width: "140",
+                type: "em_input",
+                params: "memo",
+                placeholder: "备注",
+                alter_show: true,
+                add_show: true
+              }
+
+
+            ]
+          },
+          charts: [
+            {
+              id: "soil_temperature_analysis_chart_1",
+              type: "line",
+              optionType: "option_bar_line",
+              winSpan: 24,
+              height: 50,
+              chartTitle: "空气湿度(最高值)",
+              unit_y: "%",
+              dataUrl: '/gardens/temperature/queryAll?dataType=S',
+              seriesType: "lineBar_handle_a",
+              valueType: "max",
+              legendField: "pointsId",
+              xAxisField: "createDate",
+              yAxisField: "temValue"
+            },
+            {
+              id: "soil_temperature_analysis_chart_2",
+              type: "line",
+              optionType: "option_bar_line",
+              winSpan: 24,
+              height: 50,
+              chartTitle: "空气湿度(最低值)",
+              unit_y: "%",
+              dataUrl: '/gardens/temperature/queryAll?dataType=S',
+              seriesType: "lineBar_handle_a",
+              valueType: "min",
+              legendField: "pointsId",
+              xAxisField: "createDate",
+              yAxisField: "temValue"
+            },
+            {
+              id: "soil_temperature_analysis_chart_3",
+              type: "line",
+              optionType: "option_bar_line",
+              winSpan: 48,
+              height: 30,
+              chartTitle: "空气湿度(平均值)",
+              unit_y: "%",
+              dataUrl: '/gardens/temperature/queryAll?dataType=S',
+              seriesType: "lineBar_handle_a",
+              valueType: "mean",
+              legendField: "pointsId",
+              xAxisField: "createDate",
+              yAxisField: "temValue"
             }
-
-
           ]
         },
-        charts: [
-          {
-            id: "soil_temperature_analysis_chart_1",
-            type: "line",
-            optionType: "option_bar_line",
-            winSpan: 24,
-            height: 50,
-            chartTitle: "空气湿度(最高值)",
-            unit_y: "%",
-            dataUrl: '/gardens/temperature/queryAll?dataType=S',
-            seriesType: "lineBar_handle_a",
-            valueType: "max",
-            legendField: "pointsId",
-            xAxisField: "createDate",
-            yAxisField: "temValue"
-          },
-          {
-            id: "soil_temperature_analysis_chart_2",
-            type: "line",
-            optionType: "option_bar_line",
-            winSpan: 24,
-            height: 50,
-            chartTitle: "空气湿度(最低值)",
-            unit_y: "%",
-            dataUrl: '/gardens/temperature/queryAll?dataType=S',
-            seriesType: "lineBar_handle_a",
-            valueType: "min",
-            legendField: "pointsId",
-            xAxisField: "createDate",
-            yAxisField: "temValue"
-          },
-          {
-            id: "soil_temperature_analysis_chart_3",
-            type: "line",
-            optionType: "option_bar_line",
-            winSpan: 48,
-            height: 30,
-            chartTitle: "空气湿度(平均值)",
-            unit_y: "%",
-            dataUrl: '/gardens/temperature/queryAll?dataType=S',
-            seriesType: "lineBar_handle_a",
-            valueType: "mean",
-            legendField: "pointsId",
-            xAxisField: "createDate",
-            yAxisField: "temValue"
+        sole_table: {
+          title: '土壤温度报警统计',
+          operation: [
+            {
+              id: "soil_temperature_alarm_analysis_date",
+              type: "em_date",
+            },
+            {
+              id: "soil_temperature_alarm_analysis_button_search",
+              type: "em_button",
+              icon: "el-icon-search",
+              operate: "查询",
+              control_id: "soil_temperature_alarm_analysis_table",
+              fn: "search"
+            },
+            {
+              id: "soil_temperature_alarm_analysis_export",
+              type: "em_button",
+              icon: "el-icon-excel_out",
+              operate: "导出excel",
+              control_id: "soil_temperature_alarm_analysis_table",
+              fn: "export",
+              url: "/gardens/warningrecord/exportCsv?warningType=TS"
+            }
+          ],
+          table: {
+            id: "soil_temperature_alarm_analysis_table",
+            table_url: "/gardens/warningrecord/queryAllByPage?warningType=TS",
+            label: [{
+              name: "关联设备号",
+              prop: "relevanceId",
+              width: "100",
+              type: "em_input",
+              params: "relevanceId",
+              placeholder: "关联设备号",
+              alter_show: true,
+              add_show: true
+
+            },
+              {
+                name: "报警值",
+                prop: "warningValue",
+                width: "100",
+                type: "em_input",
+                params: "warningValue",
+                placeholder: "报警值",
+                alter_show: true,
+                add_show: true
+              },
+              {
+                name: "描述地址",
+                prop: "describeAdress",
+                width: "140",
+                type: "em_input",
+                params: "describeAdress",
+                placeholder: "描述地址",
+                alter_show: true,
+                add_show: true
+              },
+              {
+                name: "发生时间",
+                prop: "createDate",
+                width: "140",
+                type: "em_input",
+                params: "createDate",
+                placeholder: "发生时间",
+                alter_show: true,
+                add_show: true
+
+              },
+              {
+                name: "备注",
+                prop: "remark",
+                width: "120",
+                type: "em_input",
+                params: "remark",
+                placeholder: "备注",
+                alter_show: true,
+                add_show: true
+              }
+
+
+            ]
           }
-        ]
+        }
       }
     },
     {
       id: "soil_humidity_analysis",
       title: "土壤湿度统计分析",
       top: "calc((100% - 700px)/2)",
-      left:"calc((100% - 1000px)/2)",
+      left: "calc((100% - 1000px)/2)",
       width: 1000,
       height: 700,
       show: false,
       class: "em-table-window",
-      component: "echart_table",
+      component: "tabs_table",
       component_data: {
-        operation: [
-          {
-            id: "soil_temperature_analysis_date",
-            type: "em_date",
-
-          },
-          {
-            id: "soil_humidity_analysis_button_search",
-            type: "em_button",
-            icon: "el-icon-search",
-            operate: "查询",
-            control_id: "soil_humidity_analysis_table",
-            fn: "search"
-          }
-        ],
-        table: {
-          id: "soil_humidity_analysis_table",
-          table_url: "/gardens/humidity/queryAllByPage?dataType=S",
-          label: [{
-            name: "监测点",
-            prop: "pointsId",
-            width: "140",
-            type: "em_input",
-            params: "pointsId",
-            placeholder: "全称",
-            alter_show: true
-
-          },
+        echart_table: {
+          title: "土壤湿度统计分析",
+          operation: [
             {
-              name: "湿度值",
-              prop: "humValue",
-              width: "100",
-              type: "em_input",
-              params: "humValue",
-              placeholder: "温度值",
-              alter_show: true
-            },
-            {
-              name: "创建时间",
-              prop: "createDate",
-              width: "180",
-              type: "em_input",
-              params: "createDate",
-              placeholder: "创建时间",
-              alter_show: true
+              id: "soil_temperature_analysis_date",
+              type: "em_date",
 
             },
             {
-              name: "备注",
-              prop: "memo",
+              id: "soil_humidity_analysis_button_search",
+              type: "em_button",
+              icon: "el-icon-search",
+              operate: "查询",
+              control_id: "soil_humidity_analysis_table",
+              fn: "search"
+            }
+          ],
+          table: {
+            id: "soil_humidity_analysis_table",
+            table_url: "/gardens/humidity/queryAllByPage?dataType=S",
+            label: [{
+              name: "监测点",
+              prop: "pointsId",
               width: "140",
               type: "em_input",
-              params: "memo",
-              placeholder: "备注",
+              params: "pointsId",
+              placeholder: "全称",
               alter_show: true
+
+            },
+              {
+                name: "湿度值",
+                prop: "humValue",
+                width: "100",
+                type: "em_input",
+                params: "humValue",
+                placeholder: "温度值",
+                alter_show: true
+              },
+              {
+                name: "创建时间",
+                prop: "createDate",
+                width: "180",
+                type: "em_input",
+                params: "createDate",
+                placeholder: "创建时间",
+                alter_show: true
+
+              },
+              {
+                name: "备注",
+                prop: "memo",
+                width: "140",
+                type: "em_input",
+                params: "memo",
+                placeholder: "备注",
+                alter_show: true
+              }
+
+
+            ]
+          },
+          charts: [
+            {
+              id: "soil_humidity_analysis_chart_1",
+              type: "line",
+              optionType: "option_bar_line",
+              winSpan: 24,
+              height: 50,
+              chartTitle: "空气湿度(最高值)",
+              unit_y: "%",
+              dataUrl: '/gardens/humidity/queryAll?dataType=S',
+              seriesType: "lineBar_handle_a",
+              valueType: "max",
+              legendField: "pointsId",
+              xAxisField: "createDate",
+              yAxisField: "humValue"
+            },
+            {
+              id: "soil_humidity_analysis_chart_2",
+              type: "line",
+              optionType: "option_bar_line",
+              winSpan: 24,
+              height: 50,
+              chartTitle: "空气湿度(最低值)",
+              unit_y: "%",
+              dataUrl: '/gardens/humidity/queryAll?dataType=S',
+              seriesType: "lineBar_handle_a",
+              valueType: "min",
+              legendField: "pointsId",
+              xAxisField: "createDate",
+              yAxisField: "humValue"
+            },
+            {
+              id: "soil_humidity_analysis_chart_3",
+              type: "line",
+              optionType: "option_bar_line",
+              winSpan: 48,
+              height: 30,
+              chartTitle: "空气湿度(平均值)",
+              unit_y: "%",
+              dataUrl: '/gardens/humidity/queryAll?dataType=S',
+              seriesType: "lineBar_handle_a",
+              valueType: "mean",
+              legendField: "pointsId",
+              xAxisField: "createDate",
+              yAxisField: "humValue"
             }
-
-
           ]
         },
-        charts: [
-          {
-            id: "soil_humidity_analysis_chart_1",
-            type: "line",
-            optionType: "option_bar_line",
-            winSpan: 24,
-            height: 50,
-            chartTitle: "空气湿度(最高值)",
-            unit_y: "%",
-            dataUrl: '/gardens/humidity/queryAll?dataType=S',
-            seriesType: "lineBar_handle_a",
-            valueType: "max",
-            legendField: "pointsId",
-            xAxisField: "createDate",
-            yAxisField: "humValue"
-          },
-          {
-            id: "soil_humidity_analysis_chart_2",
-            type: "line",
-            optionType: "option_bar_line",
-            winSpan: 24,
-            height: 50,
-            chartTitle: "空气湿度(最低值)",
-            unit_y: "%",
-            dataUrl: '/gardens/humidity/queryAll?dataType=S',
-            seriesType: "lineBar_handle_a",
-            valueType: "min",
-            legendField: "pointsId",
-            xAxisField: "createDate",
-            yAxisField: "humValue"
-          },
-          {
-            id: "soil_humidity_analysis_chart_3",
-            type: "line",
-            optionType: "option_bar_line",
-            winSpan: 48,
-            height: 30,
-            chartTitle: "空气湿度(平均值)",
-            unit_y: "%",
-            dataUrl: '/gardens/humidity/queryAll?dataType=S',
-            seriesType: "lineBar_handle_a",
-            valueType: "mean",
-            legendField: "pointsId",
-            xAxisField: "createDate",
-            yAxisField: "humValue"
+        sole_table: {
+          title: '土壤湿度报警统计',
+          operation: [
+            {
+              id: "soil_humidity_alarm_analysis_date",
+              type: "em_date",
+            },
+            {
+              id: "soil_humidity_alarm_analysis_button_search",
+              type: "em_button",
+              icon: "el-icon-search",
+              operate: "查询",
+              control_id: "soil_humidity_alarm_analysis_table",
+              fn: "search"
+            },
+            {
+              id: "soil_humidity_alarm_analysis_export",
+              type: "em_button",
+              icon: "el-icon-excel_out",
+              operate: "导出excel",
+              control_id: "soil_humidity_alarm_analysis_table",
+              fn: "export",
+              url: "/gardens/warningrecord/exportCsv?warningType=HS"
+            }
+          ],
+          table: {
+            id: "soil_humidity_alarm_analysis_table",
+            table_url: "/gardens/warningrecord/queryAllByPage?warningType=HS",
+            label: [{
+              name: "关联设备号",
+              prop: "relevanceId",
+              width: "100",
+              type: "em_input",
+              params: "relevanceId",
+              placeholder: "关联设备号",
+              alter_show: true,
+              add_show: true
+
+            },
+              {
+                name: "报警值",
+                prop: "warningValue",
+                width: "100",
+                type: "em_input",
+                params: "warningValue",
+                placeholder: "报警值",
+                alter_show: true,
+                add_show: true
+              },
+              {
+                name: "描述地址",
+                prop: "describeAdress",
+                width: "140",
+                type: "em_input",
+                params: "describeAdress",
+                placeholder: "描述地址",
+                alter_show: true,
+                add_show: true
+              },
+              {
+                name: "发生时间",
+                prop: "createDate",
+                width: "140",
+                type: "em_input",
+                params: "createDate",
+                placeholder: "发生时间",
+                alter_show: true,
+                add_show: true
+
+              },
+              {
+                name: "备注",
+                prop: "remark",
+                width: "120",
+                type: "em_input",
+                params: "remark",
+                placeholder: "备注",
+                alter_show: true,
+                add_show: true
+              }
+
+
+            ]
           }
-        ]
+        }
       }
     },
     {
       id: "population_analysis",
       title: "人流量统计分析",
       top: "calc((100% - 700px)/2)",
-      left:"calc((100% - 1000px)/2)",
+      left: "calc((100% - 1000px)/2)",
       width: 1000,
       height: 700,
       show: false,
       class: "em-table-window",
-      component: "echart_table",
+      component: "tabs_table",
       component_data: {
-        operation: [
-          {
-            id: "population_analysis_date",
-            type: "em_date",
-
-          },
-          {
-            id: "population_analysis_button_search",
-            type: "em_button",
-            icon: "el-icon-search",
-            operate: "查询",
-            control_id: "population_analysis_table",
-            fn: "search"
-          }
-        ],
-        table: {
-          id: "population_analysis_table",
-          table_url: "/gardens/humantrafficinfo/queryAllByPage",
-          label: [{
-            name: "监测点",
-            prop: "humanTrafficId",
-            width: "140",
-            type: "em_input",
-            params: "humanTrafficId",
-            placeholder: "监测点",
-            alter_show: true
-
-          },
+        echart_table: {
+          title: "人流量统计分析",
+          operation: [
             {
-              name: "人流量信息",
-              prop: "humanTrafficValue",
-              width: "100",
-              type: "em_input",
-              params: "humanTrafficValue",
-              placeholder: "humanTrafficValue",
-              alter_show: true
-            },
-            {
-              name: "创建时间",
-              prop: "createDate",
-              width: "180",
-              type: "em_input",
-              params: "createDate",
-              placeholder: "创建时间",
-              alter_show: true
+              id: "population_analysis_date",
+              type: "em_date",
 
             },
             {
-              name: "备注",
-              prop: "memo",
+              id: "population_analysis_button_search",
+              type: "em_button",
+              icon: "el-icon-search",
+              operate: "查询",
+              control_id: "population_analysis_table",
+              fn: "search"
+            }
+          ],
+          table: {
+            id: "population_analysis_table",
+            table_url: "/gardens/humantrafficinfo/queryAllByPage",
+            label: [{
+              name: "监测点",
+              prop: "humanTrafficId",
               width: "140",
               type: "em_input",
-              params: "memo",
-              placeholder: "备注",
+              params: "humanTrafficId",
+              placeholder: "监测点",
               alter_show: true
+
+            },
+              {
+                name: "人流量信息",
+                prop: "humanTrafficValue",
+                width: "100",
+                type: "em_input",
+                params: "humanTrafficValue",
+                placeholder: "humanTrafficValue",
+                alter_show: true
+              },
+              {
+                name: "创建时间",
+                prop: "createDate",
+                width: "180",
+                type: "em_input",
+                params: "createDate",
+                placeholder: "创建时间",
+                alter_show: true
+
+              },
+              {
+                name: "备注",
+                prop: "memo",
+                width: "140",
+                type: "em_input",
+                params: "memo",
+                placeholder: "备注",
+                alter_show: true
+              }
+
+
+            ]
+          },
+          charts: [
+            {
+              id: "population_analysis_chart_1",
+              type: "line",
+              optionType: "option_bar_line",
+              winSpan: 24,
+              height: 50,
+              chartTitle: "人流量(最高值)",
+              unit_y: "人次",
+              dataUrl: '/gardens/humantrafficinfo/queryAll',
+              seriesType: "lineBar_handle_a",
+              valueType: "max",
+              legendField: "humanTrafficId",
+              xAxisField: "createDate",
+              yAxisField: "humanTrafficValue"
+            },
+            {
+              id: "population_analysis_chart_2",
+              type: "line",
+              optionType: "option_bar_line",
+              winSpan: 24,
+              height: 50,
+              chartTitle: "人流量(最低值)",
+              unit_y: "人次",
+              dataUrl: '/gardens/humantrafficinfo/queryAll',
+              seriesType: "lineBar_handle_a",
+              valueType: "min",
+              legendField: "humanTrafficId",
+              xAxisField: "createDate",
+              yAxisField: "humanTrafficValue"
+            },
+            {
+              id: "population_analysis_chart_3",
+              type: "line",
+              optionType: "option_bar_line",
+              winSpan: 24,
+              height: 50,
+              chartTitle: "人流量(平均数)",
+              unit_y: "人次",
+              dataUrl: '/gardens/humantrafficinfo/queryAll',
+              seriesType: "lineBar_handle_a",
+              valueType: "mean",
+              legendField: "humanTrafficId",
+              xAxisField: "createDate",
+              yAxisField: "humanTrafficValue"
+            },
+            {
+              id: "population_analysis_chart_4",
+              type: "bar",
+              optionType: "option_bar_line",
+              winSpan: 24,
+              height: 50,
+              chartTitle: "人流量(求和)",
+              unit_y: "人次",
+              dataUrl: '/gardens/humantrafficinfo/queryAll',
+              seriesType: "lineBar_handle_a",
+              valueType: "sum",
+              legendField: "humanTrafficId",
+              xAxisField: "createDate",
+              yAxisField: "humanTrafficValue"
             }
-
-
           ]
         },
-        charts: [
-          {
-            id: "population_analysis_chart_1",
-            type: "line",
-            optionType: "option_bar_line",
-            winSpan: 24,
-            height: 50,
-            chartTitle: "人流量(最高值)",
-            unit_y: "人次",
-            dataUrl: '/gardens/humantrafficinfo/queryAll',
-            seriesType: "lineBar_handle_a",
-            valueType: "max",
-            legendField: "humanTrafficId",
-            xAxisField: "createDate",
-            yAxisField: "humanTrafficValue"
-          },
-          {
-            id: "population_analysis_chart_2",
-            type: "line",
-            optionType: "option_bar_line",
-            winSpan: 24,
-            height: 50,
-            chartTitle: "人流量(最低值)",
-            unit_y: "人次",
-            dataUrl: '/gardens/humantrafficinfo/queryAll',
-            seriesType: "lineBar_handle_a",
-            valueType: "min",
-            legendField: "humanTrafficId",
-            xAxisField: "createDate",
-            yAxisField: "humanTrafficValue"
-          },
-          {
-            id: "population_analysis_chart_3",
-            type: "line",
-            optionType: "option_bar_line",
-            winSpan: 24,
-            height: 50,
-            chartTitle: "人流量(平均数)",
-            unit_y: "人次",
-            dataUrl: '/gardens/humantrafficinfo/queryAll',
-            seriesType: "lineBar_handle_a",
-            valueType: "mean",
-            legendField: "humanTrafficId",
-            xAxisField: "createDate",
-            yAxisField: "humanTrafficValue"
-          },
-          {
-            id: "population_analysis_chart_4",
-            type: "bar",
-            optionType: "option_bar_line",
-            winSpan: 24,
-            height: 50,
-            chartTitle: "人流量(求和)",
-            unit_y: "人次",
-            dataUrl: '/gardens/humantrafficinfo/queryAll',
-            seriesType: "lineBar_handle_a",
-            valueType: "sum",
-            legendField: "humanTrafficId",
-            xAxisField: "createDate",
-            yAxisField: "humanTrafficValue"
+        sole_table: {
+          title: '人流量报警统计',
+          operation: [
+            {
+              id: "population_alarm_analysis_date",
+              type: "em_date",
+            },
+            {
+              id: "population_alarm_analysis_button_search",
+              type: "em_button",
+              icon: "el-icon-search",
+              operate: "查询",
+              control_id: "population_alarm_analysis_table",
+              fn: "search"
+            },
+            {
+              id: "population_alarm_analysis_export",
+              type: "em_button",
+              icon: "el-icon-excel_out",
+              operate: "导出excel",
+              control_id: "population_alarm_analysis_table",
+              fn: "export",
+              url: "/gardens/warningrecord/exportCsv?warningType=HT"
+            }
+          ],
+          table: {
+            id: "population_alarm_analysis_table",
+            table_url: "/gardens/warningrecord/queryAllByPage?warningType=HT",
+            label: [{
+              name: "关联设备号",
+              prop: "relevanceId",
+              width: "100",
+              type: "em_input",
+              params: "relevanceId",
+              placeholder: "关联设备号",
+              alter_show: true,
+              add_show: true
+
+            },
+              {
+                name: "报警值",
+                prop: "warningValue",
+                width: "100",
+                type: "em_input",
+                params: "warningValue",
+                placeholder: "报警值",
+                alter_show: true,
+                add_show: true
+              },
+              {
+                name: "描述地址",
+                prop: "describeAdress",
+                width: "140",
+                type: "em_input",
+                params: "describeAdress",
+                placeholder: "描述地址",
+                alter_show: true,
+                add_show: true
+              },
+              {
+                name: "发生时间",
+                prop: "createDate",
+                width: "140",
+                type: "em_input",
+                params: "createDate",
+                placeholder: "发生时间",
+                alter_show: true,
+                add_show: true
+
+              },
+              {
+                name: "备注",
+                prop: "remark",
+                width: "120",
+                type: "em_input",
+                params: "remark",
+                placeholder: "备注",
+                alter_show: true,
+                add_show: true
+              }
+
+
+            ]
           }
-        ]
+        }
+
       }
     },
     {
       id: "air_temperature_analysis",
       title: "空气温度统计分析",
       top: "calc((100% - 700px)/2)",
-      left:"calc((100% - 1000px)/2)",
+      left: "calc((100% - 1000px)/2)",
       width: 1000,
       height: 700,
       show: false,
       class: "em-table-window",
-      component: "echart_table",
+      component: "tabs_table",
       component_data: {
-        operation: [
-          {
-            id: "soil_temperature_analysis_date",
-            type: "em_date",
-
-          },
-          {
-            id: "air_temperature_analysis_button_search",
-            type: "em_button",
-            icon: "el-icon-search",
-            operate: "查询",
-            control_id: "air_temperature_analysis_table",
-            fn: "search"
-          }
-        ],
-        table: {
-          id: "air_temperature_analysis_table",
-          table_url: "/gardens/temperature/queryAllByPage?dataType=A",
-          label: [{
-            name: "监测点",
-            prop: "pointsId",
-            width: "140",
-            type: "em_input",
-            params: "pointsId",
-            placeholder: "全称",
-            alter_show: true
-
-          },
+        echart_table: {
+          title: "空气温度统计分析",
+          operation: [
             {
-              name: "温度值",
-              prop: "temValue",
-              width: "100",
-              type: "em_input",
-              params: "temValue",
-              placeholder: "温度值",
-              alter_show: true
-            },
-            {
-              name: "创建时间",
-              prop: "createDate",
-              width: "180",
-              type: "em_input",
-              params: "createDate",
-              placeholder: "创建时间",
-              alter_show: true
+              id: "soil_temperature_analysis_date",
+              type: "em_date",
 
             },
             {
-              name: "备注",
-              prop: "memo",
+              id: "air_temperature_analysis_button_search",
+              type: "em_button",
+              icon: "el-icon-search",
+              operate: "查询",
+              control_id: "air_temperature_analysis_table",
+              fn: "search"
+            }
+          ],
+          table: {
+            id: "air_temperature_analysis_table",
+            table_url: "/gardens/temperature/queryAllByPage?dataType=A",
+            label: [{
+              name: "监测点",
+              prop: "pointsId",
               width: "140",
               type: "em_input",
-              params: "memo",
-              placeholder: "备注",
+              params: "pointsId",
+              placeholder: "全称",
               alter_show: true
+
+            },
+              {
+                name: "温度值",
+                prop: "temValue",
+                width: "100",
+                type: "em_input",
+                params: "temValue",
+                placeholder: "温度值",
+                alter_show: true
+              },
+              {
+                name: "创建时间",
+                prop: "createDate",
+                width: "180",
+                type: "em_input",
+                params: "createDate",
+                placeholder: "创建时间",
+                alter_show: true
+
+              },
+              {
+                name: "备注",
+                prop: "memo",
+                width: "140",
+                type: "em_input",
+                params: "memo",
+                placeholder: "备注",
+                alter_show: true
+              }
+
+
+            ]
+          },
+          charts: [
+            {
+              id: "air_temperature_analysis_chart_1",
+              type: "line",
+              optionType: "option_bar_line",
+              winSpan: 24,
+              height: 50,
+              chartTitle: "空气温度(最高值)",
+              unit_y: "℃",
+              dataUrl: '/gardens/temperature/queryAll?dataType=A',
+              seriesType: "lineBar_handle_a",
+              valueType: "max",
+              legendField: "pointsId",
+              xAxisField: "createDate",
+              yAxisField: "temValue"
+            },
+            {
+              id: "air_temperature_analysis_chart_2",
+              type: "line",
+              optionType: "option_bar_line",
+              winSpan: 24,
+              height: 50,
+              chartTitle: "空气温度(最低值)",
+              unit_y: "℃",
+              dataUrl: '/gardens/temperature/queryAll?dataType=A',
+              seriesType: "lineBar_handle_a",
+              valueType: "min",
+              legendField: "pointsId",
+              xAxisField: "createDate",
+              yAxisField: "temValue"
+            },
+            {
+              id: "air_temperature_analysis_chart_3",
+              type: "line",
+              optionType: "option_bar_line",
+              winSpan: 48,
+              height: 30,
+              chartTitle: "空气温度(平均数)",
+              unit_y: "℃",
+              dataUrl: '/gardens/temperature/queryAll?dataType=A',
+              seriesType: "lineBar_handle_a",
+              valueType: "mean",
+              legendField: "pointsId",
+              xAxisField: "createDate",
+              yAxisField: "temValue"
             }
-
-
           ]
         },
-        charts: [
-          {
-            id: "air_temperature_analysis_chart_1",
-            type: "line",
-            optionType: "option_bar_line",
-            winSpan: 24,
-            height: 50,
-            chartTitle: "空气温度(最高值)",
-            unit_y: "℃",
-            dataUrl: '/gardens/temperature/queryAll?dataType=A',
-            seriesType: "lineBar_handle_a",
-            valueType: "max",
-            legendField: "pointsId",
-            xAxisField: "createDate",
-            yAxisField: "temValue"
-          },
-          {
-            id: "air_temperature_analysis_chart_2",
-            type: "line",
-            optionType: "option_bar_line",
-            winSpan: 24,
-            height: 50,
-            chartTitle: "空气温度(最低值)",
-            unit_y: "℃",
-            dataUrl: '/gardens/temperature/queryAll?dataType=A',
-            seriesType: "lineBar_handle_a",
-            valueType: "min",
-            legendField: "pointsId",
-            xAxisField: "createDate",
-            yAxisField: "temValue"
-          },
-          {
-            id: "air_temperature_analysis_chart_3",
-            type: "line",
-            optionType: "option_bar_line",
-            winSpan: 48,
-            height: 30,
-            chartTitle: "空气温度(平均数)",
-            unit_y: "℃",
-            dataUrl: '/gardens/temperature/queryAll?dataType=A',
-            seriesType: "lineBar_handle_a",
-            valueType: "mean",
-            legendField: "pointsId",
-            xAxisField: "createDate",
-            yAxisField: "temValue"
+        sole_table: {
+          title: '空气温度报警统计',
+          operation: [
+            {
+              id: "air_temperature_alarm_analysis_date",
+              type: "em_date",
+            },
+            {
+              id: "air_temperature_alarm_analysis_button_search",
+              type: "em_button",
+              icon: "el-icon-search",
+              operate: "查询",
+              control_id: "air_temperature_alarm_analysis_table",
+              fn: "search"
+            },
+            {
+              id: "air_temperature_alarm_analysis_export",
+              type: "em_button",
+              icon: "el-icon-excel_out",
+              operate: "导出excel",
+              control_id: "air_temperature_alarm_analysis_table",
+              fn: "export",
+              url: "/gardens/warningrecord/exportCsv?warningType=TA"
+            }
+          ],
+          table: {
+            id: "air_temperature_alarm_analysis_table",
+            table_url: "/gardens/warningrecord/queryAllByPage?warningType=TA",
+            label: [{
+              name: "关联设备号",
+              prop: "relevanceId",
+              width: "100",
+              type: "em_input",
+              params: "relevanceId",
+              placeholder: "关联设备号",
+              alter_show: true,
+              add_show: true
+
+            },
+              {
+                name: "报警值",
+                prop: "warningValue",
+                width: "100",
+                type: "em_input",
+                params: "warningValue",
+                placeholder: "报警值",
+                alter_show: true,
+                add_show: true
+              },
+              {
+                name: "描述地址",
+                prop: "describeAdress",
+                width: "140",
+                type: "em_input",
+                params: "describeAdress",
+                placeholder: "描述地址",
+                alter_show: true,
+                add_show: true
+              },
+              {
+                name: "发生时间",
+                prop: "createDate",
+                width: "140",
+                type: "em_input",
+                params: "createDate",
+                placeholder: "发生时间",
+                alter_show: true,
+                add_show: true
+
+              },
+              {
+                name: "备注",
+                prop: "remark",
+                width: "120",
+                type: "em_input",
+                params: "remark",
+                placeholder: "备注",
+                alter_show: true,
+                add_show: true
+              }
+
+
+            ]
           }
-        ]
+        }
+
       }
     },
     {
       id: "air_humidity_analysis",
       title: "空气湿度统计分析",
       top: "calc((100% - 700px)/2)",
-      left:"calc((100% - 1000px)/2)",
+      left: "calc((100% - 1000px)/2)",
       width: 1000,
       height: 700,
       show: false,
       class: "em-table-window",
-      component: "echart_table",
+      component: "tabs_table",
       component_data: {
-        operation: [
-          {
-            id: "soil_temperature_analysis_date",
-            type: "em_date",
-
-          },
-          {
-            id: "air_humidity_analysis_button_search",
-            type: "em_button",
-            icon: "el-icon-search",
-            operate: "查询",
-            control_id: "air_humidity_analysis_table",
-            fn: "search"
-          }
-        ],
-        table: {
-          id: "air_humidity_analysis_table",
-          table_url: "/gardens/humidity/queryAllByPage?dataType=A",
-          label: [{
-            name: "监测点",
-            prop: "pointsId",
-            width: "140",
-            type: "em_input",
-            params: "pointsId",
-            placeholder: "全称",
-            alter_show: true
-
-          },
+        echart_table: {
+          title: "空气湿度统计分析",
+          operation: [
             {
-              name: "湿度值",
-              prop: "humValue",
-              width: "100",
-              type: "em_input",
-              params: "humValue",
-              placeholder: "温度值",
-              alter_show: true
-            },
-            {
-              name: "创建时间",
-              prop: "createDate",
-              width: "180",
-              type: "em_input",
-              params: "createDate",
-              placeholder: "创建时间",
-              alter_show: true
+              id: "soil_temperature_analysis_date",
+              type: "em_date",
 
             },
             {
-              name: "备注",
-              prop: "memo",
+              id: "air_humidity_analysis_button_search",
+              type: "em_button",
+              icon: "el-icon-search",
+              operate: "查询",
+              control_id: "air_humidity_analysis_table",
+              fn: "search"
+            }
+          ],
+          table: {
+            id: "air_humidity_analysis_table",
+            table_url: "/gardens/humidity/queryAllByPage?dataType=A",
+            label: [{
+              name: "监测点",
+              prop: "pointsId",
               width: "140",
               type: "em_input",
-              params: "memo",
-              placeholder: "备注",
+              params: "pointsId",
+              placeholder: "全称",
               alter_show: true
+
+            },
+              {
+                name: "湿度值",
+                prop: "humValue",
+                width: "100",
+                type: "em_input",
+                params: "humValue",
+                placeholder: "温度值",
+                alter_show: true
+              },
+              {
+                name: "创建时间",
+                prop: "createDate",
+                width: "180",
+                type: "em_input",
+                params: "createDate",
+                placeholder: "创建时间",
+                alter_show: true
+
+              },
+              {
+                name: "备注",
+                prop: "memo",
+                width: "140",
+                type: "em_input",
+                params: "memo",
+                placeholder: "备注",
+                alter_show: true
+              }
+
+
+            ]
+          },
+          charts: [
+            {
+              id: "air_humidity_analysis_chart_1",
+              type: "line",
+              optionType: "option_bar_line",
+              winSpan: 24,
+              height: 50,
+              chartTitle: "空气湿度(最高值)",
+              unit_y: "%",
+              dataUrl: '/gardens/humidity/queryAll?dataType=A',
+              seriesType: "lineBar_handle_a",
+              valueType: "max",
+              legendField: "pointsId",
+              xAxisField: "createDate",
+              yAxisField: "humValue"
+            },
+            {
+              id: "air_humidity_analysis_chart_2",
+              type: "bar",
+              optionType: "option_bar_line",
+              winSpan: 24,
+              height: 50,
+              chartTitle: "空气湿度(最低值)",
+              unit_y: "%",
+              dataUrl: '/gardens/humidity/queryAll?dataType=A',
+              seriesType: "lineBar_handle_a",
+              valueType: "min",
+              legendField: "pointsId",
+              xAxisField: "createDate",
+              yAxisField: "humValue"
             }
-
-
           ]
         },
-        charts: [
-          {
-            id: "air_humidity_analysis_chart_1",
-            type: "line",
-            optionType: "option_bar_line",
-            winSpan: 24,
-            height: 50,
-            chartTitle: "空气湿度(最高值)",
-            unit_y: "%",
-            dataUrl: '/gardens/humidity/queryAll?dataType=A',
-            seriesType: "lineBar_handle_a",
-            valueType: "max",
-            legendField: "pointsId",
-            xAxisField: "createDate",
-            yAxisField: "humValue"
-          },
-          {
-            id: "air_humidity_analysis_chart_2",
-            type: "bar",
-            optionType: "option_bar_line",
-            winSpan: 24,
-            height: 50,
-            chartTitle: "空气湿度(最低值)",
-            unit_y: "%",
-            dataUrl: '/gardens/humidity/queryAll?dataType=A',
-            seriesType: "lineBar_handle_a",
-            valueType: "min",
-            legendField: "pointsId",
-            xAxisField: "createDate",
-            yAxisField: "humValue"
+        sole_table: {
+          title: '空气湿度报警统计',
+          operation: [
+            {
+              id: "air_humidity_alarm_analysis_date",
+              type: "em_date",
+            },
+            {
+              id: "air_humidity_alarm_analysis_search",
+              type: "em_button",
+              icon: "el-icon-search",
+              operate: "查询",
+              control_id: "air_humidity_alarm_analysis_table",
+              fn: "search"
+            },
+            {
+              id: "air_humidity_alarm_analysis_export",
+              type: "em_button",
+              icon: "el-icon-excel_out",
+              operate: "导出excel",
+              control_id: "air_humidity_alarm_analysis_table",
+              fn: "export",
+              url: "/gardens/warningrecord/exportCsv?warningType=HA"
+            }
+
+          ],
+          table: {
+            id: "air_humidity_alarm_analysis_table",
+            table_url: "/gardens/warningrecord/queryAllByPage?warningType=HA",
+            label: [{
+              name: "关联设备号",
+              prop: "relevanceId",
+              width: "100",
+              type: "em_input",
+              params: "relevanceId",
+              placeholder: "关联设备号",
+              alter_show: true,
+              add_show: true
+
+            },
+              {
+                name: "报警值",
+                prop: "warningValue",
+                width: "100",
+                type: "em_input",
+                params: "warningValue",
+                placeholder: "报警值",
+                alter_show: true,
+                add_show: true
+              },
+              {
+                name: "描述地址",
+                prop: "describeAdress",
+                width: "140",
+                type: "em_input",
+                params: "describeAdress",
+                placeholder: "描述地址",
+                alter_show: true,
+                add_show: true
+              },
+              {
+                name: "发生时间",
+                prop: "createDate",
+                width: "140",
+                type: "em_input",
+                params: "createDate",
+                placeholder: "发生时间",
+                alter_show: true,
+                add_show: true
+
+              },
+              {
+                name: "备注",
+                prop: "remark",
+                width: "120",
+                type: "em_input",
+                params: "remark",
+                placeholder: "备注",
+                alter_show: true,
+                add_show: true
+              }
+
+
+            ]
           }
-        ]
+        }
+
       }
     },
     {
       id: "fire_alert_anaysis",
       title: "火险报警统计分析",
       top: "calc((100% - 700px)/2)",
-      left:"calc((100% - 1000px)/2)",
+      left: "calc((100% - 1000px)/2)",
       width: 1000,
       height: 700,
       show: false,
@@ -2531,7 +2950,7 @@ export default {
       id: "people_manage",
       title: "人员管理",
       top: "calc((100% - 500px)/2)",
-      left:"calc((100% - 1000px)/2)",
+      left: "calc((100% - 1000px)/2)",
       width: 1000,
       height: 500,
       show: false,
@@ -2616,7 +3035,8 @@ export default {
                 placeholder: "类型编号",
                 params: "personTypeNo",
                 alter_show: true,
-                add_show: true
+                add_show: true,
+                ratio: 24
               },
               {
                 name: "人员类型",
@@ -2626,7 +3046,8 @@ export default {
                 placeholder: "人员类型",
                 params: "personTypeName",
                 alter_show: true,
-                add_show: true
+                add_show: true,
+                ratio: 24
               },
               {
                 name: "描述",
@@ -2636,7 +3057,8 @@ export default {
                 placeholder: "描述",
                 params: "memo",
                 alter_show: true,
-                add_show: true
+                add_show: true,
+                ratio: 24
               },
             ]
           }
@@ -2724,7 +3146,8 @@ export default {
               placeholder: "名字",
               params: "name",
               alter_show: true,
-              add_show: true
+              add_show: true,
+              ratio: 24
             },
               {
                 name: "性别",
@@ -2743,7 +3166,8 @@ export default {
 
                 ],
                 alter_show: true,
-                add_show: true
+                add_show: true,
+                ratio: 24
               },
               {
                 name: "职务",
@@ -2753,7 +3177,8 @@ export default {
                 placeholder: "职务",
                 params: "duty",
                 alter_show: true,
-                add_show: true
+                add_show: true,
+                ratio: 24
               },
               {
                 name: "人员类型",
@@ -2763,7 +3188,8 @@ export default {
                 params: "personTypeId",
                 optionUrl: "gardens/persontype/queryAll",
                 alter_show: true,
-                add_show: true
+                add_show: true,
+                ratio: 24
 
               },
               {
@@ -2774,7 +3200,8 @@ export default {
                 placeholder: "电话",
                 params: "telephone",
                 alter_show: true,
-                add_show: true
+                add_show: true,
+                ratio: 24
               },
               {
                 name: "从事专业",
@@ -2784,7 +3211,8 @@ export default {
                 placeholder: "从事专业",
                 params: "professional",
                 alter_show: true,
-                add_show: true
+                add_show: true,
+                ratio: 24
               },
               {
                 name: "工作单位",
@@ -2794,7 +3222,8 @@ export default {
                 params: "entId",
                 optionUrl: "gardens/ent/queryAll",
                 alter_show: true,
-                add_show: true
+                add_show: true,
+                ratio: 24
               },
               {
                 name: "备注",
@@ -2804,7 +3233,8 @@ export default {
                 placeholder: "备注",
                 params: "memo",
                 alter_show: true,
-                add_show: true
+                add_show: true,
+                ratio: 24
 
               }
 
@@ -2819,7 +3249,7 @@ export default {
       id: "protect_company_manage",
       title: "养护单位管理",
       top: "calc((100% - 500px)/2)",
-      left:"calc((100% - 800px)/2)",
+      left: "calc((100% - 800px)/2)",
       width: 800,
       height: 500,
       show: false,
@@ -2827,7 +3257,6 @@ export default {
       component: "sole_table",
       component_data: {
         operation: [
-
           {
             id: "protect_company_manage_input_entName",
             type: "em_input",
@@ -2919,7 +3348,8 @@ export default {
               placeholder: "名称",
               params: "entName",
               alter_show: true,
-              add_show: true
+              add_show: true,
+              ratio: 24
 
             },
             {
@@ -2930,7 +3360,8 @@ export default {
               placeholder: "单位地址",
               params: "orgAddr",
               alter_show: true,
-              add_show: true
+              add_show: true,
+              ratio: 24
             },
             {
               name: "联系人",
@@ -2940,7 +3371,8 @@ export default {
               placeholder: "联系人",
               params: "contactMan",
               alter_show: true,
-              add_show: true
+              add_show: true,
+              ratio: 24
             },
             {
               name: "联系电话",
@@ -2950,7 +3382,8 @@ export default {
               placeholder: "联系电话",
               params: "tel",
               alter_show: true,
-              add_show: true
+              add_show: true,
+              ratio: 24
             },
             {
               name: "行政区域",
@@ -2960,17 +3393,19 @@ export default {
               params: "areaCode",
               optionUrl: "gardens/district/queryAll",
               alter_show: true,
-              add_show: true
+              add_show: true,
+              ratio: 24
             },
             {
               name: "注释",
               prop: "memo",
               width: "140",
-              type: "em_textarea",
+              type: "em_input",
               placeholder: "注释",
               params: "memo",
               alter_show: true,
-              add_show: true
+              add_show: true,
+              ratio: 24
             },
 
 
@@ -2983,7 +3418,7 @@ export default {
       id: "tree_type_manage",
       title: "树种类型管理",
       top: "calc((100% - 500px)/2)",
-      left:"calc((100% - 800px)/2)",
+      left: "calc((100% - 800px)/2)",
       width: 800,
       height: 500,
       show: false,
@@ -3001,7 +3436,7 @@ export default {
 
               },
               {
-                name: "树种类型名称",
+                name: "类型名称",
                 params: "treeTypeName"
               }
             ]
@@ -3055,17 +3490,8 @@ export default {
               placeholder: "类型编号",
               params: "treeTypeNo",
               alter_show: true,
-              add_show: true
-            },
-            {
-              name: "树种类型名称",
-              prop: "treeTypeName",
-              width: "140",
-              type: "em_input",
-              placeholder: "树种类型名称",
-              params: "treeTypeName",
-              alter_show: true,
-              add_show: true
+              add_show: true,
+              ratio: 24
             },
             {
               name: "是否特殊树种",
@@ -3082,7 +3508,19 @@ export default {
                 }],
               params: "isSpecial",
               alter_show: true,
-              add_show: true
+              add_show: true,
+              ratio: 24
+            },
+            {
+              name: "类型名称",
+              prop: "treeTypeName",
+              width: "140",
+              type: "em_input",
+              placeholder: "类型名称",
+              params: "treeTypeName",
+              alter_show: true,
+              add_show: true,
+              ratio: 48
             },
             {
               name: "注释",
@@ -3092,7 +3530,8 @@ export default {
               placeholder: "注释",
               params: "memo",
               alter_show: true,
-              add_show: true
+              add_show: true,
+              ratio: 48
 
             }
 
@@ -3104,7 +3543,7 @@ export default {
       id: "plant_type_manage",
       title: "植物类型管理",
       top: "calc((100% - 500px)/2)",
-      left:"calc((100% - 800px)/2)",
+      left: "calc((100% - 800px)/2)",
       width: 800,
       height: 500,
       show: false,
@@ -3177,27 +3616,8 @@ export default {
               placeholder: "植物名称",
               params: "plantCname",
               alter_show: true,
-              add_show: true
-            },
-            {
-              name: "植物英文名",
-              prop: "plantEname",
-              width: "140",
-              type: "em_input",
-              placeholder: "植物英文名",
-              params: "plantEname",
-              alter_show: true,
-              add_show: true
-            },
-            {
-              name: "植物分类名称",
-              prop: "plantTypeName",
-              width: "140",
-              type: "em_selectUrl",
-              optionUrl: "gardens/planttype/queryAll",
-              params: "plantTypeId",
-              alter_show: true,
-              add_show: true
+              add_show: true,
+              ratio: 24
             },
             {
               name: "树种分类名称",
@@ -3207,7 +3627,19 @@ export default {
               optionUrl: "gardens/treetype/queryAll",
               params: "treeTypeId",
               alter_show: true,
-              add_show: true
+              add_show: true,
+              ratio: 24
+            },
+            {
+              name: "植物分类名称",
+              prop: "plantTypeName",
+              width: "140",
+              type: "em_selectUrl",
+              optionUrl: "gardens/planttype/queryAll",
+              params: "plantTypeId",
+              alter_show: true,
+              add_show: true,
+              ratio: 24
             },
             {
               name: "植物科名称",
@@ -3217,7 +3649,8 @@ export default {
               placeholder: "植物科名称",
               params: "familiesName",
               alter_show: false,
-              add_show: false
+              add_show: false,
+              ratio: 24
             },
             {
               name: "植物属名称",
@@ -3227,7 +3660,8 @@ export default {
               placeholder: "植物属名称",
               params: "genusName",
               alter_show: false,
-              add_show: false
+              add_show: false,
+              ratio: 24
             },
             {
               name: "花卉还是树",
@@ -3250,36 +3684,50 @@ export default {
               add_show: true
             },
             {
+              name: "植物英文名",
+              prop: "plantEname",
+              width: "140",
+              type: "em_input",
+              placeholder: "植物英文名",
+              params: "plantEname",
+              alter_show: true,
+              add_show: true,
+              ratio: 48
+            },
+            {
               name: "特征",
               prop: "features",
               width: "140",
-              type: "em_input",
+              type: "em_textarea",
               placeholder: "特征",
               params: "features",
               alter_show: true,
-              add_show: true
+              add_show: true,
+              ratio: 48
             },
             {
               name: "生长习性",
               prop: "growthHabit",
               width: "140",
-              type: "em_input",
+              type: "em_textarea",
               placeholder: "生长习性",
               params: "growthHabit",
               alter_show: true,
-              add_show: true
+              add_show: true,
+              ratio: 48
             },
             {
               name: "注释",
               prop: "describeString",
               width: "300",
-              type: "em_input",
+              type: "em_textarea",
               placeholder: "注释",
               params: "describeString",
               alter_show: true,
-              add_show: true
+              add_show: true,
+              ratio: 48
 
-            }
+            },
 
           ]
         }
@@ -3289,7 +3737,7 @@ export default {
       id: "tree_material_manage",
       title: "特殊树木资料管理",
       top: "calc((100% - 500px)/2)",
-      left:"calc((100% - 800px)/2)",
+      left: "calc((100% - 800px)/2)",
       width: 920,
       height: 500,
       show: false,
@@ -3378,7 +3826,8 @@ export default {
               placeholder: "植物编号",
               params: "treeNo",
               alter_show: true,
-              add_show: true
+              add_show: true,
+              ratio: 24
             },
             {
               name: "植物名称",
@@ -3388,35 +3837,40 @@ export default {
               params: "treeNameId",
               optionUrl: "gardens/tree/findplantname",
               alter_show: true,
-              add_show: true
+              add_show: true,
+              ratio: 24
             },
             {
               name: "植物种类型",
               prop: "plantTypeName",
               width: "120",
               alter_show: false,
-              add_show: false
+              add_show: false,
+              ratio: 24
             },
             {
               name: "植物属名称",
               prop: "genusName",
               width: "120",
               alter_show: false,
-              add_show: false
+              add_show: false,
+              ratio: 24
             },
             {
               name: "植物科名称",
               prop: "familiesName",
               width: "120",
               alter_show: false,
-              add_show: false
+              add_show: false,
+              ratio: 24
             },
             {
               name: "树种类型",
               prop: "treeTypeName",
               width: "120",
               alter_show: false,
-              add_show: false
+              add_show: false,
+              ratio: 24
             },
             {
               name: "等级",
@@ -3426,7 +3880,8 @@ export default {
               params: "rankValue",
               optionUrl: "gardens/tree/findrank",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio: 24
             },
             {
               name: "高度",
@@ -3436,7 +3891,8 @@ export default {
               placeholder: "高度",
               params: "height",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio: 24
             },
             {
               name: "海拔高度(m)",
@@ -3446,7 +3902,8 @@ export default {
               placeholder: "海拔高度",
               params: "altitude",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio: 24
             },
             {
               name: "直径(cm)",
@@ -3456,7 +3913,8 @@ export default {
               placeholder: "直径",
               params: "diameter",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio: 24
             },
             {
               name: "周长(cm)",
@@ -3466,7 +3924,8 @@ export default {
               placeholder: "周长",
               params: "perimeter",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio: 24
             },
             {
               name: "所在道路",
@@ -3476,7 +3935,8 @@ export default {
               params: "roadId",
               optionUrl: "gardens/road/queryAll",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio: 24
             },
             // {
             //   name:"所属网格",
@@ -3496,7 +3956,8 @@ export default {
               params: "districtId",
               optionUrl: "gardens/district/queryAll",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio: 24
             },
             {
               name: "种植位置",
@@ -3506,7 +3967,8 @@ export default {
               placeholder: "直径",
               params: "position",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio: 24
             },
             {
               name: "经度",
@@ -3516,17 +3978,19 @@ export default {
               placeholder: "经度",
               params: "longitude",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio: 24
             },
             {
               name: "纬度",
-              prop: "gpsLatitude",
+              prop: "latitude",
               width: "200",
               type: "em_input",
               placeholder: "纬度",
-              params: "gpsLatitude",
+              params: "latitude",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio: 24
             },
             // {
             //   name:"责任人Id",
@@ -3542,11 +4006,12 @@ export default {
               name: "特征描述",
               prop: "memo",
               width: "100",
-              type: "em_input",
+              type: "em_textarea",
               placeholder: "特征描述",
               params: "memo",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio: 48
             }
 
           ]
@@ -3557,7 +4022,7 @@ export default {
       id: "grid_manage",
       title: "网格管理",
       top: "calc((100% - 500px)/2)",
-      left:"calc((100% - 800px)/2)",
+      left: "calc((100% - 800px)/2)",
       width: 800,
       height: 500,
       show: false,
@@ -3648,7 +4113,8 @@ export default {
               placeholder: "设备编号",
               params: "gridNo",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio: 24
             },
             {
               name: "网格名称",
@@ -3658,7 +4124,8 @@ export default {
               placeholder: "设备名称",
               params: "gridName",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio: 24
 
             },
             {
@@ -3669,7 +4136,8 @@ export default {
               placeholder: "面积",
               params: "gridArea",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio: 24
 
             },
             {
@@ -3680,14 +4148,16 @@ export default {
               placeholder: "创建人姓名",
               params: "creatorName",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio: 24
             },
             {
               name: "创建日期",
               prop: "createDate",
               width: "200",
               add_show: false,
-              alter_show: false
+              alter_show: false,
+              ratio: 24
             },
             // {
             //   name:"责任单位",
@@ -3707,7 +4177,9 @@ export default {
               placeholder: "所属行政区域",
               params: "areaCode",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio: 24
+
             },
           ]
         }
@@ -3717,7 +4189,7 @@ export default {
       id: "monitor_points_manage",
       title: "监控点管理",
       top: "calc((100% - 500px)/2)",
-      left:"calc((100% - 800px)/2)",
+      left: "calc((100% - 800px)/2)",
       width: 800,
       height: 500,
       show: false,
@@ -3808,7 +4280,8 @@ export default {
               placeholder: "设备编号",
               params: "monitoringPointsNo",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio: 24
             },
             {
               name: "设备名称",
@@ -3818,7 +4291,8 @@ export default {
               placeholder: "设备名称",
               params: "monitoringPointsName",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio: 24
 
             },
             {
@@ -3829,7 +4303,8 @@ export default {
               placeholder: "面积",
               params: "设备型号",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio: 24
 
             },
             {
@@ -3840,7 +4315,8 @@ export default {
               placeholder: "位置描述",
               params: "position",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio: 24
             },
             {
               name: "经度",
@@ -3850,7 +4326,8 @@ export default {
               placeholder: "经度",
               params: "longitude",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio: 24
             },
             {
               name: "纬度",
@@ -3860,7 +4337,8 @@ export default {
               placeholder: "纬度",
               params: "gpsLatitude",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio: 24
             },
 
             {
@@ -3871,7 +4349,8 @@ export default {
               placeholder: "备注",
               params: "memo",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio: 48
             },
           ]
         }
@@ -3881,7 +4360,7 @@ export default {
       id: "soil_temperature_manage",
       title: "土壤温度监测点管理",
       top: "calc((100% - 500px)/2)",
-      left:"calc((100% - 800px)/2)",
+      left: "calc((100% - 800px)/2)",
       width: 800,
       height: 500,
       show: false,
@@ -3971,7 +4450,8 @@ export default {
               placeholder: "编号",
               params: "pointsNo",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio: 24
             },
             {
               name: "名称",
@@ -3981,7 +4461,8 @@ export default {
               placeholder: "名称",
               params: "pointsName",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio: 24
             },
             {
               name: "安装位置",
@@ -3991,7 +4472,8 @@ export default {
               placeholder: "安装位置",
               params: "position",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio: 24
             },
             {
               name: "经度",
@@ -4001,7 +4483,8 @@ export default {
               placeholder: "经度",
               params: "longitude",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio: 24
             },
             {
               name: "纬度",
@@ -4011,7 +4494,8 @@ export default {
               placeholder: "纬度",
               params: "gpsLatitude",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio: 24
             },
             // {
             //   name:"责任单位",
@@ -4031,7 +4515,9 @@ export default {
               placeholder: "上限报警阀值",
               params: "upperLimit",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio: 24
+
             },
             {
               name: "下限报警阀值",
@@ -4041,7 +4527,8 @@ export default {
               placeholder: "下限报警阀值",
               params: "lowerLimit",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio: 24
             },
             // {
             //   name:"所在网格",
@@ -4056,7 +4543,8 @@ export default {
               placeholder: "备注",
               params: "memo",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio: 24
             }
           ]
         }
@@ -4066,7 +4554,7 @@ export default {
       id: "soil_humidity_manage",
       title: "土壤湿度监测点管理",
       top: "calc((100% - 500px)/2)",
-      left:"calc((100% - 800px)/2)",
+      left: "calc((100% - 800px)/2)",
       width: 800,
       height: 500,
       show: false,
@@ -4156,7 +4644,8 @@ export default {
               placeholder: "编号",
               params: "pointsNo",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio: 24
             },
             {
               name: "名称",
@@ -4166,7 +4655,8 @@ export default {
               placeholder: "名称",
               params: "pointsName",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio: 24
             },
             {
               name: "安装位置",
@@ -4176,7 +4666,8 @@ export default {
               placeholder: "安装位置",
               params: "position",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio: 24
             },
             {
               name: "经度",
@@ -4186,7 +4677,8 @@ export default {
               placeholder: "经度",
               params: "longitude",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio: 24
             },
             {
               name: "纬度",
@@ -4196,7 +4688,8 @@ export default {
               placeholder: "纬度",
               params: "gpsLatitude",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio: 24
             },
             // {
             //   name:"责任单位",
@@ -4216,7 +4709,8 @@ export default {
               placeholder: "上限报警阀值",
               params: "upperLimit",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio: 24
             },
             {
               name: "下限报警阀值",
@@ -4226,7 +4720,8 @@ export default {
               placeholder: "下限报警阀值",
               params: "lowerLimit",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio: 24
             },
             // {
             //   name:"所在网格",
@@ -4241,7 +4736,8 @@ export default {
               placeholder: "备注",
               params: "memo",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio: 24
             }
           ]
         }
@@ -4251,7 +4747,7 @@ export default {
       id: "population_manage",
       title: "人流量监测点管理",
       top: "calc((100% - 500px)/2)",
-      left:"calc((100% - 800px)/2)",
+      left: "calc((100% - 800px)/2)",
       width: 800,
       height: 500,
       show: false,
@@ -4342,7 +4838,8 @@ export default {
               placeholder: "编号",
               params: "pointsNo",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio: 24
             },
             {
               name: "名称",
@@ -4352,7 +4849,8 @@ export default {
               placeholder: "名称",
               params: "monitorName",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio: 24
             },
             {
               name: "安装位置",
@@ -4362,7 +4860,8 @@ export default {
               placeholder: "安装位置",
               params: "position",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio: 24
             },
             {
               name: "经度",
@@ -4372,7 +4871,8 @@ export default {
               placeholder: "经度",
               params: "gpsLongitude",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio: 24
             },
             {
               name: "纬度",
@@ -4382,7 +4882,8 @@ export default {
               placeholder: "纬度",
               params: "gpsLatitude",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio: 24
             },
             // {
             //   name:"责任单位",
@@ -4402,7 +4903,8 @@ export default {
               placeholder: "橙色预警阀值",
               params: "orangeWarning",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio: 24
             },
             {
               name: "红色预警阀值",
@@ -4412,7 +4914,8 @@ export default {
               placeholder: "红色预警阀值",
               params: "redWarning",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio: 24
             },
             // {
             //   name:"所在网格",
@@ -4427,7 +4930,8 @@ export default {
               placeholder: "备注",
               params: "memo",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio: 24
             }
           ]
         }
@@ -4437,7 +4941,7 @@ export default {
       id: "air_temperature_manage",
       title: "空气温度监测点管理",
       top: "calc((100% - 500px)/2)",
-      left:"calc((100% - 800px)/2)",
+      left: "calc((100% - 800px)/2)",
       width: 800,
       height: 500,
       show: false,
@@ -4527,7 +5031,8 @@ export default {
               placeholder: "编号",
               params: "pointsNo",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio: 24
             },
             {
               name: "名称",
@@ -4537,7 +5042,8 @@ export default {
               placeholder: "名称",
               params: "pointsName",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio: 24
             },
             {
               name: "安装位置",
@@ -4547,7 +5053,8 @@ export default {
               placeholder: "安装位置",
               params: "position",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio: 24
             },
             {
               name: "经度",
@@ -4557,7 +5064,8 @@ export default {
               placeholder: "经度",
               params: "gpsLongitude",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio: 24
             },
             {
               name: "纬度",
@@ -4567,7 +5075,8 @@ export default {
               placeholder: "纬度",
               params: "gpsLatitude",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio: 24
             },
             // {
             //   name:"责任单位",
@@ -4587,7 +5096,8 @@ export default {
               placeholder: "上限报警阀值",
               params: "upperLimit",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio: 24
             },
             {
               name: "下限报警阀值",
@@ -4597,7 +5107,8 @@ export default {
               placeholder: "下限报警阀值",
               params: "lowerLimit",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio: 24
             },
             // {
             //   name:"所在网格",
@@ -4612,7 +5123,8 @@ export default {
               placeholder: "备注",
               params: "memo",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio: 24
             }
           ]
         }
@@ -4622,7 +5134,7 @@ export default {
       id: "air_humidity_manage",
       title: "空气湿度监测点管理",
       top: "calc((100% - 500px)/2)",
-      left:"calc((100% - 800px)/2)",
+      left: "calc((100% - 800px)/2)",
       width: 800,
       height: 500,
       show: false,
@@ -4711,7 +5223,8 @@ export default {
               placeholder: "编号",
               params: "pointsNo",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio: 24
             },
             {
               name: "名称",
@@ -4721,7 +5234,8 @@ export default {
               placeholder: "名称",
               params: "pointsName",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio: 24
             },
             {
               name: "安装位置",
@@ -4731,7 +5245,8 @@ export default {
               placeholder: "安装位置",
               params: "position",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio: 24
             },
             {
               name: "经度",
@@ -4741,7 +5256,8 @@ export default {
               placeholder: "经度",
               params: "gpsLongitude",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio: 24
             },
             {
               name: "纬度",
@@ -4751,7 +5267,8 @@ export default {
               placeholder: "纬度",
               params: "gpsLatitude",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio: 24
             },
             // {
             //   name:"责任单位",
@@ -4771,7 +5288,8 @@ export default {
               placeholder: "上限报警阀值",
               params: "upperLimit",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio: 24
             },
             {
               name: "下限报警阀值",
@@ -4781,7 +5299,8 @@ export default {
               placeholder: "下限报警阀值",
               params: "lowerLimit",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio: 24
             },
             // {
             //   name:"所在网格",
@@ -4796,7 +5315,8 @@ export default {
               placeholder: "备注",
               params: "memo",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio: 24
             }
           ]
         }
@@ -4806,7 +5326,7 @@ export default {
       id: "fire_alert_manage",
       title: "火灾报警点管理",
       top: "calc((100% - 500px)/2)",
-      left:"calc((100% - 800px)/2)",
+      left: "calc((100% - 800px)/2)",
       width: 800,
       height: 500,
       show: false,
@@ -4896,7 +5416,8 @@ export default {
               placeholder: "编号",
               params: "pointsNo",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio: 24
             },
             {
               name: "名称",
@@ -4906,7 +5427,8 @@ export default {
               placeholder: "名称",
               params: "fireAlarmName",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio: 24
             },
             {
               name: "安装位置",
@@ -4916,7 +5438,8 @@ export default {
               placeholder: "安装位置",
               params: "position",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio: 24
             },
             {
               name: "经度",
@@ -4926,7 +5449,8 @@ export default {
               placeholder: "经度",
               params: "gpsLongitude",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio: 24
             },
             {
               name: "纬度",
@@ -4936,7 +5460,8 @@ export default {
               placeholder: "纬度",
               params: "gpsLatitude",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio: 24
             },
             {
               name: "状态",
@@ -4946,7 +5471,8 @@ export default {
               placeholder: "状态",
               params: "stat",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio: 24
             },
             // {
             //   name:"责任单位",
@@ -4971,7 +5497,8 @@ export default {
               placeholder: "备注",
               params: "memo",
               add_show: true,
-              alter_show: true
+              alter_show: true,
+              ratio: 24
             }
           ]
         }
@@ -4981,7 +5508,7 @@ export default {
       id: "permissions_management",
       title: "权限管理",
       top: "calc((100% - 500px)/2)",
-      left:"calc((100% - 900px)/2)",
+      left: "calc((100% - 900px)/2)",
       width: 900,
       height: 620,
       show: false,
@@ -4992,14 +5519,15 @@ export default {
     {
       id: "scene_data",
       title: "场景数据",
-      top: "128px",
-      left: "236px",
-      width: 280,
-      height: 680,
+      top: "152px",
+      left: "calc(100% - 238px)",
+      width: 230,
+      height: 660,
       show: true,
-      class: "",
-      component: "emTabs",
+      class: "em-scene-window",
+      component: "emLayers",
       component_data: {
+        emTabs_id: "scene_data_emTabs",
         emTabs: []
       }
     },
@@ -5010,7 +5538,7 @@ export default {
       left: "calc((100% - 600px)/2)",
       width: 600,
       height: 132,
-      show: true,
+      show: false,
       class: "em-table-window",
       component: "buttonGroup",
       component_data: {
@@ -5026,6 +5554,7 @@ export default {
             fn: "scene_data",
             data_type: "1",
             layer_name: "tree1",
+            layer_title: "树木数据",
             data_maker_iconUrl: "../../static/image/marker_2.png",
             maker_titleKey: "id",
             clusters_color: "#181966"
@@ -5041,11 +5570,12 @@ export default {
             fn: "scene_data",
             data_type: "4",
             layer_name: "fire",
+            layer_title: "marker",
             api_name: "marker",
             data_url: "/gardens/humantraffic/queryAll",
             data_maker_iconUrl: "../../static/image/marker_2.png",
             // params_pointsNo: 3,
-            maker_titleKey: "id",
+            maker_titleKey: "monitorName",
             clusters_color: "#ffc62e"
           },
           {
@@ -5059,6 +5589,7 @@ export default {
             fn: "scene_data",
             data_type: "4",
             layer_name: "tree",
+            layer_title: "树",
             api_name: "marker",
             data_url: "/gardens/tree/queryVicinityPrint",
             data_maker_iconUrl: "../../static/image/marker_1.png",
@@ -5079,6 +5610,7 @@ export default {
             fn: "scene_data",
             data_type: "3",
             layer_name: "ly1",
+            layer_title: "点",
             api_name: "geom",
             data_url: "/gardens/tree/queryVicinityPrint",
             geomType: "point",
@@ -5104,6 +5636,7 @@ export default {
             fn: "scene_data",
             data_type: "3",
             layer_name: "ly11",
+            layer_title: "点",
             api_name: "geom",
             data_url: "/gardens/humantraffic/queryAll",
             geomType: "text",
@@ -5125,6 +5658,7 @@ export default {
             fn: "scene_data",
             data_type: "3",
             layer_name: "ly2",
+            layer_title: "点",
             api_name: "geom",
             data_url: "/gardens/tree/queryVicinityPrint",
             geomType: "line",
@@ -5147,6 +5681,7 @@ export default {
             fn: "scene_data",
             data_type: "3",
             layer_name: "ly3",
+            layer_title: "点",
             api_name: "geom",
             data_url: "/gardens/tree/queryVicinityPrint",
             geomType: "polygon",
@@ -5169,6 +5704,7 @@ export default {
             fn: "scene_data",
             data_type: "3",
             layer_name: "ly4",
+            layer_title: "点",
             api_name: "geom",
             data_url: "/gardens/humantraffic/queryAll",
             geomType: "circle",
@@ -5186,6 +5722,7 @@ export default {
             fn: "scene_data",
             data_type: "3",
             layer_name: "ly5",
+            layer_title: "点",
             api_name: "geom",
             data_url: "/gardens/humantraffic/queryAll",
             geomType: "mode",
@@ -5204,6 +5741,7 @@ export default {
             fn: "scene_data",
             data_type: "2",
             layer_name: "tree1",
+            layer_title: "点",
             data_url: "http://onelz.oicp.vip/proxy/server/A13041017DC845579548DA3528DF9B47/999C1448C6DD4842A35412B42226F0A3",
             data_maker_iconUrl: "../../static/image/marker_2.png",
             maker_titleKey: "OBJECTID",
@@ -5220,6 +5758,7 @@ export default {
             fn: "scene_data",
             data_type: "2",
             layer_name: "shequ",
+            layer_title: "点",
             data_url: "http://onelz.oicp.vip/proxy/server/F92A3799DFA243BC9DEB8B2BB6DDA4C9/999C1448C6DD4842A35412B42226F0A3",
             data_maker_iconUrl: "../../static/image/marker_2.png",
             maker_titleKey: "OBJECTID",
@@ -5236,6 +5775,7 @@ export default {
             fn: "scene_data",
             data_type: "2",
             layer_name: "jiedao",
+            layer_title: "点",
             data_url: "http://onelz.oicp.vip/proxy/server/8C20FC12319A4CB18BF0F90C4527DD54/999C1448C6DD4842A35412B42226F0A3",
             data_maker_iconUrl: "../../static/image/marker_2.png",
             maker_titleKey: "OBJECTID",
@@ -5252,6 +5792,7 @@ export default {
             fn: "scene_data",
             data_type: "2",
             layer_name: "dustbin",
+            layer_title: "点",
             data_url: "http://onelz.oicp.vip/proxy/server/4FACB86003FB479A851EFF7D09AE10F4/999C1448C6DD4842A35412B42226F0A3",
             data_maker_iconUrl: "../../static/image/marker_3.png",
             maker_titleKey: "OBJECTID",

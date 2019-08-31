@@ -1,11 +1,11 @@
-export const db_buttonGroup=[
+export const db_buttonGroup = [
   {
-    id:"nav_detectdata",
+    id: "nav_detectdata",
     control_id: "",
     icon: "icon-real-time-monitoring",
     show: false,
     title: "监测数据",
-    width: 160,
+    width: 180,
     list: [
       {
         "icon": "el-icon-real-time-monitoring",
@@ -15,54 +15,157 @@ export const db_buttonGroup=[
         "show": false
       },
       {
-        "icon": "el-icon-soil-monitoring",
         "id": "nav_oil_detetive",
-        "control_id": "oil_detetive",
+        "type": "info",
         "title": "土壤监测",
         "show": false,
+        icon: "el-icon-soil-monitoring",
+        trigger: true,
+        control_type: "scene",
+        control_id: "",
+        fn: "scene_data",
+        data_type: "4",
+        layer_name: "oil_detetive",
+        layer_title: "土壤",
+        api_name: "marker",
+        data_url: "/gardens/temhumpoints/queryAll",
+        data_maker_iconUrl: "../../static/image/marker_2.png",
+        params_pointType: "S",
+        maker_titleKey: "pointsName",
+        clusters_color: "#ffc62e"
       },
       {
-        "icon": "el-icon-people-monitoring",
         "id": "nav_population_detective",
-        "control_id": "population_detective",
         "title": "人流量监测",
-        "show": false
+        "show": false,
+        "type": "info",
+        icon: "el-icon-people-monitoring",
+        trigger: true,
+        control_type: "scene",
+        control_id: "",
+        fn: "scene_data",
+        data_type: "4",
+        layer_name: "population_detective",
+        layer_title: "人流量",
+        api_name: "marker",
+        data_url: "/gardens/humantraffic/queryAll",
+        data_maker_iconUrl: "../../static/image/marker_2.png",
+        maker_titleKey: "monitorName",
+        clusters_color: "#666111"
       },
       {
-        "icon": "el-icon-air-monitoring",
         "id": "nav_air_detective",
-        "control_id": "air_detective",
         "title": "空气监测",
-        "show": false
+        "show": false,
+        "type": "info",
+        icon: "el-icon-air-monitoring",
+        trigger: true,
+        control_type: "scene",
+        control_id: "",
+        fn: "scene_data",
+        data_type: "4",
+        layer_name: "air_detective",
+        layer_title: "空气",
+        api_name: "marker",
+        data_url: "/gardens/temhumpoints/queryAll",
+        data_maker_iconUrl: "../../static/image/marker_2.png",
+        params_pointType: "A",
+        maker_titleKey: "pointsName",
+        clusters_color: "#181966"
       },
       {
-        "icon": "el-icon-fire-alarm-monitoring",
         "id": "nav_fire_alert",
-        "control_id": "fire_alert",
         "title": "火灾报警",
-        "show": false
+        "show": false,
+        "type": "info",
+        icon: "el-icon-fire-alarm-monitoring",
+        trigger: true,
+        control_type: "scene",
+        control_id: "",
+        fn: "scene_data",
+        data_type: "4",
+        layer_name: "fire_alert",
+        layer_title: "火灾",
+        api_name: "marker",
+        // data_url: "/gardens/firealarm/queryAll",
+        data_url: "/gardens/firealarm/queryAllByPage",
+        data_maker_iconUrl: "../../static/image/marker_2.png",
+        params_pageNum: -1,
+        maker_titleKey: "fireAlarmName",
+        clusters_color: "#66100d"
       }
     ]
   },
-  { id:"nav_greenprotect",
+  {
+    id: "nav_greenprotect",
     control_id: "",
     show: false,
     title: "绿化养护",
-    width: 168,
+    width: 180,
     list: [
       {
-        "icon": "el-icon-road",
         "id": "nav_road_address",
-        "control_id": "road_address",
         "title": "道路地址",
-        "show": false
+        "show": false,
+        type: "info",
+        icon: "el-icon-road",
+        trigger: true,
+        control_type: "scene",
+        control_id: "",
+        fn: "scene_data",
+        data_type: "3",
+        layer_name: "road_address",
+        layer_title: "道路",
+        api_name: "geom",
+        data_url: "/gardens/road/queryAll",
+        geomType: "line",
+        geom_titleKey: "roadName",
+        strokeWidth: 2,
+        strokeColor: "[0, 100, 255, 255]",
+        fillColor: "[0, 100, 255, 255]"
       },
       {
-        "icon": "el-icon-unit-manage",
+        "id": "nav_district",
+        "title": "行政区划",
+        "show": false,
+        type: "info",
+        icon: "el-icon-road",
+        trigger: true,
+        control_type: "scene",
+        control_id: "",
+        fn: "scene_data",
+        data_type: "3",
+        layer_name: "district",
+        layer_title: "行政区划",
+        api_name: "geom",
+        data_url: "/gardens/district/queryAllByPage",
+        params_pageNum: -1,
+        geomType: "polygon",
+        geom_titleKey: "districtName",
+        strokeWidth: 4,
+        strokeColor: "[125, 255, 0, 180]",
+        fillColor: "[60, 100, 12, 150]"
+      },
+      {
         "id": "nav_protect_company",
-        "control_id": "protect_company",
         "title": "养护单位",
-        "show": false
+        "show": false,
+        type: "info",
+        icon: "el-icon-unit-manage",
+        trigger: true,
+        control_type: "scene",
+        control_id: "",
+        fn: "scene_data",
+        data_type: "3",
+        layer_name: "protect_company",
+        layer_title: "养护单位",
+        api_name: "geom",
+        data_url: "/gardens/ent/queryAll",
+        geomType: "line",
+        geom_titleKey: "entName",
+        strokeWidth: 2,
+        strokeColor: "[0, 255, 0, 255]",
+        fillColor: "[0, 100, 255, 255]"
       },
       {
         "icon": "el-icon-yh-plan",
@@ -79,20 +182,33 @@ export const db_buttonGroup=[
         "show": false
       },
       {
-        "icon": "el-icon-tree-distribution",
         "id": "nav_tree_distribution",
-        "control_id": "tree_distribution",
         "title": "特殊树木分布",
-        "show": false
+        "show": false,
+        "type": "info",
+        icon: "el-icon-tree-distribution",
+        trigger: true,
+        control_type: "scene",
+        control_id: "",
+        fn: "scene_data",
+        data_type: "4",
+        layer_name: "tree_distribution",
+        layer_title: "树木分布",
+        api_name: "marker",
+        data_url: "/gardens/tree/queryAllByPage",
+        data_maker_iconUrl: "../../static/image/marker_1.png",
+        params_pageNum: -1,
+        maker_titleKey: "treeName",
+        clusters_color: "#46ff71"
       }
     ]
   },
   {
-    id:"nav_querystatics",
+    id: "nav_querystatics",
     show: false,
-    control_id:"",
+    control_id: "",
     title: "查询统计",
-    width: 220,
+    width: 180,
     list: [
       {
         "icon": "el-icon-tree-analysis",
@@ -146,11 +262,11 @@ export const db_buttonGroup=[
     ]
   },
   {
-    id:"nav_database",
+    id: "nav_database",
     control_id: "",
     show: false,
     title: "基础数据",
-    width: 210,
+    width: 180,
     list: [
       {
         "icon": "el-icon-personnel-manage",
@@ -195,6 +311,15 @@ export const db_buttonGroup=[
         "show": false
       },
       {
+        "id": "nav_road_manage",
+        "title": "道路管理",
+        "show": false,
+        type: "info",
+        icon: "el-icon-road",
+        control_type: "",
+        control_id: "road_address",
+      },
+      {
         "icon": "el-icon-jkd-management",
         "id": "nav_monitor_points_manage",
         "control_id": "monitor_points_manage",
@@ -211,7 +336,7 @@ export const db_buttonGroup=[
       {
         "icon": "el-icon-soil-hum",
         "id": "nav_soil_humidity_manage",
-        "control_id":"soil_humidity_manage",
+        "control_id": "soil_humidity_manage",
         "title": "土壤湿度监测点管理",
         "show": false
       },
@@ -246,11 +371,11 @@ export const db_buttonGroup=[
     ]
   },
   {
-    id:"nav_systemmanage",
+    id: "nav_systemmanage",
     control_id: "",
     show: false,
     title: "系统管理",
-    width: 150,
+    width: 180,
     list: [
       {
         "icon": "el-icon-account-manage",
@@ -277,7 +402,7 @@ export const db_buttonGroup=[
         "icon": "el-icon-maintenance-unit",
         "id": "nav_department_manage",
         "control_id": "department_manage",
-        "title": "组织机构管理",
+        "title": "机构管理",
         "show": false
       },
       {
@@ -293,3 +418,13 @@ export const db_buttonGroup=[
   }
 ];
 
+let _cc = [
+  {"data": [[114.01988811902551, 22.63467040718065], [114.02122061718877, 22.638667901670445], [114.02262925810423, 22.642741538912425], [114.0239617562675, 22.64651060514566]]},
+  {"data": [[114.02594146782434, 22.63086326957132], [114.0295582485532, 22.630672912690855], [114.03085267534037, 22.628959700766657], [114.02715975185933, 22.62781755948386]]},
+  {"data": [[114.04208373128789, 22.637830331396398], [114.04303551569022, 22.634099336539254], [114.04162687477476, 22.633033338008644], [114.0391522353287, 22.632919123880363]]},
+  {"data": [[114.02981523034182, 22.623831962299093], [114.02998655153425, 22.623218061359587], [114.029068079586, 22.622951561726936], [114.02928223107652, 22.622294830489334]]},
+  {"data": [[114.02759281376238, 22.623037222323152], [114.02809725949561, 22.621628581407702], [114.0264601903236, 22.621614304641668], [114.0262983869752, 22.622732651314408]]},
+  {"data": [[[114.12251903112897, 22.667637839416436], [114.11419091760857, 22.59565914399007], [114.24030235091756, 22.606961583767763], [114.18973880454367, 22.68667352746308]]]},
+  {"data": [[[113.75727176673402, 22.77828277618754], [113.80426612159917, 22.679535144445587], [113.9006342923353, 22.769359797415678], [113.81973261813707, 22.84490768435079],[113.78760989455836, 22.824682265801233]]]},
+  {"data": [[[114.10813756880974, 22.580666160192333], [114.11148784990594, 22.54472678116027], [114.07128447675143, 22.54990448830896], [114.06732505363773, 22.590564717976587]]]},
+];

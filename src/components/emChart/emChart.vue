@@ -1,6 +1,6 @@
 <template>
   <div class="emChart">
-    <el-row>
+    <el-row >
       <el-col :span="48">
         <el-popover
           placement="top"
@@ -8,7 +8,7 @@
         >
           <el-slider v-model="height"></el-slider>
         </el-popover>
-        <div @contextmenu.prevent="toolFn(popoverVal=!popoverVal)">
+        <div @contextmenu.prevent="toolFn(popoverVal=!popoverVal)" @contextmenu.stop>
           <el-card>
             <div :id="id" style="width:100%;"></div>
           </el-card>
@@ -297,6 +297,8 @@
         if (this.chart) {
           let _width = $("#" + this.id).width();
           let _height = _width * (this.height / 100);
+          console.log("_width："+this.id);
+          console.log(_width);
           this.chart.resize({
             width: _width,
             height: _height
@@ -453,6 +455,7 @@
     },
     mounted() {
       this.chartInit();//初始图表设置
+      this.chartResize();
     },
     beforeDestroy() {
       this.bus.$off(this.id);

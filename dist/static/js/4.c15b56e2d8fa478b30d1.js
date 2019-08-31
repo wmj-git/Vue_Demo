@@ -1,0 +1,2 @@
+webpackJsonp([4],{"3SYa":function(e,n,t){"use strict";Object.defineProperty(n,"__esModule",{value:!0});var i=function(){var e=this.$createElement;return(this._self._c||e)("div",{staticClass:"admin"},[this._v("\n    我是管理界面\n")])};i._withStripped=!0;var a={render:i,staticRenderFns:[]},s=a;var r=t("VU/8")({name:"admin"},s,!1,null,null,null);r.options.__file="src/views/admin/admin.vue";n.default=r.exports}});
+//# sourceMappingURL=4.c15b56e2d8fa478b30d1.js.map

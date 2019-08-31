@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { Message,MessageBox } from 'element-ui'
 import store from '@/store'
-import { setToken,getToken,TokenName } from '@/utils/auth'
+import { setToken,getToken,TokenName,removeToken } from '@/utils/auth'
 // create an axios instance
 const service = axios.create({
   baseURL: process.env.BASE_API, // api 的 base_url
@@ -59,10 +59,9 @@ service.interceptors.response.use(
             type: 'warning',
             customClass:'em-message-box'
           }).then(() => {
-            /*store.dispatch('FedLogOut').then(() => {
-              location.reload() // 为了重新实例化vue-router对象 避免bug
-            })*/
+            removeToken();
              window.location.href="/login"
+
           })
         }
         else{
@@ -78,8 +77,17 @@ service.interceptors.response.use(
       }
     },
     error => {
+      let message= "服务器繁忙，连接失败，请稍后重试";
+      if( error.response){
+        let statusCode = error.response.status;
+        message=error.message;
+        if( statusCode=== 400) {
+          message="参数填写错误，请检查后重新提交！"
+        }
+      }
+
       Message({
-        message: error.message,
+        message,
         type: 'error',
         duration: 5 * 1000
       })

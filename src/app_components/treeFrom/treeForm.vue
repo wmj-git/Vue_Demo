@@ -92,7 +92,8 @@
             _tree.push(_obj);
           });
         }
-
+        console.log("_Tree");
+        console.log(_tree);
         let _data = treeStructure(_tree);
         for (let _k in _data) {
           _data[_k].forEach(function (_obj) {

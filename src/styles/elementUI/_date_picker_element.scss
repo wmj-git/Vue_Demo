@@ -55,3 +55,30 @@
     }
   }
 }
+
+.el-picker-panel {
+  & .el-picker-panel__sidebar {
+    background-color: nth($background-base, 2);
+
+    & .el-picker-panel__shortcut {
+      color: darken($em-text-color-base,20%);
+
+      &:hover {
+        color: $em-text-highlight-base;
+      }
+    }
+  }
+}
+
+.el-date-table td {
+  &.start-date span, &.end-date span {
+    background-color: darken($em-highlight-bg-color-base,20%);
+  }
+
+  &.in-range div {
+    background-color:  darken($em-highlight-bg2-color-base,20%);
+    &:hover{
+      background-color: nth($background-base,2);
+    }
+  }
+}

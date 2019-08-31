@@ -28,18 +28,30 @@
         let _element = document.getElementById('ol_js');
         if (_element) {
           _this.mapInit();
+          _this.layerInit();
         } else {
           //动态加载依赖库
           let _url = process.env.STATIC_URL;
-          console.log('css',_url);
+          console.log('css', _url);
           loadCss("ol_css", _url + "/sceneStatic/ol/ol.css", function () {
             console.log('css');
           });
           loadJs("ol_js", _url + "/sceneStatic/ol/ol.js", function () {
             console.log('js');
             _this.mapInit();
+            _this.layerInit();
           });
         }
+      },
+      layerInit() {
+        let _this=this;
+        let _Tabs = this.$store.getters["scene/layerData"];
+        console.log("_Tabs");
+        console.log(_Tabs);
+        _Tabs.forEach(function (_tab) {
+          _tab.data.addTab="false";
+          _this[_tab.data.fn](_tab.data);
+        });
       },
       mapInit() {
         window[this.id].init([114.031047, 22.663679], [
@@ -154,7 +166,7 @@
         window[this.id].measureOff();
       },
       toScene(obj) {
-        let _zIndex = obj.zIndex ? obj.zIndex : 0;
+        let _zIndex = obj.zIndex ? obj.zIndex : 1;
         let _lng = obj.lng ? obj.lng : 114.031047;
         let _lat = obj.lat ? obj.lat : 22.663679;
 
@@ -181,6 +193,7 @@
         });
       },
       scene_data(obj) {
+
         console.log(obj);
         switch (obj.data_type) {
           case "1"://采集的树数据
@@ -208,14 +221,24 @@
               this.removeLayer({
                 layer_name: obj.layer_name
               });
+              this.bus.$emit("scene_data_emTabs", {
+                fn: "removeTabFn",
+                name: obj.layer_name,
+                title: obj.layer_title
+              });
             }
             break;
-          case "4"://采集的树数据
+          case "4"://marker显示
             if (obj.trigger) {
               this.markerDataFn(obj);
             } else {
               this.removeLayer({
                 layer_name: obj.layer_name
+              });
+              this.bus.$emit("scene_data_emTabs", {
+                fn: "removeTabFn",
+                name: obj.layer_name,
+                title: obj.layer_title
               });
             }
             break;
@@ -264,10 +287,12 @@
       },
       markerDataFn(obj) {
         let _val = {
+          addTab: "true",
           api_name: "",
           data_url: "",
           params: {},
           layer_name: "",
+          layer_title: "",
           data_maker_iconUrl: "",
           maker_titleKey: "",
           clusters_color: "",
@@ -300,8 +325,6 @@
                 _obj.icon = _val.data_maker_iconUrl;
               });
               _data = response.data;
-              console.log(_val);
-              console.log(_data);
             }
             let _layer = mp.clustersFn(_data, {
               type: _val.layer_name,
@@ -311,6 +334,19 @@
             this.addLayer({
               layer: _layer.layer
             });
+
+
+            if (_val.addTab === "true") {
+              this.bus.$emit("scene_data_emTabs", {
+                fn: "addTab",
+                name: _val.layer_name,
+                title: _val.layer_title,
+                data: obj,
+                treeData: _data,
+                treeChildren: "children",
+                treeLabel: _val.maker_titleKey
+              });
+            }
           });
 
         }
@@ -318,9 +354,11 @@
       },
       geomDataFn(obj) { //矢量数据展示
         let _val = {
+          addTab: "true",
           data_url: "",
           params: {},
           layer_name: "",
+          layer_title: "",
           api_name: "",
           geomType: "",
           geom_style: "1",//几何样式类型
@@ -353,22 +391,10 @@
             let _data = [];
             if (response.statusCode === 200) {
               response.data.forEach(function (_obj) {
-
-                let _coordinates = null;
-                if (_val.geomType === "line") {
-                  _coordinates = "{\"data\":[[" + _obj.gpsLongitude + "," + _obj.gpsLatitude + "],[114.00686770840161,22.644074037075697],[114.00888549133455,22.64434053670835],[114.00663928014505,22.646929390282693]]}";
-                  _coordinates = JSON.parse(_coordinates);
-                  _obj.coordinates = _coordinates.data;
-                } else if (_val.geomType === "polygon") {
-                  _coordinates = "{\"data\":[[[" + _obj.gpsLongitude + "," + _obj.gpsLatitude + "],[114.00686770840161,22.644074037075697],[114.00888549133455,22.64434053670835],[114.00663928014505,22.646929390282693]]]}";
-                  _coordinates = JSON.parse(_coordinates);
+                if (_obj.coordinates && (_val.geomType === "line" || _val.geomType === "polygon")) {
+                  let _coordinates = JSON.parse(_obj.coordinates);
                   _obj.coordinates = _coordinates.data;
                 }
-
-                /* if(_obj.coordinates){
-                  let _coordinates = JSON.parse(_obj.coordinates);
-                  _obj.coordinates=_coordinates.data;
-                }*/
               });
               _data = response.data;
             }
@@ -385,6 +411,17 @@
             this.addLayer({
               layer: _layer.layer
             });
+            if (_val.addTab === "true") {
+              this.bus.$emit("scene_data_emTabs", {
+                fn: "addTab",
+                name: _val.layer_name,
+                title: _val.layer_title,
+                data: obj,
+                treeData: _data,
+                treeChildren: "children",
+                treeLabel: _val.geom_titleKey
+              });
+            }
           });
         }
 
@@ -450,6 +487,7 @@
       ]);//设置场景工具面板
       //初始化二维场景
       mp.openScene(this.id);
+
     },
     mounted() {
       this.init();

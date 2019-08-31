@@ -51,7 +51,6 @@
           }
         ],
         selectValue: "day",
-
         charts: []
       };
     },
@@ -62,27 +61,6 @@
     methods: {
       init() {                               //表格加载数据
         let _this = this;
-        let obj = {
-          pageNum: this.currentPage,
-          pageSize: this.pageSize
-        };
-        this.$nextTick(() => {
-
-          if (_this.$refs.child) {
-            if (_this.$refs.child[0].time1) {
-              let time1 = _this.$refs.child[0].time1 ? _this.$refs.child[0].time1 : "";    //时间范围查询参数
-              if (time1) {
-                obj.startTime = time1.getTime();
-              }
-            }
-            if (_this.$refs.child[0].time2) {
-              let time2 = _this.$refs.child[0].time2;
-              if (time2) {
-                obj.endTime = time2.getTime();
-              }
-            }
-          }
-        });
 
         this.chartFn();
       },

@@ -47,7 +47,7 @@
         class="my-table"
         v-loading="listLoading"
         border
-        height="600px"
+        height="580px"
         highlight-current-row
         @current-change="handleCurrentChange"
         @expand-change="openCurrentChangeRow"
@@ -230,31 +230,45 @@
           pageSize: this.pageSize
         };
         console.log(this.$refs.child[0]);
-        if (this.$refs.child[0].time1) {
-          console.log(this.$refs.child[0].time1);
-          let time1 = this.$refs.child[0].time1;    //时间范围查询参数
-          if (time1) {
-            obj.startTime = time1.getTime();
-
+        // if (this.$refs.child[0].time1) {
+        //   console.log(this.$refs.child[0].time1);
+        //   let time1 = this.$refs.child[0].time1;    //时间范围查询参数
+        //   if (time1) {
+        //     obj.startTime = time1.getTime();
+        //
+        //   }
+        // }
+        // if (this.$refs.child[0].time2) {
+        //   let time2 = this.$refs.child[0].time2;
+        //   if (time2) {
+        //     obj.endTime = time2.getTime();
+        //   }
+        // }
+        // if (this.$refs.child[1].time1) {
+        //   let time1 = this.$refs.child[1].time1;    //时间范围查询参数
+        //   if (time1) {
+        //     obj.startTime = time1.getTime();
+        //
+        //   }
+        // }
+        // if (this.$refs.child[1].time2) {
+        //   let time2 = this.$refs.child[1].time2;
+        //   if (time2) {
+        //     obj.endTime = time2.getTime();
+        //   }
+        // }
+        if (this.$refs.child[0].value) {
+          {
+            let time=this.$refs.child[0].value;
+            obj.startTime = time[0].getTime();
+            obj.endTime = time[1].getTime();
           }
         }
-        if (this.$refs.child[0].time2) {
-          let time2 = this.$refs.child[0].time2;
-          if (time2) {
-            obj.endTime = time2.getTime();
-          }
-        }
-        if (this.$refs.child[1].time1) {
-          let time1 = this.$refs.child[1].time1;    //时间范围查询参数
-          if (time1) {
-            obj.startTime = time1.getTime();
-
-          }
-        }
-        if (this.$refs.child[1].time2) {
-          let time2 = this.$refs.child[1].time2;
-          if (time2) {
-            obj.endTime = time2.getTime();
+        if (this.$refs.child[1].value) {
+          {
+            let time=this.$refs.child[1].value
+            obj.startTime = time[0].getTime();
+            obj.endTime = time[1].getTime();
           }
         }
         if (this.$refs.child[1].input && this.$refs.child[1].params) {
@@ -406,7 +420,15 @@
         window.location.href = process.env.BASE_API + this.delever_obj.download_url
       },
       export(obj) {                    //将数据以表格形式导出
-        window.location.href = process.env.BASE_API + obj.url
+
+        if (this.$refs.child[0].value) {
+            let time=this.$refs.child[0].value;
+            window.location.href = process.env.BASE_API + obj.url+"&startTime="+ time[0].getTime()+"&endTime="+time[1].getTime();
+
+        }
+        else{
+          window.location.href = process.env.BASE_API + obj.url;
+        }
       },
       recieveObj(val) {              //把dialog表单里的数据拿到
         console.log(this.delever_obj.url);
@@ -552,12 +574,13 @@
 
       },
       showDetail(row) {         //显示详情
-        var sideBar = $(".em_detail_window");
-        console.log(sideBar);
-        if (!sideBar.hasClass("addWidth")) {
-          console.log(sideBar);
-          $(".em_detail_window").addClass("addWidth");
-        }
+        // var sideBar = $(".em_detail_window");
+        // console.log(sideBar);
+        // if (!sideBar.hasClass("addWidth")) {
+        //   console.log(sideBar);
+        //   $(".em_detail_window").addClass("addWidth");
+        // }
+        console.log(row);
         if (row && this.data.table.picture_url) {
           getPictureImg({url: this.data.table.picture_url, id: row.id}).then(res => {
             this.imgUrl = res.data[0].fileName;

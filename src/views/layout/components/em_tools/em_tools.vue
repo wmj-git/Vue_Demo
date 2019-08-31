@@ -35,8 +35,8 @@
         win: {
           id: "em_tool",
           title: "",
-          top: "calc(100% - 148px)",
-          left: "calc(100% - 880px)",
+          top: "",
+          left: "",
           show: true,
           width: 450,
           height:"88px",
