@@ -121,6 +121,9 @@
   .panel.window.#{em-menu-window}.panel-htop {
     height: 510px;
     top: 74px!important;
+    transform: rotateY(90deg);
+    -webkit-transform: rotateY(90deg);
+    -moz-transform: rotateY(90deg);
   }
 }
 
