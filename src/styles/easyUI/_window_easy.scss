@@ -3,6 +3,7 @@
 .window {
   background-color: transparent;
   border-color: transparent;
+
   & .window-body {
     border-color: transparent;
   }
@@ -84,10 +85,14 @@
   background: $em-background-table-base;
   border: 0;
   box-shadow: 6px 1px 17px 0px darken($em-bg-color-base, 60%);
-  transform: rotateY(-204deg);
-  -webkit-transform: rotateY(-204deg);
+  transform: rotateY(80deg);
+  -webkit-transform: rotateY(80deg);
+  transform-origin: left;
+  -webkit-transform-origin: left;
+  -moz-transform-origin: left;
   border: none;
   padding: 0;
+  transition: all 1s;
 
   &:hover {
     transform: rotateY(0deg);
@@ -112,15 +117,10 @@
 
 }
 
-@media screen and (min-width: 1281px) and (max-width: 1440px) {
+@media (max-width: 1440px) {
   .panel.window.#{em-menu-window}.panel-htop {
-    height: 430px;
-  }
-}
-
-@media screen and (min-width: 1921px) {
-  .panel.window.#{em-menu-window}.panel-htop {
-    height: 460px;
+    height: 510px;
+    top: 74px!important;
   }
 }
 
@@ -148,7 +148,7 @@
   background: transparent;
   border: none;
   position: fixed;
-  top: 50px;
+  top: 34px;
   right: 76px;
 }
 
@@ -165,7 +165,7 @@
 
 .panel.window.#{em-table-window}.panel-htop {
   background: $em-background-table-base;
-  padding:8px;
+  padding: 8px;
   /*  -webkit-border-image: url("../../../src/assets/image/table_border.png");
     -moz-border-image: url("../../../src/assets/image/table_border.png");
     border-image: url("../../../src/assets/image/table_border.png");*/
@@ -210,38 +210,22 @@
   background: $em-background-table-base;
   border: 0;
   box-shadow: -6px 1px 17px 0px darken($em-bg-color-base, 60%);
-  transform: rotateY(-161deg);
-  -webkit-transform: rotateY(-161deg);
-
+  transform: rotateY(-100deg);
+  -webkit-transform: rotateY(-100deg);
+  transform-origin: right;
+  -webkit-transform-origin: right;
+  -moz-transform-origin: right;
+  transition: all 1s;
   &:hover {
-    width: 270px !important;
-    left: calc(100% - 270px) !important;
     transform: rotateY(0deg);
     -webkit-transform: rotateY(0deg);
-
-    & .panel-header.panel-header-noborder.window-header, div#scene_data {
-      width: 258px !important;
-    }
   }
 
 }
 
 @media(max-width: 1400px) {
   .panel.window.em-scene-window.panel-htop {
-    width: 150px !important;
-    height: 400px;
-    left: calc(100% - 158px) !important;
-    top: 127px !important;
-    transform: rotateY(-154deg);
-    -webkit-transform: rotateY(-154deg);
-
-    &:hover {
-      width: 230px !important;
-      left: calc(100% - 230px) !important;
-
-      & .panel-header.panel-header-noborder.window-header, div#scene_data {
-        width: 218px !important;
-      }
-    }
+    height: 510px;
+    top: 74px!important;
   }
 }
