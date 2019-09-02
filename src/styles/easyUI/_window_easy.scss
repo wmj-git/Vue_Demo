@@ -19,7 +19,7 @@
   background-size: 100%;
   position: absolute;
   padding: 3/$r+rem 20/$r+rem 0 20/$r+rem;
-  bottom: 32px;
+  bottom: -12px;
 }
 
 
@@ -31,7 +31,12 @@
   }
 }
 
-
+@media(max-width:1400px){
+  .panel.window.#{em-nav-window}.panel-htop {
+    bottom:20px !important;
+    background: transparent;
+  }
+}
 /*title*/
 .panel.window.#{em-title-window}.panel-htop {
   background: url("../../assets/image/title_new.png") no-repeat center;
@@ -40,18 +45,13 @@
   border-radius: 0;
 }
 
-.panel.window.#{em-title-window}.panel-htop /deep/ {
+.panel.window.#{em-title-window}.panel-htop{
   .panel-body {
     background: transparent;
     overflow: hidden;
   }
 }
 
-@media screen and (max-width: 1440px) {
-  .panel.window.em-nav-window.panel-htop {
-    background: none;
-  }
-}
 
 /*@media screen and (min-width:1025px) and (max-width:1280px) {
   .panel.window.em-nav-window.panel-htop {
@@ -85,17 +85,13 @@
   background: $em-background-table-base;
   border: 0;
   box-shadow: 6px 1px 17px 0px darken($em-bg-color-base, 60%);
-  transform: rotateY(80deg);
-  -webkit-transform: rotateY(80deg);
-  transform-origin: left;
+  -webkit-transform:rotateY(80deg); /* Safari 和 Chrome */
   -webkit-transform-origin: left;
-  -moz-transform-origin: left;
   border: none;
   padding: 0;
-  transition: all 1s;
+  transition: all 0.5s;
 
   &:hover {
-    transform: rotateY(0deg);
     -webkit-transform: rotateY(0deg);
   }
 }
@@ -137,7 +133,7 @@
   border-bottom: 1px solid $em-highlight-border-color-base;
   border-radius: unset;
   position: fixed;
-  bottom: 5px;
+  bottom: 3px;
 }
 
 @media (max-width: 1400px) {
@@ -213,14 +209,10 @@
   background: $em-background-table-base;
   border: 0;
   box-shadow: -6px 1px 17px 0px darken($em-bg-color-base, 60%);
-  transform: rotateY(-100deg);
   -webkit-transform: rotateY(-100deg);
-  transform-origin: right;
   -webkit-transform-origin: right;
-  -moz-transform-origin: right;
-  transition: all 1s;
+  transition: all 0.5s;
   &:hover {
-    transform: rotateY(0deg);
     -webkit-transform: rotateY(0deg);
   }
 

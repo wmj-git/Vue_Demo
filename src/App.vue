@@ -27,7 +27,6 @@
    font-family: "Avenir", Helvetica, Arial, sans-serif;
    perspective: 700;
    -webkit-perspective: 700;
-   -moz-perspective: 700;
  }
  #app,#map,#_scene {
    font-family: "Avenir", Helvetica, Arial, sans-serif;
