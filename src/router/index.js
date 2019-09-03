@@ -67,12 +67,6 @@ export default new Router({
       path: '/login_erro',
       name: 'login_erro',
       component: () => import('@/views/login_erro/login_erro')
-    },
-    {
-      path: '/admin',
-      name: 'admin',
-      component: () => import('@/views/admin/admin'),
-      children: []
     }
   ]
 })

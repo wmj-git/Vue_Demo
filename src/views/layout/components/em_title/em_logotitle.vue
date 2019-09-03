@@ -3,7 +3,7 @@
      <win :id="win.id" :data="win">
        <div class="em-home-title" id="title">
          <!--<img src="../../../../assets/image/logo.png" bindload="imageLoad"/>-->
-         <figure>
+        <!-- <figure>
            <h2 class="modal-title">XXXX园林可视化管理平台</h2>
            <h2 class="modal-title">XXXX园林可视化管理平台</h2>
            <h2 class="modal-title">XXXX园林可视化管理平台</h2>
@@ -14,8 +14,10 @@
            <h2 class="modal-title">XXXX园林可视化管理平台</h2>
            <h2 class="modal-title">XXXX园林可视化管理平台</h2>
            <h2 class="modal-title">XXXX园林可视化管理平台</h2>
-         </figure>
-       <div class="em-title"></div>
+         </figure>-->
+         <div class="em-home-title">
+           <p>XXXX园林可视化管理平台</p>
+         </div>
        </div>
      </win>
   </div>

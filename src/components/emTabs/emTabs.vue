@@ -15,6 +15,7 @@
 </template>
 
 <script>
+  import buttonGroup from "@/app_components/buttonGroup/buttonGroup"
 
   import emTree from "@/components/emTree/emTree"
 
