@@ -1,7 +1,9 @@
 @import "../../../../styles/index/variable";
 .em-bottom-container {
   background: nth($background-base,5);
-  line-height: 46px;
+  line-height: 44px;
+  -webkit-line-height: 46px;
+  -moz-line-height: 46px;
 
   & /deep/ {
     .el-input__inner {

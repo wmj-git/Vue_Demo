@@ -4,9 +4,9 @@ export default {
     {
       id: "menu",
       title: "_",
-      left:"-5px",
-      top: "113px",
-      width: 150,
+      left:"0",
+      top: "112px",
+      width: 180,
       height: 720,
       show: true,
       resizable: false,
@@ -14,7 +14,8 @@ export default {
       class: "em-menu-window",
       //class: "em-table-window",
       component: "em_menu",
-      component_data: {}
+      component_data: {},
+      closable:false
     },
     {
       id: "role_manage",
@@ -5519,11 +5520,12 @@ export default {
     {
       id: "scene_data",
       title: "场景数据",
-      top: "152px",
-      left: "calc(100% - 238px)",
-      width: 230,
-      height: 660,
+      top: "112px",
+      left: "calc(100% - 240px)",
+      width: 240,
+      height: 720,
       show: true,
+      closable:false,
       class: "em-scene-window",
       component: "emLayers",
       component_data: {
