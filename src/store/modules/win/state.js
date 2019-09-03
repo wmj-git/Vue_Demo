@@ -1676,11 +1676,11 @@ export default {
             },
             {
               name: "经度",
-              prop: "longitude",
+              prop: "gpsLongitude",
               width: "200",
               type: "em_input",
               placeholder: "经度",
-              params: "longitude",
+              params: "gpsLongitude",
               add_show: true,
               alter_show: true
             },
@@ -3973,22 +3973,22 @@ export default {
             },
             {
               name: "经度",
-              prop: "longitude",
+              prop: "gpsLongitude",
               width: "200",
               type: "em_input",
               placeholder: "经度",
-              params: "longitude",
+              params: "gpsLongitude",
               add_show: true,
               alter_show: true,
               ratio: 24
             },
             {
               name: "纬度",
-              prop: "latitude",
+              prop: "gpsLatitude",
               width: "200",
               type: "em_input",
               placeholder: "纬度",
-              params: "latitude",
+              params: "gpsLatitude",
               add_show: true,
               alter_show: true,
               ratio: 24
@@ -4321,11 +4321,11 @@ export default {
             },
             {
               name: "经度",
-              prop: "longitude",
+              prop: "gpsLongitude",
               width: "140",
               type: "em_input",
               placeholder: "经度",
-              params: "longitude",
+              params: "gpsLongitude",
               add_show: true,
               alter_show: true,
               ratio: 24
@@ -4478,11 +4478,11 @@ export default {
             },
             {
               name: "经度",
-              prop: "longitude",
+              prop: "gpsLongitude",
               width: "200",
               type: "em_input",
               placeholder: "经度",
-              params: "longitude",
+              params: "gpsLongitude",
               add_show: true,
               alter_show: true,
               ratio: 24
@@ -4672,11 +4672,11 @@ export default {
             },
             {
               name: "经度",
-              prop: "longitude",
+              prop: "gpsLongitude",
               width: "200",
               type: "em_input",
               placeholder: "经度",
-              params: "longitude",
+              params: "gpsLongitude",
               add_show: true,
               alter_show: true,
               ratio: 24
@@ -5540,7 +5540,7 @@ export default {
       left: "calc((100% - 600px)/2)",
       width: 600,
       height: 132,
-      show: false,
+      show: true,
       class: "em-table-window",
       component: "buttonGroup",
       component_data: {

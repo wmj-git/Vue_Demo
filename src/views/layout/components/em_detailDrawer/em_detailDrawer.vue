@@ -17,7 +17,6 @@
           <el-form-item :label="item.name" v-for="(item,index) in digital " :key="index">
             <span>{{item.value}}</span>
           </el-form-item>
-
         </el-form>
       </el-drawer>
     </div>

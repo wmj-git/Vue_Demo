@@ -7,13 +7,19 @@
       :modal="modal"
       :append-to-body="body"
       size="20%">
-      123456
+
+      <el-form label-position="left" inline class="demo-table-expand">
+        <el-form-item :label="item.label" v-for="(item,index) in showData " :key="index">
+          <span>{{item.value}}</span>
+        </el-form-item>
+      </el-form>
     </el-drawer>
   </div>
 </template>
 
 <script>
   import vueBus from '@/utils/vueBus'
+  import {showFn} from './data/db'
 
   export default {
     name: "emDrawer",
@@ -23,6 +29,26 @@
         show: false,
         modal: true,
         body: true,
+        showData: [
+          {
+            label: "字段1",
+            value: "123",
+            valueKey: "",
+            type: "info"
+          },
+          {
+            label: "字段2",
+            value: "123",
+            valueKey: "",
+            type: "info"
+          },
+          {
+            label: "字段3",
+            value: "123",
+            valueKey: "",
+            type: "info"
+          }
+        ],
         Data: "",
       }
     },
@@ -48,12 +74,13 @@
         this.show = true;
 
         let _content = _obj.content;
+        this.contentFn(_obj);//显示属性
 
-
+        //
         let _roadId = "";
         let _districtId = "";
         let _layerTitle = "";
-        if (_obj.type === "road") {
+        if (_obj.type === "roadAddress" || _obj.type === "protectCompany") {
           _roadId = _content.id;
           _layerTitle = _content.roadName;
         } else if (_obj.type === "district") {
@@ -63,11 +90,10 @@
           return;
         }
 
-
         let _tg = true;
         let tabs = this.$store.getters["scene/layerData"];
         tabs.forEach((tab) => {
-          if (tab.name === _obj.type+"Tree_"+_content.id) {
+          if (tab.name === "TreeDistribution_" + _obj.type + _content.id) {
             _tg = false;
           }
         });
@@ -79,8 +105,8 @@
             trigger: true,
             fn: "scene_data",
             data_type: "4",
-            layer_name: _obj.type+"Tree_"+_content.id,
-            layer_title: _layerTitle+"(树)",
+            layer_name: "TreeDistribution_" + _obj.type + _content.id,
+            layer_title: _layerTitle + "(树)",
             api_name: "marker",
             data_url: "/gardens/tree/queryAllByPage",
             data_maker_iconUrl: "../../static/image/marker_1.png",
@@ -91,7 +117,10 @@
             clusters_color: "#46ff71"
           });
         }
-
+      },
+      contentFn(_obj) {
+        console.log(_obj);
+        this.showData = showFn(_obj);
       },
       fn(_obj) {
 
