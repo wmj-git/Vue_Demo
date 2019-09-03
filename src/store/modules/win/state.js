@@ -3037,6 +3037,7 @@ export default {
                 params: "personTypeNo",
                 alter_show: true,
                 add_show: true,
+                alter_readonly: true,
                 ratio: 24
               },
               {
@@ -3492,6 +3493,7 @@ export default {
               params: "treeTypeNo",
               alter_show: true,
               add_show: true,
+              alter_readonly:true,
               ratio: 24
             },
             {
@@ -3828,6 +3830,7 @@ export default {
               params: "treeNo",
               alter_show: true,
               add_show: true,
+              alter_readonly:true,
               ratio: 24
             },
             {
@@ -3980,6 +3983,7 @@ export default {
               params: "gpsLongitude",
               add_show: true,
               alter_show: true,
+              alter_readonly:true,
               ratio: 24
             },
             {
@@ -3989,6 +3993,7 @@ export default {
               type: "em_input",
               placeholder: "纬度",
               params: "gpsLatitude",
+              alter_readonly:true,
               add_show: true,
               alter_show: true,
               ratio: 24
@@ -4115,6 +4120,7 @@ export default {
               params: "gridNo",
               add_show: true,
               alter_show: true,
+              alter_readonly:true,
               ratio: 24
             },
             {
@@ -4282,6 +4288,7 @@ export default {
               params: "monitoringPointsNo",
               add_show: true,
               alter_show: true,
+              alter_readonly:true,
               ratio: 24
             },
             {
@@ -4452,6 +4459,7 @@ export default {
               params: "pointsNo",
               add_show: true,
               alter_show: true,
+              alter_readonly:true,
               ratio: 24
             },
             {
@@ -4646,6 +4654,7 @@ export default {
               params: "pointsNo",
               add_show: true,
               alter_show: true,
+              alter_readonly:true,
               ratio: 24
             },
             {
@@ -4840,6 +4849,7 @@ export default {
               params: "pointsNo",
               add_show: true,
               alter_show: true,
+              alter_readonly:true,
               ratio: 24
             },
             {
@@ -5033,6 +5043,7 @@ export default {
               params: "pointsNo",
               add_show: true,
               alter_show: true,
+              alter_readonly:true,
               ratio: 24
             },
             {
@@ -5225,6 +5236,7 @@ export default {
               params: "pointsNo",
               add_show: true,
               alter_show: true,
+              alter_readonly:true,
               ratio: 24
             },
             {
@@ -5418,6 +5430,7 @@ export default {
               params: "pointsNo",
               add_show: true,
               alter_show: true,
+              alter_readonly:true,
               ratio: 24
             },
             {

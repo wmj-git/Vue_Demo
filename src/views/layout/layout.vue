@@ -24,12 +24,6 @@
     <em_slider></em_slider>
     <!--底部-->
     <em_bottom></em_bottom>
-    <!-- 数据展示图窗口-->
-    <!--<template v-for="item in data_show">-->
-    <!--<win :id="item.id" :data="item">-->
-    <!--<component :is="item.component_name"></component>-->
-    <!--</win>-->
-    <!--</template>-->
     <!--主菜单-->
     <em_nav></em_nav>
     <!--表格里的详情-->
@@ -64,8 +58,6 @@
   import treeForm from "@/app_components/treeFrom/treeForm"
   import buttonGroup from "@/app_components/buttonGroup/buttonGroup"
   import em_dialogs from "@/components/em_dialogs/em_dialogs"
-  import number_show from "./components/number_show/number_show"
-  import echart_alone_show from "./components/echart_alone_show/echart_alone_show"
   import echarts_show from "./components/echarts_show/echarts_show"
   import table_show from "./components/table_show/table_show"
   import em_detailDrawer from "./components/em_detailDrawer/em_detailDrawer"
@@ -77,75 +69,10 @@
   import emDrawer from "@/app_components/emDrawer/emDrawer"
   export default {
     data() {
-      const screenWidth = _ => {
-        const width = Number(document.documentElement.clientWidth) - 550;
-        return width;
-      };
       return {
         id: "sysLayer",
         // wins: [],
         // dialogGroup: []
-        sreenWidth: "",
-        data_show: [
-          {
-            component_name: "number_show",
-            id: "point_counting",
-            title: "",
-            top: 120,
-            left: 10,
-            resizable: false
-          },
-          {
-            component_name: "number_show",
-            id: "garden_details",
-            title: "公园详情",
-            top: 320,
-            left: 10,
-            resizable: false,
-            class: "em-layout-window",
-          },
-          {
-            component_name: "echart_alone_show",
-            id: "pedestrians_counting",
-            title: "客流量统计",
-            top: 520,
-            left: 10,
-            resizable: false,
-            class: "em-layout-window",
-          },
-          {
-            component_name: "number_show",
-            id: "greenroad_detail",
-            title: "绿道详情",
-            top: 720,
-            left: 10,
-            resizable: false,
-          },
-          {
-            component_name: "echarts_show",
-            id: "greenfield_protect_monitor",
-            title: "绿地养护监控",
-            top: 120,
-            left: screenWidth(),
-            resizable: false,
-          },
-          {
-            component_name: "table_show",
-            id: "garden_enviroment_monitor",
-            title: "园林环境监控",
-            top: 320,
-            left: screenWidth(),
-            resizable: false,
-          },
-          {
-            component_name: "table_show",
-            id: "green_belt_details",
-            title: "绿化带养护综合详情",
-            top: 520,
-            left: screenWidth(),
-            resizable: false,
-          },
-        ]
       }
     },
     components: {
@@ -170,8 +97,6 @@
       em_slider,
       treeForm,
       em_dialogs,
-      number_show,
-      echart_alone_show,
       echarts_show,
       table_show,
       buttonGroup,
