@@ -156,3 +156,13 @@ $em-login-btn:rgba(25, 137, 250, 0.6);
 
 /*details*/
 $em-background-details:linear-gradient(to top left,rgba(25, 137, 250, 0.8), rgba(20, 31, 55, 1)) ;//pic-details背景
+
+
+/*login-title-textShadow*/
+$text-shadow-title: 0 -1px 0 #fff, 0 1px 0 #1989fa, 0 2px 0 #1970d9, 0 3px 0 #144c98, 0 4px 0 #bea234,
+0 5px 0 #004134, 0 6px 0 #003F32, 0 7px 0 #003D30, 0 8px 0 #003A2D,
+0 9px 0 #00382B, 0 10px 0 #003528, 0 11px 0 #003225, 0 12px 0 #002F22,
+0 13px 0 #002B1E, 0 14px 0 #00281C, 0 15px 0 #001F13, 0 22px 30px rgba(0, 0, 0, 0.9), 0 22px 30px rgba(0, 0, 0, 0.9), 0 22px 15px rgba(0, 0, 0, 0.9), 0 11px 15px rgba(0, 0, 0, 0.9), 0 15px 20px rgba(0, 0, 0, 0.9), 0 15px 11px rgba(0, 0, 0, 0.9), 0 16px 11px rgba(0, 0, 0, 0.9);
+
+
+$text-shadow-title-hover:0 0 0 #1989fa, 0 1px 0 #1981ee, 0 2px 0 #1967c7, 0 3px 3px rgba(0, 0, 0, 0.9);
