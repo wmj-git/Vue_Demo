@@ -74,16 +74,12 @@ video {
   left: 50%;
   transform: translate(-50%, -60%);
   -webkit-transform: translate(-50%, -60%);
-  text-shadow: 0 -1px 0 #fff, 0 1px 0 #efd239, 0 2px 0 #dec137, 0 3px 0 #cdaf36, 0 4px 0 #bea234,
-  0 5px 0 #004134, 0 6px 0 #003F32, 0 7px 0 #003D30, 0 8px 0 #003A2D,
-  0 9px 0 #00382B, 0 10px 0 #003528, 0 11px 0 #003225, 0 12px 0 #002F22,
-  0 13px 0 #002B1E, 0 14px 0 #00281C, 0 15px 0 #001F13, 0 22px 30px rgba(0, 0, 0, 0.9), 0 22px 30px rgba(0, 0, 0, 0.9), 0 22px 15px rgba(0, 0, 0, 0.9), 0 11px 15px rgba(0, 0, 0, 0.9), 0 15px 20px rgba(0, 0, 0, 0.9), 0 15px 11px rgba(0, 0, 0, 0.9), 0 16px 11px rgba(0, 0, 0, 0.9);
-
+  text-shadow:$text-shadow-title;
   transition: text-shadow .3s ease .3s, transform .3s ease .3s, letter-spacing .3s ease .3s;
 
   &:hover {
     transition: text-shadow .33s ease, transform .3s ease, letter-spacing .3s ease;
-    text-shadow: 0 0 0 #EFD239, 0 1px 0 #DEC137, 0 2px 0 #BEA234, 0 3px 3px rgba(0, 0, 0, 0.9);
+    text-shadow: $text-shadow-title-hover;
     transform: translate(-50%, -50%) perspective(300px) rotateX(10deg);
     letter-spacing: .125em;
   }

@@ -85,8 +85,10 @@
   background: $em-background-table-base;
   border: 0;
   box-shadow: 6px 1px 17px 0px darken($em-bg-color-base, 60%);
-  -webkit-transform:rotateY(80deg); /* Safari 和 Chrome */
+  -webkit-transform:rotateY(100deg); /* Safari 和 Chrome */
   -webkit-transform-origin: left;
+  -moz-transform: rotateX(0deg);
+  -ms-transform: rotateX(0deg);
   border: none;
   padding: 0;
   transition: all 0.5s;
@@ -116,10 +118,11 @@
 @media (max-width: 1440px) {
   .panel.window.#{em-menu-window}.panel-htop {
     height: 510px;
+    width: 180px !important;
     top: 74px!important;
-    transform: rotateY(90deg);
     -webkit-transform: rotateY(90deg);
-    -moz-transform: rotateY(90deg);
+    -moz-transform: rotateY(0deg);
+    -ms-transform: rotateY(0deg);
   }
 }
 
@@ -210,6 +213,8 @@
   border: 0;
   box-shadow: -6px 1px 17px 0px darken($em-bg-color-base, 60%);
   -webkit-transform: rotateY(-100deg);
+  -moz-transform: rotateY(0deg);
+  -ms-transform: rotateY(0deg);
   -webkit-transform-origin: right;
   transition: all 0.5s;
   &:hover {
@@ -222,5 +227,10 @@
   .panel.window.em-scene-window.panel-htop {
     height: 510px;
     top: 74px!important;
+    -webkit-transform: rotateY(-80deg);
+    -moz-transform: rotateY(0deg);
+    -ms-transform: rotateY(0deg);
+    left: calc(100% - 180px)!important;
+    width: 180px !important;
   }
 }

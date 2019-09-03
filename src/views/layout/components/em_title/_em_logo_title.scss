@@ -8,6 +8,25 @@
     top: 12px;
   }
 
+  .em-home-title p {
+    font-size: 34/$r+rem;
+    color: $em-text-color-base;
+    position: fixed;
+    top: -8px;
+    left: 50%;
+    transform: translate(-50%, -60%);
+    -webkit-transform: translate(-50%, -60%);
+    text-shadow: $text-shadow-title;
+    transition: text-shadow .3s ease .3s, transform .3s ease .3s, letter-spacing .3s ease .3s;
+
+    &:hover {
+      transition: text-shadow .33s ease, transform .3s ease, letter-spacing .3s ease;
+      text-shadow: $text-shadow-title-hover;
+      transform: translate(-50%, -50%) perspective(300px) rotateX(10deg);
+      letter-spacing: .125em;
+    }
+  }
+
   /*.#{em-title-container}{
     border-top: 2px solid #fff;
     border-bottom: 2px solid #fff;
@@ -37,11 +56,12 @@
       transform: rotate3d(1, -1, 0, 7deg);
     }
   }
+
   h2 {
     display: block;
     width: 100%;
     -ms-padding: 56px;
-    padding:40px;
+    padding: 40px;
     line-height: 1.5;
     font: 900 2em 'Concert One', sans-serif;
     text-transform: uppercase;
@@ -51,7 +71,7 @@
     &.modal-title {
       position: fixed;
       top: -78px;
-      letter-spacing: 8px;/*字符间距*/
+      letter-spacing: 8px; /*字符间距*/
       text-align: center;
       color: $em-text-color-base;
       font-size: 28px;
@@ -111,10 +131,14 @@
 
 }
 
-@media (max-width:1400px){
+@media (max-width: 1400px) {
   .#{em-home-title} {
-    & h2.modal-title{
-      letter-spacing: 4px;/*字符间距*/
+    & h2.modal-title {
+      letter-spacing: 4px; /*字符间距*/
+    }
+    .em-home-title p {
+      font-size: 36/$r+rem;
+      top: 0;
     }
   }
 }

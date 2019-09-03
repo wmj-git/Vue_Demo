@@ -2,7 +2,7 @@
     <div class="echart_table" style="width: 100%;height: 100%">
         <em_dialogs ref="dialog" :label="label_input" @eventFromDialog="recieveObj"></em_dialogs>
         <el-row style="height: 100%">
-            <div class="table digital_table" style="height:50%">
+            <div class="table digital_table" style="height:100%">
                 <el-row class="operation">
                     <template v-for="item in data.operation">
                         <component :is="item.type" :operation="item" :table_id="table_id" ref="child"
@@ -52,7 +52,7 @@
                     </el-pagination>
                 </div>
             </div>
-            <div style="height: 50%;">
+            <div>
                 <el-select v-model="selectValue" placeholder="请选择" @change="chartFn" clearable>
                     <el-option
                             v-for="item in selectOptions"
