@@ -3037,6 +3037,7 @@ export default {
                 params: "personTypeNo",
                 alter_show: true,
                 add_show: true,
+                alter_readonly: true,
                 ratio: 24
               },
               {

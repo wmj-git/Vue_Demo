@@ -69,75 +69,10 @@
   import emDrawer from "@/app_components/emDrawer/emDrawer"
   export default {
     data() {
-      const screenWidth = _ => {
-        const width = Number(document.documentElement.clientWidth) - 550;
-        return width;
-      };
       return {
         id: "sysLayer",
         // wins: [],
         // dialogGroup: []
-        sreenWidth: "",
-        data_show: [
-          {
-            component_name: "number_show",
-            id: "point_counting",
-            title: "",
-            top: 120,
-            left: 10,
-            resizable: false
-          },
-          {
-            component_name: "number_show",
-            id: "garden_details",
-            title: "公园详情",
-            top: 320,
-            left: 10,
-            resizable: false,
-            class: "em-layout-window",
-          },
-          {
-            component_name: "echart_alone_show",
-            id: "pedestrians_counting",
-            title: "客流量统计",
-            top: 520,
-            left: 10,
-            resizable: false,
-            class: "em-layout-window",
-          },
-          {
-            component_name: "number_show",
-            id: "greenroad_detail",
-            title: "绿道详情",
-            top: 720,
-            left: 10,
-            resizable: false,
-          },
-          {
-            component_name: "echarts_show",
-            id: "greenfield_protect_monitor",
-            title: "绿地养护监控",
-            top: 120,
-            left: screenWidth(),
-            resizable: false,
-          },
-          {
-            component_name: "table_show",
-            id: "garden_enviroment_monitor",
-            title: "园林环境监控",
-            top: 320,
-            left: screenWidth(),
-            resizable: false,
-          },
-          {
-            component_name: "table_show",
-            id: "green_belt_details",
-            title: "绿化带养护综合详情",
-            top: 520,
-            left: screenWidth(),
-            resizable: false,
-          },
-        ]
       }
     },
     components: {
