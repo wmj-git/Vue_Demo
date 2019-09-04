@@ -12,6 +12,9 @@
       @node-click="handleNodeClick"
       :filter-node-method="filterNode"
       ref="tree">
+       <span class="span-ellipsis" slot-scope="{ node, data }">
+        <span :title="node.label">{{ node.label }}</span>
+    </span>
     </el-tree>
   </div>
 </template>
@@ -111,7 +114,7 @@
           let _coordinate = _coordinates[0][0];
           _lng = _coordinate[0];
           _lat = _coordinate[1];
-        } else if(!(data.geometry)) {//单位关联道路
+        } else if (!(data.geometry)) {//单位关联道路
 
           // 场景加数据图层
           this.bus.$emit(control_id, {
@@ -130,7 +133,7 @@
             fillColor: "[160, 0, 12, 255]"
           });
           return
-        }else {
+        } else {
           return
         }
         // 场景定位

@@ -32,8 +32,9 @@
 .el-tree-node__expand-icon.is-leaf {
   display: none;
 }
-.el-tree-node__label{
+.span-ellipsis {
+  width: 100%;
+  overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  overflow: hidden;
 }
