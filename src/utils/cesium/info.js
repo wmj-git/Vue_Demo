@@ -97,7 +97,7 @@ export function infoInit(viewer) {
       if (Cesium.defined(pickedFeature) && pickedFeature.id) {
 
       } else {
-        console.log(0);
+        // console.log(0);
         clickHandler(movement);
         return;
       }
@@ -116,10 +116,9 @@ export function infoInit(viewer) {
       // Highlight newly selected feature
       silhouetteGreen.selected = [pickedFeature];
 
-
-      console.log("featureData1");
-      console.log(pickedFeature.id);
-      console.log(pickedFeature.id.featureData);
+      // console.log("featureData1");
+      // console.log(pickedFeature.id);
+      // console.log(pickedFeature.id.featureData);
 
       // Set feature infobox description
       let featureData = pickedFeature.id.featureData;
@@ -129,7 +128,7 @@ export function infoInit(viewer) {
 
       vueBus.$emit("set_drawer", {
         fn: "showFN",
-        type: _type[0],
+        type: _type[1],
         content: featureData ? featureData : {},
       });
 
