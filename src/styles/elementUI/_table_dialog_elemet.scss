@@ -38,7 +38,7 @@
     padding: 10px;
   }
   .el-dialog__title{
-    color: $em-text-highlight-base;
+    color: lighten($em-text-highlight-base,20%);
   }
   .el-form-item__label{
     color: darken($em-text-color-base,10%);

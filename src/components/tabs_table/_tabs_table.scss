@@ -1,3 +1,4 @@
+@import "../../styles/index/variable";
 .tabs_table /deep/{
   height:100% !important;
   .el-tabs{
@@ -6,7 +7,7 @@
       color: white !important;
     }
     .el-tabs__item.is-active{
-      color: #d8bb37 !important;
+      color: lighten($em-text-highlight-base,20%) !important;
     }
     .el-tabs__content{
       height: 100%;
