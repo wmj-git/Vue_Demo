@@ -1,3 +1,6 @@
-.emTree {
-
+.emTree /deep/{
+  .el-tree-node__content {
+    padding-left: 5px !important;
+  }
 }
+

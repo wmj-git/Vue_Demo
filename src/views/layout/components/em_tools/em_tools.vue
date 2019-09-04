@@ -97,8 +97,6 @@
       }
 
     },
-    mounted() {
-    },
     updated() {
       var subnav = document.getElementById('subnav'),
         aLi = document.querySelectorAll('#subnav li'),
