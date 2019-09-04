@@ -23,7 +23,7 @@
   font-size: 13/$r+rem;
   text-align: left;
   &:hover {
-    color: $em-text-highlight-base;
+    color: lighten($em-text-highlight-base,20%);
     opacity: 0.8;
     transition: all .1s;
   }
@@ -34,6 +34,6 @@
     background-color: transparent;
   }
   &.is-active {
-    color: $em-text-highlight-base;
+    color: lighten($em-text-highlight-base,20%);
   }
 }

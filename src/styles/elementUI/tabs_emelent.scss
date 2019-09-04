@@ -8,7 +8,7 @@
   }
 
   &.is-active {
-    color: $em-text-highlight-base;
+    color: lighten($em-text-highlight-base,20%);
   }
 
   .el-icon-close:hover {

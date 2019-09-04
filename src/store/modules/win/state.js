@@ -259,7 +259,7 @@ export default {
             operate: "查询",
             control_id: "account_manage_table",
             fn: "search"
-          },
+          }/*,
           {
             id: "account_manage_button_add",
             type: "em_button",
@@ -307,7 +307,7 @@ export default {
             control_id: "account_manage_table",
             fn: "export",
             url: "/user/userext/exportCsv"
-          }
+          }*/
         ],
         table: {
           id: "account_manage_table",
