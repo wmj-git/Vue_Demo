@@ -92,7 +92,7 @@
         let _titleKey = obj.maker_titleKey;
         let _clustersColor = obj.clusters_color;
 
-        window[this.id].viewFn(0, [114.05566529913777, 22.604387298808085]);
+        // window[this.id].viewFn(0, [114.05566529913777, 22.604387298808085]);
         let _layer = mp.clustersLayerFn(_url,
           {
             type: _type,
