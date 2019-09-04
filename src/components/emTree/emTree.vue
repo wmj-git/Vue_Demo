@@ -113,22 +113,32 @@
           _lat = _coordinate[1];
         } else if(!(data.geometry)) {//单位关联道路
 
-          // 场景加数据图层
-          this.bus.$emit(control_id, {
-            trigger: true,
-            fn: "scene_data",
-            data_type: "3",
-            layer_name: _this.data.layerName + "_" + data.id,
-            layer_title: data.entName,
-            api_name: "geom",
-            data_url: "/gardens/road/queryByEndId",
-            params_entId: data.id,
-            geomType: "line",
-            geom_titleKey: "roadName",
-            strokeWidth: 4,
-            strokeColor: "[125, 0, 0, 255]",
-            fillColor: "[160, 0, 12, 255]"
+          let _tg = true;
+          let tabs = this.$store.getters["scene/layerData"];
+          tabs.forEach((tab) => {
+            if (tab.name === _this.data.layerName + "_" + data.id) {
+              _tg = false;
+            }
           });
+
+          if (_tg) {
+            // 场景加数据图层
+            this.bus.$emit(control_id, {
+              trigger: true,
+              fn: "scene_data",
+              data_type: "3",
+              layer_name: _this.data.layerName + "_" + data.id,
+              layer_title: data.entName,
+              api_name: "geom",
+              data_url: "/gardens/road/queryByEndId",
+              params_entId: data.id,
+              geomType: "line",
+              geom_titleKey: "roadName",
+              strokeWidth: 4,
+              strokeColor: "[125, 0, 0, 255]",
+              fillColor: "[160, 0, 12, 255]"
+            });
+          }
           return
         }else {
           return

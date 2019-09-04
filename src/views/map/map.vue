@@ -428,7 +428,7 @@
       }
     },
     created() {
-      this.$store.commit("scene/set_type", this.id);//
+      this.$store.commit("scene/set_type", this.id);
       this.$store.commit("scene/set_toolbar", [
         {
           id: "tool_flyToScene",
