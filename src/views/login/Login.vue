@@ -60,9 +60,9 @@
     created(){
       console.log(this.$route.query);
       let {tokenId,amUrl,random} = this.$route.query;
-      if(token){
+      if(tokenId){
         this.$store.dispatch("user/LoginByUsername", {
-          token,
+          tokenId,
           amUrl,
           random
         }).then(this.changeRouter);
