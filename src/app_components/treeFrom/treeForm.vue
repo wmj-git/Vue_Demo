@@ -115,7 +115,8 @@
           "resourceName": "新建权限",
           "resourceType": "null",
           "resourceUrl": "null",
-          "isMeum": false
+          "isMeum": false,
+          "weight":200
         };
         newChild.parentId = data.id;
         addResource(newChild).then(function (response) {

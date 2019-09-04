@@ -82,8 +82,8 @@ export function clustersLayerFn(dataUrl, _Key, _clusterImgUrl, _distance) {//时
     loader: function (extent, resolution, projection) {
       var url = _url + '/query/?f=json&' +
         'returnGeometry=true&spatialRel=esriSpatialRelIntersects&geometry=' +
-        encodeURIComponent('{"xmin":' + extent[0] + ',"ymin":' +
-          extent[1] + ',"xmax":' + extent[2] + ',"ymax":' + extent[3] +
+        encodeURIComponent('{"xmin":' +113.9018884439272+',"ymin":' +22.63945977358467+ ',' +
+          '"xmax":' +114.15101801123764+ ',"ymax":' +22.737493567024877+
           ',"spatialReference":{"wkid":4490}}') +
         '&geometryType=esriGeometryEnvelope&inSR=4490&outFields=*' +
         '&outSR=4490';
@@ -95,9 +95,9 @@ export function clustersLayerFn(dataUrl, _Key, _clusterImgUrl, _distance) {//时
       }
 
       $.ajax({
-        url: url, async: true, dataType: 'json', success: function (response) {
-          /* console.log("response");
-           console.log(response);*/
+        url: url, async: false, dataType: 'jsonp', success: function (response) {
+          console.log("response");
+          console.log(response);
           if (response.error) {
             console.log(response.error.message + '\n' +
               response.error.details.join('\n'));
@@ -106,7 +106,8 @@ export function clustersLayerFn(dataUrl, _Key, _clusterImgUrl, _distance) {//时
             var features = esrijsonFormat.readFeatures(response, {
               featureProjection: projection
             });
-            if (features.length > 0) {
+            console.log(features);
+            /*if (features.length > 0) {
               let _DATA = [];
               features.forEach(function (feature) {
                 feature.setId(_featureKey.type + "_" + feature.get(_featureKey.titleKey));
@@ -129,7 +130,7 @@ export function clustersLayerFn(dataUrl, _Key, _clusterImgUrl, _distance) {//时
               console.log(_DATA);
               vectorSource.addFeatures(features);
 
-            }
+            }*/
           }
         }
       });
@@ -659,15 +660,15 @@ emMap.prototype.InfoClickFn = function (evt) {
   if (feature) {
     console.log(feature);
     let _type = null;
-    let _featureData=null;
+    let _featureData = null;
     if (feature.get('features') && feature.get('features').length === 1) {
       let _feature = feature.get('features')[0];
-       _type = _feature.getId().split("_");
-      _featureData=_feature.get("featureData");
+      _type = _feature.getId().split("_");
+      _featureData = _feature.get("featureData");
 
     } else if (feature.get("featureData")) {
-       _type = feature.getId().split("_");
-      _featureData=feature.get("featureData");
+      _type = feature.getId().split("_");
+      _featureData = feature.get("featureData");
     } else {
       return
     }
