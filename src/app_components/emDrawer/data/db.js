@@ -265,7 +265,7 @@ let option = {
       type: "info"
     }
   ],
-  fireAlert: [//空气监测
+  fireAlert: [//火灾报警
     {
       label: "altitude",
       value: "123",
@@ -341,37 +341,324 @@ let option = {
   ],
   roadAddress: [//道路地址
     {
-      label: "字段1",
+      label: "dataStatus",
       value: "123",
-      valueKey: "",
+      valueKey: "dataStatus",
+      type: "info"
+    },
+    {
+      label: "id",
+      value: "123",
+      valueKey: "id",
+      type: "info"
+    },
+    {
+      label: "roadDescription",
+      value: "123",
+      valueKey: "roadDescription",
+      type: "info"
+    },
+    {
+      label: "roadName",
+      value: "123",
+      valueKey: "roadName",
       type: "info"
     }
   ],
   district: [//行政区划
     {
-      label: "字段1",
+      label: "area",
       value: "123",
-      valueKey: "",
+      valueKey: "area",
+      type: "info"
+    },
+    {
+      label: "districtCode",
+      value: "123",
+      valueKey: "districtCode",
+      type: "info"
+    },
+    {
+      label: "districtName",
+      value: "123",
+      valueKey: "districtName",
+      type: "info"
+    },
+    {
+      label: "districtType",
+      value: "123",
+      valueKey: "districtType",
+      type: "info"
+    },
+    {
+      label: "id",
+      value: "123",
+      valueKey: "id",
+      type: "info"
+    },
+    {
+      label: "memo",
+      value: "123",
+      valueKey: "memo",
+      type: "info"
+    },
+    {
+      label: "parentDistrictCode",
+      value: "123",
+      valueKey: "parentDistrictCode",
+      type: "info"
+    },
+    {
+      label: "perimeter",
+      value: "123",
+      valueKey: "perimeter",
       type: "info"
     }
   ],
   protectCompany: [//养护单位
     {
-      label: "字段1",
+      label: "areaCode",
       value: "123",
-      valueKey: "",
+      valueKey: "areaCode",
+      type: "info"
+    },
+    {
+      label: "contactMan",
+      value: "123",
+      valueKey: "contactMan",
+      type: "info"
+    },
+    {
+      label: "createDate",
+      value: "123",
+      valueKey: "createDate",
+      type: "info"
+    },
+    {
+      label: "entName",
+      value: "123",
+      valueKey: "entName",
+      type: "info"
+    },
+    {
+      label: "id",
+      value: "123",
+      valueKey: "id",
+      type: "info"
+    },
+    {
+      label: "memo",
+      value: "123",
+      valueKey: "memo",
+      type: "info"
+    },
+    {
+      label: "orderNo",
+      value: "123",
+      valueKey: "orderNo",
+      type: "info"
+    },
+    {
+      label: "orgAddr",
+      value: "123",
+      valueKey: "orgAddr",
+      type: "info"
+    },
+    {
+      label: "tel",
+      value: "123",
+      valueKey: "tel",
       type: "info"
     }
   ],
   TreeDistribution: [//特殊树木分布
     {
-      label: "字段1",
-      value: "123",
-      valueKey: "",
+      label: "altitude",
+      value: "",
+      valueKey: "altitude",
+      type: "info"
+    },
+    {
+      label: "createDate",
+      value: "",
+      valueKey: "createDate",
+      type: "info"
+    },
+    {
+      label: "creatorId",
+      value: "",
+      valueKey: "creatorId",
+      type: "info"
+    },
+    {
+      label: "diameter",
+      value: "",
+      valueKey: "diameter",
+      type: "info"
+    },
+    {
+      label: "distance",
+      value: "",
+      valueKey: "distance",
+      type: "info"
+    },
+    {
+      label: "districtId",
+      value: "",
+      valueKey: "districtId",
+      type: "info"
+    },
+    {
+      label: "districtName",
+      value: "",
+      valueKey: "districtName",
+      type: "info"
+    },
+    {
+      label: "fileIds",
+      value: "",
+      valueKey: "fileIds",
+      type: "info"
+    },
+    {
+      label: "genusName",
+      value: "",
+      valueKey: "genusName",
+      type: "info"
+    },
+    {
+      label: "gpsLatitude",
+      value: "",
+      valueKey: "gpsLatitude",
+      type: "info"
+    },
+    {
+      label: "gpsLongitude",
+      value: "",
+      valueKey: "gpsLongitude",
+      type: "info"
+    },
+    {
+      label: "gridId",
+      value: "",
+      valueKey: "gridId",
+      type: "info"
+    },
+    {
+      label: "gridName",
+      value: "",
+      valueKey: "gridName",
+      type: "info"
+    },
+    {
+      label: "height",
+      value: "",
+      valueKey: "height",
+      type: "info"
+    },
+    {
+      label: "id",
+      value: "",
+      valueKey: "id",
+      type: "info"
+    },
+    {
+      label: "isAncient",
+      value: "",
+      valueKey: "isAncient",
+      type: "info"
+    },
+    {
+      label: "isFamous",
+      value: "",
+      valueKey: "isFamous",
+      type: "info"
+    },
+    {
+      label: "memo",
+      value: "",
+      valueKey: "memo",
+      type: "info"
+    },
+    {
+      label: "perimeter",
+      value: "",
+      valueKey: "perimeter",
+      type: "info"
+    },
+    {
+      label: "plantTypeId",
+      value: "",
+      valueKey: "plantTypeId",
+      type: "info"
+    },
+    {
+      label: "plantTypeName",
+      value: "",
+      valueKey: "plantTypeName",
+      type: "info"
+    },
+    {
+      label: "position",
+      value: "",
+      valueKey: "position",
+      type: "info"
+    },
+    {
+      label: "rankValue",
+      value: "",
+      valueKey: "rankValue",
+      type: "info"
+    },
+    {
+      label: "roadId",
+      value: "",
+      valueKey: "roadId",
+      type: "info"
+    },
+    {
+      label: "roadName",
+      value: "",
+      valueKey: "roadName",
+      type: "info"
+    },
+    {
+      label: "treeName",
+      value: "",
+      valueKey: "treeName",
+      type: "info"
+    },
+    {
+      label: "treeNameId",
+      value: "",
+      valueKey: "treeNameId",
+      type: "info"
+    },
+    {
+      label: "treeNo",
+      value: "",
+      valueKey: "treeNo",
+      type: "info"
+    },
+    {
+      label: "treeTypeId",
+      value: "",
+      valueKey: "treeTypeId",
+      type: "info"
+    },
+    {
+      label: "treeTypeName",
+      value: "",
+      valueKey: "treeTypeName",
+      type: "info"
+    },
+    {
+      label: "updateDate",
+      value: "",
+      valueKey: "updateDate",
       type: "info"
     }
   ]
-
 };
 
 export function showFn(_obj) {
