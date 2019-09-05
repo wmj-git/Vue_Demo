@@ -68,7 +68,7 @@ video {
 
 .em-login-title p {
   font-size: 40/$r+rem;
-  color: lighten($em-text-highlight-base, 28%);
+  color: lighten($em-text-highlight-base, 20%);
   position: fixed;
   top: 20%;
   left: 50%;
@@ -97,7 +97,7 @@ video {
   transform: translate(80%, -30%);
 
   &:hover {
-    color: $em-text-highlight-base !important;
+    color: lighten($em-text-highlight-base,20%) !important;
   }
 }
 
@@ -125,7 +125,7 @@ video {
 }
 
 .em-login-button {
-  color: $em-text-highlight-base;
+  color: lighten($em-text-highlight-base,20%);
 
   &:before {
     content: '';
@@ -154,7 +154,7 @@ video {
   }
 
   &:hover {
-    color: lighten($em-text-highlight-base,20%);
+    color: lighten($em-text-highlight-base,30%);
     &:before {
       border-width: 63px 0 0 63px;
     }

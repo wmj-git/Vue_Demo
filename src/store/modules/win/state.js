@@ -15,7 +15,8 @@ export default {
       //class: "em-table-window",
       component: "em_menu",
       component_data: {},
-      closable: false
+      closable: false,
+      draggable:false
     },
     {
       id: "role_manage",
@@ -5539,6 +5540,7 @@ export default {
       height: 720,
       show: true,
       closable: false,
+      draggable:false,
       class: "em-scene-window",
       component: "emLayers",
       component_data: {
