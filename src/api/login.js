@@ -4,7 +4,7 @@ export function loginByUsername(username, password) {
   const obj = JSON.stringify({
     username,
     password
-  })
+  });
   return new Promise(function(resolve, reject) {
     encrypt(obj).then(text => {
       request({

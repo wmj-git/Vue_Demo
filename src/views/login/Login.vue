@@ -64,7 +64,8 @@
         this.$store.dispatch("user/LoginByUsername", {
           tokenId,
           amUrl,
-          random
+          random,
+          isFrom:"pc"
         }).then(this.changeRouter);
       }else{
         this.show=true;
