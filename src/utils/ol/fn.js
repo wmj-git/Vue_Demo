@@ -65,7 +65,6 @@ export function createQeomStyle(_feature, _style) {
 export function clustersLayerFn(dataUrl, _Key, _clusterImgUrl, _distance) {//时空云数据
   // let _extent = [113.97796915, 22.608145238000002, 114.04398656100001, 22.704755608];
 
-
   let _featureKey = {
     type: "typeName",//类型
     titleKey: "id",//标题
@@ -77,66 +76,143 @@ export function clustersLayerFn(dataUrl, _Key, _clusterImgUrl, _distance) {//时
     }
   }
   let _url = dataUrl ? dataUrl : "";
+
+
+//读取时空运部件数据=======================================================
+  let urlLayer = _url + '/layers/?f=json';
+  let _layers = null;
+  let _data = [];
+  $.ajax({
+    url: urlLayer, async: false, dataType: 'json', success: function (response) {
+      console.log("layers");
+      console.log(response);
+      if (response.error) {
+        console.log(response.error.message + '\n' +
+          response.error.details.join('\n'));
+      } else {
+        _layers = response.layers;
+      }
+    }
+  });
+  console.log(_layers);
+
+  for (let i = 0; i < _layers.length; i++) {
+
+    let url = _url + '/' + i + '/query/?f=json&' +
+      'returnGeometry=true&spatialRel=esriSpatialRelIntersects&geometry=' +
+      encodeURIComponent('{"xmin":' + -180 + ',"ymin":' + -90 + ',' +
+        '"xmax":' + 180 + ',"ymax":' + 90 +
+        ',"spatialReference":{"wkid":4490}}') +
+      '&geometryType=esriGeometryEnvelope&inSR=4490&outFields=*' +
+      '&outSR=4490';
+    $.ajax({
+      url: url, async: true, dataType: 'json', success: function (response) {
+        console.log("response");
+        console.log(response);
+        if (response.error) {
+          console.log(response.error.message + '\n' +
+            response.error.details.join('\n'));
+        } else {
+          response.features.forEach(function (feature) {
+            _data.push(feature);
+          });
+          console.log(_data);
+        }
+      }
+    });
+  }
+//=======================================================
+
   let esrijsonFormat = new ol.format.EsriJSON();
   let vectorSource = new ol.source.Vector({
-    loader: function (extent, resolution, projection) {
-      var url = _url + '/query/?f=json&' +
-        'returnGeometry=true&spatialRel=esriSpatialRelIntersects&geometry=' +
-        encodeURIComponent('{"xmin":' + extent[0] + ',"ymin":' +
-          extent[1] + ',"xmax":' + extent[2] + ',"ymax":' + extent[3] +
-          ',"spatialReference":{"wkid":4490}}') +
-        '&geometryType=esriGeometryEnvelope&inSR=4490&outFields=*' +
-        '&outSR=4490';
+    /*   loader: function (extent, resolution, projection) {
 
-      if (vectorSource.getFeatures().length > 0) {
-        // vectorSource.clear();
-        console.log(vectorSource.getFeatures());
-        return
-      }
+         var urlLayer = _url + '/layers/?f=json';
+         if (vectorSource.getFeatures().length > 0) {
+           vectorSource.clear();
+           console.log(vectorSource.getFeatures().length);
+           return
+         }
 
-      $.ajax({
-        url: url, async: true, dataType: 'json', success: function (response) {
-          /* console.log("response");
-           console.log(response);*/
-          if (response.error) {
-            console.log(response.error.message + '\n' +
-              response.error.details.join('\n'));
-          } else {
-            // dataProjection will be read from document
-            var features = esrijsonFormat.readFeatures(response, {
-              featureProjection: projection
-            });
-            if (features.length > 0) {
-              let _DATA = [];
-              features.forEach(function (feature) {
-                feature.setId(_featureKey.type + "_" + feature.get(_featureKey.titleKey));
-                let _keys = feature.getKeys();
-                let _featureData = {};
-                _keys.forEach(function (_key) {
+         let _layers = null;
+         let _data = [];
+         console.log(_url);
+         $.ajax({
+           url: urlLayer, async: false, dataType: 'json', success: function (response) {
+             console.log("layers");
+             console.log(response);
+             if (response.error) {
+               console.log(response.error.message + '\n' +
+                 response.error.details.join('\n'));
+             } else {
+               _layers = response.layers;
+             }
+           }
+         });
+         console.log(_layers);
 
-                  if (_key === "geometry") {
+         for(let i=0;i<_layers.length;i++){
 
-                  } else {
-                    _featureData[_key] = feature.get(_key);
-                  }
-                });
-                _featureData["coordinates"] = feature.get("geometry").getCoordinates();
-                feature.set("featureData", _featureData);
-                _DATA.push(_featureData);
-              });
-              console.log("features2");
-              // console.log(features);
-              console.log(_DATA);
-              vectorSource.addFeatures(features);
+           let url = _url + '/'+i+'/query/?f=json&' +
+             'returnGeometry=true&spatialRel=esriSpatialRelIntersects&geometry=' +
+             encodeURIComponent('{"xmin":' + -180 + ',"ymin":' + -90 + ',' +
+               '"xmax":' + 180 + ',"ymax":' + 90 +
+               ',"spatialReference":{"wkid":4490}}') +
+             '&geometryType=esriGeometryEnvelope&inSR=4490&outFields=*' +
+             '&outSR=4490';
+           $.ajax({
+             url: url, async: true, dataType: 'json', success: function (response) {
+               console.log("response");
+               console.log(response);
+               if (response.error) {
+                 console.log(response.error.message + '\n' +
+                   response.error.details.join('\n'));
+               } else {
+                 // dataProjection will be read from document
+                 var features = esrijsonFormat.readFeatures(response, {
+                   featureProjection: projection
+                 });
+                 console.log(projection);
+                 console.log(features);
+                 if (features.length > 0) {
+                   console.log("features2");
+                   _data.push(features);
+                   vectorSource.addFeatures(features);
+                 }
+                 console.log(_data);
+                 /!*if (features.length > 0) {
+                   let _DATA = [];
+                   features.forEach(function (feature) {
+                     feature.setId(_featureKey.type + "_" + feature.get(_featureKey.titleKey));
+                     let _keys = feature.getKeys();
+                     let _featureData = {};
+                     _keys.forEach(function (_key) {
 
-            }
-          }
-        }
-      });
-    },
-    strategy: ol.loadingstrategy.tile(ol.tilegrid.createXYZ({
-      tileSize: 512
-    })),
+                       if (_key === "geometry") {
+
+                       } else {
+                         _featureData[_key] = feature.get(_key);
+                       }
+                     });
+                     _featureData["coordinates"] = feature.get("geometry").getCoordinates();
+                     feature.set("featureData", _featureData);
+                     _DATA.push(_featureData);
+                   });
+                   console.log("features2");
+                   // console.log(features);
+                   console.log(_DATA);
+                   vectorSource.addFeatures(features);
+
+                 }*!/
+               }
+             }
+           });
+         }
+
+       },*/
+    /* strategy: ol.loadingstrategy.tile(ol.tilegrid.createXYZ({
+       tileSize: 512
+     })),*/
     wrapX: false
   });
 
@@ -659,15 +735,15 @@ emMap.prototype.InfoClickFn = function (evt) {
   if (feature) {
     console.log(feature);
     let _type = null;
-    let _featureData=null;
+    let _featureData = null;
     if (feature.get('features') && feature.get('features').length === 1) {
       let _feature = feature.get('features')[0];
-       _type = _feature.getId().split("_");
-      _featureData=_feature.get("featureData");
+      _type = _feature.getId().split("_");
+      _featureData = _feature.get("featureData");
 
     } else if (feature.get("featureData")) {
-       _type = feature.getId().split("_");
-      _featureData=feature.get("featureData");
+      _type = feature.getId().split("_");
+      _featureData = feature.get("featureData");
     } else {
       return
     }

@@ -4,7 +4,7 @@ export default {
     {
       id: "menu",
       title: "_",
-      left:"0",
+      left: "0",
       top: "112px",
       width: 230,
       height: 720,
@@ -15,7 +15,7 @@ export default {
       //class: "em-table-window",
       component: "em_menu",
       component_data: {},
-      closable:false
+      closable: false
     },
     {
       id: "role_manage",
@@ -259,7 +259,7 @@ export default {
             operate: "查询",
             control_id: "account_manage_table",
             fn: "search"
-          },
+          }/*,
           {
             id: "account_manage_button_add",
             type: "em_button",
@@ -307,7 +307,7 @@ export default {
             control_id: "account_manage_table",
             fn: "export",
             url: "/user/userext/exportCsv"
-          }
+          }*/
         ],
         table: {
           id: "account_manage_table",
@@ -3493,7 +3493,7 @@ export default {
               params: "treeTypeNo",
               alter_show: true,
               add_show: true,
-              alter_readonly:true,
+              alter_readonly: true,
               ratio: 24
             },
             {
@@ -3830,7 +3830,7 @@ export default {
               params: "treeNo",
               alter_show: true,
               add_show: true,
-              alter_readonly:true,
+              alter_readonly: true,
               ratio: 24
             },
             {
@@ -3983,7 +3983,7 @@ export default {
               params: "gpsLongitude",
               add_show: true,
               alter_show: true,
-              alter_readonly:true,
+              alter_readonly: true,
               ratio: 24
             },
             {
@@ -3993,7 +3993,7 @@ export default {
               type: "em_input",
               placeholder: "纬度",
               params: "gpsLatitude",
-              alter_readonly:true,
+              alter_readonly: true,
               add_show: true,
               alter_show: true,
               ratio: 24
@@ -4120,7 +4120,7 @@ export default {
               params: "gridNo",
               add_show: true,
               alter_show: true,
-              alter_readonly:true,
+              alter_readonly: true,
               ratio: 24
             },
             {
@@ -4288,7 +4288,7 @@ export default {
               params: "monitoringPointsNo",
               add_show: true,
               alter_show: true,
-              alter_readonly:true,
+              alter_readonly: true,
               ratio: 24
             },
             {
@@ -4459,7 +4459,7 @@ export default {
               params: "pointsNo",
               add_show: true,
               alter_show: true,
-              alter_readonly:true,
+              alter_readonly: true,
               ratio: 24
             },
             {
@@ -4654,7 +4654,7 @@ export default {
               params: "pointsNo",
               add_show: true,
               alter_show: true,
-              alter_readonly:true,
+              alter_readonly: true,
               ratio: 24
             },
             {
@@ -4849,7 +4849,7 @@ export default {
               params: "pointsNo",
               add_show: true,
               alter_show: true,
-              alter_readonly:true,
+              alter_readonly: true,
               ratio: 24
             },
             {
@@ -5043,7 +5043,7 @@ export default {
               params: "pointsNo",
               add_show: true,
               alter_show: true,
-              alter_readonly:true,
+              alter_readonly: true,
               ratio: 24
             },
             {
@@ -5236,7 +5236,7 @@ export default {
               params: "pointsNo",
               add_show: true,
               alter_show: true,
-              alter_readonly:true,
+              alter_readonly: true,
               ratio: 24
             },
             {
@@ -5430,7 +5430,7 @@ export default {
               params: "pointsNo",
               add_show: true,
               alter_show: true,
-              alter_readonly:true,
+              alter_readonly: true,
               ratio: 24
             },
             {
@@ -5538,7 +5538,7 @@ export default {
       width: 230,
       height: 720,
       show: true,
-      closable:false,
+      closable: false,
       class: "em-scene-window",
       component: "emLayers",
       component_data: {
@@ -5553,7 +5553,7 @@ export default {
       left: "calc((100% - 600px)/2)",
       width: 600,
       height: 132,
-      show: true,
+      show: false,
       class: "em-table-window",
       component: "buttonGroup",
       component_data: {
