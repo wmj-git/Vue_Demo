@@ -39,6 +39,7 @@
       let url =process.env.BASE_API;
       this.socketApi.initWebSocket(url.replace("http:","ws:"));
       this.socketApi.proxyFunction('fire',(res)=>{
+        console.log("websocket");
         console.log(res);
         if(res){
           this.init();

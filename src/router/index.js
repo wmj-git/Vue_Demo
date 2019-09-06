@@ -13,28 +13,28 @@ export default new Router({
       path: '/',
       redirect: {name: "layout"}
     },
-    // {
-    //   path: '/main',
-    //   name: 'main',
-    //   component: main,
-    //   children: [
-    //     {
-    //       path: 'scene',
-    //       name: 'scene',
-    //       components: {
-    //         scene: () => import('@/views/main/components/scene/scene')
-    //       }
-    //     },
-    //     {
-    //       path: 'map',
-    //       name: 'map',
-    //       components: {
-    //         scene: () => import('@/views/main/components/map/map')
-    //       }
-    //     }
-    //
-    //   ]
-    // },
+    {
+      path: '/main',
+      name: 'main',
+      component: main,
+      children: [
+        {
+          path: 'scene',
+          name: 'scene',
+          components: {
+            scene: () => import('@/views/main/components/scene/scene')
+          }
+        },
+        {
+          path: 'map',
+          name: 'map',
+          components: {
+            scene: () => import('@/views/main/components/map/map')
+          }
+        }
+
+      ]
+    },
     {
       path: '/home',
       name: 'layout',
