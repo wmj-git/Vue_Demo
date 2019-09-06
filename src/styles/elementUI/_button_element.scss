@@ -2,7 +2,7 @@
   padding:5px;
   background: transparent;
   &:hover,&:focus{
-    color: $em-text-highlight-base;
+    color: lighten($em-text-highlight-base,15%);
     background: transparent;
     border-color: $em-highlight-border-color-base;//tree
   }
@@ -11,7 +11,7 @@
     color: darken($em-text-highlight-base,10%) ;
     &:hover,&:focus{
       background-color:transparent ;
-      color: $em-text-highlight-base;
+      color: lighten($em-text-highlight-base,15%);
       border-color: $em-highlight-border-color-base;
     }
   }

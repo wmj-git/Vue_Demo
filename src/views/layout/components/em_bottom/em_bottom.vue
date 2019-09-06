@@ -45,11 +45,11 @@
         <el-button class="data_button em-btn-icon-hover" @click="digitalCollapseVisible=true">
           数据
         </el-button>
-        <el-button class="data_button em-btn-icon-hover-v2" @click="threeMap">
-          三维场景
-        </el-button>
         <el-button class="data_button em-btn-icon-hover-v3" @click="twoMap">
           二维场景
+        </el-button>
+        <el-button class="data_button em-btn-icon-hover-v2" @click="threeMap">
+          三维场景
         </el-button>
         <el-select class="data_button" v-model="selectValue" placeholder="选择底图" @change="selectFn">
           <el-option
