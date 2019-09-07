@@ -1,4 +1,5 @@
 import vueBus from '@/utils/vueBus'
+import {contentFN} from '../content'
 
 let nameOverlay, selected, selectedEntity, clickHandler, silhouetteBlue, silhouetteGreen;
 
@@ -75,10 +76,14 @@ export function infoInit(viewer) {
       // console.log(pickedFeature.id.featureData);
 
       let name = pickedFeature.id.name;
-      let id = pickedFeature.id.name;
+      let id = pickedFeature.id.id.split("_");
 
       // nameOverlay.textContent = name;
-      nameOverlay.innerHTML = "<em>" + name + "</em>";
+
+      nameOverlay.innerHTML = contentFN({
+        type: id[1],
+        content: pickedFeature.id.featureData,
+      });
 
       // Highlight the feature if it's not already selected.
       if (pickedFeature !== selected.feature) {

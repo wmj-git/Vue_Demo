@@ -6,7 +6,7 @@ import { setToken,getToken,TokenName,removeToken } from '@/utils/auth'
 const service = axios.create({
   baseURL: process.env.BASE_API, // api 的 base_url
   timeout: 5000 // request timeout
-})
+});
 
 // request interceptor
 service.interceptors.request.use(
@@ -26,7 +26,7 @@ service.interceptors.request.use(
     // console.log(error) // for debug
     Promise.reject(error)
   }
-)
+);
 
 // response interceptor
 service.interceptors.response.use(

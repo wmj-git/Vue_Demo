@@ -19,7 +19,7 @@
   li{
    &.active{
       border-bottom: 2px solid darken($em-bg-color-base,6%);
-      color: $em-text-highlight-base;
+      color: lighten($em-text-highlight-base,20%);
     }
   }
   li{
@@ -42,7 +42,7 @@
       width: 100%;
     }
     &:hover{
-     color: $em-text-highlight-base;
+     color: lighten($em-text-highlight-base,20%);
      cursor: pointer;
     }
   }
