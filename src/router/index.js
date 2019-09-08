@@ -33,7 +33,6 @@ export default new Router({
             scene: () => import('@/views/map/map')
           }
         }
-
       ]
     },
     {
@@ -55,17 +54,16 @@ export default new Router({
           path: 'scene',
           name: 'scene',
           components: {
-            scene: () => import('@/views/main/components/scene/scene')
+            scene: () => import('@/views/scene/scene')
           }
         },
         {
           path: 'map',
           name: 'map',
           components: {
-            scene: () => import('@/views/main/components/map/map')
+            scene: () => import('@/views/map/map')
           }
         }
-
       ]
     }
   ]

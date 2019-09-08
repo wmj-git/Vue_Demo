@@ -9,7 +9,6 @@
     <!--风险等级数据监测-->
     <!--<em_venture></em_venture>-->
 
-
     <!--功能窗口-->
     <template v-for="win in wins" v-if="win.show">
       <win :id="win.id" :data="win">
