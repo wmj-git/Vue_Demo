@@ -29,7 +29,7 @@ export const db_buttonGroup = [
         layer_title: "土壤",
         api_name: "marker",
         data_url: "/gardens/temhumpoints/queryAll",
-        data_maker_iconUrl: "../../static/image/marker_2.png",
+        data_maker_iconUrl: "../../static/image/marker_3.png",
         params_pointType: "S",
         maker_titleKey: "pointsName",
         clusters_color: "#ffc62e"
@@ -68,7 +68,7 @@ export const db_buttonGroup = [
         layer_title: "空气",
         api_name: "marker",
         data_url: "/gardens/temhumpoints/queryAll",
-        data_maker_iconUrl: "../../static/image/marker_2.png",
+        data_maker_iconUrl: "../../static/image/marker_4.png",
         params_pointType: "A",
         maker_titleKey: "pointsName",
         clusters_color: "#181966"

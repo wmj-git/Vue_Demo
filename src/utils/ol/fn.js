@@ -1,5 +1,6 @@
 import store from '@/store'
 import vueBus from '@/utils/vueBus'
+import {contentFN} from '../content'
 
 //经纬度换算
 function formatDegree(pValue) {
@@ -514,56 +515,6 @@ export function clustersFn(_features, _Key, _clusterColor, _distance) {//_featur
 
 }
 
-function treeContent(_OBJ) {//消防栓信息显示模板
-  /* console.log("OBJ");
-   console.log(_OBJ);*/
-  let obj = _OBJ.content;
-  let _content = '<ul type="none" style="margin: 0px;padding:0px;font-size:22px;" >' +
-    '<li>编号：' + (obj.id || "无") + '<\/li>' +
-    '<li>规格型号：' + 'DN65*2,' + obj.hydrantTypeCanme + '<\/li>' +
-    '<li>安装位置：' + obj.addressInfo + '<\/li>' +
-    '<\/ul>';
-
-  return _content;
-}
-
-function personContent(_OBJ) {//消防栓信息显示模板
-
-  let _data = _OBJ.content;
-
-  let _content = '<ul type="none" style="margin: 0px;padding:0px;font-size: 22px">' +
-    '<li>姓   名：' + _data.name + '<\/li>' +
-    '<li>单   位：' + _data.dept + '<\/li>' +
-    '<li>电   话：' + _data.PhoneNumber + '<\/li>' +
-    '<li>位   置：' + _data.address + '<\/li>' +
-    '<\/ul>';
-
-  return _content;
-}
-
-function fireContent(_OBJ) {//火警信息显示模板
-
-  let _data = _OBJ.content;
-
-  let _content = '<ul type="none" style="margin: 0px;padding:0px;font-size:22px;">' +
-    '<li>报警时间：' + (_data.alarmTimeStr || "无") + '<\/li>' +
-    '<li>报警等级：' + (_data.alarmLevelCname || "无") + '<\/li>' +
-    '<li>报警类型：' + (_data.alarmTypeCname || "无") + '<\/li>' +
-    '<li>报警位置：' + (_data.alarmAddress || "无") + '<\/li>' +
-    '<li>报警描述：' + (_data.alarmDesc || "无") + '<\/li>' +
-    '<\/ul>' +
-    '<ul type="none" style="margin: 0px;padding:0 0 0 18px;font-size:22px;"  class="list_style_main">' +
-    '<li>' +
-    '<input type="button"  value=' + "派遣任务" + ' onclick="fireDispatchFn()">' +
-    '<\/li>' +
-    '<li>' +
-    '<input type="button"  value=' + "解除报警" + ' onclick="fireCloseFn()">' +
-    '<\/li>' +
-    '<\/ul>';
-
-  return _content;
-}
-
 
 export function emMap(_name) {
   this.el = _name;
@@ -717,7 +668,6 @@ emMap.prototype.viewFn = function (_num, _center) {
 
 // display popup on click
 emMap.prototype.InfoClickFn = function (evt) {
-  console.log(evt);
 
   let _this = null;
   let _mapNmame = store.getters["scene/type"];
@@ -740,7 +690,6 @@ emMap.prototype.InfoClickFn = function (evt) {
       let _feature = feature.get('features')[0];
       _type = _feature.getId().split("_");
       _featureData = _feature.get("featureData");
-
     } else if (feature.get("featureData")) {
       _type = feature.getId().split("_");
       _featureData = feature.get("featureData");
@@ -784,23 +733,20 @@ emMap.prototype.InfoPointermoveFn = function (evt) {
   });
   if (feature) {
     let _coordinate = evt.coordinate;
-    // console.log(evt.coordinate);
 
     if (feature.get('features') && feature.get('features').length === 1) {
       let _feature = feature.get('features')[0];
       let _type = _feature.getId().split("_");
       _this.infoFn({
-        type: _type[0],
+        type: _type[1],
         content: _feature.get("featureData"),
-        // lng: _feature.get("featureData").gpsLongitude,
-        // lat: _feature.get("featureData").gpsLatitude
         lng: _coordinate[0],
         lat: _coordinate[1]
       });
     } else if (feature.get("featureData")) {
       let _type = feature.getId().split("_");
       _this.infoFn({
-        type: _type[0],
+        type: _type[1],
         content: feature.get("featureData"),
         lng: _coordinate[0],
         lat: _coordinate[1]
@@ -808,16 +754,13 @@ emMap.prototype.InfoPointermoveFn = function (evt) {
     } else {
       return;
     }
-
-
   } else {
     // $(_Info).hide();
   }
 
-
 };
 emMap.prototype.infoFn = function (OBJ) {
-
+  console.log(OBJ);
   /*OBJ={
       type: "info",
       content: data,
@@ -825,20 +768,7 @@ emMap.prototype.infoFn = function (OBJ) {
       lat: data.googleLat
   }*/
 
-  let _content;
-  if (OBJ.type && OBJ.type === "info") {
-    _content = '<span style="color: white">' + OBJ.content + '<\/span>';
-  } else if (OBJ.type && OBJ.type === "tree") {
-    _content = treeContent(OBJ);
-  } else if (OBJ.type && OBJ.type === "fire") {
-    _content = fireContent(OBJ);
-  } else if (OBJ.type && OBJ.type === "person") {
-    _content = personContent(OBJ);
-  } else {
-    let _Content = OBJ.lng;
-    _content = '<span style="color: white;">' + _Content + '<\/span>';
-    // return
-  }
+  let _content = contentFN(OBJ);
 
   $(this.Info).html(_content);
   $(this.Info).show();

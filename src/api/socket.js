@@ -92,3 +92,10 @@ export {
 
 
 
+//测试
+// http://zhlh.cqemme.com:6733/api/v1/ws/socket/put
+//{
+// 	"username":"aaa",
+// 	"msgdata": "{\"type\":\"fire\"}",
+// 	"type": "fire"
+// }
