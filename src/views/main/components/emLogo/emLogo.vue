@@ -1,10 +1,9 @@
 <template>
-  <div class="">
+  <div class="emLogo">
      <win :id="win.id" :data="win">
        <div class="em-home-title" id="title">
-         <img src="../../../../assets/image/logo.png" bindload="imageLoad"/>
-         <div class="em-title-container">
-            <canvas id="canvas" ></canvas>
+         <div class="em-home-title">
+           <p>XXXX园林可视化管理平台</p>
          </div>
        </div>
      </win>
@@ -13,24 +12,21 @@
 </template>
 
 <script>
-    import win from "@/components/win/win"
-    import {title} from './em_logo_title'
+    import win from "@/app_components/win/win"
     export default {
         name: "em_atitle",
         components: {
           win
         },
-        mounted(){
-          title();
-        },
       data(){
            return{
              win: {
-               id: "em_title",
+               id: "em_logo",
                title: "",
                top: 0,
-               left: 4,
-               width:"365px",
+               left: "",
+               width:"100%",
+               height:64,
                show: true,
                resizable:false,
                class:"em-title-window"
@@ -60,5 +56,5 @@
 </script>
 
 <style scoped lang="scss">
-@import "em_logo_title.scss";
+@import "emLogo";
 </style>

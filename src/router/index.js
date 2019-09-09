@@ -14,28 +14,6 @@ export default new Router({
       redirect: {name: "layout"}
     },
     {
-      path: '/main',
-      name: 'main',
-      component: main,
-      children: [
-        {
-          path: 'scene',
-          name: 'scene',
-          components: {
-            scene: () => import('@/views/main/components/scene/scene')
-          }
-        },
-        {
-          path: 'map',
-          name: 'map',
-          components: {
-            scene: () => import('@/views/main/components/map/map')
-          }
-        }
-
-      ]
-    },
-    {
       path: '/home',
       name: 'layout',
       component: layout,
@@ -55,7 +33,6 @@ export default new Router({
             scene: () => import('@/views/map/map')
           }
         }
-
       ]
     },
     {
@@ -67,6 +44,27 @@ export default new Router({
       path: '/login_erro',
       name: 'login_erro',
       component: () => import('@/views/login_erro/login_erro')
+    },
+    {
+      path: '/main',
+      name: 'main',
+      component: main,
+      children: [
+        {
+          path: 'scene',
+          name: 'scene',
+          components: {
+            scene: () => import('@/views/scene/scene')
+          }
+        },
+        {
+          path: 'map',
+          name: 'map',
+          components: {
+            scene: () => import('@/views/map/map')
+          }
+        }
+      ]
     }
   ]
 })
