@@ -26,7 +26,7 @@ li.number.active{
   color:  darken($em-text-color-base,30%);
 }
 .el-pager li:hover,.el-select-dropdown__item.selected,.el-pagination button:hover{
-  color: $em-text-highlight-base;
+  color: lighten($em-text-highlight-base,20%);
 }
 .el-pagination__sizes .el-input .el-input__inner:hover,.el-select .el-input.is-focus .el-input__inner,.el-select .el-input__inner:focus{
   border-color: $em-highlight-border-color-base;

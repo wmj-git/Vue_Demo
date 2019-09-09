@@ -48,7 +48,7 @@
 }
 
 .el-checkbox__input.is-checked + .el-checkbox__label {
-  color: $em-text-highlight-base !important;
+  color: lighten($em-text-highlight-base,20%) !important;
 }
 
 /*只读input框样式*/
