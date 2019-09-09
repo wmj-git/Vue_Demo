@@ -123,10 +123,9 @@
 
               }
               else if(this.fn=="modify"){
-                if(this.alter_obj!=""){
+                if(this.alter_obj!=""&&this.alter_obj!==null){
                   this.dialogFormVisible = true;
                   this.label.forEach((val)=>{
-                    console.log("val");
                     this.form[val.params]=this.alter_obj[val.params];
                     console.log(val);
                   });
