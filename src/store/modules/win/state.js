@@ -437,7 +437,32 @@ export default {
               erroMessage: "",
               placeholder: "部门",
               params: "organizationId",
-              optionUrl: "/user/organization/queryAll",
+              alter_show: true,
+              add_show: true,
+              ratio: 24
+            },
+            {
+              name: "身份证号",
+              prop: "cardNo",
+              width: "140",
+              type: "em_input",
+              reg: "",
+              erroMessage: "",
+              placeholder: "身份证号",
+              params: "cardNo",
+              alter_show: true,
+              add_show: true,
+              ratio: 24
+            },
+            {
+              name: "邮箱",
+              prop: "email",
+              width: "140",
+              type: "em_input",
+              reg: "",
+              erroMessage: "",
+              placeholder: "邮箱",
+              params: "email",
               alter_show: true,
               add_show: true,
               ratio: 24

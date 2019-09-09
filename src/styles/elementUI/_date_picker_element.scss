@@ -16,7 +16,7 @@
     }
 
     & td.available:hover, & td.today span {
-      color: $em-text-highlight-base;
+      color: lighten($em-text-highlight-base,20%);
     }
 
     & td.today span {
@@ -45,7 +45,7 @@
     border-top-color: lighten($em-highlight-border-color-base, 20%);
 
     .el-button--text {
-      color: $em-text-highlight-base;
+      color: lighten($em-text-highlight-base,20%);
     }
   }
 
@@ -64,7 +64,7 @@
       color: darken($em-text-color-base,20%);
 
       &:hover {
-        color: $em-text-highlight-base;
+        color: lighten($em-text-highlight-base,20%);
       }
     }
   }
