@@ -36,7 +36,7 @@
       width: 100%;
     }
     &:hover{
-      color: $em-text-highlight-base;
+      color: lighten($em-text-highlight-base,20%);
       cursor: pointer;
     }
   }

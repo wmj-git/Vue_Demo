@@ -36,7 +36,7 @@
   color: darken($em-text-color-base,20%);
   &.hover, &:hover{
     background-color: lighten(nth($background-base,2),5%);
-    color: $em-text-highlight-base;
+    color: lighten($em-text-highlight-base,15%);
   }
 }
 
@@ -58,7 +58,7 @@
   color:darken($em-text-color-base,20%) !important;
 }
 .el-select-dropdown.is-multiple .el-select-dropdown__item.selected{
-  color: $em-text-highlight-base !important;
+  color: lighten($em-text-highlight-base,15%) !important;
   background: transparent !important;
 }
 

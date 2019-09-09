@@ -6,7 +6,7 @@
 .el-tooltip__popper {
   font-size: 14px;
   max-width: 30%;
-  color: $em-text-highlight-base!important;
+  color: lighten($em-text-highlight-base,20%)!important;
 }
 
 .el-tooltip__popper[x-placement^=top] .popper__arrow:after {

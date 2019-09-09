@@ -672,6 +672,5 @@ export function showFn(_obj) {
 
   }
 
-
   return _data;
 }

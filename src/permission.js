@@ -1,15 +1,15 @@
 import router from './router'
 import store from './store'
-import { Message } from 'element-ui'
+import {Message} from 'element-ui'
 import NProgress from 'nprogress' // progress bar
 import 'nprogress/nprogress.css' // progress bar style
-import { getToken } from '@/utils/auth' // get token from cookie
+import {getToken} from '@/utils/auth' // get token from cookie
 
-NProgress.configure({ showSpinner: false }) // NProgress Configuration
+NProgress.configure({showSpinner: false}) // NProgress Configuration
 
 const whiteList = ['/login'] // no redirect whitelist
 
-router.beforeEach(async(to, from, next) => {
+/*router.beforeEach(async (to, from, next) => {
   // start progress bar
   console.log(to);
   NProgress.start();
@@ -18,9 +18,10 @@ router.beforeEach(async(to, from, next) => {
   if (hasToken) {
     if (to.path === '/login') {
       // if is logged in, redirect to the home page
-      next({ path: '/' })
+      next({path: '/'})
       NProgress.done()
-    } else {
+    } else
+      {
       // determine whether the user has obtained his permission roles through getInfo
       const hasRoles = store.getters["user/roles"] && store.getters["user/roles"].length > 0
       if (hasRoles) {
@@ -38,7 +39,7 @@ router.beforeEach(async(to, from, next) => {
       }
     }
   } else {
-    /* has no token*/
+    /!* has no token*!/
     console.log(to.path);
     if (whiteList.indexOf(to.path) !== -1) {
       console.log("白名单")
@@ -50,7 +51,7 @@ router.beforeEach(async(to, from, next) => {
       NProgress.done()
     }
   }
-})
+})*/
 
 router.afterEach(() => {
   // finish progress bar

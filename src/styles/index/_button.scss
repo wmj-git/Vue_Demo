@@ -563,7 +563,7 @@
   &:active,&:hover,&:focus{
     background:-ms-linear-gradient(#869190 50%,#0A0F0B 50%);//IE
     background: -webkit-gradient(linear, left bottom, left top, from(#0a0809), to(#afbdc0), color-stop(0.5, #0a0f0b), color-stop(0.5, #6d7673));
-    color: $em-text-highlight-base;
+    color: lighten($em-text-highlight-base,15%);
     box-shadow: 0 0 7/$r+rem $em-highlight-border-color-base;
     outline: none;
   }

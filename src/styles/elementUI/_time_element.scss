@@ -7,17 +7,17 @@
 
     &:hover:not(.disabled):not(.active) {
       background-color: transparent;
-      color: $em-text-highlight-base;
+      color: lighten($em-text-highlight-base,20%);
     }
 
     &.active:not(.disabled) {
-      color: $em-text-highlight-base;
+      color: lighten($em-text-highlight-base,20%);
     }
   }
   .el-time-panel__btn{
       color: darken($em-text-color-base,20%);
     &.confirm{
-      color: $em-text-highlight-base;
+      color: lighten($em-text-highlight-base,20%);
     }
   }
   .el-time-panel__footer{
