@@ -1,11 +1,15 @@
 <template>
   <div class="emCharts">
     <el-row>
-      <template v-for="chart in charts">
-        <el-col :span="chart.winSpan">
-          <em-chart :data="chart"></em-chart>
-        </el-col>
-      </template>
+      <el-carousel :interval="5000" type="card">
+        <el-carousel-item v-for="(chart,key) in charts" :key="key">
+          <el-row>
+              <el-col :span="chart.winSpan">
+                <em-chart :data="chart"></em-chart>
+              </el-col>
+          </el-row>
+        </el-carousel-item>
+      </el-carousel>
     </el-row>
   </div>
 </template>
@@ -19,19 +23,6 @@
     data() {
       return {
         id: "",
-        table_id: "",
-        label: [],
-        tableData: [],
-        currentRow: null,
-        multipleSelection: [],
-        input: '',
-        currentPage: 1,
-        totalSize: null,
-        value: '',
-        dialogFormVisible: false, //导入表格弹框控制显示隐藏的布尔值
-        action: "",
-        pageSize: 10,
-        label_input: [],
         selectOptions: [
           {
             value: "day",
@@ -59,15 +50,12 @@
     },
     props: ["data"],
     methods: {
-      init() {                               //表格加载数据
-        let _this = this;
-
+      init() {
         this.chartFn();
       },
       chartFn() {
         let _this = this;
         let obj = {};
-
         obj.timeType = this.selectValue;//获取时间显示类型(日,月,季度,年)
 
         this.charts.forEach(function (_chart) {

@@ -1,6 +1,6 @@
 <template>
-  <div class="em_warn" >
-    <win :id="win.id" :data="win" >
+  <div class="em_warn">
+    <win :id="win.id" :data="win">
       <el-button class="em-btn-warn" @click="showDialog">
         <span>{{fire_count}}</span>
       </el-button>
@@ -36,19 +36,28 @@
     },
     created() {
       this.init();
-      let url =process.env.BASE_API;
-      this.socketApi.initWebSocket(url.replace("http:","ws:"));
-      this.socketApi.proxyFunction('fire',(res)=>{
+      let url = process.env.BASE_API;
+      this.socketApi.initWebSocket(url.replace("http:", "ws:"));
+      this.socketApi.proxyFunction('fire', (res) => {
         console.log("websocket");
         console.log(res);
-        if(res){
+        //收到的信息
+        /*{
+        createUser: null
+        groupKey: null
+        msgdata: "{"type":"fire"}"
+        now: "2019-09-07 15:44:04"
+        type: "fire"
+        username: "aaa"
+        }*/
+        if (res) {
           this.init();
-          this.bus.$emit("fire_info",res)
+          this.bus.$emit("fire_info", res)
         }
       });
       this.bus.$off("close_fire_warn");
-      this.bus.$on("close_fire_warn",_=>{
-          this.init()
+      this.bus.$on("close_fire_warn", _ => {
+        this.init()
       });
 
 
@@ -68,7 +77,7 @@
         })
       },
       fn() {
-       alert(123);
+        alert(123);
       }
     }
   }
