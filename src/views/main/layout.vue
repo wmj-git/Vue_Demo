@@ -1,6 +1,6 @@
 <template>
   <div class="em_layout">
-    <!--顶部标题-->
+    <!--logo-->
     <em-logo></em-logo>
     <!--报警器-->
     <em_warn></em_warn>
@@ -124,7 +124,7 @@
         return this.$store.getters["user/win"];
       },
       dialogGroup: function () {
-        return this.$store.state.win.dialog;
+        return this.$store.getters["win/dialog"];
       }
     },
     methods: {
