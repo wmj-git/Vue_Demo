@@ -179,6 +179,9 @@
   -moz-border-radius: 10px;
   border-radius: 0;
   overflow: visible; //table-dialog遮罩
+  -webkit-box-shadow: 0 0 4px darken($em-border-color-base,30%);
+  -moz-box-shadow: 0 0 4px darken($em-border-color-base,30%);
+  box-shadow:0 0 4px darken($em-border-color-base,30%);
 
 }
 
