@@ -312,7 +312,7 @@ export default {
         ],
         table: {
           id: "account_manage_table",
-          after_digital_button_width: "160px",
+          after_digital_button_width: "200px",
           after_digital_button: [
             {
               name: "重置密码",
