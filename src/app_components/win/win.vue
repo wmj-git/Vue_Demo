@@ -1,6 +1,9 @@
 <template>
   <div class="win">
-    <div ref="win" :id="id">
+    <div :id="id" @contextmenu.prevent="fn(popoverVal=!popoverVal)">
+      <el-popover placement="top" v-model="popoverVal">
+        工具
+      </el-popover>
       <slot></slot>
     </div>
   </div>
@@ -12,7 +15,8 @@
     name: 'win',
     data() {
       return {
-        class: ""
+        class: "",
+        popoverVal: false
       }
     },
     props: ["id", "data"],
@@ -29,7 +33,7 @@
           top: _this.data.top,
           left: _this.data.left,
           cls: _this.class,
-          collapsible: false,
+          collapsible: true,
           minimizable: false,
           maximizable: _this.data.maximizable,
           closable: true,
@@ -44,10 +48,12 @@
             _this.$store.commit("user/win_close", {win_id: _this.id});
           },
           onResize: function () {            //窗口大小改变时触发
-            _this.bus.$emit("echart");  //通过echarts调用echarts里的方法
+
           }
         });
-
+      },
+      fn(val) {
+        this.popoverVal = val;
       }
     },
     mounted() {
@@ -64,4 +70,5 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
   @import "win";
+
 </style>

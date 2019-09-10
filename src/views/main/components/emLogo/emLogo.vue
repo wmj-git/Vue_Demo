@@ -1,34 +1,36 @@
 <template>
-  <div class="title">
-    <div class="home_title" id="title">
-      <canvas id="canvas"></canvas>
-    </div>
-    <img src="/src/assets/image/logo.gif" bindload="imageLoad"/>
+  <div class="emLogo">
+    <win :id="win.id" :data="win">
+      <div class="em-home-title" id="title">
+        <div class="em-home-title">
+          <p>XXXX园林可视化管理平台</p>
+        </div>
+      </div>
+    </win>
   </div>
 
 </template>
 
 <script>
-  import win from "@/components/win/win"
-  import {title} from './em_title'
+  import win from "@/app_components/win/win"
 
   export default {
-    name: "title",
+    name: "emLogo",
     components: {
       win
-    },
-    mounted() {
-      title();
     },
     data() {
       return {
         win: {
-          id: "title",
+          id: "em_logo",
           title: "",
           top: 0,
-          left: 4,
+          left: "",
+          width: "100%",
+          height: 64,
           show: true,
-          resizable: false
+          resizable: false,
+          class: "em-title-window"
         },
       }
     },
@@ -54,6 +56,6 @@
   }
 </script>
 
-<style scoped>
-
+<style scoped lang="scss">
+  @import "emLogo";
 </style>

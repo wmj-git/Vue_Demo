@@ -1,18 +1,15 @@
 <template>
   <div class="em_layout">
-    <!--顶部标题-->
-    <em_logo_title></em_logo_title>
+    <!--地图工具-->
+    <em-tools></em-tools>
+    <!--logo-->
+    <em-logo></em-logo>
     <!--报警器-->
-    <em_warn></em_warn>
-    <!--风险等级数据监测-->
-    <!--<em_venture></em_venture>-->
+    <em-warn></em-warn>
     <!--主菜单-->
     <template v-for="item in navData">
       <em-nav :data="item"></em-nav>
     </template>
-
-    <!--工具栏-->
-    <em_tools></em_tools>
     <!--功能窗口-->
     <template v-for="win in wins" v-if="win.show">
       <win :id="win.system_id" :data="win">
@@ -28,11 +25,11 @@
       </win>
     </template>
     <!--对话框-->
-    <em_dialogs></em_dialogs>
+    <!--<em_dialogs></em_dialogs>-->
     <!--场景-->
     <router-view name="scene"/>
     <!-- 控制透明度的滑动条-->
-    <em_slider></em_slider>
+    <!--<em_slider></em_slider>-->
     <!--底部-->
     <em-bottom></em-bottom>
 
@@ -51,58 +48,32 @@
 
 
   import splitpane from "@/components/splitpane/splitpane";
-  import sole_table from "@/components/sole_table/sole_table";
-  import list_table from "@/components/list_table/list_table";
-  import echart_table from "@/components/echart_table/echart_table";
-  import em_dialog from "@/components/em_dialog/em_dialog";
-  import button_group from "@/components/button_group/button_group";
-
-  import em_logo_title from "./components/em_title/em_logotitle";
-  import em_warn from "./components/em_warn/em_warn";
-  import em_venture from "./components/em_venture/em_venture";
-  import em_chart_window from "./components/em_chart_window/em_chart_window";
-  import em_tools from "./components/em_tools/em_tools";
-  import em_slider from "./components/em_slider/em_slider";
-  import em_dialogs from "@/components/em_dialogs/em_dialogs";
-  import number_show from "./components/number_show/number_show";
-  import echart_alone_show from "./components/echart_alone_show/echart_alone_show";
-  import echarts_show from "./components/echarts_show/echarts_show";
-  import table_show from "./components/table_show/table_show";
 
 
+  //局部组件
+  import emLogo from "./components/emLogo/emLogo";
+  import emTools from "./components/emTools/emTools";
+  import emWarn from "./components/emWarn/emWarn";
   import emNav from "./components/emNav/emNav";
   import emMenu from "./components/emMenu/emMenu";
   import emBottom from "./components/emBottom/emBottom";
+
+  //公用组件
   import win from "@/app_components/win/win";
   import emTable from "@/app_components/emTable/emTable";
   import emForm from "@/app_components/emForm/emForm";
   import treeForm from "@/app_components/treeFrom/treeForm";
   import buttonGroup from "@/app_components/buttonGroup/buttonGroup";
 
+
   export default {
     data() {
-      return {};
+      return {
+        id: "sysLayer",
+      };
     },
     components: {
-
-      splitpane,
-      em_dialog,
-      button_group,
-      em_logo_title,
-      em_warn,
-      em_venture,
-      sole_table,
-      list_table,
-      echart_table,
-      em_chart_window,
-      em_tools,
-      em_slider,
-      em_dialogs,
-      number_show,
-      echart_alone_show,
-      echarts_show,
-      table_show,
-
+      //start/公用组件=============
       win,
       emNav,
       emMenu,
@@ -111,6 +82,16 @@
       emForm,
       treeForm,
       buttonGroup,
+      //end/公用组件=============
+      splitpane,//拖动边线
+
+      //start/局部组件=============
+      emLogo,//logo组件
+      emTools,//场景工具
+      emWarn,//火灾报警
+      //end/局部组件=============
+
+
     },
     computed: {
       navData: function () {
@@ -144,11 +125,10 @@
       },
       wins: function () {
         console.log(this.$store.getters["user/win"]);
-
         return this.$store.getters["user/win"];
       },
       dialogGroup: function () {
-        return this.$store.state.win.dialog;
+        return this.$store.getters["win/dialog"];
       }
     },
     methods: {

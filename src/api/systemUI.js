@@ -1,4 +1,4 @@
-import request from '@/utils/request'
+import request from '@/utils/request';
 
 
 export const systemData = [ //默认数据模型
@@ -264,7 +264,8 @@ export const systemData = [ //默认数据模型
     "control_id": "tree_material_manage",
     "title": "特殊树木资料管理",
     "show": false
-  }, {
+  },
+  {
     system_id: "nav_grid_manage",
     system_type: "navList",
     id: "146",
@@ -274,7 +275,8 @@ export const systemData = [ //默认数据模型
     "control_id": "grid_manage",
     "title": "网格管理",
     "show": false
-  }, {
+  },
+  {
     system_id: "nav_soil_temperature_manage",
     system_type: "navList",
     id: "147",
@@ -284,7 +286,8 @@ export const systemData = [ //默认数据模型
     "control_id": "soil_temperature_manage",
     "title": "土壤温度监测点管理",
     "show": false
-  }, {
+  },
+  {
     system_id: "nav_soil_humidity_manage",
     system_type: "navList",
     id: "148",
@@ -294,7 +297,8 @@ export const systemData = [ //默认数据模型
     "control_id": "soil_humidity_manage",
     "title": "土壤湿度监测点管理",
     "show": false
-  }, {
+  },
+  {
     system_id: "nav_population_manage",
     system_type: "navList",
     id: "149",
@@ -304,7 +308,8 @@ export const systemData = [ //默认数据模型
     "control_id": "population_manage",
     "title": "人流量监测点管理",
     "show": false
-  }, {
+  },
+  {
     system_id: "nav_air_temperature_manage",
     system_type: "navList",
     id: "1410",
@@ -314,7 +319,8 @@ export const systemData = [ //默认数据模型
     "control_id": "air_temperature_manage",
     "title": "空气温度监测点管理",
     "show": false
-  }, {
+  },
+  {
     system_id: "nav_air_humidity_manage",
     system_type: "navList",
     id: "1411",
@@ -324,7 +330,8 @@ export const systemData = [ //默认数据模型
     "control_id": "air_humidity_manage",
     "title": "空气湿度监测点管理",
     "show": false
-  }, {
+  },
+  {
     system_id: "nav_fire_alert_manage",
     system_type: "navList",
     id: "1412",
@@ -334,7 +341,8 @@ export const systemData = [ //默认数据模型
     "control_id": "fire_alert_manage",
     "title": "火灾报警点管理",
     "show": false
-  }, {
+  },
+  {
     system_id: "nav_systemmanage",
     system_type: "navItem",
     id: "15",
@@ -344,7 +352,8 @@ export const systemData = [ //默认数据模型
     show: false,
     title: "系统管理",
     width: 150,
-  }, {
+  },
+  {
     system_id: "nav_role_manage",
     system_type: "navList",
     id: "151",
@@ -354,7 +363,8 @@ export const systemData = [ //默认数据模型
     "control_id": "role_manage",
     "title": "角色管理",
     "show": false
-  }, {
+  },
+  {
     system_id: "nav_department_manage",
     system_type: "navList",
     id: "152",
@@ -364,7 +374,8 @@ export const systemData = [ //默认数据模型
     "control_id": "department_manage",
     "title": "部门管理",
     "show": false
-  }, {
+  },
+  {
     system_id: "nav_system_record",
     system_type: "navList",
     id: "153",
@@ -374,7 +385,8 @@ export const systemData = [ //默认数据模型
     "control_id": "system_record",
     "title": "系统日志",
     "show": false
-  }, {
+  },
+  {
     system_id: "nav_account_manage",
     system_type: "navList",
     id: "154",
@@ -384,7 +396,8 @@ export const systemData = [ //默认数据模型
     "control_id": "account_manage",
     "title": "账户管理",
     "show": false
-  }, {
+  },
+  {
     system_id: "nav_permissions_management",
     system_type: "navList",
     id: "155",
@@ -447,8 +460,8 @@ export const systemData = [ //默认数据模型
     parentId: "a2",
     winSpan: 48,
     component: "emTable",
-    maxHeight:"380",
-    resourceUrl:"",
+    maxHeight: "380",
+    resourceUrl: "",
     tableColumn: " [\n" +
       "    {\n" +
       "      \"label\": \"英文名\",\n" +
@@ -477,18 +490,18 @@ export const systemData = [ //默认数据模型
     system_type: "win_table_btn",
     id: "b2",
     parentId: "a2",
-    label:"操作",
-    value:"权限分配",
-    fn:"handleEdit"
+    label: "操作",
+    value: "权限分配",
+    fn: "handleEdit"
   },
   {
     system_id: "role_manage_table_btn_2",
     system_type: "win_table_btn",
     id: "b2",
     parentId: "a2",
-    label:"操作",
-    value:"关联用户",
-    fn:"handleEdit"
+    label: "操作",
+    value: "关联用户",
+    fn: "handleEdit"
   },
   {
     system_id: "department_manage",
