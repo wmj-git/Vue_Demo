@@ -42,8 +42,7 @@
     background:rgba(6, 15, 29, 0.9);
   }
   .box-card{
-    height: 96%;
-    margin-top: 2%;
+    height: 100%;
     border-color: darken($em-border-color-base,60%);
     background: nth($background-base,3);
   }

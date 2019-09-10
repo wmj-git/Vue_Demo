@@ -5562,10 +5562,10 @@ export default {
     {
       id: "permissions_management",
       title: "权限管理",
-      top: "calc((100% - 500px)/2)",
+      top: "calc((100% - 540px)/2)",
       left: "calc((100% - 900px)/2)",
       width: 900,
-      height: 620,
+      height: 540,
       show: false,
       class: "em-table-window",
       component: "treeForm",
