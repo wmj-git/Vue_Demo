@@ -16,7 +16,7 @@ export default {
       component: "em_menu",
       component_data: {},
       closable: false,
-      draggable:false
+      draggable: false
     },
     {
       id: "role_manage",
@@ -504,14 +504,13 @@ export default {
             optionType: "option_bar_line",
             winSpan: 48,
             height: 64,
-            chartTitle: "人流量(求和)",
-            unit_y: "人次",
-            dataUrl: '/gardens/humantrafficinfo/queryAll',
+            chartTitle: "土壤温度报警",
+            unit_y: "次",
+            dataUrl: '/gardens/warningrecord/queryAll?warningType=TS',
             seriesType: "lineBar_handle_a",
-            valueType: "sum",
-            legendField: "humanTrafficId",
+            legendField: "relevanceId",
             xAxisField: "createDate",
-            yAxisField: "humanTrafficValue"
+            yAxisField: "createDate"
           },
           {
             id: "time_detective_chart_1",
@@ -521,9 +520,9 @@ export default {
             height: 64,
             chartTitle: "土壤湿度报警",
             unit_y: "次",
-            dataUrl: '/gardens/firealarminfo/queryAll',
+            dataUrl: '/gardens/warningrecord/queryAll?warningType=HS',
             seriesType: "lineBar_handle_a",
-            legendField: "createDate",
+            legendField: "relevanceId",
             xAxisField: "createDate",
             yAxisField: "createDate"
           },
@@ -535,9 +534,9 @@ export default {
             height: 64,
             chartTitle: "空气温度报警",
             unit_y: "次",
-            dataUrl: '/gardens/firealarminfo/queryAll',
+            dataUrl: '/gardens/warningrecord/queryAll?warningType=TA',
             seriesType: "lineBar_handle_a",
-            legendField: "fireAlarmId",
+            legendField: "relevanceId",
             xAxisField: "createDate",
             yAxisField: "createDate"
           },
@@ -549,23 +548,23 @@ export default {
             height: 64,
             chartTitle: "空气湿度报警",
             unit_y: "次",
-            dataUrl: '/gardens/firealarminfo/queryAll',
+            dataUrl: '/gardens/warningrecord/queryAll?warningType=HA',
             seriesType: "lineBar_handle_a",
-            legendField: "fireAlarmId",
+            legendField: "relevanceId",
             xAxisField: "createDate",
             yAxisField: "createDate"
           },
           {
             id: "time_detective_chart_4",
-            type: "line",
+            type: "bar",
             optionType: "option_bar_line",
             winSpan: 48,
             height: 64,
             chartTitle: "人流量报警",
             unit_y: "次",
-            dataUrl: '/gardens/firealarminfo/queryAll',
+            dataUrl: '/gardens/warningrecord/queryAll?warningType=HT',
             seriesType: "lineBar_handle_a",
-            legendField: "fireAlarmId",
+            legendField: "relevanceId",
             xAxisField: "createDate",
             yAxisField: "createDate"
           }
@@ -2398,7 +2397,6 @@ export default {
               placeholder: "关联设备号",
               alter_show: true,
               add_show: true
-
             },
               {
                 name: "报警值",
@@ -5580,7 +5578,7 @@ export default {
       height: 720,
       show: true,
       closable: false,
-      draggable:false,
+      draggable: false,
       class: "em-scene-window",
       component: "emLayers",
       component_data: {

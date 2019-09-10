@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AAAA,UAAU;EACR,UAAU,EAAE,KAAK",
-"sources": ["em__chart.scss"],
-"names": [],
-"file": "em__chart.css"
-}

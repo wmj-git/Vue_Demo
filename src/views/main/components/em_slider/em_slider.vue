@@ -12,6 +12,7 @@
   import win from "@/components/win/win"
 
   export default {
+    name: "em_slider",
     props: {},
     components: {
       win

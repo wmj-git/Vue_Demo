@@ -5,6 +5,11 @@
   border: none;
   color: #fff;
   font-weight: 900;
-  font-size: 16px; }
+  font-size: 16px;
 
-/*# sourceMappingURL=em_warn.css.map */
+  &:hover {
+    background: url("../../../../assets/image/alarm.gif") no-repeat center;
+    color: #fff;
+  }
+}
+

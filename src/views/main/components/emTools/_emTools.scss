@@ -2,9 +2,15 @@
 .em-nav-item {
   .el-button {
     border: none;
-    color: #bdc4d2;
+    color: darken($em-text-color-base,20%);
     &:hover,&:focus{
       color: $em-text-highlight-base;
+    }
+  }
+
+  .el-button /deep/{
+    [class^="el-icon-"], [class*=" el-icon-"]{
+      font-size: 22/$r+rem;
     }
   }
 }

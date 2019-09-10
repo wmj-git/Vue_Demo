@@ -1,15 +1,15 @@
 <template>
   <div class="em_layout">
+    <!--地图工具-->
+    <em-tools></em-tools>
     <!--logo-->
     <em-logo></em-logo>
     <!--报警器-->
-    <em_warn></em_warn>
+    <em-warn></em-warn>
     <!--主菜单-->
     <template v-for="item in navData">
       <em-nav :data="item"></em-nav>
     </template>
-    <!--工具栏-->
-    <em_tools></em_tools>
     <!--功能窗口-->
     <template v-for="win in wins" v-if="win.show">
       <win :id="win.system_id" :data="win">
@@ -25,11 +25,11 @@
       </win>
     </template>
     <!--对话框-->
-    <em_dialogs></em_dialogs>
+    <!--<em_dialogs></em_dialogs>-->
     <!--场景-->
     <router-view name="scene"/>
     <!-- 控制透明度的滑动条-->
-    <em_slider></em_slider>
+    <!--<em_slider></em_slider>-->
     <!--底部-->
     <em-bottom></em-bottom>
 
@@ -52,6 +52,8 @@
 
   //局部组件
   import emLogo from "./components/emLogo/emLogo";
+  import emTools from "./components/emTools/emTools";
+  import emWarn from "./components/emWarn/emWarn";
   import emNav from "./components/emNav/emNav";
   import emMenu from "./components/emMenu/emMenu";
   import emBottom from "./components/emBottom/emBottom";
@@ -71,13 +73,6 @@
       };
     },
     components: {
-
-      splitpane,//拖动边线
-
-      //start/局部组件=============
-      emLogo,//
-      //end/局部组件=============
-
       //start/公用组件=============
       win,
       emNav,
@@ -88,6 +83,15 @@
       treeForm,
       buttonGroup,
       //end/公用组件=============
+      splitpane,//拖动边线
+
+      //start/局部组件=============
+      emLogo,//logo组件
+      emTools,//场景工具
+      emWarn,//火灾报警
+      //end/局部组件=============
+
+
     },
     computed: {
       navData: function () {
