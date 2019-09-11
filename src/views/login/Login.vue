@@ -84,11 +84,9 @@
     },
     methods: {
       init() {
-
         this.$store.dispatch("user/systemUI", {}).then((response) => {
           console.log(response);
         });
-
       },
       reset() {
         this.form.name = "";

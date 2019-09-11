@@ -443,7 +443,7 @@ export const systemData = [ //默认数据模型
     left: 400,
     width: 700,
     class: "em-table-window",
-    show: true
+    show: false
   },
   {
     system_id: "role_manage_table",

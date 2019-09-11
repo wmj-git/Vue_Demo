@@ -489,7 +489,7 @@ export default {
     },
     {
       id: "time_detective",
-      title: "实时监测",
+      title: "报警监测",
       top: "calc(100% - 480px)",
       left: "calc((100% - 920px)/2)",
       width: 920,

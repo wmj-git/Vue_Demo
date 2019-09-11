@@ -16,7 +16,7 @@
 </template>
 
 <script>
-  import win from "@/components/win/win";
+  import win from "@/app_components/win/win";
   import {findByThisUser} from "@/api/resource";  //权限
 
   export default {
@@ -46,12 +46,11 @@
               _navItem.push(_obj);
             }
           });
-
           this.navItem = _navItem;
         }
 
-      /*  console.log("db_data");
-        console.log(this.data);*/
+        console.log("db_data");
+        console.log(this.data);
 
       },
       findByThisUserFn() {//更新权限数据
@@ -116,6 +115,9 @@
     },
     mounted() {
 
+    },
+    beforeDestroy() {
+      this.bus.$off(this.id);
     }
 
   };

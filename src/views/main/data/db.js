@@ -1,4 +1,4 @@
-export const nav = {
+export const nav = {//主菜单类型
   systemType: ["nav", "navItem", "navList"],
   uiData: [ //默认数据模型
     {
@@ -414,7 +414,7 @@ export const nav = {
   ]
 };
 
-export const winComponent = {
+export const winComponent = {//win类组件类型
   systemType: ["win","win_menu_body","win_table","win_table_btn","win_form"],
   uiData: []
 };

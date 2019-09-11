@@ -9,10 +9,9 @@
 </template>
 
 <script>
-  import win from "@/components/win/win"
+  import win from "@/app_components/win/win"
 
   export default {
-    name: "em_slider",
     props: {},
     components: {
       win
@@ -23,7 +22,7 @@
           id: "em_slider",
           title: "",
           top: "86%",
-          left: 10,
+          left: "10",
           show: false,
           resizable: false,
           width: 400,
@@ -34,26 +33,29 @@
     },
     methods: {
       fn() {
-        this.bus.$emit("scene", {
+        let _controlId = this.$store.getters["scene/type"];
+        this.bus.$emit(_controlId, {
           fn: "alpha",
           value: this.value / 100
         });
       },
-      showFn(obj) {
-        this.win.show =obj.trigger;
+      showFn(obj) {//控制显示
+        this.win.show = obj.trigger;
       }
     },
     created() {
-      var bodyheight = Number(document.body.clientHeight);
-      /*this.win.top=bodyheight-150;*/
+
     },
     mounted() {
       this.bus.$on(this.win.id, obj => {
         this[obj.fn](obj);
       });
+    },
+    beforeDestroy() {
+      this.bus.$off(this.win.id);
     }
   };
 </script>
 <style lang="scss" scoped>
-  @import "em_slider";
+  @import "emSlider";
 </style>
