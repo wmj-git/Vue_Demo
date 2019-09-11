@@ -23,7 +23,7 @@
     data() {
       return {
         id: "",
-        control_id: "",
+        control_id: "",//数据传输对象
         activeIndex: '',
         nav: {},
         navItem: []
@@ -51,7 +51,6 @@
 
         console.log("db_data");
         console.log(this.data);
-
       },
       findByThisUserFn() {//更新权限数据
         findByThisUser().then((response) => {
@@ -61,7 +60,6 @@
       handleSelect(key, keyPath) {
         console.log(key);
         let _this = this;
-        // console.log(keyPath);
         let _controlId = this.control_id;
         let _title = null;
         let _list = null;

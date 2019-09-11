@@ -21,7 +21,7 @@ export const db_form_data = {
   },
   "resourceCode": {
     type: "text",
-    label: "功能ID",
+    label: "功能类型",
     disabled: false,
     Validate: [
       {required: true, message: '请输字段', trigger: 'change'},

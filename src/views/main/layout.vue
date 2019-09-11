@@ -98,7 +98,6 @@
       emSlider,//透明度控制
       //end/局部组件=============
 
-
     },
     computed: {
       navData: function () {

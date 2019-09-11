@@ -103,9 +103,7 @@
       }
     },
     beforeCreate() {
-      this.$store.dispatch("user/systemUI", {}).then((response) => {
-        console.log(response);
-      });
+
     },
     created() {
       this.init();

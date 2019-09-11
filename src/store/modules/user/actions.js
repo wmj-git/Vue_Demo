@@ -15,18 +15,18 @@ import {
 
 // 登录
 export function LoginByUsername({commit}, userInfo) {
-  if(userInfo.username){  // 用户名密码登陆，也就是页面登陆
+  if (userInfo.username) {  // 用户名密码登陆，也就是页面登陆
     const username = userInfo.username.trim();
     return new Promise((resolve, reject) => {
-      loginByUsername(username, userInfo.password).then((response)=>{
+      loginByUsername(username, userInfo.password).then((response) => {
         handleResult(response, resolve)
       }).catch(error => {
         reject(error);
       });
     });
-  }else {  // token 登陆
+  } else {  // token 登陆
     return new Promise((resolve, reject) => {
-      loginByToken(userInfo).then((response)=>{
+      loginByToken(userInfo).then((response) => {
         handleResult(response, resolve)
       }).catch(error => {
         reject(error);
@@ -34,7 +34,7 @@ export function LoginByUsername({commit}, userInfo) {
     });
   }
 
-  function handleResult(response,resolve){
+  function handleResult(response, resolve) {
     let data = response.data;
     // console.log(data);
     // console.log(data[TokenName]);
@@ -124,18 +124,24 @@ export function systemUI({commit, state}) {
     let _systemData = [];
 
     findByThisUser().then((response) => {
-      // console.log(response);
+      console.log("systemUI");
+      console.log(response);
       commit(SET_PERMISSIONS, response.data);
 
       response.data.forEach(function (_obj) {
-        systemData.forEach(function (_item) {
-          if(_obj.resourceCode===_item.system_id){
-            _item.id=_obj.id;
-            _item.parentId=_obj.parentId;
-            _item.resourceUrl=_obj.resourceUrl;
-            _systemData.push(_item);
+
+        let _description = _obj.description;
+
+        if (_description.substr(0, 1)==="{" && _description.substr(-1)==="}") {
+          console.log(_obj.resourceName);
+          _description = JSON.parse(_description);
+          for (let k in _description) {
+            _obj[k] = _description[k];
           }
-        })
+          console.log(_obj);
+          _systemData.push(_obj);
+        }
+
       });
       commit(SET_SYSTEMDATA, _systemData);
       resolve(_systemData);
