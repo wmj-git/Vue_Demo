@@ -21,10 +21,8 @@
     methods: {
       init() {
 
-
         let _this = this;
         // 初始化场景
-        // cm.init(this.id, "https://onelz.oicp.vip/SG/b3dm/LH1-1-2.405276/tileset.json");
         let _element = document.getElementById('ol_js');
         if (_element) {
           _this.mapInit();
@@ -66,8 +64,8 @@
           _url = obj.url;
         }
 
-        let _resolutions = window[this.id].resolutions;
-        var _origin = [-400, 400];
+        let _resolutions = obj.resolutions;
+        var _origin = obj.origin;
 
         this.toScene({
           zIndex: 4
@@ -125,13 +123,41 @@
             _layer = mp.baseMapFN().baidu_img;
             break;
           case "5"://时空云矢量图
+            let layer = mp.baseMapFN().tLayer_vec;
+            this.addLayer({
+              layer: layer,
+              zIndex: -1
+            });
             _layer = this.spaceTimeBaseMap({
-              url: "http://onelz.oicp.vip/proxy/layer/C8DDAE2452CE48F4ACBE0D60C455A234/01D4E45CB4A84DE7B5DF3D859529D918/tile/{z}/{y}/{x}"
+              // url: "http://onelz.oicp.vip/proxy/layer/C8DDAE2452CE48F4ACBE0D60C455A234/01D4E45CB4A84DE7B5DF3D859529D918/tile/{z}/{y}/{x}"
+              url: "http://onelz.oicp.vip/proxy/layer/50F068225D3944DD805E7B986D36C7B6/999C1448C6DD4842A35412B42226F0A3/tile/{z}/{y}/{x}",
+              origin:[-180,90],
+              resolutions:[
+                0.9410711005830282, 0.7031250000000002,
+                0.3515625000000001, 0.17578125000000006,
+                0.08789062500000003, 0.043945312500000014,
+                0.021972656250000007, 0.010986328125000003,
+                0.005493164062500002, 0.002746582031250001,
+                0.0013732910156250004, 6.866455078125002E-4,
+                3.433227539062501E-4, 1.7166137695312505E-4,
+                8.583068847656253E-5, 4.2915344238281264E-5,
+                2.1457672119140632E-5, 1.0728836059570316E-5,
+                5.364418029785158E-6, 2.682209014892579E-6,
+                1.34110450744629E-6
+              ]
             });
             break;
           case "6"://时空云影像图
             _layer = this.spaceTimeBaseMap({
-              url: "http://onelz.oicp.vip/proxy/layer/E36DF1E5DD7D4081A1E722ED2C8D7455/999C1448C6DD4842A35412B42226F0A3/tile/{z}/{y}/{x}"
+              url: "http://onelz.oicp.vip/proxy/layer/E36DF1E5DD7D4081A1E722ED2C8D7455/999C1448C6DD4842A35412B42226F0A3/tile/{z}/{y}/{x}",
+              origin:[-400,400],
+              resolutions:[//影像图范围
+                5.9486525145757E-4, 2.97432625728785E-4,
+                1.5228550437313792E-4, 7.614275218656896E-5,
+                3.807137609328448E-5, 1.903568804664224E-5,
+                9.51784402332112E-6, 4.75892201166056E-6,
+                2.37946100583028E-6, 1.18973050291514E-6,
+                5.9486525145757E-7, 2.97432625728785E-7]
             });
             break;
           case "7"://本地矢量图
@@ -192,7 +218,7 @@
           }
         });
       },
-      scene_data(obj) {
+      scene_data(obj) {//接收图层属性数据
 
         console.log(obj);
         switch (obj.data_type) {
@@ -391,9 +417,14 @@
             let _data = [];
             if (response.statusCode === 200) {
               response.data.forEach(function (_obj) {
-                if (_obj.coordinates && (_val.geomType === "line" || _val.geomType === "polygon")) {
+                if (_obj.coordinates && _val.geomType === "line") {
                   let _coordinates = JSON.parse(_obj.coordinates);
                   _obj.coordinates = _coordinates.data;
+                }else if(_obj.coordinates && _val.geomType === "polygon"){
+                  let _data=[];
+                  let _coordinates = JSON.parse(_obj.coordinates);
+                  _data.push(_coordinates.data);
+                  _obj.coordinates = _data;
                 }
               });
               _data = response.data;

@@ -518,13 +518,14 @@ export function clustersFn(_features, _Key, _clusterColor, _distance) {//_featur
 
 export function emMap(_name) {
   this.el = _name;
-  this.resolutions = [
+  this.resolutions = [//影像图范围
     5.9486525145757E-4, 2.97432625728785E-4,
     1.5228550437313792E-4, 7.614275218656896E-5,
     3.807137609328448E-5, 1.903568804664224E-5,
     9.51784402332112E-6, 4.75892201166056E-6,
     2.37946100583028E-6, 1.18973050291514E-6,
     5.9486525145757E-7, 2.97432625728785E-7];
+
   this.map = null;
   this.view = null;
   // 信息框
@@ -560,7 +561,7 @@ emMap.prototype.init = function (_LngLat, _layers) {
   this.view = new ol.View({
     resolutions: _resolutions,
     center: _LngLat,
-    zoom: 0,
+    zoom: 1,
     maxZoom: 19,
     minZoom: 0,
     projection: 'EPSG:4326',

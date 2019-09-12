@@ -370,7 +370,8 @@
                   _obj.coordinates = _data;
                   console.log(_obj);
                 } else if (_coordinates && _coordinates.data && _val.geomType === "polygon") {
-                  _obj.coordinates = _coordinates.data[0];
+                  // _obj.coordinates = _coordinates.data[0];
+                  _obj.coordinates = _coordinates.data;
                   let _data = [];
                   _obj.coordinates.forEach(function (_val) {
                     _val.forEach(function (val) {
@@ -384,8 +385,9 @@
 
               });
               _data = response.data;
+          /* console.log("123");
               console.log(_val);
-              console.log(_data);
+              console.log(_data);*/
             }
             cm.addDataSource(_data,
               {

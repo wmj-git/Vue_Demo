@@ -471,6 +471,15 @@ export function baseMapFN() {
     projection: 'EPSG:4326'
   });
 
+  var timeLayer_vec = new ol.layer.Tile({
+    name: "baseMap_layer",
+    opacity: 1.0,
+    source: new ol.source.XYZ({
+      url: 'http://192.168.20.125:800/sceneData/zhlh_img/{z}/{x}/{y}.png',
+      wrapX: false
+    }),
+    projection: 'EPSG:4326'
+  });
 
   return {
     baidu_vec,//百度矢量底图

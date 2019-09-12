@@ -17,7 +17,10 @@ function addPolygon(Entities, featureKey, viewer) {
         material: new Cesium.Color.fromBytes(_fillColor[0], _fillColor[1], _fillColor[2], _fillColor[3]),
         classificationType: Cesium.ClassificationType.BOTH,
         minimumPixelSize: 20,
-        maximumScale: 40
+        maximumScale: 40,
+        outline:true,
+        outlineColor: new Cesium.Color.WHITE,
+        outlineWidth:featureKey.strokeWidth
       }
     });
   }
