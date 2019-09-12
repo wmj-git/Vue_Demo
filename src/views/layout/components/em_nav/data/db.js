@@ -11,7 +11,7 @@ export const db_buttonGroup = [
         "icon": "el-icon-real-time-monitoring",
         "id": "nav_time_detective",
         "control_id": "time_detective",
-        "title": "实时监测",
+        "title": "报警监测",
         "show": false
       },
       {

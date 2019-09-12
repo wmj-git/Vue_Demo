@@ -21,7 +21,7 @@ export const db_form_data = {
   },
   "resourceCode": {
     type: "text",
-    label: "UI编码",
+    label: "功能类型",
     disabled: false,
     Validate: [
       {required: true, message: '请输字段', trigger: 'change'},
@@ -32,7 +32,7 @@ export const db_form_data = {
   "parentId": {
     type: "text",
     label: "父ID",
-    disabled: true,
+    disabled: false,
     Validate: [
       {required: true, message: '请输字段', trigger: 'change'},
     ],
@@ -65,7 +65,7 @@ export const db_form_data = {
   },
   "description": {
     type: "text",
-    label: "描述",
+    label: "UI数据",
     disabled: false,
     Validate: [
       {required: true, message: '请输字段', trigger: 'change'},

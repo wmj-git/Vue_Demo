@@ -16,14 +16,14 @@
 </template>
 
 <script>
-  import win from "@/components/win/win";
+  import win from "@/app_components/win/win";
   import {findByThisUser} from "@/api/resource";  //权限
 
   export default {
     data() {
       return {
         id: "",
-        control_id: "",
+        control_id: "",//数据传输对象
         activeIndex: '',
         nav: {},
         navItem: []
@@ -46,13 +46,11 @@
               _navItem.push(_obj);
             }
           });
-
           this.navItem = _navItem;
         }
 
-      /*  console.log("db_data");
-        console.log(this.data);*/
-
+        console.log("db_data");
+        console.log(this.data);
       },
       findByThisUserFn() {//更新权限数据
         findByThisUser().then((response) => {
@@ -62,7 +60,6 @@
       handleSelect(key, keyPath) {
         console.log(key);
         let _this = this;
-        // console.log(keyPath);
         let _controlId = this.control_id;
         let _title = null;
         let _list = null;
@@ -116,6 +113,9 @@
     },
     mounted() {
 
+    },
+    beforeDestroy() {
+      this.bus.$off(this.id);
     }
 
   };

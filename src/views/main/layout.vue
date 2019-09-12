@@ -1,15 +1,19 @@
 <template>
   <div class="em_layout">
+
+    <!--主菜单-->
+    <template v-for="item in navData">
+      <em-nav :data="item"></em-nav>
+    </template>
+
     <!--地图工具-->
     <em-tools></em-tools>
     <!--logo-->
     <em-logo></em-logo>
     <!--报警器-->
     <em-warn></em-warn>
-    <!--主菜单-->
-    <template v-for="item in navData">
-      <em-nav :data="item"></em-nav>
-    </template>
+
+
     <!--功能窗口-->
     <template v-for="win in wins" v-if="win.show">
       <win :id="win.system_id" :data="win">
@@ -29,7 +33,7 @@
     <!--场景-->
     <router-view name="scene"/>
     <!-- 控制透明度的滑动条-->
-    <!--<em_slider></em_slider>-->
+    <em-slider></em-slider>
     <!--底部-->
     <em-bottom></em-bottom>
 
@@ -41,22 +45,11 @@
   import {nav, winComponent} from './data/db';
   import {refreshToken} from '@/api/login';
   import {getNowFormatDate, treeStructure} from '@/utils/tools';
-  import {
-    setToken, setTokenTime, getTokenTime,
+  import {setToken, setTokenTime, getTokenTime,
     TokenName, RefreshTokenName, getExpires, setExpires
   } from '@/utils/auth';
 
-
   import splitpane from "@/components/splitpane/splitpane";
-
-
-  //局部组件
-  import emLogo from "./components/emLogo/emLogo";
-  import emTools from "./components/emTools/emTools";
-  import emWarn from "./components/emWarn/emWarn";
-  import emNav from "./components/emNav/emNav";
-  import emMenu from "./components/emMenu/emMenu";
-  import emBottom from "./components/emBottom/emBottom";
 
   //公用组件
   import win from "@/app_components/win/win";
@@ -64,6 +57,17 @@
   import emForm from "@/app_components/emForm/emForm";
   import treeForm from "@/app_components/treeFrom/treeForm";
   import buttonGroup from "@/app_components/buttonGroup/buttonGroup";
+
+  //局部组件
+  import emLogo from "./components/emLogo/emLogo";
+  import emTools from "./components/emTools/emTools";
+  import emWarn from "./components/emWarn/emWarn";
+  import emSlider from "./components/emSlider/emSlider";
+  import emNav from "./components/emNav/emNav";
+  import emMenu from "./components/emMenu/emMenu";
+  import emBottom from "./components/emBottom/emBottom";
+
+
 
 
   export default {
@@ -73,6 +77,9 @@
       };
     },
     components: {
+
+      splitpane,//拖动边线
+
       //start/公用组件=============
       win,
       emNav,
@@ -83,14 +90,13 @@
       treeForm,
       buttonGroup,
       //end/公用组件=============
-      splitpane,//拖动边线
 
       //start/局部组件=============
       emLogo,//logo组件
       emTools,//场景工具
       emWarn,//火灾报警
+      emSlider,//透明度控制
       //end/局部组件=============
-
 
     },
     computed: {
@@ -118,12 +124,13 @@
             }
           });
         }
-        // console.log("_systemData");
-        // console.log(_data);
-        //console.log(ui_data);
+        console.log("_systemData");
+        console.log(_data);
+        console.log(ui_data);
         return ui_data;
       },
       wins: function () {
+        console.log("user/win");
         console.log(this.$store.getters["user/win"]);
         return this.$store.getters["user/win"];
       },

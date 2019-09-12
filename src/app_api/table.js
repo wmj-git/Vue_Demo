@@ -25,7 +25,7 @@ export function add(obj) {
   })
 }
 
-  export function dele(obj) {          //表格数据删
+  export function dele(obj) {//表格数据删
     return request({
       url: obj.url,
       method: 'delete',

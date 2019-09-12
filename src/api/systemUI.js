@@ -3,18 +3,19 @@ import request from '@/utils/request';
 
 export const systemData = [ //默认数据模型
   {
-    system_id: "nav",
-    system_type: "nav",
-    id: "1",
-    parentId: "0",
-    title: "",
-    top: "84%",
-    left: "",
-    show: true,
-    resizable: false,
-    class: "em-nav-window",
-    control_id: "menu",
-    activeIndex: ''
+    "system_id": "nav",
+    "system_type": "nav",
+    "title": "",
+    "top": "",
+    "left": "",
+    "show": true,
+    "resizable": false,
+    "class": "em-nav-window",
+    "control_type": "scene",
+    "control_id": "menu",
+    "fn": "scene_data",
+    "data_type": "4",
+    "activeIndex": ""
   },
   {
     system_id: "nav_detectdata",
@@ -343,15 +344,15 @@ export const systemData = [ //默认数据模型
     "show": false
   },
   {
-    system_id: "nav_systemmanage",
-    system_type: "navItem",
-    id: "15",
-    parentId: "1",
-
-    control_id: "",
-    show: false,
-    title: "系统管理",
-    width: 150,
+    "system_id": "nav_systemmanage",
+    "system_type": "navItem",
+    "title": "系统管理",
+    "show": false,
+    "width": 150,
+    "control_type": "",
+    "control_id": "menu",
+    "fn": "scene_data",
+    "data_type": ""
   },
   {
     system_id: "nav_role_manage",
@@ -443,7 +444,7 @@ export const systemData = [ //默认数据模型
     left: 400,
     width: 700,
     class: "em-table-window",
-    show: true
+    show: false
   },
   {
     system_id: "role_manage_table",
