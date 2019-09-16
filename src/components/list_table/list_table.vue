@@ -427,8 +427,17 @@
         console.log(this.delever_obj);
         window.location.href = process.env.BASE_API + this.delever_obj.download_url
       },
-      export(obj) {                    //将数据以表格形式导出
-        window.location.href = process.env.BASE_API + obj.url
+      export(obj) {
+        //将数据以表格形式导出
+        let params,input;
+        for (var i = 0; i < this.$refs.child.length; i++) {
+          if (this.$refs.child[i].complex_em_input_select && this.$refs.child[i].input) {   //选择参数进行查询
+            console.log(this.$refs.child[i].complex_em_input_select);
+             params = this.$refs.child[i].complex_em_input_select;
+             input = this.$refs.child[i].input.trim();
+          }
+        }
+        window.location.href = process.env.BASE_API + obj.url+"?"+params+"="+input
       },
       submitUpload() {
         this.$refs.upload.submit();

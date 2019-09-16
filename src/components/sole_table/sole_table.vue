@@ -336,8 +336,6 @@
         return (this.currentPage - 1) * this.pageSize + index + 1
       },
       control(obj, row) {
-
-        console.log(row);
         this.dialogRow =row;
 
         this[obj.fn](obj);
@@ -420,10 +418,17 @@
         window.location.href = process.env.BASE_API + this.delever_obj.download_url
       },
       export(obj) {                    //将数据以表格形式导出
-
+        console.log();
         if (this.$refs.child[0].value) {
             let time=this.$refs.child[0].value;
+          if(obj.url.includes("?")){
             window.location.href = process.env.BASE_API + obj.url+"&startTime="+ time[0].getTime()+"&endTime="+time[1].getTime();
+          }
+          else{
+            window.location.href = process.env.BASE_API + obj.url+"?startTime="+ time[0].getTime()+"&endTime="+time[1].getTime();
+
+          }
+
 
         }
         else{
