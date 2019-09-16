@@ -414,7 +414,7 @@ export const nav = {//主菜单类型
   ]
 };
 
-export const winComponent = {//win类组件类型
+export const winComponent = {//win组件类型
   systemType: ["win","win_menu_body","win_table","win_table_btn","win_form"],
   uiData: []
 };

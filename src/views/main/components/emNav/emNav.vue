@@ -1,8 +1,8 @@
 <template>
   <div class="em-nav">
-    <win :id="nav.id" :data="nav">
+    <win :id="id" :data="nav">
       <el-menu
-        :default-active="nav.activeIndex"
+        :default-active="activeIndex"
         class="el-menu-demo em-nav-menu"
         mode="horizontal"
         @select="handleSelect"
@@ -58,6 +58,7 @@
         });
       },
       handleSelect(key, keyPath) {
+        console.log(this.activeIndex);
         console.log(key);
         let _this = this;
         let _controlId = this.control_id;
@@ -100,7 +101,6 @@
               width: _width
             });
           }, 200);
-
         }
         // console.log(_show);
       }

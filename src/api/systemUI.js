@@ -2,21 +2,7 @@ import request from '@/utils/request';
 
 
 export const systemData = [ //默认数据模型
-  {
-    "system_id": "nav",
-    "system_type": "nav",
-    "title": "",
-    "top": "",
-    "left": "",
-    "show": true,
-    "resizable": false,
-    "class": "em-nav-window",
-    "control_type": "scene",
-    "control_id": "menu",
-    "fn": "scene_data",
-    "data_type": "4",
-    "activeIndex": ""
-  },
+  {"system_id": "nav", "system_type": "nav", "title": "", "top": "", "left": "", "show": true, "resizable": false, "class": "em-nav-window", "control_type": "scene", "control_id": "menu", "fn": "scene_data", "data_type": "4", "activeIndex": ""},
   {
     system_id: "nav_detectdata",
     system_type: "navItem",
@@ -354,17 +340,7 @@ export const systemData = [ //默认数据模型
     "fn": "scene_data",
     "data_type": ""
   },
-  {
-    system_id: "nav_role_manage",
-    system_type: "navList",
-    id: "151",
-    parentId: "15",
-
-    "icon": "el-icon-role-manage",
-    "control_id": "role_manage",
-    "title": "角色管理",
-    "show": false
-  },
+  {"system_id": "nav_role_manage", "system_type": "navList", "title": "角色管理", "show": false, "icon": "el-icon-role-manage", "control_type": "", "control_id": "role_manage", "fn": "", "data_type": ""},
   {
     system_id: "nav_department_manage",
     system_type: "navList",
@@ -409,30 +385,8 @@ export const systemData = [ //默认数据模型
     "title": "权限管理",
     "show": false
   },
-  {
-    system_id: "menu",
-    system_type: "win",
-    id: "a1",
-    parentId: "0",
-    winLayout: "1",
-    title: "_",
-    top: "20%",
-    left: 20,
-    width: 100,
-    height: 450,
-    show: false,
-    resizable: false,
-    maximizable: false,
-    class: "em-menu-window"
-  },
-  {
-    system_id: "menu_body",
-    system_type: "win_menu_body",
-    id: "b1",
-    parentId: "a1",
-    winSpan: 48,
-    component: "emMenu"
-  },
+  {"system_id": "winMenu", "system_type": "win", "winLayout": "1", "title": "_", "top": "20%", "left": 20, "width": 100, "height": 450, "show": false, "resizable": false, "maximizable": false, "closable": false, "draggable": false, "class": "em-menu-window"},
+  {"system_id": "menu_body", "system_type": "win_menu_body", "winSpan": 48, "component": "emMenu", "control_type": "", "control_id": "", "fn": "", "data_type": ""},
   {
     system_id: "role_manage",
     system_type: "win",
