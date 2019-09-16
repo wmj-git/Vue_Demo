@@ -5593,7 +5593,7 @@ export default {
       left: "calc((100% - 600px)/2)",
       width: 600,
       height: 132,
-      show: false,
+      show: true,
       class: "em-table-window",
       component: "buttonGroup",
       component_data: {
@@ -5854,6 +5854,23 @@ export default {
             clusters_color: "#c42e1e",
             trigger: true
           },
+          {
+            id: "bt_3_1",
+            type: "info",
+            icon: "el-icon-edit",
+            text: "主干道",
+            control_type: "scene",
+            control_id: "",
+            fn: "scene_data",
+            data_type: "2",
+            layer_name: "dustbin_1",
+            layer_title: "点",
+            data_url: "http://onelz.oicp.vip/proxy/server/51F7A91F61424B5C95763FE4CBBAC698/999C1448C6DD4842A35412B42226F0A3",
+            data_maker_iconUrl: "../../static/image/marker_3.png",
+            maker_titleKey: "OBJECTID",
+            clusters_color: "#c42e1e",
+            trigger: true
+          }
         ]
       }
     },
