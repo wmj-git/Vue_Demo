@@ -5898,6 +5898,15 @@ export default {
             operate: "查询",
             control_id: "fire_info_table",
             fn: "search"
+          },
+          {
+            id: "fire_info_button_export",
+            type: "em_button",
+            icon: "el-icon-excel_out",
+            operate: "导出excel",
+            control_id: "fire_info_table",
+            fn: "export",
+            url: "/gardens/firealarminfo/exportCsv"
           }
         ],
         table: {

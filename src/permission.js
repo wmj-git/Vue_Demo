@@ -9,7 +9,7 @@ NProgress.configure({showSpinner: false}) // NProgress Configuration
 
 const whiteList = ['/login'] // no redirect whitelist
 
-/*router.beforeEach(async (to, from, next) => {
+router.beforeEach(async (to, from, next) => {
   // start progress bar
   console.log(to);
   NProgress.start();
@@ -39,7 +39,7 @@ const whiteList = ['/login'] // no redirect whitelist
       }
     }
   } else {
-    /!* has no token*!/
+    /* has no token*/
     console.log(to.path);
     if (whiteList.indexOf(to.path) !== -1) {
       console.log("白名单")
@@ -51,7 +51,7 @@ const whiteList = ['/login'] // no redirect whitelist
       NProgress.done()
     }
   }
-})*/
+})
 
 router.afterEach(() => {
   // finish progress bar
