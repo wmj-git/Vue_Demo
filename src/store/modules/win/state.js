@@ -5576,7 +5576,7 @@ export default {
       left: "calc(100% - 230px)",
       width: 230,
       height: 720,
-      show: true,
+      show: false,
       closable: false,
       draggable: false,
       class: "em-scene-window",
