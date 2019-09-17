@@ -7,10 +7,17 @@
     border-color: $em-highlight-border-color-base;
   }
 }
-
 textarea::-webkit-input-placeholder {
   color: darken($em-text-color-base,40%);
 }
 textarea:-ms-input-placeholder {
+  color: darken($em-text-color-base,40%);
+}
+textarea:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: darken($em-text-color-base,40%);
+}
+textarea::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
   color: darken($em-text-color-base,40%);
 }
