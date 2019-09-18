@@ -259,15 +259,15 @@ export default {
             operate: "查询",
             control_id: "account_manage_table",
             fn: "search"
-          }/*,
+          },
           {
             id: "account_manage_button_add",
             type: "em_button",
             icon: "el-icon-plus",
             operate: "添加",
             control_id: "account_manage_table",
-            fn: "add",
-            url: "/user/userext/addPeopleInfo"
+            // fn: "add",
+            // url: "/user/userext/addPeopleInfo"
           },
           {
             id: "account_manage_button_modify",
@@ -275,8 +275,8 @@ export default {
             icon: "el-icon-edit",
             operate: "修改",
             control_id: "account_manage_table",
-            fn: "modify",
-            url: "/user/userext/updatePeopleInfo"
+            // fn: "modify",
+            // url: "/user/userext/updatePeopleInfo"
 
 
           },
@@ -286,18 +286,18 @@ export default {
             icon: "el-icon-delete",
             operate: "删除",
             control_id: "account_manage_table",
-            fn: "dele",
-            url: "/user/userext/deletePeopleInfo"
+           /* fn: "dele",
+            url: "/user/userext/deletePeopleInfo"*/
           },
           {
             id: "account_manage_button_import",
             type: "em_button",
             icon: "el-icon-excel_in",
             operate: "导入excel",
-            fn: "import",
+            //fn: "import",
             control_id: "account_manage_table",
-            download_url: "/user/userext/downCsvmodel",
-            import_url: "/user/userext/ajaxUpload"
+            /*download_url: "/user/userext/downCsvmodel",
+            import_url: "/user/userext/ajaxUpload"*/
           },
           {
             id: "account_manage_button_export",
@@ -305,9 +305,9 @@ export default {
             icon: "el-icon-excel_out",
             operate: "导出excel",
             control_id: "account_manage_table",
-            fn: "export",
-            url: "/user/userext/exportCsv"
-          }*/
+            /*fn: "export",
+            url: "/user/userext/exportCsv"*/
+          }
         ],
         table: {
           id: "account_manage_table",

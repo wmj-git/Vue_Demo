@@ -2,7 +2,7 @@
   color: darken($em-text-color-base,15%);
 }
 .el-upload-list__item:hover{
-  background: darken($em-bg-color-base,5%);
+  background: linear-gradient(nth($background-base,1),nth($background-base,2));
   .el-icon-close{
     color: darken($em-text-color-base,15%);
   }
