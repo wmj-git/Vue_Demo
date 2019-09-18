@@ -78,9 +78,35 @@ export function clustersLayerFn(dataUrl, _Key, _clusterImgUrl, _distance) {//时
   }
   let _url = dataUrl ? dataUrl : "";
 
-
 //读取时空运部件数据=======================================================
-  let urlLayer = _url + '/layers/?f=json';
+
+  let _data = [];
+  let url = _url + '/query/?f=json&' +
+    'returnGeometry=true&spatialRel=esriSpatialRelIntersects&geometry=' +
+    encodeURIComponent('{"xmin":' + -180 + ',"ymin":' + -90 + ',' +
+      '"xmax":' + 180 + ',"ymax":' + 90 +
+      ',"spatialReference":{"wkid":4490}}') +
+    '&geometryType=esriGeometryEnvelope&inSR=4490&outFields=*' +
+    '&outSR=4490';
+  $.ajax({
+    url: url, async: true, dataType: 'json', success: function (response) {
+      console.log("response");
+      console.log(response);
+      if (response.error) {
+        console.log(response.error.message + '\n' +
+          response.error.details.join('\n'));
+      } else {
+        response.features.forEach(function (feature) {
+          _data.push(feature);
+        });
+        console.log(_data);
+      }
+    }
+  });
+
+
+
+/*  let urlLayer = _url + '/layers/?f=json';
   let _layers = null;
   let _data = [];
   $.ajax({
@@ -121,12 +147,12 @@ export function clustersLayerFn(dataUrl, _Key, _clusterImgUrl, _distance) {//时
         }
       }
     });
-  }
+  }*/
 //=======================================================
 
   let esrijsonFormat = new ol.format.EsriJSON();
   let vectorSource = new ol.source.Vector({
-    /*   loader: function (extent, resolution, projection) {
+      /* loader: function (extent, resolution, projection) {
 
          var urlLayer = _url + '/layers/?f=json';
          if (vectorSource.getFeatures().length > 0) {

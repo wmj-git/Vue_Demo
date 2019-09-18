@@ -2,7 +2,7 @@ import request from '@/utils/request';
 
 
 export const systemData = [ //默认数据模型
-  {"system_id": "nav", "system_type": "nav", "title": "", "top": "", "left": "", "show": true, "resizable": false, "class": "em-nav-window", "control_type": "scene", "control_id": "menu", "fn": "scene_data", "data_type": "4", "activeIndex": ""},
+  {"system_id": "nav", "system_type": "nav", "title": "", "top": "", "left": "", "show": true, "resizable": false, "class": "em-nav-window", "control_type": "", "control_id": "menu", "fn": "scene_data", "data_type": "4", "activeIndex": ""},
   {
     system_id: "nav_detectdata",
     system_type: "navItem",
@@ -336,7 +336,7 @@ export const systemData = [ //默认数据模型
     "show": false,
     "width": 150,
     "control_type": "",
-    "control_id": "menu",
+    "control_id": "menu_body",
     "fn": "scene_data",
     "data_type": ""
   },
