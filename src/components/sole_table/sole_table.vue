@@ -12,7 +12,7 @@
         :limit="1"
         :headers="headers"
         name="upfile"
-        accept=".xls,.docx,.xlsx,.csv "
+        accept=".csv "
         :on-error="uploadFileErro"
         :on-success="uploadFileSuccess"
         :auto-upload="false">

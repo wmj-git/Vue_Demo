@@ -41,7 +41,8 @@ export default {
             icon: "el-icon-search",
             operate: "查询",
             control_id: "role_manage_table",
-            fn: "search"
+            fn: "search",
+            disabled:false
           },
           {
             id: "role_manage_button_add",
@@ -50,7 +51,8 @@ export default {
             operate: "添加",
             control_id: "role_manage_table",
             fn: "add",
-            url: "/user/role/addRole"
+            url: "/user/role/addRole",
+            disabled:false
           },
           {
             id: "role_manage_button_modify",
@@ -59,7 +61,8 @@ export default {
             operate: "修改",
             control_id: "role_manage_table",
             fn: "modify",
-            url: "/user/role/updateRole"
+            url: "/user/role/updateRole",
+            disabled:false
           },
           {
             id: "role_manage_button_dele",
@@ -68,7 +71,8 @@ export default {
             operate: "删除",
             control_id: "role_manage_table",
             fn: "dele",
-            url: "/user/role/dele"
+            url: "/user/role/dele",
+            disabled:false
           }
         ],
         table: {
@@ -181,6 +185,7 @@ export default {
             fn: "search",
             url: "/logs/select",
             control_id: "system_record_table",
+            disabled:false
           }
         ],
         table: {
@@ -258,7 +263,8 @@ export default {
             icon: "el-icon-search",
             operate: "查询",
             control_id: "account_manage_table",
-            fn: "search"
+            fn: "search",
+            disabled:false
           },
           {
             id: "account_manage_button_add",
@@ -266,8 +272,9 @@ export default {
             icon: "el-icon-plus",
             operate: "添加",
             control_id: "account_manage_table",
-            // fn: "add",
-            // url: "/user/userext/addPeopleInfo"
+            fn: "add",
+            url: "/user/userext/addPeopleInfo",
+            disabled:true
           },
           {
             id: "account_manage_button_modify",
@@ -275,8 +282,9 @@ export default {
             icon: "el-icon-edit",
             operate: "修改",
             control_id: "account_manage_table",
-            // fn: "modify",
-            // url: "/user/userext/updatePeopleInfo"
+            fn: "modify",
+            url: "/user/userext/updatePeopleInfo",
+            disabled:true
 
 
           },
@@ -286,18 +294,20 @@ export default {
             icon: "el-icon-delete",
             operate: "删除",
             control_id: "account_manage_table",
-           /* fn: "dele",
-            url: "/user/userext/deletePeopleInfo"*/
+            fn: "dele",
+            url: "/user/userext/deletePeopleInfo",
+            disabled:true
           },
           {
             id: "account_manage_button_import",
             type: "em_button",
             icon: "el-icon-excel_in",
             operate: "导入excel",
-            //fn: "import",
+            fn: "import",
             control_id: "account_manage_table",
-            /*download_url: "/user/userext/downCsvmodel",
-            import_url: "/user/userext/ajaxUpload"*/
+            download_url: "/user/userext/downCsvmodel",
+            import_url: "/user/userext/ajaxUpload",
+            disabled:true
           },
           {
             id: "account_manage_button_export",
@@ -305,8 +315,9 @@ export default {
             icon: "el-icon-excel_out",
             operate: "导出excel",
             control_id: "account_manage_table",
-            /*fn: "export",
-            url: "/user/userext/exportCsv"*/
+            fn: "export",
+            url: "/user/userext/exportCsv",
+            disabled:true
           }
         ],
         table: {
@@ -648,6 +659,7 @@ export default {
             fn: "search",
             url: "http://localhost:5000",
             control_id: "grid_scope_table",
+            disabled:false
           }
         ],
         table: {
@@ -724,7 +736,8 @@ export default {
             icon: "el-icon-search",
             operate: "查询",
             control_id: "road_address_table",
-            fn: "search"
+            fn: "search",
+            disabled:false
           },
           {
             id: "road_address_button_add",
@@ -733,7 +746,8 @@ export default {
             operate: "添加",
             control_id: "road_address_table",
             fn: "add",
-            url: "/gardens/road/add"
+            url: "/gardens/road/add",
+            disabled:false
           },
           {
             id: "road_address_button_dele",
@@ -742,7 +756,8 @@ export default {
             operate: "删除",
             control_id: "road_address_table",
             fn: "dele",
-            url: "/gardens/road/deletes"
+            url: "/gardens/road/deletes",
+            disabled:false
           }
         ],
         table: {
@@ -813,7 +828,8 @@ export default {
               icon: "el-icon-search",
               operate: "查询",
               control_id: "fertilizer_type_manage_table",
-              fn: "search"
+              fn: "search",
+              disabled:false
             },
             {
               id: "fertilizer_type_manage_button_add",
@@ -822,7 +838,8 @@ export default {
               operate: "添加",
               control_id: "fertilizer_type_manage_table",
               fn: "add",
-              url: "/gardens/fertilizerinfo/add"
+              url: "/gardens/fertilizerinfo/add",
+              disabled:false
             },
             {
               id: "fertilizer_type_manage_button_modify",
@@ -831,7 +848,8 @@ export default {
               operate: "修改",
               control_id: "fertilizer_type_manage_table",
               fn: "modify",
-              url: "/gardens/fertilizerinfo/update"
+              url: "/gardens/fertilizerinfo/update",
+              disabled:false
             },
             {
               id: "fertilizer_type_manage_button_dele",
@@ -840,7 +858,8 @@ export default {
               operate: "删除",
               control_id: "fertilizer_type_manage_table",
               fn: "dele",
-              url: "/gardens/fertilizerinfo/deletes"
+              url: "/gardens/fertilizerinfo/deletes",
+              disabled:false
             },
 
           ],
@@ -911,7 +930,8 @@ export default {
               icon: "el-icon-search",
               operate: "查询",
               control_id: "fertilizer_mobility_record_table",
-              fn: "search"
+              fn: "search",
+              disabled:false
             },
             {
               id: "fertilizer_mobility_record_button_add",
@@ -920,7 +940,9 @@ export default {
               operate: "添加",
               control_id: "fertilizer_mobility_record_table",
               fn: "add",
-              url: "/gardens/fertilizerRecord/add"
+              url: "/gardens/fertilizerRecord/add",
+              disabled:false
+
             },
 
             {
@@ -930,7 +952,8 @@ export default {
               operate: "删除",
               control_id: "fertilizer_mobility_record_table",
               fn: "dele",
-              url: "/gardens/fertilizerRecord/deletes"
+              url: "/gardens/fertilizerRecord/deletes",
+              disabled:false
             }
           ],
           table: {
@@ -1031,7 +1054,8 @@ export default {
               icon: "el-icon-search",
               operate: "查询",
               control_id: "fertilization_specification_info_table",
-              fn: "search"
+              fn: "search",
+              disabled:false
             },
             {
               id: "fertilization_specification_info_button_add",
@@ -1040,7 +1064,8 @@ export default {
               operate: "添加",
               control_id: "fertilization_specification_info_table",
               fn: "add",
-              url: "/gardens/specificationinfo/add"
+              url: "/gardens/specificationinfo/add",
+              disabled:false
             },
             {
               id: "fertilization_specification_info_button_modify",
@@ -1049,7 +1074,8 @@ export default {
               operate: "修改",
               control_id: "fertilization_specification_info_table",
               fn: "modify",
-              url: "/gardens/specificationinfo/update"
+              url: "/gardens/specificationinfo/update",
+              disabled:false
             },
             {
               id: "fertilization_specification_info_button_dele",
@@ -1058,7 +1084,8 @@ export default {
               operate: "删除",
               control_id: "fertilization_specification_info_table",
               fn: "dele",
-              url: "/gardens/specificationinfo/deletes"
+              url: "/gardens/specificationinfo/deletes",
+              disabled:false
             }
           ],
           table: {
@@ -1170,7 +1197,8 @@ export default {
               icon: "el-icon-search",
               operate: "查询",
               control_id: "fertilization_program_table",
-              fn: "search"
+              fn: "search",
+              disabled:false
             },
             {
               id: "fertilization_program_button_add",
@@ -1179,7 +1207,8 @@ export default {
               operate: "添加",
               control_id: "fertilization_program_table",
               fn: "add",
-              url: "/gardens/fertilizationProgram/add"
+              url: "/gardens/fertilizationProgram/add",
+              disabled:false
             },
             {
               id: "fertilization_program_button_modify",
@@ -1188,7 +1217,8 @@ export default {
               operate: "修改",
               control_id: "fertilization_program_table",
               fn: "modify",
-              url: "/gardens/fertilizationProgram/update"
+              url: "/gardens/fertilizationProgram/update",
+              disabled:false
             },
             {
               id: "fertilization_program_button_dele",
@@ -1197,7 +1227,8 @@ export default {
               operate: "删除",
               control_id: "fertilization_program_table",
               fn: "dele",
-              url: "/gardens/fertilizationProgram/deletes"
+              url: "/gardens/fertilizationProgram/deletes",
+              disabled:false
             },
             {
               id: "fertilization_program_button_count",
@@ -1206,7 +1237,8 @@ export default {
               operate: "统计材料",
               control_id: "fertilization_program_table",
               fn: "coutProgram",
-              url: "/gardens/fertilizationProgram/deletes"
+              url: "/gardens/fertilizationProgram/deletes",
+              disabled:false
             }
           ],
           table: {
@@ -1373,7 +1405,8 @@ export default {
             icon: "el-icon-search",
             operate: "查询",
             control_id: "protect_record_table",
-            fn: "search"
+            fn: "search",
+            disabled:false
           },
           {
             id: "protect_record_button_dele",
@@ -1382,7 +1415,8 @@ export default {
             operate: "删除",
             control_id: "protect_record_table",
             fn: "dele",
-            url: "/gardens/applyFertilizerRecord/deletes"
+            url: "/gardens/applyFertilizerRecord/deletes",
+            disabled:false
           }
         ],
         table: {
@@ -1483,7 +1517,8 @@ export default {
             icon: "el-icon-search",
             operate: "查询",
             control_id: "department_manage_table",
-            fn: "search"
+            fn: "search",
+            disabled:false
           }
         ],
         table: {
@@ -1828,7 +1863,8 @@ export default {
               icon: "el-icon-search",
               operate: "查询",
               control_id: "soil_temperature_analysis_table",
-              fn: "search"
+              fn: "search",
+              disabled:false
             }
           ],
           table: {
@@ -1941,7 +1977,8 @@ export default {
               icon: "el-icon-search",
               operate: "查询",
               control_id: "soil_temperature_alarm_analysis_table",
-              fn: "search"
+              fn: "search",
+              disabled:false
             },
             {
               id: "soil_temperature_alarm_analysis_export",
@@ -1950,7 +1987,8 @@ export default {
               operate: "导出excel",
               control_id: "soil_temperature_alarm_analysis_table",
               fn: "export",
-              url: "/gardens/warningrecord/exportCsv?warningType=TS"
+              url: "/gardens/warningrecord/exportCsv?warningType=TS",
+              disabled:false
             }
           ],
           table: {
@@ -2040,7 +2078,8 @@ export default {
               icon: "el-icon-search",
               operate: "查询",
               control_id: "soil_humidity_analysis_table",
-              fn: "search"
+              fn: "search",
+              disabled:false
             }
           ],
           table: {
@@ -2149,7 +2188,8 @@ export default {
               icon: "el-icon-search",
               operate: "查询",
               control_id: "soil_humidity_alarm_analysis_table",
-              fn: "search"
+              fn: "search",
+              disabled:false
             },
             {
               id: "soil_humidity_alarm_analysis_export",
@@ -2158,7 +2198,8 @@ export default {
               operate: "导出excel",
               control_id: "soil_humidity_alarm_analysis_table",
               fn: "export",
-              url: "/gardens/warningrecord/exportCsv?warningType=HS"
+              url: "/gardens/warningrecord/exportCsv?warningType=HS",
+              disabled:false
             }
           ],
           table: {
@@ -2248,7 +2289,8 @@ export default {
               icon: "el-icon-search",
               operate: "查询",
               control_id: "population_analysis_table",
-              fn: "search"
+              fn: "search",
+              disabled:false
             }
           ],
           table: {
@@ -2372,7 +2414,8 @@ export default {
               icon: "el-icon-search",
               operate: "查询",
               control_id: "population_alarm_analysis_table",
-              fn: "search"
+              fn: "search",
+              disabled:false
             },
             {
               id: "population_alarm_analysis_export",
@@ -2381,7 +2424,8 @@ export default {
               operate: "导出excel",
               control_id: "population_alarm_analysis_table",
               fn: "export",
-              url: "/gardens/warningrecord/exportCsv?warningType=HT"
+              url: "/gardens/warningrecord/exportCsv?warningType=HT",
+              disabled:false
             }
           ],
           table: {
@@ -2471,7 +2515,8 @@ export default {
               icon: "el-icon-search",
               operate: "查询",
               control_id: "air_temperature_analysis_table",
-              fn: "search"
+              fn: "search",
+              disabled:false
             }
           ],
           table: {
@@ -2580,7 +2625,8 @@ export default {
               icon: "el-icon-search",
               operate: "查询",
               control_id: "air_temperature_alarm_analysis_table",
-              fn: "search"
+              fn: "search",
+              disabled:false
             },
             {
               id: "air_temperature_alarm_analysis_export",
@@ -2589,13 +2635,15 @@ export default {
               operate: "导出excel",
               control_id: "air_temperature_alarm_analysis_table",
               fn: "export",
-              url: "/gardens/warningrecord/exportCsv?warningType=TA"
+              url: "/gardens/warningrecord/exportCsv?warningType=TA",
+              disabled:false
             }
           ],
           table: {
             id: "air_temperature_alarm_analysis_table",
             table_url: "/gardens/warningrecord/queryAllByPage?warningType=TA",
-            label: [{
+            label: [
+              {
               name: "关联设备号",
               prop: "relevanceId",
               width: "100",
@@ -2680,7 +2728,8 @@ export default {
               icon: "el-icon-search",
               operate: "查询",
               control_id: "air_humidity_analysis_table",
-              fn: "search"
+              fn: "search",
+              disabled:false
             }
           ],
           table: {
@@ -2774,7 +2823,8 @@ export default {
               icon: "el-icon-search",
               operate: "查询",
               control_id: "air_humidity_alarm_analysis_table",
-              fn: "search"
+              fn: "search",
+              disabled:false
             },
             {
               id: "air_humidity_alarm_analysis_export",
@@ -2783,7 +2833,8 @@ export default {
               operate: "导出excel",
               control_id: "air_humidity_alarm_analysis_table",
               fn: "export",
-              url: "/gardens/warningrecord/exportCsv?warningType=HA"
+              url: "/gardens/warningrecord/exportCsv?warningType=HA",
+              disabled:false
             }
 
           ],
@@ -2872,7 +2923,8 @@ export default {
             icon: "el-icon-search",
             operate: "查询",
             control_id: "fire_alert_anaysis_table",
-            fn: "search"
+            fn: "search",
+            disabled:false
           }
         ],
         table: {
@@ -3023,7 +3075,8 @@ export default {
               icon: "el-icon-search",
               operate: "查询",
               control_id: "persontype_manage_table",
-              fn: "search"
+              fn: "search",
+              disabled:false
             },
             {
               id: "persontype_manage_button_add",
@@ -3032,7 +3085,8 @@ export default {
               operate: "添加",
               control_id: "persontype_manage_table",
               fn: "add",
-              url: "/gardens/persontype/add"
+              url: "/gardens/persontype/add",
+              disabled:false
             },
             {
               id: "persontype_manage_button_modify",
@@ -3041,7 +3095,8 @@ export default {
               operate: "修改",
               control_id: "persontype_manage_table",
               fn: "modify",
-              url: "/gardens/persontype/update"
+              url: "/gardens/persontype/update",
+              disabled:false
             },
             {
               id: "persontype_manage_button_dele",
@@ -3050,7 +3105,8 @@ export default {
               operate: "删除",
               control_id: "persontype_manage_table",
               fn: "dele",
-              url: "/gardens/persontype/deletes"
+              url: "/gardens/persontype/deletes",
+              disabled:false
             },
             {
               id: "persontype_manage_button_export",
@@ -3059,7 +3115,8 @@ export default {
               icon: "el-icon-excel_out",
               operate: "导出excel",
               fn: "export",
-              url: "/gardens/persontype/exportCsv"
+              url: "/gardens/persontype/exportCsv",
+              disabled:false
             }
           ],
           table: {
@@ -3126,7 +3183,8 @@ export default {
               icon: "el-icon-search",
               operate: "查询",
               control_id: "people_manage_table",
-              fn: "search"
+              fn: "search",
+              disabled:false
             },
             {
               id: "people_manage_button_add",
@@ -3135,7 +3193,8 @@ export default {
               operate: "添加",
               control_id: "people_manage_table",
               fn: "add",
-              url: "/gardens/person/add"
+              url: "/gardens/person/add",
+              disabled:false
             },
             {
               id: "people_manage_button_modify",
@@ -3144,7 +3203,8 @@ export default {
               operate: "修改",
               control_id: "people_manage_table",
               fn: "modify",
-              url: "/gardens/person/update"
+              url: "/gardens/person/update",
+              disabled:false
             },
             {
               id: "people_manage_button_dele",
@@ -3153,7 +3213,8 @@ export default {
               operate: "删除",
               control_id: "people_manage_table",
               fn: "dele",
-              url: "/gardens/person/deletes"
+              url: "/gardens/person/deletes",
+              disabled:false
             },
             {
               id: "people_manage_button_import",
@@ -3163,7 +3224,8 @@ export default {
               control_id: "people_manage_table",
               fn: "import",
               download_url: "/gardens/person/downCsvmodel",
-              import_url: "/gardens/person/ajaxUpload"
+              import_url: "/gardens/person/ajaxUpload",
+              disabled:false
             },
             {
               id: "people_manage_button_export",
@@ -3172,7 +3234,8 @@ export default {
               icon: "el-icon-excel_out",
               operate: "导出excel",
               fn: "export",
-              url: "/gardens/person/exportCsv"
+              url: "/gardens/person/exportCsv",
+              disabled:false
             }
           ],
           table: {
@@ -3309,7 +3372,8 @@ export default {
             icon: "el-icon-search",
             operate: "查询",
             control_id: "protect_company_manage_table",
-            fn: "search"
+            fn: "search",
+            disabled:false
           },
           {
             id: "protect_company_manage_button_add",
@@ -3318,7 +3382,8 @@ export default {
             operate: "添加",
             control_id: "protect_company_manage_table",
             fn: "add",
-            url: "/gardens/ent/add"
+            url: "/gardens/ent/add",
+            disabled:false
           },
           {
             id: "protect_company_manage_button_modify",
@@ -3327,7 +3392,8 @@ export default {
             operate: "修改",
             control_id: "protect_company_manage_table",
             fn: "modify",
-            url: "/gardens/ent/update"
+            url: "/gardens/ent/update",
+            disabled:false
 
           },
           {
@@ -3337,7 +3403,8 @@ export default {
             operate: "删除",
             control_id: "protect_company_manage_table",
             fn: "dele",
-            url: "gardens/ent/deletes"
+            url: "gardens/ent/deletes",
+            disabled:false
           },
           {
             id: "protect_company_manage_button_import",
@@ -3347,7 +3414,8 @@ export default {
             fn: "import",
             control_id: "protect_company_manage_table",
             download_url: "/gardens/ent/downCsvmodel",
-            import_url: "/gardens/ent/ajaxUpload"
+            import_url: "/gardens/ent/ajaxUpload",
+            disabled:false
           },
           {
             id: "protect_company_manage_button_export",
@@ -3356,7 +3424,8 @@ export default {
             operate: "导出excel",
             control_id: "protect_company_manage_table",
             fn: "export",
-            url: "/gardens/ent/exportCsv"
+            url: "/gardens/ent/exportCsv",
+            disabled:false
           }
 
         ],
@@ -3488,7 +3557,8 @@ export default {
             icon: "el-icon-search",
             operate: "查询",
             control_id: "tree_type_manage_table",
-            fn: "search"
+            fn: "search",
+            disabled:false
           },
           {
             id: "tree_type_manage_button_add",
@@ -3497,7 +3567,8 @@ export default {
             operate: "添加",
             control_id: "tree_type_manage_table",
             fn: "add",
-            url: "/gardens/treetype/add"
+            url: "/gardens/treetype/add",
+            disabled:false
           },
           {
             id: "tree_type_manage_button_modify",
@@ -3506,7 +3577,8 @@ export default {
             operate: "修改",
             control_id: "tree_type_manage_table",
             fn: "modify",
-            url: "/gardens/treetype/update"
+            url: "/gardens/treetype/update",
+            disabled:false
           },
           {
             id: "tree_type_manage_button_dele",
@@ -3515,7 +3587,8 @@ export default {
             operate: "删除",
             control_id: "tree_type_manage_table",
             fn: "dele",
-            url: "/gardens/treetype/deletes"
+            url: "/gardens/treetype/deletes",
+            disabled:false
           }
         ],
         table: {
@@ -3614,7 +3687,8 @@ export default {
             icon: "el-icon-search",
             operate: "查询",
             control_id: "plant_type_manage_table",
-            fn: "search"
+            fn: "search",
+            disabled:false
           },
           {
             id: "plant_type_manage_button_add",
@@ -3623,7 +3697,8 @@ export default {
             operate: "添加",
             control_id: "plant_type_manage_table",
             fn: "add",
-            url: "/gardens/plantname/add"
+            url: "/gardens/plantname/add",
+            disabled:false
           },
           {
             id: "plant_type_manage_button_modify",
@@ -3632,7 +3707,8 @@ export default {
             operate: "修改",
             control_id: "plant_type_manage_table",
             fn: "modify",
-            url: "/gardens/plantname/update"
+            url: "/gardens/plantname/update",
+            disabled:false
           },
           {
             id: "plant_type_manage_button_dele",
@@ -3641,7 +3717,8 @@ export default {
             operate: "删除",
             control_id: "plant_type_manage_table",
             fn: "dele",
-            url: "/gardens/plantname/deletes"
+            url: "/gardens/plantname/deletes",
+            disabled:false
           }
         ],
         table: {
@@ -3816,7 +3893,8 @@ export default {
             icon: "el-icon-search",
             operate: "查询",
             control_id: "tree_material_manage_table",
-            fn: "search"
+            fn: "search",
+            disabled:false
           },
           {
             id: "tree_material_manage_button_add",
@@ -3825,7 +3903,8 @@ export default {
             operate: "添加",
             control_id: "tree_material_manage_table",
             fn: "add",
-            url: "/gardens/tree/add"
+            url: "/gardens/tree/add",
+            disabled:false
           },
           {
             id: "tree_material_manage_button_modify",
@@ -3834,7 +3913,8 @@ export default {
             operate: "修改",
             control_id: "tree_material_manage_table",
             fn: "modify",
-            url: "/gardens/tree/update"
+            url: "/gardens/tree/update",
+            disabled:false
           },
           {
             id: "tree_material_manage_button_dele",
@@ -3843,7 +3923,8 @@ export default {
             operate: "删除",
             control_id: "tree_material_manage_table",
             fn: "dele",
-            url: "/gardens/tree/deletes"
+            url: "/gardens/tree/deletes",
+            disabled:false
           },
           {
             id: "tree_material_manage_button_export",
@@ -3852,7 +3933,8 @@ export default {
             operate: "导出excel",
             fn: "export",
             control_id: "tree_material_manage_table",
-            url: "/gardens/tree/exportCsv"
+            url: "/gardens/tree/exportCsv",
+            disabled:false
           }
         ],
         table: {
@@ -4095,7 +4177,8 @@ export default {
             icon: "el-icon-search",
             operate: "查询",
             control_id: "grid_manage_table",
-            fn: "search"
+            fn: "search",
+            disabled:false
           },
           {
             id: "grid_manage_button_add",
@@ -4104,7 +4187,8 @@ export default {
             operate: "添加",
             control_id: "grid_manage_table",
             fn: "add",
-            url: "/gardens/grid/add"
+            url: "/gardens/grid/add",
+            disabled:false
           },
           {
             id: "grid_manage_button_modify",
@@ -4113,7 +4197,8 @@ export default {
             operate: "修改",
             control_id: "grid_manage_table",
             fn: "modify",
-            url: "/gardens/grid/update"
+            url: "/gardens/grid/update",
+            disabled:false
           },
           {
             id: "grid_manage_button_dele",
@@ -4122,7 +4207,8 @@ export default {
             operate: "删除",
             control_id: "grid_manage_table",
             fn: "dele",
-            url: "gardens/grid/deletes"
+            url: "gardens/grid/deletes",
+            disabled:false
           },
           {
             id: "grid_manage_button_import",
@@ -4132,7 +4218,8 @@ export default {
             fn: "import",
             control_id: "grid_manage_table",
             download_url: "/gardens/grid/downCsvmodel",
-            import_url: "/gardens/grid/ajaxUpload"
+            import_url: "/gardens/grid/ajaxUpload",
+            disabled:false
 
           },
           {
@@ -4142,7 +4229,8 @@ export default {
             operate: "导出excel",
             fn: "export",
             control_id: "grid_manage_table",
-            url: "/gardens/grid/exportCsv"
+            url: "/gardens/grid/exportCsv",
+            disabled:false
           }
         ],
         table: {
@@ -4263,7 +4351,8 @@ export default {
             icon: "el-icon-search",
             operate: "查询",
             control_id: "monitor_points_manage_table",
-            fn: "search"
+            fn: "search",
+            disabled:false
           },
           {
             id: "monitor_points_manage_button_add",
@@ -4272,7 +4361,8 @@ export default {
             operate: "添加",
             control_id: "monitor_points_manage_table",
             fn: "add",
-            url: "/gardens/monitoringpoints/add"
+            url: "/gardens/monitoringpoints/add",
+            disabled:false
           },
           {
             id: "monitor_points_manage_button_modify",
@@ -4281,7 +4371,8 @@ export default {
             operate: "修改",
             control_id: "monitor_points_manage_table",
             fn: "modify",
-            url: "/gardens/monitoringpoints/update"
+            url: "/gardens/monitoringpoints/update",
+            disabled:false
           },
           {
             id: "monitor_points_manage_button_dele",
@@ -4290,7 +4381,8 @@ export default {
             operate: "删除",
             control_id: "monitor_points_manage_table",
             fn: "dele",
-            url: "gardens/monitoringpoints/deletes"
+            url: "gardens/monitoringpoints/deletes",
+            disabled:false
           },
           {
             id: "monitor_points_manage_button_import",
@@ -4300,7 +4392,8 @@ export default {
             fn: "import",
             control_id: "monitor_points_manage_table",
             download_url: "/gardens/monitoringpoints/downCsvmodel",
-            import_url: "/gardens/monitoringpoints/ajaxUpload"
+            import_url: "/gardens/monitoringpoints/ajaxUpload",
+            disabled:false
 
           },
           {
@@ -4310,7 +4403,8 @@ export default {
             operate: "导出excel",
             fn: "export",
             control_id: "monitor_points_manage_table",
-            url: "/gardens/monitoringpoints/exportCsv"
+            url: "/gardens/monitoringpoints/exportCsv",
+            disabled:false
           }
         ],
         table: {
@@ -4435,7 +4529,8 @@ export default {
             icon: "el-icon-search",
             operate: "查询",
             control_id: "soil_temperature_manage_table",
-            fn: "search"
+            fn: "search",
+            disabled:false
           },
           {
             id: "soil_temperature_manage_button_add",
@@ -4444,7 +4539,8 @@ export default {
             operate: "添加",
             control_id: "soil_temperature_manage_table",
             fn: "add",
-            url: "/gardens/temhumpoints/add"
+            url: "/gardens/temhumpoints/add",
+            disabled:false
           },
           {
             id: "soil_temperature_manage_button_modify",
@@ -4453,7 +4549,8 @@ export default {
             operate: "修改",
             control_id: "soil_temperature_manage_table",
             fn: "modify",
-            url: "/gardens/temhumpoints/update"
+            url: "/gardens/temhumpoints/update",
+            disabled:false
           },
           {
             id: "soil_temperature_manage_button_dele",
@@ -4462,7 +4559,8 @@ export default {
             operate: "删除",
             control_id: "soil_temperature_manage_table",
             fn: "dele",
-            url: "/gardens/temhumpoints/deletes"
+            url: "/gardens/temhumpoints/deletes",
+            disabled:false
           },
           {
             id: "soil_temperature_manage_button_import",
@@ -4472,7 +4570,8 @@ export default {
             fn: "import",
             control_id: "soil_temperature_manage_table",
             download_url: "/gardens/temhumpoints/downCsvmodel",
-            import_url: "/gardens/temhumpoints/ajaxUpload"
+            import_url: "/gardens/temhumpoints/ajaxUpload",
+            disabled:false
           },
           {
             id: "soil_temperature_manage_button_export",
@@ -4481,7 +4580,8 @@ export default {
             operate: "导出excel",
             fn: "export",
             control_id: "soil_temperature_manage_table",
-            url: "/gardens/temhumpoints/exportCsv?pointType=S&temperatureOrHumidity=T"
+            url: "/gardens/temhumpoints/exportCsv?pointType=S&temperatureOrHumidity=T",
+            disabled:false
           }
         ],
         table: {
@@ -4630,7 +4730,8 @@ export default {
             icon: "el-icon-search",
             operate: "查询",
             control_id: "soil_humidity_manage_table",
-            fn: "search"
+            fn: "search",
+            disabled:false
           },
           {
             id: "soil_humidity_manage_add",
@@ -4639,7 +4740,8 @@ export default {
             operate: "添加",
             control_id: "soil_humidity_manage_table",
             fn: "add",
-            url: "/gardens/temhumpoints/add"
+            url: "/gardens/temhumpoints/add",
+            disabled:false
           },
           {
             id: "soil_humidity_manage_modify",
@@ -4648,7 +4750,8 @@ export default {
             operate: "修改",
             control_id: "soil_humidity_manage_table",
             fn: "modify",
-            url: "/gardens/temhumpoints/update"
+            url: "/gardens/temhumpoints/update",
+            disabled:false
           },
           {
             id: "soil_humidity_manage_dele",
@@ -4657,7 +4760,8 @@ export default {
             operate: "删除",
             control_id: "soil_humidity_manage_table",
             fn: "dele",
-            url: "/gardens/temhumpoints/deletes"
+            url: "/gardens/temhumpoints/deletes",
+            disabled:false
           },
           {
             id: "soil_humidity_manage_import",
@@ -4667,7 +4771,9 @@ export default {
             fn: "import",
             control_id: "soil_humidity_manage_table",
             download_url: "/gardens/temhumpoints/downCsvmodel",
-            import_url: "/gardens/temhumpoints/ajaxUpload"
+            import_url: "/gardens/temhumpoints/ajaxUpload",
+            disabled:false
+
           },
           {
             id: "soil_humidity_manage_export",
@@ -4676,7 +4782,8 @@ export default {
             operate: "导出excel",
             fn: "export",
             control_id: "soil_humidity_manage_table",
-            url: "/gardens/temhumpoints/exportCsv?pointType=S&temperatureOrHumidity=H"
+            url: "/gardens/temhumpoints/exportCsv?pointType=S&temperatureOrHumidity=H",
+            disabled:false
           }
         ],
         table: {
@@ -4824,7 +4931,8 @@ export default {
             icon: "el-icon-search",
             operate: "查询",
             control_id: "population_manage_table",
-            fn: "search"
+            fn: "search",
+            disabled:false
           },
           {
             id: "population_manage_button_add",
@@ -4833,7 +4941,8 @@ export default {
             operate: "添加",
             control_id: "population_manage_table",
             fn: "add",
-            url: "/gardens/humantraffic/add"
+            url: "/gardens/humantraffic/add",
+            disabled:false
           },
           {
             id: "population_manage_button_modify",
@@ -4842,7 +4951,8 @@ export default {
             operate: "修改",
             control_id: "population_manage_table",
             fn: "modify",
-            url: "/gardens/humantraffic/update"
+            url: "/gardens/humantraffic/update",
+            disabled:false
           },
           {
             id: "population_manage_button_dele",
@@ -4851,7 +4961,8 @@ export default {
             operate: "删除",
             control_id: "population_manage_table",
             fn: "dele",
-            url: "/gardens/humantraffic/deletes"
+            url: "/gardens/humantraffic/deletes",
+            disabled:false
 
           },
           {
@@ -4862,7 +4973,8 @@ export default {
             fn: "import",
             control_id: "population_manage_table",
             download_url: "/gardens/humantraffic/downCsvmodel",
-            import_url: "/gardens/humantraffic/ajaxUpload"
+            import_url: "/gardens/humantraffic/ajaxUpload",
+            disabled:false
           },
           {
             id: "population_manage_button_export",
@@ -4871,7 +4983,8 @@ export default {
             operate: "导出excel",
             fn: "export",
             control_id: "population_manage_table",
-            url: "/gardens/humantraffic/exportCsv"
+            url: "/gardens/humantraffic/exportCsv",
+            disabled:false
           }
         ],
         table: {
@@ -5019,7 +5132,8 @@ export default {
             icon: "el-icon-search",
             operate: "查询",
             control_id: "air_temperature_manage_table",
-            fn: "search"
+            fn: "search",
+            disabled:false
           },
           {
             id: "air_temperature_manage_add",
@@ -5028,7 +5142,8 @@ export default {
             operate: "添加",
             control_id: "air_temperature_manage_table",
             fn: "add",
-            url: "/gardens/temhumpoints/add"
+            url: "/gardens/temhumpoints/add",
+            disabled:false
           },
           {
             id: "air_temperature_manage_modify",
@@ -5037,7 +5152,8 @@ export default {
             operate: "修改",
             control_id: "air_temperature_manage_table",
             fn: "modify",
-            url: "/gardens/temhumpoints/update"
+            url: "/gardens/temhumpoints/update",
+            disabled:false
           },
           {
             id: "air_temperature_manage_dele",
@@ -5046,7 +5162,8 @@ export default {
             operate: "删除",
             control_id: "air_temperature_manage_table",
             fn: "dele",
-            url: "/gardens/temhumpoints/deletes"
+            url: "/gardens/temhumpoints/deletes",
+            disabled:false
           },
           {
             id: "air_temperature_manage_import",
@@ -5056,7 +5173,9 @@ export default {
             fn: "import",
             control_id: "air_temperature_manage_table",
             download_url: "/gardens/temhumpoints/downCsvmodel",
-            import_url: "/gardens/temhumpoints/ajaxUpload"
+            import_url: "/gardens/temhumpoints/ajaxUpload",
+            disabled:false
+
           },
           {
             id: "air_temperature_manage_export",
@@ -5065,7 +5184,8 @@ export default {
             operate: "导出excel",
             fn: "export",
             control_id: "air_temperature_manage_table",
-            url: "/gardens/temhumpoints/exportCsv?pointType=A&temperatureOrHumidity=T"
+            url: "/gardens/temhumpoints/exportCsv?pointType=A&temperatureOrHumidity=T",
+            disabled: false
           }
         ],
         table: {
@@ -5212,7 +5332,8 @@ export default {
             icon: "el-icon-search",
             operate: "查询",
             control_id: "air_humidity_manage_table",
-            fn: "search"
+            fn: "search",
+            disabled:false
           },
           {
             id: "air_humidity_manage_button_add",
@@ -5221,7 +5342,8 @@ export default {
             operate: "添加",
             control_id: "air_humidity_manage_table",
             fn: "add",
-            url: "/gardens/temhumpoints/add"
+            url: "/gardens/temhumpoints/add",
+            disabled:false
           },
           {
             id: "air_humidity_manage_button_modify",
@@ -5230,7 +5352,8 @@ export default {
             operate: "修改",
             control_id: "air_humidity_manage_table",
             fn: "modify",
-            url: "/gardens/temhumpoints/update"
+            url: "/gardens/temhumpoints/update",
+            disabled:false
           },
           {
             id: "air_humidity_manage_button_dele",
@@ -5239,7 +5362,8 @@ export default {
             operate: "删除",
             control_id: "air_humidity_manage_table",
             fn: "dele",
-            url: "/gardens/temhumpoints/deletes"
+            url: "/gardens/temhumpoints/deletes",
+            disabled:false
           },
           {
             id: "air_humidity_manage_button_import",
@@ -5249,7 +5373,8 @@ export default {
             fn: "import",
             control_id: "air_humidity_manage_table",
             download_url: "/gardens/temhumpoints/downCsvmodel",
-            import_url: "/gardens/temhumpoints/ajaxUpload"
+            import_url: "/gardens/temhumpoints/ajaxUpload",
+            disabled:false
           },
           {
             id: "air_humidity_manage_button_export",
@@ -5258,7 +5383,8 @@ export default {
             operate: "导出excel",
             fn: "export",
             control_id: "air_humidity_manage_table",
-            url: "/gardens/temhumpoints/exportCsv?pointType=A&temperatureOrHumidity=H"
+            url: "/gardens/temhumpoints/exportCsv?pointType=A&temperatureOrHumidity=H",
+            disabled:false
           }
         ],
         table: {
@@ -5406,7 +5532,8 @@ export default {
             icon: "el-icon-search",
             operate: "查询",
             control_id: "fire_alert_manage_table",
-            fn: "search"
+            fn: "search",
+            disabled:false
           },
           {
             id: "fire_alert_manage_button_add",
@@ -5415,7 +5542,8 @@ export default {
             operate: "添加",
             control_id: "fire_alert_manage_table",
             fn: "add",
-            url: "/gardens/firealarm/add"
+            url: "/gardens/firealarm/add",
+            disabled:false
           },
           {
             id: "fire_alert_manage_button_modify",
@@ -5424,7 +5552,8 @@ export default {
             operate: "修改",
             control_id: "fire_alert_manage_table",
             fn: "modify",
-            url: "/gardens/firealarm/update"
+            url: "/gardens/firealarm/update",
+            disabled:false
           },
           {
             id: "fire_alert_manage_button_dele",
@@ -5433,7 +5562,8 @@ export default {
             operate: "删除",
             control_id: "fire_alert_manage_table",
             fn: "dele",
-            url: "/gardens/firealarm/deletes"
+            url: "/gardens/firealarm/deletes",
+            disabled:false
           },
           {
             id: "fire_alert_manage_button_import",
@@ -5443,7 +5573,8 @@ export default {
             control_id: "fire_alert_manage_table",
             fn: "import",
             download_url: "/gardens/firealarm/downCsvmodel",
-            import_url: "/gardens/firealarm/ajaxUpload"
+            import_url: "/gardens/firealarm/ajaxUpload",
+            disabled:false
           },
           {
             id: "fire_alert_manage_button_export",
@@ -5452,7 +5583,8 @@ export default {
             control_id: "fire_alert_manage_table",
             operate: "导出excel",
             fn: "export",
-            url: "/gardens/firealarm/exportCsv"
+            url: "/gardens/firealarm/exportCsv",
+            disabled:false
           }
         ],
         table: {
@@ -5913,7 +6045,8 @@ export default {
             icon: "el-icon-search",
             operate: "查询",
             control_id: "fire_info_table",
-            fn: "search"
+            fn: "search",
+            disabled:false
           },
           {
             id: "fire_info_button_export",
@@ -5922,7 +6055,8 @@ export default {
             operate: "导出excel",
             control_id: "fire_info_table",
             fn: "export",
-            url: "/gardens/firealarminfo/exportCsv"
+            url: "/gardens/firealarminfo/exportCsv",
+            disabled:false
           }
         ],
         table: {
@@ -6078,7 +6212,8 @@ export default {
                 icon: "el-icon-search",
                 operate: "查询",
                 control_id: "fire_info_table",
-                fn: "search"
+                fn: "search",
+                disabled:false
               }
             ],
             table: {

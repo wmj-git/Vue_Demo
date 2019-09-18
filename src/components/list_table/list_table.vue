@@ -3,6 +3,7 @@
     <em_dialogs ref="dialog" :label="label_input" @eventFromDialog="recieveObj"></em_dialogs>
     <el-dialog title="导入" :visible.sync="dialogFormVisible" :modal-append-to-body="false" v-dialogDrag="true">
       <el-upload
+        v-if="dialogFormVisible"
         class="upload-demo"
         ref="upload"
         :action="action"
@@ -12,7 +13,7 @@
         :limit="1"
         :headers="headers"
         name="upfile"
-        accept=".xls,.docx,.xlsx,.csv "
+        accept=".csv "
         :on-error="uploadFileErro"
         :on-success="uploadFileSuccess"
         :auto-upload="false">
