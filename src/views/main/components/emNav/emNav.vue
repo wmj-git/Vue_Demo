@@ -81,8 +81,8 @@
         });
 
         if (_show) {
-          this.bus.$emit(this.control_id, {
-            id:"menu",
+          this.bus.$emit(_this.control_id, {
+            id:"winMenu",
             title: _title,
             list: _list,
             width: _width
@@ -95,14 +95,13 @@
           });
           setTimeout(function () {
             _this.bus.$emit(_this.control_id, {
-              id:"menu",
+              id:"winMenu",
               title: _title,
               list: _list,
               width: _width
             });
           }, 200);
         }
-        // console.log(_show);
       }
     },
     created() {

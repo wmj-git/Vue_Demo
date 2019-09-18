@@ -52,6 +52,7 @@
       this.id = this.data.system_id;
       // 非父子信息通信
       this.bus.$on(this.id, function (obj) {
+        console.log("menu");
         console.log(obj);
         this.group = obj.list;
         $("#" + obj.id).window("setTitle", obj.title);
