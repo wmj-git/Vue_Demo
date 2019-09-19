@@ -7,8 +7,8 @@
       line-height: 24px;
       border-color: darken($em-border-color-base,20%);
       &[readonly]{
-        background-color: darken($em-bg-color-base,25%);
-        color: black;
+        background-color: darken($em-highlight-bg2-color-base,20%);
+        color: darken($em-text-color-base,30%);
       }
       &::-webkit-input-placeholder {
         color: darken($em-text-color-base,40%); //input
