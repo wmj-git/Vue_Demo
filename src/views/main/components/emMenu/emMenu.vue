@@ -22,7 +22,7 @@
     name: "emMenu",
     data() {
       return {
-        id: "menu",
+        id: "",
         group: [],
         activeIndex: '',
         isCollapse: false

@@ -131,8 +131,9 @@ export function systemUI({commit, state}) {
       response.data.forEach(function (_obj) {
 
         let _description = _obj.description;
-
-        if (_description.substr(0, 1)==="{" && _description.substr(-1)==="}") {
+        _description  = _description .replace(/\\n/g,'');
+        _description = _description.replace(/\s*/g, "");
+        if (_description.substr(0, 1) === "{" && _description.substr(-1) === "}") {
           console.log(_obj.resourceName);
           _description = JSON.parse(_description);
           for (let k in _description) {

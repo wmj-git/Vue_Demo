@@ -35,14 +35,14 @@
     },
     methods: {
       init() {
-        this.id=this.data.system_id;
-        this.control_id=this.data.control_id;
-        this.activeIndex=this.data.activeIndex;
+        this.id = this.data.system_id;
+        this.control_id = this.data.control_id;
+        this.activeIndex = this.data.activeIndex;
         this.nav = this.data;
-        if(this.data.children){
-          let _navItem=[];
+        if (this.data.children) {
+          let _navItem = [];
           this.data.children.forEach(function (_obj) {
-            if(_obj.system_type==="navItem"){
+            if (_obj.system_type === "navItem") {
               _navItem.push(_obj);
             }
           });
@@ -58,31 +58,39 @@
         });
       },
       handleSelect(key, keyPath) {
+
+        this.$store.commit('user/win_open', {
+          win_obj: {
+            system_id: key
+          }
+        });
+
         console.log(this.activeIndex);
         console.log(key);
         let _this = this;
-        let _controlId = this.control_id;
+        let _controlId = null;
         let _title = null;
         let _list = null;
         let _width = null;
         this.navItem.forEach(function (obj) {
 
           if (obj.system_id === key) {
+            _controlId = obj.control_id;
             _title = obj.title;
             _list = obj.children;
             _width = obj.width;
           }
         });
-        let _show = null;
+        let _show = true;
         this.$store.state.user.win.forEach(function (el) {
-          if (el.system_id === _controlId) {
-            _show = el.show;
+          if (el.system_id === "winMenu") {
+            _show = false;
           }
         });
 
         if (_show) {
-          this.bus.$emit(_this.control_id, {
-            id:"winMenu",
+          this.bus.$emit(_controlId, {
+            id: "winMenu",
             title: _title,
             list: _list,
             width: _width
@@ -90,12 +98,13 @@
         } else {
           this.$store.commit('user/win_open', {
             win_obj: {
-              system_id: _controlId
+              system_id: "winMenu"
             }
           });
           setTimeout(function () {
-            _this.bus.$emit(_this.control_id, {
-              id:"winMenu",
+
+            _this.bus.$emit(_controlId, {
+              id: "winMenu",
               title: _title,
               list: _list,
               width: _width
