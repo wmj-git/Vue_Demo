@@ -1,4 +1,5 @@
 @import "variable";
+
 .#{em-btn-operation} {
   border-color: darken($em-highlight-border-color-base, 20%);
   background: $btn-linear-base;
@@ -30,13 +31,13 @@
 @-webkit-keyframes bubbles {
   100% {
     background-position: 92% -220%, 31% -185%, 24% 6%, 16% -328%, 39% -366%, 110% -375%, 5% -60%, 59% -365%, 41% -363%, 82% -8%, 37% -224%;
-    box-shadow: inset 0 -6.5em 0 lighten($em-highlight-bg-color-base,70%);
+    box-shadow: inset 0 -6.5em 0 lighten($em-highlight-bg-color-base, 70%);
   }
 }
 
 /*按钮结合图标悬停效果*/
-.#{em-btn-icon-hover},.#{em-btn-icon-hover-v1},.#{em-btn-icon-hover-v2},.#{em-btn-icon-hover-v3}{
-  background: linear-gradient(nth($menu-background,1),nth($menu-background,2));
+.#{em-btn-icon-hover}, .#{em-btn-icon-hover-v1}, .#{em-btn-icon-hover-v2}, .#{em-btn-icon-hover-v3} {
+  background: linear-gradient(nth($menu-background, 1), nth($menu-background, 2));
   border-color: $em-highlight-border-color-base;
   -webkit-transition: all 0.2s linear 0s;
   transition: all 0.2s linear 0s;
@@ -56,7 +57,7 @@
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    font-family:element-icons!important;
+    font-family: element-icons !important;
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
@@ -74,6 +75,7 @@
     transition: all 0.2s linear 0s;
     text-align: center;
   }
+
   &:hover {
     text-indent: -20px;
   }
@@ -83,18 +85,23 @@
     text-indent: 4px;
   }
 }
-.#{em-btn-icon-hover}:before{
+
+.#{em-btn-icon-hover}:before {
   content: "\e60e";
 }
-.#{em-btn-icon-hover-v1}:before{
+
+.#{em-btn-icon-hover-v1}:before {
   content: "\e654";
 }
-.#{em-btn-icon-hover-v2}:before{
+
+.#{em-btn-icon-hover-v2}:before {
   content: "\e633";
 }
-.#{em-btn-icon-hover-v3}:before{
+
+.#{em-btn-icon-hover-v3}:before {
   content: "\e605";
 }
+
 /*按钮边框滑动效果*/
 .#{em-btn-border-animation} {
   color: $em-text-color-base;
@@ -138,7 +145,7 @@
       background: rgba(225, 51, 45, 0);
       font-weight: 900;
       letter-spacing: 1px;
-      color: darken($em-text-color-base,15%);
+      color: darken($em-text-color-base, 15%);
       transition: all 0.15ms linear 0s;
     }
 
@@ -391,7 +398,7 @@
 .em-btn-uniform-gradient {
   background-color: transparent;
   border: 1px solid $em-border-color-base;
-  color: darken($em-text-color-base,15%);
+  color: darken($em-text-color-base, 15%);
 
   &:before {
     width: 0;
@@ -464,24 +471,27 @@
   -webkit-transition: background .2s ease-in-out;
   -moz-transition: background .2s ease-in-out;
   transition: background .2s ease-in-out;
-  color: hsla(0, 0%, 100%,0.8) !important;
+  color: hsla(0, 0%, 100%, 0.8) !important;
   background-color: hsl(0, 0%, 75%);
+
   &:hover {
-    background-color: darken($em-text-highlight-base,50%);
+    background-color: darken($em-text-highlight-base, 50%);
   }
+
   &.#{em-btn-shadow2} {
-    color:darken($em-text-highlight-base,50%) !important;
+    color: darken($em-text-highlight-base, 50%) !important;
     background-color: $em-highlight-bg-color-base;
     box-shadow: inset rgba(255, 254, 255, 0.6) 0 0.3em .3em,
     inset rgba(0, 0, 0, 0.15) 0 -0.1em .3em, /* inner shadow */
-    darken($em-text-highlight-base,30%) 0 .1em 3px, darken($em-text-highlight-base,50%) 0 .3em 1px,
+    darken($em-text-highlight-base, 30%) 0 .1em 3px, darken($em-text-highlight-base, 50%) 0 .3em 1px,
       /* color border */
     rgba(0, 0, 0, 0.2) 0 .5em 5px;
     border-color: transparent;
     text-shadow: 0 0 4px #b3b7be;
+
     &:hover {
-      background-color: lighten($em-text-highlight-base,50%);
-      color: darken($em-text-color-base,100%);
+      background-color: lighten($em-text-highlight-base, 50%);
+      color: darken($em-text-color-base, 100%);
     }
   }
 }
@@ -504,8 +514,8 @@
 
 /*btn-border top and bottom*/
 .#{em-btn-border} {
-  background: linear-gradient($em-highlight-bg-color-base,$em-highlight-bg2-color-base);
-  color: darken($em-text-color-base,2%);
+  background: linear-gradient($em-highlight-bg-color-base, $em-highlight-bg2-color-base);
+  color: darken($em-text-color-base, 2%);
   //width: 70/$r+rem;
   border: none;
   position: relative;
@@ -549,23 +559,32 @@
 .el-button.#{em-btn-simple} {
   font-size: 14/$r+rem;
   margin-left: 10/$r+rem;
-  background:-ms-linear-gradient(#869190 50%,#0A0F0B 50%);//IE
-  background: -webkit-gradient(linear, 0 0,0 100%, from(#afbdc0), to(#0a0809), color-stop(0.5, #6d7673), color-stop(0.5, #0a0f0b));
+  background: -ms-linear-gradient(#869190 50%, #0A0F0B 50%); //IE
+  background: -webkit-gradient(linear, 0 0, 0 100%, from(#afbdc0), to(#0a0809), color-stop(0.5, #6d7673), color-stop(0.5, #0a0f0b));
   border: none;
   border-radius: 20px;
-  -moz-box-shadow: 0 0 7px rgba(255, 255,255, 0.8);
-  -webkit-box-shadow: 0 0 7px rgba(255, 255,255, 0.5);
-  box-shadow: 0 0 7px rgba(255, 255,255,0.5);
-  color: rgba(255,255,255,0.8);
+  -moz-box-shadow: 0 0 7px rgba(255, 255, 255, 0.8);
+  -webkit-box-shadow: 0 0 7px rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 7px rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.8);
   //padding: 5/$r+rem 10/$r+rem;
   -webkit-transition: all 0.15s ease-out;
   transition: all 0.15s ease-out;
-  &:active,&:hover,&:focus{
-    background:-ms-linear-gradient(#869190 50%,#0A0F0B 50%);//IE
+
+  &:active, &:hover, &:focus {
+    background: -ms-linear-gradient(#869190 50%, #0A0F0B 50%); //IE
     background: -webkit-gradient(linear, left bottom, left top, from(#0a0809), to(#afbdc0), color-stop(0.5, #0a0f0b), color-stop(0.5, #6d7673));
-    color: lighten($em-text-highlight-base,15%);
+    color: lighten($em-text-highlight-base, 15%);
     box-shadow: 0 0 7/$r+rem $em-highlight-border-color-base;
     outline: none;
+  }
+  &[disabled] {
+    color: darken($em-text-color-base,50%);
+    background: -ms-linear-gradient(rgba(134, 145, 144, 0.51) 50%, rgba(10, 15, 11, 0.51) 50%); //IE
+    background: -webkit-gradient(linear, 0 0, 0 100%, from(rgba(175, 189, 192, 0.51)), to(rgba(10, 8, 9, 0.5)), color-stop(0.5, rgba(109, 118, 115, 0.51)), color-stop(0.5, rgba(10, 15, 11, 0.51)));
+    &:active, &:hover, &:focus {
+      box-shadow: unset;
+    }
   }
 }
 
