@@ -1,4 +1,7 @@
-.el-message--warning,.el-message--success,.el-message--error{
+.el-message--warning,.el-message--success,.el-message--error,.el-message--info{
   background: $em-message-bg;
   border-color: $em-message-borderColor;
+}
+.el-message--info .el-message__content{
+  color: darken($em-text-color-base,20%) !important;
 }

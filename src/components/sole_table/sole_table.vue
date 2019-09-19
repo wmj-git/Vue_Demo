@@ -32,8 +32,8 @@
       <component :is="commonDialogComponent" :props_data="dialogRow" @closeCommonDialog="closeCommonDialog"
                  ref="dialogComponent" v-if="dialogCommonVisible"></component>
       <div slot="footer" class="dialog-footer" v-if="commonDialogComponent=='permission_assignments'">
-        <el-button @click="dialogCommonVisible = false" class="em-btn_shadow">取 消</el-button>
-        <el-button type="primary" @click="permissionAssignmentsFn" class="em-btn_shadow">确 定</el-button>
+        <el-button @click="dialogCommonVisible = false">取 消</el-button>
+        <el-button type="primary" @click="permissionAssignmentsFn">确 定</el-button>
       </div>
     </el-dialog>
     <div class="table digital_table">
