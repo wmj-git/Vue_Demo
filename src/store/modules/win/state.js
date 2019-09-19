@@ -2312,7 +2312,25 @@ export default {
                 width: "100",
                 type: "em_input",
                 params: "humanTrafficValue",
-                placeholder: "humanTrafficValue",
+                placeholder: "人流量信息",
+                alter_show: true
+              },
+              {
+                name: "入量统计",
+                prop: "inCount",
+                width: "100",
+                type: "em_input",
+                params: "humanTrafficValue",
+                placeholder: "入量统计",
+                alter_show: true
+              },
+              {
+                name: "出量统计",
+                prop: "outCount",
+                width: "100",
+                type: "em_input",
+                params: "outCount",
+                placeholder: "出量统计",
                 alter_show: true
               },
               {
@@ -5004,12 +5022,56 @@ export default {
               ratio: 24
             },
             {
-              name: "名称",
+              name: "监测点名称",
               prop: "monitorName",
               width: "100",
               type: "em_input",
-              placeholder: "名称",
+              placeholder: "监测点名称",
               params: "monitorName",
+              add_show: true,
+              alter_show: true,
+              ratio: 24
+            },
+            {
+              name: "设备名称",
+              prop: "machineName",
+              width: "100",
+              type: "em_input",
+              placeholder: "设备名称",
+              params: "machineName",
+              add_show: true,
+              alter_show: true,
+              ratio: 24
+            },
+            {
+              name: "景区名称",
+              prop: "scenicName",
+              width: "160",
+              type: "em_input",
+              placeholder: "景区名称",
+              params: "scenicName",
+              add_show: true,
+              alter_show: true,
+              ratio: 24
+            },
+            {
+              name: "出入口名称",
+              prop: "exitName",
+              width: "100",
+              type: "em_input",
+              placeholder: "出入口名称",
+              params: "exitName",
+              add_show: true,
+              alter_show: true,
+              ratio: 24
+            },
+            {
+              name: "通道名称",
+              prop: "channelName",
+              width: "100",
+              type: "em_input",
+              placeholder: "通道名称",
+              params: "channelName",
               add_show: true,
               alter_show: true,
               ratio: 24
