@@ -450,52 +450,6 @@
   transition: 0.5s ease all;
 }
 
-
-/*阴影按钮*/
-.#{em-btn-shadow} {
-  font: 14px/1em 'Droid Sans', sans-serif;
-  //font-weight: bold;
-  border: none;
-  text-shadow: rgba(255, 255, 255, .5) 0 1px 0;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  user-select: none;
-  padding: .5em .6em .4em .6em;
-  display: inline-block;
-  position: relative;
-  -webkit-border-radius: 8px;
-  -moz-border-radius: 8px;
-  border-radius: 5px;
-  border-top: 1px solid rgba(255, 255, 255, 0.8);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  -webkit-transition: background .2s ease-in-out;
-  -moz-transition: background .2s ease-in-out;
-  transition: background .2s ease-in-out;
-  color: hsla(0, 0%, 100%, 0.8) !important;
-  background-color: hsl(0, 0%, 75%);
-
-  &:hover {
-    background-color: darken($em-text-highlight-base, 50%);
-  }
-
-  &.#{em-btn-shadow2} {
-    color: darken($em-text-highlight-base, 50%) !important;
-    background-color: $em-highlight-bg-color-base;
-    box-shadow: inset rgba(255, 254, 255, 0.6) 0 0.3em .3em,
-    inset rgba(0, 0, 0, 0.15) 0 -0.1em .3em, /* inner shadow */
-    darken($em-text-highlight-base, 30%) 0 .1em 3px, darken($em-text-highlight-base, 50%) 0 .3em 1px,
-      /* color border */
-    rgba(0, 0, 0, 0.2) 0 .5em 5px;
-    border-color: transparent;
-    text-shadow: 0 0 4px #b3b7be;
-
-    &:hover {
-      background-color: lighten($em-text-highlight-base, 50%);
-      color: darken($em-text-color-base, 100%);
-    }
-  }
-}
-
 /*box-shadow*/
 .em-btn-offset {
   --color-offset: rgba(21, 189, 244, 0.8);

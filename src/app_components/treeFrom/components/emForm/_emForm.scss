@@ -16,8 +16,8 @@
   }
 
   .el-input.is-disabled .el-input__inner {
-    color: darken($em-text-color-base, 15%);
-    background-color: darken($em-text-color-base, 50%);
+    background-color: darken($em-highlight-bg2-color-base,20%);
+    color: darken($em-text-color-base,30%);
     border-color: darken($em-border-color-base,45%);
   }
 }

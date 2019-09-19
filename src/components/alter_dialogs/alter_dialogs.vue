@@ -13,8 +13,8 @@
         </el-form>
       </el-row>
       <div slot="footer" class="dialog-footer">
-        <el-button @click="cancel" class="em-btn_shadow">取 消</el-button>
-        <el-button type="primary" @click="confirm" class="em-btn_shadow">确 定</el-button>
+        <el-button @click="cancel">取 消</el-button>
+        <el-button type="primary" @click="confirm">确 定</el-button>
       </div>
     </el-dialog>
   </div>
