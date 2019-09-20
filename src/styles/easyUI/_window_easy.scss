@@ -84,6 +84,7 @@
 .panel.window.#{em-menu-window}.panel-htop {
   background: $em-background-table-base;
   border: 0;
+  width: 180px !important;
   box-shadow: 6px 1px 17px 0px darken($em-bg-color-base, 60%);
   -webkit-transform:rotateY(100deg); /* Safari 和 Chrome */
   -webkit-transform-origin: left;
