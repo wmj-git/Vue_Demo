@@ -13,11 +13,11 @@
     <!--报警器-->
     <em-warn></em-warn>
 
-    {{wins}}
+    <!--{{wins}}-->
     <!--功能窗口-->
-    <template v-for="win in wins" v-if="win.show=='true'">
-      <win :id="win.system_id" :data="win">
-        <template v-if="win.winLayout=='1'">
+    <template v-for="win in wins" v-if="win.show">
+      <template v-if="win.winLayout=='1'">
+        <win :id="win.system_id" :data="win">
           <el-row :gutter="8" v-if="win.children">
             <template v-for="component in win.children">
               <el-col :span="component.winSpan">
@@ -25,8 +25,8 @@
               </el-col>
             </template>
           </el-row>
-        </template>
-      </win>
+        </win>
+      </template>
     </template>
     <!--对话框-->
     <!--<em_dialogs></em_dialogs>-->
@@ -128,9 +128,9 @@
         return ui_data;
       },
       wins: function () {
-        alert("user/win");
+        // alert("user/win");
         console.log(this.$store.getters["user/win"]);
-        let _data=this.$store.getters["user/win"];
+        let _data = this.$store.getters["user/win"];
         return _data;
       },
       dialogGroup: function () {
@@ -168,7 +168,7 @@
       }
     },
     created() {
-      let _this=this;
+      let _this = this;
 
       //刷新token
       this.refreshTokenFn();

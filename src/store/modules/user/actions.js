@@ -136,6 +136,13 @@ export function systemUI({commit, state}) {
         if (_description.substr(0, 1) === "{" && _description.substr(-1) === "}") {
           console.log(_obj.resourceName);
           _description = JSON.parse(_description);
+
+          if(_obj.isMeum){
+            _description.title=_obj.resourceName;
+          }else {
+            _description.title="";
+          }
+
           for (let k in _description) {
             _obj[k] = _description[k];
           }

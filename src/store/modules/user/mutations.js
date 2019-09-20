@@ -27,28 +27,34 @@ export default {
     state.win = win;
   },
   [WIN_OPEN](state, {win_obj}) {
-    state.win.push({"system_id": win_obj.system_id, "show": "false"});
-    /*  for(let i=0;i<state.win.length;i++){
-        if (state.win[i].system_id === win_obj.system_id && state.win[i].show === "false") {
-          state.win[i].show = "true";
-        } else if (state.win[i].system_id === win_obj.system_id && state.win[i].show === "true") {
-          state.win[i].show = "false";
-        }
-      }*/
+    // state.win.push({"system_id": win_obj.system_id, "show": false});
+    let _win = state.win;
+    state.win = [];
+    for (let i = 0; i < _win.length; i++) {
+      if (_win[i].system_id === win_obj.system_id && _win[i].show === false) {
+        _win[i].show = true;
+      } else if (_win[i].system_id === win_obj.system_id && _win[i].show === true) {
+        _win[i].show = false;
+      }
+      state.win.push(_win[i]);
+    }
   },
   [WIN_CLOSE](state, {win_id}) {
 
     let _win = state.win;
+    state.win = [];
     if (win_id === "all") {
-      for (let i = 0; i < state.win.length; i++) {
-        state.win.splice(i, 1);
+      for (let i = 0; i < _win.length; i++) {
+        _win[i].show = false;
+        state.win.push(_win[i]);
       }
     } else {
-      // state.win= [{"system_id": win_id, "show": "true"}];
       for (let i = 0; i < _win.length; i++) {
         if (_win[i].system_id === win_id) {
-          state.win.splice(i, 1);
+          // state.win.splice(i, 1);
+          _win[i].show = false;
         }
+        state.win.push(_win[i]);
       }
     }
   },

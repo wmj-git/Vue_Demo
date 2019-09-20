@@ -25,6 +25,7 @@
         id: "",
         control_id: "",//数据传输对象
         activeIndex: '',
+        menu_id:"",
         nav: {},
         navItem: []
       };
@@ -38,6 +39,7 @@
         this.id = this.data.system_id;
         this.control_id = this.data.control_id;
         this.activeIndex = this.data.activeIndex;
+        this.menu_id = this.data.menu_id;
         this.nav = this.data;
         if (this.data.children) {
           let _navItem = [];
@@ -58,13 +60,6 @@
         });
       },
       handleSelect(key, keyPath) {
-
-        this.$store.commit('user/win_open', {
-          win_obj: {
-            system_id: key
-          }
-        });
-
         console.log(this.activeIndex);
         console.log(key);
         let _this = this;
@@ -73,7 +68,6 @@
         let _list = null;
         let _width = null;
         this.navItem.forEach(function (obj) {
-
           if (obj.system_id === key) {
             _controlId = obj.control_id;
             _title = obj.title;
@@ -81,16 +75,16 @@
             _width = obj.width;
           }
         });
-        let _show = true;
+        let _show = false;
         this.$store.state.user.win.forEach(function (el) {
-          if (el.system_id === "winMenu") {
-            _show = false;
+          if (el.system_id === _this.menu_id) {
+            _show = el.show;
           }
         });
 
         if (_show) {
           this.bus.$emit(_controlId, {
-            id: "winMenu",
+            id: _this.menu_id,
             title: _title,
             list: _list,
             width: _width
@@ -98,13 +92,12 @@
         } else {
           this.$store.commit('user/win_open', {
             win_obj: {
-              system_id: "winMenu"
+              system_id: _this.menu_id
             }
           });
           setTimeout(function () {
-
             _this.bus.$emit(_controlId, {
-              id: "winMenu",
+              id: _this.menu_id,
               title: _title,
               list: _list,
               width: _width

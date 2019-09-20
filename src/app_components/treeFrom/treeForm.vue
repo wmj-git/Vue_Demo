@@ -108,13 +108,13 @@
         let _this = this;
         const newChild = {
           "dataStatus": 0,
-          "description": "null",
+          "description": "",
           "id": 0,
           "parentId": 0,
-          "resourceCode": "null",
+          "resourceCode": "",
           "resourceName": "新建权限",
-          "resourceType": "null",
-          "resourceUrl": "null",
+          "resourceType": "",
+          "resourceUrl": "",
           "isMeum": false,
           "weight":200
         };
@@ -149,10 +149,10 @@
         });
       },
       handleDragEnd(draggingNode, dropNode, dropType, ev) {
-        console.log(draggingNode);
+      /*  console.log(draggingNode);
         console.log(dropNode);
         console.log(dropType);
-        console.log('tree drag end: ', dropNode && dropNode.label, dropType);
+        console.log('tree drag end: ', dropNode && dropNode.label, dropType);*/
         if(dropType==="inner"){
           draggingNode.data.parentId=dropNode.data.id;
         }else{
