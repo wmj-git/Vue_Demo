@@ -5,7 +5,7 @@ export const db_buttonGroup = [
     icon: "icon-real-time-monitoring",
     show: false,
     title: "监测数据",
-    width: 180,
+    width: 230,
     list: [
       {
         "icon": "el-icon-real-time-monitoring",
@@ -101,7 +101,7 @@ export const db_buttonGroup = [
     control_id: "",
     show: false,
     title: "绿化养护",
-    width: 180,
+    width: 230,
     list: [
       {
         "id": "nav_road_address",
@@ -208,7 +208,7 @@ export const db_buttonGroup = [
     show: false,
     control_id: "",
     title: "查询统计",
-    width: 180,
+    width: 230,
     list: [
       {
         "icon": "el-icon-tree-analysis",
@@ -266,7 +266,7 @@ export const db_buttonGroup = [
     control_id: "",
     show: false,
     title: "基础数据",
-    width: 180,
+    width: 230,
     list: [
       {
         "icon": "el-icon-personnel-manage",
@@ -375,7 +375,7 @@ export const db_buttonGroup = [
     control_id: "",
     show: false,
     title: "系统管理",
-    width: 180,
+    width: 230,
     list: [
       {
         "icon": "el-icon-account-manage",
