@@ -2,14 +2,7 @@ import request from '@/utils/request';
 
 
 export const systemData = [ //默认数据模型
-  {
-    "system_id": "nav",
-    "system_type": "nav",
-    "title": "",
-    "top": "",
-    "left": "",
-    "show": true,
-    "resizable": false,
+  {"system_id": "nav", "system_type": "nav", "title": "", "top": "", "left": "", "show": true, "resizable": false,
     "class": "em-nav-window",
     "control_type": "scene",
     "control_id": "menu",
