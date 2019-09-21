@@ -26,12 +26,22 @@
           this.class = this.data.class;
         }
         let _this = this;
+        let _left = "";
+        let _leftValue = _this.data.left.split("-");
+        if (_leftValue[0] === "L") {
+          _left = _leftValue[1];
+        } else if (_leftValue[0] === "R") {
+          _left = "calc(100% - " + _leftValue[1] + ")";
+        }else if(_leftValue[0] === "M"){
+          _left = " calc((100% - "+_leftValue[1]+")/2)";
+
+        }
         $("#" + _this.id).window({
           title: _this.data.title,
           width: _this.data.width ? _this.data.width : "auto",
           height: _this.data.height ? _this.data.height : "auto",
           top: _this.data.top ? _this.data.top : "",
-          left: _this.data.left ? _this.data.left : "",
+          left: _left,
           cls: _this.class,
           collapsible: true,
           minimizable: false,
@@ -71,4 +81,7 @@
 <style lang="scss" scoped>
   @import "win";
 
+  .body {
+    overflow-y: auto;
+  }
 </style>

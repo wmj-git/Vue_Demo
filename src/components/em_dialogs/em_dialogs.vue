@@ -72,8 +72,8 @@
              form: {
              },
              formLabelWidth: '100px',
-             alter_obj:"",           //表格单选行穿过来的对象
-             count_program:[],       //表格多选行穿过来的数组
+             alter_obj:"",           //表格单选行传过来的对象
+             count_program:[],       //表格多选行传过来的数组
              fn:"",
              labels:[{name:"单位:",optionUrl:"/gardens/ent/queryAll"}, {name:"道路:",optionUrl:"/gardens/road/queryAll"}],
              value1: [],
@@ -85,16 +85,22 @@
 
         },
       created(){
-          this.bus.$off("alter");
           this.bus.$on("alter",res=>{
-             this.alter_obj=res;         //将要修改的对象从sole_table传到此组件的alter_obj
-
+             this.alter_obj=res;
+             console.log(this.alter_obj);
+             //将要修改的对象从sole_table传到此组件的alter_obj
           });
-          this.bus.$off("count");
+
+
           this.bus.$on("count",res=>{
             this.count_program=res;
-        });
+          });
 
+
+      },
+      beforeDestroy(){
+          this.bus.$off("alter");
+          this.bus.$off("count");
       },
       methods:{
           showdialog(obj){
@@ -127,7 +133,6 @@
                   this.dialogFormVisible = true;
                   this.label.forEach((val)=>{
                     this.form[val.params]=this.alter_obj[val.params];
-                    console.log(val);
                   });
                   setTimeout(() => {
                     console.log(this.$refs.form_data);
@@ -197,7 +202,6 @@
                  };
                  this.groups=res.data.groups;
                  this.groups.forEach(res=>{
-                     console.log(res);
                      res.arr=[];
                    for( var i in res.info){
                      res.arr.push({name:i,value:res.info[i]})

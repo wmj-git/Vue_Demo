@@ -30,7 +30,6 @@ export default {
           state.win[i].show = false;
         }
       }
-
     }
   },
   [DIALOG_OPEN] (state, { obj }) {

@@ -12,7 +12,7 @@
         :limit="1"
         :headers="headers"
         name="upfile"
-        accept=".xls,.docx,.xlsx,.csv "
+        accept=".csv "
         :on-error="uploadFileErro"
         :on-success="uploadFileSuccess"
         :auto-upload="false">
@@ -32,8 +32,8 @@
       <component :is="commonDialogComponent" :props_data="dialogRow" @closeCommonDialog="closeCommonDialog"
                  ref="dialogComponent" v-if="dialogCommonVisible"></component>
       <div slot="footer" class="dialog-footer" v-if="commonDialogComponent=='permission_assignments'">
-        <el-button @click="dialogCommonVisible = false" class="em-btn_shadow">取 消</el-button>
-        <el-button type="primary" @click="permissionAssignmentsFn" class="em-btn_shadow">确 定</el-button>
+        <el-button @click="dialogCommonVisible = false">取 消</el-button>
+        <el-button type="primary" @click="permissionAssignmentsFn">确 定</el-button>
       </div>
     </el-dialog>
     <div class="table digital_table">
@@ -336,8 +336,6 @@
         return (this.currentPage - 1) * this.pageSize + index + 1
       },
       control(obj, row) {
-
-        console.log(row);
         this.dialogRow =row;
 
         this[obj.fn](obj);
@@ -420,10 +418,17 @@
         window.location.href = process.env.BASE_API + this.delever_obj.download_url
       },
       export(obj) {                    //将数据以表格形式导出
-
+        console.log();
         if (this.$refs.child[0].value) {
             let time=this.$refs.child[0].value;
+          if(obj.url.includes("?")){
             window.location.href = process.env.BASE_API + obj.url+"&startTime="+ time[0].getTime()+"&endTime="+time[1].getTime();
+          }
+          else{
+            window.location.href = process.env.BASE_API + obj.url+"?startTime="+ time[0].getTime()+"&endTime="+time[1].getTime();
+
+          }
+
 
         }
         else{

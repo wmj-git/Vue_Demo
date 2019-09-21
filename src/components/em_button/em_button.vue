@@ -1,6 +1,6 @@
 <template>
     <div class="em_button">
-      <el-button :icon="operation.icon" @click="onclick(operation)" class="em-btn-simple">{{operation.operate}}</el-button>
+      <el-button :icon="operation.icon" @click="onclick(operation)" class="em-btn-simple" :disabled="operation.disabled">{{operation.operate}}</el-button>
     </div>
 </template>
 

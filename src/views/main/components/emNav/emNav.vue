@@ -1,8 +1,8 @@
 <template>
   <div class="em-nav">
-    <win :id="nav.id" :data="nav">
+    <win :id="id" :data="nav">
       <el-menu
-        :default-active="nav.activeIndex"
+        :default-active="activeIndex"
         class="el-menu-demo em-nav-menu"
         mode="horizontal"
         @select="handleSelect"
@@ -25,6 +25,7 @@
         id: "",
         control_id: "",//数据传输对象
         activeIndex: '',
+        menu_id:"",
         nav: {},
         navItem: []
       };
@@ -35,14 +36,15 @@
     },
     methods: {
       init() {
-        this.id=this.data.system_id;
-        this.control_id=this.data.control_id;
-        this.activeIndex=this.data.activeIndex;
+        this.id = this.data.system_id;
+        this.control_id = this.data.control_id;
+        this.activeIndex = this.data.activeIndex;
+        this.menu_id = this.data.menu_id;
         this.nav = this.data;
-        if(this.data.children){
-          let _navItem=[];
+        if (this.data.children) {
+          let _navItem = [];
           this.data.children.forEach(function (_obj) {
-            if(_obj.system_type==="navItem"){
+            if (_obj.system_type === "navItem") {
               _navItem.push(_obj);
             }
           });
@@ -58,30 +60,31 @@
         });
       },
       handleSelect(key, keyPath) {
+        console.log(this.activeIndex);
         console.log(key);
         let _this = this;
-        let _controlId = this.control_id;
+        let _controlId = null;
         let _title = null;
         let _list = null;
         let _width = null;
         this.navItem.forEach(function (obj) {
-
           if (obj.system_id === key) {
+            _controlId = obj.control_id;
             _title = obj.title;
             _list = obj.children;
             _width = obj.width;
           }
         });
-        let _show = null;
+        let _show = false;
         this.$store.state.user.win.forEach(function (el) {
-          if (el.system_id === _controlId) {
+          if (el.system_id === _this.menu_id) {
             _show = el.show;
           }
         });
 
         if (_show) {
-          this.bus.$emit(this.control_id, {
-            id:"menu",
+          this.bus.$emit(_controlId, {
+            id: _this.menu_id,
             title: _title,
             list: _list,
             width: _width
@@ -89,20 +92,18 @@
         } else {
           this.$store.commit('user/win_open', {
             win_obj: {
-              system_id: _controlId
+              system_id: _this.menu_id
             }
           });
           setTimeout(function () {
-            _this.bus.$emit(_this.control_id, {
-              id:"menu",
+            _this.bus.$emit(_controlId, {
+              id: _this.menu_id,
               title: _title,
               list: _list,
               width: _width
             });
           }, 200);
-
         }
-        // console.log(_show);
       }
     },
     created() {

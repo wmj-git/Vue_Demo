@@ -9,6 +9,16 @@ export const db_form_data = {
     options_url: "",
     options: []
   },
+  "weight": {
+    type: "text",
+    label: "权重",
+    disabled: false,
+    Validate: [
+      {required: true, message: '请输字段', trigger: 'change'},
+    ],
+    options_url: "",
+    options: []
+  },
   "resourceName": {
     type: "text",
     label: "名称",
@@ -18,6 +28,19 @@ export const db_form_data = {
     ],
     options_url: "",
     options: []
+  },
+  "isMeum": {
+    type: "select",
+    label: "显示名称",
+    disabled: false,
+    Validate: [
+      {required: false, message: '请输字段', trigger: 'change'},
+    ],
+    options_url: "",
+    options: [
+      {label: "是", value: true},
+      {label: "否", value: false}
+    ]
   },
   "resourceCode": {
     type: "text",
@@ -76,29 +99,6 @@ export const db_form_data = {
   "dataStatus": {
     type: "text",
     label: "状态",
-    disabled: false,
-    Validate: [
-      {required: true, message: '请输字段', trigger: 'change'},
-    ],
-    options_url: "",
-    options: []
-  },
-  "isMeum": {
-    type: "select",
-    label: "父级菜单",
-    disabled: false,
-    Validate: [
-      {required: false, message: '请输字段', trigger: 'change'},
-    ],
-    options_url: "",
-    options: [
-      {label: "是", value: true},
-      {label: "否", value: false}
-    ]
-  },
-  "weight": {
-    type: "text",
-    label: "权重",
     disabled: false,
     Validate: [
       {required: true, message: '请输字段', trigger: 'change'},

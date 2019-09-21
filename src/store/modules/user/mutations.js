@@ -23,31 +23,39 @@ export default {
   [SET_SYSTEMDATA]: (state, systemData) => {
     state.systemData = systemData
   },
-  [SET_WIN] (state, { win }) {
+  [SET_WIN](state, {win}) {
     state.win = win;
   },
-  [WIN_OPEN] (state, { win_obj }) {
-    state.win.forEach(function (el) {
-      if (el.system_id === win_obj.system_id && el.show === false) {
-        el.show = true;
-      } else if (el.system_id === win_obj.system_id && el.show === true) {
-        el.show = false;
+  [WIN_OPEN](state, {win_obj}) {
+    // state.win.push({"system_id": win_obj.system_id, "show": false});
+    let _win = state.win;
+    state.win = [];
+    for (let i = 0; i < _win.length; i++) {
+      if (_win[i].system_id === win_obj.system_id && _win[i].show === false) {
+        _win[i].show = true;
+      } else if (_win[i].system_id === win_obj.system_id && _win[i].show === true) {
+        _win[i].show = false;
       }
-    })
+      state.win.push(_win[i]);
+    }
   },
-  [WIN_CLOSE] (state, { win_id }) {
+  [WIN_CLOSE](state, {win_id}) {
+
+    let _win = state.win;
+    state.win = [];
     if (win_id === "all") {
-      state.win.forEach(function (el) {
-        if (el.show === true) {
-          el.show = false;
-        }
-      })
+      for (let i = 0; i < _win.length; i++) {
+        _win[i].show = false;
+        state.win.push(_win[i]);
+      }
     } else {
-      state.win.forEach(function (el) {
-        if (el.system_id === win_id) {
-          el.show = false;
+      for (let i = 0; i < _win.length; i++) {
+        if (_win[i].system_id === win_id) {
+          // state.win.splice(i, 1);
+          _win[i].show = false;
         }
-      })
+        state.win.push(_win[i]);
+      }
     }
   },
   [SET_PERMISSIONS]: (state, permissions) => {

@@ -22,12 +22,12 @@
         <!--</el-dialog>-->
         <el-dialog title="数据展示" :visible.sync="digitalCollapseVisible" :append-to-body="true" v-dialogDrag="true">
           <el-collapse>
-            <el-collapse-item  v-for="(item,index) in data" :key="index">
+            <el-collapse-item v-for="(item,index) in data" :key="index">
               <template slot="title">
                 <i class="el-icon-location"></i>
-                <span slot="title" >{{item.title}}</span>
+                <span slot="title">{{item.title}}</span>
               </template>
-              <div v-for="(val,i) in item.list"  :key="i">
+              <div v-for="(val,i) in item.list" :key="i">
                 {{val.name}}:{{val.num}}{{val.init}}
               </div>
             </el-collapse-item>
@@ -68,9 +68,10 @@
 <script>
   import win from "@/app_components/win/win"
   import {modify} from "@/api/table_operate"
-  import {logout} from  "@/api/login"
-  import {digital} from  "@/api/digital"
-  import {removeToken} from  "@/utils/auth"
+  import {logout} from "@/api/login"
+  import {digital} from "@/api/digital"
+  import {removeToken} from "@/utils/auth"
+
   export default {
     name: "em_bottom",
     components: {
@@ -109,28 +110,27 @@
           id: "bottom",
           title: "",
           top: "",
-          left: "calc((100% - 78%)/2)",
+          left: "M-78%",
           show: true,
           resizable: false,
           width: "78%",
           height: "58px",
           class: "em-bottom-window"
-          //class: "em-table-window"
         },
         data: [
           {
             title: "各数量统计",
             list: [
-              {name: "公园总数", num: 15, init: "座",id:"civicBuilding"},
-              {name: "视频监控点", num: 15, init: "个",id:"monitoringPoints"},
-              {name: "环境监测点", num: 5866, init: "个",id:"temhumPoints"},
-              {name: "防火监测点", num: 2368, init: "个",id:"fireAlarm"},
-              {name: "绿道", num: 102, init: "条",id:"flowerGreenSpace"},
+              {name: "公园总数", num: 15, init: "座", id: "civicBuilding"},
+              {name: "视频监控点", num: 15, init: "个", id: "monitoringPoints"},
+              {name: "环境监测点", num: 5866, init: "个", id: "temhumPoints"},
+              {name: "防火监测点", num: 2368, init: "个", id: "fireAlarm"},
+              {name: "绿道", num: 102, init: "条", id: "flowerGreenSpace"},
             ]
           },
           {
             title: "公园详情",
-            list: [{name: "绿化总面积", num: 899, init: "公顷",id:""},
+            list: [{name: "绿化总面积", num: 899, init: "公顷", id: ""},
               {name: "绿化率", num: "58.9%", init: ""},
               {name: "占地总面积", num: 1286, init: "公顷"},
               {name: "年均人流量", num: 85689, init: "人次"},
@@ -245,7 +245,7 @@
         this.dialogFormVisible = false
       },
       loginOut() {
-        this.$store.dispatch("user/LogOut").then(res=>{
+        this.$store.dispatch("user/LogOut").then(res => {
           console.log(res);
           this.$router.push("/login");
         })

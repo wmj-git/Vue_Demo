@@ -13,11 +13,11 @@
     <!--报警器-->
     <em-warn></em-warn>
 
-
+    <!--{{wins}}-->
     <!--功能窗口-->
     <template v-for="win in wins" v-if="win.show">
-      <win :id="win.system_id" :data="win">
-        <template v-if="win.winLayout=='1'">
+      <template v-if="win.winLayout=='1'">
+        <win :id="win.system_id" :data="win">
           <el-row :gutter="8" v-if="win.children">
             <template v-for="component in win.children">
               <el-col :span="component.winSpan">
@@ -25,8 +25,8 @@
               </el-col>
             </template>
           </el-row>
-        </template>
-      </win>
+        </win>
+      </template>
     </template>
     <!--对话框-->
     <!--<em_dialogs></em_dialogs>-->
@@ -36,7 +36,6 @@
     <em-slider></em-slider>
     <!--底部-->
     <em-bottom></em-bottom>
-
   </div>
 </template>
 
@@ -45,7 +44,8 @@
   import {nav, winComponent} from './data/db';
   import {refreshToken} from '@/api/login';
   import {getNowFormatDate, treeStructure} from '@/utils/tools';
-  import {setToken, setTokenTime, getTokenTime,
+  import {
+    setToken, setTokenTime, getTokenTime,
     TokenName, RefreshTokenName, getExpires, setExpires
   } from '@/utils/auth';
 
@@ -68,12 +68,10 @@
   import emBottom from "./components/emBottom/emBottom";
 
 
-
-
   export default {
     data() {
       return {
-        id: "sysLayer",
+        id: "sysLayer"
       };
     },
     components: {
@@ -82,8 +80,8 @@
 
       //start/公用组件=============
       win,
-      emNav,
       emMenu,
+      emNav,
       emBottom,
       emTable,
       emForm,
@@ -130,9 +128,10 @@
         return ui_data;
       },
       wins: function () {
-        console.log("user/win");
+        // alert("user/win");
         console.log(this.$store.getters["user/win"]);
-        return this.$store.getters["user/win"];
+        let _data = this.$store.getters["user/win"];
+        return _data;
       },
       dialogGroup: function () {
         return this.$store.getters["win/dialog"];
@@ -166,10 +165,11 @@
 
           // console.log(data);
         });
-      },
-
+      }
     },
     created() {
+      let _this = this;
+
       //刷新token
       this.refreshTokenFn();
       //刷新ui数据
@@ -196,13 +196,22 @@
             }
           });
         }
-        this.$store.commit("user/set_win", {
+        _this.$store.commit("user/set_win", {
           win: ui_data
         });//解析浮动窗口数据
+
         console.log(this.wins);
       });
 
     },
+    mounted() {
+      this.bus.$on(this.id, obj => {
+        this[obj.fn](obj);
+      });
+    },
+    beforeDestroy() {
+      this.bus.$off(this.id);
+    }
 
   };
 </script>
