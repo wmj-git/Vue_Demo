@@ -19,7 +19,7 @@ export const systemData = [ //默认数据模型
     "control_type": "",
     "control_id": "winMenu_body",
     "fn": "",
-    "data_type": "",
+    "fn_type": "",
     "show": false,
     "width": 230
   },
@@ -32,7 +32,7 @@ export const systemData = [ //默认数据模型
     "control_type": "",
     "control_id": "",
     "fn": "",
-    "data_type": ""
+    "fn_type": ""
   },
   {
     "system_id": "nav_systemManage_role",
@@ -43,7 +43,7 @@ export const systemData = [ //默认数据模型
     "control_type": "",
     "control_id": "",
     "fn": "",
-    "data_type": ""
+    "fn_type": ""
   },
   {
     "system_id": "nav_systemManage_permissions",
@@ -54,7 +54,7 @@ export const systemData = [ //默认数据模型
     "control_type": "",
     "control_id": "",
     "fn": "",
-    "data_type": ""
+    "fn_type": ""
   },
   {
     "system_id": "nav_systemManage_department",
@@ -65,7 +65,7 @@ export const systemData = [ //默认数据模型
     "control_type": "",
     "control_id": "",
     "fn": "",
-    "data_type": ""
+    "fn_type": ""
   },
   {
     "system_id": "nav_systemManage_record",
@@ -76,7 +76,7 @@ export const systemData = [ //默认数据模型
     "control_type": "",
     "control_id": "",
     "fn": "",
-    "data_type": ""
+    "fn_type": ""
   },
   {
     "system_id": "nav_dataBase",
@@ -86,6 +86,160 @@ export const systemData = [ //默认数据模型
     "width": 230,
     "control_type": "",
     "control_id": "winMenu_body",
+    "fn": "",
+    "fn_type": ""
+  },
+  {
+    "system_id": "nav_dataBase_peopleManage",
+    "system_type": "navList",
+    "title": "人员管理",
+    "show": false,
+    "icon": "el-icon-personnel-manage",
+    "control_type": "",
+    "control_id": "",
+    "fn": "",
+    "fn_type": ""
+  },
+  {
+    "system_id": "nav_dataBase_protectCompanyManage",
+    "system_type": "navList",
+    "title": "养护单位管理",
+    "show": false,
+    "icon": "el-icon-unit-manage",
+    "control_type": "",
+    "control_id": "",
+    "fn": "",
+    "fn_type": ""
+  },
+  {
+    "system_id": "nav_dataBase_treeTypeManage",
+    "system_type": "navList",
+    "title": "树种类型管理",
+    "show": false,
+    "icon": "el-icon-tree-type",
+    "control_type": "",
+    "control_id": "",
+    "fn": "",
+    "fn_type": ""
+  },
+  {
+    "system_id": "nav_dataBase_plantTypeManage",
+    "system_type": "navList",
+    "title": "植物类型管理",
+    "show": false,
+    "icon": "el-icon-plant-type",
+    "control_type": "",
+    "control_id": "",
+    "fn": "",
+    "fn_type": ""
+  },
+  {
+    "system_id": "nav_dataBase_treeMaterialManage",
+    "system_type": "navList",
+    "title": "特殊树木资料管理",
+    "show": false,
+    "icon": "el-icon-tree-data",
+    "control_type": "",
+    "control_id": "",
+    "fn": "",
+    "fn_type": ""
+  },
+  {
+    "system_id": "nav_dataBase_gridManage",
+    "system_type": "navList",
+    "title": "网格管理",
+    "show": false,
+    "icon": "el-icon-grid-manage",
+    "control_type": "",
+    "control_id": "",
+    "fn": "",
+    "fn_type": ""
+  },
+  {
+    "system_id": "nav_dataBase_roadManage",
+    "system_type": "navList",
+    "title": "道路管理",
+    "show": false,
+    "icon": "el-icon-road",
+    "control_type": "",
+    "control_id": "",
+    "fn": "",
+    "fn_type": ""
+  },
+  {
+    "system_id": "nav_dataBase_monitorPointsManage",
+    "system_type": "navList",
+    "title": "监控点管理",
+    "show": false,
+    "icon": "el-icon-jkd-management",
+    "control_type": "",
+    "control_id": "",
+    "fn": "",
+    "fn_type": ""
+  },
+  {
+    "system_id": "nav_dataBase_soilTemperatureManage",
+    "system_type": "navList",
+    "title": "土壤温度监测点管理",
+    "show": false,
+    "icon": "el-icon-soil-temp",
+    "control_type": "",
+    "control_id": "",
+    "fn": "",
+    "fn_type": ""
+  },
+  {
+    "system_id": "nav_dataBase_soilHumidityManage",
+    "system_type": "navList",
+    "title": "土壤湿度监测点管理",
+    "show": false,
+    "icon": "el-icon-soil-hum",
+    "control_type": "",
+    "control_id": "",
+    "fn": "",
+    "fn_type": ""
+  },
+  {
+    "system_id": "nav_dataBase_populationManage",
+    "system_type": "navList",
+    "title": "人流量监测点管理",
+    "show": false,
+    "icon": "el-icon-people-point",
+    "control_type": "",
+    "control_id": "",
+    "fn": "",
+    "fn_type": ""
+  },
+  {
+    "system_id": "nav_dataBase_airTemperatureManage",
+    "system_type": "navList",
+    "title": "空气温度监测点管理",
+    "show": false,
+    "icon": "el-icon-air-temp-point",
+    "control_type": "",
+    "control_id": "",
+    "fn": "",
+    "fn_type": ""
+  },
+  {
+    "system_id": "nav_dataBase_airHumidityManage",
+    "system_type": "navList",
+    "title": "空气湿度监测点管理",
+    "show": false,
+    "icon": "el-icon-air-hum",
+    "control_type": "",
+    "control_id": "",
+    "fn": "",
+    "fn_type": ""
+  },
+  {
+    "system_id": "nav_dataBase_fireAlertManage",
+    "system_type": "navList",
+    "title": "火灾报警点管理",
+    "show": false,
+    "icon": "el-icon-fire-alarm-point",
+    "control_type": "",
+    "control_id": "",
     "fn": "",
     "fn_type": ""
   },
@@ -107,13 +261,14 @@ export const systemData = [ //默认数据模型
   },
   {
     "system_id": "scene_data_emTabs",
-    "system_type": "win",
+    "system_type": "win_component",
+    "title": "场景数据树形显示",
     "winSpan": 48,
     "component": "",
     "control_type": "",
     "control_id": "",
     "fn": "",
-    "data_type": ""
+    "fn_type": ""
   },
   {
     "system_id": "winMenu",

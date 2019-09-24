@@ -108,14 +108,14 @@
         let _this = this;
         const newChild = {
           "dataStatus": 0,
-          "description": "",
+          "description": "{}",
           "id": 0,
           "parentId": 0,
-          "resourceCode": "",
+          "resourceCode": "{}",
           "resourceName": "新建权限",
-          "resourceType": "",
-          "resourceUrl": "",
-          "isMeum": false,
+          "resourceType": "none",
+          "resourceUrl": "none",
+          "isMeum": true,
           "weight":200
         };
         newChild.parentId = data.id;
