@@ -20,16 +20,14 @@ export default {
   [SET_INTRODUCTION]: (state, introduction) => {
     state.introduction = introduction
   },
-  [SET_SYSTEMDATA]: (state, systemData) => {
-    state.systemData = systemData
-  },
   [SET_WIN](state, {win}) {
     state.win = win;
   },
   [WIN_OPEN](state, {win_obj}) {
-    // state.win.push({"system_id": win_obj.system_id, "show": false});
     let _win = state.win;
+
     state.win = [];
+
     for (let i = 0; i < _win.length; i++) {
       if (_win[i].system_id === win_obj.system_id && _win[i].show === false) {
         _win[i].show = true;
@@ -39,19 +37,18 @@ export default {
       state.win.push(_win[i]);
     }
   },
-  [WIN_CLOSE](state, {win_id}) {
+  [WIN_CLOSE](state, {win_obj}) {
 
     let _win = state.win;
     state.win = [];
-    if (win_id === "all") {
+    if (win_obj.system_id === "all") {
       for (let i = 0; i < _win.length; i++) {
         _win[i].show = false;
         state.win.push(_win[i]);
       }
     } else {
       for (let i = 0; i < _win.length; i++) {
-        if (_win[i].system_id === win_id) {
-          // state.win.splice(i, 1);
+        if (_win[i].system_id === win_obj.system_id) {
           _win[i].show = false;
         }
         state.win.push(_win[i]);
@@ -59,7 +56,14 @@ export default {
     }
   },
   [SET_PERMISSIONS]: (state, permissions) => {
-    state.permissions = permissions
+    let _permissions=permissions;
+    state.permissions=[];
+    state.permissions=state.permissions.concat(_permissions);
+  },
+  [SET_SYSTEMDATA]: (state, systemData) => {
+    let _systemData=systemData;
+    state.systemData=[];
+    state.systemData=state.systemData.concat(_systemData);
   },
   [SET_SETTING]: (state, setting) => {
     state.setting = setting

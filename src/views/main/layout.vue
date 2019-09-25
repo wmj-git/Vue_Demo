@@ -49,6 +49,7 @@
     TokenName, RefreshTokenName, getExpires, setExpires
   } from '@/utils/auth';
 
+  import splitPane from 'vue-splitpane';
   import splitpane from "@/components/splitpane/splitpane";
 
   //公用组件

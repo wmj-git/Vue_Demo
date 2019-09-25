@@ -20,6 +20,7 @@
   import {findByThisUser} from "@/api/resource";  //权限
 
   export default {
+    name:"emNav",
     data() {
       return {
         id: "",
@@ -53,11 +54,6 @@
 
         console.log("db_data");
         console.log(this.data);
-      },
-      findByThisUserFn() {//更新权限数据
-        findByThisUser().then((response) => {
-          this.$store.commit("user/set_permissions", response.data);
-        });
       },
       handleSelect(key, keyPath) {
         console.log(this.activeIndex);
@@ -104,6 +100,11 @@
             });
           }, 200);
         }
+      },
+      findByThisUserFn() {//更新权限数据
+        findByThisUser().then((response) => {
+          this.$store.commit("user/set_permissions", response.data);
+        });
       }
     },
     created() {

@@ -79,7 +79,7 @@
       this.bus.$on(this.id, function (obj) {
         // console.log(obj);
         this.group = obj.list;
-        // console.log(this.group);
+        console.log(this.group);
         $("#" + this.id).window("setTitle", obj.title);
         $("#" + this.id).window("resize", {
           width: obj.width

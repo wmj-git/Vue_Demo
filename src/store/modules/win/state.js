@@ -5586,7 +5586,6 @@ export default {
                 params: "pointsNo"
               }
             ]
-
           },
           {
             id: "fire_alert_manage_button_search",

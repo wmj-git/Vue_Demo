@@ -32,8 +32,8 @@
           _left = _leftValue[1];
         } else if (_leftValue[0] === "R") {
           _left = "calc(100% - " + _leftValue[1] + ")";
-        }else if(_leftValue[0] === "M"){
-          _left = " calc((100% - "+_leftValue[1]+")/2)";
+        } else if (_leftValue[0] === "M") {
+          _left = " calc((100% - " + _leftValue[1] + ")/2)";
 
         }
         $("#" + _this.id).window({
@@ -55,7 +55,11 @@
             if (this) {
               $(this).window('destroy');
             }
-            _this.$store.commit("user/win_close", {win_id: _this.id});
+            _this.$store.commit("user/win_close", {
+              win_obj: {
+                system_id: _this.id
+              }
+            });
           },
           onResize: function () {            //窗口大小改变时触发
 

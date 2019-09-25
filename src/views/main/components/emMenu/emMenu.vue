@@ -32,15 +32,15 @@
     methods: {
       handleSelect(key, keyPath) {
         console.log(key);
-        let _key = null;
+        let _control_id = null;
         this.group.forEach(function (_obj) {
           if (key === _obj.system_id) {
-            _key = _obj.control_id;
+            _control_id = _obj.control_id;
           }
         });
         this.$store.commit('user/win_open', {
           win_obj: {
-            system_id: _key
+            system_id: _control_id
           }
         });
       }
@@ -50,6 +50,7 @@
     },
     mounted() {
       this.id = this.data.system_id;
+
       // 非父子信息通信
       this.bus.$on(this.id, function (obj) {
         console.log("menu");

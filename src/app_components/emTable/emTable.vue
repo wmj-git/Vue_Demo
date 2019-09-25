@@ -13,17 +13,18 @@
             @current-change="handleCurrentChange"
             @selection-change="handleSelectionChange"
           >
+
+            <el-table-column
+              align="center"
+              type="selection"
+              width="54">
+            </el-table-column>
             <el-table-column
               type="index"
               fixed="left"
               align="center"
               :index="tableIndex"
             >
-            </el-table-column>
-            <el-table-column
-              align="center"
-              type="selection"
-              width="54">
             </el-table-column>
             <template v-for="(column,index) in tableSet.tableColumn">
               <el-table-column
@@ -54,7 +55,7 @@
             @size-change="handleSizeChange"
             @current-change="handleCurrentChangePage"
             :current-page="pagination.currentPage"
-            :page-sizes="[1, 2, 5,10,50]"
+            :page-sizes="[10,20,50]"
             :page-size="pagination.pageSize"
             layout="total, sizes, prev, pager, next, jumper"
             :total="pagination.totalSize">
@@ -79,17 +80,17 @@
           maxHeight: "100",
           tableColumn: []
         },
-        listLoading: false,//加载状态
+        listLoading: true,//加载状态
         tableData: [],//表数据
         currentRow: null,//单选对象
         multipleSelection: [],//多选框对象组
         columnBtn: [],//配置表行内按钮
 
-
+        // 分页
         pagination: {
           currentPage: 1,//当前页
-          pageSize: 1,//当前信息条数
-          totalSize: 100//总条数
+          pageSize: 10,//当前信息条数
+          totalSize: 0//总条数
         }
       };
     },
@@ -104,12 +105,16 @@
         this.id = this.data.system_id;
         this.tableSet.resourceUrl = this.data.resourceUrl;
         this.tableSet.maxHeight = this.data.maxHeight;
-        this.tableSet.tableColumn = JSON.parse(this.data.tableColumn);
+        // this.tableSet.tableColumn = JSON.parse(JSON.stringify(this.data.tableColumn));
+        let _tableColumn=JSON.parse(JSON.stringify(this.data.tableColumn));
+        this.tableSet.tableColumn = _tableColumn.data;
+        console.log( "this.tableSet.tableColumn");
+        console.log( this.tableSet.tableColumn);
 
         if (this.data.children) {
           let _columnBtn = [];
           this.data.children.forEach(function (_obj) {
-            if (_obj.system_type === "win_table_btn") {
+            if (_obj.system_type === "win_table_columnBtn") {
               _columnBtn.push(_obj);
             }
           });
@@ -120,13 +125,10 @@
       },
       tableDataFn() {
         this.listLoading = true;
-
         let _params = {
           pageNum: this.pagination.currentPage,
           pageSize: this.pagination.pageSize
         };
-
-
         find({                      //页面渲染时拿表格数据
           url: this.tableSet.resourceUrl,
           params: _params
@@ -158,11 +160,9 @@
         return (this.pagination.currentPage - 1) * this.pagination.pageSize + index + 1;
       },
       handleSelectionChange(val) {// 多选框（选中删除）
-
-        this.multipleSelection =val;
+        this.multipleSelection = val;
       },
       handleCurrentChange(val) {     //单选行 （选中修改）
-
         this.currentRow = val;
       },
       handleSizeChange(val) {//页条数
@@ -185,7 +185,11 @@
     },
     mounted() {
 
+    },
+    beforeDestroy() {
+      this.bus.$off(this.id);
     }
+
   };
 </script>
 

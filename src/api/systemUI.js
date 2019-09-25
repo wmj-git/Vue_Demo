@@ -10,7 +10,7 @@ export const systemData = [ //默认数据模型
     "fn": "",
     "fn_type": "",
     "menu_id": "winMenu",
-    "activeIndex": "nav_database"
+    "activeIndex": "nav_systemManage"
   },
   {
     "system_id": "nav_systemManage",
@@ -40,6 +40,56 @@ export const systemData = [ //默认数据模型
     "title": "角色管理",
     "show": false,
     "icon": "el-icon-role-manage",
+    "control_type": "",
+    "control_id": "nav_systemManage_role_win",
+    "fn": "",
+    "fn_type": ""
+  },
+  {
+    "system_id": "nav_systemManage_role_win",
+    "system_type": "win",
+    "winLayout": "1",
+    "title": "角色管理",
+    "top": "148px",
+    "left": "M-800px",
+    "width": 800,
+    "show": false,
+    "resizable": false,
+    "maximizable": false,
+    "closable": false,
+    "draggable": false,
+    "class": "em-table-window"
+  },
+  {
+    "system_id": "nav_systemManage_role_win_emTable",
+    "system_type": "win_component_table",
+    "winSpan": 48,
+    "component": "emTable",
+    "maxHeight": "380",
+    "tableColumn": {
+      "data": [
+        {
+          "label": "英文名",
+          "prop": "roleEname",
+          "width": 100
+        },
+        {
+          "label": "中文名",
+          "prop": "roleCname",
+          "width": 100
+        },
+        {
+          "label": "角色编码",
+          "prop": "roleCode",
+          "width": 100
+        },
+        {
+          "label": "备注",
+          "prop": "remark",
+          "width": 100
+        }
+      ]
+    },
     "control_type": "",
     "control_id": "",
     "fn": "",

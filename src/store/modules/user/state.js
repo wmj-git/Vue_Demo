@@ -14,20 +14,8 @@ export default {
       placeholder: "账户",
       name: "账户",
       params: ""
-    },
-    {
-      type: "em_input",
-      placeholder: "中文名",
-      name: "中文名",
-      params: ""
-    },
-    {
-      type: "em_input",
-      placeholder: "英文名",
-      name: "英文名",
-      params: ""
     }
-  ],
+  ],//功能对话框
 
   //未应用
   user: '',
