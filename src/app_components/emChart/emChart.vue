@@ -37,7 +37,6 @@
 
       },
       chartInit() {
-
         // 基于准备好的dom，初始化echarts实例
         this.chart = this.$echarts.init(document.getElementById(this.id));
 

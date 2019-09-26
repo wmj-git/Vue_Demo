@@ -50,13 +50,12 @@
   } from '@/utils/auth';
 
   import splitPane from 'vue-splitpane';
-  import splitpane from "@/components/splitpane/splitpane";
+  // import splitpane from "@/components/splitpane/splitpane";
 
   //公用组件
   import win from "@/app_components/win/win";
   import emTable from "@/app_components/emTable/emTable";
   import emForm from "@/app_components/emForm/emForm";
-  import treeForm from "@/app_components/treeFrom/treeForm";
   import buttonGroup from "@/app_components/buttonGroup/buttonGroup";
 
   //局部组件
@@ -77,20 +76,21 @@
     },
     components: {
 
-      splitpane,//拖动边线
+      splitPane,//拖动边线
+
 
       //start/公用组件=============
       win,
-      emMenu,
-      emNav,
-      emBottom,
+
       emTable,
       emForm,
-      treeForm,
       buttonGroup,
       //end/公用组件=============
 
       //start/局部组件=============
+      emMenu,
+      emNav,
+      emBottom,
       emLogo,//logo组件
       emTools,//场景工具
       emWarn,//火灾报警

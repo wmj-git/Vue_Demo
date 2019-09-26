@@ -61,8 +61,20 @@ export const systemData = [ //默认数据模型
     "class": "em-table-window"
   },
   {
+    "system_id": "nav_systemManage_role_win_emForm",
+    "system_type": "win_component_form",
+    "title": "角色管理-表单组",
+    "winSpan": 48,
+    "component": "emForm",
+    "control_type": "",
+    "control_id": "",
+    "fn": "",
+    "fn_type": ""
+  },
+  {
     "system_id": "nav_systemManage_role_win_emTable",
     "system_type": "win_component_table",
+    "title": "角色管理表格数据",
     "winSpan": 48,
     "component": "emTable",
     "maxHeight": "380",
@@ -96,15 +108,52 @@ export const systemData = [ //默认数据模型
     "fn_type": ""
   },
   {
+    "system_id": "nav_systemManage_role_win_emTable_columnBtn",
+    "system_type": "win_component_table_columnBtn",
+    "title": "权限分配",
+    "label": "设置",
+    "minWidth":12,
+    "control_type": "",
+    "control_id": "",
+    "fn": "handleEdit",
+    "fn_type": ""
+  },
+  {
+    "system_id": "nav_systemManage_role_win_emTable_columnBtn",
+    "system_type": "win_component_table_columnBtn",
+    "title": "关联用户",
+    "label": "设置",
+    "minWidth":12,
+    "control_type": "",
+    "control_id": "",
+    "fn": "handleEdit",
+    "fn_type": ""
+  },
+  {
     "system_id": "nav_systemManage_permissions",
     "system_type": "navList",
     "title": "权限管理",
     "show": false,
     "icon": "el-icon-permissions-manage",
     "control_type": "",
-    "control_id": "",
+    "control_id": "nav_systemManage_permissions_win",
     "fn": "",
     "fn_type": ""
+  },
+  {
+    "system_id": "nav_systemManage_permissions_win",
+    "system_type": "win",
+    "winLayout": "1",
+    "title": "权限管理-窗口",
+    "top": "148px",
+    "left": "M-800px",
+    "width": 800,
+    "show": false,
+    "resizable": false,
+    "maximizable": false,
+    "closable": false,
+    "draggable": false,
+    "class": "em-table-window"
   },
   {
     "system_id": "nav_systemManage_department",
@@ -293,6 +342,7 @@ export const systemData = [ //默认数据模型
     "fn": "",
     "fn_type": ""
   },
+
   {
     "system_id": "scene_data",
     "system_type": "win",
@@ -345,114 +395,5 @@ export const systemData = [ //默认数据模型
     "control_type": "",
     "fn": "",
     "fn_type": ""
-  },
-  {
-    system_id: "role_manage",
-    system_type: "win",
-    id: "a2",
-    parentId: "0",
-    winLayout: "1",
-    title: "角色管理",
-    top: 80,
-    left: 400,
-    width: 700,
-    class: "em-table-window",
-    show: false
-  },
-  {
-    system_id: "role_manage_form",
-    system_type: "win_form",
-    id: "b2",
-    parentId: "a2",
-    winSpan: 48,
-    component: "emForm"
-  },
-  {
-    system_id: "role_manage_table",
-    system_type: "win_table",
-    id: "b3",
-    parentId: "a2",
-    winSpan: 48,
-    component: "emTable",
-    maxHeight: "380",
-    resourceUrl: "",
-    tableColumn: " [\n" +
-      "    {\n" +
-      "      \"label\": \"英文名\",\n" +
-      "      \"prop\": \"roleEname\",\n" +
-      "      \"width\": \"100\"\n" +
-      "    },\n" +
-      "    {\n" +
-      "      \"label\": \"中文名\",\n" +
-      "      \"prop\": \"roleCname\",\n" +
-      "      \"width\": \"100\"\n" +
-      "    },\n" +
-      "    {\n" +
-      "      \"label\": \"角色编码\",\n" +
-      "      \"prop\": \"roleCode\",\n" +
-      "      \"width\": \"80\"\n" +
-      "    },\n" +
-      "    {\n" +
-      "      \"label\": \"备注\",\n" +
-      "      \"prop\": \"remark\",\n" +
-      "      \"width\": \"\"\n" +
-      "    }\n" +
-      "  ]"
-  },
-  {
-    system_id: "role_manage_table_btn_1",
-    system_type: "win_table_btn",
-    id: "b2",
-    parentId: "a2",
-    label: "操作",
-    value: "权限分配",
-    fn: "handleEdit"
-  },
-  {
-    system_id: "role_manage_table_btn_2",
-    system_type: "win_table_btn",
-    id: "b2",
-    parentId: "a2",
-    label: "操作",
-    value: "关联用户",
-    fn: "handleEdit"
-  },
-  {
-    system_id: "department_manage",
-    system_type: "win",
-    id: "a3",
-    parentId: "0",
-    winLayout: "1",
-    title: "部门管理",
-    top: 80,
-    left: 400,
-    width: 700,
-    height: 560,
-    class: "em-table-window",
-    show: false
-  },
-  {
-    system_id: "department_manage_table",
-    system_type: "win_table",
-    id: "b2",
-    parentId: "a3",
-    winSpan: 12,
-    component: "emTable"
-  },
-  {
-    system_id: "department_manage_table",
-    system_type: "win_table",
-    id: "b2",
-    parentId: "a3",
-    winSpan: 36,
-    component: "emTable"
-  },
-  {
-    system_id: "department_manage_table",
-    system_type: "win_table",
-    id: "b3",
-    parentId: "a3",
-    winSpan: 48,
-    component: "emTable"
   }
-];
+]

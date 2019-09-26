@@ -36,12 +36,14 @@
               ></el-table-column>
             </template>
             <template v-for="btn in columnBtn" v-if="columnBtn.length>0">
-              <el-table-column fixed="right" :label="btn.label">
+              <el-table-column fixed="right" :label="btn.label" :min-width="btn.minWidth">
                 <template slot-scope="scope">
                   <el-button
+                    class="em-btn-operation"
                     :ref="btn.system_id"
                     size="mini"
-                    @click="fn(btn.fn,{'index':scope.$index,'row':scope.row,'btn':btn})">{{btn.value}}
+                    @click="fn(btn.fn,{'index':scope.$index,'row':scope.row,'btn':btn,'control_type':btn.control_type})">
+                    {{btn.title}}
                   </el-button>
                 </template>
               </el-table-column>
@@ -75,7 +77,7 @@
     data() {
       return {
         id: "",
-        tableSet: {
+        tableSet: {//表组件属性设置
           resourceUrl: "",//数据地址
           maxHeight: "100",
           tableColumn: []
@@ -98,7 +100,13 @@
     components: {},
     methods: {
       fn(_fn, _obj) {
-        this[_fn](_obj);
+        let _controlType = _obj.control_type ? _obj.control_type : "";
+        switch (_controlType) {
+          case "1":
+            break;
+          default:
+            this[_fn](_obj);
+        }
       },
       init() {
         console.log(this.data);
@@ -106,20 +114,20 @@
         this.tableSet.resourceUrl = this.data.resourceUrl;
         this.tableSet.maxHeight = this.data.maxHeight;
         // this.tableSet.tableColumn = JSON.parse(JSON.stringify(this.data.tableColumn));
-        let _tableColumn=JSON.parse(JSON.stringify(this.data.tableColumn));
-        this.tableSet.tableColumn = _tableColumn.data;
-        console.log( "this.tableSet.tableColumn");
-        console.log( this.tableSet.tableColumn);
+        let _tableColumn = JSON.parse(JSON.stringify(this.data.tableColumn));
+        this.tableSet.tableColumn = _tableColumn.data;//表字段
 
+        //获取行按钮数据
         if (this.data.children) {
           let _columnBtn = [];
           this.data.children.forEach(function (_obj) {
-            if (_obj.system_type === "win_table_columnBtn") {
+            if (_obj.system_type === "win_component_table_columnBtn") {
               _columnBtn.push(_obj);
             }
           });
           this.columnBtn = _columnBtn;
         }
+
 
         this.tableDataFn();
       },
