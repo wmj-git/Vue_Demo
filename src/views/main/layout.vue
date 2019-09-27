@@ -129,7 +129,7 @@
         return ui_data;
       },
       wins: function () {
-        // alert("user/win");
+
         console.log(this.$store.getters["user/win"]);
         let _data = this.$store.getters["user/win"];
         return _data;

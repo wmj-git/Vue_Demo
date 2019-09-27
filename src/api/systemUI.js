@@ -51,10 +51,10 @@ export const systemData = [ //默认数据模型
     "winLayout": "1",
     "title": "角色管理",
     "top": "148px",
-    "left": "M-800px",
-    "width": 800,
+    "left": "M-880px",
+    "width": 880,
     "show": false,
-    "resizable": false,
+    "resizable": true,
     "maximizable": false,
     "closable": false,
     "draggable": false,
@@ -63,9 +63,120 @@ export const systemData = [ //默认数据模型
   {
     "system_id": "nav_systemManage_role_win_emForm",
     "system_type": "win_component_form",
-    "title": "角色管理-表单组",
+    "title": "角色管理-表单",
     "winSpan": 48,
     "component": "emForm",
+    "labelWidth":"",
+    "class":"form-table",
+    "control_type": "",
+    "control_id": "",
+    "fn": "",
+    "fn_type": ""
+  },
+  {
+    "system_id": "nav_systemManage_role_win_emForm_text",
+    "system_type": "win_component_formItem",
+    "title": "中文名",
+    "winSpan": 8,
+    "inputType": "text",
+    "label": "",
+    "valueKey": "roleCname",
+    "defaultValue": "",
+    "placeholder":"中文名",
+    "disabled": false,
+    "Validate": {
+      "data": [
+        {"required": false, "message": "请输字段", "trigger": "change"}
+      ]
+    },
+    "options_url": "none",
+    "options": [],
+    "control_type": "",
+    "control_id": "",
+    "fn": "",
+    "fn_type": ""
+  },
+  {
+    "system_id": "nav_systemManage_role_win_emForm_button",
+    "system_type": "win_component_formButton",
+    "title": "查询",
+    "winSpan": 4,
+    "inputType": "button",
+    "type":"primary",
+    "class":"em-form-bottom",
+    "icon":"el-icon-search",
+    "disabled": false,
+    "control_type": "table",
+    "control_id": "nav_systemManage_role_win_emTable",
+    "fn": "queryPage",
+    "fn_type": ""
+  },
+  {
+    "system_id": "nav_systemManage_role_win_emForm_button1",
+    "system_type": "win_component_formButton",
+    "title": "添加",
+    "winSpan": 4,
+    "inputType": "button",
+    "type":"primary",
+    "class":"em-form-bottom",
+    "icon":"el-icon-plus",
+    "disabled": false,
+    "control_type": "",
+    "control_id": "",
+    "fn": "getForm",
+    "fn_type": ""
+  },
+  {
+    "system_id": "nav_systemManage_role_win_emForm_button2",
+    "system_type": "win_component_formButton",
+    "title": "修改",
+    "winSpan": 4,
+    "inputType": "button",
+    "type":"primary",
+    "class":"em-form-bottom",
+    "icon":"el-icon-edit",
+    "disabled": false,
+    "control_type": "",
+    "control_id": "",
+    "fn": "getForm",
+    "fn_type": ""
+  },
+  {
+    "system_id": "nav_systemManage_role_win_emForm_button3",
+    "system_type": "win_component_formButton",
+    "title": "删除",
+    "winSpan": 4,
+    "inputType": "button",
+    "type":"primary",
+    "class":"em-form-bottom",
+    "icon":"el-icon-delete",
+    "disabled": false,
+    "control_type": "",
+    "control_id": "",
+    "fn": "getForm",
+    "fn_type": ""
+  },
+  {
+    "system_id": "nav_systemManage_role_win_emForm_select",
+    "system_type": "win_component_formItem",
+    "title": "下拉",
+    "winSpan": 8,
+    "inputType": "select",
+    "label": "",
+    "valueKey": "name",
+    "defaultValue": "",
+    "disabled": false,
+    "Validate": {
+      "data": [
+        {"required": false, "message": "请输字段", "trigger": "change"}
+      ]
+    },
+    "options_url": "none",
+    "options":  {
+      "data": [
+        {"label": "dsfs", "value": "请输字段"}
+      ]
+    },
     "control_type": "",
     "control_id": "",
     "fn": "",
@@ -103,7 +214,7 @@ export const systemData = [ //默认数据模型
       ]
     },
     "control_type": "",
-    "control_id": "",
+    "control_id": "nav_systemManage_role_win_emForm",
     "fn": "",
     "fn_type": ""
   },
@@ -112,7 +223,7 @@ export const systemData = [ //默认数据模型
     "system_type": "win_component_table_columnBtn",
     "title": "权限分配",
     "label": "设置",
-    "minWidth":12,
+    "minWidth": 12,
     "control_type": "",
     "control_id": "",
     "fn": "handleEdit",
@@ -123,7 +234,7 @@ export const systemData = [ //默认数据模型
     "system_type": "win_component_table_columnBtn",
     "title": "关联用户",
     "label": "设置",
-    "minWidth":12,
+    "minWidth": 12,
     "control_type": "",
     "control_id": "",
     "fn": "handleEdit",

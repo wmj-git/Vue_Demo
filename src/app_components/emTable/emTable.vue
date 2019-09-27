@@ -69,7 +69,7 @@
 </template>
 
 <script>
-
+  import vueBus from '@/utils/vueBus'
   import {add, dele, modify, find, downCsvmodel, upLoad, resetPassword} from "@/app_api/table";
 
   export default {
@@ -127,42 +127,54 @@
           });
           this.columnBtn = _columnBtn;
         }
-
-
         this.tableDataFn();
       },
-      tableDataFn() {
+      tableDataFn(params) {//更新表数据
         this.listLoading = true;
         let _params = {
           pageNum: this.pagination.currentPage,
           pageSize: this.pagination.pageSize
         };
-        find({                      //页面渲染时拿表格数据
-          url: this.tableSet.resourceUrl,
-          params: _params
-        }).then(res => {
-          console.log(res);
-          res.data.list.forEach((_val) => {
-            for (let _i in _val) {
-              if (_i === "isSpecial") {
-                if (_val[_i] === 0) {
-                  _val[_i] = "否";
-                } else if (_val[_i] === 1) {
-                  _val[_i] = "是";
-                }
-              } else if (_i === "flowersPlantsOrTree") {
-                if (_val[_i] === 0) {
-                  _val[_i] = "树";
-                } else if (_val[_i] === 1) {
-                  _val[_i] = "花卉";
+        try {
+          let _val = {};
+          if(params){
+            _val = params;
+          }
+          for (let k in _val ) {
+            _params[k]=_val[k];
+          }
+        } catch (error) {
+          console.log(error.message);
+        } finally {
+
+          find({                      //页面渲染时拿表格数据
+            url: this.tableSet.resourceUrl,
+            params: _params
+          }).then(res => {
+            console.log(res);
+            res.data.list.forEach((_val) => {
+              for (let _i in _val) {
+                if (_i === "isSpecial") {
+                  if (_val[_i] === 0) {
+                    _val[_i] = "否";
+                  } else if (_val[_i] === 1) {
+                    _val[_i] = "是";
+                  }
+                } else if (_i === "flowersPlantsOrTree") {
+                  if (_val[_i] === 0) {
+                    _val[_i] = "树";
+                  } else if (_val[_i] === 1) {
+                    _val[_i] = "花卉";
+                  }
                 }
               }
-            }
+            });
+            this.tableData = res.data.list;
+            this.pagination.totalSize = res.data.total;
+            this.listLoading = false;
           });
-          this.tableData = res.data.list;
-          this.pagination.totalSize = res.data.total;
-          this.listLoading = false;
-        });
+        }
+
       },
       tableIndex(index) {                         //控制表格数据行号
         return (this.pagination.currentPage - 1) * this.pagination.pageSize + index + 1;
@@ -179,14 +191,21 @@
       },
       handleCurrentChangePage(val) {//当前页
         this.pagination.currentPage = val;
+
         this.tableDataFn();
       },
       handleEdit(_obj) {
+        console.log(_obj);
+      },
+      queryPage(_obj) {
         console.log(_obj);
       }
     },
     created() {
       this.init();
+      vueBus.$on(this.id, obj => {
+        this[obj.fn](obj);
+      });
       this.bus.$on(this.id, obj => {
         this[obj.fn](obj);
       });
@@ -195,9 +214,9 @@
 
     },
     beforeDestroy() {
+      vueBus.$off(this.id);
       this.bus.$off(this.id);
     }
-
   };
 </script>
 
