@@ -6186,7 +6186,20 @@ export default {
           ]
         }
       }
-    }
+    },
+    {
+      id: "win_player",
+      title: "监控",
+      top: "180px",
+      left: "calc((100% - 380px)/2)",
+      width: 380,
+      show: true,
+      class: "em-table-window",
+      component: "emPlayer",
+      component_data: {
+        id: "win_player_item"
+      }
+    },
   ],
   dialog: [
     {

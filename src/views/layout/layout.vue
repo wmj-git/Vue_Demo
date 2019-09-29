@@ -66,6 +66,7 @@
   import emCharts from "@/components/emCharts/emCharts"
   import emTabs from "@/components/emTabs/emTabs"
   import emDrawer from "@/app_components/emDrawer/emDrawer"
+  import emPlayer from "@/components/emPlayer/emPlayer"
   export default {
     data() {
       return {
@@ -101,7 +102,8 @@
       buttonGroup,
       emCharts,
       em_detailDrawer,
-      emLayers
+      emLayers,
+      emPlayer
     },
     computed: {
       wins: function () {

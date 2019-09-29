@@ -35,7 +35,12 @@ Vue.config.productionTip = false;
 Vue.prototype.bus= new Vue(); //vue-bus
 /* eslint-disable no-new */
 
-import './permission' // permission control
+//视屏播放器
+import VueVideoPlayer from 'vue-video-player'
+import 'video.js/dist/video-js.css'
+Vue.use(VueVideoPlayer)
+
+import './permission' // 理由拦截
 
 import * as socketApi from './api/socket'
 Vue.prototype.socketApi = socketApi;
