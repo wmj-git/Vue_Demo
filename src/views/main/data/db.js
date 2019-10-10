@@ -30,7 +30,7 @@ export const winComponent = {//win组件类型
   dataType: []
 };
 
-export const systemComponent = {//win组件类型
+export const systemComponent = {//类型
   systemType: [],
   dataType: []
 };

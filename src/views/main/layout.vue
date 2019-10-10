@@ -81,7 +81,6 @@
 
       //start/公用组件=============
       win,
-
       emTable,
       emForm,
       buttonGroup,
@@ -188,8 +187,9 @@
           _data = treeStructure(_data);
         }
 
-        let ui_data = [];
 
+
+        let ui_data = [];
         for (let _k in _data) {
           _data[_k].forEach(function (_obj) {
             if (_obj.system_type === "win") {
@@ -201,7 +201,10 @@
           win: ui_data
         });//解析浮动窗口数据
 
+
         console.log(this.wins);
+        console.log(this.wins);
+
       });
 
     },

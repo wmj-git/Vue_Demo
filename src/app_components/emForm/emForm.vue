@@ -66,7 +66,7 @@
           this.defaultFn(_formItems);
         }
       },
-      fn(_fn, _obj) {
+      fn(_fn, _obj) {//初始化匹配功能
         let _controlType = _obj.control_type ? _obj.control_type : "";
         let _ruleForm = this.ruleForm;
         switch (_controlType) {

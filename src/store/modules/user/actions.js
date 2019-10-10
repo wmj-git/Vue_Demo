@@ -134,7 +134,6 @@ export function systemUI({commit, state}) {
         _description  = _description .replace(/\\n/g,'');
         _description = _description.replace(/\s*/g, "");
         if (_description.substr(0, 1) === "{" && _description.substr(-1) === "}") {
-          console.log(_obj.resourceName);
           _description = JSON.parse(_description);
 
           if(_obj.isMeum){
@@ -146,7 +145,6 @@ export function systemUI({commit, state}) {
           for (let k in _description) {
             _obj[k] = _description[k];
           }
-          console.log(_obj);
           _systemData.push(_obj);
         }
 

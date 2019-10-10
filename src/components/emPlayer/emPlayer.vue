@@ -29,7 +29,9 @@
 
 <script>
 
+  import {playerOpen, playerClose} from "@/api/player";
   import 'videojs-flash'
+
   export default {
     name: "em_player",
     data() {
@@ -37,23 +39,25 @@
         id: "",
         // videojs options
         playerOptions: {
-          height: '360',
+          width: "358",
+          // height: '360',
           autoplay: true,
           muted: true,
           language: 'en',
           playbackRates: [0.7, 1.0, 1.5, 2.0],
           sources: [{
-            type: "video/mp4",
             // mp4
-            src: "http://localhost:1109/mv1.mp4",
+            /*   type: "video/mp4",
+               src: "http://localhost:1109/mv1.mp4",*/
             // webm
-            // src: "https://cdn.theguardian.tv/webM/2015/07/20/150716YesMen_synd_768k_vp8.webm"
-            /*   type: "rtmp/mp4",
-               src: "rtmp://192.168.20.19:1935/live/company"*/
+            type: "rtmp/mp4",
+            // src: "rtmp://192.168.20.19:1935/live/36a5109e84de41bda973f2c4c9a19a92"
+            src: "rtmp://192.168.20.19:1935/live/36a5109e84de41bda973f2c4c9a19a93"
           }],
-          // techOrder: ['flash'],
+          techOrder: ['flash'],
           poster: "http://localhost:1109/img18.png",
-        }
+        },
+        dataId:""
       }
     },
     props: ["data"],
@@ -66,10 +70,27 @@
     methods: {
       init() {
         console.log(this.data);
-        this.id=this.data.id;
+        this.id = this.data.id;
       },
-      fn() {
-
+      fn(data) {
+        console.log("win_player");
+        console.log(data);
+        this.dataId=data.data.id;
+        this.playerOptions.sources=[];
+        this.playerOptions.sources.push({
+          type: "rtmp/mp4",
+          src: data.data.transUrl
+        });
+      },
+      closeFn() {
+        let _this=this;
+        let _url = process.env.BASE_API;
+        playerClose(_url, {
+          id: _this.dataId
+        }).then(res => {
+          console.log("win_player:closeFn");
+          console.log(res);
+        })
       },
       // listen event
       onPlayerPlay(player) {
@@ -107,7 +128,7 @@
       playerReadied(player) {
         // seek to 10s
         console.log('example player 1 readied', player)
-        player.currentTime(10)
+        player.currentTime(10);
         // console.log('example 01: the player is readied', player)
       }
     },
@@ -135,7 +156,7 @@
         //   src: 'https://cdn.theguardian.tv/webM/2015/07/20/150716YesMen_synd_768k_vp8.webm',
         // }]
         this.player.muted(false)
-      }, 5000)
+      }, 1500)
     },
     beforeDestroy() {
       this.bus.$off(this.id);

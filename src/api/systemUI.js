@@ -66,8 +66,8 @@ export const systemData = [ //默认数据模型
     "title": "角色管理-表单",
     "winSpan": 48,
     "component": "emForm",
-    "labelWidth":"",
-    "class":"form-table",
+    "labelWidth": "",
+    "class": "form-table",
     "control_type": "",
     "control_id": "",
     "fn": "",
@@ -82,7 +82,7 @@ export const systemData = [ //默认数据模型
     "label": "",
     "valueKey": "roleCname",
     "defaultValue": "",
-    "placeholder":"中文名",
+    "placeholder": "中文名",
     "disabled": false,
     "Validate": {
       "data": [
@@ -102,13 +102,13 @@ export const systemData = [ //默认数据模型
     "title": "查询",
     "winSpan": 4,
     "inputType": "button",
-    "type":"primary",
-    "class":"em-form-bottom",
-    "icon":"el-icon-search",
+    "type": "primary",
+    "class": "em-form-bottom",
+    "icon": "el-icon-search",
     "disabled": false,
     "control_type": "table",
     "control_id": "nav_systemManage_role_win_emTable",
-    "fn": "queryPage",
+    "fn": "findFn",
     "fn_type": ""
   },
   {
@@ -117,13 +117,13 @@ export const systemData = [ //默认数据模型
     "title": "添加",
     "winSpan": 4,
     "inputType": "button",
-    "type":"primary",
-    "class":"em-form-bottom",
-    "icon":"el-icon-plus",
+    "type": "primary",
+    "class": "em-form-bottom",
+    "icon": "el-icon-plus",
     "disabled": false,
-    "control_type": "",
-    "control_id": "",
-    "fn": "getForm",
+    "control_type": "table",
+    "control_id": "nav_systemManage_role_win_emTable",
+    "fn": "addFn",
     "fn_type": ""
   },
   {
@@ -132,9 +132,9 @@ export const systemData = [ //默认数据模型
     "title": "修改",
     "winSpan": 4,
     "inputType": "button",
-    "type":"primary",
-    "class":"em-form-bottom",
-    "icon":"el-icon-edit",
+    "type": "primary",
+    "class": "em-form-bottom",
+    "icon": "el-icon-edit",
     "disabled": false,
     "control_type": "",
     "control_id": "",
@@ -147,9 +147,9 @@ export const systemData = [ //默认数据模型
     "title": "删除",
     "winSpan": 4,
     "inputType": "button",
-    "type":"primary",
-    "class":"em-form-bottom",
-    "icon":"el-icon-delete",
+    "type": "primary",
+    "class": "em-form-bottom",
+    "icon": "el-icon-delete",
     "disabled": false,
     "control_type": "",
     "control_id": "",
@@ -168,13 +168,13 @@ export const systemData = [ //默认数据模型
     "disabled": false,
     "Validate": {
       "data": [
-        {"required": false, "message": "请输字段", "trigger": "change"}
+        {"required": true, "message": "请输字段", "trigger": "change"}
       ]
     },
     "options_url": "none",
-    "options":  {
+    "options": {
       "data": [
-        {"label": "dsfs", "value": "请输字段"}
+        {"label": "dsfs", "value": "dsfs1"}
       ]
     },
     "control_type": "",
@@ -453,7 +453,6 @@ export const systemData = [ //默认数据模型
     "fn": "",
     "fn_type": ""
   },
-
   {
     "system_id": "scene_data",
     "system_type": "win",

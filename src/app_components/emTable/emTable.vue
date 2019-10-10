@@ -57,7 +57,7 @@
             @size-change="handleSizeChange"
             @current-change="handleCurrentChangePage"
             :current-page="pagination.currentPage"
-            :page-sizes="[10,20,50]"
+            :page-sizes="[2,10,20,50]"
             :page-size="pagination.pageSize"
             layout="total, sizes, prev, pager, next, jumper"
             :total="pagination.totalSize">
@@ -70,7 +70,7 @@
 
 <script>
   import vueBus from '@/utils/vueBus'
-  import {add, dele, modify, find, downCsvmodel, upLoad, resetPassword} from "@/app_api/table";
+  import {add, del, modify, find, downCsvmodel, upLoad, resetPassword} from "@/app_api/table";
 
   export default {
     name: "emTable",
@@ -191,14 +191,26 @@
       },
       handleCurrentChangePage(val) {//当前页
         this.pagination.currentPage = val;
-
         this.tableDataFn();
       },
       handleEdit(_obj) {
         console.log(_obj);
       },
-      queryPage(_obj) {
+      findFn(_obj) {
+        if(_obj.ruleForm){
+          this.tableDataFn(_obj.ruleForm);
+        }
         console.log(_obj);
+      },
+      addFn(_obj) {
+        console.log(_obj);
+        find({                      //页面渲染时拿表格数据
+          url: this.tableSet.resourceUrl,
+          params: _params
+        }).then(res => {
+          console.log(res);
+
+        });
       }
     },
     created() {

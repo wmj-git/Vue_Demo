@@ -128,6 +128,7 @@
     getPictureImg
   } from "@/api/table_operate"
   import {closeFireWarn} from "@/api/warn";
+  import {playerOpen,playerClose} from "@/api/player";
   import em_button from "@/components/em_button/em_button"
   import em_input from "@/components/em_input/em_input"
   import em_dialogs from "@/components/em_dialogs/em_dialogs"
@@ -438,7 +439,7 @@
       recieveObj(val) {              //把dialog表单里的数据拿到
         console.log(this.delever_obj.url);
         console.log(this.delever_obj.table_id);
-        if (val.fn == "add") {
+        if (val.fn === "add") {
           add({
             url: this.delever_obj.url,
             params: val.form,
@@ -452,7 +453,6 @@
                   type: 'success'
                 });
                 this.init();
-
               }
             }
 
@@ -575,8 +575,6 @@
           });
         }).catch(() => {
         });
-
-
       },
       showDetail(row) {         //显示详情
         // var sideBar = $(".em_detail_window");
@@ -585,7 +583,34 @@
         //   console.log(sideBar);
         //   $(".em_detail_window").addClass("addWidth");
         // }
+
+        let _this=this;
         console.log(row);
+        if(this.table_id==="monitor_points_manage_table"){
+          let url = process.env.BASE_API;
+          playerOpen(url,{
+            id:row.id
+          }).then(res => {
+            console.log("monitor_points_manage_table");
+            console.log(res);
+
+            _this.$store.commit('win/win_open', {
+              win_obj: {
+                id: "win_player"
+              }
+            });
+
+            setTimeout(function () {
+              _this.bus.$emit("win_player_item", {
+                fn:"fn",
+                data:res.data
+              });
+            }, 200);
+
+          })
+        }
+
+
         if (row && this.data.table.picture_url) {
           getPictureImg({url: this.data.table.picture_url, id: row.id}).then(res => {
             this.imgUrl = res.data[0].fileName;

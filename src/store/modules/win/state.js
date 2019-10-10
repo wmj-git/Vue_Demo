@@ -6193,7 +6193,7 @@ export default {
       top: "180px",
       left: "calc((100% - 380px)/2)",
       width: 380,
-      show: true,
+      show: false,
       class: "em-table-window",
       component: "emPlayer",
       component_data: {

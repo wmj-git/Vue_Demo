@@ -12,6 +12,7 @@ function initWebSocket (url = websocketurl) {
   websocketurl=url;
   // 建立连接对象（还未发起连接）
   var socket = new SockJS("http://zhlh.cqemme.com:6733/api/v1/ws/webServer");
+  // var socket = new SockJS("http://192.168.20.18:8080/api/v1/ws/webServer");
   // 获取 STOMP 子协议的客户端对象
   stompClient = Stomp.over(socket);
   let headers={};

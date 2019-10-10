@@ -13,7 +13,6 @@
 </template>
 
 <script>
-
   export default {
     name: 'win',
     data() {
@@ -48,6 +47,13 @@
           draggable: true,
           resizable: _this.data.resizable,
           onBeforeClose: function () {  //点击窗口关闭按钮的时候触发
+
+            if(this.id==="win_player"){
+              _this.bus.$emit("win_player_item", {
+                fn:"closeFn"
+              });
+            }
+
             if (this) {
               $(this).window('destroy');
             }

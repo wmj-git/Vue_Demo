@@ -37,19 +37,19 @@
     created() {
       this.init();
       let url = process.env.BASE_API;
-      this.socketApi.initWebSocket(url.replace("http:", "ws:"));
+   /*   this.socketApi.initWebSocket(url.replace("http:", "ws:"));
       this.socketApi.proxyFunction('fire', (res) => {
         console.log("websocket");
         console.log(res);
         //收到的信息
-        /*{
+        /!*{
         createUser: null
         groupKey: null
         msgdata: "{"type":"fire"}"
         now: "2019-09-07 15:44:04"
         type: "fire"
         username: "aaa"
-        }*/
+        }*!/
         if (res) {
           this.init();
           this.bus.$emit("fire_info", res)
@@ -59,8 +59,7 @@
       this.bus.$on("close_fire_warn", _ => {
         this.init()
       });
-
-
+*/
     },
     methods: {
       showDialog() {
