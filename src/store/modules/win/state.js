@@ -6371,7 +6371,6 @@ export default {
           params: ""
         },
       ]
-
     },
   ]
 };

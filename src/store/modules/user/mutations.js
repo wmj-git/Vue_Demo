@@ -1,7 +1,7 @@
 import {
   SET_CODE, SET_TOKEN, SET_TOKEN_TIME, SET_REFRESH_TOKEN, SET_INTRODUCTION, SET_PERMISSIONS,
   SET_SETTING, SET_STATUS, SET_NAME, SET_SYSTEMDATA,
-  SET_AVATAR, SET_ROLES, SET_WIN, WIN_OPEN, WIN_CLOSE
+  SET_AVATAR, SET_ROLES, SET_WIN, WIN_OPEN, WIN_CLOSE,SET_NAVDATA
 } from '../../mutation-types';
 
 export default {
@@ -21,7 +21,8 @@ export default {
     state.introduction = introduction
   },
   [SET_WIN](state, {win}) {
-    state.win = win;
+    state.win = [];
+    state.win=state.win.concat(win);
   },
   [WIN_OPEN](state, {win_obj}) {
     let _win = state.win;
@@ -54,6 +55,10 @@ export default {
         state.win.push(_win[i]);
       }
     }
+  },
+  [SET_NAVDATA](state, {navData}) {
+    state.navData = [];
+    state.navData=state.navData.concat(navData);
   },
   [SET_PERMISSIONS]: (state, permissions) => {
     let _permissions=permissions;

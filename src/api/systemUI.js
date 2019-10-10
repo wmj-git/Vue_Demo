@@ -124,7 +124,9 @@ export const systemData = [ //默认数据模型
     "control_type": "table",
     "control_id": "nav_systemManage_role_win_emTable",
     "fn": "addFn",
-    "fn_type": ""
+    "fn_type": "table",
+    "table_Fn": "addFn",
+    "table_Id": "nav_systemManage_role_win_emTable"
   },
   {
     "system_id": "nav_systemManage_role_win_emForm_button2",

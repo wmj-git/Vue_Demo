@@ -308,8 +308,13 @@ export function loadCss(id, url, callback) {
 });*/
 
 
-export class StringToData {
+export class StringToObj {
   constructor(obj,set) {
+    this.obj = obj;
+    this.splitVal=set.splitVal;
+    this.typeVal=set.typeVal;
+  }
+  setData(obj,set) {
     this.obj = obj;
     this.splitVal=set.splitVal;
     this.typeVal=set.typeVal;

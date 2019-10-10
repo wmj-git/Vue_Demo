@@ -2,8 +2,8 @@ export const nav = {//主菜单类型
   systemType: ["nav", "navItem", "navList"],
   dataType: {
     "nav": {
-      description: {},
-      resourceCode: {}
+      description: {},//配置数据
+      resourceCode: {}//字段label
     },
     "navItem": {
       description: {},
@@ -31,6 +31,9 @@ export const winComponent = {//win组件类型
 };
 
 export const systemComponent = {//类型
-  systemType: [],
+  systemType: [
+    "system",
+    "system_dialog"
+  ],
   dataType: []
 };

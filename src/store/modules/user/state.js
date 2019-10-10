@@ -8,14 +8,8 @@ export default {
   systemData: [],//前端解析后的UI数据
   permissions: [],//后台权限数据
   win: [],//浮动功能窗口数据
-  dialog: [
-    {
-      type: "em_input",
-      placeholder: "账户",
-      name: "账户",
-      params: ""
-    }
-  ],//功能对话框
+  dialog: [],//功能对话框
+  navData: [],//主菜单数据
 
   //未应用
   user: '',

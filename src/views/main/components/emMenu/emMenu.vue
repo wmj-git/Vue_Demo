@@ -18,6 +18,8 @@
 </template>
 
 <script>
+
+
   export default {
     name: "emMenu",
     data() {
@@ -30,6 +32,20 @@
     },
     props: ["data"],
     methods: {
+      init() {
+        let _this=this;
+        this.id = this.data.system_id;
+        let _navData = this.$store.getters["user/navData"];
+        _navData.forEach((_obj) => {
+          let _activeIndex=_obj.activeIndex;
+          _obj.children.forEach((_val)=>{
+            if (_activeIndex===_val.system_id) {
+              _this.group = _val.children;
+            }
+          });
+        });
+
+      },
       handleSelect(key, keyPath) {
         console.log(key);
         let _control_id = null;
@@ -49,8 +65,7 @@
 
     },
     mounted() {
-      this.id = this.data.system_id;
-
+      this.init();
       // 非父子信息通信
       this.bus.$on(this.id, function (obj) {
         console.log("menu");

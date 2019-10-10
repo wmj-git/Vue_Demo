@@ -76,7 +76,6 @@ export function GetUserInfo({commit, state}) {
   });
 }
 
-
 // 登出
 export function LogOut({commit}) {
   return new Promise((resolve, reject) => {
@@ -125,14 +124,15 @@ export function systemUI({commit, state}) {
 
     findByThisUser().then((response) => {
       console.log("systemUI");
+      console.log(state);
       console.log(response);
       commit(SET_PERMISSIONS, response.data);
 
       response.data.forEach(function (_obj) {
 
         let _description = _obj.description;
-        _description  = _description .replace(/\\n/g,'');
-        _description = _description.replace(/\s*/g, "");
+        _description  = _description .replace(/\\n/g,'');//去掉换行
+        _description = _description.replace(/\s*/g, "");//去掉空格
         if (_description.substr(0, 1) === "{" && _description.substr(-1) === "}") {
           _description = JSON.parse(_description);
 
@@ -154,5 +154,28 @@ export function systemUI({commit, state}) {
     }).catch(error => {
       reject(error);
     });
+  });
+}
+
+
+//打开对话框
+export function openDialog({commit, state}) {
+
+  console.log(state);
+  console.log();
+  return new Promise((resolve, reject) => {
+    let _systemData = [];
+    resolve();
+  });
+}
+//关闭对话框
+export function closeDialog({commit, state}) {
+
+  console.log(state);
+  console.log();
+
+  return new Promise((resolve, reject) => {
+    let _systemData = [];
+    resolve();
   });
 }

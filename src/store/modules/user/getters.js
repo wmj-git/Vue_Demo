@@ -22,6 +22,9 @@ export function systemData(state){
 export function win(state){
   return state.win
 }
+export function navData(state){
+  return state.navData
+}
 export function permissions(state){
   return state.permissions
 }

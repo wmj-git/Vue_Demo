@@ -29,7 +29,9 @@
       </template>
     </template>
     <!--对话框-->
-    <!--<em_dialogs></em_dialogs>-->
+    <em-dialog>
+      对方水电费水电费
+    </em-dialog>
     <!--场景-->
     <router-view name="scene"/>
     <!-- 控制透明度的滑动条-->
@@ -40,8 +42,8 @@
 </template>
 
 <script>
-
-  import {nav, winComponent} from './data/db';
+  import {UI} from '@/utils/system/system';
+  import {nav, winComponent} from '../../utils/system/data/db';
   import {refreshToken} from '@/api/login';
   import {getNowFormatDate, treeStructure} from '@/utils/tools';
   import {
@@ -56,6 +58,7 @@
   import win from "@/app_components/win/win";
   import emTable from "@/app_components/emTable/emTable";
   import emForm from "@/app_components/emForm/emForm";
+  import emDialog from "@/app_components/emDialog/emDialog";
   import buttonGroup from "@/app_components/buttonGroup/buttonGroup";
 
   //局部组件
@@ -78,11 +81,11 @@
 
       splitPane,//拖动边线
 
-
       //start/公用组件=============
       win,
       emTable,
       emForm,
+      emDialog,
       buttonGroup,
       //end/公用组件=============
 
@@ -99,39 +102,10 @@
     },
     computed: {
       navData: function () {
-        let _data = [];
-        let _systemData = this.$store.getters["user/systemData"];
-
-        if (_systemData && _systemData.length > 0) {
-          _systemData.forEach(function (_obj) {
-            nav.systemType.forEach(function (_item) {
-              if (_obj.system_type === _item) {
-                _data.push(_obj);
-              }
-            });
-          });
-          _data = treeStructure(_data);
-        }
-
-        let ui_data = [];
-
-        for (let _k in _data) {
-          _data[_k].forEach(function (_obj) {
-            if (_obj.system_type === "nav") {
-              ui_data.push(_obj);
-            }
-          });
-        }
-        console.log("_systemData");
-        console.log(_data);
-        console.log(ui_data);
-        return ui_data;
+        return this.$store.getters["user/navData"];
       },
       wins: function () {
-
-        console.log(this.$store.getters["user/win"]);
-        let _data = this.$store.getters["user/win"];
-        return _data;
+        return this.$store.getters["user/win"];
       },
       dialogGroup: function () {
         return this.$store.getters["win/dialog"];
@@ -169,41 +143,57 @@
     },
     created() {
       let _this = this;
-
       //刷新token
       this.refreshTokenFn();
       //刷新ui数据
       this.$store.dispatch("user/systemUI", {}).then((response) => {
         console.log(response);
-        let _data = [];
+        let winComponent_data = [];
+        let nav_data = [];
+
+
         if (response && response.length > 0) {
           response.forEach(function (_obj) {
             winComponent.systemType.forEach(function (_item) {
               if (_obj.system_type === _item) {
-                _data.push(_obj);
+                winComponent_data.push(_obj);
+              }
+            });
+            nav.systemType.forEach(function (_item) {
+              if (_obj.system_type === _item) {
+                nav_data.push(_obj);
               }
             });
           });
-          _data = treeStructure(_data);
+          winComponent_data = treeStructure(winComponent_data);
+          nav_data = treeStructure(nav_data);
         }
 
-
-
-        let ui_data = [];
-        for (let _k in _data) {
-          _data[_k].forEach(function (_obj) {
+        //解析浮动窗口(win)数据
+        let _win_data = [];
+        for (let _k in winComponent_data) {
+          winComponent_data[_k].forEach(function (_obj) {
             if (_obj.system_type === "win") {
-              ui_data.push(_obj);
+              _win_data.push(_obj);
             }
           });
         }
         _this.$store.commit("user/set_win", {
-          win: ui_data
-        });//解析浮动窗口数据
+          win: _win_data
+        });
 
-
-        console.log(this.wins);
-        console.log(this.wins);
+        //解析主菜单(navData)数据
+        let _nav_data = [];
+        for (let _k in nav_data) {
+          nav_data[_k].forEach(function (_obj) {
+            if (_obj.system_type === "nav") {
+              _nav_data.push(_obj);
+            }
+          });
+        }
+        _this.$store.commit("user/set_navData", {
+          navData: _nav_data
+        });
 
       });
 

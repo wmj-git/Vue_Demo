@@ -1,5 +1,5 @@
 <template>
-  <div class="em_dialog">
+  <div class="emDialog">
     <!--<component :is="type" :data="dialog"></component>-->
     <component></component>
   </div>

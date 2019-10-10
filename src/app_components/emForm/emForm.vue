@@ -43,7 +43,7 @@
     data() {
       return {
         id: "",
-        formSet: {
+        formSet: {//表单设置
           labelWidth: "",
           class: ""
         },
@@ -77,6 +77,9 @@
               "ruleForm": _ruleForm
             });
             break;
+          case "dialog":
+
+            break;
           default://调用组件本身方法
             this[_fn](_obj);
         }
@@ -101,7 +104,7 @@
         this.formItems = _form_data;
         this.rulesFn(_rule_data);
       },
-      rulesFn(form_items) {
+      rulesFn(form_items) {//
         let _ruleForm = {};
         let _rules = {};
         this.form_items = JSON.parse(JSON.stringify(form_items));

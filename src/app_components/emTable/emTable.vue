@@ -88,8 +88,7 @@
         multipleSelection: [],//多选框对象组
         columnBtn: [],//配置表行内按钮
 
-        // 分页
-        pagination: {
+        pagination: { // 分页
           currentPage: 1,//当前页
           pageSize: 10,//当前信息条数
           totalSize: 0//总条数
@@ -137,11 +136,11 @@
         };
         try {
           let _val = {};
-          if(params){
+          if (params) {
             _val = params;
           }
-          for (let k in _val ) {
-            _params[k]=_val[k];
+          for (let k in _val) {
+            _params[k] = _val[k];
           }
         } catch (error) {
           console.log(error.message);
@@ -197,20 +196,42 @@
         console.log(_obj);
       },
       findFn(_obj) {
-        if(_obj.ruleForm){
+        if (_obj.ruleForm) {
           this.tableDataFn(_obj.ruleForm);
         }
         console.log(_obj);
       },
       addFn(_obj) {
         console.log(_obj);
-        find({                      //页面渲染时拿表格数据
-          url: this.tableSet.resourceUrl,
-          params: _params
+        let _this = this;
+        add({                      //页面渲染时拿表格数据
+          /* url: _obj.obj.resourceUrl,
+           params: _obj.ruleForm,
+           id: _this.id*/
+          url: "/user/role/addRole",
+          params: {
+            "remark": "给对佛挡杀佛方1",
+            "roleCname": "电饭点睡锅1",
+            "roleCode": "321124",
+            "roleEname": "gfhrt1"
+          },
+          id: "nav_systemManage_role_win_emTable"
         }).then(res => {
           console.log(res);
-
+          if (res) {
+            if (res.statusCode === 200) {
+              // this.$refs.dialog.cancel();
+              _this.$message({
+                message: '恭喜你，添加成功',
+                type: 'success'
+              });
+              this.tableDataFn();
+            }
+          }
         });
+      },
+      addDialog(_obj) {
+        console.log(_obj);
       }
     },
     created() {
