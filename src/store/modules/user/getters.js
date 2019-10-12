@@ -7,15 +7,6 @@ export function tokenTime(state){
 export function refreshToken(state){
   return state.refreshToken
 }
-export function avatar(state){
-  return state.avatar
-}
-export function name(state){
-  return state.name
-}
-export function introduction(state){
-  return state.introduction
-}
 export function systemData(state){
   return state.systemData
 }
@@ -27,6 +18,21 @@ export function navData(state){
 }
 export function permissions(state){
   return state.permissions
+}
+export function dialog(state){
+  return state.dialog
+}
+
+
+//未用的数据
+export function avatar(state){
+  return state.avatar
+}
+export function name(state){
+  return state.name
+}
+export function introduction(state){
+  return state.introduction
 }
 export function status(state){
   return state.status

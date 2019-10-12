@@ -10,7 +10,7 @@ export const systemData = [ //默认数据模型
     "fn": "",
     "fn_type": "",
     "menu_id": "winMenu",
-    "activeIndex": "nav_systemManage"
+    "activeIndex": "nav_dataBase"
   },
   {
     "system_id": "nav_systemManage",

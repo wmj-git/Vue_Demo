@@ -108,7 +108,7 @@
         return this.$store.getters["user/win"];
       },
       dialogGroup: function () {
-        return this.$store.getters["win/dialog"];
+        return this.$store.getters["user/dialog"];
       }
     },
     methods: {
