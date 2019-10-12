@@ -1,5 +1,9 @@
 export const nav = {//主菜单类型
-  systemType: ["nav", "navItem", "navList"],
+  systemType: [
+    "nav",
+    "navItem",
+    "navList"
+  ],
   dataType: {
     "nav": {
       description: {},//配置数据
@@ -23,6 +27,7 @@ export const winComponent = {//win组件类型
     "win_component",
     "win_component_table",
     "win_component_table_columnBtn",
+    "win_component_table_dialog",
     "win_component_form",
     "win_component_formItem",
     "win_component_formButton"
@@ -33,7 +38,12 @@ export const winComponent = {//win组件类型
 export const systemComponent = {//类型
   systemType: [
     "system",
-    "system_dialog"
+    "system_layout",
+    "system_layout_dialog",
+    "system_layout_dialog_form",
+    "system_layout_dialog_formItem",
+    "system_layout_dialog_formButton",
+    "system_layout_drawer"
   ],
   dataType: []
 };

@@ -1,12 +1,13 @@
 <template>
   <div class="emDialog">
     <el-dialog
-      title="提示"
+      :title="dialogSet.title"
+      :modal="dialogSet.modal"
       :visible.sync="dialogVisible"
-      width="200"
+      :width="dialogSet.width"
       append-to-body
     >
-           <slot></slot>
+      <slot></slot>
     </el-dialog>
   </div>
 </template>
@@ -19,18 +20,24 @@
       return {
         id: "",
         dialogVisible: true,
-        dialogSet: {},
-        type: "",
-        dialog: {}
+        dialogSet: {
+          title: "",
+          modal: "",
+          width: ""
+        }
       }
     },
     props: ["data"],
     components: {},
     methods: {
       init() {
-        /* console.log(this.data);
-         this.type = this.data.type;
-         this.dialog = this.data;*/
+        console.log(this.data);
+        this.id = this.data.system_id;
+        this.dialogVisible = this.data.visible;
+
+        this.dialogSet.modal = this.data.modal;
+        this.dialogSet.title = this.data.title;
+        this.dialogSet.width = this.data.width;
       }
     },
     created() {

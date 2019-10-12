@@ -92,7 +92,13 @@
           currentPage: 1,//当前页
           pageSize: 10,//当前信息条数
           totalSize: 0//总条数
+        },
+
+        dialogAdd:{
+
         }
+
+
       };
     },
     props: ["data"],

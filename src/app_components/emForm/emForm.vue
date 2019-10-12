@@ -91,15 +91,21 @@
         let _rule_data = [];
         _obj.forEach(function (_item) {
 
-          if (_item.system_type === "win_component_formItem") {
-            _item.label = _item.title;
-            _form_data.push(_item);
-            _rule_data.push(_item);
+          
+          switch (_item.system_type) {
+            case "win_component_formItem":
+            case "system_layout_dialog_formItem":
+              _item.label = _item.title;
+              _form_data.push(_item);
+              _rule_data.push(_item);
+              break;
+            case "win_component_formButton":
+            case "system_layout_dialog_formButton":
+              _item.label = _item.title;
+              _form_data.push(_item);
+              break;
           }
-          if (_item.system_type === "win_component_formButton") {
-            _item.label = _item.title;
-            _form_data.push(_item);
-          }
+
         });
         this.formItems = _form_data;
         this.rulesFn(_rule_data);

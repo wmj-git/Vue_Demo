@@ -123,7 +123,7 @@ export const systemData = [ //默认数据模型
     "disabled": false,
     "control_type": "table",
     "control_id": "nav_systemManage_role_win_emTable",
-    "fn": "addFn",
+    "fn": "addDialog",
     "fn_type": "table",
     "table_Fn": "addFn",
     "table_Id": "nav_systemManage_role_win_emTable"
@@ -156,32 +156,6 @@ export const systemData = [ //默认数据模型
     "control_type": "",
     "control_id": "",
     "fn": "getForm",
-    "fn_type": ""
-  },
-  {
-    "system_id": "nav_systemManage_role_win_emForm_select",
-    "system_type": "win_component_formItem",
-    "title": "下拉",
-    "winSpan": 8,
-    "inputType": "select",
-    "label": "",
-    "valueKey": "name",
-    "defaultValue": "",
-    "disabled": false,
-    "Validate": {
-      "data": [
-        {"required": true, "message": "请输字段", "trigger": "change"}
-      ]
-    },
-    "options_url": "none",
-    "options": {
-      "data": [
-        {"label": "dsfs", "value": "dsfs1"}
-      ]
-    },
-    "control_type": "",
-    "control_id": "",
-    "fn": "",
     "fn_type": ""
   },
   {
@@ -505,6 +479,58 @@ export const systemData = [ //默认数据模型
     "component": "emMenu",
     "control_id": "",
     "control_type": "",
+    "fn": "",
+    "fn_type": ""
+  },
+  {
+    "system_id": "dialog_table",
+    "system_type": "system_layout_dialog",
+    "dialogLayout": "1",
+    "title": "对话框_表格",
+    "modal": true,
+    "visible": true,
+    "width": 480,
+    "control_id": "",
+    "control_type": "",
+    "fn": "",
+    "fn_type": ""
+  },
+  {
+    "system_id": "dialog_table_emForm",
+    "system_type": "system_layout_dialog_form",
+    "title": "表单",
+    "dialogSpan": 48,
+    "component": "emForm",
+    "labelWidth": "",
+    "class": "",
+    "control_type": "",
+    "control_id": "",
+    "fn": "",
+    "fn_type": ""
+  },
+  {
+    "system_id": "dialog_table_emForm_select",
+    "system_type": "system_layout_dialog_formItem",
+    "title": "下拉",
+    "winSpan": 16,
+    "inputType": "select",
+    "label": "",
+    "valueKey": "name",
+    "defaultValue": "",
+    "disabled": false,
+    "Validate": {
+      "data": [
+        {"required": true, "message": "请输字段", "trigger": "change"}
+      ]
+    },
+    "options_url": "none",
+    "options": {
+      "data": [
+        {"label": "dsfs", "value": "dsfs1"}
+      ]
+    },
+    "control_type": "",
+    "control_id": "",
     "fn": "",
     "fn_type": ""
   }

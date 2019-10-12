@@ -135,6 +135,7 @@ export function systemUI({commit, state}) {
         _description = _description.replace(/\s*/g, "");//去掉空格
         if (_description.substr(0, 1) === "{" && _description.substr(-1) === "}") {
           _description = JSON.parse(_description);
+          _obj.resourceCode=_description.system_id;//id显示
 
           if(_obj.isMeum){
             _description.title=_obj.resourceName;

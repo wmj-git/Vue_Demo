@@ -11,7 +11,7 @@
                 :data="treeData"
                 node-key="id"
                 @node-click="fn"
-                default-expand-all
+                :default-expand-all="true"
                 :expand-on-click-node="false"
                 ref="tree_control"
                 @node-drag-end="handleDragEnd"
