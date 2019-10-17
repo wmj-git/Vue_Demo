@@ -3,9 +3,17 @@
     .el-form-item {
       margin-bottom: 2px;
     }
-    .em-form-bottom {
+    .em-form-button {
       width: 100%;
-      margin-top: 2px;
+      margin-top: 7px;
+    }
+  }
+
+  .form-dialog {
+    .em-form-button {
+      width: 100%;
+      margin-top: 7px;
+      margin-bottom: 6px;
     }
   }
 }

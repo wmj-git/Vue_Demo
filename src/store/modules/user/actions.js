@@ -160,12 +160,19 @@ export function systemUI({commit, state}) {
 
 
 //打开对话框
-export function openDialog({commit, state}) {
+export function openDialog({commit, state},_val) {
 
-  console.log(state);
-  console.log();
+  console.log(_val);
+
   return new Promise((resolve, reject) => {
-    let _systemData = [];
+    let _systemData = state.dialog;
+    console.log("_systemData");
+    console.log(_systemData);
+    _systemData[0].visible=true;
+    _systemData[0].width="800";
+    commit("set_dialog",{
+      dialog:_systemData
+    });
     resolve();
   });
 }

@@ -27,7 +27,6 @@ export const winComponent = {//win组件类型
     "win_component",
     "win_component_table",
     "win_component_table_columnBtn",
-    "win_component_table_dialog",
     "win_component_form",
     "win_component_formItem",
     "win_component_formButton"

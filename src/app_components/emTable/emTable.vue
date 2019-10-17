@@ -94,11 +94,13 @@
           totalSize: 0//总条数
         },
 
-        dialogAdd:{
+        addDialogUI:{//添加功能
+
+        },
+
+        modifyDialogUI:{//修改功能
 
         }
-
-
       };
     },
     props: ["data"],
@@ -237,7 +239,116 @@
         });
       },
       addDialog(_obj) {
-        console.log(_obj);
+        let _this = this;
+        let _data = _obj.obj;
+
+        vueBus.$emit(_data.dialog_id, {
+          "fn": _data.dialog_fn,
+          "visible": true,
+          "set": {
+            "title": "添加",
+            "width": "480px",
+          },
+          "children": [
+            {
+              "system_id": _this.id + "_addDialog_emForm",
+              "system_type": "win_component_form",
+              "title": "表单123",
+              "winSpan": 48,
+              "component": "emForm",
+              "labelPosition": "",
+              "labelWidth": "80px",
+              "class": "form-dialog",
+              "control_type": "",
+              "control_id": "",
+              "fn": "",
+              "fn_type": "",
+              "children": [
+                {
+                  "system_id": "dialog_table_emForm_text",
+                  "system_type": "win_component_formItem",
+                  "title": "中文名",
+                  "winSpan": 24,
+                  "inputType": "text",
+                  "label": "",
+                  "valueKey": "roleCname",
+                  "defaultValue": "",
+                  "placeholder": "中文名",
+                  "disabled": false,
+                  "Validate": {
+                    "data": [
+                      {"required": true, "message": "请输字段", "trigger": "change"}
+                    ]
+                  },
+                  "options_url": "none",
+                  "options": [],
+                  "control_type": "",
+                  "control_id": "",
+                  "fn": "",
+                  "fn_type": ""
+                },
+                {
+                  "system_id": "dialog_table_emForm_select",
+                  "system_type": "win_component_formItem",
+                  "title": "下拉",
+                  "winSpan": 24,
+                  "inputType": "select",
+                  "label": "",
+                  "valueKey": "name",
+                  "defaultValue": "",
+                  "disabled": false,
+                  "Validate": {
+                    "data": [
+                      {"required": true, "message": "请输字段123", "trigger": "change"}
+                    ]
+                  },
+                  "options_url": "none",
+                  "options": {
+                    "data": [
+                      {"label": "uuu", "value": "dsfs1"}
+                    ]
+                  },
+                  "control_type": "",
+                  "control_id": "",
+                  "fn": "",
+                  "fn_type": ""
+                },
+                {
+                  "system_id": "nav_systemManage_role_win_emForm_button1",
+                  "system_type": "win_component_formButton",
+                  "title": "确定",
+                  "winOffset": 24,
+                  "winSpan": 12,
+                  "inputType": "button",
+                  "type": "primary",
+                  "class": "",
+                  "icon": "",
+                  "disabled": false,
+                  "control_type": "",
+                  "control_id": "",
+                  "fn": "getForm",
+                  "fn_type": ""
+                },
+                {
+                  "system_id": "nav_systemManage_role_win_emForm_button2",
+                  "system_type": "win_component_formButton",
+                  "title": "取消",
+                  "winSpan": 12,
+                  "inputType": "button",
+                  "type": "primary",
+                  "class": "",
+                  "icon": "",
+                  "disabled": false,
+                  "control_type": "dialog",
+                  "control_id": "dialog_table",
+                  "fn": "closeFn",
+                  "fn_type": ""
+                }
+              ]
+            }
+          ]
+        });
+
       }
     },
     created() {

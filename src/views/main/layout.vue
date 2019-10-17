@@ -31,15 +31,7 @@
     <!--对话框-->
     <template v-for="dialog in dialogGroup">
       <template v-if="dialog.dialogLayout=='1'">
-        <em-dialog :id="dialog.system_id" :data="dialog">
-          <el-row :gutter="8" v-if="dialog.children">
-            <template v-for="component in dialog.children">
-              <el-col :span="component.dialogSpan">
-                <component :is="component.component" :data="component"></component>
-              </el-col>
-            </template>
-          </el-row>
-        </em-dialog>
+        <em-dialog :id="dialog.system_id" :data="dialog"></em-dialog>
       </template>
     </template>
     <!--场景-->

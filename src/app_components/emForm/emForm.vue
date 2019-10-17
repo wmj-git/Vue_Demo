@@ -1,16 +1,16 @@
 <template>
   <div class="emForm">
     <el-card class="box-card">
-      <el-form label-position="left" :model="ruleForm" status-icon :rules="rules" :ref="id"
+      <el-form :label-position="formSet.labelPosition" :model="ruleForm" status-icon :rules="rules" :ref="id"
                :label-width="formSet.labelWidth" :class="formSet.class">
         <template v-for="item in formItems">
-          <el-col :span="item.winSpan" v-if="item.inputType=='text'">
+          <el-col :span="item.winSpan" :offset="item.winOffset" v-if="item.inputType=='text'">
             <el-form-item :label="item.label" :prop="item.valueKey">
               <el-input :disabled="item.disabled" :ref="item.system_id" v-model="ruleForm[item.valueKey]"
                         :placeholder="item.placeholder ? item.placeholder : '请输入'"></el-input>
             </el-form-item>
           </el-col>
-          <el-col :span="item.winSpan" v-else-if="item.inputType=='select'">
+          <el-col :span="item.winSpan" :offset="item.winOffset" v-else-if="item.inputType=='select'">
             <el-form-item :label="item.label" :prop="item.valueKey">
               <el-select :disabled="item.disabled" :ref="item.system_id" v-model="ruleForm[item.valueKey]"
                          :placeholder="item.placeholder ? item.placeholder : '请选择'">
@@ -20,14 +20,12 @@
               </el-select>
             </el-form-item>
           </el-col>
-          <el-col :span="item.winSpan" v-else-if="item.inputType=='button'">
-            <el-form-item>
-              <el-button :type="item.type ? item.type : 'primary'" :icon="item.icon" :ref="item.system_id"
-                         :class="item.class ? item.class : 'em-btn-special'"
-                         @click="fn(item.fn,item)">
-                {{item.title}}
-              </el-button>
-            </el-form-item>
+          <el-col :span="item.winSpan" :offset="item.winOffset" v-else-if="item.inputType=='button'">
+            <el-button :type="item.type ? item.type : 'primary'" :icon="item.icon" :ref="item.system_id"
+                       :class="item.class ? item.class : 'em-form-button'"
+                       @click="fn(item.fn,item)">
+              {{item.title}}
+            </el-button>
           </el-col>
         </template>
       </el-form>
@@ -44,6 +42,7 @@
       return {
         id: "",
         formSet: {//表单设置
+          labelPosition: "",
           labelWidth: "",
           class: ""
         },
@@ -56,9 +55,9 @@
     components: {},
     methods: {
       init() {
-
         this.id = this.data.system_id;
-        this.formSet.labelWidth = this.data.labelWidth;
+        this.formSet.labelPosition = this.data.labelPosition ? this.data.labelPosition : "left";
+        this.formSet.labelWidth = this.data.labelWidth ? this.data.labelWidth : "";
         this.formSet.class = this.data.class;
         //获取行表单组数据
         if (this.data.children) {
@@ -78,7 +77,11 @@
             });
             break;
           case "dialog":
-
+            vueBus.$emit(_obj.control_id, {
+              "fn": _fn,
+              "obj": _obj,
+              "ruleForm": _ruleForm
+            });
             break;
           default://调用组件本身方法
             this[_fn](_obj);
@@ -91,7 +94,6 @@
         let _rule_data = [];
         _obj.forEach(function (_item) {
 
-          
           switch (_item.system_type) {
             case "win_component_formItem":
             case "system_layout_dialog_formItem":
@@ -107,22 +109,26 @@
           }
 
         });
-        this.formItems = _form_data;
+        this.formItems.splice(0, this.formItems.length);
+        this.formItems = this.formItems.concat(_form_data);
+
         this.rulesFn(_rule_data);
       },
-      rulesFn(form_items) {//
+      rulesFn(rule_items) {//
         let _ruleForm = {};
         let _rules = {};
-        this.form_items = JSON.parse(JSON.stringify(form_items));
-        this.form_items.forEach(function (_obj) {
+        let _rule_items = JSON.parse(JSON.stringify(rule_items));
+        _rule_items.forEach(function (_obj) {
           _ruleForm[_obj.valueKey] = _obj.defaultValue;
           _rules[_obj.valueKey] = _obj.Validate.data;
         });
+
         this.ruleForm = _ruleForm;
         this.rules = _rules;
-        console.log(form_items);
+        console.log("this.formItems");
+        console.log(this.formItems);
       },
-      setForm(_obj) {
+      setForm(_obj) {//设置表单值
         for (let _key in _obj) {
           this.ruleForm[_key] = _obj[_key];
         }
@@ -143,7 +149,7 @@
         });
       },
       resetForm(formName) {//重置
-        // this.$refs[formName].resetFields();
+        this.$refs[formName].resetFields();
       }
     },
     created() {

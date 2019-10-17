@@ -12,14 +12,14 @@ export default {
   navData: [],//主菜单数据
 
   //未应用
-  user: '',
-  status: '',
-  code: '',
-  name: '',
+  user: '',//用户账号
+  status: '',//用户状态
+  code: '',//用户编码
+  name: '',//用户名称
   avatar: '',//头像
-  introduction: '',
-  roles: [],
-  setting: {
-    articlePlatform: []
+  introduction: '',//用户描述
+  roles: [],//角色
+  setting: {//初始功能块设置
+
   }
 };
