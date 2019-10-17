@@ -1,7 +1,8 @@
 import request from '@/utils/request';
 
-
-export const systemData = [ //默认数据模型
+// 默认数据模型
+export const systemData = [
+  // 菜单
   {
     "system_id": "nav", "system_type": "nav", "title": "", "top": "", "left": "", "show": true, "resizable": false,
     "class": "em-nav-window",
@@ -12,6 +13,33 @@ export const systemData = [ //默认数据模型
     "menu_id": "winMenu",
     "activeIndex": "nav_dataBase"
   },
+  {
+    "system_id": "winMenu",
+    "system_type": "win",
+    "winLayout": "1",
+    "title": "功能菜单",
+    "left": "L-4px",
+    "top": "132px",
+    "width": 230,
+    "height": 720,
+    "show": true,
+    "resizable": false,
+    "maximizable": false,
+    "closable": false,
+    "draggable": false,
+    "class": "em-menu-window"
+  },
+  {
+    "system_id": "winMenu_body",
+    "system_type": "win_menu_body",
+    "winSpan": 48,
+    "component": "emMenu",
+    "control_id": "",
+    "control_type": "",
+    "fn": "",
+    "fn_type": ""
+  },
+
   {
     "system_id": "nav_systemManage",
     "system_type": "navItem",
@@ -108,7 +136,7 @@ export const systemData = [ //默认数据模型
     "disabled": false,
     "control_type": "table",
     "control_id": "nav_systemManage_role_win_emTable",
-    "fn": "findFn",
+    "fn": "queryFn",
     "fn_type": ""
   },
   {
@@ -129,6 +157,145 @@ export const systemData = [ //默认数据模型
     "dialog_fn": "visibleFn"
   },
   {
+    "system_id": "nav_systemManage_role_win_emForm_button1_emForm",
+    "system_type": "win_component_form",
+    "title": "添加表单",
+    "winSpan": 48,
+    "component": "emForm",
+    "labelPosition": "",
+    "labelWidth": "80px",
+    "class": "form-dialog",
+    "control_type": "",
+    "control_id": "",
+    "fn": "",
+    "fn_type": ""
+  },
+  {
+    "system_id": "nav_systemManage_role_win_emForm_button1_emForm_text1",
+    "system_type": "win_component_formItem",
+    "title": "英文名",
+    "winSpan": 24,
+    "inputType": "text",
+    "label": "英文名",
+    "valueKey": "roleEname",
+    "defaultValue": "",
+    "placeholder": "请输入",
+    "disabled": false,
+    "Validate": {
+      "data": [
+        {"required": true, "message": "请输字母", "trigger": "change"}
+      ]
+    },
+    "options_url": "none",
+    "options": [],
+    "control_type": "",
+    "control_id": "",
+    "fn": "",
+    "fn_type": ""
+  },
+  {
+    "system_id": "nav_systemManage_role_win_emForm_button1_emForm_text2",
+    "system_type": "win_component_formItem",
+    "title": "中文名",
+    "winSpan": 24,
+    "inputType": "text",
+    "label": "中文名",
+    "valueKey": "roleCname",
+    "defaultValue": "",
+    "placeholder": "请输入",
+    "disabled": false,
+    "Validate": {
+      "data": [
+        {"required": true, "message": "请输中文", "trigger": "change"}
+      ]
+    },
+    "options_url": "none",
+    "options": [],
+    "control_type": "",
+    "control_id": "",
+    "fn": "",
+    "fn_type": ""
+  },
+  {
+    "system_id": "nav_systemManage_role_win_emForm_button1_emForm_text3",
+    "system_type": "win_component_formItem",
+    "title": "角色编码",
+    "winSpan": 24,
+    "inputType": "text",
+    "label": "角色编码",
+    "valueKey": "roleCode",
+    "defaultValue": "",
+    "placeholder": "请输入",
+    "disabled": false,
+    "Validate": {
+      "data": [
+        {"required": true, "message": "请输入", "trigger": "change"}
+      ]
+    },
+    "options_url": "none",
+    "options": [],
+    "control_type": "",
+    "control_id": "",
+    "fn": "",
+    "fn_type": ""
+  },
+  {
+    "system_id": "nav_systemManage_role_win_emForm_button1_emForm_text4",
+    "system_type": "win_component_formItem",
+    "title": "备注",
+    "winSpan": 24,
+    "inputType": "text",
+    "label": "备注",
+    "valueKey": "remark",
+    "defaultValue": "123",
+    "placeholder": "请输入",
+    "disabled": false,
+    "Validate": {
+      "data": [
+        {"required": true, "message": "请输入", "trigger": "change"}
+      ]
+    },
+    "options_url": "none",
+    "options": [],
+    "control_type": "",
+    "control_id": "",
+    "fn": "",
+    "fn_type": ""
+  },
+  {
+    "system_id": "nav_systemManage_role_win_emForm_button1_emForm_button1",
+    "system_type": "win_component_formButton",
+    "title": "确定",
+    "winOffset": 24,
+    "winSpan": 12,
+    "inputType": "button",
+    "type": "primary",
+    "class": "",
+    "icon": "",
+    "disabled": false,
+    "control_type": "table",
+    "control_id": "nav_systemManage_role_win_emTable",
+    "fn": "addFn",
+    "fn_type": "",
+    "dialog_id": "dialog_table",
+    "dialog_fn": "closeFn"
+  },
+  {
+    "system_id": "nav_systemManage_role_win_emForm_button1_emForm_button2",
+    "system_type": "win_component_formButton",
+    "title": "取消",
+    "winSpan": 12,
+    "inputType": "button",
+    "type": "primary",
+    "class": "",
+    "icon": "",
+    "disabled": false,
+    "control_type": "dialog",
+    "control_id": "dialog_table",
+    "fn": "closeFn",
+    "fn_type": ""
+  },
+  {
     "system_id": "nav_systemManage_role_win_emForm_button2",
     "system_type": "win_component_formButton",
     "title": "修改",
@@ -138,9 +305,152 @@ export const systemData = [ //默认数据模型
     "class": "",
     "icon": "el-icon-edit",
     "disabled": false,
+    "control_type": "table",
+    "control_id": "nav_systemManage_role_win_emTable",
+    "fn": "addDialog",
+    "fn_type": "dialog",
+    "dialog_id": "dialog_table",
+    "dialog_fn": "visibleFn",
+    "dialog_title":"修改",
+    "dialog_dataType": "currentRow"
+  },
+  {
+    "system_id": "nav_systemManage_role_win_emForm_button2_emForm",
+    "system_type": "win_component_form",
+    "title": "添加表单",
+    "winSpan": 48,
+    "component": "emForm",
+    "labelPosition": "",
+    "labelWidth": "80px",
+    "class": "form-dialog",
     "control_type": "",
     "control_id": "",
-    "fn": "getForm",
+    "fn": "",
+    "fn_type": ""
+  },
+  {
+    "system_id": "nav_systemManage_role_win_emForm_button2_emForm_text1",
+    "system_type": "win_component_formItem",
+    "title": "英文名",
+    "winSpan": 24,
+    "inputType": "text",
+    "label": "英文名",
+    "valueKey": "roleEname",
+    "defaultValue": "",
+    "placeholder": "请输入",
+    "disabled": false,
+    "Validate": {
+      "data": [
+        {"required": true, "message": "请输字母", "trigger": "change"}
+      ]
+    },
+    "options_url": "none",
+    "options": [],
+    "control_type": "",
+    "control_id": "",
+    "fn": "",
+    "fn_type": ""
+  },
+  {
+    "system_id": "nav_systemManage_role_win_emForm_button2_emForm_text2",
+    "system_type": "win_component_formItem",
+    "title": "中文名",
+    "winSpan": 24,
+    "inputType": "text",
+    "label": "中文名",
+    "valueKey": "roleCname",
+    "defaultValue": "",
+    "placeholder": "请输入",
+    "disabled": false,
+    "Validate": {
+      "data": [
+        {"required": true, "message": "请输中文", "trigger": "change"}
+      ]
+    },
+    "options_url": "none",
+    "options": [],
+    "control_type": "",
+    "control_id": "",
+    "fn": "",
+    "fn_type": ""
+  },
+  {
+    "system_id": "nav_systemManage_role_win_emForm_button2_emForm_text3",
+    "system_type": "win_component_formItem",
+    "title": "角色编码",
+    "winSpan": 24,
+    "inputType": "text",
+    "label": "角色编码",
+    "valueKey": "roleCode",
+    "defaultValue": "",
+    "placeholder": "请输入",
+    "disabled": false,
+    "Validate": {
+      "data": [
+        {"required": true, "message": "请输入", "trigger": "change"}
+      ]
+    },
+    "options_url": "none",
+    "options": [],
+    "control_type": "",
+    "control_id": "",
+    "fn": "",
+    "fn_type": ""
+  },
+  {
+    "system_id": "nav_systemManage_role_win_emForm_button2_emForm_text4",
+    "system_type": "win_component_formItem",
+    "title": "备注",
+    "winSpan": 24,
+    "inputType": "text",
+    "label": "备注",
+    "valueKey": "remark",
+    "defaultValue": "123",
+    "placeholder": "请输入",
+    "disabled": false,
+    "Validate": {
+      "data": [
+        {"required": true, "message": "请输入", "trigger": "change"}
+      ]
+    },
+    "options_url": "none",
+    "options": [],
+    "control_type": "",
+    "control_id": "",
+    "fn": "",
+    "fn_type": ""
+  },
+  {
+    "system_id": "nav_systemManage_role_win_emForm_button2_emForm_button1",
+    "system_type": "win_component_formButton",
+    "title": "确定",
+    "winOffset": 24,
+    "winSpan": 12,
+    "inputType": "button",
+    "type": "primary",
+    "class": "",
+    "icon": "",
+    "disabled": false,
+    "control_type": "table",
+    "control_id": "nav_systemManage_role_win_emTable",
+    "fn": "addFn",
+    "fn_type": "",
+    "dialog_id": "dialog_table",
+    "dialog_fn": "closeFn"
+  },
+  {
+    "system_id": "nav_systemManage_role_win_emForm_button2_emForm_button2",
+    "system_type": "win_component_formButton",
+    "title": "取消",
+    "winSpan": 12,
+    "inputType": "button",
+    "type": "primary",
+    "class": "",
+    "icon": "",
+    "disabled": false,
+    "control_type": "dialog",
+    "control_id": "dialog_table",
+    "fn": "closeFn",
     "fn_type": ""
   },
   {
@@ -203,7 +513,7 @@ export const systemData = [ //默认数据模型
     "minWidth": 12,
     "control_type": "",
     "control_id": "",
-    "fn": "handleEdit",
+    "fn": "",
     "fn_type": ""
   },
   {
@@ -214,7 +524,7 @@ export const systemData = [ //默认数据模型
     "minWidth": 12,
     "control_type": "",
     "control_id": "",
-    "fn": "handleEdit",
+    "fn": "",
     "fn_type": ""
   },
   {
@@ -265,6 +575,7 @@ export const systemData = [ //默认数据模型
     "fn": "",
     "fn_type": ""
   },
+
   {
     "system_id": "nav_dataBase",
     "system_type": "navItem",
@@ -430,6 +741,7 @@ export const systemData = [ //默认数据模型
     "fn": "",
     "fn_type": ""
   },
+
   {
     "system_id": "scene_data",
     "system_type": "win",
@@ -457,32 +769,8 @@ export const systemData = [ //默认数据模型
     "fn": "",
     "fn_type": ""
   },
-  {
-    "system_id": "winMenu",
-    "system_type": "win",
-    "winLayout": "1",
-    "title": "功能菜单",
-    "left": "L-4px",
-    "top": "132px",
-    "width": 230,
-    "height": 720,
-    "show": true,
-    "resizable": false,
-    "maximizable": false,
-    "closable": false,
-    "draggable": false,
-    "class": "em-menu-window"
-  },
-  {
-    "system_id": "winMenu_body",
-    "system_type": "win_menu_body",
-    "winSpan": 48,
-    "component": "emMenu",
-    "control_id": "",
-    "control_type": "",
-    "fn": "",
-    "fn_type": ""
-  },
+
+
   {
     "system_id": "dialog_table",
     "system_type": "system_layout_dialog",

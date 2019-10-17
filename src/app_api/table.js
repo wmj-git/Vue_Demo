@@ -32,7 +32,7 @@ export function add(obj) {
     })
   }
 
-  export function find(obj) {//表格数据查
+  export function query(obj) {//表格数据查
     return request({
       url: obj.url,
       method: 'get',
@@ -40,7 +40,7 @@ export function add(obj) {
     })
   }
 
-  export function modify(obj) {        //表格数据修改
+  export function update(obj) {        //表格数据修改
     return request({
       url: obj.url,
       method: 'post',

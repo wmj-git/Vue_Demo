@@ -12,6 +12,8 @@
             :max-height="tableSet.maxHeight"
             @current-change="handleCurrentChange"
             @selection-change="handleSelectionChange"
+            @row-click="handleRowClick"
+            @row-dblclick="handleRowDoubleClick"
           >
 
             <el-table-column
@@ -42,6 +44,7 @@
                     class="em-btn-operation"
                     :ref="btn.system_id"
                     size="mini"
+                    @click.stop
                     @click="fn(btn.fn,{'index':scope.$index,'row':scope.row,'btn':btn,'control_type':btn.control_type})">
                     {{btn.title}}
                   </el-button>
@@ -70,7 +73,7 @@
 
 <script>
   import vueBus from '@/utils/vueBus'
-  import {add, del, modify, find, downCsvmodel, upLoad, resetPassword} from "@/app_api/table";
+  import {add, del, update, query, downCsvmodel, upLoad, resetPassword} from "@/app_api/table";
 
   export default {
     name: "emTable",
@@ -92,14 +95,6 @@
           currentPage: 1,//当前页
           pageSize: 10,//当前信息条数
           totalSize: 0//总条数
-        },
-
-        addDialogUI:{//添加功能
-
-        },
-
-        modifyDialogUI:{//修改功能
-
         }
       };
     },
@@ -120,9 +115,10 @@
         this.id = this.data.system_id;
         this.tableSet.resourceUrl = this.data.resourceUrl;
         this.tableSet.maxHeight = this.data.maxHeight;
-        // this.tableSet.tableColumn = JSON.parse(JSON.stringify(this.data.tableColumn));
+
+        //表字段
         let _tableColumn = JSON.parse(JSON.stringify(this.data.tableColumn));
-        this.tableSet.tableColumn = _tableColumn.data;//表字段
+        this.tableSet.tableColumn = _tableColumn.data;
 
         //获取行按钮数据
         if (this.data.children) {
@@ -154,7 +150,7 @@
           console.log(error.message);
         } finally {
 
-          find({                      //页面渲染时拿表格数据
+          query({ //页面渲染时拿表格数据
             url: this.tableSet.resourceUrl,
             params: _params
           }).then(res => {
@@ -181,18 +177,12 @@
             this.listLoading = false;
           });
         }
-
       },
-      tableIndex(index) {                         //控制表格数据行号
+      tableIndex(index) {  //控制表格数据行号
         return (this.pagination.currentPage - 1) * this.pagination.pageSize + index + 1;
       },
-      handleSelectionChange(val) {// 多选框（选中删除）
-        this.multipleSelection = val;
-      },
-      handleCurrentChange(val) {     //单选行 （选中修改）
-        this.currentRow = val;
-      },
       handleSizeChange(val) {//页条数
+
         this.pagination.pageSize = val;
         this.tableDataFn();
       },
@@ -200,32 +190,36 @@
         this.pagination.currentPage = val;
         this.tableDataFn();
       },
-      handleEdit(_obj) {
-        console.log(_obj);
+      handleSelectionChange(val) {   // 多选框（选中删除）
+        this.multipleSelection = val;
       },
-      findFn(_obj) {
+      handleCurrentChange(val) {   //单选行 （选中修改）
+        this.currentRow = val;
+      },
+      //单击行
+      handleRowClick(row, column, event) {
+        console.log(1, row, column, event);
+      },
+      //双击行
+      handleRowDoubleClick(row, column, event) {
+        console.log(2, row, column, event);
+      },
+      //查询数据
+      queryFn(_obj) {
         if (_obj.ruleForm) {
           this.tableDataFn(_obj.ruleForm);
         }
-        console.log(_obj);
       },
-      addFn(_obj) {
-        console.log(_obj);
+      //添加一行数据
+      addFn(_obj) { // 添加一行数据
+        console.log("addFn", _obj);
+
         let _this = this;
         add({                      //页面渲染时拿表格数据
-          /* url: _obj.obj.resourceUrl,
-           params: _obj.ruleForm,
-           id: _this.id*/
-          url: "/user/role/addRole",
-          params: {
-            "remark": "给对佛挡杀佛方1",
-            "roleCname": "电饭点睡锅1",
-            "roleCode": "321124",
-            "roleEname": "gfhrt1"
-          },
-          id: "nav_systemManage_role_win_emTable"
+          url: _obj.obj.resourceUrl,
+          params: _obj.ruleForm,
+          type: ""
         }).then(res => {
-          console.log(res);
           if (res) {
             if (res.statusCode === 200) {
               // this.$refs.dialog.cancel();
@@ -233,120 +227,60 @@
                 message: '恭喜你，添加成功',
                 type: 'success'
               });
+              vueBus.$emit(_obj.obj.dialog_id, {
+                "fn": _obj.obj.dialog_fn
+              });
               this.tableDataFn();
             }
           }
         });
       },
-      addDialog(_obj) {
+      //更新行数据
+      updateFn(_obj) {
+        console.log(_obj);
         let _this = this;
+      },
+      //删除行
+      delFn(_obj) {
+        console.log(_obj);
+        let _this = this;
+      },
+      //控制对话框
+      addDialog(_obj) {
+        console.log(_obj);
         let _data = _obj.obj;
+
+        if (_data.dialog_dataType) {
+
+          switch (_data.dialog_dataType) {
+            case "currentRow":
+              if (this.currentRow && _data.children) {
+                let _currentRow = this.currentRow;
+                let _children = _data.children[0];
+                _children.children.forEach((_val) => {
+                  if (_val.valueKey && _currentRow[_val.valueKey]) {
+                    _val.defaultValue = _currentRow[_val.valueKey];
+                  }
+                })
+              } else{
+                this.$message({
+                  message: '请点选修改行!',
+                  type: 'error'
+                });
+                return
+              }
+              break
+          }
+        }
 
         vueBus.$emit(_data.dialog_id, {
           "fn": _data.dialog_fn,
           "visible": true,
           "set": {
-            "title": "添加",
-            "width": "480px",
+            "title": _data.dialog_title ? _data.dialog_title : "对话框",
+            "width": "480px"
           },
-          "children": [
-            {
-              "system_id": _this.id + "_addDialog_emForm",
-              "system_type": "win_component_form",
-              "title": "表单123",
-              "winSpan": 48,
-              "component": "emForm",
-              "labelPosition": "",
-              "labelWidth": "80px",
-              "class": "form-dialog",
-              "control_type": "",
-              "control_id": "",
-              "fn": "",
-              "fn_type": "",
-              "children": [
-                {
-                  "system_id": "dialog_table_emForm_text",
-                  "system_type": "win_component_formItem",
-                  "title": "中文名",
-                  "winSpan": 24,
-                  "inputType": "text",
-                  "label": "",
-                  "valueKey": "roleCname",
-                  "defaultValue": "",
-                  "placeholder": "中文名",
-                  "disabled": false,
-                  "Validate": {
-                    "data": [
-                      {"required": true, "message": "请输字段", "trigger": "change"}
-                    ]
-                  },
-                  "options_url": "none",
-                  "options": [],
-                  "control_type": "",
-                  "control_id": "",
-                  "fn": "",
-                  "fn_type": ""
-                },
-                {
-                  "system_id": "dialog_table_emForm_select",
-                  "system_type": "win_component_formItem",
-                  "title": "下拉",
-                  "winSpan": 24,
-                  "inputType": "select",
-                  "label": "",
-                  "valueKey": "name",
-                  "defaultValue": "",
-                  "disabled": false,
-                  "Validate": {
-                    "data": [
-                      {"required": true, "message": "请输字段123", "trigger": "change"}
-                    ]
-                  },
-                  "options_url": "none",
-                  "options": {
-                    "data": [
-                      {"label": "uuu", "value": "dsfs1"}
-                    ]
-                  },
-                  "control_type": "",
-                  "control_id": "",
-                  "fn": "",
-                  "fn_type": ""
-                },
-                {
-                  "system_id": "nav_systemManage_role_win_emForm_button1",
-                  "system_type": "win_component_formButton",
-                  "title": "确定",
-                  "winOffset": 24,
-                  "winSpan": 12,
-                  "inputType": "button",
-                  "type": "primary",
-                  "class": "",
-                  "icon": "",
-                  "disabled": false,
-                  "control_type": "",
-                  "control_id": "",
-                  "fn": "getForm",
-                  "fn_type": ""
-                },
-                {
-                  "system_id": "nav_systemManage_role_win_emForm_button2",
-                  "system_type": "win_component_formButton",
-                  "title": "取消",
-                  "winSpan": 12,
-                  "inputType": "button",
-                  "type": "primary",
-                  "class": "",
-                  "icon": "",
-                  "disabled": false,
-                  "control_type": "dialog",
-                  "control_id": "dialog_table",
-                  "fn": "closeFn",
-                  "fn_type": ""
-                }
-              ]
-            }
-          ]
+          "children": _data.children
         });
 
       }

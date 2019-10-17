@@ -10,6 +10,16 @@
                         :placeholder="item.placeholder ? item.placeholder : '请输入'"></el-input>
             </el-form-item>
           </el-col>
+          <el-col :span="item.winSpan" :offset="item.winOffset" v-else-if="item.inputType=='compositeText'">
+            <el-form-item :label="item.label" :prop="item.valueKey">
+              <el-select :disabled="item.disabled" :ref="item.system_id" v-model="ruleForm[item.valueKey]"
+                         :placeholder="item.placeholder ? item.placeholder : '请选择'">
+                <template v-for="option in item.options.data">
+                  <el-option :label="option.label" :value="option.value"></el-option>
+                </template>
+              </el-select>
+            </el-form-item>
+          </el-col>
           <el-col :span="item.winSpan" :offset="item.winOffset" v-else-if="item.inputType=='select'">
             <el-form-item :label="item.label" :prop="item.valueKey">
               <el-select :disabled="item.disabled" :ref="item.system_id" v-model="ruleForm[item.valueKey]"
