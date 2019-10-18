@@ -1,17 +1,18 @@
 import {
   SET_CODE, SET_TOKEN, SET_TOKEN_TIME, SET_REFRESH_TOKEN, SET_INTRODUCTION,
-  SET_SETTING, SET_STATUS, SET_NAME, SET_PERMISSIONS, SET_SYSTEMDATA,
+  SET_SETTING, SET_STATUS, SET_NAME, SET_PERMISSIONS, SET_SYSTEMDATA, SET_WIN, SET_DIALOG,SET_NAVDATA,
   SET_AVATAR, SET_ROLES
 } from '../../mutation-types';
 import {loginByUsername, logout, getUserInfo, refreshToken, loginByToken} from '@/api/login';
 import {findByThisUser} from "@/api/resource";  //后台权限
 import {systemData} from "@/api/systemUI";  //后台权限
-import {getNowFormatDate} from '@/utils/tools';
+import {getNowFormatDate, toTree} from '@/utils/tools';
 import {
   getToken, setToken, getTokenTime, setTokenTime, removeToken, TokenName,
   setRefreshToken, getRefreshToken, RefreshTokenName, getExpires, setExpires
 } from '@/utils/auth';
 
+import {nav, winComponent, systemComponent} from '@/utils/system/data/db';
 
 // 登录
 export function LoginByUsername({commit}, userInfo) {
@@ -123,24 +124,22 @@ export function systemUI({commit, state}) {
     let _systemData = [];
 
     findByThisUser().then((response) => {
-      console.log("systemUI");
-      console.log(state);
-      console.log(response);
+
       commit(SET_PERMISSIONS, response.data);
 
       response.data.forEach(function (_obj) {
 
         let _description = _obj.description;
-        _description  = _description .replace(/\\n/g,'');//去掉换行
+        _description = _description.replace(/\\n/g, '');//去掉换行
         _description = _description.replace(/\s*/g, "");//去掉空格
         if (_description.substr(0, 1) === "{" && _description.substr(-1) === "}") {
           _description = JSON.parse(_description);
-          _obj.resourceCode=_description.system_id;//id显示
+          _obj.resourceCode = _description.system_id;//id显示
 
-          if(_obj.isMeum){
-            _description.title=_obj.resourceName;
-          }else {
-            _description.title="";
+          if (_obj.isMeum) {
+            _description.title = _obj.resourceName;
+          } else {
+            _description.title = "";
           }
 
           for (let k in _description) {
@@ -151,6 +150,75 @@ export function systemUI({commit, state}) {
 
       });
       commit(SET_SYSTEMDATA, _systemData);
+
+
+      /* 更新容器组件数据*/
+      //菜单
+      let nav_data = [];
+      // win框
+      let winComponent_data = [];
+
+      let systemComponent_data = [];
+
+
+
+      if (_systemData && _systemData.length > 0) {
+        _systemData.forEach(function (_obj) {
+          winComponent.systemType.forEach(function (_item) {
+            if (_obj.system_type === _item) {
+              winComponent_data.push(_obj);
+            }
+          });
+          systemComponent.systemType.forEach(function (_item) {
+            if (_obj.system_type === _item) {
+              systemComponent_data.push(_obj);
+            }
+          });
+          nav.systemType.forEach(function (_item) {
+            if (_obj.system_type === _item) {
+              nav_data.push(_obj);
+            }
+          });
+        });
+        winComponent_data = toTree(winComponent_data);
+        systemComponent_data = toTree(systemComponent_data);
+        nav_data = toTree(nav_data);
+      }
+
+      //解析浮动窗口(win)数据
+      let _win_data = [];
+      winComponent_data.forEach(function (_obj) {
+        if (_obj.system_type === "win") {
+          _win_data.push(_obj);
+        }
+      });
+      commit(SET_WIN, {
+        win: _win_data
+      });
+
+      //解析对话框(dialog)数据
+      let _dialog_data = [];
+      systemComponent_data.forEach(function (_obj) {
+        if (_obj.system_type === "system_layout_dialog") {
+          _dialog_data.push(_obj);
+        }
+      });
+      commit(SET_DIALOG, {
+        dialog: _dialog_data
+      });
+
+      //解析主菜单(navData)数据
+      let _nav_data = [];
+      nav_data.forEach(function (_obj) {
+        if (_obj.system_type === "nav") {
+          _nav_data.push(_obj);
+        }
+      });
+      commit(SET_NAVDATA, {
+        navData: _nav_data
+      });
+
+
       resolve(_systemData);
     }).catch(error => {
       reject(error);
@@ -160,7 +228,7 @@ export function systemUI({commit, state}) {
 
 
 //打开对话框
-export function openDialog({commit, state},_val) {
+export function openDialog({commit, state}, _val) {
 
   console.log(_val);
 
@@ -168,14 +236,15 @@ export function openDialog({commit, state},_val) {
     let _systemData = state.dialog;
     console.log("_systemData");
     console.log(_systemData);
-    _systemData[0].visible=true;
-    _systemData[0].width="800";
-    commit("set_dialog",{
-      dialog:_systemData
+    _systemData[0].visible = true;
+    _systemData[0].width = "800";
+    commit("set_dialog", {
+      dialog: _systemData
     });
     resolve();
   });
 }
+
 //关闭对话框
 export function closeDialog({commit, state}) {
 

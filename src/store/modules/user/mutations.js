@@ -23,6 +23,10 @@ export default {
     state.dialog = [];
     state.dialog=state.dialog.concat(dialog);
   },
+  [SET_NAVDATA](state, {navData}) {
+    state.navData = [];
+    state.navData=state.navData.concat(navData);
+  },
   [WIN_OPEN](state, {win_obj}) {
     let _win = state.win;
 
@@ -54,10 +58,6 @@ export default {
         state.win.push(_win[i]);
       }
     }
-  },
-  [SET_NAVDATA](state, {navData}) {
-    state.navData = [];
-    state.navData=state.navData.concat(navData);
   },
   [SET_PERMISSIONS]: (state, permissions) => {
     let _permissions=permissions;

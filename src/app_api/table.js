@@ -1,19 +1,19 @@
 import request from '@/utils/request'
 export function add(obj) {
-  switch (obj.id) {
-    case "soil_temperature_manage_table"://土壤温度
+  switch (obj.type) {
+    case "soil_temperature"://土壤温度
       obj.params.pointType = "S";
       obj.params.temperatureOrHumidity = "T";
       break;
-    case "soil_humidity_manage_table"://土壤湿度
+    case "soil_humidity"://土壤湿度
       obj.params.pointType = "S";
       obj.params.temperatureOrHumidity = "H";
       break;
-    case "air_temperature_manage_table"://空气温度
+    case "air_temperature"://空气温度
       obj.params.pointType = "A";
       obj.params.temperatureOrHumidity = "T";
       break;
-    case "air_humidity_manage_table"://空气湿度
+    case "air_humidity"://空气湿度
       obj.params.pointType = "A";
       obj.params.temperatureOrHumidity = "H";
   }

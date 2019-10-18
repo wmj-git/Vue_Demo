@@ -55,7 +55,7 @@
   import splitPane from 'vue-splitpane';
   import emForm from './components/emForm/emForm';
   import {addResource, delResource,updateResource} from "@/api/resource";
-  import {treeStructure} from "@/utils/tools";
+  import {treeStructure,toTree} from "@/utils/tools";
 
 
   export default {
@@ -82,27 +82,15 @@
       },
       treeDataFn(_obj) {
         let _tree = [];
-        let _Tree = [];
+
         let _permissions = _obj;
-        // console.log(_permissions);
-        // console.log(this.props_data);
         if (_permissions.length > 0) {
           _permissions.forEach(function (_obj) {
             _obj.label = _obj.resourceName;
             _tree.push(_obj);
           });
         }
-        console.log("_Tree");
-        console.log(_tree);
-        let _data = treeStructure(_tree);
-        for (let _k in _data) {
-          _data[_k].forEach(function (_obj) {
-            _Tree.push(_obj);
-          });
-        }
-        console.log(_Tree);
-
-        return _Tree;
+        return toTree(_tree);
       },
       append(node, data) {
         let _this = this;

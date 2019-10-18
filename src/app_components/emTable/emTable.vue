@@ -212,8 +212,6 @@
       },
       //添加一行数据
       addFn(_obj) { // 添加一行数据
-        console.log("addFn", _obj);
-
         let _this = this;
         add({                      //页面渲染时拿表格数据
           url: _obj.obj.resourceUrl,
@@ -237,13 +235,68 @@
       },
       //更新行数据
       updateFn(_obj) {
-        console.log(_obj);
         let _this = this;
+        update({
+          url: _obj.obj.resourceUrl,
+          params: _obj.ruleForm
+        }).then(res => {
+          if (res) {
+            if (res.statusCode === 200) {
+              _this.$message({
+                message: '恭喜你，更新成功',
+                type: 'success'
+              });
+              vueBus.$emit(_obj.obj.dialog_id, {
+                "fn": _obj.obj.dialog_fn
+              });
+              this.tableDataFn();
+            }
+          }
+        });
       },
       //删除行
       delFn(_obj) {
-        console.log(_obj);
+        console.log("del", _obj);
         let _this = this;
+        let _items =[];
+
+        if (this.multipleSelection && this.multipleSelection.length > 0) {
+          this.$confirm('此操作将删除所选项, 是否继续?', '提示', {
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+            type: 'warning'
+          }).then(() => {
+            this.multipleSelection.forEach((_val)=>{
+              _items.push(_val.id);
+            });
+            del({
+              url: _obj.obj.resourceUrl,
+              params: _items
+            }).then(res => {
+              if (res) {
+                if (res.statusCode === 200) {
+                  _this.$message({
+                    message: '恭喜你，删除成功',
+                    type: 'success'
+                  });
+                  _this.tableDataFn();
+                }
+              }
+            });
+
+          }).catch(() => {
+
+          });
+        } else {
+          _this.$message({
+            message: '请勾选要删除的行!',
+            type: 'error'
+          });
+          return
+        }
+
+
+
       },
       //控制对话框
       addDialog(_obj) {
@@ -251,7 +304,6 @@
         let _data = _obj.obj;
 
         if (_data.dialog_dataType) {
-
           switch (_data.dialog_dataType) {
             case "currentRow":
               if (this.currentRow && _data.children) {
@@ -262,9 +314,9 @@
                     _val.defaultValue = _currentRow[_val.valueKey];
                   }
                 })
-              } else{
+              } else {
                 this.$message({
-                  message: '请点选修改行!',
+                  message: '请点选一行修改!',
                   type: 'error'
                 });
                 return

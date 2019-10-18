@@ -76,14 +76,23 @@
         }
       },
       fn(_fn, _obj) {//初始化匹配功能
+        let _this=this;
         let _controlType = _obj.control_type ? _obj.control_type : "";
         let _ruleForm = this.ruleForm;
+
         switch (_controlType) {
           case "table":
-            vueBus.$emit(_obj.control_id, {
-              "fn": _fn,
-              "obj": _obj,
-              "ruleForm": _ruleForm
+            this.$refs[this.id].validate((valid) => {
+              if (valid) {
+                vueBus.$emit(_obj.control_id, {
+                  "fn": _fn,
+                  "obj": _obj,
+                  "ruleForm": _ruleForm
+                });
+              } else {
+                console.log('error submit!!');
+                return false;
+              }
             });
             break;
           case "dialog":
@@ -94,11 +103,13 @@
             });
             break;
           default://调用组件本身方法
-            this[_fn](_obj);
+            _this[_fn](_obj);
         }
+
+
+
       },
       defaultFn(_obj) {
-        console.log(_obj);
         //表单组数据
         let _form_data = [];
         let _rule_data = [];
@@ -135,8 +146,6 @@
 
         this.ruleForm = _ruleForm;
         this.rules = _rules;
-        console.log("this.formItems");
-        console.log(this.formItems);
       },
       setForm(_obj) {//设置表单值
         for (let _key in _obj) {
