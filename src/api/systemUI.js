@@ -1,4 +1,3 @@
-import request from '@/utils/request';
 
 // 默认数据模型
 export const systemData = [
