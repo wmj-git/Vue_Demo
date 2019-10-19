@@ -17,7 +17,6 @@
 
 <script>
   import win from "@/app_components/win/win";
-  import {findByThisUser} from "@/api/resource";  //权限
 
   export default {
     name:"emNav",
@@ -100,11 +99,6 @@
             });
           }, 200);
         }
-      },
-      findByThisUserFn() {//更新权限数据
-        findByThisUser().then((response) => {
-          this.$store.commit("user/set_permissions", response.data);
-        });
       }
     },
     created() {

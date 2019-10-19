@@ -5,7 +5,7 @@ export default {
   token: getToken(),
   tokenTime: getTokenTime(),//刷新间隔时间
   refreshToken: getRefreshToken(),
-  systemData: [],//前端解析后的UI数据
+  systemData: [],//权限数据解析后的UI数据
   permissions: [],//后台权限数据
   win: [],//浮动功能窗口数据
   dialog: [],//功能对话框

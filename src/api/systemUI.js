@@ -10,7 +10,7 @@ export const systemData = [
     "fn": "",
     "fn_type": "",
     "menu_id": "winMenu",
-    "activeIndex": "nav_dataBase"
+    "activeIndex": "nav_systemManage"
   },
   {
     "system_id": "winMenu",
@@ -420,6 +420,29 @@ export const systemData = [
     "fn_type": ""
   },
   {
+    "system_id": "nav_systemManage_role_win_emForm_button2_emForm_text5",
+    "system_type": "win_component_formItem",
+    "title": "ID",
+    "winSpan": 24,
+    "inputType": "text",
+    "label": "ID",
+    "valueKey": "id",
+    "defaultValue": "",
+    "placeholder": "ID",
+    "disabled": true,
+    "Validate": {
+      "data": [
+        {"required": false, "message": "请输入", "trigger": "change"}
+      ]
+    },
+    "options_url": "none",
+    "options": [],
+    "control_type": "",
+    "control_id": "",
+    "fn": "",
+    "fn_type": ""
+  },
+  {
     "system_id": "nav_systemManage_role_win_emForm_button2_emForm_button1",
     "system_type": "win_component_formButton",
     "title": "确定",
@@ -432,7 +455,7 @@ export const systemData = [
     "disabled": false,
     "control_type": "table",
     "control_id": "nav_systemManage_role_win_emTable",
-    "fn": "addFn",
+    "fn": "updateFn",
     "fn_type": "",
     "dialog_id": "dialog_table",
     "dialog_fn": "closeFn"
@@ -463,9 +486,9 @@ export const systemData = [
     "class": "",
     "icon": "el-icon-delete",
     "disabled": false,
-    "control_type": "",
-    "control_id": "",
-    "fn": "getForm",
+    "control_type": "table",
+    "control_id": "nav_systemManage_role_win_emTable",
+    "fn": "delFn",
     "fn_type": ""
   },
   {
@@ -505,7 +528,7 @@ export const systemData = [
     "fn_type": ""
   },
   {
-    "system_id": "nav_systemManage_role_win_emTable_columnBtn",
+    "system_id": "nav_systemManage_role_win_emTable_columnBtn1",
     "system_type": "win_component_table_columnBtn",
     "title": "权限分配",
     "label": "设置",
@@ -516,7 +539,7 @@ export const systemData = [
     "fn_type": ""
   },
   {
-    "system_id": "nav_systemManage_role_win_emTable_columnBtn",
+    "system_id": "nav_systemManage_role_win_emTable_columnBtn2",
     "system_type": "win_component_table_columnBtn",
     "title": "关联用户",
     "label": "设置",

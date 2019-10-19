@@ -85,7 +85,32 @@ export function timestampToTime(timestamp) {
 // console.log(timestampToTime(1403058804));//2014-06-18 10:33:24
 //获取时间end
 
+// 树型数据转换
+export function treeWeight(_nodes) {
 
+  function compare(obj1, obj2) {
+    var val1 = obj1.weight;
+    var val2 = obj2.weight;
+    if (val1 < val2) {
+      return -1;
+    } else if (val1 > val2) {
+      return 1;
+    } else {
+      return 0;
+    }
+  }
+
+  let datalist = _nodes;
+
+  if (datalist instanceof Array) {
+    datalist.sort(compare).forEach(a => {
+      if (a.children && (a.children instanceof Array)) {
+        treeWeight( a.children);
+      }
+    });
+  }
+  return datalist;
+}
 export function treeStructure(_nodes) {
   var nodes = _nodes;
 
@@ -115,8 +140,25 @@ export function treeStructure(_nodes) {
     }
   }
 
+
+
   return midObj;
 }
+export function toTree(_nodes) {
+
+  let _Tree = [];
+  let _data = treeStructure(_nodes);
+  for (let _k in _data) {
+    _data[_k].forEach(function (_obj) {
+      _Tree.push(_obj);
+    });
+  }
+  return treeWeight(_Tree);
+}
+
+
+
+
 
 
 //获取指定日期whereTheTime的所在周、月、季度、半年、全年
@@ -309,25 +351,27 @@ export function loadCss(id, url, callback) {
 
 
 export class StringToObj {
-  constructor(obj,set) {
+  constructor(obj, set) {
     this.obj = obj;
-    this.splitVal=set.splitVal;
-    this.typeVal=set.typeVal;
+    this.splitVal = set.splitVal;
+    this.typeVal = set.typeVal;
   }
-  setData(obj,set) {
+
+  setData(obj, set) {
     this.obj = obj;
-    this.splitVal=set.splitVal;
-    this.typeVal=set.typeVal;
+    this.splitVal = set.splitVal;
+    this.typeVal = set.typeVal;
   }
+
   getData() {
-    let _data={};
+    let _data = {};
     for (let k in this.obj) {
       let _params = k.split(this.splitVal);
       if (_params[0] === this.typeVal) {
         _data[_params[1]] = this.obj[k];
       }
     }
-  return _data
+    return _data
   }
 }
 
