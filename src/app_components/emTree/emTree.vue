@@ -1,29 +1,25 @@
 <template>
-  <div class="treeForm">
-
-    <split-pane split="vertical" :min-percent='20' :default-percent='34'>
-      <template slot="paneL">
-        <el-card class="box-card">
-          <el-row>
-            <el-col :span="48">
-              <p class="head_title">权限</p>
-              <el-tree
-                :data="treeData"
-                node-key="id"
-                @node-click="fn"
-                :default-expand-all="true"
-                :expand-on-click-node="true"
-                ref="tree_control"
-                @node-drag-end="handleDragEnd"
-                draggable
-              >
+  <div class="emTree">
+    <el-row>
+      <el-col :span="48">
+        <p class="head_title">权限</p>
+        <el-tree
+          :data="treeData"
+          :props="defaultProps"
+          node-key="id"
+          @node-click="fn"
+          :default-expand-all="true"
+          :expand-on-click-node="true"
+          ref="id"
+          @node-drag-end="handleDragEnd"
+          draggable>
                   <span class="custom-tree-node" slot-scope="{ node, data }">
                     <span :title="node.label" class="em-tree-text">{{ node.label }}</span>
                     <span>
                       <el-button
                         class="em-btn-gradient em-btn-uniform-gradient"
                         size="mini"
-                        @click="() => append(node,data)" quanxian
+                        @click="() => append(node,data)"
                       >
                         添加
                       </el-button>
@@ -36,53 +32,88 @@
                       </el-button>
                     </span>
                   </span>
-              </el-tree>
-            </el-col>
-          </el-row>
-        </el-card>
-      </template>
-      <template slot="paneR">
-        <el-card class="box-card">
-          <em-form :props_data="form_data" ref="form"></em-form>
-        </el-card>
-      </template>
-    </split-pane>
+        </el-tree>
+      </el-col>
+    </el-row>
+
   </div>
 </template>
 
 <script>
-  import {db_form_data} from './data/db';
-  import splitPane from 'vue-splitpane';
-  import emForm from './components/emForm/emForm';
-  import {addResource, delResource, updateResource} from "@/api/resource";
-  import {treeStructure, toTree} from "@/utils/tools";
 
+  import splitPane from 'vue-splitpane';
+  import {addResource, delResource, updateResource} from "@/api/resource";
+  import {toTree} from "@/utils/tools";
 
   export default {
-    name: "treeForm",
+    name: "emTree",
     data() {
       return {
-        id: 100,
-        form_data: JSON.parse(JSON.stringify(db_form_data))
+        id: "",
+        filterText: '',
+        defaultProps: {
+          children: 'children',
+          label: 'label'
+        }
       };
     },
-    props: ["props_data"],
+    props: ["data"],
+
     computed: {
       treeData: function () {
-        return this.treeDataFn(this.$store.getters["user/permissions"]);
+        // return this.treeDataFn(this.$store.getters["user/permissions"]);
+        return [
+          {
+            id: 1,
+            label: '一级 1',
+            children: [{
+              id: 4,
+              label: '二级 1-1',
+              children: [{
+                id: 9,
+                label: '三级 1-1-1'
+              }, {
+                id: 10,
+                label: '三级 1-1-2'
+              }]
+            }]
+          },
+          {
+            id: 2,
+            label: '一级 2',
+            children: [{
+              id: 5,
+              label: '二级 2-1'
+            }, {
+              id: 6,
+              label: '二级 2-2'
+            }]
+          },
+          {
+            id: 3,
+            label: '一级 3',
+            children: [{
+              id: 7,
+              label: '二级 3-1'
+            }, {
+              id: 8,
+              label: '二级 3-2'
+            }]
+          }]
       }
     },
     components: {
-      splitPane,
-      emForm
+      splitPane
     },
     methods: {
-      init() {
+      fn() {
 
+      },
+      init() {
+        this.id = this.data.system_id;
       },
       treeDataFn(_obj) {
         let _tree = [];
-
         let _permissions = _obj;
         if (_permissions.length > 0) {
           _permissions.forEach(function (_obj) {
@@ -108,11 +139,7 @@
         };
         newChild.parentId = data.id;
         addResource(newChild).then(function (response) {
-          // console.log(response);
           _this.$message(response.message);
-          _this.bus.$emit("nav", {
-            fn: "findByThisUserFn"
-          });
         });
       },
       remove(node, data) {
@@ -137,10 +164,7 @@
         });
       },
       handleDragEnd(draggingNode, dropNode, dropType, ev) {
-        /*  console.log(draggingNode);
-          console.log(dropNode);
-          console.log(dropType);
-          console.log('tree drag end: ', dropNode && dropNode.label, dropType);*/
+
         if (dropType === "inner") {
           draggingNode.data.parentId = dropNode.data.id;
         } else {
@@ -151,56 +175,15 @@
           this.$message(response.message);
         });
 
-      },
-      fn(...obj) {
-        // console.log(obj[0]);
-        // console.log(JSON.stringify(_item.Validate));
-        let _form_data = [];
-
-        for (let k in obj[0]) {
-          if (k !== "children" && k !== "label") {
-            let _item = {
-              id: "",
-              inputType: "text",
-              label: '',
-              disabled: false,
-              valueKey: "",
-              value: "",
-              Validate: [],
-              options_url: "",
-              options: [],
-            };
-            _item.id = "form_" + k;
-            _item.valueKey = k;
-            _item.value = obj[0][k];
-
-            let _obj = this.form_data;
-            /* console.log("----------------");
-             console.log(k);
-             console.log(_obj[k]);*/
-
-            _item.label = _obj[k].label;
-            _item.inputType = _obj[k].type;
-            _item.disabled = _obj[k].disabled;
-            _item.Validate = _obj[k].Validate;
-            _item.options_url = _obj[k].options_url;
-            _item.options = _obj[k].options;
-
-            _form_data.push(_item);
-          }
-
-        }
-        this.$refs.form.rulesFn(JSON.parse(JSON.stringify(_form_data)));
       }
-    },
 
+    },
     created() {
-      this.bus.$emit("nav", {
-        fn: "findByThisUserFn"
-      });
+      this.init();
+
     },
     mounted() {
-      this.init();
+
     },
     updated() {
 
@@ -209,5 +192,5 @@
 </script>
 
 <style lang="scss" scoped>
-  @import "treeForm";
+  @import "emTree";
 </style>

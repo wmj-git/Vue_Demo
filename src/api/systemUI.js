@@ -1,4 +1,3 @@
-
 // 默认数据模型
 export const systemData = [
   // 菜单
@@ -310,7 +309,7 @@ export const systemData = [
     "fn_type": "dialog",
     "dialog_id": "dialog_table",
     "dialog_fn": "visibleFn",
-    "dialog_title":"修改",
+    "dialog_title": "修改",
     "dialog_dataType": "currentRow"
   },
   {
@@ -531,10 +530,10 @@ export const systemData = [
     "system_id": "nav_systemManage_role_win_emTable_columnBtn1",
     "system_type": "win_component_table_columnBtn",
     "title": "权限分配",
-    "label": "设置",
+    "label": "操作1",
     "minWidth": 12,
-    "control_type": "",
-    "control_id": "",
+    "control_type": "columnBtn_win",
+    "control_id": "nav_systemManage_role_win1",
     "fn": "",
     "fn_type": ""
   },
@@ -542,13 +541,113 @@ export const systemData = [
     "system_id": "nav_systemManage_role_win_emTable_columnBtn2",
     "system_type": "win_component_table_columnBtn",
     "title": "关联用户",
-    "label": "设置",
+    "label": "操作2",
     "minWidth": 12,
+    "control_type": "columnBtn_win",
+    "control_id": "nav_systemManage_role_win2",
+    "fn": "",
+    "fn_type": ""
+  },
+  {
+    "system_id": "nav_systemManage_role_win1",
+    "system_type": "win",
+    "winLayout": "1",
+    "title": "权限分配-窗口",
+    "top": "148px",
+    "left": "M-640px",
+    "width": 640,
+    "height": 600,
+    "show": false,
+    "resizable": true,
+    "maximizable": false,
+    "closable": false,
+    "draggable": false,
+    "class": "em-table-window"
+  },
+  {
+    "system_id": "nav_systemManage_role_win1_emTree",
+    "system_type": "win_component_tree",
+    "title": "权限",
+    "winOffset": 0,
+    "winSpan": 48,
+    "component": "emTree",
+    "class": "",
     "control_type": "",
     "control_id": "",
     "fn": "",
     "fn_type": ""
   },
+  {
+    "system_id": "nav_systemManage_role_win1_emButtonGroup",
+    "system_type": "win_component_buttonGroup",
+    "title": "按钮组",
+    "winOffset": 24,
+    "winSpan": 24,
+    "component": "emButtonGroup",
+    "groupType": "",
+    "class": "",
+    "control_type": "",
+    "control_id": "",
+    "fn": "",
+    "fn_type": ""
+  },
+  {
+    "system_id": "nav_systemManage_role_win1_emButtonGroup_item1",
+    "system_type": "win_component_buttonGroup_item",
+    "title": "确定",
+    "type": "primary",
+    "size": "",
+    "class": "hh",
+    "icon": "",
+    "disabled": false,
+    "control_type": "",
+    "control_id": "",
+    "fn": "",
+    "fn_type": ""
+  },
+  {
+    "system_id": "nav_systemManage_role_win1_emButtonGroup_item2",
+    "system_type": "win_component_buttonGroup_item",
+    "title": "取消",
+    "type": "primary",
+    "size": "",
+    "class": "",
+    "icon": "",
+    "disabled": false,
+    "control_type": "",
+    "control_id": "",
+    "fn": "",
+    "fn_type": ""
+  },
+  {
+    "system_id": "nav_systemManage_role_win2",
+    "system_type": "win",
+    "winLayout": "1",
+    "title": "关联用户-窗口",
+    "top": "148px",
+    "left": "M-640px",
+    "width": 640,
+    "height": 600,
+    "show": false,
+    "resizable": true,
+    "maximizable": false,
+    "closable": false,
+    "draggable": false,
+    "class": "em-table-window"
+  },
+  {
+    "system_id": "nav_systemManage_role_win2_emTransfer",
+    "system_type": "win_component_transfer",
+    "title": "穿梭框",
+    "winSpan": 48,
+    "component": "emTransfer",
+    "class": "",
+    "control_type": "",
+    "control_id": "",
+    "fn": "",
+    "fn_type": ""
+  },
+
   {
     "system_id": "nav_systemManage_permissions",
     "system_type": "navList",
@@ -791,7 +890,6 @@ export const systemData = [
     "fn": "",
     "fn_type": ""
   },
-
 
   {
     "system_id": "dialog_table",

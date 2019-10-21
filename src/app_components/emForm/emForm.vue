@@ -105,9 +105,6 @@
           default://调用组件本身方法
             _this[_fn](_obj);
         }
-
-
-
       },
       defaultFn(_obj) {
         //表单组数据

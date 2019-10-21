@@ -1,55 +1,110 @@
 <template>
   <div class="emButtonGroup">
-    <el-row>
-      <el-button v-for="(btn,index) in group"
-                 :key="index"
-                 :ref="btn.id"
-                 :type="btn.type"
-                 :icon="btn.icon"
-                 @click="fn(btn)">
-        {{btn.text}}
-      </el-button>
-    </el-row>
+    <div :class="set.class">
+      <template v-if="set.groupType==='none'">
+        <el-row>
+          <el-button v-for="(btn,index) in group"
+                     :key="index"
+                     :ref="btn.system_id"
+                     :size="btn.size"
+                     :type="btn.type"
+                     :icon="btn.icon"
+                     :disabled="btn.disabled"
+                     :plain="btn.plain ? btn.plain : false "
+                     :round="btn.round ? btn.round : false "
+                     :circle="btn.circle ? btn.circle : false "
+                     :class="btn.class ? btn.class : ''"
+                     @click="fn(btn.fn,{'btn':btn,'control_type':btn.control_type})">
+            {{btn.title}}
+          </el-button>
+        </el-row>
+      </template>
+      <template v-else-if="set.groupType==='group'">
+        <el-button-group>
+          <el-button v-for="(btn,index) in group"
+                     :key="index"
+                     :ref="btn.system_id"
+                     :size="btn.size"
+                     :type="btn.type"
+                     :icon="btn.icon"
+                     :disabled="btn.disabled"
+                     :plain="btn.plain ? btn.plain : false "
+                     :round="btn.round ? btn.round : false "
+                     :circle="btn.circle ? btn.circle : false "
+                     :class="btn.class ? btn.class : ''"
+                     @click="fn(btn.fn,{'btn':btn,'control_type':btn.control_type})">
+            {{btn.title}}
+          </el-button>
+        </el-button-group>
+      </template>
+    </div>
+
   </div>
 
 </template>
 
 <script>
+  import vueBus from '@/utils/vueBus'
 
   export default {
     name: "emButtonGroup",
     data() {
       return {
         id: "",
+        set: {
+          groupType: "",
+          class: ""
+        },
         group: []
       }
     },
     props: ["data"],
     components: {},
     methods: {
+      fn(_fn, _obj) {
+        console.log(_obj);
+        let _controlType = _obj.control_type ? _obj.control_type : "";
+        switch (_controlType) {
+          case "win":
+            this.$store.commit('user/win_open', {
+              win_obj: {
+                system_id: _obj.btn.control_id
+              }
+            });
+            break;
+          case "component":
+            vueBus.$emit(_obj.btn.control_id, {});
+            break;
+          default:
+            this[_fn](_obj);
+        }
+      },
       init() {
         console.log(this.data);
-        for (let _k in this.data) {
-          if (_k === "buttonGroup") {
-            this.group = this.data[_k];
-          }
+        this.id = this.data.system_id;
+        this.set.groupType = this.data.groupType ? this.data.groupType : "none";
+        this.set.class = this.data.class;
+        //获取行按钮数据
+        if (this.data.children) {
+          let _group = [];
+          this.data.children.forEach(function (_obj) {
+            if (_obj.system_type === "win_component_buttonGroup_item") {
+              _group.push(_obj);
+            }
+          });
+          this.group = _group;
         }
       },
-      fn(_obj) {
-        if (_obj.control_type === "scene") {//场景交互
-          _obj.control_id = this.$store.getters["scene/type"];
-          this.bus.$emit(_obj.control_id, _obj);
-        } else if (_obj.control_type === "none") {//本组件交互
-          this[_obj.fn](_obj);
-        }
-        _obj.trigger = !(_obj.trigger);
-      },
+      // 路由指向
       routerFn(_obj) {
         this.$router.push(_obj.path);
       }
     },
     created() {
       this.init();
+      vueBus.$on(this.id, obj => {
+        this[obj.fn](obj);
+      });
       this.bus.$on(this.id, obj => {
         this[obj.fn](obj);
       });
@@ -58,6 +113,7 @@
 
     },
     beforeDestroy() {
+      vueBus.$off(this.id);
       this.bus.$off(this.id);
     }
   }

@@ -100,7 +100,6 @@
           password: _password
         }).then(this.changeRouter);
       },
-
       changeRouter(response){
         localStorage.setItem('username',this.form.name);
         if(this.checked){

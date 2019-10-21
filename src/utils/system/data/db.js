@@ -29,7 +29,12 @@ export const winComponent = {//win组件类型
     "win_component_table_columnBtn",
     "win_component_form",
     "win_component_formItem",
-    "win_component_formButton"
+    "win_component_formButton",
+    "win_component_buttonGroup",
+    "win_component_buttonGroup_item",
+    "win_component_tree",
+    "win_component_transfer"
+
   ],
   dataType: []
 };
@@ -42,6 +47,8 @@ export const systemComponent = {//类型
     "system_layout_dialog_form",
     "system_layout_dialog_formItem",
     "system_layout_dialog_formButton",
+    "system_layout_dialog_buttonGroup",
+    "system_layout_dialog_buttonGroup_item",
     "system_layout_drawer"
   ],
   dataType: []
