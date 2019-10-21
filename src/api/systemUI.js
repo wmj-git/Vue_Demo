@@ -1,4 +1,4 @@
-import request from '@/utils/request';
+
 
 // 默认数据模型
 export const systemData = [
@@ -792,7 +792,6 @@ export const systemData = [
     "fn": "",
     "fn_type": ""
   },
-
 
   {
     "system_id": "dialog_table",

@@ -1,5 +1,6 @@
 import request from '@/utils/request'
 import { encrypt } from '@/utils/RSAUtil'
+
 export function loginByUsername(username, password) {
   const obj = JSON.stringify({
     username,
@@ -37,13 +38,6 @@ export function logout() {
   })
 }
 
-export function getUserInfo(token) {
-  return request({
-    url: '/user/info',
-    method: 'get',
-    params: { token }
-  })
-}
 export function refreshToken(params) {
   return request({
     url: '/login/refreshAuthorization',
@@ -52,3 +46,11 @@ export function refreshToken(params) {
   })
 }
 
+
+export function getUserInfo(token) {
+  return request({
+    url: '/user/info',
+    method: 'get',
+    params: { token }
+  })
+}
