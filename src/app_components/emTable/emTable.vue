@@ -102,9 +102,15 @@
     components: {},
     methods: {
       fn(_fn, _obj) {
+        console.log(_obj);
         let _controlType = _obj.control_type ? _obj.control_type : "";
         switch (_controlType) {
-          case "1":
+          case "columnBtn_win":
+            this.$store.commit('user/win_open', {
+              win_obj: {
+                system_id: _obj.btn.control_id
+              }
+            });
             break;
           default:
             this[_fn](_obj);
@@ -305,6 +311,7 @@
 
         if (_data.dialog_dataType) {
           switch (_data.dialog_dataType) {
+            //获取表行数据
             case "currentRow":
               if (this.currentRow && _data.children) {
                 let _currentRow = this.currentRow;
@@ -316,7 +323,7 @@
                 })
               } else {
                 this.$message({
-                  message: '请点选一行修改!',
+                  message: '请点选一行!',
                   type: 'error'
                 });
                 return

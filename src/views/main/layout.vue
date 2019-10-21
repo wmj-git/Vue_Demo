@@ -20,7 +20,7 @@
         <win :id="win.system_id" :data="win">
           <el-row :gutter="8" v-if="win.children">
             <template v-for="component in win.children">
-              <el-col :span="component.winSpan">
+              <el-col :span="component.winSpan" :offset="component.winOffset">
                 <component :is="component.component" :data="component"></component>
               </el-col>
             </template>
@@ -54,14 +54,21 @@
 
   import splitPane from 'vue-splitpane';
 
-  //公用组件
+  // 容器组件
   import win from "@/app_components/win/win";
-  import emTable from "@/app_components/emTable/emTable";
-  import emForm from "@/app_components/emForm/emForm";
   import emDialog from "@/app_components/emDialog/emDialog";
+
+  // 功能组件
+  import emTable from "@/app_components/emTable/emTable";
+  import emTree from "@/app_components/emTree/emTree";
+  import emForm from "@/app_components/emForm/emForm";
+  import emButtonGroup from "@/app_components/emButtonGroup/emButtonGroup";
   import buttonGroup from "@/app_components/buttonGroup/buttonGroup";
 
-  //局部组件
+  //公用组件
+
+
+  //系统组件
   import emLogo from "./components/emLogo/emLogo";
   import emTools from "./components/emTools/emTools";
   import emWarn from "./components/emWarn/emWarn";
@@ -84,8 +91,10 @@
       //start/公用组件=============
       win,
       emTable,
+      emTree,
       emForm,
       emDialog,
+      emButtonGroup,
       buttonGroup,
       //end/公用组件=============
 

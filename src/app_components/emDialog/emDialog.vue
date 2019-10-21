@@ -11,7 +11,7 @@
     >
       <el-row :gutter="8" v-if="children">
         <template v-for="component in children">
-          <el-col :span="component.winSpan">
+          <el-col :span="component.winSpan" :offset="component.winOffset">
             <component :is="component.component" :data="component"></component>
           </el-col>
         </template>

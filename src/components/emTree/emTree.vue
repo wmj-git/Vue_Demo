@@ -13,8 +13,8 @@
       :filter-node-method="filterNode"
       ref="tree">
        <span class="span-ellipsis" slot-scope="{ node, data }">
-        <span :title="node.label">{{ node.label }}</span>
-    </span>
+         <span :title="node.label">{{ node.label }}</span>
+       </span>
     </el-tree>
   </div>
 </template>
