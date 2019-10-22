@@ -1,22 +1,6 @@
 import request from '@/utils/request'
-export function add(obj) {
-  switch (obj.type) {
-    case "soil_temperature"://土壤温度
-      obj.params.pointType = "S";
-      obj.params.temperatureOrHumidity = "T";
-      break;
-    case "soil_humidity"://土壤湿度
-      obj.params.pointType = "S";
-      obj.params.temperatureOrHumidity = "H";
-      break;
-    case "air_temperature"://空气温度
-      obj.params.pointType = "A";
-      obj.params.temperatureOrHumidity = "T";
-      break;
-    case "air_humidity"://空气湿度
-      obj.params.pointType = "A";
-      obj.params.temperatureOrHumidity = "H";
-  }
+
+export function query(obj) {// 获取数据
   return request({
     url: obj.url,
     method: 'post',
@@ -24,67 +8,30 @@ export function add(obj) {
   })
 }
 
-  export function del(obj) {//表格数据删
-    return request({
-      url: obj.url,
-      method: 'delete',
-      data: obj.params
-    })
-  }
 
-  export function query(obj) {//表格数据查
-    return request({
-      url: obj.url,
-      method: 'get',
-      params: obj.params
-    })
-  }
-
-  export function update(obj) {        //表格数据修改
-    return request({
-      url: obj.url,
-      method: 'post',
-      data: obj.params
-    })
-  }
-
-  export function selectUrl(obj) {        //增加和修改的弹出来select获取数据
-    return request({
-      url: obj.url,
-      method: 'get',
-    })
-  }
-
-export function downCsvmodel(obj) {         //下载上传表格的模板
-  return request({
-    url: obj.url,
-    method: 'get',
-  })
-}
-export function upLoad(obj) {         //上传表格
+export function add(obj) {// 添加数据
   return request({
     url: obj.url,
     method: 'post',
+    data: obj.params
   })
 }
-export function resetPassword(id) {         //账户密码重置
+
+export function del(obj) { // 树结构数据删
   return request({
-    url: "/user/userext/resetPwd/"+id,
-    method: 'get'
+    url: obj.url,
+    method: 'delete',
+    data: obj.params
   })
 }
-export function roleList() {       //账户管理下拉选择角色时调此方法
+
+export function update(obj) {   // 树结构数据修改
   return request({
-    url: "/user/role/queryPage",
-    method: 'get'
-  })
-}
-export function setRoles(obj) {       //为用户设置角色的方法
-  return request({
-    url: "/user/userext/addUserRole",
+    url: obj.url,
     method: 'post',
-    data:obj
+    data: obj.params
   })
 }
+
 
 

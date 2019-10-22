@@ -44,6 +44,7 @@
   }
   .box-card{
     height: 100%;
+    //overflow-y: auto;
     border-color: darken($em-border-color-base,60%);
     background: nth($background-base,3);
   }

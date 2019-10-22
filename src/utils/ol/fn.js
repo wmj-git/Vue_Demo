@@ -81,7 +81,7 @@ export function clustersLayerFn(dataUrl, _Key, _clusterImgUrl, _distance) {//时
 //读取时空运部件数据=======================================================
 
   let _data = [];
-  let url = _url + '/query/?f=json&' +
+  let url = _url + '/query/?f=json&MaxRecordCount=20000&' +
     'returnGeometry=true&spatialRel=esriSpatialRelIntersects&geometry=' +
     encodeURIComponent('{"xmin":' + -180 + ',"ymin":' + -90 + ',' +
       '"xmax":' + 180 + ',"ymax":' + 90 +

@@ -1,44 +1,44 @@
 <template>
   <div class="emButtonGroup">
     <div :class="set.class">
-      <template v-if="set.groupType==='none'">
-        <el-row>
-          <el-button v-for="(btn,index) in group"
-                     :key="index"
-                     :ref="btn.system_id"
-                     :size="btn.size"
-                     :type="btn.type"
-                     :icon="btn.icon"
-                     :disabled="btn.disabled"
-                     :plain="btn.plain ? btn.plain : false "
-                     :round="btn.round ? btn.round : false "
-                     :circle="btn.circle ? btn.circle : false "
-                     :class="btn.class ? btn.class : ''"
-                     @click="fn(btn.fn,{'btn':btn,'control_type':btn.control_type})">
-            {{btn.title}}
-          </el-button>
-        </el-row>
-      </template>
-      <template v-else-if="set.groupType==='group'">
-        <el-button-group>
-          <el-button v-for="(btn,index) in group"
-                     :key="index"
-                     :ref="btn.system_id"
-                     :size="btn.size"
-                     :type="btn.type"
-                     :icon="btn.icon"
-                     :disabled="btn.disabled"
-                     :plain="btn.plain ? btn.plain : false "
-                     :round="btn.round ? btn.round : false "
-                     :circle="btn.circle ? btn.circle : false "
-                     :class="btn.class ? btn.class : ''"
-                     @click="fn(btn.fn,{'btn':btn,'control_type':btn.control_type})">
-            {{btn.title}}
-          </el-button>
-        </el-button-group>
-      </template>
-    </div>
+        <template v-if="set.groupType==='none'">
+          <el-row>
+              <el-button v-for="(btn,index) in group"
+                         :key="index"
+                         :ref="btn.system_id"
+                         :size="btn.size"
+                         :type="btn.type"
+                         :icon="btn.icon"
+                         :disabled="btn.disabled"
+                         :plain="btn.plain ? btn.plain : false "
+                         :round="btn.round ? btn.round : false "
+                         :circle="btn.circle ? btn.circle : false "
+                         :class="btn.class ? btn.class : ''"
+                         @click="fn(btn.fn,{'btn':btn,'control_type':btn.control_type})">
+                {{btn.title}}
+              </el-button>
+          </el-row>
+        </template>
+        <template v-else-if="set.groupType==='group'">
+          <el-button-group>
+            <el-button v-for="(btn,index) in group"
+                       :key="index"
+                       :ref="btn.system_id"
+                       :size="btn.size"
+                       :type="btn.type"
+                       :icon="btn.icon"
+                       :disabled="btn.disabled"
+                       :plain="btn.plain ? btn.plain : false "
+                       :round="btn.round ? btn.round : false "
+                       :circle="btn.circle ? btn.circle : false "
+                       :class="btn.class ? btn.class : ''"
+                       @click="fn(btn.fn,{'btn':btn,'control_type':btn.control_type})">
+              {{btn.title}}
+            </el-button>
+          </el-button-group>
+        </template>
 
+    </div>
   </div>
 
 </template>
@@ -62,7 +62,6 @@
     components: {},
     methods: {
       fn(_fn, _obj) {
-        console.log(_obj);
         let _controlType = _obj.control_type ? _obj.control_type : "";
         switch (_controlType) {
           case "win":

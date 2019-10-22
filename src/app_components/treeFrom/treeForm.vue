@@ -1,6 +1,5 @@
 <template>
   <div class="treeForm">
-
     <split-pane split="vertical" :min-percent='20' :default-percent='34'>
       <template slot="paneL">
         <el-card class="box-card">
@@ -23,7 +22,7 @@
                       <el-button
                         class="em-btn-gradient em-btn-uniform-gradient"
                         size="mini"
-                        @click="() => append(node,data)" quanxian
+                        @click="() => append(node,data)"
                       >
                         添加
                       </el-button>
@@ -116,6 +115,23 @@
         });
       },
       remove(node, data) {
+
+
+        function removeFn(_data) {
+          let _val =[];
+          if(_data.children){
+            _val.push(_data.id);
+            _data.children.forEach((_item)=>{
+              _val=_val.concat(removeFn(_item));
+            });
+            return _val
+          }
+          _val.push(_data.id);
+          return _val
+        }
+
+        console.log("node", removeFn(data), data);
+
         let _this = this;
         this.$confirm('此操作将永久删除, 是否继续?', '提示', {
           cancelButtonText: '取消',
@@ -185,10 +201,8 @@
             _item.Validate = _obj[k].Validate;
             _item.options_url = _obj[k].options_url;
             _item.options = _obj[k].options;
-
             _form_data.push(_item);
           }
-
         }
         this.$refs.form.rulesFn(JSON.parse(JSON.stringify(_form_data)));
       }
