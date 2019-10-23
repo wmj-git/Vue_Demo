@@ -34,9 +34,12 @@ export default {
 
     for (let i = 0; i < _win.length; i++) {
       if (_win[i].system_id === win_obj.system_id && _win[i].show === false) {
+
         for (let _k in win_obj) {
           _win[i][_k] = win_obj[_k];
         }
+
+        console.log(123,win_obj,_win[i]);
         _win[i].show = true;
       } else if (_win[i].system_id === win_obj.system_id && _win[i].show === true) {
         _win[i].show = false;

@@ -535,7 +535,11 @@ export const systemData = [
     "control_type": "columnBtn_win",
     "control_id": "nav_systemManage_role_win1",
     "fn": "",
-    "fn_type": ""
+    "fn_type": "",
+    "tree_id":"nav_systemManage_role_win1_emTree",
+    "tree_type":"",
+    "tree_fn":""
+
   },
   {
     "system_id": "nav_systemManage_role_win_emTable_columnBtn2",
@@ -557,7 +561,7 @@ export const systemData = [
     "left": "M-640px",
     "width": 480,
     "show": false,
-    "modal":true,
+    "modal": true,
     "resizable": true,
     "maximizable": false,
     "closable": false,
@@ -571,11 +575,24 @@ export const systemData = [
     "winOffset": 0,
     "winSpan": 48,
     "component": "emTree",
-    "class": "",
+    "propsChildren": "children",
+    "propsLabel": "resourceName",
+    "rowData":"",
+    "checkbox": true,
+    "buttons": false,
+    "treeDataType": "permissions",
+    "checkedKeysType": "table",
+    "checkedKeysUrl":"/user/role/queryResource",
+    "checkedKeysParams":{
+      "roleId": "id"
+    },
     "control_type": "",
     "control_id": "",
     "fn": "",
-    "fn_type": ""
+    "fn_type": "",
+    "tree_handleNodeClick": "",
+    "tree_handleCheckChange": "",
+    "tree_handleDragEnd": ""
   },
   {
     "system_id": "nav_systemManage_role_win1_emButtonGroup",

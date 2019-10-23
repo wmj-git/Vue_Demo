@@ -108,9 +108,12 @@
           case "columnBtn_win":
             this.$store.commit('user/win_open', {
               win_obj: {
-                system_id: _obj.btn.control_id
+                system_id: _obj.btn.control_id,
+                rowData: _obj.row
               }
             });
+            vueBus.$emit(_obj.btn.tree_id, _obj);
+
             break;
           default:
             this[_fn](_obj);
@@ -264,7 +267,7 @@
       delFn(_obj) {
         console.log("del", _obj);
         let _this = this;
-        let _items =[];
+        let _items = [];
 
         if (this.multipleSelection && this.multipleSelection.length > 0) {
           this.$confirm('此操作将删除所选项, 是否继续?', '提示', {
@@ -272,7 +275,7 @@
             cancelButtonText: '取消',
             type: 'warning'
           }).then(() => {
-            this.multipleSelection.forEach((_val)=>{
+            this.multipleSelection.forEach((_val) => {
               _items.push(_val.id);
             });
             del({
@@ -300,7 +303,6 @@
           });
           return
         }
-
 
 
       },
