@@ -70,7 +70,6 @@
         this.dialogSet.width = _val.set.width;
         if (_val.children) {
           this.children=this.children.concat(_val.children);
-          console.log(this.children);
         }
       },
       closeFn(_val) {

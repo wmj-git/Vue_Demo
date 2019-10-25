@@ -38,8 +38,7 @@
         let _tree = [];
         let _Tree = [];
         let _permissions = _obj;
-        // console.log(_permissions);
-        // console.log(this.props_data);
+
         if (_permissions.length > 0) {
           _permissions.forEach(function (_obj) {
             _obj.label = _obj.resourceName;
@@ -53,8 +52,6 @@
             _Tree.push(_obj);
           });
         }
-        // console.log(_Tree);
-
         return _Tree;
       },
       handleCheckChange() {

@@ -49,8 +49,8 @@
 
 <script>
   import vueBus from '@/utils/vueBus'
-  import {queryCheckedKeys, query, add, del, update} from "@/app_api/tree";
-  import {toTree} from "@/utils/tools";
+  import {queryCheckedKeys, updateCheckedKeys, query, add, del, update} from "@/app_api/tree";
+  import {toTree, StringToObj} from "@/utils/tools";
 
   export default {
     name: "emTree",
@@ -63,10 +63,13 @@
           checkbox: false,
           treeDataType: "",
           treeDataUrl: "",
-          treeDataParams: {},
+          treeDataParams: "",
           checkedKeysType: "",
           checkedKeysUrl: "",
-          checkedKeysParams: {},
+          checkedKeysParams: "",
+          updateCheckedType: "",
+          updateCheckedUrl: "",
+          updateCheckedParams: ""
         },
         treeData: [],
         filterText: '',
@@ -78,7 +81,8 @@
           handleNodeClick: "",
           handleCheckChange: "",
           handleDragEnd: ""
-        }
+        },
+        paramsData: "none"
       };
     },
     props: ["data"],
@@ -94,10 +98,6 @@
         let _controlType = _obj.control_type ? _obj.control_type : "";
         switch (_controlType) {
           case "win":
-
-            break;
-          case "component":
-            vueBus.$emit(_obj.btn.control_id, {});
             break;
           default:
             this[_fn](_obj);
@@ -109,10 +109,13 @@
         this.set.buttons = this.data.buttons;
         this.set.treeDataType = this.data.treeDataType ? this.data.treeDataType : "query";
         this.set.treeDataUrl = this.data.treeDataUrl ? this.data.treeDataUrl : "";
-        this.set.treeDataParams = this.data.treeDataParams ? this.data.treeDataParams : "";
+        this.set.treeDataParams = this.data.treeDataParams ? this.data.treeDataParams : "none";
         this.set.checkedKeysType = this.data.checkedKeysType ? this.data.checkedKeysType : "";
         this.set.checkedKeysUrl = this.data.checkedKeysUrl ? this.data.checkedKeysUrl : "";
-        this.set.checkedKeysParams = this.data.checkedKeysParams ? this.data.checkedKeysParams : "";
+        this.set.checkedKeysParams = this.data.checkedKeysParams ? this.data.checkedKeysParams : "none";
+        this.set.updateCheckedType = this.data.updateCheckedType ? this.data.updateCheckedType : "";
+        this.set.updateCheckedUrl = this.data.updateCheckedUrl ? this.data.updateCheckedUrl : "";
+        this.set.updateCheckedParams = this.data.updateCheckedParams ? this.data.updateCheckedParams : "none";
 
         this.defaultProps.children = this.data.propsChildren;
         this.defaultProps.label = this.data.propsLabel;
@@ -121,8 +124,6 @@
         if (this.set.checkbox) {
           this.setCheckedKeys();
         }
-
-
       },
       treeDataFn() {
         let _tree = [];
@@ -207,30 +208,80 @@
 
       },
       handleCheckChange(data, checked, indeterminate) {
-        console.log(data, checked, indeterminate);
+        // console.log(data, checked, indeterminate);
+        // console.log("getCheckedKeys",this.$refs.tree.getCheckedKeys());
+      },
+      updateCheckedKeys() {
+        console.log(this.$refs.tree.getCheckedKeys());
+        let _CheckedKeys = this.$refs.tree.getCheckedKeys();
+
+        this.paramsData['CheckedKeys'] = _CheckedKeys;
+
+        let _params = {};
+        let stringToData = new StringToObj(this.set.updateCheckedParams,
+          {
+            splitVal: "_",
+            typeVal: "params"
+          });
+        _params = stringToData.getData();
+
+        for (let _k in _params) {
+          let _key = _params[_k];
+          if (this.paramsData[_key]) {
+            _params[_k] = this.paramsData[_key];
+          }
+        }
+
+        updateCheckedKeys({
+          "url": this.set.updateCheckedUrl,
+          "params": _params
+        }).then((response) => {
+          if (response.statusCode === 200) {
+            this.$message({
+              message: response.message,
+              type: 'success'
+            });
+          }
+          this.setCheckedKeys();
+        });
 
       },
       getCheckedKeys() {
         return this.$refs.tree.getCheckedKeys();
       },
-      setCheckedKeys() {
-        let _this = this;
+      setCheckedKeys(_obj) {
+        console.log("_obj", _obj);
 
+        if (_obj) {
+          //表格传过来的行数据
+          this.paramsData = _obj.row;
+        }
+
+        if (this.paramsData === "none") {
+          return
+        }
+
+        let _this = this;
         switch (this.set.checkedKeysType) {
           case "table":
-            console.log("table",this.data);
-            if (this.data.rowData) {
-              for (let _k in this.set.checkedKeysParams) {
-                let _rowKey=this.set.checkedKeysParams[_k];
-                if(this.data.rowData[_rowKey]){
-                  this.set.checkedKeysParams[_k]=this.data.rowData[_rowKey];
-                }
+            let _params = {};
+            let stringToData = new StringToObj(this.set.checkedKeysParams,
+              {
+                splitVal: "_",
+                typeVal: "params"
+              });
+            _params = stringToData.getData();
+            for (let _k in _params) {
+              let _key = _params[_k];
+              if (this.paramsData[_key]) {
+                _params[_k] = this.paramsData[_key];
               }
             }
-            console.log(this.set.checkedKeysParams);
+
+
             queryCheckedKeys({
               "url": this.set.checkedKeysUrl,
-              "params": this.set.checkedKeysParams
+              "params": _params
             }).then((response) => {
               console.log(response);
               if (response.statusCode === 200) {

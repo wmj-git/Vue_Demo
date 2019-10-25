@@ -310,7 +310,7 @@ export const systemData = [
     "dialog_id": "dialog_table",
     "dialog_fn": "visibleFn",
     "dialog_title": "修改",
-    "dialog_dataType": "currentRow"
+    "dialog_dataType": "currentRow_update"
   },
   {
     "system_id": "nav_systemManage_role_win_emForm_button2_emForm",
@@ -532,14 +532,11 @@ export const systemData = [
     "title": "权限分配",
     "label": "操作1",
     "minWidth": 12,
-    "control_type": "columnBtn_win",
+    "control_type": "columnBtn_win_tree",
     "control_id": "nav_systemManage_role_win1",
-    "fn": "",
-    "fn_type": "",
-    "tree_id":"nav_systemManage_role_win1_emTree",
-    "tree_type":"",
-    "tree_fn":""
-
+    "fn": "setCheckedKeys",
+    "fn_type": "table",
+    "tree_id":"nav_systemManage_role_win1_emTree"
   },
   {
     "system_id": "nav_systemManage_role_win_emTable_columnBtn2",
@@ -577,22 +574,24 @@ export const systemData = [
     "component": "emTree",
     "propsChildren": "children",
     "propsLabel": "resourceName",
-    "rowData":"",
     "checkbox": true,
     "buttons": false,
     "treeDataType": "permissions",
     "checkedKeysType": "table",
     "checkedKeysUrl":"/user/role/queryResource",
     "checkedKeysParams":{
-      "roleId": "id"
+      "params_id": "id"
+    },
+    "updateCheckedType": "table",
+    "updateCheckedUrl": "/user/role/setRoleResource",
+    "updateCheckedParams": {
+      "params_resourceIds": "CheckedKeys",
+      "params_roleId": "id"
     },
     "control_type": "",
     "control_id": "",
     "fn": "",
-    "fn_type": "",
-    "tree_handleNodeClick": "",
-    "tree_handleCheckChange": "",
-    "tree_handleDragEnd": ""
+    "fn_type": ""
   },
   {
     "system_id": "nav_systemManage_role_win1_emButtonGroup",
@@ -617,9 +616,9 @@ export const systemData = [
     "class": "",
     "icon": "",
     "disabled": false,
-    "control_type": "",
-    "control_id": "",
-    "fn": "",
+    "control_type": "component",
+    "control_id": "nav_systemManage_role_win1_emTree",
+    "fn": "updateCheckedKeys",
     "fn_type": ""
   },
   {

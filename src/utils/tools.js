@@ -29,10 +29,9 @@ export function getYearWeek(date) {
   var day1 = date.getDay();
   if (day1 == 0) day1 = 7;
 
-  d = Math.round((date.getTime() + day1 * (24 * 60 * 60 * 1000)) / 86400000);
+  let d = Math.round((date.getTime() + day1 * (24 * 60 * 60 * 1000)) / 86400000);
   return Math.ceil(d / 7) + 1;
 }
-
 //算周数end
 
 //获取时间
@@ -155,11 +154,6 @@ export function toTree(_nodes) {
   }
   return treeWeight(_Tree);
 }
-
-
-
-
-
 
 //获取指定日期whereTheTime的所在周、月、季度、半年、全年
 //type为1：周，2：月，3：季度，4：半年，5：全年
@@ -318,7 +312,6 @@ export function loadJs(id, url, callback) {
   alert('done');
 });*/
 
-
 // 动态加载css文件
 export function loadCss(id, url, callback) {
   let link = document.createElement('link');
@@ -348,7 +341,6 @@ export function loadCss(id, url, callback) {
 /*loadCss("test.css",function(){
   alert('done');
 });*/
-
 
 export class StringToObj {
   constructor(obj, set) {
@@ -386,3 +378,50 @@ let stringToData=new StringToData(_obj,
   });
 
 stringToData.getData();*/
+
+//定时器
+export class TimeFn {
+  constructor(fnName, setFn, clearFn, time) {
+    this.fnName = fnName;//定时器名称
+    this.setFn = setFn;//循环的方法
+    this.clearFn = clearFn;//循环控制方法
+    this.time = time;//延迟时间
+    this.off = true;
+  }
+
+  judge() {
+    this.run(this.fnName, this.setFn, this.clearFn, this.time);
+  }
+
+  run() {
+    if (TimeFn.inTimeoutId[this.fnName]) {
+      window.clearTimeout(TimeFn.inTimeoutId[this.fnName]);
+    }
+    TimeFn.inTimeoutId[this.fnName] = setTimeout(() => {
+      this.setFn();
+      if (this.clearFn()) {
+        if(this.off){
+          this.judge();
+        }else{
+          this.off=true
+        }
+      }
+    }, this.time);
+  }
+  stop(){
+    this.off=false
+  }
+}
+TimeFn.inTimeoutId = {};
+
+/*
+const tm2 = new TimeFn("t2", () => {
+  console.log("2121212212");
+}, () => {
+  return true
+}, 2500);
+tm2.run();
+tm2.stop();
+*/
+
+// 异步执行器

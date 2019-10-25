@@ -15,7 +15,6 @@
             @row-click="handleRowClick"
             @row-dblclick="handleRowDoubleClick"
           >
-
             <el-table-column
               align="center"
               type="selection"
@@ -73,6 +72,7 @@
 
 <script>
   import vueBus from '@/utils/vueBus'
+  import {TimeFn} from '@/utils/tools'
   import {add, del, update, query, downCsvmodel, upLoad, resetPassword} from "@/app_api/table";
 
   export default {
@@ -105,14 +105,21 @@
         console.log(_obj);
         let _controlType = _obj.control_type ? _obj.control_type : "";
         switch (_controlType) {
-          case "columnBtn_win":
+          case "columnBtn_win_tree":
             this.$store.commit('user/win_open', {
               win_obj: {
-                system_id: _obj.btn.control_id,
-                rowData: _obj.row
+                system_id: _obj.btn.control_id
               }
             });
-            vueBus.$emit(_obj.btn.tree_id, _obj);
+            const _FN = new TimeFn("t1", () => {
+              vueBus.$emit(_obj.btn.tree_id, {
+                fn: _obj.btn.fn,
+                row: _obj.row
+              });
+            }, () => {
+              return false
+            }, 100);
+            _FN.run();
 
             break;
           default:
@@ -314,7 +321,7 @@
         if (_data.dialog_dataType) {
           switch (_data.dialog_dataType) {
             //获取表行数据
-            case "currentRow":
+            case "currentRow_update":
               if (this.currentRow && _data.children) {
                 let _currentRow = this.currentRow;
                 let _children = _data.children[0];
@@ -343,6 +350,9 @@
           },
           "children": _data.children
         });
+
+      },
+      addWin() {
 
       }
     },

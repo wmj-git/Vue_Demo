@@ -8,6 +8,14 @@ export function queryCheckedKeys(obj) {// 获取多选框数据
   })
 }
 
+export function updateCheckedKeys(obj) {// 树结构数据修改
+  return request({
+    url: obj.url,
+    method: 'post',
+    data: obj.params
+  })
+}
+
 export function query(obj) {// 获取数据
   return request({
     url: obj.url,

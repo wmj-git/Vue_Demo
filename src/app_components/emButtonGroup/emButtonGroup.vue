@@ -72,7 +72,10 @@
             });
             break;
           case "component":
-            vueBus.$emit(_obj.btn.control_id, {});
+            vueBus.$emit(_obj.btn.control_id, {
+              fn:_obj.btn.fn,
+              data:_obj.btn
+            });
             break;
           default:
             this[_fn](_obj);

@@ -1,7 +1,7 @@
 import axios from 'axios'
-import { Message,MessageBox } from 'element-ui'
+import {Message, MessageBox} from 'element-ui'
 import store from '@/store'
-import { setToken,getToken,TokenName,removeToken } from '@/utils/auth'
+import {setToken, getToken, TokenName, removeToken} from '@/utils/auth'
 // create an axios instance
 const service = axios.create({
   baseURL: process.env.BASE_API, // api 的 base_url
@@ -37,62 +37,61 @@ service.interceptors.response.use(
    * 以下代码均为样例，请结合自生需求加以修改，若不需要，则可删除
    */
 
-    response => {
-      const res = response.data;
-      if (res.statusCode !== 200) {
-        let message= res.message;
-        if(message){
-          let end=message.indexOf(">>>>");
-          if(end!==-1){
-            message=message.substring(0,end)
-          }
-
+  response => {
+    const res = response.data;
+    if (res.statusCode !== 200) {
+      let message = res.message;
+      if (message) {
+        let end = message.indexOf(">>>>");
+        if (end !== -1) {
+          message = message.substring(0, end)
         }
-        // console.log(message);
 
-        // 50008:非法的token; 50012:其他客户端登录了;  50014:Token 过期了;
-        if (res.statusCode === 1007 || res.statusCode === 1006 || res.statusCode === 1005 || res.statusCode === 401) {
-          // 请自行在引入 MessageBox
-          MessageBox.confirm('你已被登出，可以取消继续留在该页面，或者重新登录', '确定登出', {
-            confirmButtonText: '重新登录',
-            cancelButtonText: '取消操作',
-            type: 'warning',
-            customClass:'em-message-box'
-          }).then(() => {
-            removeToken();
-             window.location.href="/login"
+      }
+      // console.log(message);
 
-          })
-        }
-        else{
-          Message({
-            message:message,
-            type: 'error',
-            duration: 5 * 1000
-          })
-        }
-        // return Promise.reject('error')
+      // 50008:非法的token; 50012:其他客户端登录了;  50014:Token 过期了;
+      if (res.statusCode === 1007 || res.statusCode === 1006 || res.statusCode === 1005 || res.statusCode === 401) {
+        // 请自行在引入 MessageBox
+        MessageBox.confirm('你已被登出，可以取消继续留在该页面，或者重新登录', '确定登出', {
+          confirmButtonText: '重新登录',
+          cancelButtonText: '取消操作',
+          type: 'warning',
+          customClass: 'em-message-box'
+        }).then(() => {
+          removeToken();
+          window.location.href = "/login"
+
+        })
       } else {
-        return response.data
+        Message({
+          message: message,
+          type: 'error',
+          duration: 5 * 1000
+        })
       }
-    },
-    error => {
-      let message= "服务器繁忙，连接失败，请稍后重试";
-      if( error.response){
-        let statusCode = error.response.status;
-        message=error.message;
-        if( statusCode=== 400) {
-          message="参数填写错误，请检查后重新提交！"
-        }
-      }
-
-      Message({
-        message,
-        type: 'error',
-        duration: 5 * 1000
-      })
-      return Promise.reject(error)
+      // return Promise.reject('error')
+    } else {
+      return response.data
     }
+  },
+  error => {
+    let message = "服务器繁忙，连接失败，请稍后重试";
+    if (error.response) {
+      let statusCode = error.response.status;
+      message = error.message;
+      if (statusCode === 400) {
+        message = "参数填写错误，请检查后重新提交！"
+      }
+    }
+
+    Message({
+      message,
+      type: 'error',
+      duration: 5 * 1000
+    })
+    return Promise.reject(error)
+  }
 );
 
 export default service
