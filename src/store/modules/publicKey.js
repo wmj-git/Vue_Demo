@@ -13,7 +13,7 @@ const publicKey = {
     AddPublicKey({ commit }, key) {
       return new Promise(function(resolve, reject) {
         getRsa().then(res => {
-          console.log(res)
+          console.log(res);
           commit('SET_PUBLICKEY', res.data)
           resolve(res.data)
         })

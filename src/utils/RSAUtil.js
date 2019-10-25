@@ -5,7 +5,7 @@ import store from '@/store/index'
 export function encrypt(str, pubkey) {
   return new Promise(function(resolve, reject) {
     const jse = new JSEncrypt()
-    pubkey = pubkey || store.state.publicKey.publicKey
+    pubkey = pubkey || store.state.publicKey.publicKey;
     if (!pubkey) {
       store.dispatch('AddPublicKey').then(res => {
 
