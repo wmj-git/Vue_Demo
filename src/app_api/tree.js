@@ -1,10 +1,26 @@
 import request from '@/utils/request'
 
-export function query(obj) {// 获取数据
+export function queryCheckedKeys(obj) {// 获取多选框数据
+  return request({
+    url: obj.url,
+    method: 'get',
+    params: obj.params
+  })
+}
+
+export function updateCheckedKeys(obj) {// 树结构数据修改
   return request({
     url: obj.url,
     method: 'post',
     data: obj.params
+  })
+}
+
+export function query(obj) {// 获取数据
+  return request({
+    url: obj.url,
+    method: 'get',
+    params: obj.params
   })
 }
 

@@ -48,9 +48,10 @@
 </template>
 
 <script>
-  import vueBus from '@/utils/vueBus';
-  import {addResource, delResource, updateResource} from "@/api/resource";
-  import {toTree} from "@/utils/tools";
+
+  import vueBus from '@/utils/vueBus'
+  import {queryCheckedKeys, updateCheckedKeys, query, add, del, update} from "@/app_api/tree";
+  import {toTree, StringToObj} from "@/utils/tools";
 
   export default {
     name: "emTree",
@@ -60,14 +61,29 @@
         set: {
           title: "权限",
           buttons: false,
-          checkbox: false
+          checkbox: false,
+          treeDataType: "",
+          treeDataUrl: "",
+          treeDataParams: "",
+          checkedKeysType: "",
+          checkedKeysUrl: "",
+          checkedKeysParams: "",
+          updateCheckedType: "",
+          updateCheckedUrl: "",
+          updateCheckedParams: ""
         },
+        treeData: [],
         filterText: '',
         defaultProps: {
           children: 'children',
           label: 'label'
         },
-        setFn: {}
+        setFn: {
+          handleNodeClick: "",
+          handleCheckChange: "",
+          handleDragEnd: ""
+        },
+        paramsData: "none"
       };
     },
     props: ["data"],
@@ -76,21 +92,13 @@
         this.$refs.tree.filter(val);
       }
     },
-    computed: {
-      treeData: function () {
-        return this.treeDataFn(this.$store.getters["user/permissions"]);
-      }
-    },
+    computed: {},
     components: {},
     methods: {
       fn(_fn, _obj) {
         let _controlType = _obj.control_type ? _obj.control_type : "";
         switch (_controlType) {
           case "win":
-
-            break;
-          case "component":
-            vueBus.$emit(_obj.btn.control_id, {});
             break;
           default:
             this[_fn](_obj);
@@ -98,80 +106,198 @@
       },
       init() {
         this.id = this.data.system_id;
-      },
-      treeDataFn(_obj) {
-        let _tree = [];
-        let _permissions = _obj;
-        if (_permissions.length > 0) {
-          _permissions.forEach(function (_obj) {
-            _obj.label = _obj.resourceName;
-            _tree.push(_obj);
-          });
+        this.set.checkbox = this.data.checkbox;
+        this.set.buttons = this.data.buttons;
+        this.set.treeDataType = this.data.treeDataType ? this.data.treeDataType : "query";
+        this.set.treeDataUrl = this.data.treeDataUrl ? this.data.treeDataUrl : "";
+        this.set.treeDataParams = this.data.treeDataParams ? this.data.treeDataParams : "none";
+        this.set.checkedKeysType = this.data.checkedKeysType ? this.data.checkedKeysType : "";
+        this.set.checkedKeysUrl = this.data.checkedKeysUrl ? this.data.checkedKeysUrl : "";
+        this.set.checkedKeysParams = this.data.checkedKeysParams ? this.data.checkedKeysParams : "none";
+        this.set.updateCheckedType = this.data.updateCheckedType ? this.data.updateCheckedType : "";
+        this.set.updateCheckedUrl = this.data.updateCheckedUrl ? this.data.updateCheckedUrl : "";
+        this.set.updateCheckedParams = this.data.updateCheckedParams ? this.data.updateCheckedParams : "none";
+
+        this.defaultProps.children = this.data.propsChildren;
+        this.defaultProps.label = this.data.propsLabel;
+
+        this.treeDataFn();
+        if (this.set.checkbox) {
+          this.setCheckedKeys();
         }
-        return toTree(_tree);
+      },
+      treeDataFn() {
+        let _tree = [];
+        switch (this.set.treeDataType) {
+          case "permissions":
+            _tree = this.$store.getters["user/permissions"];
+            break;
+          case "query":
+            query({
+              "url": this.set.treeDataUrl,
+              "params": this.set.treeDataParams
+            }).then((response) => {
+              console.log(response);
+              if (response.statusCode === 200) {
+                response.data.forEach(function (_obj) {
+                  _tree.push(_obj);
+                });
+              }
+            });
+            break;
+        }
+        this.treeData = toTree(_tree);
       },
       filterNode(value, data) {
         if (!value) return true;
         return data[this.defaultProps.label].indexOf(value) !== -1;
       },
       append(node, data) {
-        let _this = this;
-        const newChild = {
-          "dataStatus": 0,
-          "description": "{}",
-          "id": 0,
-          "parentId": 0,
-          "resourceCode": "{}",
-          "resourceName": "新建权限",
-          "resourceType": "none",
-          "resourceUrl": "none",
-          "isMeum": true,
-          "weight": 200
-        };
-        newChild.parentId = data.id;
-        addResource(newChild).then(function (response) {
-          _this.$message(response.message);
-        });
+        /* let _this = this;
+         const newChild = {
+           "dataStatus": 0,
+           "description": "{}",
+           "id": 0,
+           "parentId": 0,
+           "resourceCode": "{}",
+           "resourceName": "新建权限",
+           "resourceType": "none",
+           "resourceUrl": "none",
+           "isMeum": true,
+           "weight": 200
+         };
+         newChild.parentId = data.id;
+         add(newChild).then(function (response) {
+           _this.$message(response.message);
+         });*/
       },
       remove(node, data) {
-        let _this = this;
-        this.$confirm('此操作将永久删除, 是否继续?', '提示', {
-          cancelButtonText: '取消',
-          confirmButtonText: '确定',
-          type: 'warning'
-        }).then(() => {
-          delResource([data.id]).then(function (response) {
-            // console.log(response);
-            _this.$message(response.message);
-            _this.bus.$emit("nav", {
-              fn: "findByThisUserFn"
-            });
-          });
-        }).catch(() => {
-          this.$message({
-            type: 'info',
-            message: '已取消删除'
-          });
-        });
+        /* let _this = this;
+         this.$confirm('此操作将永久删除, 是否继续?', '提示', {
+           cancelButtonText: '取消',
+           confirmButtonText: '确定',
+           type: 'warning'
+         }).then(() => {
+           del([data.id]).then(function (response) {
+             // console.log(response);
+             _this.$message(response.message);
+             _this.bus.$emit("nav", {
+               fn: "findByThisUserFn"
+             });
+           });
+         }).catch(() => {
+           this.$message({
+             type: 'info',
+             message: '已取消删除'
+           });
+         });*/
       },
       handleNodeClick(data) {
         console.log(data);
       },
       handleDragEnd(draggingNode, dropNode, dropType, ev) {
 
-        if (dropType === "inner") {
-          draggingNode.data.parentId = dropNode.data.id;
-        } else {
-          draggingNode.data.parentId = dropNode.data.parentId;
-        }
-        updateResource(draggingNode.data).then((response) => {
-          console.log(response);
-          this.$message(response.message);
-        });
+        /* if (dropType === "inner") {
+           draggingNode.data.parentId = dropNode.data.id;
+         } else {
+           draggingNode.data.parentId = dropNode.data.parentId;
+         }
+         update(draggingNode.data).then((response) => {
+           console.log(response);
+           this.$message(response.message);
+         });*/
 
       },
       handleCheckChange(data, checked, indeterminate) {
-        console.log(data, checked, indeterminate);
+        // console.log(data, checked, indeterminate);
+        // console.log("getCheckedKeys",this.$refs.tree.getCheckedKeys());
+      },
+      updateCheckedKeys() {
+        console.log(this.$refs.tree.getCheckedKeys());
+        let _CheckedKeys = this.$refs.tree.getCheckedKeys();
+
+        this.paramsData['CheckedKeys'] = _CheckedKeys;
+
+        let _params = {};
+        let stringToData = new StringToObj(this.set.updateCheckedParams,
+          {
+            splitVal: "_",
+            typeVal: "params"
+          });
+        _params = stringToData.getData();
+
+        for (let _k in _params) {
+          let _key = _params[_k];
+          if (this.paramsData[_key]) {
+            _params[_k] = this.paramsData[_key];
+          }
+        }
+
+        updateCheckedKeys({
+          "url": this.set.updateCheckedUrl,
+          "params": _params
+        }).then((response) => {
+          if (response.statusCode === 200) {
+            this.$message({
+              message: response.message,
+              type: 'success'
+            });
+          }
+          this.setCheckedKeys();
+        });
+
+      },
+      getCheckedKeys() {
+        return this.$refs.tree.getCheckedKeys();
+      },
+      setCheckedKeys(_obj) {
+        console.log("_obj", _obj);
+
+        if (_obj) {
+          //表格传过来的行数据
+          this.paramsData = _obj.row;
+        }
+
+        if (this.paramsData === "none") {
+          return
+        }
+
+        let _this = this;
+        switch (this.set.checkedKeysType) {
+          case "table":
+            let _params = {};
+            let stringToData = new StringToObj(this.set.checkedKeysParams,
+              {
+                splitVal: "_",
+                typeVal: "params"
+              });
+            _params = stringToData.getData();
+            for (let _k in _params) {
+              let _key = _params[_k];
+              if (this.paramsData[_key]) {
+                _params[_k] = this.paramsData[_key];
+              }
+            }
+
+
+            queryCheckedKeys({
+              "url": this.set.checkedKeysUrl,
+              "params": _params
+            }).then((response) => {
+              console.log(response);
+              if (response.statusCode === 200) {
+                let _Keys = [];
+                response.data.forEach(function (_obj) {
+                  if (_obj.checked) {
+                    _Keys.push(_obj.id);
+                  }
+                });
+                _this.$refs.tree.setCheckedKeys(_Keys);
+              }
+            });
+            break
+        }
+
       }
     },
     created() {
