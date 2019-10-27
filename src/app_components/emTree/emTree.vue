@@ -48,7 +48,7 @@
 </template>
 
 <script>
-  import vueBus from '@/utils/vueBus'
+  import vueBus from '@/utils/vueBus';
   import {addResource, delResource, updateResource} from "@/api/resource";
   import {toTree} from "@/utils/tools";
 
@@ -67,9 +67,7 @@
           children: 'children',
           label: 'label'
         },
-        setFn:{
-
-        }
+        setFn: {}
       };
     },
     props: ["data"],
