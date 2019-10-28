@@ -56,6 +56,84 @@ export const systemData = [
     "show": false,
     "icon": "el-icon-account-manage",
     "control_type": "",
+    "control_id": "nav_systemManage_account_win",
+    "fn": "",
+    "fn_type": ""
+  },
+  {
+    "system_id": "nav_systemManage_account_win",
+    "system_type": "win",
+    "winLayout": "2",
+    "title": "账户管理-窗口",
+    "top": "148px",
+    "left": "M-880px",
+    "width": 880,
+    "show": false,
+    "resizable": true,
+    "maximizable": false,
+    "closable": false,
+    "draggable": false,
+    "class": "em-table-window",
+    "setHeight": "300px",
+    "minPercent": 10,
+    "defaultPercent": 30,
+    "paneL": true,
+    "paneR": true
+  },
+  {
+    "system_id": "nav_systemManage_account_win_emButtonGroup1",
+    "system_type": "win_component_buttonGroup",
+    "title": "按钮组",
+    "paneType": "paneL",
+    "winOffset": 0,
+    "winSpan": 48,
+    "component": "emButtonGroup",
+    "groupType": "group",
+    "class": "",
+    "control_type": "",
+    "control_id": "",
+    "fn": "",
+    "fn_type": ""
+  },
+  {
+    "system_id": "nav_systemManage_account_win_emButtonGroup1_item1",
+    "system_type": "win_component_buttonGroup_item",
+    "title": "确定",
+    "type": "primary",
+    "size": "",
+    "class": "",
+    "icon": "",
+    "disabled": false,
+    "control_type": "",
+    "control_id": "",
+    "fn": "",
+    "fn_type": ""
+  },
+  {
+    "system_id": "nav_systemManage_account_win_emButtonGroup1_item2",
+    "system_type": "win_component_buttonGroup_item",
+    "title": "确定",
+    "type": "primary",
+    "size": "",
+    "class": "",
+    "icon": "",
+    "disabled": false,
+    "control_type": "",
+    "control_id": "",
+    "fn": "",
+    "fn_type": ""
+  },
+  {
+    "system_id": "nav_systemManage_account_win_emButtonGroup2",
+    "system_type": "win_component_buttonGroup",
+    "title": "按钮组",
+    "paneType": "paneR",
+    "winOffset": 0,
+    "winSpan": 12,
+    "component": "emButtonGroup",
+    "groupType": "",
+    "class": "",
+    "control_type": "",
     "control_id": "",
     "fn": "",
     "fn_type": ""
@@ -536,7 +614,7 @@ export const systemData = [
     "control_id": "nav_systemManage_role_win1",
     "fn": "setCheckedKeys",
     "fn_type": "table",
-    "tree_id":"nav_systemManage_role_win1_emTree"
+    "tree_id": "nav_systemManage_role_win1_emTree"
   },
   {
     "system_id": "nav_systemManage_role_win_emTable_columnBtn2",
@@ -578,8 +656,8 @@ export const systemData = [
     "buttons": false,
     "treeDataType": "permissions",
     "checkedKeysType": "table",
-    "checkedKeysUrl":"/user/role/queryResource",
-    "checkedKeysParams":{
+    "checkedKeysUrl": "/user/role/queryResource",
+    "checkedKeysParams": {
       "params_id": "id"
     },
     "updateCheckedType": "table",
@@ -678,7 +756,7 @@ export const systemData = [
   {
     "system_id": "nav_systemManage_permissions_win",
     "system_type": "win",
-    "winLayout": "1",
+    "winLayout": "2",
     "title": "权限管理-窗口",
     "top": "148px",
     "left": "M-800px",
@@ -688,8 +766,310 @@ export const systemData = [
     "maximizable": false,
     "closable": false,
     "draggable": false,
-    "class": "em-table-window"
+    "class": "em-table-window",
+    "setHeight": "500px",
+    "minPercent": 20,
+    "defaultPercent": 30,
+    "paneL": true,
+    "paneR": true
   },
+  {
+    "system_id": "nav_systemManage_permissions_win_emTree",
+    "system_type": "win_component_tree",
+    "title": "权限",
+    "paneType": "paneL",
+    "winOffset": 0,
+    "winSpan": 48,
+    "component": "emTree",
+    "propsChildren": "children",
+    "propsLabel": "resourceName",
+    "checkbox": false,
+    "buttons": false,
+    "treeDataType": "permissions",
+    "control_type": "",
+    "control_id": "",
+    "fn": "",
+    "fn_type": ""
+  },
+  {
+    "system_id": "nav_systemManage_permissions_win_emForm",
+    "system_type": "win_component_form",
+    "title": "权限管理-表单",
+    "paneType": "paneR",
+    "winOffset": 0,
+    "winSpan": 48,
+    "component": "emForm",
+    "labelWidth": "80px",
+    "class": "form-table",
+    "control_type": "",
+    "control_id": "",
+    "fn": "",
+    "fn_type": ""
+  },
+  {
+    "system_id": "nav_systemManage_permissions_win_emForm_text1",
+    "system_type": "win_component_formItem",
+    "title": "ID",
+    "winSpan": 24,
+    "inputType": "text",
+    "label": "",
+    "valueKey": "id",
+    "defaultValue": "",
+    "placeholder": "",
+    "disabled": true,
+    "Validate": {
+      "data": [
+        {"required": true, "message": "请输入", "trigger": "change"}
+      ]
+    },
+    "options_url": "none",
+    "options": [],
+    "control_type": "",
+    "control_id": "",
+    "fn": "",
+    "fn_type": ""
+  },
+  {
+    "system_id": "nav_systemManage_permissions_win_emForm_text2",
+    "system_type": "win_component_formItem",
+    "title": "名称",
+    "winSpan": 24,
+    "inputType": "text",
+    "label": "",
+    "valueKey": "id",
+    "defaultValue": "",
+    "placeholder": "",
+    "disabled": false,
+    "Validate": {
+      "data": [
+        {"required": true, "message": "请输入", "trigger": "change"}
+      ]
+    },
+    "options_url": "none",
+    "options": [],
+    "control_type": "",
+    "control_id": "",
+    "fn": "",
+    "fn_type": ""
+  },
+  {
+    "system_id": "nav_systemManage_permissions_win_emForm_text3",
+    "system_type": "win_component_formItem",
+    "title": "组件类型",
+    "winSpan": 24,
+    "inputType": "text",
+    "label": "",
+    "valueKey": "id",
+    "defaultValue": "",
+    "placeholder": "",
+    "disabled": false,
+    "Validate": {
+      "data": [
+        {"required": true, "message": "请输入", "trigger": "change"}
+      ]
+    },
+    "options_url": "none",
+    "options": [],
+    "control_type": "",
+    "control_id": "",
+    "fn": "",
+    "fn_type": ""
+  },
+  {
+    "system_id": "nav_systemManage_permissions_win_emForm_text4",
+    "system_type": "win_component_formItem",
+    "title": "父ID",
+    "winSpan": 24,
+    "inputType": "text",
+    "label": "",
+    "valueKey": "id",
+    "defaultValue": "",
+    "placeholder": "",
+    "disabled": false,
+    "Validate": {
+      "data": [
+        {"required": true, "message": "请输入", "trigger": "change"}
+      ]
+    },
+    "options_url": "none",
+    "options": [],
+    "control_type": "",
+    "control_id": "",
+    "fn": "",
+    "fn_type": ""
+  },
+  {
+    "system_id": "nav_systemManage_permissions_win_emForm_text5",
+    "system_type": "win_component_formItem",
+    "title": "接口类型",
+    "winSpan": 24,
+    "inputType": "text",
+    "label": "",
+    "valueKey": "id",
+    "defaultValue": "",
+    "placeholder": "",
+    "disabled": false,
+    "Validate": {
+      "data": [
+        {"required": true, "message": "请输入", "trigger": "change"}
+      ]
+    },
+    "options_url": "none",
+    "options": [],
+    "control_type": "",
+    "control_id": "",
+    "fn": "",
+    "fn_type": ""
+  },
+  {
+    "system_id": "nav_systemManage_permissions_win_emForm_text6",
+    "system_type": "win_component_formItem",
+    "title": "接口地址",
+    "winSpan": 24,
+    "inputType": "text",
+    "label": "",
+    "valueKey": "id",
+    "defaultValue": "",
+    "placeholder": "",
+    "disabled": false,
+    "Validate": {
+      "data": [
+        {"required": true, "message": "请输入", "trigger": "change"}
+      ]
+    },
+    "options_url": "none",
+    "options": [],
+    "control_type": "",
+    "control_id": "",
+    "fn": "",
+    "fn_type": ""
+  },
+  {
+    "system_id": "nav_systemManage_permissions_win_emForm_text7",
+    "system_type": "win_component_formItem",
+    "title": "UI数据",
+    "winSpan": 24,
+    "inputType": "text",
+    "label": "",
+    "valueKey": "id",
+    "defaultValue": "",
+    "placeholder": "",
+    "disabled": false,
+    "Validate": {
+      "data": [
+        {"required": true, "message": "请输入", "trigger": "change"}
+      ]
+    },
+    "options_url": "none",
+    "options": [],
+    "control_type": "",
+    "control_id": "",
+    "fn": "",
+    "fn_type": ""
+  },
+  {
+    "system_id": "nav_systemManage_permissions_win_emForm_text8",
+    "system_type": "win_component_formItem",
+    "title": "状态",
+    "winSpan": 24,
+    "inputType": "text",
+    "label": "",
+    "valueKey": "id",
+    "defaultValue": "",
+    "placeholder": "",
+    "disabled": false,
+    "Validate": {
+      "data": [
+        {"required": true, "message": "请输入", "trigger": "change"}
+      ]
+    },
+    "options_url": "none",
+    "options": [],
+    "control_type": "",
+    "control_id": "",
+    "fn": "",
+    "fn_type": ""
+  },
+  {
+    "system_id": "nav_systemManage_permissions_win_emForm_text9",
+    "system_type": "win_component_formItem",
+    "title": "显示名称",
+    "winSpan": 24,
+    "inputType": "text",
+    "label": "",
+    "valueKey": "id",
+    "defaultValue": "",
+    "placeholder": "",
+    "disabled": false,
+    "Validate": {
+      "data": [
+        {"required": true, "message": "请输入", "trigger": "change"}
+      ]
+    },
+    "options_url": "none",
+    "options": [],
+    "control_type": "",
+    "control_id": "",
+    "fn": "",
+    "fn_type": ""
+  },
+  {
+    "system_id": "nav_systemManage_permissions_win_emForm_text10",
+    "system_type": "win_component_formItem",
+    "title": "权重",
+    "winSpan": 24,
+    "inputType": "text",
+    "label": "",
+    "valueKey": "id",
+    "defaultValue": "",
+    "placeholder": "",
+    "disabled": false,
+    "Validate": {
+      "data": [
+        {"required": true, "message": "请输入", "trigger": "change"}
+      ]
+    },
+    "options_url": "none",
+    "options": [],
+    "control_type": "",
+    "control_id": "",
+    "fn": "",
+    "fn_type": ""
+  },
+  {
+    "system_id": "nav_systemManage_permissions_win_emForm_button1",
+    "system_type": "win_component_formButton",
+    "title": "UI编辑",
+    "winOffset": 36,
+    "winSpan": 6,
+    "inputType": "button",
+    "type": "primary",
+    "class": "",
+    "icon": "",
+    "disabled": false,
+    "control_type": "",
+    "control_id": "",
+    "fn": "",
+    "fn_type": ""
+  },
+  {
+    "system_id": "nav_systemManage_permissions_win_emForm_button2",
+    "system_type": "win_component_formButton",
+    "title": "提交",
+    "winOffset": 0,
+    "winSpan": 6,
+    "inputType": "button",
+    "type": "primary",
+    "class": "",
+    "icon": "",
+    "disabled": false,
+    "control_type": "",
+    "control_id": "",
+    "fn": "",
+    "fn_type": ""
+  },
+
+
   {
     "system_id": "nav_systemManage_department",
     "system_type": "navList",

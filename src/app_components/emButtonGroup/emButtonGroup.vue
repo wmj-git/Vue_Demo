@@ -82,7 +82,7 @@
         }
       },
       init() {
-        console.log(this.data);
+
         this.id = this.data.system_id;
         this.set.groupType = this.data.groupType ? this.data.groupType : "none";
         this.set.class = this.data.class;
