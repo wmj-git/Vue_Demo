@@ -31,20 +31,18 @@
         <win :id="win.system_id" :data="win">
           <div :style="{width: '100%',height:win.setHeight}">
             <split-pane split="vertical" :min-percent='win.minPercent' :default-percent='win.defaultPercent'>
-              <el-row :gutter="8" v-if="win.children">
-                <template v-for="component in win.children">
-                  <template slot="paneL" v-if="win.paneL && component.paneType==='paneL'">
-                    <el-col :span="component.winSpan" :offset="component.winOffset">
-                      <component :is="component.component" :data="component"></component>
-                    </el-col>
-                  </template>
-                  <template slot="paneR" v-if="win.paneR && component.paneType==='paneR'">
-                    <el-col :span="component.winSpan" :offset="component.winOffset">
-                      <component :is="component.component" :data="component"></component>
-                    </el-col>
-                  </template>
+              <template v-if="win.children" v-for="component in win.children">
+                <template slot="paneL" v-if="win.paneL && component.paneType==='paneL'">
+                  <el-col :span="component.winSpan" :offset="component.winOffset">
+                    <component :is="component.component" :data="component"></component>
+                  </el-col>
                 </template>
-              </el-row>
+                <template slot="paneR" v-if="win.paneR && component.paneType==='paneR'">
+                  <el-col :span="component.winSpan" :offset="component.winOffset">
+                    <component :is="component.component" :data="component"></component>
+                  </el-col>
+                </template>
+              </template>
             </split-pane>
           </div>
         </win>
