@@ -145,8 +145,12 @@
         this.rules = _rules;
       },
       setForm(_obj) {//设置表单值
-        for (let _key in _obj) {
-          this.ruleForm[_key] = _obj[_key];
+        console.log("form", _obj);
+        let _data=_obj.data;
+        for (let _key in this.ruleForm) {
+          if(_data[_key]){
+            this.ruleForm[_key] = _data[_key];
+          }
         }
       },
       getForm() {

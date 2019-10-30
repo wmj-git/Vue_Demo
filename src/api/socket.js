@@ -25,7 +25,6 @@ function initWebSocket (url = websocketurl) {
       console.log(response.body)
       websocketonmessage(response);
     });
-
   });
   socket.onclose =websocketclose;
 }

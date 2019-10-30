@@ -79,7 +79,11 @@
           label: 'label'
         },
         setFn: {
-          handleNodeClick: "",
+          //点击节点时交互的对象
+          handleNodeClickType: "",
+          handleNodeClickControlId: "",
+          handleNodeClickFn: "",
+
           handleCheckChange: "",
           handleDragEnd: ""
         },
@@ -117,6 +121,11 @@
         this.set.updateCheckedType = this.data.updateCheckedType ? this.data.updateCheckedType : "";
         this.set.updateCheckedUrl = this.data.updateCheckedUrl ? this.data.updateCheckedUrl : "";
         this.set.updateCheckedParams = this.data.updateCheckedParams ? this.data.updateCheckedParams : "none";
+
+        this.setFn.handleNodeClickType = this.data.handleNodeClickType ? this.data.handleNodeClickType : "";
+        this.setFn.handleNodeClickControlId = this.data.handleNodeClickControlId ? this.data.handleNodeClickControlId : "";
+        this.setFn.handleNodeClickFn = this.data.handleNodeClickFn ? this.data.handleNodeClickFn : "";
+
 
         this.defaultProps.children = this.data.propsChildren;
         this.defaultProps.label = this.data.propsLabel;
@@ -194,6 +203,18 @@
       },
       handleNodeClick(data) {
         console.log(data);
+        switch (this.setFn.handleNodeClickType) {
+          case "form":
+            vueBus.$emit(this.setFn.handleNodeClickControlId,{
+              fn:this.setFn.handleNodeClickFn,
+              obj:this.data,
+              data:data
+            });
+            break;
+          default:
+
+        }
+
       },
       handleDragEnd(draggingNode, dropNode, dropType, ev) {
 

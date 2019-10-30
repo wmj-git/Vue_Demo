@@ -786,6 +786,9 @@ export const systemData = [
     "checkbox": false,
     "buttons": true,
     "treeDataType": "permissions",
+    "handleNodeClickType": "form",
+    "handleNodeClickControlId": "nav_systemManage_permissions_win_emForm",
+    "handleNodeClickFn": "setForm",
     "control_type": "",
     "control_id": "",
     "fn": "",
@@ -1040,8 +1043,8 @@ export const systemData = [
     "system_id": "nav_systemManage_permissions_win_emForm_button1",
     "system_type": "win_component_formButton",
     "title": "UI编辑",
-    "winOffset": 36,
-    "winSpan": 6,
+    "winOffset": 30,
+    "winSpan": 9,
     "inputType": "button",
     "type": "primary",
     "class": "",
@@ -1057,7 +1060,7 @@ export const systemData = [
     "system_type": "win_component_formButton",
     "title": "提交",
     "winOffset": 0,
-    "winSpan": 6,
+    "winSpan": 9,
     "inputType": "button",
     "type": "primary",
     "class": "",
@@ -1068,7 +1071,6 @@ export const systemData = [
     "fn": "",
     "fn_type": ""
   },
-
 
   {
     "system_id": "nav_systemManage_department",
