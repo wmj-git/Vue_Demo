@@ -1,9 +1,9 @@
 import request from '@/utils/request'
 
-export function del(obj) {//表格数据删
+export function submit(obj) {//表格数据删
   return request({
     url: obj.url,
-    method: obj.method,
+    method: 'post',
     data: obj.params
   })
 }

@@ -118,6 +118,47 @@ export function ChangeRoles({commit, dispatch}, role) {
 
 
 //获取后台权限及前端ui数据
+export function systemPermissions({commit, state}) {
+  return new Promise((resolve, reject) => {
+
+    let _systemData = [];
+
+    findByThisUser().then((response) => {
+
+      commit(SET_PERMISSIONS, response.data);
+
+      response.data.forEach(function (_obj) {
+
+        let _description = _obj.description;
+        _description = _description.replace(/\\n/g, '');//去掉换行
+        _description = _description.replace(/\s*/g, "");//去掉空格
+        if (_description.substr(0, 1) === "{" && _description.substr(-1) === "}") {
+          _description = JSON.parse(_description);
+          _obj.resourceCode = _description.system_id;//id显示
+
+          if (_obj.isMeum) {
+            _description.title = _obj.resourceName;
+          } else {
+            _description.title = "";
+          }
+
+          for (let k in _description) {
+            _obj[k] = _description[k];
+          }
+          _systemData.push(_obj);
+        }
+
+      });
+      commit(SET_SYSTEMDATA, _systemData);
+
+      resolve(_systemData);
+    }).catch(error => {
+      reject(error);
+    });
+  });
+}
+
+//获取后台权限及前端ui数据
 export function systemUI({commit, state}) {
   return new Promise((resolve, reject) => {
 
@@ -157,7 +198,7 @@ export function systemUI({commit, state}) {
       let nav_data = [];
       // win框
       let winComponent_data = [];
-
+      // 对话框和抽屉对话框数据
       let systemComponent_data = [];
 
 

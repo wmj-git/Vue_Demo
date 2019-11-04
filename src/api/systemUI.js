@@ -863,7 +863,7 @@ export const systemData = [
     "inputType": "text",
     "label": "",
     "valueKey": "resourceCode",
-    "defaultValue": "",
+    "defaultValue": "win",
     "placeholder": "",
     "disabled": false,
     "Validate": {
@@ -998,7 +998,7 @@ export const systemData = [
     "system_type": "win_component_formItem",
     "title": "显示名称",
     "winSpan": 24,
-    "inputType": "text",
+    "inputType": "select",
     "label": "",
     "valueKey": "isMeum",
     "defaultValue": "",
@@ -1010,7 +1010,12 @@ export const systemData = [
       ]
     },
     "options_url": "none",
-    "options": [],
+    "options": {
+      "data": [
+        {"label": "是", "value": true},
+        {"label": "否", "value": false}
+      ]
+    },
     "control_type": "",
     "control_id": "",
     "fn": "",
@@ -1043,7 +1048,7 @@ export const systemData = [
     "system_id": "nav_systemManage_permissions_win_emForm_button1",
     "system_type": "win_component_formButton",
     "title": "UI编辑",
-    "winOffset": 30,
+    "winOffset": 21,
     "winSpan": 9,
     "inputType": "button",
     "type": "primary",
@@ -1068,7 +1073,25 @@ export const systemData = [
     "disabled": false,
     "control_type": "",
     "control_id": "",
-    "fn": "",
+    "fn": "submitForm",
+    "fn_type": "permissionsTree",
+    "tree_id": "nav_systemManage_permissions_win_emTree",
+    "tree_fn": "treeDataFn"
+  },
+  {
+    "system_id": "nav_systemManage_permissions_win_emForm_button3",
+    "system_type": "win_component_formButton",
+    "title": "重置",
+    "winOffset": 0,
+    "winSpan": 9,
+    "inputType": "button",
+    "type": "primary",
+    "class": "",
+    "icon": "",
+    "disabled": false,
+    "control_type": "",
+    "control_id": "",
+    "fn": "resetForm",
     "fn_type": ""
   },
 

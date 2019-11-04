@@ -155,30 +155,36 @@
             });
             break;
         }
-        this.treeData = toTree(_tree);
+        this.treeData = [];
+        this.treeData = this.treeData.concat(toTree(_tree));
       },
       filterNode(value, data) {
         if (!value) return true;
         return data[this.defaultProps.label].indexOf(value) !== -1;
       },
       append(node, data) {
-        /* let _this = this;
-         const newChild = {
-           "dataStatus": 0,
-           "description": "{}",
-           "id": 0,
-           "parentId": 0,
-           "resourceCode": "{}",
-           "resourceName": "新建权限",
-           "resourceType": "none",
-           "resourceUrl": "none",
-           "isMeum": true,
-           "weight": 200
-         };
-         newChild.parentId = data.id;
-         add(newChild).then(function (response) {
-           _this.$message(response.message);
-         });*/
+
+        console.log(node, data);
+        let _this = this;
+        const newChild = {
+          "dataStatus": 0,
+          "description": "{}",
+          "id": 0,
+          "parentId": 0,
+          "resourceCode": "{}",
+          "resourceName": "新建权限",
+          "resourceType": "none",
+          "resourceUrl": "none",
+          "isMeum": true,
+          "weight": 200
+        };
+        newChild.parentId = data.id;
+        add(newChild).then(function (response) {
+          _this.$message(response.message);
+          _this.$store.dispatch("user/systemPermissions", {}).then(() => {
+            _this.treeDataFn();
+          });
+        });
       },
       remove(node, data) {
         /* let _this = this;
@@ -205,10 +211,10 @@
         console.log(data);
         switch (this.setFn.handleNodeClickType) {
           case "form":
-            vueBus.$emit(this.setFn.handleNodeClickControlId,{
-              fn:this.setFn.handleNodeClickFn,
-              obj:this.data,
-              data:data
+            vueBus.$emit(this.setFn.handleNodeClickControlId, {
+              fn: this.setFn.handleNodeClickFn,
+              obj: this.data,
+              data: data
             });
             break;
           default:
@@ -323,15 +329,15 @@
     },
     created() {
       this.init();
+
+    },
+    mounted() {
       vueBus.$on(this.id, obj => {
         this[obj.fn](obj);
       });
       this.bus.$on(this.id, obj => {
         this[obj.fn](obj);
       });
-    },
-    mounted() {
-
     },
     beforeDestroy() {
       vueBus.$off(this.id);

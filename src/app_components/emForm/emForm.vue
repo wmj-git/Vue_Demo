@@ -45,6 +45,7 @@
 
 <script>
   import vueBus from '@/utils/vueBus'
+  import {submit} from '@/app_api/form'
 
   export default {
     name: "emForm",
@@ -76,7 +77,7 @@
         }
       },
       fn(_fn, _obj) {//初始化匹配功能
-        let _this=this;
+        let _this = this;
         let _controlType = _obj.control_type ? _obj.control_type : "";
         let _ruleForm = this.ruleForm;
 
@@ -145,10 +146,9 @@
         this.rules = _rules;
       },
       setForm(_obj) {//设置表单值
-        console.log("form", _obj);
-        let _data=_obj.data;
+        let _data = _obj.data;
         for (let _key in this.ruleForm) {
-          if(_data[_key]){
+          if (_data[_key] || _data[_key] === 0) {
             this.ruleForm[_key] = _data[_key];
           }
         }
@@ -157,19 +157,56 @@
         console.log(this.ruleForm);
         return this.ruleForm;
       },
-      submitForm(formName) {//提交表单
-        this.$refs[formName].validate((valid) => {
+      submitForm(_data) {//提交表单
+        let _this = this
+        this.$refs[this.id].validate((valid) => {
           if (valid) {
-            console.log('submit!');
-            console.log(this.ruleForm);
+            submit({
+              url: _data.resourceUrl,
+              params: _this.ruleForm
+            }).then(res => {
+              console.log('ok', res);
+              if (res.statusCode === 200) {
+                _this.$message({
+                  message: "修改成功",
+                  type: 'success'
+                });
+
+                // 提交后与对象交互
+                _this.submitSuccessFn(_data, res)
+              } else {
+                _this.$message.error('修改失败');
+              }
+            })
           } else {
             console.log('error submit!!');
             return false;
           }
         });
       },
-      resetForm(formName) {//重置
-        this.$refs[formName].resetFields();
+      submitSuccessFn(_data, _res) {
+        let _this = this
+        switch (_data.fn_type) {
+          case "tree": // 提交成功后与tree交互
+            vueBus.$emit(_data.tree_id, {
+              fn: _data.tree_fn,
+              form: this.ruleForm,
+              data: _res
+            });
+            break;
+          case "permissionsTree": // 提交成功权限tree交互
+            this.$store.dispatch("user/systemPermissions", {}).then(() => {
+              vueBus.$emit(_data.tree_id, {
+                fn: _data.tree_fn,
+                form: _this.ruleForm,
+                data: _res
+              });
+            });
+            break;
+        }
+      },
+      resetForm() {//重置
+        this.$refs[this.id].resetFields();
       }
     },
     created() {
