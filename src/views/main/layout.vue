@@ -66,7 +66,7 @@
 <script>
 
   import {refreshToken} from '@/api/login';
-  import {getNowFormatDate} from '@/utils/tools';
+  import {getNowFormatDate, TimeFn} from '@/utils/tools';
   import {
     setToken, setTokenTime, getTokenTime,
     TokenName, RefreshTokenName, getExpires, setExpires
@@ -142,7 +142,7 @@
     },
     methods: {
       refreshTokenFn() {//刷新token
-        setInterval(() => {
+        const tm = new TimeFn("t1", () => {
           let _time = getNowFormatDate().timestamp - getTokenTime();
           let _expires = getExpires();
           // console.log(_time);
@@ -151,7 +151,10 @@
           }
           // alert(_time);
           this.refreshToken();
+        }, () => {
+          return true
         }, 120000);
+        tm.run();
       },
       refreshToken() {//刷新token
         let _RefreshToken = this.$store.getters["user/refreshToken"];

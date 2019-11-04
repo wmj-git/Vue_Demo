@@ -376,7 +376,6 @@ let stringToData=new StringToData(_obj,
     splitVal:"_",
     typeVal:"p"
   });
-
 stringToData.getData();*/
 
 //定时器
