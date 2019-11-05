@@ -187,6 +187,22 @@
         });
       },
       remove(node, data) {
+
+        function removeFn(_data) {
+          let _val =[];
+          if(_data.children){
+            _val.push(_data.id);
+            _data.children.forEach((_item)=>{
+              _val=_val.concat(removeFn(_item));
+            });
+            return _val
+          }
+          _val.push(_data.id);
+          return _val
+        }
+
+        console.log("node", removeFn(data), data);
+
          let _this = this;
          this.$confirm('此操作将永久删除, 是否继续?', '提示', {
            cancelButtonText: '取消',
@@ -195,7 +211,7 @@
          }).then(() => {
            del({
              url:this.set.removeUrl,
-             params:[data.id]
+             params:removeFn(data)
            }).then(function (response) {
              _this.$message(response.message);
              _this.$store.dispatch("user/systemPermissions", {}).then(() => {
@@ -307,7 +323,6 @@
                 _params[_k] = this.paramsData[_key];
               }
             }
-
 
             queryCheckedKeys({
               "url": this.set.checkedKeysUrl,
