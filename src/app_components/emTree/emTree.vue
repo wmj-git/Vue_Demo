@@ -29,7 +29,7 @@
                         size="mini"
                         @click="() => append(node,data)"
                       >
-                        添加
+                        复制
                       </el-button>
                       <el-button
                         class="em-btn-gradient em-btn-uniform-gradient"
@@ -61,6 +61,8 @@
         set: {
           title: "权限",
           buttons: false,
+          appendUrl:"",
+          removeUrl:"",
           checkbox: false,
           treeDataType: "",
           treeDataUrl: "",
@@ -70,7 +72,7 @@
           checkedKeysParams: "",
           updateCheckedType: "",
           updateCheckedUrl: "",
-          updateCheckedParams: ""
+          updateCheckedParams: "",
         },
         treeData: [],
         filterText: '',
@@ -112,6 +114,8 @@
         this.id = this.data.system_id;
         this.set.checkbox = this.data.checkbox;
         this.set.buttons = this.data.buttons;
+        this.set.appendUrl = this.data.appendUrl;
+        this.set.removeUrl = this.data.removeUrl;
         this.set.treeDataType = this.data.treeDataType ? this.data.treeDataType : "query";
         this.set.treeDataUrl = this.data.treeDataUrl ? this.data.treeDataUrl : "";
         this.set.treeDataParams = this.data.treeDataParams ? this.data.treeDataParams : "none";
@@ -163,41 +167,39 @@
         return data[this.defaultProps.label].indexOf(value) !== -1;
       },
       append(node, data) {
-
-        console.log(node, data);
+        console.log('append', node, data);
         let _this = this;
-        const newChild = {
-          "dataStatus": 0,
-          "description": "{}",
-          "id": 0,
-          "parentId": 0,
-          "resourceCode": "{}",
-          "resourceName": "新建权限",
-          "resourceType": "none",
-          "resourceUrl": "none",
-          "isMeum": true,
-          "weight": 200
-        };
-        newChild.parentId = data.id;
-        add(newChild).then(function (response) {
-          _this.$message(response.message);
+        const newChild = data;
+        // newChild.parentId = data.id;
+        add({
+          url: this.set.appendUrl,
+          params: newChild
+        }).then((response) => {
+          if (response.statusCode === 200) {
+            this.$message({
+              message: response.message,
+              type: 'success'
+            });
+          }
           _this.$store.dispatch("user/systemPermissions", {}).then(() => {
             _this.treeDataFn();
           });
         });
       },
       remove(node, data) {
-        /* let _this = this;
+         let _this = this;
          this.$confirm('此操作将永久删除, 是否继续?', '提示', {
            cancelButtonText: '取消',
            confirmButtonText: '确定',
            type: 'warning'
          }).then(() => {
-           del([data.id]).then(function (response) {
-             // console.log(response);
+           del({
+             url:this.set.removeUrl,
+             params:[data.id]
+           }).then(function (response) {
              _this.$message(response.message);
-             _this.bus.$emit("nav", {
-               fn: "findByThisUserFn"
+             _this.$store.dispatch("user/systemPermissions", {}).then(() => {
+               _this.treeDataFn();
              });
            });
          }).catch(() => {
@@ -205,7 +207,7 @@
              type: 'info',
              message: '已取消删除'
            });
-         });*/
+         });
       },
       handleNodeClick(data) {
         console.log(data);

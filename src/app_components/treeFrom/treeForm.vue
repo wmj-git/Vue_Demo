@@ -116,7 +116,6 @@
       },
       remove(node, data) {
 
-
         function removeFn(_data) {
           let _val =[];
           if(_data.children){

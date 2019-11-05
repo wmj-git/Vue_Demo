@@ -54,12 +54,19 @@
         <em-dialog :id="dialog.system_id" :data="dialog"></em-dialog>
       </template>
     </template>
+
+
+
     <!--场景-->
     <router-view name="scene"/>
     <!-- 控制透明度的滑动条-->
     <em-slider></em-slider>
     <!--底部-->
     <em-bottom></em-bottom>
+
+
+    <!--场景数据显示列表-->
+    <em-drawer></em-drawer>
   </div>
 </template>
 
@@ -77,6 +84,7 @@
   // 容器组件
   import win from "@/app_components/win/win";
   import emDialog from "@/app_components/emDialog/emDialog";
+  import emDrawer from "@/app_components/emDrawer/emDrawer"
 
   // 功能组件
   import emTable from "@/app_components/emTable/emTable";
@@ -84,7 +92,6 @@
   import emForm from "@/app_components/emForm/emForm";
   import emButtonGroup from "@/app_components/emButtonGroup/emButtonGroup";
   import buttonGroup from "@/app_components/buttonGroup/buttonGroup";
-
   //公用组件
 
 
@@ -114,6 +121,7 @@
       emTree,
       emForm,
       emDialog,
+      emDrawer,
       emButtonGroup,
       buttonGroup,
       //end/公用组件=============
@@ -138,6 +146,9 @@
       },
       dialogGroup: function () {
         return this.$store.getters["user/dialog"];
+      },
+      drawerGroup: function () {
+        // return this.$store.getters["user/drawer"];
       }
     },
     methods: {

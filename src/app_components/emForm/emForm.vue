@@ -97,7 +97,7 @@
             });
             break;
           case "dialog":
-            vueBus.$emit(_obj.control_id, {
+            this.$emit(_obj.control_id, {
               "fn": _fn,
               "obj": _obj,
               "ruleForm": _ruleForm
@@ -166,7 +166,7 @@
               params: _this.ruleForm
             }).then(res => {
               console.log('ok', res);
-              if (res.statusCode === 200) {
+              if (res.statusCode && res.statusCode === 200) {
                 _this.$message({
                   message: "修改成功",
                   type: 'success'
@@ -207,6 +207,30 @@
       },
       resetForm() {//重置
         this.$refs[this.id].resetFields();
+      },
+      //控制对话框
+      addDrawer(_obj) {
+        console.log(_obj);
+        let _data = _obj;
+        let _ruleForm = this.ruleForm;
+        switch (_data.fn_type) {
+          case "drawer":
+            break;
+          default:
+            vueBus.$emit(_data.drawer_id, {
+              "fn": _data.drawer_fn,
+              "visible": true,
+              "set": {
+                "title": _data.drawer_title ? _data.drawer_title : "抽屉框"
+              },
+              "form":_ruleForm,
+              "children": _data.children
+            });
+        }
+      },
+      // 响应函数
+      callBack(_obj) {
+
       }
     },
     created() {

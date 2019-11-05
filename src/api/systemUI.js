@@ -789,6 +789,8 @@ export const systemData = [
     "handleNodeClickType": "form",
     "handleNodeClickControlId": "nav_systemManage_permissions_win_emForm",
     "handleNodeClickFn": "setForm",
+    "appendUrl": "/user/resource/addResource",
+    "removeUrl": "/user/resource/del",
     "control_type": "",
     "control_id": "",
     "fn": "",
@@ -1057,8 +1059,11 @@ export const systemData = [
     "disabled": false,
     "control_type": "",
     "control_id": "",
-    "fn": "",
-    "fn_type": ""
+    "fn": "addDrawer",
+    "fn_type": "",
+    "drawer_id":"ddd",
+    "drawer_fn":"visibleFn",
+    "drawer_title":"UI属性"
   },
   {
     "system_id": "nav_systemManage_permissions_win_emForm_button2",

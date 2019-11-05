@@ -65,7 +65,7 @@
   import emLayers from "./components/emLayers/emLayers"
   import emCharts from "@/components/emCharts/emCharts"
   import emTabs from "@/components/emTabs/emTabs"
-  import emDrawer from "@/app_components/emDrawer/emDrawer"
+  import emDrawer from "@/components/emDrawer/emDrawer"
   import emPlayer from "@/components/emPlayer/emPlayer"
   export default {
     data() {
