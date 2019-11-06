@@ -45,7 +45,9 @@
 
 <script>
   import vueBus from '@/utils/vueBus'
+  import {StringChangeObj} from '@/utils/tools'
   import {submit} from '@/app_api/form'
+
 
   export default {
     name: "emForm",
@@ -97,10 +99,24 @@
             });
             break;
           case "dialog":
-            this.$emit(_obj.control_id, {
+            vueBus.$emit(_obj.control_id, {
               "fn": _fn,
               "obj": _obj,
               "ruleForm": _ruleForm
+            });
+            break;
+          case "formUI":
+            let _val=JSON.parse(JSON.stringify(_ruleForm));
+            for (let _k in _val){
+              if(_k==="Validate" || _k==="options"){
+                _val[_k]=JSON.parse(_val[_k]);
+              }
+            }
+            vueBus.$emit(_obj.control_id, {
+              "fn": _fn,
+              "data": {
+                [_obj.formUI_key]: JSON.stringify(_val)
+              }
             });
             break;
           default://调用组件本身方法
@@ -116,17 +132,18 @@
           switch (_item.system_type) {
             case "win_component_formItem":
             case "system_layout_dialog_formItem":
+            case "system_layout_drawer_formItem":
               _item.label = _item.title;
               _form_data.push(_item);
               _rule_data.push(_item);
               break;
             case "win_component_formButton":
             case "system_layout_dialog_formButton":
+            case "system_layout_drawer_formButton":
               _item.label = _item.title;
               _form_data.push(_item);
               break;
           }
-
         });
         this.formItems.splice(0, this.formItems.length);
         this.formItems = this.formItems.concat(_form_data);
@@ -146,6 +163,7 @@
         this.rules = _rules;
       },
       setForm(_obj) {//设置表单值
+        console.log('setForm',_obj);
         let _data = _obj.data;
         for (let _key in this.ruleForm) {
           if (_data[_key] || _data[_key] === 0) {
@@ -208,13 +226,143 @@
       resetForm() {//重置
         this.$refs[this.id].resetFields();
       },
-      //控制对话框
+      //控制抽屉框
       addDrawer(_obj) {
-        console.log(_obj);
         let _data = _obj;
         let _ruleForm = this.ruleForm;
         switch (_data.fn_type) {
-          case "drawer":
+          case "editUI":
+            let _children = [];
+            const _val = new StringChangeObj(_ruleForm[_data.drawer_key]);
+            let _Val = _val.getData();
+            let _form = {
+              "system_id": this.id + "_drawer_emForm",
+              "system_type": "win_component_form",
+              "title": "",
+              "winSpan": 48,
+              "component": "emForm",
+              "labelWidth": "48px",
+              "class": "form-table",
+              "control_type": "",
+              "control_id": "",
+              "fn": "",
+              "fn_type": "",
+              "children": []
+            };
+            let _btn = [{
+              "system_id": this.id + "_drawer_emForm_button1",
+              "system_type": "win_component_formButton",
+              "title": "重置",
+              "winOffset": 24,
+              "winSpan": 12,
+              "inputType": "button",
+              "type": "primary",
+              "class": "",
+              "icon": "",
+              "disabled": false,
+              "control_type": "",
+              "control_id": "",
+              "fn": "resetForm",
+              "fn_type": ""
+            }, {
+              "system_id": this.id + "_drawer_emForm_button2",
+              "system_type": "win_component_formButton",
+              "title": "更新",
+              "winOffset": 0,
+              "winSpan": 12,
+              "inputType": "button",
+              "type": "primary",
+              "class": "",
+              "icon": "",
+              "disabled": false,
+              "control_type": "formUI",
+              "control_id": this.id,
+              "fn": "setForm",
+              "fn_type": "",
+              "formUI_key": _data.drawer_key
+            }];
+
+            for (const _k in _Val) {
+              if(_Val[_k].data){
+                _Val[_k]=JSON.stringify(_Val[_k])
+              }
+              if (_Val[_k] === !!_Val[_k]) {// 判断为布尔值
+                let _select = {
+                  "system_id": this.id + "_" + _k + "_drawer_emForm_select",
+                  "system_type": "win_component_formItem",
+                  "title": "",
+                  "winSpan": 48,
+                  "inputType": "select",
+                  "label": "",
+                  "valueKey": "",
+                  "defaultValue": "",
+                  "placeholder": "",
+                  "disabled": false,
+                  "Validate": {
+                    "data": [
+                      {"required": false, "message": "请输入", "trigger": "change"}
+                    ]
+                  },
+                  "options_url": "none",
+                  "options": {
+                    "data": [
+                      {"label": "true", "value": true},
+                      {"label": "false", "value": false}
+                    ]
+                  },
+                  "control_type": "",
+                  "control_id": "",
+                  "fn": "",
+                  "fn_type": ""
+                };
+                _select.title = _k;
+                _select.label = _k;
+                _select.valueKey = _k;
+                _select.defaultValue = _Val[_k];
+                _children.push(_select);
+              } else {
+                let _text = {
+                  "system_id": this.id + "_" + _k + "_drawer_emForm_text",
+                  "system_type": "win_component_formItem",
+                  "title": "",
+                  "winSpan": 48,
+                  "inputType": "text",
+                  "label": "",
+                  "valueKey": "",
+                  "defaultValue": "",
+                  "placeholder": "",
+                  "disabled": false,
+                  "Validate": {
+                    "data": [
+                      {"required": false, "message": "请输字段", "trigger": "change"}
+                    ]
+                  },
+                  "options_url": "none",
+                  "options": [],
+                  "control_type": "",
+                  "control_id": "",
+                  "fn": "",
+                  "fn_type": ""
+                };
+                _text.title = _k;
+                _text.label = _k;
+                _text.valueKey = _k;
+                _text.defaultValue = _Val[_k];
+                _children.push(_text);
+              }
+            }
+            _form.children = _form.children.concat(_children);
+            _form.children = _form.children.concat(_btn);
+
+            vueBus.$emit(_data.drawer_id, {
+              "fn": _data.drawer_fn,
+              "visible": true,
+              "set": {
+                "title": _data.drawer_title ? _data.drawer_title : "抽屉框"
+              },
+              "obj": _data,
+              "children": [_form]
+            });
             break;
           default:
             vueBus.$emit(_data.drawer_id, {
@@ -223,8 +371,8 @@
               "set": {
                 "title": _data.drawer_title ? _data.drawer_title : "抽屉框"
               },
-              "form":_ruleForm,
-              "children": _data.children
+              "form": _ruleForm,
+              "children": _data.children ? _data.children : ""
             });
         }
       },

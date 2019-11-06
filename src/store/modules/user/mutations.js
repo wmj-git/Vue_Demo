@@ -1,7 +1,7 @@
 import {
   SET_CODE, SET_TOKEN, SET_TOKEN_TIME, SET_REFRESH_TOKEN, SET_INTRODUCTION, SET_PERMISSIONS,
   SET_SETTING, SET_STATUS, SET_NAME, SET_SYSTEMDATA,
-  SET_AVATAR, SET_ROLES, SET_WIN, SET_DIALOG, WIN_OPEN, WIN_CLOSE, SET_NAVDATA
+  SET_AVATAR, SET_ROLES, SET_WIN, SET_DIALOG, SET_DRAWER, WIN_OPEN, WIN_CLOSE, SET_NAVDATA
 } from '../../mutation-types';
 
 export default {
@@ -22,6 +22,10 @@ export default {
   [SET_DIALOG](state, {dialog}) {
     state.dialog = [];
     state.dialog = state.dialog.concat(dialog);
+  },
+  [SET_DRAWER](state, {drawer}) {
+    state.drawer = [];
+    state.drawer = state.drawer.concat(drawer);
   },
   [SET_NAVDATA](state, {navData}) {
     state.navData = [];

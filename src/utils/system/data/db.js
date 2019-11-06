@@ -32,14 +32,14 @@ export const winComponent = {//win组件类型
     "win_component_formButton",
     "win_component_buttonGroup",
     "win_component_buttonGroup_item",
-    "win_component_tree",
-    "win_component_transfer"
+    "win_component_tree", // 树结构组件
+    "win_component_transfer" // 穿梭框
 
   ],
   dataType: []
 };
 
-export const systemComponent = {//类型
+export const systemComponent = { // 类型
   systemType: [
     "system",
     "system_layout",
@@ -49,7 +49,12 @@ export const systemComponent = {//类型
     "system_layout_dialog_formButton",
     "system_layout_dialog_buttonGroup",
     "system_layout_dialog_buttonGroup_item",
-    "system_layout_drawer"
+    "system_layout_drawer",
+    "system_layout_drawer_form",
+    "system_layout_drawer_formItem",
+    "system_layout_drawer_formButton",
+    "system_layout_drawer_buttonGroup",
+    "system_layout_drawer_buttonGroup_item"
   ],
   dataType: []
 };

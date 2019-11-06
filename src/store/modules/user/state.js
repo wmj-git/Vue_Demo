@@ -9,6 +9,7 @@ export default {
   permissions: [],//后台权限数据
   win: [],//浮动功能窗口数据
   dialog: [],//功能对话框
+  drawer: [],// 抽屉框
   navData: [],//主菜单数据
 
   //未应用

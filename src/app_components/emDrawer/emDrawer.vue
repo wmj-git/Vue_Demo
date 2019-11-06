@@ -8,6 +8,7 @@
       :append-to-body="set.appendToBody"
       :show-close="false"
       :destroy-on-close="true"
+      :before-close="handleClose"
       :size="set.size">
       <el-row :gutter="2" v-if="children">
         <template v-for="component in children">
@@ -23,16 +24,17 @@
 <script>
   import vueBus from '@/utils/vueBus'
   import emForm from "@/app_components/emForm/emForm";
+  import emButtonGroup from "@/app_components/emButtonGroup/emButtonGroup";
 
   export default {
     name: "emDrawer",
     data() {
       return {
-        id: "ddd",
+        id: "",
         set: {
           title: "",
           visible: false,
-          modal: true,
+          modal: false,
           appendToBody: true,
           size: "20%"
         },
@@ -40,25 +42,22 @@
       }
     },
     props: ["data"],
-    watch: {
-      children: function (val) {
-        // this[val.fn](val);
-      }
-    },
     computed: {},
     components: {
-      emForm
+      emForm,
+      emButtonGroup
     },
     methods: {
       fn(_obj) {
 
       },
       init() {
-        this.set.title = this.data.title ? this.data.title: "";
-        this.set.visible = this.data.visible ? this.data.visible: true;
-        this.set.modal = this.data.modal ? this.data.modal: true;
-        this.set.appendToBody = this.data.appendToBody ? this.data.appendToBody: true;
-        this.set.size = this.data.size ? this.data.size: "20%";
+        this.id = this.data.system_id;
+        this.set.title = this.data.title ? this.data.title : "";
+        this.set.visible = this.data.visible ? this.data.visible : false;
+        this.set.modal = this.data.modal ? this.data.modal : true;
+        this.set.appendToBody = this.data.appendToBody ? this.data.appendToBody : true;
+        this.set.size = this.data.size ? this.data.size : "20%";
         if (this.data.children) {
           this.children = this.children.concat(this.data.children);
         }
@@ -67,7 +66,6 @@
         this.children.splice(0, this.children.length);
       },
       visibleFn(_val) {
-        console.log(_val);
         this.set.visible = _val.visible;
         this.set.title = _val.set.title;
         if (_val.children) {
@@ -80,10 +78,14 @@
       },
       contentFn(_val) {
         console.log(_val);
+      },
+      handleClose(done) {
+        this.clear();
+        done();
       }
     },
     created() {
-      // this.init();
+      this.init();
       vueBus.$on(this.id, obj => {
         this[obj.fn](obj);
       });

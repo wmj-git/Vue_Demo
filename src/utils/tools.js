@@ -424,3 +424,20 @@ tm2.stop();
 */
 
 // 异步执行器
+
+
+// 字符串转换成对象
+export class StringChangeObj {
+  constructor(obj) {
+    this.obj = obj;
+  }
+  getData() {
+    let _data = this.obj;
+    _data = _data.replace(/\\n/g, '');//去掉换行
+    _data = _data.replace(/\s*/g, "");//去掉空格
+    if (_data.substr(0, 1) === "{" && _data.substr(-1) === "}") {
+      _data = JSON.parse(_data);
+    }
+    return _data
+  }
+}

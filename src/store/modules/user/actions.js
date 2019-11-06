@@ -1,6 +1,6 @@
 import {
   SET_CODE, SET_TOKEN, SET_TOKEN_TIME, SET_REFRESH_TOKEN, SET_INTRODUCTION,
-  SET_SETTING, SET_STATUS, SET_NAME, SET_PERMISSIONS, SET_SYSTEMDATA, SET_WIN, SET_DIALOG,SET_NAVDATA,
+  SET_SETTING, SET_STATUS, SET_NAME, SET_PERMISSIONS, SET_SYSTEMDATA, SET_WIN, SET_DIALOG,SET_DRAWER,SET_NAVDATA,
   SET_AVATAR, SET_ROLES
 } from '../../mutation-types';
 import {loginByUsername, logout, getUserInfo, refreshToken, loginByToken} from '@/api/login';
@@ -201,8 +201,6 @@ export function systemUI({commit, state}) {
       // 对话框和抽屉对话框数据
       let systemComponent_data = [];
 
-
-
       if (_systemData && _systemData.length > 0) {
         _systemData.forEach(function (_obj) {
           winComponent.systemType.forEach(function (_item) {
@@ -246,6 +244,18 @@ export function systemUI({commit, state}) {
       });
       commit(SET_DIALOG, {
         dialog: _dialog_data
+      });
+
+
+      //解析抽屉框(drawer)数据
+      let _drawer_data = [];
+      systemComponent_data.forEach(function (_obj) {
+        if (_obj.system_type === "system_layout_drawer") {
+          _drawer_data.push(_obj);
+        }
+      });
+      commit(SET_DRAWER, {
+        drawer: _drawer_data
       });
 
       //解析主菜单(navData)数据

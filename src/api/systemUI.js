@@ -675,8 +675,7 @@ export const systemData = [
     "system_id": "nav_systemManage_role_win1_emButtonGroup",
     "system_type": "win_component_buttonGroup",
     "title": "按钮组",
-    "winOffset": 36,
-    "winSpan": 12,
+    "winSpan": 48,
     "component": "emButtonGroup",
     "groupType": "",
     "class": "",
@@ -1060,10 +1059,11 @@ export const systemData = [
     "control_type": "",
     "control_id": "",
     "fn": "addDrawer",
-    "fn_type": "",
-    "drawer_id":"ddd",
-    "drawer_fn":"visibleFn",
-    "drawer_title":"UI属性"
+    "fn_type": "editUI",
+    "drawer_key": "description",
+    "drawer_id": "drawer_data",
+    "drawer_fn": "visibleFn",
+    "drawer_title": "UI属性"
   },
   {
     "system_id": "nav_systemManage_permissions_win_emForm_button2",
@@ -1368,5 +1368,20 @@ export const systemData = [
     "control_id": "",
     "fn": "",
     "fn_type": ""
-  }
-]
+  },
+  {
+    "system_id": "drawer_data",
+    "system_type": "system_layout_drawer",
+    "dialogLayout": "1",
+    "title": "",
+    "modal": true,
+    "visible": false,
+    "appendToBody": true,
+    "size": "20%",
+    "control_id": "",
+    "control_type": "",
+    "fn": "",
+    "fn_type": ""
+  },
+  {"data":[{"required":false,"message":"请输入","trigger":"change"}]}
+  ]

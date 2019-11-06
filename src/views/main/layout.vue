@@ -55,8 +55,6 @@
       </template>
     </template>
 
-
-
     <!--场景-->
     <router-view name="scene"/>
     <!-- 控制透明度的滑动条-->
@@ -64,9 +62,12 @@
     <!--底部-->
     <em-bottom></em-bottom>
 
-
-    <!--场景数据显示列表-->
-    <em-drawer></em-drawer>
+    <!--抽屉框-->
+    <template v-for="drawer in drawerGroup">
+      <template v-if="drawer.dialogLayout=='1'">
+        <em-drawer :id="drawer.system_id" :data="drawer"></em-drawer>
+      </template>
+    </template>
   </div>
 </template>
 
@@ -112,7 +113,6 @@
       };
     },
     components: {
-
       splitPane,//拖动边线
 
       //start/公用组件=============
@@ -148,7 +148,8 @@
         return this.$store.getters["user/dialog"];
       },
       drawerGroup: function () {
-        // return this.$store.getters["user/drawer"];
+
+        return this.$store.getters["user/drawer"];
       }
     },
     methods: {

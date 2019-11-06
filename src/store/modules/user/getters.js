@@ -22,6 +22,9 @@ export function permissions(state){
 export function dialog(state){
   return state.dialog
 }
+export function drawer(state){
+  return state.drawer
+}
 
 
 //未用的数据

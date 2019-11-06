@@ -48,7 +48,6 @@
 
       },
       init() {
-        console.log(this.data);
         this.id = this.data.system_id;
         this.dialogVisible = this.data.visible;
 
@@ -64,7 +63,6 @@
         this.children.splice(0,this.children.length);
       },
       visibleFn(_val) {
-        console.log(_val);
         this.dialogVisible = _val.visible;
         this.dialogSet.title = _val.set.title;
         this.dialogSet.width = _val.set.width;
