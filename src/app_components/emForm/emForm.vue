@@ -14,7 +14,7 @@
             <el-form-item :label="item.label" :prop="item.valueKey">
               <el-select :disabled="item.disabled" :ref="item.system_id" v-model="ruleForm[item.valueKey]"
                          :placeholder="item.placeholder ? item.placeholder : '请选择'">
-                <template v-for="option in item.options.data">
+                <template v-for="option in item.options_OBJ.data">
                   <el-option :label="option.label" :value="option.value"></el-option>
                 </template>
               </el-select>
@@ -24,7 +24,7 @@
             <el-form-item :label="item.label" :prop="item.valueKey">
               <el-select :disabled="item.disabled" :ref="item.system_id" v-model="ruleForm[item.valueKey]"
                          :placeholder="item.placeholder ? item.placeholder : '请选择'">
-                <template v-for="option in item.options.data">
+                <template v-for="option in item.options_OBJ.data">
                   <el-option :label="option.label" :value="option.value"></el-option>
                 </template>
               </el-select>
@@ -106,10 +106,11 @@
             });
             break;
           case "formUI":
-            let _val=JSON.parse(JSON.stringify(_ruleForm));
-            for (let _k in _val){
-              if(_k==="Validate" || _k==="options"){
-                _val[_k]=JSON.parse(_val[_k]);
+            let _val = JSON.parse(JSON.stringify(_ruleForm));
+            const _RE = /OBJ/g;
+            for (let _k in _val) {
+              if (_RE.test(_k)) {
+                _val[_k] = JSON.parse(_val[_k]);
               }
             }
             vueBus.$emit(_obj.control_id, {
@@ -156,14 +157,14 @@
         let _rule_items = JSON.parse(JSON.stringify(rule_items));
         _rule_items.forEach(function (_obj) {
           _ruleForm[_obj.valueKey] = _obj.defaultValue;
-          _rules[_obj.valueKey] = _obj.Validate.data;
+          _rules[_obj.valueKey] = _obj.validate_OBJ.data;
         });
 
         this.ruleForm = _ruleForm;
         this.rules = _rules;
       },
       setForm(_obj) {//设置表单值
-        console.log('setForm',_obj);
+        console.log('setForm', _obj);
         let _data = _obj.data;
         for (let _key in this.ruleForm) {
           if (_data[_key] || _data[_key] === 0) {
@@ -282,9 +283,10 @@
               "formUI_key": _data.drawer_key
             }];
 
+            const _RE = /OBJ/g;
             for (const _k in _Val) {
-              if(_Val[_k].data){
-                _Val[_k]=JSON.stringify(_Val[_k])
+              if (_RE.test(_k)) {
+                _Val[_k] = JSON.stringify(_Val[_k])
               }
               if (_Val[_k] === !!_Val[_k]) {// 判断为布尔值
                 let _select = {
@@ -298,13 +300,13 @@
                   "defaultValue": "",
                   "placeholder": "",
                   "disabled": false,
-                  "Validate": {
+                  "validate_OBJ": {
                     "data": [
                       {"required": false, "message": "请输入", "trigger": "change"}
                     ]
                   },
                   "options_url": "none",
-                  "options": {
+                  "options_OBJ": {
                     "data": [
                       {"label": "true", "value": true},
                       {"label": "false", "value": false}
@@ -332,13 +334,13 @@
                   "defaultValue": "",
                   "placeholder": "",
                   "disabled": false,
-                  "Validate": {
+                  "validate_OBJ": {
                     "data": [
                       {"required": false, "message": "请输字段", "trigger": "change"}
                     ]
                   },
                   "options_url": "none",
-                  "options": [],
+                  "options_OBJ": [],
                   "control_type": "",
                   "control_id": "",
                   "fn": "",
@@ -386,16 +388,12 @@
       vueBus.$on(this.id, obj => {
         this[obj.fn](obj);
       });
-      this.bus.$on(this.id, obj => {
-        this[obj.fn](obj);
-      });
     },
     mounted() {
 
     },
     beforeDestroy() {
       vueBus.$off(this.id);
-      this.bus.$off(this.id);
     }
   };
 </script>

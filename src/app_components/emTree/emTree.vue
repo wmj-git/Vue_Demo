@@ -66,13 +66,13 @@
           checkbox: false,
           treeDataType: "",
           treeDataUrl: "",
-          treeDataParams: "",
+          treeDataParams_OBJ: "",
           checkedKeysType: "",
           checkedKeysUrl: "",
-          checkedKeysParams: "",
+          checkedKeysParams_OBJ: "",
           updateCheckedType: "",
           updateCheckedUrl: "",
-          updateCheckedParams: "",
+          updateCheckedParams_OBJ: "",
         },
         treeData: [],
         filterText: '',
@@ -118,13 +118,13 @@
         this.set.removeUrl = this.data.removeUrl;
         this.set.treeDataType = this.data.treeDataType ? this.data.treeDataType : "query";
         this.set.treeDataUrl = this.data.treeDataUrl ? this.data.treeDataUrl : "";
-        this.set.treeDataParams = this.data.treeDataParams ? this.data.treeDataParams : "none";
+        this.set.treeDataParams_OBJ = this.data.treeDataParams_OBJ ? this.data.treeDataParams_OBJ : "none";
         this.set.checkedKeysType = this.data.checkedKeysType ? this.data.checkedKeysType : "";
         this.set.checkedKeysUrl = this.data.checkedKeysUrl ? this.data.checkedKeysUrl : "";
-        this.set.checkedKeysParams = this.data.checkedKeysParams ? this.data.checkedKeysParams : "none";
+        this.set.checkedKeysParams_OBJ = this.data.checkedKeysParams_OBJ ? this.data.checkedKeysParams_OBJ : "none";
         this.set.updateCheckedType = this.data.updateCheckedType ? this.data.updateCheckedType : "";
         this.set.updateCheckedUrl = this.data.updateCheckedUrl ? this.data.updateCheckedUrl : "";
-        this.set.updateCheckedParams = this.data.updateCheckedParams ? this.data.updateCheckedParams : "none";
+        this.set.updateCheckedParams_OBJ = this.data.updateCheckedParams_OBJ ? this.data.updateCheckedParams_OBJ : "none";
 
         this.setFn.handleNodeClickType = this.data.handleNodeClickType ? this.data.handleNodeClickType : "";
         this.setFn.handleNodeClickControlId = this.data.handleNodeClickControlId ? this.data.handleNodeClickControlId : "";
@@ -148,7 +148,7 @@
           case "query":
             query({
               "url": this.set.treeDataUrl,
-              "params": this.set.treeDataParams
+              "params": this.set.treeDataParams_OBJ
             }).then((response) => {
               console.log(response);
               if (response.statusCode === 200) {
@@ -264,7 +264,7 @@
         this.paramsData['CheckedKeys'] = _CheckedKeys;
 
         let _params = {};
-        let stringToData = new StringToObj(this.set.updateCheckedParams,
+        let stringToData = new StringToObj(this.set.updateCheckedParams_OBJ,
           {
             splitVal: "_",
             typeVal: "params"
@@ -296,8 +296,6 @@
         return this.$refs.tree.getCheckedKeys();
       },
       setCheckedKeys(_obj) {
-        console.log("_obj", _obj);
-
         if (_obj) {
           //表格传过来的行数据
           this.paramsData = _obj.row;
@@ -311,7 +309,7 @@
         switch (this.set.checkedKeysType) {
           case "table":
             let _params = {};
-            let stringToData = new StringToObj(this.set.checkedKeysParams,
+            let stringToData = new StringToObj(this.set.checkedKeysParams_OBJ,
               {
                 splitVal: "_",
                 typeVal: "params"
@@ -352,13 +350,9 @@
       vueBus.$on(this.id, obj => {
         this[obj.fn](obj);
       });
-      this.bus.$on(this.id, obj => {
-        this[obj.fn](obj);
-      });
     },
     beforeDestroy() {
       vueBus.$off(this.id);
-      this.bus.$off(this.id);
     }
   };
 </script>

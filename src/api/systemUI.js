@@ -188,7 +188,7 @@ export const systemData = [
     "defaultValue": "",
     "placeholder": "中文名",
     "disabled": false,
-    "Validate": {
+    "tableColumn_OBJ": {
       "data": [
         {"required": false, "message": "请输字段", "trigger": "change"}
       ]
@@ -257,7 +257,7 @@ export const systemData = [
     "defaultValue": "",
     "placeholder": "请输入",
     "disabled": false,
-    "Validate": {
+    "tableColumn_OBJ": {
       "data": [
         {"required": true, "message": "请输字母", "trigger": "change"}
       ]
@@ -575,7 +575,7 @@ export const systemData = [
     "winSpan": 48,
     "component": "emTable",
     "maxHeight": "380",
-    "tableColumn": {
+    "tableColumn_OBJ": {
       "data": [
         {
           "label": "英文名",
@@ -622,10 +622,11 @@ export const systemData = [
     "title": "关联用户",
     "label": "操作2",
     "minWidth": 12,
-    "control_type": "columnBtn_win",
+    "control_type": "columnBtn_win_transfer",
     "control_id": "nav_systemManage_role_win2",
     "fn": "",
-    "fn_type": ""
+    "fn_type": "",
+    "transfer_id": "nav_systemManage_role_win2_emTransfer"
   },
   {
     "system_id": "nav_systemManage_role_win1",
@@ -657,12 +658,12 @@ export const systemData = [
     "treeDataType": "permissions",
     "checkedKeysType": "table",
     "checkedKeysUrl": "/user/role/queryResource",
-    "checkedKeysParams": {
+    "checkedKeysParams_OBJ": {
       "params_id": "id"
     },
     "updateCheckedType": "table",
     "updateCheckedUrl": "/user/role/setRoleResource",
-    "updateCheckedParams": {
+    "updateCheckedParams_OBJ": {
       "params_resourceIds": "CheckedKeys",
       "params_roleId": "id"
     },
@@ -1380,8 +1381,6 @@ export const systemData = [
     "size": "20%",
     "control_id": "",
     "control_type": "",
-    "fn": "",
-    "fn_type": ""
-  },
-  {"data":[{"required":false,"message":"请输入","trigger":"change"}]}
-  ]
+    "fn": "validate_OBJ",
+    "fn_type": "options_OBJ"
+  }]

@@ -107,16 +107,12 @@
       vueBus.$on(this.id, obj => {
         this[obj.fn](obj);
       });
-      this.bus.$on(this.id, obj => {
-        this[obj.fn](obj);
-      });
     },
     mounted() {
 
     },
     beforeDestroy() {
       vueBus.$off(this.id);
-      this.bus.$off(this.id);
     }
   }
 </script>

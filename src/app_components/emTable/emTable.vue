@@ -27,7 +27,7 @@
               :index="tableIndex"
             >
             </el-table-column>
-            <template v-for="(column,index) in tableSet.tableColumn">
+            <template v-for="(column,index) in tableSet.tableColumn_OBJ">
               <el-table-column
                 :key="index"
                 :prop="column.prop"
@@ -83,7 +83,7 @@
         tableSet: {//表组件属性设置
           resourceUrl: "",//数据地址
           maxHeight: "100",
-          tableColumn: []
+          tableColumn_OBJ: []
         },
         listLoading: true,//加载状态
         tableData: [],//表数据
@@ -111,7 +111,7 @@
                 system_id: _obj.btn.control_id
               }
             });
-            const _FN = new TimeFn("t1", () => {
+            const _FN1 = new TimeFn("t1", () => {
               vueBus.$emit(_obj.btn.tree_id, {
                 fn: _obj.btn.fn,
                 row: _obj.row
@@ -119,8 +119,23 @@
             }, () => {
               return false
             }, 100);
-            _FN.run();
-
+            _FN1.run();
+            break;
+          case "columnBtn_win_transfer":
+            this.$store.commit('user/win_open', {
+              win_obj: {
+                system_id: _obj.btn.control_id
+              }
+            });
+            const _FN2 = new TimeFn("t2", () => {
+              vueBus.$emit(_obj.btn.transfer_id, {
+                fn: _obj.btn.fn,
+                row: _obj.row
+              });
+            }, () => {
+              return false
+            }, 100);
+            _FN2.run();
             break;
           default:
             this[_fn](_obj);
@@ -133,8 +148,8 @@
         this.tableSet.maxHeight = this.data.maxHeight;
 
         //表字段
-        let _tableColumn = JSON.parse(JSON.stringify(this.data.tableColumn));
-        this.tableSet.tableColumn = _tableColumn.data;
+        let _tableColumn = JSON.parse(JSON.stringify(this.data.tableColumn_OBJ));
+        this.tableSet.tableColumn_OBJ = _tableColumn.data;
 
         //获取行按钮数据
         if (this.data.children) {
@@ -351,17 +366,11 @@
           "children": _data.children
         });
 
-      },
-      addWin() {
-
       }
     },
     created() {
       this.init();
       vueBus.$on(this.id, obj => {
-        this[obj.fn](obj);
-      });
-      this.bus.$on(this.id, obj => {
         this[obj.fn](obj);
       });
     },
@@ -370,7 +379,6 @@
     },
     beforeDestroy() {
       vueBus.$off(this.id);
-      this.bus.$off(this.id);
     }
   };
 </script>

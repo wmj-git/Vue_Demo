@@ -30,7 +30,7 @@
       <template v-else-if="win.winLayout==='2'">
         <win :id="win.system_id" :data="win">
           <div :style="{width: '100%',height:win.setHeight}">
-            <split-pane split="vertical" :min-percent='win.minPercent' :default-percent='win.defaultPercent'>
+            <split-pane split="vertical" :min-percent='Number(win.minPercent)' :default-percent='Number(win.defaultPercent)'>
               <template v-if="win.children" v-for="component in win.children">
                 <template slot="paneL" v-if="win.paneL && component.paneType==='paneL'">
                   <el-col :span="component.winSpan" :offset="component.winOffset">
@@ -148,7 +148,6 @@
         return this.$store.getters["user/dialog"];
       },
       drawerGroup: function () {
-
         return this.$store.getters["user/drawer"];
       }
     },
