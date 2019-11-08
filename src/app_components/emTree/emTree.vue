@@ -50,8 +50,9 @@
 <script>
 
   import vueBus from '@/utils/vueBus'
-  import {queryCheckedKeys, updateCheckedKeys, query, add, del, update} from "@/app_api/tree";
   import {toTree, StringToObj} from "@/utils/tools";
+  import {queryCheckedKeys, updateCheckedKeys, query, add, del, update} from "@/app_api/tree";
+
 
   export default {
     name: "emTree",

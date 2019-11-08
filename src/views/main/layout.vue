@@ -90,13 +90,12 @@
   // 功能组件
   import emTable from "@/app_components/emTable/emTable";
   import emTree from "@/app_components/emTree/emTree";
+  import emTransfer from "@/app_components/emTransfer/emTransfer";
   import emForm from "@/app_components/emForm/emForm";
   import emButtonGroup from "@/app_components/emButtonGroup/emButtonGroup";
   import buttonGroup from "@/app_components/buttonGroup/buttonGroup";
-  //公用组件
 
-
-  //系统组件
+  //系统布局组件
   import emLogo from "./components/emLogo/emLogo";
   import emTools from "./components/emTools/emTools";
   import emWarn from "./components/emWarn/emWarn";
@@ -114,19 +113,20 @@
     },
     components: {
       splitPane,//拖动边线
-
-      //start/公用组件=============
       win,
-      emTable,
-      emTree,
-      emForm,
       emDialog,
       emDrawer,
+
+      //start/功能组件=============
+      emTable,
+      emTree,
+      emTransfer,
+      emForm,
       emButtonGroup,
       buttonGroup,
       //end/公用组件=============
 
-      //start/局部组件=============
+      //start/功能组件=============
       emMenu,
       emNav,
       emBottom,

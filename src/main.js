@@ -40,7 +40,7 @@ import VueVideoPlayer from 'vue-video-player'
 import 'video.js/dist/video-js.css'
 Vue.use(VueVideoPlayer)
 
-import './permission' // 理由拦截
+import './permission' // 路由拦截
 
 import * as socketApi from './api/socket'
 Vue.prototype.socketApi = socketApi;

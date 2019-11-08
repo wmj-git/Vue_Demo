@@ -5863,7 +5863,7 @@ export default {
             geomType: "point",
             params_longitude: 114.03188276054428,
             params_latitude: 22.619840297782094,
-            params_distance: 10000,
+            params_distance: 1000,
             geom_titleKey: "id",
             geom_style: "1",
             strokeWidth: 6,

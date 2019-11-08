@@ -290,7 +290,7 @@
           params: {
             longitude: _val.lng ? _val.lng : 114.03188276054428,
             latitude: _val.lat ? _val.lat : 22.619840297782094,
-            distance: _val.distance ? _val.distance : 10000
+            distance: _val.distance ? _val.distance : 1
           }
         }).then(response => {
           let _data = [];
@@ -337,6 +337,8 @@
         }
 
         if (_val.api_name === "queryVicinityPrint") {
+
+          // this.queryVicinityPrintFn(obj)
 
         } else if (_val.api_name === "marker") {
 

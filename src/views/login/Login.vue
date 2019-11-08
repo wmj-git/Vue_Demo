@@ -109,7 +109,7 @@
           localStorage.setItem('password','');
         }
         this.init();
-        this.$router.push("/home/map");
+        this.$router.push("/main/map");
       }
 
     }
